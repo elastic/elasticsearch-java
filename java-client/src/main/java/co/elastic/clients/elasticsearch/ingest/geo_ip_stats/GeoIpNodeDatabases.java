@@ -62,7 +62,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 	}
 
 	/**
-	 * Downloaded databases for the node.
+	 * Required - Downloaded databases for the node.
 	 * <p>
 	 * API name: {@code databases}
 	 */
@@ -71,8 +71,8 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 	}
 
 	/**
-	 * Downloaded database files, including related license files. Elasticsearch
-	 * stores these files in the node’s temporary directory:
+	 * Required - Downloaded database files, including related license files.
+	 * Elasticsearch stores these files in the node’s temporary directory:
 	 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 	 * <p>
 	 * API name: {@code files_in_temp}
@@ -121,7 +121,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		private List<String> filesInTemp;
 
 		/**
-		 * Downloaded databases for the node.
+		 * Required - Downloaded databases for the node.
 		 * <p>
 		 * API name: {@code databases}
 		 */
@@ -131,7 +131,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Downloaded databases for the node.
+		 * Required - Downloaded databases for the node.
 		 * <p>
 		 * API name: {@code databases}
 		 */
@@ -141,7 +141,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #databases(List)}, creating the list if needed. 4
+		 * Add a value to {@link #databases(List)}, creating the list if needed.
 		 */
 		public Builder addDatabases(GeoIpNodeDatabaseName value) {
 			if (this.databases == null) {
@@ -159,15 +159,15 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #databases(List)}, creating the list if needed. 5
+		 * Add a value to {@link #databases(List)}, creating the list if needed.
 		 */
 		public Builder addDatabases(Function<GeoIpNodeDatabaseName.Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
 			return this.addDatabases(fn.apply(new GeoIpNodeDatabaseName.Builder()).build());
 		}
 
 		/**
-		 * Downloaded database files, including related license files. Elasticsearch
-		 * stores these files in the node’s temporary directory:
+		 * Required - Downloaded database files, including related license files.
+		 * Elasticsearch stores these files in the node’s temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 		 * <p>
 		 * API name: {@code files_in_temp}
@@ -178,8 +178,8 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Downloaded database files, including related license files. Elasticsearch
-		 * stores these files in the node’s temporary directory:
+		 * Required - Downloaded database files, including related license files.
+		 * Elasticsearch stores these files in the node’s temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 		 * <p>
 		 * API name: {@code files_in_temp}
@@ -190,7 +190,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filesInTemp(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filesInTemp(List)}, creating the list if needed.
 		 */
 		public Builder addFilesInTemp(String value) {
 			if (this.filesInTemp == null) {

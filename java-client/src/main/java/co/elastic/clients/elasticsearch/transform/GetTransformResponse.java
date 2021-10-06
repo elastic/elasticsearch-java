@@ -63,14 +63,14 @@ public final class GetTransformResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code transforms}
+	 * Required - API name: {@code transforms}
 	 */
 	public List<EmptyTransform> transforms() {
 		return this.transforms;
@@ -111,7 +111,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		private List<EmptyTransform> transforms;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -119,7 +119,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transforms}
+		 * Required - API name: {@code transforms}
 		 */
 		public Builder transforms(List<EmptyTransform> value) {
 			this.transforms = value;
@@ -127,7 +127,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transforms}
+		 * Required - API name: {@code transforms}
 		 */
 		public Builder transforms(EmptyTransform... value) {
 			this.transforms = Arrays.asList(value);
@@ -135,7 +135,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #transforms(List)}, creating the list if needed.
 		 */
 		public Builder addTransforms(EmptyTransform value) {
 			if (this.transforms == null) {
@@ -153,7 +153,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed. 5
+		 * Add a value to {@link #transforms(List)}, creating the list if needed.
 		 */
 		public Builder addTransforms(Function<EmptyTransform.Builder, ObjectBuilder<EmptyTransform>> fn) {
 			return this.addTransforms(fn.apply(new EmptyTransform.Builder()).build());

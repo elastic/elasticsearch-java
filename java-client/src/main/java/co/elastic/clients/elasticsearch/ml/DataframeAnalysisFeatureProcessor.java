@@ -70,6 +70,11 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 
 	}
 
+	public <T extends DataframeAnalysisFeatureProcessorVariant> DataframeAnalysisFeatureProcessor(
+			ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private DataframeAnalysisFeatureProcessor(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

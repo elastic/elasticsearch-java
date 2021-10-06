@@ -62,7 +62,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the data frame analytics to start
+	 * Required - The ID of the data frame analytics to start
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -93,7 +93,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * The ID of the data frame analytics to start
+		 * Required - The ID of the data frame analytics to start
 		 * <p>
 		 * API name: {@code id}
 		 */

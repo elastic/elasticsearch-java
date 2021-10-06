@@ -66,14 +66,14 @@ public final class ShardRouting implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
 	public boolean primary() {
 		return this.primary;
@@ -88,7 +88,7 @@ public final class ShardRouting implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public ShardRoutingState state() {
 		return this.state;
@@ -139,7 +139,7 @@ public final class ShardRouting implements JsonpSerializable {
 		private ShardRoutingState state;
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -147,7 +147,7 @@ public final class ShardRouting implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
 		public Builder primary(boolean value) {
 			this.primary = value;
@@ -163,7 +163,7 @@ public final class ShardRouting implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(ShardRoutingState value) {
 			this.state = value;

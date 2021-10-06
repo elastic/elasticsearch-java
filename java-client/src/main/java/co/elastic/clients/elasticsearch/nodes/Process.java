@@ -65,28 +65,28 @@ public final class Process implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cpu}
+	 * Required - API name: {@code cpu}
 	 */
 	public Cpu cpu() {
 		return this.cpu;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public MemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code open_file_descriptors}
+	 * Required - API name: {@code open_file_descriptors}
 	 */
 	public int openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public long timestamp() {
 		return this.timestamp;
@@ -132,7 +132,7 @@ public final class Process implements JsonpSerializable {
 		private Long timestamp;
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Cpu value) {
 			this.cpu = value;
@@ -140,14 +140,14 @@ public final class Process implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
 			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(MemoryStats value) {
 			this.mem = value;
@@ -155,14 +155,14 @@ public final class Process implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code open_file_descriptors}
+		 * Required - API name: {@code open_file_descriptors}
 		 */
 		public Builder openFileDescriptors(int value) {
 			this.openFileDescriptors = value;
@@ -170,7 +170,7 @@ public final class Process implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(long value) {
 			this.timestamp = value;

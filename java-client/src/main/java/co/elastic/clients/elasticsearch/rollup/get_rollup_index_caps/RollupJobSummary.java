@@ -68,28 +68,28 @@ public final class RollupJobSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public Map<String, List<RollupJobSummaryField>> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * API name: {@code index_pattern}
+	 * Required - API name: {@code index_pattern}
 	 */
 	public String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code rollup_index}
+	 * Required - API name: {@code rollup_index}
 	 */
 	public String rollupIndex() {
 		return this.rollupIndex;
@@ -146,7 +146,7 @@ public final class RollupJobSummary implements JsonpSerializable {
 		private String rollupIndex;
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(Map<String, List<RollupJobSummaryField>> value) {
 			this.fields = value;
@@ -165,7 +165,7 @@ public final class RollupJobSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_pattern}
+		 * Required - API name: {@code index_pattern}
 		 */
 		public Builder indexPattern(String value) {
 			this.indexPattern = value;
@@ -173,7 +173,7 @@ public final class RollupJobSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -181,7 +181,7 @@ public final class RollupJobSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rollup_index}
+		 * Required - API name: {@code rollup_index}
 		 */
 		public Builder rollupIndex(String value) {
 			this.rollupIndex = value;

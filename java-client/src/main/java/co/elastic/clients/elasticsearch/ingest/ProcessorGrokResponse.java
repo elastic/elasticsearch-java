@@ -58,7 +58,7 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code patterns}
+	 * Required - API name: {@code patterns}
 	 */
 	public Map<String, String> patterns() {
 		return this.patterns;
@@ -95,7 +95,7 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 		private Map<String, String> patterns;
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(Map<String, String> value) {
 			this.patterns = value;

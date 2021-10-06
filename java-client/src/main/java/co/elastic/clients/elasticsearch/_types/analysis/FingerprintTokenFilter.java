@@ -67,14 +67,14 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 	}
 
 	/**
-	 * API name: {@code max_output_size}
+	 * Required - API name: {@code max_output_size}
 	 */
 	public int maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
-	 * API name: {@code separator}
+	 * Required - API name: {@code separator}
 	 */
 	public String separator() {
 		return this.separator;
@@ -106,7 +106,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		private String separator;
 
 		/**
-		 * API name: {@code max_output_size}
+		 * Required - API name: {@code max_output_size}
 		 */
 		public Builder maxOutputSize(int value) {
 			this.maxOutputSize = value;
@@ -114,7 +114,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code separator}
+		 * Required - API name: {@code separator}
 		 */
 		public Builder separator(String value) {
 			this.separator = value;

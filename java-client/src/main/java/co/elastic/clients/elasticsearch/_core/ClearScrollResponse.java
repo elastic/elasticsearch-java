@@ -58,14 +58,14 @@ public final class ClearScrollResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code succeeded}
+	 * Required - API name: {@code succeeded}
 	 */
 	public boolean succeeded() {
 		return this.succeeded;
 	}
 
 	/**
-	 * API name: {@code num_freed}
+	 * Required - API name: {@code num_freed}
 	 */
 	public int numFreed() {
 		return this.numFreed;
@@ -101,7 +101,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		private Integer numFreed;
 
 		/**
-		 * API name: {@code succeeded}
+		 * Required - API name: {@code succeeded}
 		 */
 		public Builder succeeded(boolean value) {
 			this.succeeded = value;
@@ -109,7 +109,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code num_freed}
+		 * Required - API name: {@code num_freed}
 		 */
 		public Builder numFreed(int value) {
 			this.numFreed = value;

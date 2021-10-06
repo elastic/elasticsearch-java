@@ -61,7 +61,7 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 	}
 
 	/**
-	 * API name: {@code result}
+	 * Required - API name: {@code result}
 	 */
 	public TResult result() {
 		return this.result;
@@ -95,7 +95,7 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 		private JsonpSerializer<TResult> tResultSerializer;
 
 		/**
-		 * API name: {@code result}
+		 * Required - API name: {@code result}
 		 */
 		public Builder<TResult> result(TResult value) {
 			this.result = value;

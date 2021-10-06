@@ -57,14 +57,14 @@ public final class AutoscalingCapacity implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public AutoscalingResources node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public AutoscalingResources total() {
 		return this.total;
@@ -100,7 +100,7 @@ public final class AutoscalingCapacity implements JsonpSerializable {
 		private AutoscalingResources total;
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(AutoscalingResources value) {
 			this.node = value;
@@ -108,14 +108,14 @@ public final class AutoscalingCapacity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(Function<AutoscalingResources.Builder, ObjectBuilder<AutoscalingResources>> fn) {
 			return this.node(fn.apply(new AutoscalingResources.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(AutoscalingResources value) {
 			this.total = value;
@@ -123,7 +123,7 @@ public final class AutoscalingCapacity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<AutoscalingResources.Builder, ObjectBuilder<AutoscalingResources>> fn) {
 			return this.total(fn.apply(new AutoscalingResources.Builder()).build());

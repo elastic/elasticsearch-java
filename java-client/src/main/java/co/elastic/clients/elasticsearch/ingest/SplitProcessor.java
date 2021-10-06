@@ -79,7 +79,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -102,7 +102,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 	}
 
 	/**
-	 * API name: {@code separator}
+	 * Required - API name: {@code separator}
 	 */
 	public String separator() {
 		return this.separator;
@@ -170,7 +170,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -194,7 +194,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code separator}
+		 * Required - API name: {@code separator}
 		 */
 		public Builder separator(String value) {
 			this.separator = value;

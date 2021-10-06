@@ -55,7 +55,7 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
@@ -86,7 +86,7 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 		private String host;
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public Builder host(String value) {
 			this.host = value;

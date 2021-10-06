@@ -126,7 +126,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, or aliases to search
+	 * Required - Comma-separated list of data streams, indices, or aliases to
+	 * search
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -135,7 +136,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Field containing geospatial data to return
+	 * Required - Field containing geospatial data to return
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -144,7 +145,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Zoom level for the vector tile to search
+	 * Required - Zoom level for the vector tile to search
 	 * <p>
 	 * API name: {@code zoom}
 	 */
@@ -153,7 +154,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * X coordinate for the vector tile to search
+	 * Required - X coordinate for the vector tile to search
 	 * <p>
 	 * API name: {@code x}
 	 */
@@ -162,7 +163,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Y coordinate for the vector tile to search
+	 * Required - Y coordinate for the vector tile to search
 	 * <p>
 	 * API name: {@code y}
 	 */
@@ -437,7 +438,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
-		 * Comma-separated list of data streams, indices, or aliases to search
+		 * Required - Comma-separated list of data streams, indices, or aliases to
+		 * search
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -447,7 +449,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, or aliases to search
+		 * Required - Comma-separated list of data streams, indices, or aliases to
+		 * search
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -457,7 +460,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -468,7 +471,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Field containing geospatial data to return
+		 * Required - Field containing geospatial data to return
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -478,7 +481,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Zoom level for the vector tile to search
+		 * Required - Zoom level for the vector tile to search
 		 * <p>
 		 * API name: {@code zoom}
 		 */
@@ -488,7 +491,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * X coordinate for the vector tile to search
+		 * Required - X coordinate for the vector tile to search
 		 * <p>
 		 * API name: {@code x}
 		 */
@@ -498,7 +501,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Y coordinate for the vector tile to search
+		 * Required - Y coordinate for the vector tile to search
 		 * <p>
 		 * API name: {@code y}
 		 */
@@ -601,7 +604,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -727,7 +730,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {

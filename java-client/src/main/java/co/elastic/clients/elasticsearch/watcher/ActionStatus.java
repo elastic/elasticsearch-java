@@ -66,7 +66,7 @@ public final class ActionStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code ack}
+	 * Required - API name: {@code ack}
 	 */
 	public AcknowledgeState ack() {
 		return this.ack;
@@ -149,7 +149,7 @@ public final class ActionStatus implements JsonpSerializable {
 		private ThrottleState lastThrottle;
 
 		/**
-		 * API name: {@code ack}
+		 * Required - API name: {@code ack}
 		 */
 		public Builder ack(AcknowledgeState value) {
 			this.ack = value;
@@ -157,7 +157,7 @@ public final class ActionStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ack}
+		 * Required - API name: {@code ack}
 		 */
 		public Builder ack(Function<AcknowledgeState.Builder, ObjectBuilder<AcknowledgeState>> fn) {
 			return this.ack(fn.apply(new AcknowledgeState.Builder()).build());

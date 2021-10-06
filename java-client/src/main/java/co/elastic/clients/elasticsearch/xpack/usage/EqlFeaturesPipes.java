@@ -58,14 +58,14 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code pipe_tail}
+	 * Required - API name: {@code pipe_tail}
 	 */
 	public Number pipeTail() {
 		return this.pipeTail;
 	}
 
 	/**
-	 * API name: {@code pipe_head}
+	 * Required - API name: {@code pipe_head}
 	 */
 	public Number pipeHead() {
 		return this.pipeHead;
@@ -101,7 +101,7 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 		private Number pipeHead;
 
 		/**
-		 * API name: {@code pipe_tail}
+		 * Required - API name: {@code pipe_tail}
 		 */
 		public Builder pipeTail(Number value) {
 			this.pipeTail = value;
@@ -109,7 +109,7 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipe_head}
+		 * Required - API name: {@code pipe_head}
 		 */
 		public Builder pipeHead(Number value) {
 			this.pipeHead = value;

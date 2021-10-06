@@ -54,7 +54,7 @@ public final class Flattened extends Base {
 	}
 
 	/**
-	 * API name: {@code field_count}
+	 * Required - API name: {@code field_count}
 	 */
 	public int fieldCount() {
 		return this.fieldCount;
@@ -78,7 +78,7 @@ public final class Flattened extends Base {
 		private Integer fieldCount;
 
 		/**
-		 * API name: {@code field_count}
+		 * Required - API name: {@code field_count}
 		 */
 		public Builder fieldCount(int value) {
 			this.fieldCount = value;

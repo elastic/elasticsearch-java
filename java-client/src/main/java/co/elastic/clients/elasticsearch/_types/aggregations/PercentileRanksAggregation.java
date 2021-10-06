@@ -192,7 +192,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		}
 
 		/**
-		 * Add a value to {@link #values(List)}, creating the list if needed. 4
+		 * Add a value to {@link #values(List)}, creating the list if needed.
 		 */
 		public Builder addValues(Double value) {
 			if (this.values == null) {

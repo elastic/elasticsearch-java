@@ -114,14 +114,14 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code field_split}
+	 * Required - API name: {@code field_split}
 	 */
 	public String fieldSplit() {
 		return this.fieldSplit;
@@ -184,7 +184,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 	}
 
 	/**
-	 * API name: {@code value_split}
+	 * Required - API name: {@code value_split}
 	 */
 	public String valueSplit() {
 		return this.valueSplit;
@@ -319,7 +319,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * Add a value to {@link #excludeKeys(List)}, creating the list if needed. 4
+		 * Add a value to {@link #excludeKeys(List)}, creating the list if needed.
 		 */
 		public Builder addExcludeKeys(String value) {
 			if (this.excludeKeys == null) {
@@ -330,7 +330,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -338,7 +338,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * API name: {@code field_split}
+		 * Required - API name: {@code field_split}
 		 */
 		public Builder fieldSplit(String value) {
 			this.fieldSplit = value;
@@ -370,7 +370,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * Add a value to {@link #includeKeys(List)}, creating the list if needed. 4
+		 * Add a value to {@link #includeKeys(List)}, creating the list if needed.
 		 */
 		public Builder addIncludeKeys(String value) {
 			if (this.includeKeys == null) {
@@ -421,7 +421,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * API name: {@code value_split}
+		 * Required - API name: {@code value_split}
 		 */
 		public Builder valueSplit(String value) {
 			this.valueSplit = value;

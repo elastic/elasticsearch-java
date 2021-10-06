@@ -59,14 +59,14 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code watch_record}
+	 * Required - API name: {@code watch_record}
 	 */
 	public WatchRecord watchRecord() {
 		return this.watchRecord;
@@ -102,7 +102,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		private WatchRecord watchRecord;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -110,7 +110,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watch_record}
+		 * Required - API name: {@code watch_record}
 		 */
 		public Builder watchRecord(WatchRecord value) {
 			this.watchRecord = value;
@@ -118,7 +118,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watch_record}
+		 * Required - API name: {@code watch_record}
 		 */
 		public Builder watchRecord(Function<WatchRecord.Builder, ObjectBuilder<WatchRecord>> fn) {
 			return this.watchRecord(fn.apply(new WatchRecord.Builder()).build());

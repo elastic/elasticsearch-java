@@ -54,7 +54,7 @@ public final class Analytics extends Base {
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public AnalyticsStatistics stats() {
 		return this.stats;
@@ -78,7 +78,7 @@ public final class Analytics extends Base {
 		private AnalyticsStatistics stats;
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(AnalyticsStatistics value) {
 			this.stats = value;
@@ -86,7 +86,7 @@ public final class Analytics extends Base {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<AnalyticsStatistics.Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
 			return this.stats(fn.apply(new AnalyticsStatistics.Builder()).build());

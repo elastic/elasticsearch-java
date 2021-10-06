@@ -69,21 +69,21 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 	}
 
 	/**
-	 * API name: {@code flags}
+	 * Required - API name: {@code flags}
 	 */
 	public String flags() {
 		return this.flags;
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public String pattern() {
 		return this.pattern;
 	}
 
 	/**
-	 * API name: {@code replacement}
+	 * Required - API name: {@code replacement}
 	 */
 	public String replacement() {
 		return this.replacement;
@@ -120,7 +120,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		private String replacement;
 
 		/**
-		 * API name: {@code flags}
+		 * Required - API name: {@code flags}
 		 */
 		public Builder flags(String value) {
 			this.flags = value;
@@ -128,7 +128,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(String value) {
 			this.pattern = value;
@@ -136,7 +136,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		}
 
 		/**
-		 * API name: {@code replacement}
+		 * Required - API name: {@code replacement}
 		 */
 		public Builder replacement(String value) {
 			this.replacement = value;

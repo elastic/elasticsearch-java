@@ -57,7 +57,7 @@ public final class GetWatchRequest extends RequestBase {
 	}
 
 	/**
-	 * Watch ID
+	 * Required - Watch ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -74,7 +74,7 @@ public final class GetWatchRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Watch ID
+		 * Required - Watch ID
 		 * <p>
 		 * API name: {@code id}
 		 */

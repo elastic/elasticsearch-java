@@ -58,14 +58,14 @@ public final class TaskFailureReason implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
@@ -101,7 +101,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		private String reason;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -109,7 +109,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;

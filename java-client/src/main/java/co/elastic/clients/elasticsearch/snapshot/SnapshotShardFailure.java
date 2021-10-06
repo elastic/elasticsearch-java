@@ -67,35 +67,35 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code shard_id}
+	 * Required - API name: {@code shard_id}
 	 */
 	public String shardId() {
 		return this.shardId;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public String status() {
 		return this.status;
@@ -146,7 +146,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		private String status;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -154,7 +154,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -162,7 +162,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;
@@ -170,7 +170,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard_id}
+		 * Required - API name: {@code shard_id}
 		 */
 		public Builder shardId(String value) {
 			this.shardId = value;
@@ -178,7 +178,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(String value) {
 			this.status = value;

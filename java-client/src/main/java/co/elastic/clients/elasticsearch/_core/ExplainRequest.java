@@ -85,7 +85,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -130,7 +130,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The document ID
+	 * Required - The document ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -139,7 +139,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The name of the index
+	 * Required - The name of the index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -237,7 +237,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -344,7 +344,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -362,7 +362,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		private Query query;
 
 		/**
-		 * The document ID
+		 * Required - The document ID
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -372,7 +372,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The name of the index
+		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -470,7 +470,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
+		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -496,7 +496,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -527,7 +527,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -558,7 +558,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {

@@ -59,7 +59,7 @@ public final class ReindexRethrottleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, ReindexNode> nodes() {
 		return this.nodes;
@@ -96,7 +96,7 @@ public final class ReindexRethrottleResponse implements JsonpSerializable {
 		private Map<String, ReindexNode> nodes;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, ReindexNode> value) {
 			this.nodes = value;

@@ -54,7 +54,7 @@ public final class PutUserResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
 	public boolean created() {
 		return this.created;
@@ -85,7 +85,7 @@ public final class PutUserResponse implements JsonpSerializable {
 		private Boolean created;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
 		public Builder created(boolean value) {
 			this.created = value;

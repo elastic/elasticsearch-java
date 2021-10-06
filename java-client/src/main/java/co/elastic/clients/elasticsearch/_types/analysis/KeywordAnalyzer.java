@@ -63,7 +63,7 @@ public final class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -96,7 +96,7 @@ public final class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable
 		private String version;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;

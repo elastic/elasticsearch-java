@@ -57,7 +57,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the auto follow pattern.
+	 * Required - The name of the auto follow pattern.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * The name of the auto follow pattern.
+		 * Required - The name of the auto follow pattern.
 		 * <p>
 		 * API name: {@code name}
 		 */

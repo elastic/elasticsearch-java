@@ -68,35 +68,35 @@ public final class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code cluster_uuid}
+	 * Required - API name: {@code cluster_uuid}
 	 */
 	public String clusterUuid() {
 		return this.clusterUuid;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code tagline}
+	 * Required - API name: {@code tagline}
 	 */
 	public String tagline() {
 		return this.tagline;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public ElasticsearchVersionInfo version() {
 		return this.version;
@@ -147,7 +147,7 @@ public final class InfoResponse implements JsonpSerializable {
 		private ElasticsearchVersionInfo version;
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -155,7 +155,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cluster_uuid}
+		 * Required - API name: {@code cluster_uuid}
 		 */
 		public Builder clusterUuid(String value) {
 			this.clusterUuid = value;
@@ -163,7 +163,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -171,7 +171,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tagline}
+		 * Required - API name: {@code tagline}
 		 */
 		public Builder tagline(String value) {
 			this.tagline = value;
@@ -179,7 +179,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(ElasticsearchVersionInfo value) {
 			this.version = value;
@@ -187,7 +187,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
 			return this.version(fn.apply(new ElasticsearchVersionInfo.Builder()).build());

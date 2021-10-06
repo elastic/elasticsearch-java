@@ -59,7 +59,7 @@ public final class ExplainLifecycleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public Map<String, LifecycleExplain> indices() {
 		return this.indices;
@@ -96,7 +96,7 @@ public final class ExplainLifecycleResponse implements JsonpSerializable {
 		private Map<String, LifecycleExplain> indices;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Map<String, LifecycleExplain> value) {
 			this.indices = value;

@@ -92,9 +92,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	}
 
 	/**
-	 * Identifier for the data frame analytics job. This identifier can contain
-	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -119,9 +119,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	}
 
 	/**
-	 * The analysis configuration, which contains the information necessary to
-	 * perform one of the following types of analysis: classification, outlier
-	 * detection, or regression.
+	 * Required - The analysis configuration, which contains the information
+	 * necessary to perform one of the following types of analysis: classification,
+	 * outlier detection, or regression.
 	 * <p>
 	 * API name: {@code analysis}
 	 */
@@ -179,7 +179,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	}
 
 	/**
-	 * The destination configuration.
+	 * Required - The destination configuration.
 	 * <p>
 	 * API name: {@code dest}
 	 */
@@ -215,7 +215,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	}
 
 	/**
-	 * The configuration of how to source the analysis data.
+	 * Required - The configuration of how to source the analysis data.
 	 * <p>
 	 * API name: {@code source}
 	 */
@@ -308,9 +308,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		private DataframeAnalyticsSource source;
 
 		/**
-		 * Identifier for the data frame analytics job. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -336,9 +336,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The analysis configuration, which contains the information necessary to
-		 * perform one of the following types of analysis: classification, outlier
-		 * detection, or regression.
+		 * Required - The analysis configuration, which contains the information
+		 * necessary to perform one of the following types of analysis: classification,
+		 * outlier detection, or regression.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
@@ -348,9 +348,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The analysis configuration, which contains the information necessary to
-		 * perform one of the following types of analysis: classification, outlier
-		 * detection, or regression.
+		 * Required - The analysis configuration, which contains the information
+		 * necessary to perform one of the following types of analysis: classification,
+		 * outlier detection, or regression.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
@@ -408,7 +408,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The destination configuration.
+		 * Required - The destination configuration.
 		 * <p>
 		 * API name: {@code dest}
 		 */
@@ -418,7 +418,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The destination configuration.
+		 * Required - The destination configuration.
 		 * <p>
 		 * API name: {@code dest}
 		 */
@@ -455,7 +455,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The configuration of how to source the analysis data.
+		 * Required - The configuration of how to source the analysis data.
 		 * <p>
 		 * API name: {@code source}
 		 */
@@ -465,7 +465,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The configuration of how to source the analysis data.
+		 * Required - The configuration of how to source the analysis data.
 		 * <p>
 		 * API name: {@code source}
 		 */

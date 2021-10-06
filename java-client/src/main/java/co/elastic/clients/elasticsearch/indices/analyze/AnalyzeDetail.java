@@ -91,7 +91,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code custom_analyzer}
+	 * Required - API name: {@code custom_analyzer}
 	 */
 	public boolean customAnalyzer() {
 		return this.customAnalyzer;
@@ -217,7 +217,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charfilters(List)}, creating the list if needed. 4
+		 * Add a value to {@link #charfilters(List)}, creating the list if needed.
 		 */
 		public Builder addCharfilters(CharFilterDetail value) {
 			if (this.charfilters == null) {
@@ -235,14 +235,14 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charfilters(List)}, creating the list if needed. 5
+		 * Add a value to {@link #charfilters(List)}, creating the list if needed.
 		 */
 		public Builder addCharfilters(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn) {
 			return this.addCharfilters(fn.apply(new CharFilterDetail.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code custom_analyzer}
+		 * Required - API name: {@code custom_analyzer}
 		 */
 		public Builder customAnalyzer(boolean value) {
 			this.customAnalyzer = value;
@@ -266,7 +266,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed.
 		 */
 		public Builder addTokenfilters(TokenDetail value) {
 			if (this.tokenfilters == null) {
@@ -284,7 +284,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed. 5
+		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed.
 		 */
 		public Builder addTokenfilters(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
 			return this.addTokenfilters(fn.apply(new TokenDetail.Builder()).build());

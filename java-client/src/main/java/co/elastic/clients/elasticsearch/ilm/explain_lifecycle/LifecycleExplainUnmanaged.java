@@ -63,7 +63,7 @@ public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant,
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -96,7 +96,7 @@ public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant,
 		private String index;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;

@@ -57,7 +57,7 @@ public final class DeleteNodeRequest extends RequestBase {
 	}
 
 	/**
-	 * The node id of node to be removed from the shutdown state
+	 * Required - The node id of node to be removed from the shutdown state
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteNodeRequest extends RequestBase {
 		private String nodeId;
 
 		/**
-		 * The node id of node to be removed from the shutdown state
+		 * Required - The node id of node to be removed from the shutdown state
 		 * <p>
 		 * API name: {@code node_id}
 		 */

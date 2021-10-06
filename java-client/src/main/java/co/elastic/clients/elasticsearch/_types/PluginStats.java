@@ -87,70 +87,70 @@ public final class PluginStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code classname}
+	 * Required - API name: {@code classname}
 	 */
 	public String classname() {
 		return this.classname;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code elasticsearch_version}
+	 * Required - API name: {@code elasticsearch_version}
 	 */
 	public String elasticsearchVersion() {
 		return this.elasticsearchVersion;
 	}
 
 	/**
-	 * API name: {@code extended_plugins}
+	 * Required - API name: {@code extended_plugins}
 	 */
 	public List<String> extendedPlugins() {
 		return this.extendedPlugins;
 	}
 
 	/**
-	 * API name: {@code has_native_controller}
+	 * Required - API name: {@code has_native_controller}
 	 */
 	public boolean hasNativeController() {
 		return this.hasNativeController;
 	}
 
 	/**
-	 * API name: {@code java_version}
+	 * Required - API name: {@code java_version}
 	 */
 	public String javaVersion() {
 		return this.javaVersion;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code licensed}
+	 * Required - API name: {@code licensed}
 	 */
 	public boolean licensed() {
 		return this.licensed;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -231,7 +231,7 @@ public final class PluginStats implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code classname}
+		 * Required - API name: {@code classname}
 		 */
 		public Builder classname(String value) {
 			this.classname = value;
@@ -239,7 +239,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -247,7 +247,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code elasticsearch_version}
+		 * Required - API name: {@code elasticsearch_version}
 		 */
 		public Builder elasticsearchVersion(String value) {
 			this.elasticsearchVersion = value;
@@ -255,7 +255,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code extended_plugins}
+		 * Required - API name: {@code extended_plugins}
 		 */
 		public Builder extendedPlugins(List<String> value) {
 			this.extendedPlugins = value;
@@ -263,7 +263,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code extended_plugins}
+		 * Required - API name: {@code extended_plugins}
 		 */
 		public Builder extendedPlugins(String... value) {
 			this.extendedPlugins = Arrays.asList(value);
@@ -271,7 +271,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #extendedPlugins(List)}, creating the list if needed. 4
+		 * Add a value to {@link #extendedPlugins(List)}, creating the list if needed.
 		 */
 		public Builder addExtendedPlugins(String value) {
 			if (this.extendedPlugins == null) {
@@ -282,7 +282,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code has_native_controller}
+		 * Required - API name: {@code has_native_controller}
 		 */
 		public Builder hasNativeController(boolean value) {
 			this.hasNativeController = value;
@@ -290,7 +290,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code java_version}
+		 * Required - API name: {@code java_version}
 		 */
 		public Builder javaVersion(String value) {
 			this.javaVersion = value;
@@ -298,7 +298,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -306,7 +306,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -314,7 +314,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code licensed}
+		 * Required - API name: {@code licensed}
 		 */
 		public Builder licensed(boolean value) {
 			this.licensed = value;
@@ -322,7 +322,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

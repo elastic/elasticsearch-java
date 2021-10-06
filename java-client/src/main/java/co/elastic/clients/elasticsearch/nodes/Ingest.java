@@ -61,14 +61,14 @@ public final class Ingest implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code pipelines}
+	 * Required - API name: {@code pipelines}
 	 */
 	public Map<String, IngestTotal> pipelines() {
 		return this.pipelines;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public IngestTotal total() {
 		return this.total;
@@ -110,7 +110,7 @@ public final class Ingest implements JsonpSerializable {
 		private IngestTotal total;
 
 		/**
-		 * API name: {@code pipelines}
+		 * Required - API name: {@code pipelines}
 		 */
 		public Builder pipelines(Map<String, IngestTotal> value) {
 			this.pipelines = value;
@@ -143,7 +143,7 @@ public final class Ingest implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(IngestTotal value) {
 			this.total = value;
@@ -151,7 +151,7 @@ public final class Ingest implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
 			return this.total(fn.apply(new IngestTotal.Builder()).build());

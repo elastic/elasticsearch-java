@@ -96,8 +96,8 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the job that the
-	 * snapshot was created for.
+	 * Required - A numerical character string that uniquely identifies the job that
+	 * the snapshot was created for.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -106,7 +106,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * The timestamp of the latest processed record.
+	 * Required - The timestamp of the latest processed record.
 	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
@@ -115,7 +115,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * The timestamp of the latest bucket result.
+	 * Required - The timestamp of the latest bucket result.
 	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
@@ -124,7 +124,8 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * The minimum version required to be able to restore the model snapshot.
+	 * Required - The minimum version required to be able to restore the model
+	 * snapshot.
 	 * <p>
 	 * API name: {@code min_version}
 	 */
@@ -133,7 +134,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * Summary information describing the model.
+	 * Required - Summary information describing the model.
 	 * <p>
 	 * API name: {@code model_size_stats}
 	 */
@@ -142,9 +143,9 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, this snapshot will not be deleted during automatic cleanup of
-	 * snapshots older than model_snapshot_retention_days. However, this snapshot
-	 * will be deleted when the job is deleted. The default value is false.
+	 * Required - If true, this snapshot will not be deleted during automatic
+	 * cleanup of snapshots older than model_snapshot_retention_days. However, this
+	 * snapshot will be deleted when the job is deleted. The default value is false.
 	 * <p>
 	 * API name: {@code retain}
 	 */
@@ -153,7 +154,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * For internal use only.
+	 * Required - For internal use only.
 	 * <p>
 	 * API name: {@code snapshot_doc_count}
 	 */
@@ -162,7 +163,8 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the model snapshot.
+	 * Required - A numerical character string that uniquely identifies the model
+	 * snapshot.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -171,7 +173,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * The creation timestamp for the snapshot.
+	 * Required - The creation timestamp for the snapshot.
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
@@ -264,8 +266,8 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the job that the
-		 * snapshot was created for.
+		 * Required - A numerical character string that uniquely identifies the job that
+		 * the snapshot was created for.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -275,7 +277,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * The timestamp of the latest processed record.
+		 * Required - The timestamp of the latest processed record.
 		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
@@ -285,7 +287,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * The timestamp of the latest bucket result.
+		 * Required - The timestamp of the latest bucket result.
 		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
@@ -295,7 +297,8 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * The minimum version required to be able to restore the model snapshot.
+		 * Required - The minimum version required to be able to restore the model
+		 * snapshot.
 		 * <p>
 		 * API name: {@code min_version}
 		 */
@@ -305,7 +308,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * Summary information describing the model.
+		 * Required - Summary information describing the model.
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
@@ -315,7 +318,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * Summary information describing the model.
+		 * Required - Summary information describing the model.
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
@@ -324,9 +327,9 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, this snapshot will not be deleted during automatic cleanup of
-		 * snapshots older than model_snapshot_retention_days. However, this snapshot
-		 * will be deleted when the job is deleted. The default value is false.
+		 * Required - If true, this snapshot will not be deleted during automatic
+		 * cleanup of snapshots older than model_snapshot_retention_days. However, this
+		 * snapshot will be deleted when the job is deleted. The default value is false.
 		 * <p>
 		 * API name: {@code retain}
 		 */
@@ -336,7 +339,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * For internal use only.
+		 * Required - For internal use only.
 		 * <p>
 		 * API name: {@code snapshot_doc_count}
 		 */
@@ -346,7 +349,8 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the model snapshot.
+		 * Required - A numerical character string that uniquely identifies the model
+		 * snapshot.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
@@ -356,7 +360,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * The creation timestamp for the snapshot.
+		 * Required - The creation timestamp for the snapshot.
 		 * <p>
 		 * API name: {@code timestamp}
 		 */

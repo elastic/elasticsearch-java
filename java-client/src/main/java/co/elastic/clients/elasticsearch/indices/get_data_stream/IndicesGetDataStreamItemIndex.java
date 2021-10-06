@@ -58,14 +58,14 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index_name}
+	 * Required - API name: {@code index_name}
 	 */
 	public String indexName() {
 		return this.indexName;
 	}
 
 	/**
-	 * API name: {@code index_uuid}
+	 * Required - API name: {@code index_uuid}
 	 */
 	public String indexUuid() {
 		return this.indexUuid;
@@ -101,7 +101,7 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 		private String indexUuid;
 
 		/**
-		 * API name: {@code index_name}
+		 * Required - API name: {@code index_name}
 		 */
 		public Builder indexName(String value) {
 			this.indexName = value;
@@ -109,7 +109,7 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_uuid}
+		 * Required - API name: {@code index_uuid}
 		 */
 		public Builder indexUuid(String value) {
 			this.indexUuid = value;

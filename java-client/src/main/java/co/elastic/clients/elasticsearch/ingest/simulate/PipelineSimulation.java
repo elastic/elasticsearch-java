@@ -218,7 +218,6 @@ public final class PipelineSimulation implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addProcessorResults(PipelineSimulation value) {
 			if (this.processorResults == null) {
@@ -237,7 +236,6 @@ public final class PipelineSimulation implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addProcessorResults(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
 			return this.addProcessorResults(fn.apply(new PipelineSimulation.Builder()).build());

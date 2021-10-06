@@ -57,14 +57,14 @@ public final class Scripting implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cache_evictions}
+	 * Required - API name: {@code cache_evictions}
 	 */
 	public long cacheEvictions() {
 		return this.cacheEvictions;
 	}
 
 	/**
-	 * API name: {@code compilations}
+	 * Required - API name: {@code compilations}
 	 */
 	public long compilations() {
 		return this.compilations;
@@ -100,7 +100,7 @@ public final class Scripting implements JsonpSerializable {
 		private Long compilations;
 
 		/**
-		 * API name: {@code cache_evictions}
+		 * Required - API name: {@code cache_evictions}
 		 */
 		public Builder cacheEvictions(long value) {
 			this.cacheEvictions = value;
@@ -108,7 +108,7 @@ public final class Scripting implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code compilations}
+		 * Required - API name: {@code compilations}
 		 */
 		public Builder compilations(long value) {
 			this.compilations = value;

@@ -63,7 +63,7 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public String message() {
 		return this.message;
@@ -87,7 +87,7 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 		private String message;
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(String value) {
 			this.message = value;

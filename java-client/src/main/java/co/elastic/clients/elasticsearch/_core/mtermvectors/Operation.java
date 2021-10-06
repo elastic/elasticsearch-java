@@ -100,91 +100,91 @@ public final class Operation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code doc}
+	 * Required - API name: {@code doc}
 	 */
 	public JsonValue doc() {
 		return this.doc;
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public List<String> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * API name: {@code field_statistics}
+	 * Required - API name: {@code field_statistics}
 	 */
 	public boolean fieldStatistics() {
 		return this.fieldStatistics;
 	}
 
 	/**
-	 * API name: {@code filter}
+	 * Required - API name: {@code filter}
 	 */
 	public Filter filter() {
 		return this.filter;
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code offsets}
+	 * Required - API name: {@code offsets}
 	 */
 	public boolean offsets() {
 		return this.offsets;
 	}
 
 	/**
-	 * API name: {@code payloads}
+	 * Required - API name: {@code payloads}
 	 */
 	public boolean payloads() {
 		return this.payloads;
 	}
 
 	/**
-	 * API name: {@code positions}
+	 * Required - API name: {@code positions}
 	 */
 	public boolean positions() {
 		return this.positions;
 	}
 
 	/**
-	 * API name: {@code routing}
+	 * Required - API name: {@code routing}
 	 */
 	public String routing() {
 		return this.routing;
 	}
 
 	/**
-	 * API name: {@code term_statistics}
+	 * Required - API name: {@code term_statistics}
 	 */
 	public boolean termStatistics() {
 		return this.termStatistics;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code version_type}
+	 * Required - API name: {@code version_type}
 	 */
 	public VersionType versionType() {
 		return this.versionType;
@@ -280,7 +280,7 @@ public final class Operation implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * API name: {@code doc}
+		 * Required - API name: {@code doc}
 		 */
 		public Builder doc(JsonValue value) {
 			this.doc = value;
@@ -288,7 +288,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(List<String> value) {
 			this.fields = value;
@@ -296,7 +296,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
@@ -304,7 +304,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -315,7 +315,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code field_statistics}
+		 * Required - API name: {@code field_statistics}
 		 */
 		public Builder fieldStatistics(boolean value) {
 			this.fieldStatistics = value;
@@ -323,7 +323,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filter}
+		 * Required - API name: {@code filter}
 		 */
 		public Builder filter(Filter value) {
 			this.filter = value;
@@ -331,14 +331,14 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filter}
+		 * Required - API name: {@code filter}
 		 */
 		public Builder filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
 			return this.filter(fn.apply(new Filter.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -346,7 +346,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -354,7 +354,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code offsets}
+		 * Required - API name: {@code offsets}
 		 */
 		public Builder offsets(boolean value) {
 			this.offsets = value;
@@ -362,7 +362,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code payloads}
+		 * Required - API name: {@code payloads}
 		 */
 		public Builder payloads(boolean value) {
 			this.payloads = value;
@@ -370,7 +370,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code positions}
+		 * Required - API name: {@code positions}
 		 */
 		public Builder positions(boolean value) {
 			this.positions = value;
@@ -378,7 +378,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code routing}
+		 * Required - API name: {@code routing}
 		 */
 		public Builder routing(String value) {
 			this.routing = value;
@@ -386,7 +386,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code term_statistics}
+		 * Required - API name: {@code term_statistics}
 		 */
 		public Builder termStatistics(boolean value) {
 			this.termStatistics = value;
@@ -394,7 +394,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;
@@ -402,7 +402,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version_type}
+		 * Required - API name: {@code version_type}
 		 */
 		public Builder versionType(VersionType value) {
 			this.versionType = value;

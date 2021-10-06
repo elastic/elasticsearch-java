@@ -92,28 +92,28 @@ public class User implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code metadata}
+	 * Required - API name: {@code metadata}
 	 */
 	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public List<String> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
@@ -223,7 +223,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code metadata}
+		 * Required - API name: {@code metadata}
 		 */
 		public BuilderT metadata(Map<String, JsonData> value) {
 			this.metadata = value;
@@ -242,7 +242,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public BuilderT roles(List<String> value) {
 			this.roles = value;
@@ -250,7 +250,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public BuilderT roles(String... value) {
 			this.roles = Arrays.asList(value);
@@ -258,7 +258,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public BuilderT addRoles(String value) {
 			if (this.roles == null) {
@@ -269,7 +269,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public BuilderT username(String value) {
 			this.username = value;
@@ -277,7 +277,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public BuilderT enabled(boolean value) {
 			this.enabled = value;

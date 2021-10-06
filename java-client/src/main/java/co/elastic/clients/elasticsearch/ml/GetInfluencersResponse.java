@@ -62,14 +62,14 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * Array of influencer objects
+	 * Required - Array of influencer objects
 	 * <p>
 	 * API name: {@code influencers}
 	 */
@@ -112,7 +112,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		private List<BucketInfluencer> influencers;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -120,7 +120,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of influencer objects
+		 * Required - Array of influencer objects
 		 * <p>
 		 * API name: {@code influencers}
 		 */
@@ -130,7 +130,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of influencer objects
+		 * Required - Array of influencer objects
 		 * <p>
 		 * API name: {@code influencers}
 		 */
@@ -140,7 +140,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
+		 * Add a value to {@link #influencers(List)}, creating the list if needed.
 		 */
 		public Builder addInfluencers(BucketInfluencer value) {
 			if (this.influencers == null) {
@@ -158,7 +158,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed. 5
+		 * Add a value to {@link #influencers(List)}, creating the list if needed.
 		 */
 		public Builder addInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
 			return this.addInfluencers(fn.apply(new BucketInfluencer.Builder()).build());

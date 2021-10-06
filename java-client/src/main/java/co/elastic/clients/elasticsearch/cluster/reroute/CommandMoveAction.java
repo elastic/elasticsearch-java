@@ -65,21 +65,21 @@ public final class CommandMoveAction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
 	public int shard() {
 		return this.shard;
 	}
 
 	/**
-	 * The node to move the shard from
+	 * Required - The node to move the shard from
 	 * <p>
 	 * API name: {@code from_node}
 	 */
@@ -88,7 +88,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	}
 
 	/**
-	 * The node to move the shard to
+	 * Required - The node to move the shard to
 	 * <p>
 	 * API name: {@code to_node}
 	 */
@@ -136,7 +136,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		private String toNode;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -144,7 +144,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
 		public Builder shard(int value) {
 			this.shard = value;
@@ -152,7 +152,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		}
 
 		/**
-		 * The node to move the shard from
+		 * Required - The node to move the shard from
 		 * <p>
 		 * API name: {@code from_node}
 		 */
@@ -162,7 +162,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		}
 
 		/**
-		 * The node to move the shard to
+		 * Required - The node to move the shard to
 		 * <p>
 		 * API name: {@code to_node}
 		 */

@@ -63,15 +63,15 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * An array of data frame analytics job resources, which are sorted by the id
-	 * value in ascending order.
+	 * Required - An array of data frame analytics job resources, which are sorted
+	 * by the id value in ascending order.
 	 * <p>
 	 * API name: {@code data_frame_analytics}
 	 */
@@ -114,7 +114,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		private List<DataframeAnalyticsSummary> dataFrameAnalytics;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -122,8 +122,8 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of data frame analytics job resources, which are sorted by the id
-		 * value in ascending order.
+		 * Required - An array of data frame analytics job resources, which are sorted
+		 * by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
@@ -133,8 +133,8 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of data frame analytics job resources, which are sorted by the id
-		 * value in ascending order.
+		 * Required - An array of data frame analytics job resources, which are sorted
+		 * by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
@@ -145,7 +145,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addDataFrameAnalytics(DataframeAnalyticsSummary value) {
 			if (this.dataFrameAnalytics == null) {
@@ -165,7 +165,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addDataFrameAnalytics(
 				Function<DataframeAnalyticsSummary.Builder, ObjectBuilder<DataframeAnalyticsSummary>> fn) {

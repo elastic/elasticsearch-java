@@ -71,7 +71,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public MlDataFrameAnalyticsJobsCount all() {
 		return this.all;
@@ -146,7 +146,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(MlDataFrameAnalyticsJobsCount value) {
 			this.all = value;
@@ -154,7 +154,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(
 				Function<MlDataFrameAnalyticsJobsCount.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {

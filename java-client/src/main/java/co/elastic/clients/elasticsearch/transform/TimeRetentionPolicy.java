@@ -66,7 +66,7 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 	}
 
 	/**
-	 * The date field that is used to calculate the age of the document.
+	 * Required - The date field that is used to calculate the age of the document.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -75,9 +75,9 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 	}
 
 	/**
-	 * Specifies the maximum age of a document in the destination index. Documents
-	 * that are older than the configured value are removed from the destination
-	 * index.
+	 * Required - Specifies the maximum age of a document in the destination index.
+	 * Documents that are older than the configured value are removed from the
+	 * destination index.
 	 * <p>
 	 * API name: {@code max_age}
 	 */
@@ -115,7 +115,7 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 		private String maxAge;
 
 		/**
-		 * The date field that is used to calculate the age of the document.
+		 * Required - The date field that is used to calculate the age of the document.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -125,9 +125,9 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 		}
 
 		/**
-		 * Specifies the maximum age of a document in the destination index. Documents
-		 * that are older than the configured value are removed from the destination
-		 * index.
+		 * Required - Specifies the maximum age of a document in the destination index.
+		 * Documents that are older than the configured value are removed from the
+		 * destination index.
 		 * <p>
 		 * API name: {@code max_age}
 		 */

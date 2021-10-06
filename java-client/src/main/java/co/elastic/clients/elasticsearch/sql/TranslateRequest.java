@@ -90,7 +90,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public String query() {
 		return this.query;
@@ -181,7 +181,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(String value) {
 			this.query = value;

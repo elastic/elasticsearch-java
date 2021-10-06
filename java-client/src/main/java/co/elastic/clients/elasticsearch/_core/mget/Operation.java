@@ -57,7 +57,7 @@ public final class Operation implements JsonpSerializable {
 
 	@Nullable
 	private final JsonValue /*
-							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 	@Nullable
@@ -92,7 +92,7 @@ public final class Operation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
@@ -119,7 +119,7 @@ public final class Operation implements JsonpSerializable {
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 						 */ source() {
 		return this.source;
 	}
@@ -235,7 +235,7 @@ public final class Operation implements JsonpSerializable {
 
 		@Nullable
 		private JsonValue /*
-							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 		@Nullable
@@ -251,7 +251,7 @@ public final class Operation implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -279,7 +279,7 @@ public final class Operation implements JsonpSerializable {
 		 */
 		public Builder source(
 				@Nullable JsonValue /*
-									 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 									 */ value) {
 			this.source = value;
 			return this;
@@ -302,7 +302,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {

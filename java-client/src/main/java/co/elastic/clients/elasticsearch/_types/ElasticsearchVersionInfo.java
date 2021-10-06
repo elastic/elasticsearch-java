@@ -82,63 +82,63 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code build_date}
+	 * Required - API name: {@code build_date}
 	 */
 	public String buildDate() {
 		return this.buildDate;
 	}
 
 	/**
-	 * API name: {@code build_flavor}
+	 * Required - API name: {@code build_flavor}
 	 */
 	public String buildFlavor() {
 		return this.buildFlavor;
 	}
 
 	/**
-	 * API name: {@code build_hash}
+	 * Required - API name: {@code build_hash}
 	 */
 	public String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
-	 * API name: {@code build_snapshot}
+	 * Required - API name: {@code build_snapshot}
 	 */
 	public boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
 	/**
-	 * API name: {@code build_type}
+	 * Required - API name: {@code build_type}
 	 */
 	public String buildType() {
 		return this.buildType;
 	}
 
 	/**
-	 * API name: {@code lucene_version}
+	 * Required - API name: {@code lucene_version}
 	 */
 	public String luceneVersion() {
 		return this.luceneVersion;
 	}
 
 	/**
-	 * API name: {@code minimum_index_compatibility_version}
+	 * Required - API name: {@code minimum_index_compatibility_version}
 	 */
 	public String minimumIndexCompatibilityVersion() {
 		return this.minimumIndexCompatibilityVersion;
 	}
 
 	/**
-	 * API name: {@code minimum_wire_compatibility_version}
+	 * Required - API name: {@code minimum_wire_compatibility_version}
 	 */
 	public String minimumWireCompatibilityVersion() {
 		return this.minimumWireCompatibilityVersion;
 	}
 
 	/**
-	 * API name: {@code number}
+	 * Required - API name: {@code number}
 	 */
 	public String number() {
 		return this.number;
@@ -209,7 +209,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		private String number;
 
 		/**
-		 * API name: {@code build_date}
+		 * Required - API name: {@code build_date}
 		 */
 		public Builder buildDate(String value) {
 			this.buildDate = value;
@@ -217,7 +217,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_flavor}
+		 * Required - API name: {@code build_flavor}
 		 */
 		public Builder buildFlavor(String value) {
 			this.buildFlavor = value;
@@ -225,7 +225,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_hash}
+		 * Required - API name: {@code build_hash}
 		 */
 		public Builder buildHash(String value) {
 			this.buildHash = value;
@@ -233,7 +233,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_snapshot}
+		 * Required - API name: {@code build_snapshot}
 		 */
 		public Builder buildSnapshot(boolean value) {
 			this.buildSnapshot = value;
@@ -241,7 +241,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_type}
+		 * Required - API name: {@code build_type}
 		 */
 		public Builder buildType(String value) {
 			this.buildType = value;
@@ -249,7 +249,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lucene_version}
+		 * Required - API name: {@code lucene_version}
 		 */
 		public Builder luceneVersion(String value) {
 			this.luceneVersion = value;
@@ -257,7 +257,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code minimum_index_compatibility_version}
+		 * Required - API name: {@code minimum_index_compatibility_version}
 		 */
 		public Builder minimumIndexCompatibilityVersion(String value) {
 			this.minimumIndexCompatibilityVersion = value;
@@ -265,7 +265,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code minimum_wire_compatibility_version}
+		 * Required - API name: {@code minimum_wire_compatibility_version}
 		 */
 		public Builder minimumWireCompatibilityVersion(String value) {
 			this.minimumWireCompatibilityVersion = value;
@@ -273,7 +273,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number}
+		 * Required - API name: {@code number}
 		 */
 		public Builder number(String value) {
 			this.number = value;

@@ -59,7 +59,7 @@ public final class JobBlocked implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public JobBlockedReason reason() {
 		return this.reason;
@@ -107,7 +107,7 @@ public final class JobBlocked implements JsonpSerializable {
 		private String taskId;
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(JobBlockedReason value) {
 			this.reason = value;

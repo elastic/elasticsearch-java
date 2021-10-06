@@ -96,28 +96,28 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public DataframeAnalyticsSource source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code dest}
+	 * Required - API name: {@code dest}
 	 */
 	public DataframeAnalyticsDestination dest() {
 		return this.dest;
 	}
 
 	/**
-	 * API name: {@code analysis}
+	 * Required - API name: {@code analysis}
 	 */
 	public DataframeAnalysis analysis() {
 		return this.analysis;
@@ -283,7 +283,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		private String version;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -291,7 +291,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(DataframeAnalyticsSource value) {
 			this.source = value;
@@ -299,14 +299,14 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public Builder dest(DataframeAnalyticsDestination value) {
 			this.dest = value;
@@ -314,7 +314,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public Builder dest(
 				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
@@ -322,7 +322,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis}
+		 * Required - API name: {@code analysis}
 		 */
 		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
@@ -330,7 +330,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis}
+		 * Required - API name: {@code analysis}
 		 */
 		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
 			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());

@@ -70,7 +70,7 @@ public final class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code primaries}
+	 * Required - API name: {@code primaries}
 	 */
 	public IndexStats primaries() {
 		return this.primaries;
@@ -85,7 +85,7 @@ public final class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public IndexStats total() {
 		return this.total;
@@ -160,7 +160,7 @@ public final class IndicesStats implements JsonpSerializable {
 		private String uuid;
 
 		/**
-		 * API name: {@code primaries}
+		 * Required - API name: {@code primaries}
 		 */
 		public Builder primaries(IndexStats value) {
 			this.primaries = value;
@@ -168,7 +168,7 @@ public final class IndicesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primaries}
+		 * Required - API name: {@code primaries}
 		 */
 		public Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.primaries(fn.apply(new IndexStats.Builder()).build());
@@ -194,7 +194,7 @@ public final class IndicesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(IndexStats value) {
 			this.total = value;
@@ -202,7 +202,7 @@ public final class IndicesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.total(fn.apply(new IndexStats.Builder()).build());

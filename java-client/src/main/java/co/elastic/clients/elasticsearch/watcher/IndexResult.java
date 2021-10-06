@@ -54,7 +54,7 @@ public final class IndexResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code response}
+	 * Required - API name: {@code response}
 	 */
 	public IndexResultSummary response() {
 		return this.response;
@@ -85,7 +85,7 @@ public final class IndexResult implements JsonpSerializable {
 		private IndexResultSummary response;
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public Builder response(IndexResultSummary value) {
 			this.response = value;
@@ -93,7 +93,7 @@ public final class IndexResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
 			return this.response(fn.apply(new IndexResultSummary.Builder()).build());

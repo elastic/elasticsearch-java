@@ -102,7 +102,7 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * The document ID
+	 * Required - The document ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -111,7 +111,7 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the index
+	 * Required - The name of the index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -256,7 +256,7 @@ public final class DeleteRequest extends RequestBase {
 		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		/**
-		 * The document ID
+		 * Required - The document ID
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -266,7 +266,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * The name of the index
+		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */

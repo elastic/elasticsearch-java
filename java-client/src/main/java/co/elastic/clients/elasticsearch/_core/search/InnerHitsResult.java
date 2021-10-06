@@ -54,7 +54,7 @@ public final class InnerHitsResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code hits}
+	 * Required - API name: {@code hits}
 	 */
 	public InnerHitsMetadata hits() {
 		return this.hits;
@@ -85,7 +85,7 @@ public final class InnerHitsResult implements JsonpSerializable {
 		private InnerHitsMetadata hits;
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder hits(InnerHitsMetadata value) {
 			this.hits = value;
@@ -93,7 +93,7 @@ public final class InnerHitsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder hits(Function<InnerHitsMetadata.Builder, ObjectBuilder<InnerHitsMetadata>> fn) {
 			return this.hits(fn.apply(new InnerHitsMetadata.Builder()).build());

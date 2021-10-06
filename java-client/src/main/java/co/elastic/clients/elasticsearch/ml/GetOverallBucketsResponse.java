@@ -62,14 +62,14 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * Array of overall bucket objects
+	 * Required - Array of overall bucket objects
 	 * <p>
 	 * API name: {@code overall_buckets}
 	 */
@@ -112,7 +112,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		private List<OverallBucket> overallBuckets;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -120,7 +120,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of overall bucket objects
+		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
@@ -130,7 +130,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of overall bucket objects
+		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
@@ -140,7 +140,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed. 4
+		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed.
 		 */
 		public Builder addOverallBuckets(OverallBucket value) {
 			if (this.overallBuckets == null) {
@@ -158,7 +158,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed. 5
+		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed.
 		 */
 		public Builder addOverallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
 			return this.addOverallBuckets(fn.apply(new OverallBucket.Builder()).build());

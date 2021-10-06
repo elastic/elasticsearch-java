@@ -66,7 +66,7 @@ public final class AckWatchRequest extends RequestBase {
 	}
 
 	/**
-	 * Watch ID
+	 * Required - Watch ID
 	 * <p>
 	 * API name: {@code watch_id}
 	 */
@@ -96,7 +96,7 @@ public final class AckWatchRequest extends RequestBase {
 		private List<String> actionId;
 
 		/**
-		 * Watch ID
+		 * Required - Watch ID
 		 * <p>
 		 * API name: {@code watch_id}
 		 */
@@ -126,7 +126,7 @@ public final class AckWatchRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #actionId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actionId(List)}, creating the list if needed.
 		 */
 		public Builder addActionId(String value) {
 			if (this.actionId == null) {

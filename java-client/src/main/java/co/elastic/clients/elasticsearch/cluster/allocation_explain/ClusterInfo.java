@@ -76,14 +76,14 @@ public final class ClusterInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, NodeDiskUsage> nodes() {
 		return this.nodes;
 	}
 
 	/**
-	 * API name: {@code shard_sizes}
+	 * Required - API name: {@code shard_sizes}
 	 */
 	public Map<String, Long> shardSizes() {
 		return this.shardSizes;
@@ -98,14 +98,14 @@ public final class ClusterInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shard_paths}
+	 * Required - API name: {@code shard_paths}
 	 */
 	public Map<String, String> shardPaths() {
 		return this.shardPaths;
 	}
 
 	/**
-	 * API name: {@code reserved_sizes}
+	 * Required - API name: {@code reserved_sizes}
 	 */
 	public List<ReservedSize> reservedSizes() {
 		return this.reservedSizes;
@@ -190,7 +190,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		private List<ReservedSize> reservedSizes;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, NodeDiskUsage> value) {
 			this.nodes = value;
@@ -223,7 +223,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard_sizes}
+		 * Required - API name: {@code shard_sizes}
 		 */
 		public Builder shardSizes(Map<String, Long> value) {
 			this.shardSizes = value;
@@ -262,7 +262,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard_paths}
+		 * Required - API name: {@code shard_paths}
 		 */
 		public Builder shardPaths(Map<String, String> value) {
 			this.shardPaths = value;
@@ -281,7 +281,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reserved_sizes}
+		 * Required - API name: {@code reserved_sizes}
 		 */
 		public Builder reservedSizes(List<ReservedSize> value) {
 			this.reservedSizes = value;
@@ -289,7 +289,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reserved_sizes}
+		 * Required - API name: {@code reserved_sizes}
 		 */
 		public Builder reservedSizes(ReservedSize... value) {
 			this.reservedSizes = Arrays.asList(value);
@@ -297,7 +297,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed.
 		 */
 		public Builder addReservedSizes(ReservedSize value) {
 			if (this.reservedSizes == null) {
@@ -315,7 +315,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed.
 		 */
 		public Builder addReservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {
 			return this.addReservedSizes(fn.apply(new ReservedSize.Builder()).build());

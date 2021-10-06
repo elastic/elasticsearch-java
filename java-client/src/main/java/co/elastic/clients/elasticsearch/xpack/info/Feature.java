@@ -67,7 +67,7 @@ public final class Feature implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code available}
+	 * Required - API name: {@code available}
 	 */
 	public boolean available() {
 		return this.available;
@@ -82,7 +82,7 @@ public final class Feature implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
@@ -146,7 +146,7 @@ public final class Feature implements JsonpSerializable {
 		private NativeCodeInformation nativeCodeInfo;
 
 		/**
-		 * API name: {@code available}
+		 * Required - API name: {@code available}
 		 */
 		public Builder available(boolean value) {
 			this.available = value;
@@ -162,7 +162,7 @@ public final class Feature implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(boolean value) {
 			this.enabled = value;

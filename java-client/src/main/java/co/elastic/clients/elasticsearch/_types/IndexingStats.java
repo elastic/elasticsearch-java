@@ -104,14 +104,14 @@ public final class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index_current}
+	 * Required - API name: {@code index_current}
 	 */
 	public long indexCurrent() {
 		return this.indexCurrent;
 	}
 
 	/**
-	 * API name: {@code delete_current}
+	 * Required - API name: {@code delete_current}
 	 */
 	public long deleteCurrent() {
 		return this.deleteCurrent;
@@ -126,28 +126,28 @@ public final class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code delete_time_in_millis}
+	 * Required - API name: {@code delete_time_in_millis}
 	 */
 	public long deleteTimeInMillis() {
 		return this.deleteTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code delete_total}
+	 * Required - API name: {@code delete_total}
 	 */
 	public long deleteTotal() {
 		return this.deleteTotal;
 	}
 
 	/**
-	 * API name: {@code is_throttled}
+	 * Required - API name: {@code is_throttled}
 	 */
 	public boolean isThrottled() {
 		return this.isThrottled;
 	}
 
 	/**
-	 * API name: {@code noop_update_total}
+	 * Required - API name: {@code noop_update_total}
 	 */
 	public long noopUpdateTotal() {
 		return this.noopUpdateTotal;
@@ -162,7 +162,7 @@ public final class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code throttle_time_in_millis}
+	 * Required - API name: {@code throttle_time_in_millis}
 	 */
 	public long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
@@ -177,21 +177,21 @@ public final class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index_time_in_millis}
+	 * Required - API name: {@code index_time_in_millis}
 	 */
 	public long indexTimeInMillis() {
 		return this.indexTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code index_total}
+	 * Required - API name: {@code index_total}
 	 */
 	public long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
-	 * API name: {@code index_failed}
+	 * Required - API name: {@code index_failed}
 	 */
 	public long indexFailed() {
 		return this.indexFailed;
@@ -321,7 +321,7 @@ public final class IndexingStats implements JsonpSerializable {
 		private Map<String, IndexingStats> types;
 
 		/**
-		 * API name: {@code index_current}
+		 * Required - API name: {@code index_current}
 		 */
 		public Builder indexCurrent(long value) {
 			this.indexCurrent = value;
@@ -329,7 +329,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code delete_current}
+		 * Required - API name: {@code delete_current}
 		 */
 		public Builder deleteCurrent(long value) {
 			this.deleteCurrent = value;
@@ -345,7 +345,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code delete_time_in_millis}
+		 * Required - API name: {@code delete_time_in_millis}
 		 */
 		public Builder deleteTimeInMillis(long value) {
 			this.deleteTimeInMillis = value;
@@ -353,7 +353,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code delete_total}
+		 * Required - API name: {@code delete_total}
 		 */
 		public Builder deleteTotal(long value) {
 			this.deleteTotal = value;
@@ -361,7 +361,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code is_throttled}
+		 * Required - API name: {@code is_throttled}
 		 */
 		public Builder isThrottled(boolean value) {
 			this.isThrottled = value;
@@ -369,7 +369,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code noop_update_total}
+		 * Required - API name: {@code noop_update_total}
 		 */
 		public Builder noopUpdateTotal(long value) {
 			this.noopUpdateTotal = value;
@@ -385,7 +385,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code throttle_time_in_millis}
+		 * Required - API name: {@code throttle_time_in_millis}
 		 */
 		public Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;
@@ -401,7 +401,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_time_in_millis}
+		 * Required - API name: {@code index_time_in_millis}
 		 */
 		public Builder indexTimeInMillis(long value) {
 			this.indexTimeInMillis = value;
@@ -409,7 +409,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_total}
+		 * Required - API name: {@code index_total}
 		 */
 		public Builder indexTotal(long value) {
 			this.indexTotal = value;
@@ -417,7 +417,7 @@ public final class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_failed}
+		 * Required - API name: {@code index_failed}
 		 */
 		public Builder indexFailed(long value) {
 			this.indexFailed = value;

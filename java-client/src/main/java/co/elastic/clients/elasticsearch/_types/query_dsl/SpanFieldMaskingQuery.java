@@ -66,14 +66,14 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public SpanQuery query() {
 		return this.query;
@@ -104,7 +104,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		private SpanQuery query;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -112,7 +112,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(SpanQuery value) {
 			this.query = value;
@@ -120,7 +120,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.query(fn.apply(new SpanQuery.Builder()).build());

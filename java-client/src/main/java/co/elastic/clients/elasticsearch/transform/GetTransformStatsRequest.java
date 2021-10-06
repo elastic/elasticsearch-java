@@ -72,8 +72,8 @@ public final class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * The id of the transform for which to get stats. '_all' or '*' implies all
-	 * transforms
+	 * Required - The id of the transform for which to get stats. '_all' or '*'
+	 * implies all transforms
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -130,8 +130,8 @@ public final class GetTransformStatsRequest extends RequestBase {
 		private Long size;
 
 		/**
-		 * The id of the transform for which to get stats. '_all' or '*' implies all
-		 * transforms
+		 * Required - The id of the transform for which to get stats. '_all' or '*'
+		 * implies all transforms
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

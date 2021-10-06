@@ -72,49 +72,49 @@ public final class ShardQueryCache implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cache_count}
+	 * Required - API name: {@code cache_count}
 	 */
 	public long cacheCount() {
 		return this.cacheCount;
 	}
 
 	/**
-	 * API name: {@code cache_size}
+	 * Required - API name: {@code cache_size}
 	 */
 	public long cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
-	 * API name: {@code evictions}
+	 * Required - API name: {@code evictions}
 	 */
 	public long evictions() {
 		return this.evictions;
 	}
 
 	/**
-	 * API name: {@code hit_count}
+	 * Required - API name: {@code hit_count}
 	 */
 	public long hitCount() {
 		return this.hitCount;
 	}
 
 	/**
-	 * API name: {@code memory_size_in_bytes}
+	 * Required - API name: {@code memory_size_in_bytes}
 	 */
 	public long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
-	 * API name: {@code miss_count}
+	 * Required - API name: {@code miss_count}
 	 */
 	public long missCount() {
 		return this.missCount;
 	}
 
 	/**
-	 * API name: {@code total_count}
+	 * Required - API name: {@code total_count}
 	 */
 	public long totalCount() {
 		return this.totalCount;
@@ -175,7 +175,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		private Long totalCount;
 
 		/**
-		 * API name: {@code cache_count}
+		 * Required - API name: {@code cache_count}
 		 */
 		public Builder cacheCount(long value) {
 			this.cacheCount = value;
@@ -183,7 +183,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cache_size}
+		 * Required - API name: {@code cache_size}
 		 */
 		public Builder cacheSize(long value) {
 			this.cacheSize = value;
@@ -191,7 +191,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code evictions}
+		 * Required - API name: {@code evictions}
 		 */
 		public Builder evictions(long value) {
 			this.evictions = value;
@@ -199,7 +199,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hit_count}
+		 * Required - API name: {@code hit_count}
 		 */
 		public Builder hitCount(long value) {
 			this.hitCount = value;
@@ -207,7 +207,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory_size_in_bytes}
+		 * Required - API name: {@code memory_size_in_bytes}
 		 */
 		public Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
@@ -215,7 +215,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code miss_count}
+		 * Required - API name: {@code miss_count}
 		 */
 		public Builder missCount(long value) {
 			this.missCount = value;
@@ -223,7 +223,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_count}
+		 * Required - API name: {@code total_count}
 		 */
 		public Builder totalCount(long value) {
 			this.totalCount = value;

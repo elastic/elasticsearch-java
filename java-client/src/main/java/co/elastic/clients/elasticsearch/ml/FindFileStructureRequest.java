@@ -57,7 +57,7 @@ public final class FindFileStructureRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Required - API name: {@code stub}
 	 */
 	public String stub() {
 		return this.stub;
@@ -72,7 +72,7 @@ public final class FindFileStructureRequest extends RequestBase {
 		private String stub;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - API name: {@code stub}
 		 */
 		public Builder stub(String value) {
 			this.stub = value;

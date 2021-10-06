@@ -72,35 +72,35 @@ public final class ExecutionResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public List<ExecutionResultAction> actions() {
 		return this.actions;
 	}
 
 	/**
-	 * API name: {@code condition}
+	 * Required - API name: {@code condition}
 	 */
 	public ExecutionResultCondition condition() {
 		return this.condition;
 	}
 
 	/**
-	 * API name: {@code execution_duration}
+	 * Required - API name: {@code execution_duration}
 	 */
 	public int executionDuration() {
 		return this.executionDuration;
 	}
 
 	/**
-	 * API name: {@code execution_time}
+	 * Required - API name: {@code execution_time}
 	 */
 	public String executionTime() {
 		return this.executionTime;
 	}
 
 	/**
-	 * API name: {@code input}
+	 * Required - API name: {@code input}
 	 */
 	public ExecutionResultInput input() {
 		return this.input;
@@ -156,7 +156,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		private ExecutionResultInput input;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(List<ExecutionResultAction> value) {
 			this.actions = value;
@@ -164,7 +164,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(ExecutionResultAction... value) {
 			this.actions = Arrays.asList(value);
@@ -172,7 +172,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(ExecutionResultAction value) {
 			if (this.actions == null) {
@@ -190,14 +190,14 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
 			return this.addActions(fn.apply(new ExecutionResultAction.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code condition}
+		 * Required - API name: {@code condition}
 		 */
 		public Builder condition(ExecutionResultCondition value) {
 			this.condition = value;
@@ -205,7 +205,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code condition}
+		 * Required - API name: {@code condition}
 		 */
 		public Builder condition(
 				Function<ExecutionResultCondition.Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
@@ -213,7 +213,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code execution_duration}
+		 * Required - API name: {@code execution_duration}
 		 */
 		public Builder executionDuration(int value) {
 			this.executionDuration = value;
@@ -221,7 +221,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code execution_time}
+		 * Required - API name: {@code execution_time}
 		 */
 		public Builder executionTime(String value) {
 			this.executionTime = value;
@@ -229,7 +229,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input}
+		 * Required - API name: {@code input}
 		 */
 		public Builder input(ExecutionResultInput value) {
 			this.input = value;
@@ -237,7 +237,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input}
+		 * Required - API name: {@code input}
 		 */
 		public Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
 			return this.input(fn.apply(new ExecutionResultInput.Builder()).build());

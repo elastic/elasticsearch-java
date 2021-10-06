@@ -89,7 +89,7 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the source index to split
+	 * Required - The name of the source index to split
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -98,7 +98,7 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the target index to split into
+	 * Required - The name of the target index to split into
 	 * <p>
 	 * API name: {@code target}
 	 */
@@ -217,7 +217,7 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 		private Map<String, JsonData> settings;
 
 		/**
-		 * The name of the source index to split
+		 * Required - The name of the source index to split
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -227,7 +227,7 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The name of the target index to split into
+		 * Required - The name of the target index to split into
 		 * <p>
 		 * API name: {@code target}
 		 */

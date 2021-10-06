@@ -79,7 +79,7 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the calendar containing the events
+	 * Required - The ID of the calendar containing the events
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -161,7 +161,7 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		private Integer size;
 
 		/**
-		 * The ID of the calendar containing the events
+		 * Required - The ID of the calendar containing the events
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */

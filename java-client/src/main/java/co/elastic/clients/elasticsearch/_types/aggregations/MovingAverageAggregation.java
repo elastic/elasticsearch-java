@@ -97,7 +97,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public JsonValue /* _types.aggregations.MovingAverageSettings */ settings() {
 		return this.settings;
@@ -191,7 +191,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(JsonValue /* _types.aggregations.MovingAverageSettings */ value) {
 			this.settings = value;

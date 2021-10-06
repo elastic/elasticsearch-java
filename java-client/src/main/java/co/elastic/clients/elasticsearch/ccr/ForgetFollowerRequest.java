@@ -76,8 +76,8 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * the name of the leader index for which specified follower retention leases
-	 * should be removed
+	 * Required - the name of the leader index for which specified follower
+	 * retention leases should be removed
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -176,8 +176,8 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		private String leaderRemoteCluster;
 
 		/**
-		 * the name of the leader index for which specified follower retention leases
-		 * should be removed
+		 * Required - the name of the leader index for which specified follower
+		 * retention leases should be removed
 		 * <p>
 		 * API name: {@code index}
 		 */

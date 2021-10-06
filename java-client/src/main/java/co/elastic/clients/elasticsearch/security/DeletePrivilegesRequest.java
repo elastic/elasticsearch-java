@@ -67,7 +67,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Application name
+	 * Required - Application name
 	 * <p>
 	 * API name: {@code application}
 	 */
@@ -76,7 +76,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Privilege name
+	 * Required - Privilege name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -111,7 +111,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * Application name
+		 * Required - Application name
 		 * <p>
 		 * API name: {@code application}
 		 */
@@ -121,7 +121,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
-		 * Privilege name
+		 * Required - Privilege name
 		 * <p>
 		 * API name: {@code name}
 		 */

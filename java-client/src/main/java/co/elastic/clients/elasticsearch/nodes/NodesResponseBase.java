@@ -51,8 +51,8 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the number of nodes selected by the request’s node
-	 * filters.
+	 * Required - Contains statistics about the number of nodes selected by the
+	 * request’s node filters.
 	 * <p>
 	 * API name: {@code _nodes}
 	 */
@@ -80,8 +80,8 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 		private NodeStatistics nodeStats;
 
 		/**
-		 * Contains statistics about the number of nodes selected by the request’s node
-		 * filters.
+		 * Required - Contains statistics about the number of nodes selected by the
+		 * request’s node filters.
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
@@ -91,8 +91,8 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the number of nodes selected by the request’s node
-		 * filters.
+		 * Required - Contains statistics about the number of nodes selected by the
+		 * request’s node filters.
 		 * <p>
 		 * API name: {@code _nodes}
 		 */

@@ -81,56 +81,56 @@ public final class PagerDutyEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code account}
+	 * Required - API name: {@code account}
 	 */
 	public String account() {
 		return this.account;
 	}
 
 	/**
-	 * API name: {@code attach_payload}
+	 * Required - API name: {@code attach_payload}
 	 */
 	public boolean attachPayload() {
 		return this.attachPayload;
 	}
 
 	/**
-	 * API name: {@code client}
+	 * Required - API name: {@code client}
 	 */
 	public String client() {
 		return this.client;
 	}
 
 	/**
-	 * API name: {@code client_url}
+	 * Required - API name: {@code client_url}
 	 */
 	public String clientUrl() {
 		return this.clientUrl;
 	}
 
 	/**
-	 * API name: {@code context}
+	 * Required - API name: {@code context}
 	 */
 	public List<PagerDutyContext> context() {
 		return this.context;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code event_type}
+	 * Required - API name: {@code event_type}
 	 */
 	public PagerDutyEventType eventType() {
 		return this.eventType;
 	}
 
 	/**
-	 * API name: {@code incident_key}
+	 * Required - API name: {@code incident_key}
 	 */
 	public String incidentKey() {
 		return this.incidentKey;
@@ -201,7 +201,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		private String incidentKey;
 
 		/**
-		 * API name: {@code account}
+		 * Required - API name: {@code account}
 		 */
 		public Builder account(String value) {
 			this.account = value;
@@ -209,7 +209,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attach_payload}
+		 * Required - API name: {@code attach_payload}
 		 */
 		public Builder attachPayload(boolean value) {
 			this.attachPayload = value;
@@ -217,7 +217,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code client}
+		 * Required - API name: {@code client}
 		 */
 		public Builder client(String value) {
 			this.client = value;
@@ -225,7 +225,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code client_url}
+		 * Required - API name: {@code client_url}
 		 */
 		public Builder clientUrl(String value) {
 			this.clientUrl = value;
@@ -233,7 +233,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code context}
+		 * Required - API name: {@code context}
 		 */
 		public Builder context(List<PagerDutyContext> value) {
 			this.context = value;
@@ -241,7 +241,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code context}
+		 * Required - API name: {@code context}
 		 */
 		public Builder context(PagerDutyContext... value) {
 			this.context = Arrays.asList(value);
@@ -249,7 +249,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #context(List)}, creating the list if needed. 4
+		 * Add a value to {@link #context(List)}, creating the list if needed.
 		 */
 		public Builder addContext(PagerDutyContext value) {
 			if (this.context == null) {
@@ -267,14 +267,14 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #context(List)}, creating the list if needed. 5
+		 * Add a value to {@link #context(List)}, creating the list if needed.
 		 */
 		public Builder addContext(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
 			return this.addContext(fn.apply(new PagerDutyContext.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -282,7 +282,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code event_type}
+		 * Required - API name: {@code event_type}
 		 */
 		public Builder eventType(PagerDutyEventType value) {
 			this.eventType = value;
@@ -290,7 +290,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code incident_key}
+		 * Required - API name: {@code incident_key}
 		 */
 		public Builder incidentKey(String value) {
 			this.incidentKey = value;

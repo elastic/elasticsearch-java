@@ -63,21 +63,21 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
 	public boolean found() {
 		return this.found;
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _version}
+	 * Required - API name: {@code _version}
 	 */
 	public long version() {
 		return this.version;
@@ -118,7 +118,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
 		public Builder found(boolean value) {
 			this.found = value;
@@ -126,7 +126,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -134,7 +134,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _version}
+		 * Required - API name: {@code _version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

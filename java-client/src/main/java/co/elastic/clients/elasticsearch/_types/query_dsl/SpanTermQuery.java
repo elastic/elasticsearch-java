@@ -66,7 +66,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 	}
 
 	/**
-	 * The target field
+	 * Required - The target field
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -75,7 +75,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public String value() {
 		return this.value;
@@ -101,7 +101,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		private String field;
 
 		/**
-		 * The target field
+		 * Required - The target field
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -113,7 +113,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		private String value;
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(String value) {
 			this.value = value;

@@ -69,35 +69,35 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fuzziness}
+	 * Required - API name: {@code fuzziness}
 	 */
 	public String fuzziness() {
 		return this.fuzziness;
 	}
 
 	/**
-	 * API name: {@code min_length}
+	 * Required - API name: {@code min_length}
 	 */
 	public int minLength() {
 		return this.minLength;
 	}
 
 	/**
-	 * API name: {@code prefix_length}
+	 * Required - API name: {@code prefix_length}
 	 */
 	public int prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
-	 * API name: {@code transpositions}
+	 * Required - API name: {@code transpositions}
 	 */
 	public boolean transpositions() {
 		return this.transpositions;
 	}
 
 	/**
-	 * API name: {@code unicode_aware}
+	 * Required - API name: {@code unicode_aware}
 	 */
 	public boolean unicodeAware() {
 		return this.unicodeAware;
@@ -148,7 +148,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		private Boolean unicodeAware;
 
 		/**
-		 * API name: {@code fuzziness}
+		 * Required - API name: {@code fuzziness}
 		 */
 		public Builder fuzziness(String value) {
 			this.fuzziness = value;
@@ -156,7 +156,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min_length}
+		 * Required - API name: {@code min_length}
 		 */
 		public Builder minLength(int value) {
 			this.minLength = value;
@@ -164,7 +164,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code prefix_length}
+		 * Required - API name: {@code prefix_length}
 		 */
 		public Builder prefixLength(int value) {
 			this.prefixLength = value;
@@ -172,7 +172,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transpositions}
+		 * Required - API name: {@code transpositions}
 		 */
 		public Builder transpositions(boolean value) {
 			this.transpositions = value;
@@ -180,7 +180,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code unicode_aware}
+		 * Required - API name: {@code unicode_aware}
 		 */
 		public Builder unicodeAware(boolean value) {
 			this.unicodeAware = value;

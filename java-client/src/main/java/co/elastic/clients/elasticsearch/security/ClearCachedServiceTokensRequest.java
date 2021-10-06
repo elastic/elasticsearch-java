@@ -68,7 +68,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the namespace
+	 * Required - An identifier for the namespace
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -77,7 +77,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the service name
+	 * Required - An identifier for the service name
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -86,7 +86,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of service token names
+	 * Required - A comma-separated list of service token names
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -107,7 +107,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * An identifier for the namespace
+		 * Required - An identifier for the namespace
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -117,7 +117,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the service name
+		 * Required - An identifier for the service name
 		 * <p>
 		 * API name: {@code service}
 		 */
@@ -127,7 +127,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of service token names
+		 * Required - A comma-separated list of service token names
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -137,7 +137,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of service token names
+		 * Required - A comma-separated list of service token names
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -147,7 +147,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed. 4
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {

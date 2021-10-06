@@ -67,7 +67,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 	}
 
 	/**
-	 * API name: {@code stoptags}
+	 * Required - API name: {@code stoptags}
 	 */
 	public List<String> stoptags() {
 		return this.stoptags;
@@ -99,7 +99,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 		private List<String> stoptags;
 
 		/**
-		 * API name: {@code stoptags}
+		 * Required - API name: {@code stoptags}
 		 */
 		public Builder stoptags(List<String> value) {
 			this.stoptags = value;
@@ -107,7 +107,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 		}
 
 		/**
-		 * API name: {@code stoptags}
+		 * Required - API name: {@code stoptags}
 		 */
 		public Builder stoptags(String... value) {
 			this.stoptags = Arrays.asList(value);
@@ -115,7 +115,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 		}
 
 		/**
-		 * Add a value to {@link #stoptags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stoptags(List)}, creating the list if needed.
 		 */
 		public Builder addStoptags(String value) {
 			if (this.stoptags == null) {

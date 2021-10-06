@@ -64,8 +64,8 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of index template names used to limit the request.
-	 * Wildcard (*) expressions are supported.
+	 * Required - Comma-separated list of index template names used to limit the
+	 * request. Wildcard (*) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -96,8 +96,8 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		private String masterTimeout;
 
 		/**
-		 * Comma-separated list of index template names used to limit the request.
-		 * Wildcard (*) expressions are supported.
+		 * Required - Comma-separated list of index template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 */

@@ -58,14 +58,14 @@ public final class IndexTemplateItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code index_template}
+	 * Required - API name: {@code index_template}
 	 */
 	public IndexTemplate indexTemplate() {
 		return this.indexTemplate;
@@ -101,7 +101,7 @@ public final class IndexTemplateItem implements JsonpSerializable {
 		private IndexTemplate indexTemplate;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -109,7 +109,7 @@ public final class IndexTemplateItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_template}
+		 * Required - API name: {@code index_template}
 		 */
 		public Builder indexTemplate(IndexTemplate value) {
 			this.indexTemplate = value;
@@ -117,7 +117,7 @@ public final class IndexTemplateItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_template}
+		 * Required - API name: {@code index_template}
 		 */
 		public Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
 			return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());

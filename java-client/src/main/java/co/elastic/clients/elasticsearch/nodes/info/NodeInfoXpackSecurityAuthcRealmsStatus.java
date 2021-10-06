@@ -67,7 +67,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 	}
 
 	/**
-	 * API name: {@code order}
+	 * Required - API name: {@code order}
 	 */
 	public String order() {
 		return this.order;
@@ -116,7 +116,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code order}
+		 * Required - API name: {@code order}
 		 */
 		public Builder order(String value) {
 			this.order = value;

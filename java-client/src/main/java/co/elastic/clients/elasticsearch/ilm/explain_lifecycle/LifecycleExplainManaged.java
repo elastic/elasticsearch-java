@@ -115,21 +115,21 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	}
 
 	/**
-	 * API name: {@code action}
+	 * Required - API name: {@code action}
 	 */
 	public String action() {
 		return this.action;
 	}
 
 	/**
-	 * API name: {@code action_time_millis}
+	 * Required - API name: {@code action_time_millis}
 	 */
 	public String actionTimeMillis() {
 		return this.actionTimeMillis;
 	}
 
 	/**
-	 * API name: {@code age}
+	 * Required - API name: {@code age}
 	 */
 	public String age() {
 		return this.age;
@@ -152,7 +152,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -167,35 +167,35 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	}
 
 	/**
-	 * API name: {@code lifecycle_date_millis}
+	 * Required - API name: {@code lifecycle_date_millis}
 	 */
 	public String lifecycleDateMillis() {
 		return this.lifecycleDateMillis;
 	}
 
 	/**
-	 * API name: {@code phase}
+	 * Required - API name: {@code phase}
 	 */
 	public String phase() {
 		return this.phase;
 	}
 
 	/**
-	 * API name: {@code phase_time_millis}
+	 * Required - API name: {@code phase_time_millis}
 	 */
 	public String phaseTimeMillis() {
 		return this.phaseTimeMillis;
 	}
 
 	/**
-	 * API name: {@code policy}
+	 * Required - API name: {@code policy}
 	 */
 	public String policy() {
 		return this.policy;
 	}
 
 	/**
-	 * API name: {@code step}
+	 * Required - API name: {@code step}
 	 */
 	public String step() {
 		return this.step;
@@ -210,14 +210,14 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	}
 
 	/**
-	 * API name: {@code step_time_millis}
+	 * Required - API name: {@code step_time_millis}
 	 */
 	public String stepTimeMillis() {
 		return this.stepTimeMillis;
 	}
 
 	/**
-	 * API name: {@code phase_execution}
+	 * Required - API name: {@code phase_execution}
 	 */
 	public LifecycleExplainPhaseExecution phaseExecution() {
 		return this.phaseExecution;
@@ -345,7 +345,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		private LifecycleExplainPhaseExecution phaseExecution;
 
 		/**
-		 * API name: {@code action}
+		 * Required - API name: {@code action}
 		 */
 		public Builder action(String value) {
 			this.action = value;
@@ -353,7 +353,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code action_time_millis}
+		 * Required - API name: {@code action_time_millis}
 		 */
 		public Builder actionTimeMillis(String value) {
 			this.actionTimeMillis = value;
@@ -361,7 +361,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code age}
+		 * Required - API name: {@code age}
 		 */
 		public Builder age(String value) {
 			this.age = value;
@@ -385,7 +385,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -401,7 +401,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code lifecycle_date_millis}
+		 * Required - API name: {@code lifecycle_date_millis}
 		 */
 		public Builder lifecycleDateMillis(String value) {
 			this.lifecycleDateMillis = value;
@@ -409,7 +409,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code phase}
+		 * Required - API name: {@code phase}
 		 */
 		public Builder phase(String value) {
 			this.phase = value;
@@ -417,7 +417,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code phase_time_millis}
+		 * Required - API name: {@code phase_time_millis}
 		 */
 		public Builder phaseTimeMillis(String value) {
 			this.phaseTimeMillis = value;
@@ -425,7 +425,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code policy}
+		 * Required - API name: {@code policy}
 		 */
 		public Builder policy(String value) {
 			this.policy = value;
@@ -433,7 +433,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code step}
+		 * Required - API name: {@code step}
 		 */
 		public Builder step(String value) {
 			this.step = value;
@@ -460,7 +460,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code step_time_millis}
+		 * Required - API name: {@code step_time_millis}
 		 */
 		public Builder stepTimeMillis(String value) {
 			this.stepTimeMillis = value;
@@ -468,7 +468,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code phase_execution}
+		 * Required - API name: {@code phase_execution}
 		 */
 		public Builder phaseExecution(LifecycleExplainPhaseExecution value) {
 			this.phaseExecution = value;
@@ -476,7 +476,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		}
 
 		/**
-		 * API name: {@code phase_execution}
+		 * Required - API name: {@code phase_execution}
 		 */
 		public Builder phaseExecution(
 				Function<LifecycleExplainPhaseExecution.Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {

@@ -398,7 +398,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		}
 
 		/**
-		 * Add a value to {@link #directGenerator(List)}, creating the list if needed. 4
+		 * Add a value to {@link #directGenerator(List)}, creating the list if needed.
 		 */
 		public Builder addDirectGenerator(DirectGenerator value) {
 			if (this.directGenerator == null) {
@@ -416,7 +416,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		}
 
 		/**
-		 * Add a value to {@link #directGenerator(List)}, creating the list if needed. 5
+		 * Add a value to {@link #directGenerator(List)}, creating the list if needed.
 		 */
 		public Builder addDirectGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn) {
 			return this.addDirectGenerator(fn.apply(new DirectGenerator.Builder()).build());

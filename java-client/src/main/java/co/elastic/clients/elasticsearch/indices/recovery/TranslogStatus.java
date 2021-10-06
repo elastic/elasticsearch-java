@@ -72,28 +72,28 @@ public final class TranslogStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code percent}
+	 * Required - API name: {@code percent}
 	 */
 	public String percent() {
 		return this.percent;
 	}
 
 	/**
-	 * API name: {@code recovered}
+	 * Required - API name: {@code recovered}
 	 */
 	public long recovered() {
 		return this.recovered;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code total_on_start}
+	 * Required - API name: {@code total_on_start}
 	 */
 	public long totalOnStart() {
 		return this.totalOnStart;
@@ -108,7 +108,7 @@ public final class TranslogStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -169,7 +169,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		private String totalTimeInMillis;
 
 		/**
-		 * API name: {@code percent}
+		 * Required - API name: {@code percent}
 		 */
 		public Builder percent(String value) {
 			this.percent = value;
@@ -177,7 +177,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code recovered}
+		 * Required - API name: {@code recovered}
 		 */
 		public Builder recovered(long value) {
 			this.recovered = value;
@@ -185,7 +185,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -193,7 +193,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_on_start}
+		 * Required - API name: {@code total_on_start}
 		 */
 		public Builder totalOnStart(long value) {
 			this.totalOnStart = value;
@@ -209,7 +209,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;

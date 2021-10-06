@@ -59,14 +59,14 @@ public final class NodeInfoScript implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allowed_types}
+	 * Required - API name: {@code allowed_types}
 	 */
 	public String allowedTypes() {
 		return this.allowedTypes;
 	}
 
 	/**
-	 * API name: {@code disable_max_compilations_rate}
+	 * Required - API name: {@code disable_max_compilations_rate}
 	 */
 	public String disableMaxCompilationsRate() {
 		return this.disableMaxCompilationsRate;
@@ -102,7 +102,7 @@ public final class NodeInfoScript implements JsonpSerializable {
 		private String disableMaxCompilationsRate;
 
 		/**
-		 * API name: {@code allowed_types}
+		 * Required - API name: {@code allowed_types}
 		 */
 		public Builder allowedTypes(String value) {
 			this.allowedTypes = value;
@@ -110,7 +110,7 @@ public final class NodeInfoScript implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disable_max_compilations_rate}
+		 * Required - API name: {@code disable_max_compilations_rate}
 		 */
 		public Builder disableMaxCompilationsRate(String value) {
 			this.disableMaxCompilationsRate = value;

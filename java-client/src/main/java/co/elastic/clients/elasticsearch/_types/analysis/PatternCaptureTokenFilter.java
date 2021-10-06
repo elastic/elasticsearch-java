@@ -71,14 +71,14 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 	}
 
 	/**
-	 * API name: {@code patterns}
+	 * Required - API name: {@code patterns}
 	 */
 	public List<String> patterns() {
 		return this.patterns;
 	}
 
 	/**
-	 * API name: {@code preserve_original}
+	 * Required - API name: {@code preserve_original}
 	 */
 	public boolean preserveOriginal() {
 		return this.preserveOriginal;
@@ -115,7 +115,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		private Boolean preserveOriginal;
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(List<String> value) {
 			this.patterns = value;
@@ -123,7 +123,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		}
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(String... value) {
 			this.patterns = Arrays.asList(value);
@@ -131,7 +131,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #patterns(List)}, creating the list if needed.
 		 */
 		public Builder addPatterns(String value) {
 			if (this.patterns == null) {
@@ -142,7 +142,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		}
 
 		/**
-		 * API name: {@code preserve_original}
+		 * Required - API name: {@code preserve_original}
 		 */
 		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;

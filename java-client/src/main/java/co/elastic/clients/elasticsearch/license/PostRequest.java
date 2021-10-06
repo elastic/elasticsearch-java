@@ -187,7 +187,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed. 4
+		 * Add a value to {@link #licenses(List)}, creating the list if needed.
 		 */
 		public Builder addLicenses(License value) {
 			if (this.licenses == null) {
@@ -205,7 +205,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed. 5
+		 * Add a value to {@link #licenses(List)}, creating the list if needed.
 		 */
 		public Builder addLicenses(Function<License.Builder, ObjectBuilder<License>> fn) {
 			return this.addLicenses(fn.apply(new License.Builder()).build());

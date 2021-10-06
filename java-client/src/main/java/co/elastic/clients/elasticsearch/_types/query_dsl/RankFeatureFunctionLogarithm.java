@@ -54,7 +54,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	}
 
 	/**
-	 * API name: {@code scaling_factor}
+	 * Required - API name: {@code scaling_factor}
 	 */
 	public float scalingFactor() {
 		return this.scalingFactor;
@@ -85,7 +85,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 		private Float scalingFactor;
 
 		/**
-		 * API name: {@code scaling_factor}
+		 * Required - API name: {@code scaling_factor}
 		 */
 		public Builder scalingFactor(float value) {
 			this.scalingFactor = value;

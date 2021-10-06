@@ -59,14 +59,14 @@ public final class ActionWebhook implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
 	}
 
 	/**
-	 * API name: {@code port}
+	 * Required - API name: {@code port}
 	 */
 	public int port() {
 		return this.port;
@@ -102,7 +102,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		private Integer port;
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public Builder host(String value) {
 			this.host = value;
@@ -110,7 +110,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code port}
+		 * Required - API name: {@code port}
 		 */
 		public Builder port(int value) {
 			this.port = value;

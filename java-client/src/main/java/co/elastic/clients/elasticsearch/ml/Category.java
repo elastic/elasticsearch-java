@@ -106,8 +106,8 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * A unique identifier for the category. category_id is unique at the job level,
-	 * even when per-partition categorization is enabled.
+	 * Required - A unique identifier for the category. category_id is unique at the
+	 * job level, even when per-partition categorization is enabled.
 	 * <p>
 	 * API name: {@code category_id}
 	 */
@@ -116,7 +116,7 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of examples of actual values that matched the category.
+	 * Required - A list of examples of actual values that matched the category.
 	 * <p>
 	 * API name: {@code examples}
 	 */
@@ -139,7 +139,7 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -148,9 +148,9 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum length of the fields that matched the category. The value is
-	 * increased by 10% to enable matching for similar fields that have not been
-	 * analyzed.
+	 * Required - The maximum length of the fields that matched the category. The
+	 * value is increased by 10% to enable matching for similar fields that have not
+	 * been analyzed.
 	 * <p>
 	 * API name: {@code max_matching_length}
 	 */
@@ -183,8 +183,8 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * A regular expression that is used to search for values that match the
-	 * category.
+	 * Required - A regular expression that is used to search for values that match
+	 * the category.
 	 * <p>
 	 * API name: {@code regex}
 	 */
@@ -193,8 +193,8 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * A space separated list of the common tokens that are matched in values of the
-	 * category.
+	 * Required - A space separated list of the common tokens that are matched in
+	 * values of the category.
 	 * <p>
 	 * API name: {@code terms}
 	 */
@@ -235,14 +235,14 @@ public final class Category implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code result_type}
+	 * Required - API name: {@code result_type}
 	 */
 	public String resultType() {
 		return this.resultType;
 	}
 
 	/**
-	 * API name: {@code mlcategory}
+	 * Required - API name: {@code mlcategory}
 	 */
 	public String mlcategory() {
 		return this.mlcategory;
@@ -375,8 +375,8 @@ public final class Category implements JsonpSerializable {
 		private String mlcategory;
 
 		/**
-		 * A unique identifier for the category. category_id is unique at the job level,
-		 * even when per-partition categorization is enabled.
+		 * Required - A unique identifier for the category. category_id is unique at the
+		 * job level, even when per-partition categorization is enabled.
 		 * <p>
 		 * API name: {@code category_id}
 		 */
@@ -386,7 +386,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of examples of actual values that matched the category.
+		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
 		 */
@@ -396,7 +396,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of examples of actual values that matched the category.
+		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
 		 */
@@ -406,7 +406,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #examples(List)}, creating the list if needed. 4
+		 * Add a value to {@link #examples(List)}, creating the list if needed.
 		 */
 		public Builder addExamples(String value) {
 			if (this.examples == null) {
@@ -431,7 +431,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * Identifier for the anomaly detection job.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -441,9 +441,9 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum length of the fields that matched the category. The value is
-		 * increased by 10% to enable matching for similar fields that have not been
-		 * analyzed.
+		 * Required - The maximum length of the fields that matched the category. The
+		 * value is increased by 10% to enable matching for similar fields that have not
+		 * been analyzed.
 		 * <p>
 		 * API name: {@code max_matching_length}
 		 */
@@ -477,8 +477,8 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * A regular expression that is used to search for values that match the
-		 * category.
+		 * Required - A regular expression that is used to search for values that match
+		 * the category.
 		 * <p>
 		 * API name: {@code regex}
 		 */
@@ -488,8 +488,8 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * A space separated list of the common tokens that are matched in values of the
-		 * category.
+		 * Required - A space separated list of the common tokens that are matched in
+		 * values of the category.
 		 * <p>
 		 * API name: {@code terms}
 		 */
@@ -537,7 +537,7 @@ public final class Category implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #preferredToCategories(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addPreferredToCategories(String value) {
 			if (this.preferredToCategories == null) {
@@ -556,7 +556,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code result_type}
+		 * Required - API name: {@code result_type}
 		 */
 		public Builder resultType(String value) {
 			this.resultType = value;
@@ -564,7 +564,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mlcategory}
+		 * Required - API name: {@code mlcategory}
 		 */
 		public Builder mlcategory(String value) {
 			this.mlcategory = value;

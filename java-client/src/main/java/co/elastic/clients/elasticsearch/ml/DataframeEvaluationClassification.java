@@ -75,9 +75,9 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	}
 
 	/**
-	 * The field of the index which contains the ground truth. The data type of this
-	 * field can be boolean or integer. If the data type is integer, the value has
-	 * to be either 0 (false) or 1 (true).
+	 * Required - The field of the index which contains the ground truth. The data
+	 * type of this field can be boolean or integer. If the data type is integer,
+	 * the value has to be either 0 (false) or 1 (true).
 	 * <p>
 	 * API name: {@code actual_field}
 	 */
@@ -171,9 +171,9 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		private DataframeEvaluationClassificationMetrics metrics;
 
 		/**
-		 * The field of the index which contains the ground truth. The data type of this
-		 * field can be boolean or integer. If the data type is integer, the value has
-		 * to be either 0 (false) or 1 (true).
+		 * Required - The field of the index which contains the ground truth. The data
+		 * type of this field can be boolean or integer. If the data type is integer,
+		 * the value has to be either 0 (false) or 1 (true).
 		 * <p>
 		 * API name: {@code actual_field}
 		 */

@@ -68,7 +68,7 @@ public final class CompletionStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
 	public long sizeInBytes() {
 		return this.sizeInBytes;
@@ -140,7 +140,7 @@ public final class CompletionStats implements JsonpSerializable {
 		private Map<String, FieldSizeUsage> fields;
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
 		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;

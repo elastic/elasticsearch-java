@@ -58,14 +58,14 @@ public final class TotalHits implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code relation}
+	 * Required - API name: {@code relation}
 	 */
 	public TotalHitsRelation relation() {
 		return this.relation;
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public long value() {
 		return this.value;
@@ -101,7 +101,7 @@ public final class TotalHits implements JsonpSerializable {
 		private Long value;
 
 		/**
-		 * API name: {@code relation}
+		 * Required - API name: {@code relation}
 		 */
 		public Builder relation(TotalHitsRelation value) {
 			this.relation = value;
@@ -109,7 +109,7 @@ public final class TotalHits implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(long value) {
 			this.value = value;

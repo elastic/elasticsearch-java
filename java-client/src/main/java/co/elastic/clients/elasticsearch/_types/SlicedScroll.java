@@ -71,14 +71,14 @@ public final class SlicedScroll implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public int id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public int max() {
 		return this.max;
@@ -132,7 +132,7 @@ public final class SlicedScroll implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(int value) {
 			this.id = value;
@@ -140,7 +140,7 @@ public final class SlicedScroll implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(int value) {
 			this.max = value;

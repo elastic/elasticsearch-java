@@ -95,8 +95,8 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of index names to search; use <code>_all</code> or
-	 * empty string to perform the operation on all indices
+	 * Required - A comma-separated list of index names to search; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -240,8 +240,8 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		private List<VertexDefinition> vertices;
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Required - A comma-separated list of index names to search; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -251,8 +251,8 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Required - A comma-separated list of index names to search; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -262,7 +262,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -295,7 +295,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed. 4
+		 * Add a value to {@link #type(List)}, creating the list if needed.
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -387,7 +387,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
 		 */
 		public Builder addVertices(VertexDefinition value) {
 			if (this.vertices == null) {
@@ -405,7 +405,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
 		 */
 		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
 			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());

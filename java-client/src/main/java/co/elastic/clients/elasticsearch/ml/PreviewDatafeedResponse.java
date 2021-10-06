@@ -65,7 +65,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code data}
+	 * Required - API name: {@code data}
 	 */
 	public List<TDocument> data() {
 		return this.data;
@@ -104,7 +104,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code data}
+		 * Required - API name: {@code data}
 		 */
 		public Builder<TDocument> data(List<TDocument> value) {
 			this.data = value;
@@ -112,7 +112,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		}
 
 		/**
-		 * API name: {@code data}
+		 * Required - API name: {@code data}
 		 */
 		public Builder<TDocument> data(TDocument... value) {
 			this.data = Arrays.asList(value);
@@ -120,7 +120,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed. 4
+		 * Add a value to {@link #data(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addData(TDocument value) {
 			if (this.data == null) {

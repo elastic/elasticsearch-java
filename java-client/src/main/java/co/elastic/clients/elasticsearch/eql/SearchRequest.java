@@ -98,7 +98,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final String waitForCompletionTimeout;
 
 	@Nullable
-	private final JsonValue /* Union(_types.uint | _types.float) */ size;
+	private final JsonValue /* Union(_types.float | _types.uint) */ size;
 
 	@Nullable
 	private final List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
@@ -135,7 +135,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The name of the index to scope the operation
+	 * Required - The name of the index to scope the operation
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -170,7 +170,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * EQL query you wish to run.
+	 * Required - EQL query you wish to run.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -268,7 +268,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.uint | _types.float) */ size() {
+	public JsonValue /* Union(_types.float | _types.uint) */ size() {
 		return this.size;
 	}
 
@@ -436,7 +436,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private String waitForCompletionTimeout;
 
 		@Nullable
-		private JsonValue /* Union(_types.uint | _types.float) */ size;
+		private JsonValue /* Union(_types.float | _types.uint) */ size;
 
 		@Nullable
 		private List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
@@ -445,7 +445,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private ResultPosition resultPosition;
 
 		/**
-		 * The name of the index to scope the operation
+		 * Required - The name of the index to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -479,7 +479,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -500,7 +500,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * EQL query you wish to run.
+		 * Required - EQL query you wish to run.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -580,7 +580,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(Query value) {
 			if (this.filter == null) {
@@ -598,7 +598,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addFilter(fn.apply(new Query.Builder()).build());
@@ -634,7 +634,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue /* Union(_types.uint | _types.float) */ value) {
+		public Builder size(@Nullable JsonValue /* Union(_types.float | _types.uint) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -663,7 +663,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ value) {
 			if (this.fields == null) {

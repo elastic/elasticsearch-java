@@ -66,21 +66,21 @@ public final class ClearCachedRolesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _nodes}
+	 * Required - API name: {@code _nodes}
 	 */
 	public NodeStatistics nodeStats() {
 		return this.nodeStats;
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, ClusterNode> nodes() {
 		return this.nodes;
@@ -127,7 +127,7 @@ public final class ClearCachedRolesResponse implements JsonpSerializable {
 		private Map<String, ClusterNode> nodes;
 
 		/**
-		 * API name: {@code _nodes}
+		 * Required - API name: {@code _nodes}
 		 */
 		public Builder nodeStats(NodeStatistics value) {
 			this.nodeStats = value;
@@ -135,14 +135,14 @@ public final class ClearCachedRolesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _nodes}
+		 * Required - API name: {@code _nodes}
 		 */
 		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
 			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -150,7 +150,7 @@ public final class ClearCachedRolesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, ClusterNode> value) {
 			this.nodes = value;

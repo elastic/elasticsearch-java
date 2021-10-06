@@ -85,7 +85,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -100,14 +100,14 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code pattern_definitions}
+	 * Required - API name: {@code pattern_definitions}
 	 */
 	public Map<String, String> patternDefinitions() {
 		return this.patternDefinitions;
 	}
 
 	/**
-	 * API name: {@code patterns}
+	 * Required - API name: {@code patterns}
 	 */
 	public List<String> patterns() {
 		return this.patterns;
@@ -180,7 +180,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		private Boolean traceMatch;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -196,7 +196,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code pattern_definitions}
+		 * Required - API name: {@code pattern_definitions}
 		 */
 		public Builder patternDefinitions(Map<String, String> value) {
 			this.patternDefinitions = value;
@@ -216,7 +216,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(List<String> value) {
 			this.patterns = value;
@@ -224,7 +224,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(String... value) {
 			this.patterns = Arrays.asList(value);
@@ -232,7 +232,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #patterns(List)}, creating the list if needed.
 		 */
 		public Builder addPatterns(String value) {
 			if (this.patterns == null) {

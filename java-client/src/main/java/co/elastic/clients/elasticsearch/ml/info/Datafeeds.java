@@ -54,7 +54,7 @@ public final class Datafeeds implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code scroll_size}
+	 * Required - API name: {@code scroll_size}
 	 */
 	public int scrollSize() {
 		return this.scrollSize;
@@ -85,7 +85,7 @@ public final class Datafeeds implements JsonpSerializable {
 		private Integer scrollSize;
 
 		/**
-		 * API name: {@code scroll_size}
+		 * Required - API name: {@code scroll_size}
 		 */
 		public Builder scrollSize(int value) {
 			this.scrollSize = value;

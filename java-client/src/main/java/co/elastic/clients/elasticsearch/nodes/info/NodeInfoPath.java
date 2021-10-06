@@ -69,21 +69,21 @@ public final class NodeInfoPath implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code logs}
+	 * Required - API name: {@code logs}
 	 */
 	public String logs() {
 		return this.logs;
 	}
 
 	/**
-	 * API name: {@code home}
+	 * Required - API name: {@code home}
 	 */
 	public String home() {
 		return this.home;
 	}
 
 	/**
-	 * API name: {@code repo}
+	 * Required - API name: {@code repo}
 	 */
 	public List<String> repo() {
 		return this.repo;
@@ -152,7 +152,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		private List<String> data;
 
 		/**
-		 * API name: {@code logs}
+		 * Required - API name: {@code logs}
 		 */
 		public Builder logs(String value) {
 			this.logs = value;
@@ -160,7 +160,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code home}
+		 * Required - API name: {@code home}
 		 */
 		public Builder home(String value) {
 			this.home = value;
@@ -168,7 +168,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code repo}
+		 * Required - API name: {@code repo}
 		 */
 		public Builder repo(List<String> value) {
 			this.repo = value;
@@ -176,7 +176,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code repo}
+		 * Required - API name: {@code repo}
 		 */
 		public Builder repo(String... value) {
 			this.repo = Arrays.asList(value);
@@ -184,7 +184,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #repo(List)}, creating the list if needed. 4
+		 * Add a value to {@link #repo(List)}, creating the list if needed.
 		 */
 		public Builder addRepo(String value) {
 			if (this.repo == null) {
@@ -211,7 +211,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed. 4
+		 * Add a value to {@link #data(List)}, creating the list if needed.
 		 */
 		public Builder addData(String value) {
 			if (this.data == null) {

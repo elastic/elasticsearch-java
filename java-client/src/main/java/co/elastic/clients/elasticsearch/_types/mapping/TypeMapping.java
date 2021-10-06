@@ -57,7 +57,7 @@ public final class TypeMapping implements JsonpSerializable {
 	private final Boolean dateDetection;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
+	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
 	@Nullable
 	private final List<String> dynamicDateFormats;
@@ -137,7 +137,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic() {
+	public JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
 		return this.dynamic;
 	}
 
@@ -374,7 +374,7 @@ public final class TypeMapping implements JsonpSerializable {
 		private Boolean dateDetection;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
+		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
 		@Nullable
 		private List<String> dynamicDateFormats;
@@ -436,7 +436,7 @@ public final class TypeMapping implements JsonpSerializable {
 		 * API name: {@code dynamic}
 		 */
 		public Builder dynamic(
-				@Nullable JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ value) {
+				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
 			this.dynamic = value;
 			return this;
 		}
@@ -459,7 +459,7 @@ public final class TypeMapping implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dynamicDateFormats(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addDynamicDateFormats(String value) {
 			if (this.dynamicDateFormats == null) {
@@ -487,7 +487,6 @@ public final class TypeMapping implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dynamicTemplates(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addDynamicTemplates(Map<String, DynamicTemplate> value) {
 			if (this.dynamicTemplates == null) {

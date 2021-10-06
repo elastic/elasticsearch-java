@@ -84,7 +84,7 @@ public final class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code creation}
+	 * Required - API name: {@code creation}
 	 */
 	public long creation() {
 		return this.creation;
@@ -99,35 +99,35 @@ public final class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code invalidated}
+	 * Required - API name: {@code invalidated}
 	 */
 	public boolean invalidated() {
 		return this.invalidated;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code realm}
+	 * Required - API name: {@code realm}
 	 */
 	public String realm() {
 		return this.realm;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
@@ -217,7 +217,7 @@ public final class ApiKey implements JsonpSerializable {
 		private Map<String, JsonData> metadata;
 
 		/**
-		 * API name: {@code creation}
+		 * Required - API name: {@code creation}
 		 */
 		public Builder creation(long value) {
 			this.creation = value;
@@ -233,7 +233,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -241,7 +241,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code invalidated}
+		 * Required - API name: {@code invalidated}
 		 */
 		public Builder invalidated(boolean value) {
 			this.invalidated = value;
@@ -249,7 +249,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -257,7 +257,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code realm}
+		 * Required - API name: {@code realm}
 		 */
 		public Builder realm(String value) {
 			this.realm = value;
@@ -265,7 +265,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;

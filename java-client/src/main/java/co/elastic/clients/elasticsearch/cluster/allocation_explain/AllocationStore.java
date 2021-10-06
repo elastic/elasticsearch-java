@@ -72,42 +72,42 @@ public final class AllocationStore implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allocation_id}
+	 * Required - API name: {@code allocation_id}
 	 */
 	public String allocationId() {
 		return this.allocationId;
 	}
 
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
 	public boolean found() {
 		return this.found;
 	}
 
 	/**
-	 * API name: {@code in_sync}
+	 * Required - API name: {@code in_sync}
 	 */
 	public boolean inSync() {
 		return this.inSync;
 	}
 
 	/**
-	 * API name: {@code matching_size_in_bytes}
+	 * Required - API name: {@code matching_size_in_bytes}
 	 */
 	public long matchingSizeInBytes() {
 		return this.matchingSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code matching_sync_id}
+	 * Required - API name: {@code matching_sync_id}
 	 */
 	public boolean matchingSyncId() {
 		return this.matchingSyncId;
 	}
 
 	/**
-	 * API name: {@code store_exception}
+	 * Required - API name: {@code store_exception}
 	 */
 	public String storeException() {
 		return this.storeException;
@@ -163,7 +163,7 @@ public final class AllocationStore implements JsonpSerializable {
 		private String storeException;
 
 		/**
-		 * API name: {@code allocation_id}
+		 * Required - API name: {@code allocation_id}
 		 */
 		public Builder allocationId(String value) {
 			this.allocationId = value;
@@ -171,7 +171,7 @@ public final class AllocationStore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
 		public Builder found(boolean value) {
 			this.found = value;
@@ -179,7 +179,7 @@ public final class AllocationStore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code in_sync}
+		 * Required - API name: {@code in_sync}
 		 */
 		public Builder inSync(boolean value) {
 			this.inSync = value;
@@ -187,7 +187,7 @@ public final class AllocationStore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code matching_size_in_bytes}
+		 * Required - API name: {@code matching_size_in_bytes}
 		 */
 		public Builder matchingSizeInBytes(long value) {
 			this.matchingSizeInBytes = value;
@@ -195,7 +195,7 @@ public final class AllocationStore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code matching_sync_id}
+		 * Required - API name: {@code matching_sync_id}
 		 */
 		public Builder matchingSyncId(boolean value) {
 			this.matchingSyncId = value;
@@ -203,7 +203,7 @@ public final class AllocationStore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code store_exception}
+		 * Required - API name: {@code store_exception}
 		 */
 		public Builder storeException(String value) {
 			this.storeException = value;

@@ -57,7 +57,7 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Identifier for the search to delete.
+	 * Required - Identifier for the search to delete.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Identifier for the search to delete.
+		 * Required - Identifier for the search to delete.
 		 * <p>
 		 * API name: {@code id}
 		 */

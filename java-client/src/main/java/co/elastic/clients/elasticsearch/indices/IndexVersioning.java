@@ -55,7 +55,7 @@ public final class IndexVersioning implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
 	public String created() {
 		return this.created;
@@ -86,7 +86,7 @@ public final class IndexVersioning implements JsonpSerializable {
 		private String created;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
 		public Builder created(String value) {
 			this.created = value;

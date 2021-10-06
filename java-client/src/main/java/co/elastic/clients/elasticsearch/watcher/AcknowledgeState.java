@@ -58,14 +58,14 @@ public final class AcknowledgeState implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public AcknowledgementOptions state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -101,7 +101,7 @@ public final class AcknowledgeState implements JsonpSerializable {
 		private String timestamp;
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(AcknowledgementOptions value) {
 			this.state = value;
@@ -109,7 +109,7 @@ public final class AcknowledgeState implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;

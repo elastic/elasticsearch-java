@@ -62,14 +62,14 @@ public final class Monitoring extends Base {
 	}
 
 	/**
-	 * API name: {@code collection_enabled}
+	 * Required - API name: {@code collection_enabled}
 	 */
 	public boolean collectionEnabled() {
 		return this.collectionEnabled;
 	}
 
 	/**
-	 * API name: {@code enabled_exporters}
+	 * Required - API name: {@code enabled_exporters}
 	 */
 	public Map<String, Long> enabledExporters() {
 		return this.enabledExporters;
@@ -104,7 +104,7 @@ public final class Monitoring extends Base {
 		private Map<String, Long> enabledExporters;
 
 		/**
-		 * API name: {@code collection_enabled}
+		 * Required - API name: {@code collection_enabled}
 		 */
 		public Builder collectionEnabled(boolean value) {
 			this.collectionEnabled = value;
@@ -112,7 +112,7 @@ public final class Monitoring extends Base {
 		}
 
 		/**
-		 * API name: {@code enabled_exporters}
+		 * Required - API name: {@code enabled_exporters}
 		 */
 		public Builder enabledExporters(Map<String, Long> value) {
 			this.enabledExporters = value;

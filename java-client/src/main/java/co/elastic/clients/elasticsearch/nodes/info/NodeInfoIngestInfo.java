@@ -54,7 +54,7 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code downloader}
+	 * Required - API name: {@code downloader}
 	 */
 	public NodeInfoIngestDownloader downloader() {
 		return this.downloader;
@@ -85,7 +85,7 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 		private NodeInfoIngestDownloader downloader;
 
 		/**
-		 * API name: {@code downloader}
+		 * Required - API name: {@code downloader}
 		 */
 		public Builder downloader(NodeInfoIngestDownloader value) {
 			this.downloader = value;
@@ -93,7 +93,7 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code downloader}
+		 * Required - API name: {@code downloader}
 		 */
 		public Builder downloader(
 				Function<NodeInfoIngestDownloader.Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {

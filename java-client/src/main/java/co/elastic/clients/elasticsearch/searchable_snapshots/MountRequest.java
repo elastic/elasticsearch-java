@@ -97,7 +97,8 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the repository containing the snapshot of the index to mount
+	 * Required - The name of the repository containing the snapshot of the index to
+	 * mount
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -106,7 +107,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the snapshot of the index to mount
+	 * Required - The name of the snapshot of the index to mount
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -146,7 +147,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -253,7 +254,8 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		private List<String> ignoreIndexSettings;
 
 		/**
-		 * The name of the repository containing the snapshot of the index to mount
+		 * Required - The name of the repository containing the snapshot of the index to
+		 * mount
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -263,7 +265,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The name of the snapshot of the index to mount
+		 * Required - The name of the snapshot of the index to mount
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -304,7 +306,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -356,7 +358,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * Add a value to {@link #ignoreIndexSettings(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addIgnoreIndexSettings(String value) {
 			if (this.ignoreIndexSettings == null) {

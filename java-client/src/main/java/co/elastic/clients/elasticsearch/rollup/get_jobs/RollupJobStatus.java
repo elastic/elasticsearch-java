@@ -75,7 +75,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code job_state}
+	 * Required - API name: {@code job_state}
 	 */
 	public IndexingJobState jobState() {
 		return this.jobState;
@@ -158,7 +158,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_state}
+		 * Required - API name: {@code job_state}
 		 */
 		public Builder jobState(IndexingJobState value) {
 			this.jobState = value;

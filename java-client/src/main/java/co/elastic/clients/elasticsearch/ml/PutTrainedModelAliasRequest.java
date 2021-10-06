@@ -66,7 +66,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * The alias to create or update. This value cannot end in numbers.
+	 * Required - The alias to create or update. This value cannot end in numbers.
 	 * <p>
 	 * API name: {@code model_alias}
 	 */
@@ -75,7 +75,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * The identifier for the trained model that the alias refers to.
+	 * Required - The identifier for the trained model that the alias refers to.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -109,7 +109,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		private Boolean reassign;
 
 		/**
-		 * The alias to create or update. This value cannot end in numbers.
+		 * Required - The alias to create or update. This value cannot end in numbers.
 		 * <p>
 		 * API name: {@code model_alias}
 		 */
@@ -119,7 +119,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * The identifier for the trained model that the alias refers to.
+		 * Required - The identifier for the trained model that the alias refers to.
 		 * <p>
 		 * API name: {@code model_id}
 		 */

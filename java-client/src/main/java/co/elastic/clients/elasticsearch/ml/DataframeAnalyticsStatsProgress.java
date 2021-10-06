@@ -59,7 +59,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	}
 
 	/**
-	 * Defines the phase of the data frame analytics job.
+	 * Required - Defines the phase of the data frame analytics job.
 	 * <p>
 	 * API name: {@code phase}
 	 */
@@ -68,8 +68,8 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	}
 
 	/**
-	 * The progress that the data frame analytics job has made expressed in
-	 * percentage.
+	 * Required - The progress that the data frame analytics job has made expressed
+	 * in percentage.
 	 * <p>
 	 * API name: {@code progress_percent}
 	 */
@@ -107,7 +107,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		private Integer progressPercent;
 
 		/**
-		 * Defines the phase of the data frame analytics job.
+		 * Required - Defines the phase of the data frame analytics job.
 		 * <p>
 		 * API name: {@code phase}
 		 */
@@ -117,8 +117,8 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		}
 
 		/**
-		 * The progress that the data frame analytics job has made expressed in
-		 * percentage.
+		 * Required - The progress that the data frame analytics job has made expressed
+		 * in percentage.
 		 * <p>
 		 * API name: {@code progress_percent}
 		 */

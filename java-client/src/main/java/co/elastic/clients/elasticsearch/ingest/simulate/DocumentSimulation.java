@@ -80,21 +80,21 @@ public final class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code _ingest}
+	 * Required - API name: {@code _ingest}
 	 */
 	public Ingest ingest() {
 		return this.ingest;
@@ -117,7 +117,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _source}
+	 * Required - API name: {@code _source}
 	 */
 	public Map<String, JsonData> source() {
 		return this.source;
@@ -206,7 +206,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -214,7 +214,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -222,7 +222,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _ingest}
+		 * Required - API name: {@code _ingest}
 		 */
 		public Builder ingest(Ingest value) {
 			this.ingest = value;
@@ -230,7 +230,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _ingest}
+		 * Required - API name: {@code _ingest}
 		 */
 		public Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
 			return this.ingest(fn.apply(new Ingest.Builder()).build());
@@ -253,7 +253,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _source}
+		 * Required - API name: {@code _source}
 		 */
 		public Builder source(Map<String, JsonData> value) {
 			this.source = value;

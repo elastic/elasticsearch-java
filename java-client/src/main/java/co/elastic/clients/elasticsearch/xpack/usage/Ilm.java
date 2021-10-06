@@ -62,14 +62,14 @@ public final class Ilm implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code policy_count}
+	 * Required - API name: {@code policy_count}
 	 */
 	public int policyCount() {
 		return this.policyCount;
 	}
 
 	/**
-	 * API name: {@code policy_stats}
+	 * Required - API name: {@code policy_stats}
 	 */
 	public List<IlmPolicyStatistics> policyStats() {
 		return this.policyStats;
@@ -110,7 +110,7 @@ public final class Ilm implements JsonpSerializable {
 		private List<IlmPolicyStatistics> policyStats;
 
 		/**
-		 * API name: {@code policy_count}
+		 * Required - API name: {@code policy_count}
 		 */
 		public Builder policyCount(int value) {
 			this.policyCount = value;
@@ -118,7 +118,7 @@ public final class Ilm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy_stats}
+		 * Required - API name: {@code policy_stats}
 		 */
 		public Builder policyStats(List<IlmPolicyStatistics> value) {
 			this.policyStats = value;
@@ -126,7 +126,7 @@ public final class Ilm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy_stats}
+		 * Required - API name: {@code policy_stats}
 		 */
 		public Builder policyStats(IlmPolicyStatistics... value) {
 			this.policyStats = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class Ilm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
 		 */
 		public Builder addPolicyStats(IlmPolicyStatistics value) {
 			if (this.policyStats == null) {
@@ -152,7 +152,7 @@ public final class Ilm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed. 5
+		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
 		 */
 		public Builder addPolicyStats(Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
 			return this.addPolicyStats(fn.apply(new IlmPolicyStatistics.Builder()).build());

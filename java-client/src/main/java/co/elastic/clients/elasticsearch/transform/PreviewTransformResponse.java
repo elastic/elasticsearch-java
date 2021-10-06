@@ -69,14 +69,14 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 	}
 
 	/**
-	 * API name: {@code generated_dest_index}
+	 * Required - API name: {@code generated_dest_index}
 	 */
 	public IndexState generatedDestIndex() {
 		return this.generatedDestIndex;
 	}
 
 	/**
-	 * API name: {@code preview}
+	 * Required - API name: {@code preview}
 	 */
 	public List<TTransform> preview() {
 		return this.preview;
@@ -120,7 +120,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		private JsonpSerializer<TTransform> tTransformSerializer;
 
 		/**
-		 * API name: {@code generated_dest_index}
+		 * Required - API name: {@code generated_dest_index}
 		 */
 		public Builder<TTransform> generatedDestIndex(IndexState value) {
 			this.generatedDestIndex = value;
@@ -128,14 +128,14 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code generated_dest_index}
+		 * Required - API name: {@code generated_dest_index}
 		 */
 		public Builder<TTransform> generatedDestIndex(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
 			return this.generatedDestIndex(fn.apply(new IndexState.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code preview}
+		 * Required - API name: {@code preview}
 		 */
 		public Builder<TTransform> preview(List<TTransform> value) {
 			this.preview = value;
@@ -143,7 +143,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code preview}
+		 * Required - API name: {@code preview}
 		 */
 		public Builder<TTransform> preview(TTransform... value) {
 			this.preview = Arrays.asList(value);
@@ -151,7 +151,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #preview(List)}, creating the list if needed. 4
+		 * Add a value to {@link #preview(List)}, creating the list if needed.
 		 */
 		public Builder<TTransform> addPreview(TTransform value) {
 			if (this.preview == null) {

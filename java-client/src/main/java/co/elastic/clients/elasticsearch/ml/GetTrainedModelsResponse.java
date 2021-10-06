@@ -63,15 +63,15 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * An array of trained model resources, which are sorted by the model_id value
-	 * in ascending order.
+	 * Required - An array of trained model resources, which are sorted by the
+	 * model_id value in ascending order.
 	 * <p>
 	 * API name: {@code trained_model_configs}
 	 */
@@ -114,7 +114,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		private List<TrainedModelConfig> trainedModelConfigs;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -122,8 +122,8 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of trained model resources, which are sorted by the model_id value
-		 * in ascending order.
+		 * Required - An array of trained model resources, which are sorted by the
+		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
@@ -133,8 +133,8 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of trained model resources, which are sorted by the model_id value
-		 * in ascending order.
+		 * Required - An array of trained model resources, which are sorted by the
+		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
@@ -145,7 +145,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #trainedModelConfigs(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addTrainedModelConfigs(TrainedModelConfig value) {
 			if (this.trainedModelConfigs == null) {
@@ -164,7 +164,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #trainedModelConfigs(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addTrainedModelConfigs(
 				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {

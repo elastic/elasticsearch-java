@@ -88,7 +88,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Name of the JVM architecture (ex: amd64, x86)
+	 * Required - Name of the JVM architecture (ex: amd64, x86)
 	 * <p>
 	 * API name: {@code arch}
 	 */
@@ -97,7 +97,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Number of processors available to the Java virtual machine
+	 * Required - Number of processors available to the Java virtual machine
 	 * <p>
 	 * API name: {@code available_processors}
 	 */
@@ -118,7 +118,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Name of the operating system (ex: Linux, Windows, Mac OS X)
+	 * Required - Name of the operating system (ex: Linux, Windows, Mac OS X)
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -127,14 +127,14 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code pretty_name}
+	 * Required - API name: {@code pretty_name}
 	 */
 	public String prettyName() {
 		return this.prettyName;
 	}
 
 	/**
-	 * Refresh interval for the OS statistics
+	 * Required - Refresh interval for the OS statistics
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
@@ -143,7 +143,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Version of the operating system
+	 * Required - Version of the operating system
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -263,7 +263,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		private NodeInfoMemory swap;
 
 		/**
-		 * Name of the JVM architecture (ex: amd64, x86)
+		 * Required - Name of the JVM architecture (ex: amd64, x86)
 		 * <p>
 		 * API name: {@code arch}
 		 */
@@ -273,7 +273,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Number of processors available to the Java virtual machine
+		 * Required - Number of processors available to the Java virtual machine
 		 * <p>
 		 * API name: {@code available_processors}
 		 */
@@ -295,7 +295,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Name of the operating system (ex: Linux, Windows, Mac OS X)
+		 * Required - Name of the operating system (ex: Linux, Windows, Mac OS X)
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -305,7 +305,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pretty_name}
+		 * Required - API name: {@code pretty_name}
 		 */
 		public Builder prettyName(String value) {
 			this.prettyName = value;
@@ -313,7 +313,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Refresh interval for the OS statistics
+		 * Required - Refresh interval for the OS statistics
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
@@ -323,7 +323,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Version of the operating system
+		 * Required - Version of the operating system
 		 * <p>
 		 * API name: {@code version}
 		 */

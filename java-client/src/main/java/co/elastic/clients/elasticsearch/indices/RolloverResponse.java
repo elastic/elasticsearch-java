@@ -75,42 +75,42 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code conditions}
+	 * Required - API name: {@code conditions}
 	 */
 	public Map<String, Boolean> conditions() {
 		return this.conditions;
 	}
 
 	/**
-	 * API name: {@code dry_run}
+	 * Required - API name: {@code dry_run}
 	 */
 	public boolean dryRun() {
 		return this.dryRun;
 	}
 
 	/**
-	 * API name: {@code new_index}
+	 * Required - API name: {@code new_index}
 	 */
 	public String newIndex() {
 		return this.newIndex;
 	}
 
 	/**
-	 * API name: {@code old_index}
+	 * Required - API name: {@code old_index}
 	 */
 	public String oldIndex() {
 		return this.oldIndex;
 	}
 
 	/**
-	 * API name: {@code rolled_over}
+	 * Required - API name: {@code rolled_over}
 	 */
 	public boolean rolledOver() {
 		return this.rolledOver;
 	}
 
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
 	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
@@ -167,7 +167,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		private Boolean shardsAcknowledged;
 
 		/**
-		 * API name: {@code conditions}
+		 * Required - API name: {@code conditions}
 		 */
 		public Builder conditions(Map<String, Boolean> value) {
 			this.conditions = value;
@@ -186,7 +186,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code dry_run}
+		 * Required - API name: {@code dry_run}
 		 */
 		public Builder dryRun(boolean value) {
 			this.dryRun = value;
@@ -194,7 +194,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code new_index}
+		 * Required - API name: {@code new_index}
 		 */
 		public Builder newIndex(String value) {
 			this.newIndex = value;
@@ -202,7 +202,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code old_index}
+		 * Required - API name: {@code old_index}
 		 */
 		public Builder oldIndex(String value) {
 			this.oldIndex = value;
@@ -210,7 +210,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code rolled_over}
+		 * Required - API name: {@code rolled_over}
 		 */
 		public Builder rolledOver(boolean value) {
 			this.rolledOver = value;
@@ -218,7 +218,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
 		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;

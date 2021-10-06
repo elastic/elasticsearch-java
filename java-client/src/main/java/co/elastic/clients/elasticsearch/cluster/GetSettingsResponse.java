@@ -65,14 +65,14 @@ public final class GetSettingsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code persistent}
+	 * Required - API name: {@code persistent}
 	 */
 	public Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
-	 * API name: {@code transient}
+	 * Required - API name: {@code transient}
 	 */
 	public Map<String, JsonData> transient_() {
 		return this.transient_;
@@ -144,7 +144,7 @@ public final class GetSettingsResponse implements JsonpSerializable {
 		private Map<String, JsonData> defaults;
 
 		/**
-		 * API name: {@code persistent}
+		 * Required - API name: {@code persistent}
 		 */
 		public Builder persistent(Map<String, JsonData> value) {
 			this.persistent = value;
@@ -163,7 +163,7 @@ public final class GetSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transient}
+		 * Required - API name: {@code transient}
 		 */
 		public Builder transient_(Map<String, JsonData> value) {
 			this.transient_ = value;

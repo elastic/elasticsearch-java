@@ -55,7 +55,7 @@ public final class RestoreResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public SnapshotRestore snapshot() {
 		return this.snapshot;
@@ -86,7 +86,7 @@ public final class RestoreResponse implements JsonpSerializable {
 		private SnapshotRestore snapshot;
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(SnapshotRestore value) {
 			this.snapshot = value;
@@ -94,7 +94,7 @@ public final class RestoreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
 			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());

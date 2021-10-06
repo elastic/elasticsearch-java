@@ -65,7 +65,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the application to which this entry applies.
+	 * Required - The name of the application to which this entry applies.
 	 * <p>
 	 * API name: {@code application}
 	 */
@@ -74,8 +74,8 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of strings, where each element is the name of an application privilege
-	 * or action.
+	 * Required - A list of strings, where each element is the name of an
+	 * application privilege or action.
 	 * <p>
 	 * API name: {@code privileges}
 	 */
@@ -84,7 +84,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * A list resources to which the privileges are applied.
+	 * Required - A list resources to which the privileges are applied.
 	 * <p>
 	 * API name: {@code resources}
 	 */
@@ -137,7 +137,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		private List<String> resources;
 
 		/**
-		 * The name of the application to which this entry applies.
+		 * Required - The name of the application to which this entry applies.
 		 * <p>
 		 * API name: {@code application}
 		 */
@@ -147,8 +147,8 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of strings, where each element is the name of an application privilege
-		 * or action.
+		 * Required - A list of strings, where each element is the name of an
+		 * application privilege or action.
 		 * <p>
 		 * API name: {@code privileges}
 		 */
@@ -158,8 +158,8 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of strings, where each element is the name of an application privilege
-		 * or action.
+		 * Required - A list of strings, where each element is the name of an
+		 * application privilege or action.
 		 * <p>
 		 * API name: {@code privileges}
 		 */
@@ -169,7 +169,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #privileges(List)}, creating the list if needed.
 		 */
 		public Builder addPrivileges(String value) {
 			if (this.privileges == null) {
@@ -180,7 +180,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A list resources to which the privileges are applied.
+		 * Required - A list resources to which the privileges are applied.
 		 * <p>
 		 * API name: {@code resources}
 		 */
@@ -190,7 +190,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A list resources to which the privileges are applied.
+		 * Required - A list resources to which the privileges are applied.
 		 * <p>
 		 * API name: {@code resources}
 		 */
@@ -200,7 +200,7 @@ public final class ApplicationPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #resources(List)}, creating the list if needed. 4
+		 * Add a value to {@link #resources(List)}, creating the list if needed.
 		 */
 		public Builder addResources(String value) {
 			if (this.resources == null) {

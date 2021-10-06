@@ -75,11 +75,12 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Identifier for the anomaly detection job. It can be a job identifier, a group
-	 * name, or a wildcard expression. You can close multiple anomaly detection jobs
-	 * in a single API request by using a group name, a comma-separated list of
-	 * jobs, or a wildcard expression. You can close all jobs by using
-	 * <code>_all</code> or by specifying <code>*</code> as the job identifier.
+	 * Required - Identifier for the anomaly detection job. It can be a job
+	 * identifier, a group name, or a wildcard expression. You can close multiple
+	 * anomaly detection jobs in a single API request by using a group name, a
+	 * comma-separated list of jobs, or a wildcard expression. You can close all
+	 * jobs by using <code>_all</code> or by specifying <code>*</code> as the job
+	 * identifier.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -162,11 +163,12 @@ public final class CloseJobRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Identifier for the anomaly detection job. It can be a job identifier, a group
-		 * name, or a wildcard expression. You can close multiple anomaly detection jobs
-		 * in a single API request by using a group name, a comma-separated list of
-		 * jobs, or a wildcard expression. You can close all jobs by using
-		 * <code>_all</code> or by specifying <code>*</code> as the job identifier.
+		 * Required - Identifier for the anomaly detection job. It can be a job
+		 * identifier, a group name, or a wildcard expression. You can close multiple
+		 * anomaly detection jobs in a single API request by using a group name, a
+		 * comma-separated list of jobs, or a wildcard expression. You can close all
+		 * jobs by using <code>_all</code> or by specifying <code>*</code> as the job
+		 * identifier.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

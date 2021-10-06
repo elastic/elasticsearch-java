@@ -65,7 +65,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	}
 
 	/**
-	 * The feature for which this importance was calculated.
+	 * Required - The feature for which this importance was calculated.
 	 * <p>
 	 * API name: {@code feature_name}
 	 */
@@ -74,8 +74,8 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	}
 
 	/**
-	 * A collection of feature importance statistics related to the training data
-	 * set for this particular feature.
+	 * Required - A collection of feature importance statistics related to the
+	 * training data set for this particular feature.
 	 * <p>
 	 * API name: {@code importance}
 	 */
@@ -84,8 +84,8 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	}
 
 	/**
-	 * If the trained model is a classification model, feature importance statistics
-	 * are gathered per target class value.
+	 * Required - If the trained model is a classification model, feature importance
+	 * statistics are gathered per target class value.
 	 * <p>
 	 * API name: {@code classes}
 	 */
@@ -138,7 +138,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		private List<TotalFeatureImportanceClass> classes;
 
 		/**
-		 * The feature for which this importance was calculated.
+		 * Required - The feature for which this importance was calculated.
 		 * <p>
 		 * API name: {@code feature_name}
 		 */
@@ -148,8 +148,8 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * A collection of feature importance statistics related to the training data
-		 * set for this particular feature.
+		 * Required - A collection of feature importance statistics related to the
+		 * training data set for this particular feature.
 		 * <p>
 		 * API name: {@code importance}
 		 */
@@ -159,8 +159,8 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * A collection of feature importance statistics related to the training data
-		 * set for this particular feature.
+		 * Required - A collection of feature importance statistics related to the
+		 * training data set for this particular feature.
 		 * <p>
 		 * API name: {@code importance}
 		 */
@@ -170,7 +170,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #importance(List)}, creating the list if needed. 4
+		 * Add a value to {@link #importance(List)}, creating the list if needed.
 		 */
 		public Builder addImportance(TotalFeatureImportanceStatistics value) {
 			if (this.importance == null) {
@@ -189,7 +189,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #importance(List)}, creating the list if needed. 5
+		 * Add a value to {@link #importance(List)}, creating the list if needed.
 		 */
 		public Builder addImportance(
 				Function<TotalFeatureImportanceStatistics.Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {
@@ -197,8 +197,8 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * If the trained model is a classification model, feature importance statistics
-		 * are gathered per target class value.
+		 * Required - If the trained model is a classification model, feature importance
+		 * statistics are gathered per target class value.
 		 * <p>
 		 * API name: {@code classes}
 		 */
@@ -208,8 +208,8 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * If the trained model is a classification model, feature importance statistics
-		 * are gathered per target class value.
+		 * Required - If the trained model is a classification model, feature importance
+		 * statistics are gathered per target class value.
 		 * <p>
 		 * API name: {@code classes}
 		 */
@@ -219,7 +219,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #classes(List)}, creating the list if needed.
 		 */
 		public Builder addClasses(TotalFeatureImportanceClass value) {
 			if (this.classes == null) {
@@ -238,7 +238,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #classes(List)}, creating the list if needed.
 		 */
 		public Builder addClasses(
 				Function<TotalFeatureImportanceClass.Builder, ObjectBuilder<TotalFeatureImportanceClass>> fn) {

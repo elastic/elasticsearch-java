@@ -82,14 +82,14 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bytes}
+	 * Required - API name: {@code bytes}
 	 */
 	public String bytes() {
 		return this.bytes;
 	}
 
 	/**
-	 * API name: {@code end_offset}
+	 * Required - API name: {@code end_offset}
 	 */
 	public long endOffset() {
 		return this.endOffset;
@@ -104,42 +104,42 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code position}
+	 * Required - API name: {@code position}
 	 */
 	public long position() {
 		return this.position;
 	}
 
 	/**
-	 * API name: {@code positionLength}
+	 * Required - API name: {@code positionLength}
 	 */
 	public long positionlength() {
 		return this.positionlength;
 	}
 
 	/**
-	 * API name: {@code start_offset}
+	 * Required - API name: {@code start_offset}
 	 */
 	public long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
-	 * API name: {@code termFrequency}
+	 * Required - API name: {@code termFrequency}
 	 */
 	public long termfrequency() {
 		return this.termfrequency;
 	}
 
 	/**
-	 * API name: {@code token}
+	 * Required - API name: {@code token}
 	 */
 	public String token() {
 		return this.token;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -215,7 +215,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code bytes}
+		 * Required - API name: {@code bytes}
 		 */
 		public Builder bytes(String value) {
 			this.bytes = value;
@@ -223,7 +223,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code end_offset}
+		 * Required - API name: {@code end_offset}
 		 */
 		public Builder endOffset(long value) {
 			this.endOffset = value;
@@ -239,7 +239,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code position}
+		 * Required - API name: {@code position}
 		 */
 		public Builder position(long value) {
 			this.position = value;
@@ -247,7 +247,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code positionLength}
+		 * Required - API name: {@code positionLength}
 		 */
 		public Builder positionlength(long value) {
 			this.positionlength = value;
@@ -255,7 +255,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_offset}
+		 * Required - API name: {@code start_offset}
 		 */
 		public Builder startOffset(long value) {
 			this.startOffset = value;
@@ -263,7 +263,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code termFrequency}
+		 * Required - API name: {@code termFrequency}
 		 */
 		public Builder termfrequency(long value) {
 			this.termfrequency = value;
@@ -271,7 +271,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code token}
+		 * Required - API name: {@code token}
 		 */
 		public Builder token(String value) {
 			this.token = value;
@@ -279,7 +279,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

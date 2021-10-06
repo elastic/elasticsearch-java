@@ -64,14 +64,14 @@ public final class Deprecation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code details}
+	 * Required - API name: {@code details}
 	 */
 	public String details() {
 		return this.details;
 	}
 
 	/**
-	 * The level property describes the significance of the issue.
+	 * Required - The level property describes the significance of the issue.
 	 * <p>
 	 * API name: {@code level}
 	 */
@@ -80,14 +80,14 @@ public final class Deprecation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public String message() {
 		return this.message;
 	}
 
 	/**
-	 * API name: {@code url}
+	 * Required - API name: {@code url}
 	 */
 	public String url() {
 		return this.url;
@@ -133,7 +133,7 @@ public final class Deprecation implements JsonpSerializable {
 		private String url;
 
 		/**
-		 * API name: {@code details}
+		 * Required - API name: {@code details}
 		 */
 		public Builder details(String value) {
 			this.details = value;
@@ -141,7 +141,7 @@ public final class Deprecation implements JsonpSerializable {
 		}
 
 		/**
-		 * The level property describes the significance of the issue.
+		 * Required - The level property describes the significance of the issue.
 		 * <p>
 		 * API name: {@code level}
 		 */
@@ -151,7 +151,7 @@ public final class Deprecation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(String value) {
 			this.message = value;
@@ -159,7 +159,7 @@ public final class Deprecation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code url}
+		 * Required - API name: {@code url}
 		 */
 		public Builder url(String value) {
 			this.url = value;

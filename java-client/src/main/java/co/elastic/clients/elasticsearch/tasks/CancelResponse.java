@@ -74,7 +74,7 @@ public final class CancelResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, TaskExecutingNode> nodes() {
 		return this.nodes;
@@ -142,7 +142,7 @@ public final class CancelResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
 		 */
 		public Builder addNodeFailures(ErrorCause value) {
 			if (this.nodeFailures == null) {
@@ -160,14 +160,14 @@ public final class CancelResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
 		 */
 		public Builder addNodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addNodeFailures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, TaskExecutingNode> value) {
 			this.nodes = value;

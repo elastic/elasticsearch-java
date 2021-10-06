@@ -59,7 +59,7 @@ public final class FilterRef implements JsonpSerializable {
 	}
 
 	/**
-	 * The identifier for the filter.
+	 * Required - The identifier for the filter.
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
@@ -112,7 +112,7 @@ public final class FilterRef implements JsonpSerializable {
 		private FilterType filterType;
 
 		/**
-		 * The identifier for the filter.
+		 * Required - The identifier for the filter.
 		 * <p>
 		 * API name: {@code filter_id}
 		 */

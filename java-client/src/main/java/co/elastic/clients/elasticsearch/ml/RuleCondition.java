@@ -61,9 +61,9 @@ public final class RuleCondition implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the result property to which the condition applies. If your
-	 * detector uses lat_long, metric, rare, or freq_rare functions, you can only
-	 * specify conditions that apply to time.
+	 * Required - Specifies the result property to which the condition applies. If
+	 * your detector uses lat_long, metric, rare, or freq_rare functions, you can
+	 * only specify conditions that apply to time.
 	 * <p>
 	 * API name: {@code applies_to}
 	 */
@@ -72,8 +72,8 @@ public final class RuleCondition implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the condition operator. The available options are greater than,
-	 * greater than or equals, less than, and less than or equals.
+	 * Required - Specifies the condition operator. The available options are
+	 * greater than, greater than or equals, less than, and less than or equals.
 	 * <p>
 	 * API name: {@code operator}
 	 */
@@ -82,8 +82,8 @@ public final class RuleCondition implements JsonpSerializable {
 	}
 
 	/**
-	 * The value that is compared against the <code>applies_to</code> field using
-	 * the operator.
+	 * Required - The value that is compared against the <code>applies_to</code>
+	 * field using the operator.
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -126,9 +126,9 @@ public final class RuleCondition implements JsonpSerializable {
 		private Double value;
 
 		/**
-		 * Specifies the result property to which the condition applies. If your
-		 * detector uses lat_long, metric, rare, or freq_rare functions, you can only
-		 * specify conditions that apply to time.
+		 * Required - Specifies the result property to which the condition applies. If
+		 * your detector uses lat_long, metric, rare, or freq_rare functions, you can
+		 * only specify conditions that apply to time.
 		 * <p>
 		 * API name: {@code applies_to}
 		 */
@@ -138,8 +138,8 @@ public final class RuleCondition implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the condition operator. The available options are greater than,
-		 * greater than or equals, less than, and less than or equals.
+		 * Required - Specifies the condition operator. The available options are
+		 * greater than, greater than or equals, less than, and less than or equals.
 		 * <p>
 		 * API name: {@code operator}
 		 */
@@ -149,8 +149,8 @@ public final class RuleCondition implements JsonpSerializable {
 		}
 
 		/**
-		 * The value that is compared against the <code>applies_to</code> field using
-		 * the operator.
+		 * Required - The value that is compared against the <code>applies_to</code>
+		 * field using the operator.
 		 * <p>
 		 * API name: {@code value}
 		 */

@@ -67,7 +67,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the index to explain
+	 * Required - The name of the index to explain
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -111,7 +111,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		private Boolean onlyManaged;
 
 		/**
-		 * The name of the index to explain
+		 * Required - The name of the index to explain
 		 * <p>
 		 * API name: {@code index}
 		 */

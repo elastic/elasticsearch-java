@@ -68,21 +68,21 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 	}
 
 	/**
-	 * API name: {@code bigram_lambda}
+	 * Required - API name: {@code bigram_lambda}
 	 */
 	public double bigramLambda() {
 		return this.bigramLambda;
 	}
 
 	/**
-	 * API name: {@code trigram_lambda}
+	 * Required - API name: {@code trigram_lambda}
 	 */
 	public double trigramLambda() {
 		return this.trigramLambda;
 	}
 
 	/**
-	 * API name: {@code unigram_lambda}
+	 * Required - API name: {@code unigram_lambda}
 	 */
 	public double unigramLambda() {
 		return this.unigramLambda;
@@ -123,7 +123,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		private Double unigramLambda;
 
 		/**
-		 * API name: {@code bigram_lambda}
+		 * Required - API name: {@code bigram_lambda}
 		 */
 		public Builder bigramLambda(double value) {
 			this.bigramLambda = value;
@@ -131,7 +131,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		}
 
 		/**
-		 * API name: {@code trigram_lambda}
+		 * Required - API name: {@code trigram_lambda}
 		 */
 		public Builder trigramLambda(double value) {
 			this.trigramLambda = value;
@@ -139,7 +139,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		}
 
 		/**
-		 * API name: {@code unigram_lambda}
+		 * Required - API name: {@code unigram_lambda}
 		 */
 		public Builder unigramLambda(double value) {
 			this.unigramLambda = value;

@@ -55,7 +55,7 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code seed_hosts}
+	 * Required - API name: {@code seed_hosts}
 	 */
 	public String seedHosts() {
 		return this.seedHosts;
@@ -86,7 +86,7 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 		private String seedHosts;
 
 		/**
-		 * API name: {@code seed_hosts}
+		 * Required - API name: {@code seed_hosts}
 		 */
 		public Builder seedHosts(String value) {
 			this.seedHosts = value;

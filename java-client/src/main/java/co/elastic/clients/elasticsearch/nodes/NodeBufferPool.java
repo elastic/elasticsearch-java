@@ -68,35 +68,35 @@ public final class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code total_capacity}
+	 * Required - API name: {@code total_capacity}
 	 */
 	public String totalCapacity() {
 		return this.totalCapacity;
 	}
 
 	/**
-	 * API name: {@code total_capacity_in_bytes}
+	 * Required - API name: {@code total_capacity_in_bytes}
 	 */
 	public long totalCapacityInBytes() {
 		return this.totalCapacityInBytes;
 	}
 
 	/**
-	 * API name: {@code used}
+	 * Required - API name: {@code used}
 	 */
 	public String used() {
 		return this.used;
 	}
 
 	/**
-	 * API name: {@code used_in_bytes}
+	 * Required - API name: {@code used_in_bytes}
 	 */
 	public long usedInBytes() {
 		return this.usedInBytes;
@@ -147,7 +147,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		private Long usedInBytes;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -155,7 +155,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_capacity}
+		 * Required - API name: {@code total_capacity}
 		 */
 		public Builder totalCapacity(String value) {
 			this.totalCapacity = value;
@@ -163,7 +163,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_capacity_in_bytes}
+		 * Required - API name: {@code total_capacity_in_bytes}
 		 */
 		public Builder totalCapacityInBytes(long value) {
 			this.totalCapacityInBytes = value;
@@ -171,7 +171,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code used}
+		 * Required - API name: {@code used}
 		 */
 		public Builder used(String value) {
 			this.used = value;
@@ -179,7 +179,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code used_in_bytes}
+		 * Required - API name: {@code used_in_bytes}
 		 */
 		public Builder usedInBytes(long value) {
 			this.usedInBytes = value;

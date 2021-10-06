@@ -249,7 +249,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
+		 * Add a value to {@link #exclude(List)}, creating the list if needed.
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {

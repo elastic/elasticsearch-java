@@ -54,7 +54,7 @@ public final class ShardMigrationStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ShutdownStatus status() {
 		return this.status;
@@ -85,7 +85,7 @@ public final class ShardMigrationStatus implements JsonpSerializable {
 		private ShutdownStatus status;
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ShutdownStatus value) {
 			this.status = value;

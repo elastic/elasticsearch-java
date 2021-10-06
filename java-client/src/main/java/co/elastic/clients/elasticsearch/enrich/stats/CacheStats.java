@@ -68,35 +68,35 @@ public final class CacheStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code hits}
+	 * Required - API name: {@code hits}
 	 */
 	public int hits() {
 		return this.hits;
 	}
 
 	/**
-	 * API name: {@code misses}
+	 * Required - API name: {@code misses}
 	 */
 	public int misses() {
 		return this.misses;
 	}
 
 	/**
-	 * API name: {@code evictions}
+	 * Required - API name: {@code evictions}
 	 */
 	public int evictions() {
 		return this.evictions;
@@ -147,7 +147,7 @@ public final class CacheStats implements JsonpSerializable {
 		private Integer evictions;
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -155,7 +155,7 @@ public final class CacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -163,7 +163,7 @@ public final class CacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder hits(int value) {
 			this.hits = value;
@@ -171,7 +171,7 @@ public final class CacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code misses}
+		 * Required - API name: {@code misses}
 		 */
 		public Builder misses(int value) {
 			this.misses = value;
@@ -179,7 +179,7 @@ public final class CacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code evictions}
+		 * Required - API name: {@code evictions}
 		 */
 		public Builder evictions(int value) {
 			this.evictions = value;

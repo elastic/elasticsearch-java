@@ -55,7 +55,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	}
 
 	/**
-	 * API name: {@code response}
+	 * Required - API name: {@code response}
 	 */
 	public AsyncSearch<TDocument> response() {
 		return this.response;
@@ -79,7 +79,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public BuilderT response(AsyncSearch<TDocument> value) {
 			this.response = value;
@@ -87,7 +87,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		}
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public BuilderT response(Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
 			return this.response(fn.apply(new AsyncSearch.Builder<TDocument>()).build());

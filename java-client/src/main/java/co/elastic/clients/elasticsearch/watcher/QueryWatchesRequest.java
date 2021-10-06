@@ -268,7 +268,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -299,7 +299,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
 		 */
 		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {

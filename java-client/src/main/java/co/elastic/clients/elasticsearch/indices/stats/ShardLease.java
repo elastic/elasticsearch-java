@@ -66,28 +66,28 @@ public final class ShardLease implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code retaining_seq_no}
+	 * Required - API name: {@code retaining_seq_no}
 	 */
 	public int retainingSeqNo() {
 		return this.retainingSeqNo;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public String source() {
 		return this.source;
@@ -133,7 +133,7 @@ public final class ShardLease implements JsonpSerializable {
 		private String source;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -141,7 +141,7 @@ public final class ShardLease implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retaining_seq_no}
+		 * Required - API name: {@code retaining_seq_no}
 		 */
 		public Builder retainingSeqNo(int value) {
 			this.retainingSeqNo = value;
@@ -149,7 +149,7 @@ public final class ShardLease implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(long value) {
 			this.timestamp = value;
@@ -157,7 +157,7 @@ public final class ShardLease implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(String value) {
 			this.source = value;

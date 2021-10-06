@@ -54,7 +54,7 @@ public final class Summary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code config}
+	 * Required - API name: {@code config}
 	 */
 	public Configuration config() {
 		return this.config;
@@ -85,7 +85,7 @@ public final class Summary implements JsonpSerializable {
 		private Configuration config;
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Configuration value) {
 			this.config = value;
@@ -93,7 +93,7 @@ public final class Summary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
 			return this.config(fn.apply(new Configuration.Builder()).build());

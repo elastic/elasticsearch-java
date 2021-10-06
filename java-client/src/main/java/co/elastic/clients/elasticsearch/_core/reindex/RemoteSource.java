@@ -67,35 +67,35 @@ public final class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code connect_timeout}
+	 * Required - API name: {@code connect_timeout}
 	 */
 	public String connectTimeout() {
 		return this.connectTimeout;
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
 	}
 
 	/**
-	 * API name: {@code password}
+	 * Required - API name: {@code password}
 	 */
 	public String password() {
 		return this.password;
 	}
 
 	/**
-	 * API name: {@code socket_timeout}
+	 * Required - API name: {@code socket_timeout}
 	 */
 	public String socketTimeout() {
 		return this.socketTimeout;
@@ -146,7 +146,7 @@ public final class RemoteSource implements JsonpSerializable {
 		private String socketTimeout;
 
 		/**
-		 * API name: {@code connect_timeout}
+		 * Required - API name: {@code connect_timeout}
 		 */
 		public Builder connectTimeout(String value) {
 			this.connectTimeout = value;
@@ -154,7 +154,7 @@ public final class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public Builder host(String value) {
 			this.host = value;
@@ -162,7 +162,7 @@ public final class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;
@@ -170,7 +170,7 @@ public final class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code password}
+		 * Required - API name: {@code password}
 		 */
 		public Builder password(String value) {
 			this.password = value;
@@ -178,7 +178,7 @@ public final class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code socket_timeout}
+		 * Required - API name: {@code socket_timeout}
 		 */
 		public Builder socketTimeout(String value) {
 			this.socketTimeout = value;

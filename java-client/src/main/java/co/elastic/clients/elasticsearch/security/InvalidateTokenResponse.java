@@ -71,7 +71,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code error_count}
+	 * Required - API name: {@code error_count}
 	 */
 	public long errorCount() {
 		return this.errorCount;
@@ -86,14 +86,14 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code invalidated_tokens}
+	 * Required - API name: {@code invalidated_tokens}
 	 */
 	public long invalidatedTokens() {
 		return this.invalidatedTokens;
 	}
 
 	/**
-	 * API name: {@code previously_invalidated_tokens}
+	 * Required - API name: {@code previously_invalidated_tokens}
 	 */
 	public long previouslyInvalidatedTokens() {
 		return this.previouslyInvalidatedTokens;
@@ -149,7 +149,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		private Long previouslyInvalidatedTokens;
 
 		/**
-		 * API name: {@code error_count}
+		 * Required - API name: {@code error_count}
 		 */
 		public Builder errorCount(long value) {
 			this.errorCount = value;
@@ -173,7 +173,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed. 4
+		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
 		 */
 		public Builder addErrorDetails(ErrorCause value) {
 			if (this.errorDetails == null) {
@@ -191,14 +191,14 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed. 5
+		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
 		 */
 		public Builder addErrorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addErrorDetails(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code invalidated_tokens}
+		 * Required - API name: {@code invalidated_tokens}
 		 */
 		public Builder invalidatedTokens(long value) {
 			this.invalidatedTokens = value;
@@ -206,7 +206,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code previously_invalidated_tokens}
+		 * Required - API name: {@code previously_invalidated_tokens}
 		 */
 		public Builder previouslyInvalidatedTokens(long value) {
 			this.previouslyInvalidatedTokens = value;

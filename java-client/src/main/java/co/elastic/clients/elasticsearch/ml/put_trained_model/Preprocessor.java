@@ -68,6 +68,10 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends PreprocessorVariant> Preprocessor(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Preprocessor(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

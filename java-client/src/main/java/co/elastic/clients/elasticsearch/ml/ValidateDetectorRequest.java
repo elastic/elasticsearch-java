@@ -58,7 +58,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -83,7 +83,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 		private Detector detector;
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -93,7 +93,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

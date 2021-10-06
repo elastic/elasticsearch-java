@@ -77,7 +77,8 @@ public final class TimeSync implements SyncVariant, JsonpSerializable {
 	}
 
 	/**
-	 * The date field that is used to identify new documents in the source.
+	 * Required - The date field that is used to identify new documents in the
+	 * source.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -130,7 +131,8 @@ public final class TimeSync implements SyncVariant, JsonpSerializable {
 		}
 
 		/**
-		 * The date field that is used to identify new documents in the source.
+		 * Required - The date field that is used to identify new documents in the
+		 * source.
 		 * <p>
 		 * API name: {@code field}
 		 */

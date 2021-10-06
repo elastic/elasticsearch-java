@@ -46,9 +46,9 @@ import javax.annotation.Nullable;
 public final class CompletionSuggester extends SuggesterBase implements SuggestVariant {
 	@Nullable
 	private final Map<String, JsonValue /*
-										 * Union(Array<internal.string> | internal.string | Array<_types.double> |
-										 * _types.query_dsl.TwoDimensionalPoint |
-										 * Array<_global.search._types.SuggestContextQuery>)
+										 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
+										 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
+										 * internal.string | internal.string)
 										 */> contexts;
 
 	@Nullable
@@ -93,9 +93,9 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	 */
 	@Nullable
 	public Map<String, JsonValue /*
-									 * Union(Array<internal.string> | internal.string | Array<_types.double> |
-									 * _types.query_dsl.TwoDimensionalPoint |
-									 * Array<_global.search._types.SuggestContextQuery>)
+									 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
+									 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
+									 * internal.string | internal.string)
 									 */> contexts() {
 		return this.contexts;
 	}
@@ -140,9 +140,10 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 			generator.writeKey("contexts");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonValue /*
-												 * Union(Array<internal.string> | internal.string | Array<_types.double>
-												 * | _types.query_dsl.TwoDimensionalPoint |
-												 * Array<_global.search._types.SuggestContextQuery>)
+												 * Union(Array<_global.search._types.SuggestContextQuery> |
+												 * Array<_types.double> | Array<internal.string> |
+												 * _types.query_dsl.TwoDimensionalPoint | internal.string |
+												 * internal.string)
 												 */> item0 : this.contexts.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
@@ -188,9 +189,9 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 				ObjectBuilder<CompletionSuggester> {
 		@Nullable
 		private Map<String, JsonValue /*
-										 * Union(Array<internal.string> | internal.string | Array<_types.double> |
-										 * _types.query_dsl.TwoDimensionalPoint |
-										 * Array<_global.search._types.SuggestContextQuery>)
+										 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
+										 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
+										 * internal.string | internal.string)
 										 */> contexts;
 
 		@Nullable
@@ -210,9 +211,10 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 		 */
 		public Builder contexts(
 				@Nullable Map<String, JsonValue /*
-												 * Union(Array<internal.string> | internal.string | Array<_types.double>
-												 * | _types.query_dsl.TwoDimensionalPoint |
-												 * Array<_global.search._types.SuggestContextQuery>)
+												 * Union(Array<_global.search._types.SuggestContextQuery> |
+												 * Array<_types.double> | Array<internal.string> |
+												 * _types.query_dsl.TwoDimensionalPoint | internal.string |
+												 * internal.string)
 												 */> value) {
 			this.contexts = value;
 			return this;
@@ -223,9 +225,9 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 		 */
 		public Builder putContexts(String key,
 				JsonValue /*
-							 * Union(Array<internal.string> | internal.string | Array<_types.double> |
-							 * _types.query_dsl.TwoDimensionalPoint |
-							 * Array<_global.search._types.SuggestContextQuery>)
+							 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
+							 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
+							 * internal.string | internal.string)
 							 */ value) {
 			if (this.contexts == null) {
 				this.contexts = new HashMap<>();

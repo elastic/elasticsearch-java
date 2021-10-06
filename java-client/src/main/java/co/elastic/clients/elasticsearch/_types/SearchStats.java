@@ -100,21 +100,21 @@ public final class SearchStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fetch_current}
+	 * Required - API name: {@code fetch_current}
 	 */
 	public long fetchCurrent() {
 		return this.fetchCurrent;
 	}
 
 	/**
-	 * API name: {@code fetch_time_in_millis}
+	 * Required - API name: {@code fetch_time_in_millis}
 	 */
 	public long fetchTimeInMillis() {
 		return this.fetchTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code fetch_total}
+	 * Required - API name: {@code fetch_total}
 	 */
 	public long fetchTotal() {
 		return this.fetchTotal;
@@ -129,63 +129,63 @@ public final class SearchStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code query_current}
+	 * Required - API name: {@code query_current}
 	 */
 	public long queryCurrent() {
 		return this.queryCurrent;
 	}
 
 	/**
-	 * API name: {@code query_time_in_millis}
+	 * Required - API name: {@code query_time_in_millis}
 	 */
 	public long queryTimeInMillis() {
 		return this.queryTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code query_total}
+	 * Required - API name: {@code query_total}
 	 */
 	public long queryTotal() {
 		return this.queryTotal;
 	}
 
 	/**
-	 * API name: {@code scroll_current}
+	 * Required - API name: {@code scroll_current}
 	 */
 	public long scrollCurrent() {
 		return this.scrollCurrent;
 	}
 
 	/**
-	 * API name: {@code scroll_time_in_millis}
+	 * Required - API name: {@code scroll_time_in_millis}
 	 */
 	public long scrollTimeInMillis() {
 		return this.scrollTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code scroll_total}
+	 * Required - API name: {@code scroll_total}
 	 */
 	public long scrollTotal() {
 		return this.scrollTotal;
 	}
 
 	/**
-	 * API name: {@code suggest_current}
+	 * Required - API name: {@code suggest_current}
 	 */
 	public long suggestCurrent() {
 		return this.suggestCurrent;
 	}
 
 	/**
-	 * API name: {@code suggest_time_in_millis}
+	 * Required - API name: {@code suggest_time_in_millis}
 	 */
 	public long suggestTimeInMillis() {
 		return this.suggestTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code suggest_total}
+	 * Required - API name: {@code suggest_total}
 	 */
 	public long suggestTotal() {
 		return this.suggestTotal;
@@ -305,7 +305,7 @@ public final class SearchStats implements JsonpSerializable {
 		private Map<String, SearchStats> groups;
 
 		/**
-		 * API name: {@code fetch_current}
+		 * Required - API name: {@code fetch_current}
 		 */
 		public Builder fetchCurrent(long value) {
 			this.fetchCurrent = value;
@@ -313,7 +313,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fetch_time_in_millis}
+		 * Required - API name: {@code fetch_time_in_millis}
 		 */
 		public Builder fetchTimeInMillis(long value) {
 			this.fetchTimeInMillis = value;
@@ -321,7 +321,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fetch_total}
+		 * Required - API name: {@code fetch_total}
 		 */
 		public Builder fetchTotal(long value) {
 			this.fetchTotal = value;
@@ -337,7 +337,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query_current}
+		 * Required - API name: {@code query_current}
 		 */
 		public Builder queryCurrent(long value) {
 			this.queryCurrent = value;
@@ -345,7 +345,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query_time_in_millis}
+		 * Required - API name: {@code query_time_in_millis}
 		 */
 		public Builder queryTimeInMillis(long value) {
 			this.queryTimeInMillis = value;
@@ -353,7 +353,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query_total}
+		 * Required - API name: {@code query_total}
 		 */
 		public Builder queryTotal(long value) {
 			this.queryTotal = value;
@@ -361,7 +361,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code scroll_current}
+		 * Required - API name: {@code scroll_current}
 		 */
 		public Builder scrollCurrent(long value) {
 			this.scrollCurrent = value;
@@ -369,7 +369,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code scroll_time_in_millis}
+		 * Required - API name: {@code scroll_time_in_millis}
 		 */
 		public Builder scrollTimeInMillis(long value) {
 			this.scrollTimeInMillis = value;
@@ -377,7 +377,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code scroll_total}
+		 * Required - API name: {@code scroll_total}
 		 */
 		public Builder scrollTotal(long value) {
 			this.scrollTotal = value;
@@ -385,7 +385,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code suggest_current}
+		 * Required - API name: {@code suggest_current}
 		 */
 		public Builder suggestCurrent(long value) {
 			this.suggestCurrent = value;
@@ -393,7 +393,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code suggest_time_in_millis}
+		 * Required - API name: {@code suggest_time_in_millis}
 		 */
 		public Builder suggestTimeInMillis(long value) {
 			this.suggestTimeInMillis = value;
@@ -401,7 +401,7 @@ public final class SearchStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code suggest_total}
+		 * Required - API name: {@code suggest_total}
 		 */
 		public Builder suggestTotal(long value) {
 			this.suggestTotal = value;

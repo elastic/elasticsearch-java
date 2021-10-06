@@ -67,21 +67,21 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<ResolveIndexItem> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code aliases}
+	 * Required - API name: {@code aliases}
 	 */
 	public List<ResolveIndexAliasItem> aliases() {
 		return this.aliases;
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public List<ResolveIndexDataStreamsItem> dataStreams() {
 		return this.dataStreams;
@@ -137,7 +137,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		private List<ResolveIndexDataStreamsItem> dataStreams;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<ResolveIndexItem> value) {
 			this.indices = value;
@@ -145,7 +145,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(ResolveIndexItem... value) {
 			this.indices = Arrays.asList(value);
@@ -153,7 +153,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(ResolveIndexItem value) {
 			if (this.indices == null) {
@@ -171,14 +171,14 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
 			return this.addIndices(fn.apply(new ResolveIndexItem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(List<ResolveIndexAliasItem> value) {
 			this.aliases = value;
@@ -186,7 +186,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(ResolveIndexAliasItem... value) {
 			this.aliases = Arrays.asList(value);
@@ -194,7 +194,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed. 4
+		 * Add a value to {@link #aliases(List)}, creating the list if needed.
 		 */
 		public Builder addAliases(ResolveIndexAliasItem value) {
 			if (this.aliases == null) {
@@ -212,14 +212,14 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed. 5
+		 * Add a value to {@link #aliases(List)}, creating the list if needed.
 		 */
 		public Builder addAliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
 			return this.addAliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
 			this.dataStreams = value;
@@ -227,7 +227,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(ResolveIndexDataStreamsItem... value) {
 			this.dataStreams = Arrays.asList(value);
@@ -235,7 +235,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(ResolveIndexDataStreamsItem value) {
 			if (this.dataStreams == null) {
@@ -254,7 +254,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 5
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(
 				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {

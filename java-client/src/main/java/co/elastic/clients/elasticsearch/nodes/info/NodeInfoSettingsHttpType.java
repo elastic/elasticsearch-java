@@ -55,7 +55,7 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code default}
+	 * Required - API name: {@code default}
 	 */
 	public String default_() {
 		return this.default_;
@@ -86,7 +86,7 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 		private String default_;
 
 		/**
-		 * API name: {@code default}
+		 * Required - API name: {@code default}
 		 */
 		public Builder default_(String value) {
 			this.default_ = value;

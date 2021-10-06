@@ -60,7 +60,7 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
@@ -91,7 +91,7 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 		private String id;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;

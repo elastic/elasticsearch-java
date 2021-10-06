@@ -53,7 +53,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -78,7 +78,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 		private AutoscalingPolicy valueBody;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -88,7 +88,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

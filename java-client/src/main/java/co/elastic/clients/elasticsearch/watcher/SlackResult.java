@@ -67,7 +67,7 @@ public final class SlackResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public SlackMessage message() {
 		return this.message;
@@ -116,7 +116,7 @@ public final class SlackResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(SlackMessage value) {
 			this.message = value;
@@ -124,7 +124,7 @@ public final class SlackResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(Function<SlackMessage.Builder, ObjectBuilder<SlackMessage>> fn) {
 			return this.message(fn.apply(new SlackMessage.Builder()).build());

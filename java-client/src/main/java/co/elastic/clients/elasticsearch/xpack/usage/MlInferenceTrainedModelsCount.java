@@ -66,35 +66,35 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code prepackaged}
+	 * Required - API name: {@code prepackaged}
 	 */
 	public long prepackaged() {
 		return this.prepackaged;
 	}
 
 	/**
-	 * API name: {@code other}
+	 * Required - API name: {@code other}
 	 */
 	public long other() {
 		return this.other;
 	}
 
 	/**
-	 * API name: {@code regression}
+	 * Required - API name: {@code regression}
 	 */
 	public long regression() {
 		return this.regression;
 	}
 
 	/**
-	 * API name: {@code classification}
+	 * Required - API name: {@code classification}
 	 */
 	public long classification() {
 		return this.classification;
@@ -145,7 +145,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		private Long classification;
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -153,7 +153,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code prepackaged}
+		 * Required - API name: {@code prepackaged}
 		 */
 		public Builder prepackaged(long value) {
 			this.prepackaged = value;
@@ -161,7 +161,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code other}
+		 * Required - API name: {@code other}
 		 */
 		public Builder other(long value) {
 			this.other = value;
@@ -169,7 +169,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code regression}
+		 * Required - API name: {@code regression}
 		 */
 		public Builder regression(long value) {
 			this.regression = value;
@@ -177,7 +177,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code classification}
+		 * Required - API name: {@code classification}
 		 */
 		public Builder classification(long value) {
 			this.classification = value;

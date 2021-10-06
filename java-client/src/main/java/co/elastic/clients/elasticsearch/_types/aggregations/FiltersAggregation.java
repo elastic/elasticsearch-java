@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
 public final class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final JsonValue /*
-							 * Union(Dictionary<internal.string, _types.query_dsl.QueryContainer> (singleKey
-							 * = false) | Array<_types.query_dsl.QueryContainer>)
+							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+							 * _types.query_dsl.QueryContainer> (singleKey = false))
 							 */ filters;
 
 	@Nullable
@@ -85,8 +85,8 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(Dictionary<internal.string, _types.query_dsl.QueryContainer> (singleKey
-						 * = false) | Array<_types.query_dsl.QueryContainer>)
+						 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+						 * _types.query_dsl.QueryContainer> (singleKey = false))
 						 */ filters() {
 		return this.filters;
 	}
@@ -155,8 +155,8 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 				ObjectBuilder<FiltersAggregation> {
 		@Nullable
 		private JsonValue /*
-							 * Union(Dictionary<internal.string, _types.query_dsl.QueryContainer> (singleKey
-							 * = false) | Array<_types.query_dsl.QueryContainer>)
+							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+							 * _types.query_dsl.QueryContainer> (singleKey = false))
 							 */ filters;
 
 		@Nullable
@@ -173,8 +173,8 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		 */
 		public Builder filters(
 				@Nullable JsonValue /*
-									 * Union(Dictionary<internal.string, _types.query_dsl.QueryContainer> (singleKey
-									 * = false) | Array<_types.query_dsl.QueryContainer>)
+									 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+									 * _types.query_dsl.QueryContainer> (singleKey = false))
 									 */ value) {
 			this.filters = value;
 			return this;

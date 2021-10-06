@@ -59,7 +59,7 @@ public final class TimingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Runtime of the analysis in milliseconds.
+	 * Required - Runtime of the analysis in milliseconds.
 	 * <p>
 	 * API name: {@code elapsed_time}
 	 */
@@ -112,7 +112,7 @@ public final class TimingStats implements JsonpSerializable {
 		private Integer iterationTime;
 
 		/**
-		 * Runtime of the analysis in milliseconds.
+		 * Required - Runtime of the analysis in milliseconds.
 		 * <p>
 		 * API name: {@code elapsed_time}
 		 */

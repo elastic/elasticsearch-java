@@ -65,7 +65,7 @@ public final class TestPopulation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -131,7 +131,7 @@ public final class TestPopulation implements JsonpSerializable {
 		private Query filter;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

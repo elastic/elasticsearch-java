@@ -66,21 +66,21 @@ public final class SimulatedActions implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public List<String> actions() {
 		return this.actions;
 	}
 
 	/**
-	 * API name: {@code all}
+	 * Required - API name: {@code all}
 	 */
 	public SimulatedActions all() {
 		return this.all;
 	}
 
 	/**
-	 * API name: {@code use_all}
+	 * Required - API name: {@code use_all}
 	 */
 	public boolean useAll() {
 		return this.useAll;
@@ -126,7 +126,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		private Boolean useAll;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(List<String> value) {
 			this.actions = value;
@@ -134,7 +134,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(String... value) {
 			this.actions = Arrays.asList(value);
@@ -142,7 +142,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {
@@ -153,7 +153,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code all}
+		 * Required - API name: {@code all}
 		 */
 		public Builder all(SimulatedActions value) {
 			this.all = value;
@@ -161,14 +161,14 @@ public final class SimulatedActions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code all}
+		 * Required - API name: {@code all}
 		 */
 		public Builder all(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
 			return this.all(fn.apply(new SimulatedActions.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code use_all}
+		 * Required - API name: {@code use_all}
 		 */
 		public Builder useAll(boolean value) {
 			this.useAll = value;

@@ -89,70 +89,70 @@ public final class GetStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code retention_deletion_time}
+	 * Required - API name: {@code retention_deletion_time}
 	 */
 	public String retentionDeletionTime() {
 		return this.retentionDeletionTime;
 	}
 
 	/**
-	 * API name: {@code retention_deletion_time_millis}
+	 * Required - API name: {@code retention_deletion_time_millis}
 	 */
 	public String retentionDeletionTimeMillis() {
 		return this.retentionDeletionTimeMillis;
 	}
 
 	/**
-	 * API name: {@code retention_failed}
+	 * Required - API name: {@code retention_failed}
 	 */
 	public long retentionFailed() {
 		return this.retentionFailed;
 	}
 
 	/**
-	 * API name: {@code retention_runs}
+	 * Required - API name: {@code retention_runs}
 	 */
 	public long retentionRuns() {
 		return this.retentionRuns;
 	}
 
 	/**
-	 * API name: {@code retention_timed_out}
+	 * Required - API name: {@code retention_timed_out}
 	 */
 	public long retentionTimedOut() {
 		return this.retentionTimedOut;
 	}
 
 	/**
-	 * API name: {@code total_snapshots_deleted}
+	 * Required - API name: {@code total_snapshots_deleted}
 	 */
 	public long totalSnapshotsDeleted() {
 		return this.totalSnapshotsDeleted;
 	}
 
 	/**
-	 * API name: {@code total_snapshot_deletion_failures}
+	 * Required - API name: {@code total_snapshot_deletion_failures}
 	 */
 	public long totalSnapshotDeletionFailures() {
 		return this.totalSnapshotDeletionFailures;
 	}
 
 	/**
-	 * API name: {@code total_snapshots_failed}
+	 * Required - API name: {@code total_snapshots_failed}
 	 */
 	public long totalSnapshotsFailed() {
 		return this.totalSnapshotsFailed;
 	}
 
 	/**
-	 * API name: {@code total_snapshots_taken}
+	 * Required - API name: {@code total_snapshots_taken}
 	 */
 	public long totalSnapshotsTaken() {
 		return this.totalSnapshotsTaken;
 	}
 
 	/**
-	 * API name: {@code policy_stats}
+	 * Required - API name: {@code policy_stats}
 	 */
 	public List<String> policyStats() {
 		return this.policyStats;
@@ -233,7 +233,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		private List<String> policyStats;
 
 		/**
-		 * API name: {@code retention_deletion_time}
+		 * Required - API name: {@code retention_deletion_time}
 		 */
 		public Builder retentionDeletionTime(String value) {
 			this.retentionDeletionTime = value;
@@ -241,7 +241,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retention_deletion_time_millis}
+		 * Required - API name: {@code retention_deletion_time_millis}
 		 */
 		public Builder retentionDeletionTimeMillis(String value) {
 			this.retentionDeletionTimeMillis = value;
@@ -249,7 +249,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retention_failed}
+		 * Required - API name: {@code retention_failed}
 		 */
 		public Builder retentionFailed(long value) {
 			this.retentionFailed = value;
@@ -257,7 +257,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retention_runs}
+		 * Required - API name: {@code retention_runs}
 		 */
 		public Builder retentionRuns(long value) {
 			this.retentionRuns = value;
@@ -265,7 +265,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retention_timed_out}
+		 * Required - API name: {@code retention_timed_out}
 		 */
 		public Builder retentionTimedOut(long value) {
 			this.retentionTimedOut = value;
@@ -273,7 +273,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_snapshots_deleted}
+		 * Required - API name: {@code total_snapshots_deleted}
 		 */
 		public Builder totalSnapshotsDeleted(long value) {
 			this.totalSnapshotsDeleted = value;
@@ -281,7 +281,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_snapshot_deletion_failures}
+		 * Required - API name: {@code total_snapshot_deletion_failures}
 		 */
 		public Builder totalSnapshotDeletionFailures(long value) {
 			this.totalSnapshotDeletionFailures = value;
@@ -289,7 +289,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_snapshots_failed}
+		 * Required - API name: {@code total_snapshots_failed}
 		 */
 		public Builder totalSnapshotsFailed(long value) {
 			this.totalSnapshotsFailed = value;
@@ -297,7 +297,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_snapshots_taken}
+		 * Required - API name: {@code total_snapshots_taken}
 		 */
 		public Builder totalSnapshotsTaken(long value) {
 			this.totalSnapshotsTaken = value;
@@ -305,7 +305,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy_stats}
+		 * Required - API name: {@code policy_stats}
 		 */
 		public Builder policyStats(List<String> value) {
 			this.policyStats = value;
@@ -313,7 +313,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy_stats}
+		 * Required - API name: {@code policy_stats}
 		 */
 		public Builder policyStats(String... value) {
 			this.policyStats = Arrays.asList(value);
@@ -321,7 +321,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
 		 */
 		public Builder addPolicyStats(String value) {
 			if (this.policyStats == null) {

@@ -107,126 +107,126 @@ public final class QueryBreakdown implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code advance}
+	 * Required - API name: {@code advance}
 	 */
 	public long advance() {
 		return this.advance;
 	}
 
 	/**
-	 * API name: {@code advance_count}
+	 * Required - API name: {@code advance_count}
 	 */
 	public long advanceCount() {
 		return this.advanceCount;
 	}
 
 	/**
-	 * API name: {@code build_scorer}
+	 * Required - API name: {@code build_scorer}
 	 */
 	public long buildScorer() {
 		return this.buildScorer;
 	}
 
 	/**
-	 * API name: {@code build_scorer_count}
+	 * Required - API name: {@code build_scorer_count}
 	 */
 	public long buildScorerCount() {
 		return this.buildScorerCount;
 	}
 
 	/**
-	 * API name: {@code create_weight}
+	 * Required - API name: {@code create_weight}
 	 */
 	public long createWeight() {
 		return this.createWeight;
 	}
 
 	/**
-	 * API name: {@code create_weight_count}
+	 * Required - API name: {@code create_weight_count}
 	 */
 	public long createWeightCount() {
 		return this.createWeightCount;
 	}
 
 	/**
-	 * API name: {@code match}
+	 * Required - API name: {@code match}
 	 */
 	public long match() {
 		return this.match;
 	}
 
 	/**
-	 * API name: {@code match_count}
+	 * Required - API name: {@code match_count}
 	 */
 	public long matchCount() {
 		return this.matchCount;
 	}
 
 	/**
-	 * API name: {@code shallow_advance}
+	 * Required - API name: {@code shallow_advance}
 	 */
 	public long shallowAdvance() {
 		return this.shallowAdvance;
 	}
 
 	/**
-	 * API name: {@code shallow_advance_count}
+	 * Required - API name: {@code shallow_advance_count}
 	 */
 	public long shallowAdvanceCount() {
 		return this.shallowAdvanceCount;
 	}
 
 	/**
-	 * API name: {@code next_doc}
+	 * Required - API name: {@code next_doc}
 	 */
 	public long nextDoc() {
 		return this.nextDoc;
 	}
 
 	/**
-	 * API name: {@code next_doc_count}
+	 * Required - API name: {@code next_doc_count}
 	 */
 	public long nextDocCount() {
 		return this.nextDocCount;
 	}
 
 	/**
-	 * API name: {@code score}
+	 * Required - API name: {@code score}
 	 */
 	public long score() {
 		return this.score;
 	}
 
 	/**
-	 * API name: {@code score_count}
+	 * Required - API name: {@code score_count}
 	 */
 	public long scoreCount() {
 		return this.scoreCount;
 	}
 
 	/**
-	 * API name: {@code compute_max_score}
+	 * Required - API name: {@code compute_max_score}
 	 */
 	public long computeMaxScore() {
 		return this.computeMaxScore;
 	}
 
 	/**
-	 * API name: {@code compute_max_score_count}
+	 * Required - API name: {@code compute_max_score_count}
 	 */
 	public long computeMaxScoreCount() {
 		return this.computeMaxScoreCount;
 	}
 
 	/**
-	 * API name: {@code set_min_competitive_score}
+	 * Required - API name: {@code set_min_competitive_score}
 	 */
 	public long setMinCompetitiveScore() {
 		return this.setMinCompetitiveScore;
 	}
 
 	/**
-	 * API name: {@code set_min_competitive_score_count}
+	 * Required - API name: {@code set_min_competitive_score_count}
 	 */
 	public long setMinCompetitiveScoreCount() {
 		return this.setMinCompetitiveScoreCount;
@@ -342,7 +342,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		private Long setMinCompetitiveScoreCount;
 
 		/**
-		 * API name: {@code advance}
+		 * Required - API name: {@code advance}
 		 */
 		public Builder advance(long value) {
 			this.advance = value;
@@ -350,7 +350,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code advance_count}
+		 * Required - API name: {@code advance_count}
 		 */
 		public Builder advanceCount(long value) {
 			this.advanceCount = value;
@@ -358,7 +358,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_scorer}
+		 * Required - API name: {@code build_scorer}
 		 */
 		public Builder buildScorer(long value) {
 			this.buildScorer = value;
@@ -366,7 +366,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_scorer_count}
+		 * Required - API name: {@code build_scorer_count}
 		 */
 		public Builder buildScorerCount(long value) {
 			this.buildScorerCount = value;
@@ -374,7 +374,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code create_weight}
+		 * Required - API name: {@code create_weight}
 		 */
 		public Builder createWeight(long value) {
 			this.createWeight = value;
@@ -382,7 +382,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code create_weight_count}
+		 * Required - API name: {@code create_weight_count}
 		 */
 		public Builder createWeightCount(long value) {
 			this.createWeightCount = value;
@@ -390,7 +390,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(long value) {
 			this.match = value;
@@ -398,7 +398,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code match_count}
+		 * Required - API name: {@code match_count}
 		 */
 		public Builder matchCount(long value) {
 			this.matchCount = value;
@@ -406,7 +406,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shallow_advance}
+		 * Required - API name: {@code shallow_advance}
 		 */
 		public Builder shallowAdvance(long value) {
 			this.shallowAdvance = value;
@@ -414,7 +414,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shallow_advance_count}
+		 * Required - API name: {@code shallow_advance_count}
 		 */
 		public Builder shallowAdvanceCount(long value) {
 			this.shallowAdvanceCount = value;
@@ -422,7 +422,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code next_doc}
+		 * Required - API name: {@code next_doc}
 		 */
 		public Builder nextDoc(long value) {
 			this.nextDoc = value;
@@ -430,7 +430,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code next_doc_count}
+		 * Required - API name: {@code next_doc_count}
 		 */
 		public Builder nextDocCount(long value) {
 			this.nextDocCount = value;
@@ -438,7 +438,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code score}
+		 * Required - API name: {@code score}
 		 */
 		public Builder score(long value) {
 			this.score = value;
@@ -446,7 +446,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code score_count}
+		 * Required - API name: {@code score_count}
 		 */
 		public Builder scoreCount(long value) {
 			this.scoreCount = value;
@@ -454,7 +454,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code compute_max_score}
+		 * Required - API name: {@code compute_max_score}
 		 */
 		public Builder computeMaxScore(long value) {
 			this.computeMaxScore = value;
@@ -462,7 +462,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code compute_max_score_count}
+		 * Required - API name: {@code compute_max_score_count}
 		 */
 		public Builder computeMaxScoreCount(long value) {
 			this.computeMaxScoreCount = value;
@@ -470,7 +470,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code set_min_competitive_score}
+		 * Required - API name: {@code set_min_competitive_score}
 		 */
 		public Builder setMinCompetitiveScore(long value) {
 			this.setMinCompetitiveScore = value;
@@ -478,7 +478,7 @@ public final class QueryBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code set_min_competitive_score_count}
+		 * Required - API name: {@code set_min_competitive_score_count}
 		 */
 		public Builder setMinCompetitiveScoreCount(long value) {
 			this.setMinCompetitiveScoreCount = value;

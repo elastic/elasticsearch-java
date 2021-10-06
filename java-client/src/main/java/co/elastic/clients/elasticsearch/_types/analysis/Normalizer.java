@@ -41,8 +41,8 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
 
-	public static final String LOWERCASE = "lowercase";
 	public static final String CUSTOM = "custom";
+	public static final String LOWERCASE = "lowercase";
 
 	// Tagged union implementation
 
@@ -66,6 +66,10 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
+	public <T extends NormalizerVariant> Normalizer(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Normalizer(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");
@@ -78,16 +82,6 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 	}
 
 	/**
-	 * Get the {@code lowercase} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code lowercase} kind.
-	 */
-	public LowercaseNormalizer lowercase() {
-		return TaggedUnionUtils.get(this, LOWERCASE);
-	}
-
-	/**
 	 * Get the {@code custom} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -95,6 +89,16 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 	 */
 	public CustomNormalizer custom() {
 		return TaggedUnionUtils.get(this, CUSTOM);
+	}
+
+	/**
+	 * Get the {@code lowercase} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code lowercase} kind.
+	 */
+	public LowercaseNormalizer lowercase() {
+		return TaggedUnionUtils.get(this, LOWERCASE);
 	}
 
 	@Override
@@ -108,16 +112,6 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 		private String _type;
 		private JsonpSerializable _value;
 
-		public Builder lowercase(LowercaseNormalizer v) {
-			this._type = LOWERCASE;
-			this._value = v;
-			return this;
-		}
-
-		public Builder lowercase(Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> f) {
-			return this.lowercase(f.apply(new LowercaseNormalizer.Builder()).build());
-		}
-
 		public Builder custom(CustomNormalizer v) {
 			this._type = CUSTOM;
 			this._value = v;
@@ -128,6 +122,16 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 			return this.custom(f.apply(new CustomNormalizer.Builder()).build());
 		}
 
+		public Builder lowercase(LowercaseNormalizer v) {
+			this._type = LOWERCASE;
+			this._value = v;
+			return this;
+		}
+
+		public Builder lowercase(Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> f) {
+			return this.lowercase(f.apply(new LowercaseNormalizer.Builder()).build());
+		}
+
 		public Normalizer build() {
 			return new Normalizer(this);
 		}
@@ -136,8 +140,8 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	protected static void setupNormalizerDeserializer(DelegatingDeserializer<Builder> op) {
 
-		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
+		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
 
 		op.setTypeProperty("type");
 

@@ -96,14 +96,14 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
@@ -190,7 +190,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -198,7 +198,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -206,7 +206,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());

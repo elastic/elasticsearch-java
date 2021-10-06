@@ -58,7 +58,7 @@ public final class StatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshots}
+	 * Required - API name: {@code snapshots}
 	 */
 	public List<Status> snapshots() {
 		return this.snapshots;
@@ -94,7 +94,7 @@ public final class StatusResponse implements JsonpSerializable {
 		private List<Status> snapshots;
 
 		/**
-		 * API name: {@code snapshots}
+		 * Required - API name: {@code snapshots}
 		 */
 		public Builder snapshots(List<Status> value) {
 			this.snapshots = value;
@@ -102,7 +102,7 @@ public final class StatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code snapshots}
+		 * Required - API name: {@code snapshots}
 		 */
 		public Builder snapshots(Status... value) {
 			this.snapshots = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class StatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshots(Status value) {
 			if (this.snapshots == null) {
@@ -128,7 +128,7 @@ public final class StatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
 			return this.addSnapshots(fn.apply(new Status.Builder()).build());

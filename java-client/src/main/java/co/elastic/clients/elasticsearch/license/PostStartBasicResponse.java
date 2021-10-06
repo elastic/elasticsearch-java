@@ -67,21 +67,21 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code acknowledge}
+	 * Required - API name: {@code acknowledge}
 	 */
 	public Map<String, List<String>> acknowledge() {
 		return this.acknowledge;
 	}
 
 	/**
-	 * API name: {@code basic_was_started}
+	 * Required - API name: {@code basic_was_started}
 	 */
 	public boolean basicWasStarted() {
 		return this.basicWasStarted;
 	}
 
 	/**
-	 * API name: {@code error_message}
+	 * Required - API name: {@code error_message}
 	 */
 	public String errorMessage() {
 		return this.errorMessage;
@@ -128,7 +128,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		private String errorMessage;
 
 		/**
-		 * API name: {@code acknowledge}
+		 * Required - API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(Map<String, List<String>> value) {
 			this.acknowledge = value;
@@ -147,7 +147,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code basic_was_started}
+		 * Required - API name: {@code basic_was_started}
 		 */
 		public Builder basicWasStarted(boolean value) {
 			this.basicWasStarted = value;
@@ -155,7 +155,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code error_message}
+		 * Required - API name: {@code error_message}
 		 */
 		public Builder errorMessage(String value) {
 			this.errorMessage = value;

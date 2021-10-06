@@ -185,7 +185,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -256,7 +256,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -301,7 +301,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -364,7 +364,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -374,7 +374,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

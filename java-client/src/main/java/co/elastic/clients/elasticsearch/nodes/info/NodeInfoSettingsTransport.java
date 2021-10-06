@@ -63,7 +63,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public NodeInfoSettingsTransportType type() {
 		return this.type;
@@ -129,7 +129,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		private NodeInfoSettingsTransportFeatures features;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(NodeInfoSettingsTransportType value) {
 			this.type = value;
@@ -137,7 +137,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(
 				Function<NodeInfoSettingsTransportType.Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {

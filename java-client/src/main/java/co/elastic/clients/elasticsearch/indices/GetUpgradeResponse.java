@@ -147,7 +147,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 4
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
 		 */
 		public Builder addOverlapping(OverlappingIndexTemplate value) {
 			if (this.overlapping == null) {
@@ -166,7 +166,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 5
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
 		 */
 		public Builder addOverlapping(
 				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {

@@ -77,7 +77,7 @@ public final class DataDescription implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the field that contains the timestamp.
+	 * Required - The name of the field that contains the timestamp.
 	 * <p>
 	 * API name: {@code time_field}
 	 */
@@ -176,7 +176,7 @@ public final class DataDescription implements JsonpSerializable {
 		}
 
 		/**
-		 * The name of the field that contains the timestamp.
+		 * Required - The name of the field that contains the timestamp.
 		 * <p>
 		 * API name: {@code time_field}
 		 */

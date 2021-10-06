@@ -90,8 +90,8 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and index aliases to search.
-	 * Wildcard (*) expressions are supported.
+	 * Required - Comma-separated list of data streams, indices, and index aliases
+	 * to search. Wildcard (*) expressions are supported.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -100,8 +100,8 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * The string to match at the start of indexed terms. If not provided, all terms
-	 * in the field are considered.
+	 * Required - The string to match at the start of indexed terms. If not
+	 * provided, all terms in the field are considered.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -254,8 +254,8 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		private String searchAfter;
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * Wildcard (*) expressions are supported.
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * to search. Wildcard (*) expressions are supported.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -265,8 +265,8 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * The string to match at the start of indexed terms. If not provided, all terms
-		 * in the field are considered.
+		 * Required - The string to match at the start of indexed terms. If not
+		 * provided, all terms in the field are considered.
 		 * <p>
 		 * API name: {@code field}
 		 */

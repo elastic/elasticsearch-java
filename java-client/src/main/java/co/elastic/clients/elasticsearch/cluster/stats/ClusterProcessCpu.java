@@ -54,7 +54,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code percent}
+	 * Required - API name: {@code percent}
 	 */
 	public int percent() {
 		return this.percent;
@@ -85,7 +85,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 		private Integer percent;
 
 		/**
-		 * API name: {@code percent}
+		 * Required - API name: {@code percent}
 		 */
 		public Builder percent(int value) {
 			this.percent = value;

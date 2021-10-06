@@ -442,7 +442,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -475,7 +475,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed. 4
+		 * Add a value to {@link #type(List)}, creating the list if needed.
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -531,7 +531,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

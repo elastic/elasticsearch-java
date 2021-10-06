@@ -110,14 +110,14 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current}
+	 * Required - API name: {@code current}
 	 */
 	public long current() {
 		return this.current;
 	}
 
 	/**
-	 * API name: {@code current_docs}
+	 * Required - API name: {@code current_docs}
 	 */
 	public long currentDocs() {
 		return this.currentDocs;
@@ -132,14 +132,14 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current_size_in_bytes}
+	 * Required - API name: {@code current_size_in_bytes}
 	 */
 	public long currentSizeInBytes() {
 		return this.currentSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -154,14 +154,14 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_auto_throttle_in_bytes}
+	 * Required - API name: {@code total_auto_throttle_in_bytes}
 	 */
 	public long totalAutoThrottleInBytes() {
 		return this.totalAutoThrottleInBytes;
 	}
 
 	/**
-	 * API name: {@code total_docs}
+	 * Required - API name: {@code total_docs}
 	 */
 	public long totalDocs() {
 		return this.totalDocs;
@@ -176,7 +176,7 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_size_in_bytes}
+	 * Required - API name: {@code total_size_in_bytes}
 	 */
 	public long totalSizeInBytes() {
 		return this.totalSizeInBytes;
@@ -191,7 +191,7 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_stopped_time_in_millis}
+	 * Required - API name: {@code total_stopped_time_in_millis}
 	 */
 	public long totalStoppedTimeInMillis() {
 		return this.totalStoppedTimeInMillis;
@@ -206,7 +206,7 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_throttled_time_in_millis}
+	 * Required - API name: {@code total_throttled_time_in_millis}
 	 */
 	public long totalThrottledTimeInMillis() {
 		return this.totalThrottledTimeInMillis;
@@ -221,7 +221,7 @@ public final class MergesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -357,7 +357,7 @@ public final class MergesStats implements JsonpSerializable {
 		private Long totalTimeInMillis;
 
 		/**
-		 * API name: {@code current}
+		 * Required - API name: {@code current}
 		 */
 		public Builder current(long value) {
 			this.current = value;
@@ -365,7 +365,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current_docs}
+		 * Required - API name: {@code current_docs}
 		 */
 		public Builder currentDocs(long value) {
 			this.currentDocs = value;
@@ -381,7 +381,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current_size_in_bytes}
+		 * Required - API name: {@code current_size_in_bytes}
 		 */
 		public Builder currentSizeInBytes(long value) {
 			this.currentSizeInBytes = value;
@@ -389,7 +389,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -405,7 +405,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_auto_throttle_in_bytes}
+		 * Required - API name: {@code total_auto_throttle_in_bytes}
 		 */
 		public Builder totalAutoThrottleInBytes(long value) {
 			this.totalAutoThrottleInBytes = value;
@@ -413,7 +413,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_docs}
+		 * Required - API name: {@code total_docs}
 		 */
 		public Builder totalDocs(long value) {
 			this.totalDocs = value;
@@ -429,7 +429,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_size_in_bytes}
+		 * Required - API name: {@code total_size_in_bytes}
 		 */
 		public Builder totalSizeInBytes(long value) {
 			this.totalSizeInBytes = value;
@@ -445,7 +445,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_stopped_time_in_millis}
+		 * Required - API name: {@code total_stopped_time_in_millis}
 		 */
 		public Builder totalStoppedTimeInMillis(long value) {
 			this.totalStoppedTimeInMillis = value;
@@ -461,7 +461,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_throttled_time_in_millis}
+		 * Required - API name: {@code total_throttled_time_in_millis}
 		 */
 		public Builder totalThrottledTimeInMillis(long value) {
 			this.totalThrottledTimeInMillis = value;
@@ -477,7 +477,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;

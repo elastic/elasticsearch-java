@@ -71,42 +71,42 @@ public final class FileSystemTotal implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code available}
+	 * Required - API name: {@code available}
 	 */
 	public String available() {
 		return this.available;
 	}
 
 	/**
-	 * API name: {@code available_in_bytes}
+	 * Required - API name: {@code available_in_bytes}
 	 */
 	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
-	 * API name: {@code free}
+	 * Required - API name: {@code free}
 	 */
 	public String free() {
 		return this.free;
 	}
 
 	/**
-	 * API name: {@code free_in_bytes}
+	 * Required - API name: {@code free_in_bytes}
 	 */
 	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public String total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
 	public long totalInBytes() {
 		return this.totalInBytes;
@@ -162,7 +162,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		private Long totalInBytes;
 
 		/**
-		 * API name: {@code available}
+		 * Required - API name: {@code available}
 		 */
 		public Builder available(String value) {
 			this.available = value;
@@ -170,7 +170,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code available_in_bytes}
+		 * Required - API name: {@code available_in_bytes}
 		 */
 		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
@@ -178,7 +178,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free}
+		 * Required - API name: {@code free}
 		 */
 		public Builder free(String value) {
 			this.free = value;
@@ -186,7 +186,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free_in_bytes}
+		 * Required - API name: {@code free_in_bytes}
 		 */
 		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
@@ -194,7 +194,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(String value) {
 			this.total = value;
@@ -202,7 +202,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
 		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;

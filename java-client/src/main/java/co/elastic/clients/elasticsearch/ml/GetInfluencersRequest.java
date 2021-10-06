@@ -100,7 +100,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -254,7 +254,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		private Page page;
 
 		/**
-		 * Identifier for the anomaly detection job.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

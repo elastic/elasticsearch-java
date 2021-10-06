@@ -80,14 +80,14 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 	}
 
 	/**
-	 * API name: {@code point}
+	 * Required - API name: {@code point}
 	 */
 	public GeoLinePoint point() {
 		return this.point;
 	}
 
 	/**
-	 * API name: {@code sort}
+	 * Required - API name: {@code sort}
 	 */
 	public GeoLineSort sort() {
 		return this.sort;
@@ -174,7 +174,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		private Integer size;
 
 		/**
-		 * API name: {@code point}
+		 * Required - API name: {@code point}
 		 */
 		public Builder point(GeoLinePoint value) {
 			this.point = value;
@@ -182,14 +182,14 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		}
 
 		/**
-		 * API name: {@code point}
+		 * Required - API name: {@code point}
 		 */
 		public Builder point(Function<GeoLinePoint.Builder, ObjectBuilder<GeoLinePoint>> fn) {
 			return this.point(fn.apply(new GeoLinePoint.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code sort}
+		 * Required - API name: {@code sort}
 		 */
 		public Builder sort(GeoLineSort value) {
 			this.sort = value;
@@ -197,7 +197,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		}
 
 		/**
-		 * API name: {@code sort}
+		 * Required - API name: {@code sort}
 		 */
 		public Builder sort(Function<GeoLineSort.Builder, ObjectBuilder<GeoLineSort>> fn) {
 			return this.sort(fn.apply(new GeoLineSort.Builder()).build());

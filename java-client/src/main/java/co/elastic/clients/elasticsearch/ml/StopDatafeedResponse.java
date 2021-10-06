@@ -54,7 +54,7 @@ public final class StopDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stopped}
+	 * Required - API name: {@code stopped}
 	 */
 	public boolean stopped() {
 		return this.stopped;
@@ -85,7 +85,7 @@ public final class StopDatafeedResponse implements JsonpSerializable {
 		private Boolean stopped;
 
 		/**
-		 * API name: {@code stopped}
+		 * Required - API name: {@code stopped}
 		 */
 		public Builder stopped(boolean value) {
 			this.stopped = value;

@@ -141,7 +141,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
-	 * The index in which the document resides.
+	 * Required - The index in which the document resides.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -404,7 +404,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * The index in which the document resides.
+		 * Required - The index in which the document resides.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -454,7 +454,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addFields(String value) {
 			if (this.fields == null) {

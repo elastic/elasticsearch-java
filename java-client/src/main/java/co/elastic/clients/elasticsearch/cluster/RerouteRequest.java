@@ -262,7 +262,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -326,7 +326,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed. 4
+		 * Add a value to {@link #commands(List)}, creating the list if needed.
 		 */
 		public Builder addCommands(Command value) {
 			if (this.commands == null) {
@@ -344,7 +344,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed. 5
+		 * Add a value to {@link #commands(List)}, creating the list if needed.
 		 */
 		public Builder addCommands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
 			return this.addCommands(fn.apply(new Command.Builder()).build());

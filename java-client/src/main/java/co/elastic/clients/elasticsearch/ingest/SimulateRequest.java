@@ -201,7 +201,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Document value) {
 			if (this.docs == null) {
@@ -219,7 +219,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
 			return this.addDocs(fn.apply(new Document.Builder()).build());

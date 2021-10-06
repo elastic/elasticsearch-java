@@ -57,14 +57,14 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code heap_max_in_bytes}
+	 * Required - API name: {@code heap_max_in_bytes}
 	 */
 	public long heapMaxInBytes() {
 		return this.heapMaxInBytes;
 	}
 
 	/**
-	 * API name: {@code heap_used_in_bytes}
+	 * Required - API name: {@code heap_used_in_bytes}
 	 */
 	public long heapUsedInBytes() {
 		return this.heapUsedInBytes;
@@ -100,7 +100,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		private Long heapUsedInBytes;
 
 		/**
-		 * API name: {@code heap_max_in_bytes}
+		 * Required - API name: {@code heap_max_in_bytes}
 		 */
 		public Builder heapMaxInBytes(long value) {
 			this.heapMaxInBytes = value;
@@ -108,7 +108,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code heap_used_in_bytes}
+		 * Required - API name: {@code heap_used_in_bytes}
 		 */
 		public Builder heapUsedInBytes(long value) {
 			this.heapUsedInBytes = value;

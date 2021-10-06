@@ -63,21 +63,21 @@ public final class Lifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code modified_date}
+	 * Required - API name: {@code modified_date}
 	 */
 	public String modifiedDate() {
 		return this.modifiedDate;
 	}
 
 	/**
-	 * API name: {@code policy}
+	 * Required - API name: {@code policy}
 	 */
 	public Policy policy() {
 		return this.policy;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
@@ -118,7 +118,7 @@ public final class Lifecycle implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code modified_date}
+		 * Required - API name: {@code modified_date}
 		 */
 		public Builder modifiedDate(String value) {
 			this.modifiedDate = value;
@@ -126,7 +126,7 @@ public final class Lifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy}
+		 * Required - API name: {@code policy}
 		 */
 		public Builder policy(Policy value) {
 			this.policy = value;
@@ -134,14 +134,14 @@ public final class Lifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy}
+		 * Required - API name: {@code policy}
 		 */
 		public Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.policy(fn.apply(new Policy.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

@@ -139,7 +139,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
 		 */
 		public Builder addDatafeedId(String value) {
 			if (this.datafeedId == null) {

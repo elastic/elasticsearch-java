@@ -64,7 +64,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -130,7 +130,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 		private Boolean includeUnmapped;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

@@ -79,7 +79,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * The target field
+	 * Required - The target field
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -104,7 +104,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code terms}
+	 * Required - API name: {@code terms}
 	 */
 	public List<String> terms() {
 		return this.terms;
@@ -147,7 +147,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		private String field;
 
 		/**
-		 * The target field
+		 * Required - The target field
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -181,7 +181,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(List<String> value) {
 			this.terms = value;
@@ -189,7 +189,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(String... value) {
 			this.terms = Arrays.asList(value);
@@ -197,7 +197,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #terms(List)}, creating the list if needed.
 		 */
 		public Builder addTerms(String value) {
 			if (this.terms == null) {

@@ -63,7 +63,7 @@ public final class ResetJobRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job to reset.
+	 * Required - The ID of the job to reset.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -93,7 +93,7 @@ public final class ResetJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * The ID of the job to reset.
+		 * Required - The ID of the job to reset.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

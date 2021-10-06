@@ -55,7 +55,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code operation_mode}
+	 * Required - API name: {@code operation_mode}
 	 */
 	public LifecycleOperationMode operationMode() {
 		return this.operationMode;
@@ -86,7 +86,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		private LifecycleOperationMode operationMode;
 
 		/**
-		 * API name: {@code operation_mode}
+		 * Required - API name: {@code operation_mode}
 		 */
 		public Builder operationMode(LifecycleOperationMode value) {
 			this.operationMode = value;

@@ -54,7 +54,7 @@ public final class SearchMvtResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -79,7 +79,7 @@ public final class SearchMvtResponse implements JsonpSerializable {
 		private JsonValue valueBody;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

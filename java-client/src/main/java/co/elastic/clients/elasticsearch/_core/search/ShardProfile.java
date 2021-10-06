@@ -65,21 +65,21 @@ public final class ShardProfile implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aggregations}
+	 * Required - API name: {@code aggregations}
 	 */
 	public List<AggregationProfile> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code searches}
+	 * Required - API name: {@code searches}
 	 */
 	public List<SearchProfile> searches() {
 		return this.searches;
@@ -130,7 +130,7 @@ public final class ShardProfile implements JsonpSerializable {
 		private List<SearchProfile> searches;
 
 		/**
-		 * API name: {@code aggregations}
+		 * Required - API name: {@code aggregations}
 		 */
 		public Builder aggregations(List<AggregationProfile> value) {
 			this.aggregations = value;
@@ -138,7 +138,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code aggregations}
+		 * Required - API name: {@code aggregations}
 		 */
 		public Builder aggregations(AggregationProfile... value) {
 			this.aggregations = Arrays.asList(value);
@@ -146,7 +146,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aggregations(List)}, creating the list if needed. 4
+		 * Add a value to {@link #aggregations(List)}, creating the list if needed.
 		 */
 		public Builder addAggregations(AggregationProfile value) {
 			if (this.aggregations == null) {
@@ -164,14 +164,14 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aggregations(List)}, creating the list if needed. 5
+		 * Add a value to {@link #aggregations(List)}, creating the list if needed.
 		 */
 		public Builder addAggregations(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
 			return this.addAggregations(fn.apply(new AggregationProfile.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -179,7 +179,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code searches}
+		 * Required - API name: {@code searches}
 		 */
 		public Builder searches(List<SearchProfile> value) {
 			this.searches = value;
@@ -187,7 +187,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code searches}
+		 * Required - API name: {@code searches}
 		 */
 		public Builder searches(SearchProfile... value) {
 			this.searches = Arrays.asList(value);
@@ -195,7 +195,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed. 4
+		 * Add a value to {@link #searches(List)}, creating the list if needed.
 		 */
 		public Builder addSearches(SearchProfile value) {
 			if (this.searches == null) {
@@ -213,7 +213,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed. 5
+		 * Add a value to {@link #searches(List)}, creating the list if needed.
 		 */
 		public Builder addSearches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {
 			return this.addSearches(fn.apply(new SearchProfile.Builder()).build());

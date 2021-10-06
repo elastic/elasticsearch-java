@@ -62,7 +62,7 @@ public final class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of Pipeline IDs
+	 * Required - A comma-separated list of Pipeline IDs
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -79,7 +79,7 @@ public final class GetPipelineRequest extends RequestBase {
 		private List<String> id;
 
 		/**
-		 * A comma-separated list of Pipeline IDs
+		 * Required - A comma-separated list of Pipeline IDs
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -89,7 +89,7 @@ public final class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of Pipeline IDs
+		 * Required - A comma-separated list of Pipeline IDs
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -99,7 +99,7 @@ public final class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #id(List)}, creating the list if needed. 4
+		 * Add a value to {@link #id(List)}, creating the list if needed.
 		 */
 		public Builder addId(String value) {
 			if (this.id == null) {

@@ -70,28 +70,28 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code required_capacity}
+	 * Required - API name: {@code required_capacity}
 	 */
 	public AutoscalingCapacity requiredCapacity() {
 		return this.requiredCapacity;
 	}
 
 	/**
-	 * API name: {@code current_capacity}
+	 * Required - API name: {@code current_capacity}
 	 */
 	public AutoscalingCapacity currentCapacity() {
 		return this.currentCapacity;
 	}
 
 	/**
-	 * API name: {@code current_nodes}
+	 * Required - API name: {@code current_nodes}
 	 */
 	public List<AutoscalingNode> currentNodes() {
 		return this.currentNodes;
 	}
 
 	/**
-	 * API name: {@code deciders}
+	 * Required - API name: {@code deciders}
 	 */
 	public Map<String, AutoscalingDecider> deciders() {
 		return this.deciders;
@@ -148,7 +148,7 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		private Map<String, AutoscalingDecider> deciders;
 
 		/**
-		 * API name: {@code required_capacity}
+		 * Required - API name: {@code required_capacity}
 		 */
 		public Builder requiredCapacity(AutoscalingCapacity value) {
 			this.requiredCapacity = value;
@@ -156,14 +156,14 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code required_capacity}
+		 * Required - API name: {@code required_capacity}
 		 */
 		public Builder requiredCapacity(Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
 			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code current_capacity}
+		 * Required - API name: {@code current_capacity}
 		 */
 		public Builder currentCapacity(AutoscalingCapacity value) {
 			this.currentCapacity = value;
@@ -171,14 +171,14 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current_capacity}
+		 * Required - API name: {@code current_capacity}
 		 */
 		public Builder currentCapacity(Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
 			return this.currentCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code current_nodes}
+		 * Required - API name: {@code current_nodes}
 		 */
 		public Builder currentNodes(List<AutoscalingNode> value) {
 			this.currentNodes = value;
@@ -186,7 +186,7 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current_nodes}
+		 * Required - API name: {@code current_nodes}
 		 */
 		public Builder currentNodes(AutoscalingNode... value) {
 			this.currentNodes = Arrays.asList(value);
@@ -194,7 +194,7 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentNodes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #currentNodes(List)}, creating the list if needed.
 		 */
 		public Builder addCurrentNodes(AutoscalingNode value) {
 			if (this.currentNodes == null) {
@@ -212,14 +212,14 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentNodes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #currentNodes(List)}, creating the list if needed.
 		 */
 		public Builder addCurrentNodes(Function<AutoscalingNode.Builder, ObjectBuilder<AutoscalingNode>> fn) {
 			return this.addCurrentNodes(fn.apply(new AutoscalingNode.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code deciders}
+		 * Required - API name: {@code deciders}
 		 */
 		public Builder deciders(Map<String, AutoscalingDecider> value) {
 			this.deciders = value;

@@ -73,6 +73,10 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends PivotGroupByVariant> PivotGroupBy(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private PivotGroupBy(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

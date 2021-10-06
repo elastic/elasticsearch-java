@@ -71,14 +71,14 @@ public final class PostResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code acknowledged}
+	 * Required - API name: {@code acknowledged}
 	 */
 	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
-	 * API name: {@code license_status}
+	 * Required - API name: {@code license_status}
 	 */
 	public LicenseStatus licenseStatus() {
 		return this.licenseStatus;
@@ -139,7 +139,7 @@ public final class PostResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code acknowledged}
+		 * Required - API name: {@code acknowledged}
 		 */
 		public Builder acknowledged(boolean value) {
 			this.acknowledged = value;
@@ -147,7 +147,7 @@ public final class PostResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code license_status}
+		 * Required - API name: {@code license_status}
 		 */
 		public Builder licenseStatus(LicenseStatus value) {
 			this.licenseStatus = value;

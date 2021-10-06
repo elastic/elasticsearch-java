@@ -69,6 +69,10 @@ public class CompositeAggregationSource implements TaggedUnion<Object>, JsonpSer
 
 	}
 
+	public <T extends CompositeAggregationSourceVariant> CompositeAggregationSource(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private CompositeAggregationSource(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

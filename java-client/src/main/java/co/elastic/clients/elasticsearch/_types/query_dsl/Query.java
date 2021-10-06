@@ -129,6 +129,10 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 
 	}
 
+	public <T extends QueryVariant> Query(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Query(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

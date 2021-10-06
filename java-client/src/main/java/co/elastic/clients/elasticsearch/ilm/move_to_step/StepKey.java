@@ -61,21 +61,21 @@ public final class StepKey implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code action}
+	 * Required - API name: {@code action}
 	 */
 	public String action() {
 		return this.action;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code phase}
+	 * Required - API name: {@code phase}
 	 */
 	public String phase() {
 		return this.phase;
@@ -116,7 +116,7 @@ public final class StepKey implements JsonpSerializable {
 		private String phase;
 
 		/**
-		 * API name: {@code action}
+		 * Required - API name: {@code action}
 		 */
 		public Builder action(String value) {
 			this.action = value;
@@ -124,7 +124,7 @@ public final class StepKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -132,7 +132,7 @@ public final class StepKey implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code phase}
+		 * Required - API name: {@code phase}
 		 */
 		public Builder phase(String value) {
 			this.phase = value;

@@ -121,7 +121,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
 		 */
 		public Builder addMetric(WatcherMetric value) {
 			if (this.metric == null) {

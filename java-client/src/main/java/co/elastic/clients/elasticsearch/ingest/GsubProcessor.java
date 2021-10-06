@@ -78,7 +78,7 @@ public final class GsubProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -93,14 +93,14 @@ public final class GsubProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public String pattern() {
 		return this.pattern;
 	}
 
 	/**
-	 * API name: {@code replacement}
+	 * Required - API name: {@code replacement}
 	 */
 	public String replacement() {
 		return this.replacement;
@@ -162,7 +162,7 @@ public final class GsubProcessor extends ProcessorBase implements ProcessorVaria
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -178,7 +178,7 @@ public final class GsubProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(String value) {
 			this.pattern = value;
@@ -186,7 +186,7 @@ public final class GsubProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code replacement}
+		 * Required - API name: {@code replacement}
 		 */
 		public Builder replacement(String value) {
 			this.replacement = value;

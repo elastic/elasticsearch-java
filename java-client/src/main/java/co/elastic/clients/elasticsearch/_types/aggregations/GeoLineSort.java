@@ -55,7 +55,7 @@ public final class GeoLineSort implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -86,7 +86,7 @@ public final class GeoLineSort implements JsonpSerializable {
 		private String field;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

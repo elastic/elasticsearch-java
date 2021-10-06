@@ -62,14 +62,14 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	}
 
 	/**
-	 * API name: {@code confusion_matrix}
+	 * Required - API name: {@code confusion_matrix}
 	 */
 	public List<ConfusionMatrixItem> confusionMatrix() {
 		return this.confusionMatrix;
 	}
 
 	/**
-	 * API name: {@code other_actual_class_count}
+	 * Required - API name: {@code other_actual_class_count}
 	 */
 	public int otherActualClassCount() {
 		return this.otherActualClassCount;
@@ -110,7 +110,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		private Integer otherActualClassCount;
 
 		/**
-		 * API name: {@code confusion_matrix}
+		 * Required - API name: {@code confusion_matrix}
 		 */
 		public Builder confusionMatrix(List<ConfusionMatrixItem> value) {
 			this.confusionMatrix = value;
@@ -118,7 +118,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * API name: {@code confusion_matrix}
+		 * Required - API name: {@code confusion_matrix}
 		 */
 		public Builder confusionMatrix(ConfusionMatrixItem... value) {
 			this.confusionMatrix = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed. 4
+		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
 		 */
 		public Builder addConfusionMatrix(ConfusionMatrixItem value) {
 			if (this.confusionMatrix == null) {
@@ -144,7 +144,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed. 5
+		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
 		 */
 		public Builder addConfusionMatrix(
 				Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
@@ -152,7 +152,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * API name: {@code other_actual_class_count}
+		 * Required - API name: {@code other_actual_class_count}
 		 */
 		public Builder otherActualClassCount(int value) {
 			this.otherActualClassCount = value;

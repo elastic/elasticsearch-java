@@ -127,7 +127,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * The name of the collection of auto-follow patterns.
+	 * Required - The name of the collection of auto-follow patterns.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -136,7 +136,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * The remote cluster containing the leader indices to match against.
+	 * Required - The remote cluster containing the leader indices to match against.
 	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
@@ -474,7 +474,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		private String maxWriteRequestSize;
 
 		/**
-		 * The name of the collection of auto-follow patterns.
+		 * Required - The name of the collection of auto-follow patterns.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -484,7 +484,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * The remote cluster containing the leader indices to match against.
+		 * Required - The remote cluster containing the leader indices to match against.
 		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
@@ -530,7 +530,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 		/**
 		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addLeaderIndexPatterns(String value) {
 			if (this.leaderIndexPatterns == null) {
@@ -568,7 +568,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 		/**
 		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
-		 * if needed. 4
+		 * if needed.
 		 */
 		public Builder addLeaderIndexExclusionPatterns(String value) {
 			if (this.leaderIndexExclusionPatterns == null) {

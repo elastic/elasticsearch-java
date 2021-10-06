@@ -60,8 +60,9 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 	}
 
 	/**
-	 * An array of objects that contain feature name and value pairs. The features
-	 * have been processed and indicate what will be sent to the model for training.
+	 * Required - An array of objects that contain feature name and value pairs. The
+	 * features have been processed and indicate what will be sent to the model for
+	 * training.
 	 * <p>
 	 * API name: {@code feature_values}
 	 */
@@ -105,8 +106,9 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		private List<Map<String, String>> featureValues;
 
 		/**
-		 * An array of objects that contain feature name and value pairs. The features
-		 * have been processed and indicate what will be sent to the model for training.
+		 * Required - An array of objects that contain feature name and value pairs. The
+		 * features have been processed and indicate what will be sent to the model for
+		 * training.
 		 * <p>
 		 * API name: {@code feature_values}
 		 */
@@ -116,8 +118,9 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * An array of objects that contain feature name and value pairs. The features
-		 * have been processed and indicate what will be sent to the model for training.
+		 * Required - An array of objects that contain feature name and value pairs. The
+		 * features have been processed and indicate what will be sent to the model for
+		 * training.
 		 * <p>
 		 * API name: {@code feature_values}
 		 */
@@ -127,7 +130,7 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #featureValues(List)}, creating the list if needed. 4
+		 * Add a value to {@link #featureValues(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureValues(Map<String, String> value) {
 			if (this.featureValues == null) {

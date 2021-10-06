@@ -65,21 +65,21 @@ public final class ActivationStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public Map<String, ActionStatus> actions() {
 		return this.actions;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public ActivationState state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
@@ -126,7 +126,7 @@ public final class ActivationStatus implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(Map<String, ActionStatus> value) {
 			this.actions = value;
@@ -159,7 +159,7 @@ public final class ActivationStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(ActivationState value) {
 			this.state = value;
@@ -167,14 +167,14 @@ public final class ActivationStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
 			return this.state(fn.apply(new ActivationState.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

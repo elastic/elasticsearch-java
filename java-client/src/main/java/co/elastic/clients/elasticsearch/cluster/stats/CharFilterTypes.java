@@ -80,56 +80,56 @@ public final class CharFilterTypes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code char_filter_types}
+	 * Required - API name: {@code char_filter_types}
 	 */
 	public List<FieldTypes> charFilterTypes() {
 		return this.charFilterTypes;
 	}
 
 	/**
-	 * API name: {@code tokenizer_types}
+	 * Required - API name: {@code tokenizer_types}
 	 */
 	public List<FieldTypes> tokenizerTypes() {
 		return this.tokenizerTypes;
 	}
 
 	/**
-	 * API name: {@code filter_types}
+	 * Required - API name: {@code filter_types}
 	 */
 	public List<FieldTypes> filterTypes() {
 		return this.filterTypes;
 	}
 
 	/**
-	 * API name: {@code analyzer_types}
+	 * Required - API name: {@code analyzer_types}
 	 */
 	public List<FieldTypes> analyzerTypes() {
 		return this.analyzerTypes;
 	}
 
 	/**
-	 * API name: {@code built_in_char_filters}
+	 * Required - API name: {@code built_in_char_filters}
 	 */
 	public List<FieldTypes> builtInCharFilters() {
 		return this.builtInCharFilters;
 	}
 
 	/**
-	 * API name: {@code built_in_tokenizers}
+	 * Required - API name: {@code built_in_tokenizers}
 	 */
 	public List<FieldTypes> builtInTokenizers() {
 		return this.builtInTokenizers;
 	}
 
 	/**
-	 * API name: {@code built_in_filters}
+	 * Required - API name: {@code built_in_filters}
 	 */
 	public List<FieldTypes> builtInFilters() {
 		return this.builtInFilters;
 	}
 
 	/**
-	 * API name: {@code built_in_analyzers}
+	 * Required - API name: {@code built_in_analyzers}
 	 */
 	public List<FieldTypes> builtInAnalyzers() {
 		return this.builtInAnalyzers;
@@ -235,7 +235,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		private List<FieldTypes> builtInAnalyzers;
 
 		/**
-		 * API name: {@code char_filter_types}
+		 * Required - API name: {@code char_filter_types}
 		 */
 		public Builder charFilterTypes(List<FieldTypes> value) {
 			this.charFilterTypes = value;
@@ -243,7 +243,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code char_filter_types}
+		 * Required - API name: {@code char_filter_types}
 		 */
 		public Builder charFilterTypes(FieldTypes... value) {
 			this.charFilterTypes = Arrays.asList(value);
@@ -251,7 +251,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charFilterTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #charFilterTypes(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilterTypes(FieldTypes value) {
 			if (this.charFilterTypes == null) {
@@ -269,14 +269,14 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charFilterTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #charFilterTypes(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addCharFilterTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code tokenizer_types}
+		 * Required - API name: {@code tokenizer_types}
 		 */
 		public Builder tokenizerTypes(List<FieldTypes> value) {
 			this.tokenizerTypes = value;
@@ -284,7 +284,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokenizer_types}
+		 * Required - API name: {@code tokenizer_types}
 		 */
 		public Builder tokenizerTypes(FieldTypes... value) {
 			this.tokenizerTypes = Arrays.asList(value);
@@ -292,7 +292,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokenizerTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokenizerTypes(List)}, creating the list if needed.
 		 */
 		public Builder addTokenizerTypes(FieldTypes value) {
 			if (this.tokenizerTypes == null) {
@@ -310,14 +310,14 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokenizerTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #tokenizerTypes(List)}, creating the list if needed.
 		 */
 		public Builder addTokenizerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addTokenizerTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code filter_types}
+		 * Required - API name: {@code filter_types}
 		 */
 		public Builder filterTypes(List<FieldTypes> value) {
 			this.filterTypes = value;
@@ -325,7 +325,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filter_types}
+		 * Required - API name: {@code filter_types}
 		 */
 		public Builder filterTypes(FieldTypes... value) {
 			this.filterTypes = Arrays.asList(value);
@@ -333,7 +333,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filterTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filterTypes(List)}, creating the list if needed.
 		 */
 		public Builder addFilterTypes(FieldTypes value) {
 			if (this.filterTypes == null) {
@@ -351,14 +351,14 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filterTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #filterTypes(List)}, creating the list if needed.
 		 */
 		public Builder addFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addFilterTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code analyzer_types}
+		 * Required - API name: {@code analyzer_types}
 		 */
 		public Builder analyzerTypes(List<FieldTypes> value) {
 			this.analyzerTypes = value;
@@ -366,7 +366,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analyzer_types}
+		 * Required - API name: {@code analyzer_types}
 		 */
 		public Builder analyzerTypes(FieldTypes... value) {
 			this.analyzerTypes = Arrays.asList(value);
@@ -374,7 +374,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #analyzerTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #analyzerTypes(List)}, creating the list if needed.
 		 */
 		public Builder addAnalyzerTypes(FieldTypes value) {
 			if (this.analyzerTypes == null) {
@@ -392,14 +392,14 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #analyzerTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #analyzerTypes(List)}, creating the list if needed.
 		 */
 		public Builder addAnalyzerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addAnalyzerTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code built_in_char_filters}
+		 * Required - API name: {@code built_in_char_filters}
 		 */
 		public Builder builtInCharFilters(List<FieldTypes> value) {
 			this.builtInCharFilters = value;
@@ -407,7 +407,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code built_in_char_filters}
+		 * Required - API name: {@code built_in_char_filters}
 		 */
 		public Builder builtInCharFilters(FieldTypes... value) {
 			this.builtInCharFilters = Arrays.asList(value);
@@ -416,7 +416,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #builtInCharFilters(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addBuiltInCharFilters(FieldTypes value) {
 			if (this.builtInCharFilters == null) {
@@ -435,14 +435,14 @@ public final class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #builtInCharFilters(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addBuiltInCharFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addBuiltInCharFilters(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code built_in_tokenizers}
+		 * Required - API name: {@code built_in_tokenizers}
 		 */
 		public Builder builtInTokenizers(List<FieldTypes> value) {
 			this.builtInTokenizers = value;
@@ -450,7 +450,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code built_in_tokenizers}
+		 * Required - API name: {@code built_in_tokenizers}
 		 */
 		public Builder builtInTokenizers(FieldTypes... value) {
 			this.builtInTokenizers = Arrays.asList(value);
@@ -459,7 +459,6 @@ public final class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #builtInTokenizers(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addBuiltInTokenizers(FieldTypes value) {
 			if (this.builtInTokenizers == null) {
@@ -478,14 +477,13 @@ public final class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #builtInTokenizers(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addBuiltInTokenizers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addBuiltInTokenizers(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code built_in_filters}
+		 * Required - API name: {@code built_in_filters}
 		 */
 		public Builder builtInFilters(List<FieldTypes> value) {
 			this.builtInFilters = value;
@@ -493,7 +491,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code built_in_filters}
+		 * Required - API name: {@code built_in_filters}
 		 */
 		public Builder builtInFilters(FieldTypes... value) {
 			this.builtInFilters = Arrays.asList(value);
@@ -501,7 +499,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #builtInFilters(List)}, creating the list if needed. 4
+		 * Add a value to {@link #builtInFilters(List)}, creating the list if needed.
 		 */
 		public Builder addBuiltInFilters(FieldTypes value) {
 			if (this.builtInFilters == null) {
@@ -519,14 +517,14 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #builtInFilters(List)}, creating the list if needed. 5
+		 * Add a value to {@link #builtInFilters(List)}, creating the list if needed.
 		 */
 		public Builder addBuiltInFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addBuiltInFilters(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code built_in_analyzers}
+		 * Required - API name: {@code built_in_analyzers}
 		 */
 		public Builder builtInAnalyzers(List<FieldTypes> value) {
 			this.builtInAnalyzers = value;
@@ -534,7 +532,7 @@ public final class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code built_in_analyzers}
+		 * Required - API name: {@code built_in_analyzers}
 		 */
 		public Builder builtInAnalyzers(FieldTypes... value) {
 			this.builtInAnalyzers = Arrays.asList(value);
@@ -543,7 +541,6 @@ public final class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #builtInAnalyzers(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addBuiltInAnalyzers(FieldTypes value) {
 			if (this.builtInAnalyzers == null) {
@@ -562,7 +559,6 @@ public final class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #builtInAnalyzers(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addBuiltInAnalyzers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addBuiltInAnalyzers(fn.apply(new FieldTypes.Builder()).build());

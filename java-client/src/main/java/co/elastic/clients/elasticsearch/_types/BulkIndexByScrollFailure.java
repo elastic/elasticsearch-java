@@ -68,35 +68,35 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cause}
+	 * Required - API name: {@code cause}
 	 */
 	public MainError cause() {
 		return this.cause;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public int status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -147,7 +147,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code cause}
+		 * Required - API name: {@code cause}
 		 */
 		public Builder cause(MainError value) {
 			this.cause = value;
@@ -155,14 +155,14 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cause}
+		 * Required - API name: {@code cause}
 		 */
 		public Builder cause(Function<MainError.Builder, ObjectBuilder<MainError>> fn) {
 			return this.cause(fn.apply(new MainError.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -170,7 +170,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -178,7 +178,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(int value) {
 			this.status = value;
@@ -186,7 +186,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

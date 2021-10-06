@@ -121,7 +121,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
@@ -136,7 +136,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -249,7 +249,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -257,7 +257,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
@@ -272,7 +272,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

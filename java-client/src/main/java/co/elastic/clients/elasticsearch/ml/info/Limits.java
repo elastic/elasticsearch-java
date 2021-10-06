@@ -71,14 +71,14 @@ public final class Limits implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code effective_max_model_memory_limit}
+	 * Required - API name: {@code effective_max_model_memory_limit}
 	 */
 	public String effectiveMaxModelMemoryLimit() {
 		return this.effectiveMaxModelMemoryLimit;
 	}
 
 	/**
-	 * API name: {@code total_ml_memory}
+	 * Required - API name: {@code total_ml_memory}
 	 */
 	public String totalMlMemory() {
 		return this.totalMlMemory;
@@ -132,7 +132,7 @@ public final class Limits implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code effective_max_model_memory_limit}
+		 * Required - API name: {@code effective_max_model_memory_limit}
 		 */
 		public Builder effectiveMaxModelMemoryLimit(String value) {
 			this.effectiveMaxModelMemoryLimit = value;
@@ -140,7 +140,7 @@ public final class Limits implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_ml_memory}
+		 * Required - API name: {@code total_ml_memory}
 		 */
 		public Builder totalMlMemory(String value) {
 			this.totalMlMemory = value;

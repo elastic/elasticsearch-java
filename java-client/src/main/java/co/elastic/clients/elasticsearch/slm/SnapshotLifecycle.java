@@ -120,7 +120,7 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code modified_date_millis}
+	 * Required - API name: {@code modified_date_millis}
 	 */
 	public String modifiedDateMillis() {
 		return this.modifiedDateMillis;
@@ -135,28 +135,28 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code next_execution_millis}
+	 * Required - API name: {@code next_execution_millis}
 	 */
 	public String nextExecutionMillis() {
 		return this.nextExecutionMillis;
 	}
 
 	/**
-	 * API name: {@code policy}
+	 * Required - API name: {@code policy}
 	 */
 	public Policy policy() {
 		return this.policy;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public Statistics stats() {
 		return this.stats;
@@ -307,7 +307,7 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code modified_date_millis}
+		 * Required - API name: {@code modified_date_millis}
 		 */
 		public Builder modifiedDateMillis(String value) {
 			this.modifiedDateMillis = value;
@@ -323,7 +323,7 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code next_execution_millis}
+		 * Required - API name: {@code next_execution_millis}
 		 */
 		public Builder nextExecutionMillis(String value) {
 			this.nextExecutionMillis = value;
@@ -331,7 +331,7 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy}
+		 * Required - API name: {@code policy}
 		 */
 		public Builder policy(Policy value) {
 			this.policy = value;
@@ -339,14 +339,14 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policy}
+		 * Required - API name: {@code policy}
 		 */
 		public Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.policy(fn.apply(new Policy.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;
@@ -354,7 +354,7 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Statistics value) {
 			this.stats = value;
@@ -362,7 +362,7 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<Statistics.Builder, ObjectBuilder<Statistics>> fn) {
 			return this.stats(fn.apply(new Statistics.Builder()).build());

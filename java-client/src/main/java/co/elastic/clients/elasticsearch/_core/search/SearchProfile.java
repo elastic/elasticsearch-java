@@ -65,21 +65,21 @@ public final class SearchProfile implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code collector}
+	 * Required - API name: {@code collector}
 	 */
 	public List<Collector> collector() {
 		return this.collector;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public List<QueryProfile> query() {
 		return this.query;
 	}
 
 	/**
-	 * API name: {@code rewrite_time}
+	 * Required - API name: {@code rewrite_time}
 	 */
 	public long rewriteTime() {
 		return this.rewriteTime;
@@ -130,7 +130,7 @@ public final class SearchProfile implements JsonpSerializable {
 		private Long rewriteTime;
 
 		/**
-		 * API name: {@code collector}
+		 * Required - API name: {@code collector}
 		 */
 		public Builder collector(List<Collector> value) {
 			this.collector = value;
@@ -138,7 +138,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code collector}
+		 * Required - API name: {@code collector}
 		 */
 		public Builder collector(Collector... value) {
 			this.collector = Arrays.asList(value);
@@ -146,7 +146,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed. 4
+		 * Add a value to {@link #collector(List)}, creating the list if needed.
 		 */
 		public Builder addCollector(Collector value) {
 			if (this.collector == null) {
@@ -164,14 +164,14 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed. 5
+		 * Add a value to {@link #collector(List)}, creating the list if needed.
 		 */
 		public Builder addCollector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
 			return this.addCollector(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(List<QueryProfile> value) {
 			this.query = value;
@@ -179,7 +179,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(QueryProfile... value) {
 			this.query = Arrays.asList(value);
@@ -187,7 +187,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed. 4
+		 * Add a value to {@link #query(List)}, creating the list if needed.
 		 */
 		public Builder addQuery(QueryProfile value) {
 			if (this.query == null) {
@@ -205,14 +205,14 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed. 5
+		 * Add a value to {@link #query(List)}, creating the list if needed.
 		 */
 		public Builder addQuery(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
 			return this.addQuery(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code rewrite_time}
+		 * Required - API name: {@code rewrite_time}
 		 */
 		public Builder rewriteTime(long value) {
 			this.rewriteTime = value;

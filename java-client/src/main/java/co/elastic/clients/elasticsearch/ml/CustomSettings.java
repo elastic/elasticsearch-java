@@ -169,7 +169,7 @@ public final class CustomSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #customUrls(List)}, creating the list if needed. 4
+		 * Add a value to {@link #customUrls(List)}, creating the list if needed.
 		 */
 		public Builder addCustomUrls(JsonValue /* xpack.usage.UrlConfig */ value) {
 			if (this.customUrls == null) {

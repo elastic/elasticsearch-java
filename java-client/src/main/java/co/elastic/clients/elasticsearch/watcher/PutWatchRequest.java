@@ -111,7 +111,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Watch ID
+	 * Required - Watch ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -324,7 +324,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		private Trigger trigger;
 
 		/**
-		 * Watch ID
+		 * Required - Watch ID
 		 * <p>
 		 * API name: {@code id}
 		 */

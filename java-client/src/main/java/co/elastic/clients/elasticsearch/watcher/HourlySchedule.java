@@ -67,7 +67,7 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code minute}
+	 * Required - API name: {@code minute}
 	 */
 	public List<Integer> minute() {
 		return this.minute;
@@ -103,7 +103,7 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 		private List<Integer> minute;
 
 		/**
-		 * API name: {@code minute}
+		 * Required - API name: {@code minute}
 		 */
 		public Builder minute(List<Integer> value) {
 			this.minute = value;
@@ -111,7 +111,7 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code minute}
+		 * Required - API name: {@code minute}
 		 */
 		public Builder minute(Integer... value) {
 			this.minute = Arrays.asList(value);
@@ -119,7 +119,7 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #minute(List)}, creating the list if needed. 4
+		 * Add a value to {@link #minute(List)}, creating the list if needed.
 		 */
 		public Builder addMinute(Integer value) {
 			if (this.minute == null) {

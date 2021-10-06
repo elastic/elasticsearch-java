@@ -96,7 +96,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code direct_max_in_bytes}
+	 * Required - API name: {@code direct_max_in_bytes}
 	 */
 	public long directMaxInBytes() {
 		return this.directMaxInBytes;
@@ -111,7 +111,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code heap_init_in_bytes}
+	 * Required - API name: {@code heap_init_in_bytes}
 	 */
 	public long heapInitInBytes() {
 		return this.heapInitInBytes;
@@ -126,7 +126,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code heap_max_in_bytes}
+	 * Required - API name: {@code heap_max_in_bytes}
 	 */
 	public long heapMaxInBytes() {
 		return this.heapMaxInBytes;
@@ -141,7 +141,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code non_heap_init_in_bytes}
+	 * Required - API name: {@code non_heap_init_in_bytes}
 	 */
 	public long nonHeapInitInBytes() {
 		return this.nonHeapInitInBytes;
@@ -156,7 +156,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code non_heap_max_in_bytes}
+	 * Required - API name: {@code non_heap_max_in_bytes}
 	 */
 	public long nonHeapMaxInBytes() {
 		return this.nonHeapMaxInBytes;
@@ -265,7 +265,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code direct_max_in_bytes}
+		 * Required - API name: {@code direct_max_in_bytes}
 		 */
 		public Builder directMaxInBytes(long value) {
 			this.directMaxInBytes = value;
@@ -281,7 +281,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code heap_init_in_bytes}
+		 * Required - API name: {@code heap_init_in_bytes}
 		 */
 		public Builder heapInitInBytes(long value) {
 			this.heapInitInBytes = value;
@@ -297,7 +297,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code heap_max_in_bytes}
+		 * Required - API name: {@code heap_max_in_bytes}
 		 */
 		public Builder heapMaxInBytes(long value) {
 			this.heapMaxInBytes = value;
@@ -313,7 +313,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code non_heap_init_in_bytes}
+		 * Required - API name: {@code non_heap_init_in_bytes}
 		 */
 		public Builder nonHeapInitInBytes(long value) {
 			this.nonHeapInitInBytes = value;
@@ -329,7 +329,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code non_heap_max_in_bytes}
+		 * Required - API name: {@code non_heap_max_in_bytes}
 		 */
 		public Builder nonHeapMaxInBytes(long value) {
 			this.nonHeapMaxInBytes = value;

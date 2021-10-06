@@ -66,30 +66,31 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
 	public int shard() {
 		return this.shard;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * If a node which has a copy of the data rejoins the cluster later on, that
-	 * data will be deleted. To ensure that these implications are well-understood,
-	 * this command requires the flag accept_data_loss to be explicitly set to true
+	 * Required - If a node which has a copy of the data rejoins the cluster later
+	 * on, that data will be deleted. To ensure that these implications are
+	 * well-understood, this command requires the flag accept_data_loss to be
+	 * explicitly set to true
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
@@ -137,7 +138,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		private Boolean acceptDataLoss;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -145,7 +146,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
 		public Builder shard(int value) {
 			this.shard = value;
@@ -153,7 +154,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -161,9 +162,10 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		}
 
 		/**
-		 * If a node which has a copy of the data rejoins the cluster later on, that
-		 * data will be deleted. To ensure that these implications are well-understood,
-		 * this command requires the flag accept_data_loss to be explicitly set to true
+		 * Required - If a node which has a copy of the data rejoins the cluster later
+		 * on, that data will be deleted. To ensure that these implications are
+		 * well-understood, this command requires the flag accept_data_loss to be
+		 * explicitly set to true
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */

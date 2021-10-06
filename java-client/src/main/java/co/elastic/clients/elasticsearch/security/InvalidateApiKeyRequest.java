@@ -237,7 +237,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ids(List)}, creating the list if needed.
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {

@@ -94,14 +94,14 @@ public final class State implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code action}
+	 * Required - API name: {@code action}
 	 */
 	public String action() {
 		return this.action;
 	}
 
 	/**
-	 * API name: {@code cancellable}
+	 * Required - API name: {@code cancellable}
 	 */
 	public boolean cancellable() {
 		return this.cancellable;
@@ -116,21 +116,21 @@ public final class State implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code headers}
+	 * Required - API name: {@code headers}
 	 */
 	public Map<String, List<String>> headers() {
 		return this.headers;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public long id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
@@ -145,14 +145,14 @@ public final class State implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code running_time_in_nanos}
+	 * Required - API name: {@code running_time_in_nanos}
 	 */
 	public long runningTimeInNanos() {
 		return this.runningTimeInNanos;
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
 	public long startTimeInMillis() {
 		return this.startTimeInMillis;
@@ -167,7 +167,7 @@ public final class State implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -274,7 +274,7 @@ public final class State implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code action}
+		 * Required - API name: {@code action}
 		 */
 		public Builder action(String value) {
 			this.action = value;
@@ -282,7 +282,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cancellable}
+		 * Required - API name: {@code cancellable}
 		 */
 		public Builder cancellable(boolean value) {
 			this.cancellable = value;
@@ -298,7 +298,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code headers}
+		 * Required - API name: {@code headers}
 		 */
 		public Builder headers(Map<String, List<String>> value) {
 			this.headers = value;
@@ -317,7 +317,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(long value) {
 			this.id = value;
@@ -325,7 +325,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -341,7 +341,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code running_time_in_nanos}
+		 * Required - API name: {@code running_time_in_nanos}
 		 */
 		public Builder runningTimeInNanos(long value) {
 			this.runningTimeInNanos = value;
@@ -349,7 +349,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
 		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
@@ -372,7 +372,7 @@ public final class State implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

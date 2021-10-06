@@ -62,14 +62,14 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
@@ -110,7 +110,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		private List<String> indices;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -118,7 +118,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -126,7 +126,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

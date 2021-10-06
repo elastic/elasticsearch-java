@@ -61,21 +61,21 @@ public final class FieldStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code doc_count}
+	 * Required - API name: {@code doc_count}
 	 */
 	public int docCount() {
 		return this.docCount;
 	}
 
 	/**
-	 * API name: {@code sum_doc_freq}
+	 * Required - API name: {@code sum_doc_freq}
 	 */
 	public long sumDocFreq() {
 		return this.sumDocFreq;
 	}
 
 	/**
-	 * API name: {@code sum_ttf}
+	 * Required - API name: {@code sum_ttf}
 	 */
 	public long sumTtf() {
 		return this.sumTtf;
@@ -116,7 +116,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		private Long sumTtf;
 
 		/**
-		 * API name: {@code doc_count}
+		 * Required - API name: {@code doc_count}
 		 */
 		public Builder docCount(int value) {
 			this.docCount = value;
@@ -124,7 +124,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sum_doc_freq}
+		 * Required - API name: {@code sum_doc_freq}
 		 */
 		public Builder sumDocFreq(long value) {
 			this.sumDocFreq = value;
@@ -132,7 +132,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sum_ttf}
+		 * Required - API name: {@code sum_ttf}
 		 */
 		public Builder sumTtf(long value) {
 			this.sumTtf = value;

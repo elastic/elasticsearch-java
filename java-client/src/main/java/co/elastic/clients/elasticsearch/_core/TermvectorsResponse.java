@@ -82,21 +82,21 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
 	public boolean found() {
 		return this.found;
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
@@ -111,7 +111,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
@@ -126,7 +126,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _version}
+	 * Required - API name: {@code _version}
 	 */
 	public long version() {
 		return this.version;
@@ -203,7 +203,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
 		public Builder found(boolean value) {
 			this.found = value;
@@ -211,7 +211,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -219,7 +219,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -260,7 +260,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder took(long value) {
 			this.took = value;
@@ -276,7 +276,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _version}
+		 * Required - API name: {@code _version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

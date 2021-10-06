@@ -99,8 +99,9 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * A comma-separated list of index names the alias should point to (supports
-	 * wildcards); use <code>_all</code> to perform the operation on all indices.
+	 * Required - A comma-separated list of index names the alias should point to
+	 * (supports wildcards); use <code>_all</code> to perform the operation on all
+	 * indices.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -109,7 +110,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The name of the alias to be created or updated
+	 * Required - The name of the alias to be created or updated
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -253,8 +254,9 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		private String searchRouting;
 
 		/**
-		 * A comma-separated list of index names the alias should point to (supports
-		 * wildcards); use <code>_all</code> to perform the operation on all indices.
+		 * Required - A comma-separated list of index names the alias should point to
+		 * (supports wildcards); use <code>_all</code> to perform the operation on all
+		 * indices.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -264,8 +266,9 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A comma-separated list of index names the alias should point to (supports
-		 * wildcards); use <code>_all</code> to perform the operation on all indices.
+		 * Required - A comma-separated list of index names the alias should point to
+		 * (supports wildcards); use <code>_all</code> to perform the operation on all
+		 * indices.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -275,7 +278,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -286,7 +289,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * The name of the alias to be created or updated
+		 * Required - The name of the alias to be created or updated
 		 * <p>
 		 * API name: {@code name}
 		 */

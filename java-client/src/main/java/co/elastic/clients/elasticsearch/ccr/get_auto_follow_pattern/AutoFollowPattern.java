@@ -58,14 +58,14 @@ public final class AutoFollowPattern implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public AutoFollowPatternSummary pattern() {
 		return this.pattern;
@@ -101,7 +101,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		private AutoFollowPatternSummary pattern;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -109,7 +109,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(AutoFollowPatternSummary value) {
 			this.pattern = value;
@@ -117,7 +117,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
 			return this.pattern(fn.apply(new AutoFollowPatternSummary.Builder()).build());

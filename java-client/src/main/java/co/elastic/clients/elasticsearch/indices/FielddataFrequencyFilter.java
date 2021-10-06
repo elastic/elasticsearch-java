@@ -61,21 +61,21 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public double max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public double min() {
 		return this.min;
 	}
 
 	/**
-	 * API name: {@code min_segment_size}
+	 * Required - API name: {@code min_segment_size}
 	 */
 	public int minSegmentSize() {
 		return this.minSegmentSize;
@@ -116,7 +116,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		private Integer minSegmentSize;
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(double value) {
 			this.max = value;
@@ -124,7 +124,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder min(double value) {
 			this.min = value;
@@ -132,7 +132,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min_segment_size}
+		 * Required - API name: {@code min_segment_size}
 		 */
 		public Builder minSegmentSize(int value) {
 			this.minSegmentSize = value;

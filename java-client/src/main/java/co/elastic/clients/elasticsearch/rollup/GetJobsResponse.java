@@ -59,7 +59,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code jobs}
+	 * Required - API name: {@code jobs}
 	 */
 	public List<RollupJob> jobs() {
 		return this.jobs;
@@ -95,7 +95,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		private List<RollupJob> jobs;
 
 		/**
-		 * API name: {@code jobs}
+		 * Required - API name: {@code jobs}
 		 */
 		public Builder jobs(List<RollupJob> value) {
 			this.jobs = value;
@@ -103,7 +103,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code jobs}
+		 * Required - API name: {@code jobs}
 		 */
 		public Builder jobs(RollupJob... value) {
 			this.jobs = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #jobs(List)}, creating the list if needed.
 		 */
 		public Builder addJobs(RollupJob value) {
 			if (this.jobs == null) {
@@ -129,7 +129,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #jobs(List)}, creating the list if needed.
 		 */
 		public Builder addJobs(Function<RollupJob.Builder, ObjectBuilder<RollupJob>> fn) {
 			return this.addJobs(fn.apply(new RollupJob.Builder()).build());

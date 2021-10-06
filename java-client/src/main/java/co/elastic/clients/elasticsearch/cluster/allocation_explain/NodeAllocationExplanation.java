@@ -84,35 +84,35 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code deciders}
+	 * Required - API name: {@code deciders}
 	 */
 	public List<AllocationDecision> deciders() {
 		return this.deciders;
 	}
 
 	/**
-	 * API name: {@code node_attributes}
+	 * Required - API name: {@code node_attributes}
 	 */
 	public Map<String, String> nodeAttributes() {
 		return this.nodeAttributes;
 	}
 
 	/**
-	 * API name: {@code node_decision}
+	 * Required - API name: {@code node_decision}
 	 */
 	public Decision nodeDecision() {
 		return this.nodeDecision;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code node_name}
+	 * Required - API name: {@code node_name}
 	 */
 	public String nodeName() {
 		return this.nodeName;
@@ -127,14 +127,14 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
 	}
 
 	/**
-	 * API name: {@code weight_ranking}
+	 * Required - API name: {@code weight_ranking}
 	 */
 	public int weightRanking() {
 		return this.weightRanking;
@@ -216,7 +216,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		private Integer weightRanking;
 
 		/**
-		 * API name: {@code deciders}
+		 * Required - API name: {@code deciders}
 		 */
 		public Builder deciders(List<AllocationDecision> value) {
 			this.deciders = value;
@@ -224,7 +224,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code deciders}
+		 * Required - API name: {@code deciders}
 		 */
 		public Builder deciders(AllocationDecision... value) {
 			this.deciders = Arrays.asList(value);
@@ -232,7 +232,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #deciders(List)}, creating the list if needed. 4
+		 * Add a value to {@link #deciders(List)}, creating the list if needed.
 		 */
 		public Builder addDeciders(AllocationDecision value) {
 			if (this.deciders == null) {
@@ -250,14 +250,14 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #deciders(List)}, creating the list if needed. 5
+		 * Add a value to {@link #deciders(List)}, creating the list if needed.
 		 */
 		public Builder addDeciders(Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
 			return this.addDeciders(fn.apply(new AllocationDecision.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code node_attributes}
+		 * Required - API name: {@code node_attributes}
 		 */
 		public Builder nodeAttributes(Map<String, String> value) {
 			this.nodeAttributes = value;
@@ -276,7 +276,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_decision}
+		 * Required - API name: {@code node_decision}
 		 */
 		public Builder nodeDecision(Decision value) {
 			this.nodeDecision = value;
@@ -284,7 +284,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -292,7 +292,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_name}
+		 * Required - API name: {@code node_name}
 		 */
 		public Builder nodeName(String value) {
 			this.nodeName = value;
@@ -315,7 +315,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
 			this.transportAddress = value;
@@ -323,7 +323,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code weight_ranking}
+		 * Required - API name: {@code weight_ranking}
 		 */
 		public Builder weightRanking(int value) {
 			this.weightRanking = value;

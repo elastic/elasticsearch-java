@@ -70,7 +70,7 @@ public final class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVar
 	}
 
 	/**
-	 * API name: {@code intervals}
+	 * Required - API name: {@code intervals}
 	 */
 	public List<Intervals> intervals() {
 		return this.intervals;
@@ -124,7 +124,7 @@ public final class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVar
 		private IntervalsFilter filter;
 
 		/**
-		 * API name: {@code intervals}
+		 * Required - API name: {@code intervals}
 		 */
 		public Builder intervals(List<Intervals> value) {
 			this.intervals = value;
@@ -132,7 +132,7 @@ public final class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVar
 		}
 
 		/**
-		 * API name: {@code intervals}
+		 * Required - API name: {@code intervals}
 		 */
 		public Builder intervals(Intervals... value) {
 			this.intervals = Arrays.asList(value);
@@ -140,7 +140,7 @@ public final class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVar
 		}
 
 		/**
-		 * Add a value to {@link #intervals(List)}, creating the list if needed. 4
+		 * Add a value to {@link #intervals(List)}, creating the list if needed.
 		 */
 		public Builder addIntervals(Intervals value) {
 			if (this.intervals == null) {
@@ -158,7 +158,7 @@ public final class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVar
 		}
 
 		/**
-		 * Add a value to {@link #intervals(List)}, creating the list if needed. 5
+		 * Add a value to {@link #intervals(List)}, creating the list if needed.
 		 */
 		public Builder addIntervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
 			return this.addIntervals(fn.apply(new Intervals.Builder()).build());

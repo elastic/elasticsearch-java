@@ -57,14 +57,14 @@ public final class AutoscalingResources implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code storage}
+	 * Required - API name: {@code storage}
 	 */
 	public int storage() {
 		return this.storage;
 	}
 
 	/**
-	 * API name: {@code memory}
+	 * Required - API name: {@code memory}
 	 */
 	public int memory() {
 		return this.memory;
@@ -100,7 +100,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		private Integer memory;
 
 		/**
-		 * API name: {@code storage}
+		 * Required - API name: {@code storage}
 		 */
 		public Builder storage(int value) {
 			this.storage = value;
@@ -108,7 +108,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory}
+		 * Required - API name: {@code memory}
 		 */
 		public Builder memory(int value) {
 			this.memory = value;

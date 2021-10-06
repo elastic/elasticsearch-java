@@ -59,7 +59,7 @@ public final class GetNodeResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public List<NodeShutdownStatus> nodes() {
 		return this.nodes;
@@ -95,7 +95,7 @@ public final class GetNodeResponse implements JsonpSerializable {
 		private List<NodeShutdownStatus> nodes;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(List<NodeShutdownStatus> value) {
 			this.nodes = value;
@@ -103,7 +103,7 @@ public final class GetNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(NodeShutdownStatus... value) {
 			this.nodes = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GetNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodes(List)}, creating the list if needed.
 		 */
 		public Builder addNodes(NodeShutdownStatus value) {
 			if (this.nodes == null) {
@@ -129,7 +129,7 @@ public final class GetNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #nodes(List)}, creating the list if needed.
 		 */
 		public Builder addNodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
 			return this.addNodes(fn.apply(new NodeShutdownStatus.Builder()).build());

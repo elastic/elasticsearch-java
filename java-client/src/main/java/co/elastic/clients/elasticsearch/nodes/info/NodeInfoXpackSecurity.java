@@ -65,21 +65,21 @@ public final class NodeInfoXpackSecurity implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public NodeInfoXpackSecuritySsl http() {
 		return this.http;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public String enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public NodeInfoXpackSecuritySsl transport() {
 		return this.transport;
@@ -138,7 +138,7 @@ public final class NodeInfoXpackSecurity implements JsonpSerializable {
 		private NodeInfoXpackSecurityAuthc authc;
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(NodeInfoXpackSecuritySsl value) {
 			this.http = value;
@@ -146,14 +146,14 @@ public final class NodeInfoXpackSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
 			return this.http(fn.apply(new NodeInfoXpackSecuritySsl.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(String value) {
 			this.enabled = value;
@@ -161,7 +161,7 @@ public final class NodeInfoXpackSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(NodeInfoXpackSecuritySsl value) {
 			this.transport = value;
@@ -169,7 +169,7 @@ public final class NodeInfoXpackSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(
 				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {

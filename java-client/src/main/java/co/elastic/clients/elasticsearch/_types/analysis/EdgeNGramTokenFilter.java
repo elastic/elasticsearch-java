@@ -69,21 +69,21 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * API name: {@code max_gram}
+	 * Required - API name: {@code max_gram}
 	 */
 	public int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
-	 * API name: {@code min_gram}
+	 * Required - API name: {@code min_gram}
 	 */
 	public int minGram() {
 		return this.minGram;
 	}
 
 	/**
-	 * API name: {@code side}
+	 * Required - API name: {@code side}
 	 */
 	public EdgeNGramSide side() {
 		return this.side;
@@ -120,7 +120,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		private EdgeNGramSide side;
 
 		/**
-		 * API name: {@code max_gram}
+		 * Required - API name: {@code max_gram}
 		 */
 		public Builder maxGram(int value) {
 			this.maxGram = value;
@@ -128,7 +128,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code min_gram}
+		 * Required - API name: {@code min_gram}
 		 */
 		public Builder minGram(int value) {
 			this.minGram = value;
@@ -136,7 +136,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code side}
+		 * Required - API name: {@code side}
 		 */
 		public Builder side(EdgeNGramSide value) {
 			this.side = value;

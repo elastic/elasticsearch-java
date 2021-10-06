@@ -72,14 +72,14 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public TotalHits total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code hits}
+	 * Required - API name: {@code hits}
 	 */
 	public List<Hit<T>> hits() {
 		return this.hits;
@@ -141,7 +141,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		private JsonpSerializer<T> tSerializer;
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder<T> total(TotalHits value) {
 			this.total = value;
@@ -149,14 +149,14 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
 			return this.total(fn.apply(new TotalHits.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder<T> hits(List<Hit<T>> value) {
 			this.hits = value;
@@ -164,7 +164,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder<T> hits(Hit<T>... value) {
 			this.hits = Arrays.asList(value);
@@ -172,7 +172,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed. 4
+		 * Add a value to {@link #hits(List)}, creating the list if needed.
 		 */
 		public Builder<T> addHits(Hit<T> value) {
 			if (this.hits == null) {
@@ -190,7 +190,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed. 5
+		 * Add a value to {@link #hits(List)}, creating the list if needed.
 		 */
 		public Builder<T> addHits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
 			return this.addHits(fn.apply(new Hit.Builder<T>()).build());

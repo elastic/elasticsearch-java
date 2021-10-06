@@ -71,35 +71,35 @@ public final class CurrentNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
 	}
 
 	/**
-	 * API name: {@code weight_ranking}
+	 * Required - API name: {@code weight_ranking}
 	 */
 	public int weightRanking() {
 		return this.weightRanking;
@@ -156,7 +156,7 @@ public final class CurrentNode implements JsonpSerializable {
 		private Integer weightRanking;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -164,7 +164,7 @@ public final class CurrentNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -172,7 +172,7 @@ public final class CurrentNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -191,7 +191,7 @@ public final class CurrentNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
 			this.transportAddress = value;
@@ -199,7 +199,7 @@ public final class CurrentNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code weight_ranking}
+		 * Required - API name: {@code weight_ranking}
 		 */
 		public Builder weightRanking(int value) {
 			this.weightRanking = value;

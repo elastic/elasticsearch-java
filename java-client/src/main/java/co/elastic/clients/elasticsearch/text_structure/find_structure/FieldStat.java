@@ -90,21 +90,21 @@ public final class FieldStat implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code cardinality}
+	 * Required - API name: {@code cardinality}
 	 */
 	public int cardinality() {
 		return this.cardinality;
 	}
 
 	/**
-	 * API name: {@code top_hits}
+	 * Required - API name: {@code top_hits}
 	 */
 	public List<TopHit> topHits() {
 		return this.topHits;
@@ -253,7 +253,7 @@ public final class FieldStat implements JsonpSerializable {
 		private String latest;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -261,7 +261,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cardinality}
+		 * Required - API name: {@code cardinality}
 		 */
 		public Builder cardinality(int value) {
 			this.cardinality = value;
@@ -269,7 +269,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code top_hits}
+		 * Required - API name: {@code top_hits}
 		 */
 		public Builder topHits(List<TopHit> value) {
 			this.topHits = value;
@@ -277,7 +277,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code top_hits}
+		 * Required - API name: {@code top_hits}
 		 */
 		public Builder topHits(TopHit... value) {
 			this.topHits = Arrays.asList(value);
@@ -285,7 +285,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #topHits(List)}, creating the list if needed. 4
+		 * Add a value to {@link #topHits(List)}, creating the list if needed.
 		 */
 		public Builder addTopHits(TopHit value) {
 			if (this.topHits == null) {
@@ -303,7 +303,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #topHits(List)}, creating the list if needed. 5
+		 * Add a value to {@link #topHits(List)}, creating the list if needed.
 		 */
 		public Builder addTopHits(Function<TopHit.Builder, ObjectBuilder<TopHit>> fn) {
 			return this.addTopHits(fn.apply(new TopHit.Builder()).build());

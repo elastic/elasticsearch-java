@@ -73,21 +73,21 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code stopwords}
+	 * Required - API name: {@code stopwords}
 	 */
 	public List<String> stopwords() {
 		return this.stopwords;
 	}
 
 	/**
-	 * API name: {@code stopwords_path}
+	 * Required - API name: {@code stopwords_path}
 	 */
 	public String stopwordsPath() {
 		return this.stopwordsPath;
@@ -135,7 +135,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		private String stopwordsPath;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -143,7 +143,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(List<String> value) {
 			this.stopwords = value;
@@ -151,7 +151,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
@@ -159,7 +159,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {
@@ -170,7 +170,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stopwords_path}
+		 * Required - API name: {@code stopwords_path}
 		 */
 		public Builder stopwordsPath(String value) {
 			this.stopwordsPath = value;

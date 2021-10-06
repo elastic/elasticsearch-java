@@ -84,7 +84,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code percent}
+	 * Required - API name: {@code percent}
 	 */
 	public String percent() {
 		return this.percent;
@@ -99,7 +99,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code recovered_in_bytes}
+	 * Required - API name: {@code recovered_in_bytes}
 	 */
 	public String recoveredInBytes() {
 		return this.recoveredInBytes;
@@ -130,7 +130,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code reused_in_bytes}
+	 * Required - API name: {@code reused_in_bytes}
 	 */
 	public String reusedInBytes() {
 		return this.reusedInBytes;
@@ -145,7 +145,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
 	public String totalInBytes() {
 		return this.totalInBytes;
@@ -239,7 +239,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		private String totalInBytes;
 
 		/**
-		 * API name: {@code percent}
+		 * Required - API name: {@code percent}
 		 */
 		public Builder percent(String value) {
 			this.percent = value;
@@ -255,7 +255,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code recovered_in_bytes}
+		 * Required - API name: {@code recovered_in_bytes}
 		 */
 		public Builder recoveredInBytes(String value) {
 			this.recoveredInBytes = value;
@@ -287,7 +287,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reused_in_bytes}
+		 * Required - API name: {@code reused_in_bytes}
 		 */
 		public Builder reusedInBytes(String value) {
 			this.reusedInBytes = value;
@@ -303,7 +303,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
 		public Builder totalInBytes(String value) {
 			this.totalInBytes = value;

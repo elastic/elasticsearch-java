@@ -72,7 +72,7 @@ public final class Definition implements JsonpSerializable {
 	}
 
 	/**
-	 * The definition of the trained model.
+	 * Required - The definition of the trained model.
 	 * <p>
 	 * API name: {@code trained_model}
 	 */
@@ -140,7 +140,7 @@ public final class Definition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preprocessors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #preprocessors(List)}, creating the list if needed.
 		 */
 		public Builder addPreprocessors(Preprocessor value) {
 			if (this.preprocessors == null) {
@@ -158,14 +158,14 @@ public final class Definition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preprocessors(List)}, creating the list if needed. 5
+		 * Add a value to {@link #preprocessors(List)}, creating the list if needed.
 		 */
 		public Builder addPreprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn) {
 			return this.addPreprocessors(fn.apply(new Preprocessor.Builder()).build());
 		}
 
 		/**
-		 * The definition of the trained model.
+		 * Required - The definition of the trained model.
 		 * <p>
 		 * API name: {@code trained_model}
 		 */
@@ -175,7 +175,7 @@ public final class Definition implements JsonpSerializable {
 		}
 
 		/**
-		 * The definition of the trained model.
+		 * Required - The definition of the trained model.
 		 * <p>
 		 * API name: {@code trained_model}
 		 */

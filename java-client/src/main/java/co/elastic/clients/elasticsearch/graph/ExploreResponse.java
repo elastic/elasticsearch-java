@@ -73,35 +73,35 @@ public final class ExploreResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code connections}
+	 * Required - API name: {@code connections}
 	 */
 	public List<Connection> connections() {
 		return this.connections;
 	}
 
 	/**
-	 * API name: {@code failures}
+	 * Required - API name: {@code failures}
 	 */
 	public List<ShardFailure> failures() {
 		return this.failures;
 	}
 
 	/**
-	 * API name: {@code timed_out}
+	 * Required - API name: {@code timed_out}
 	 */
 	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
 	}
 
 	/**
-	 * API name: {@code vertices}
+	 * Required - API name: {@code vertices}
 	 */
 	public List<Vertex> vertices() {
 		return this.vertices;
@@ -167,7 +167,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		private List<Vertex> vertices;
 
 		/**
-		 * API name: {@code connections}
+		 * Required - API name: {@code connections}
 		 */
 		public Builder connections(List<Connection> value) {
 			this.connections = value;
@@ -175,7 +175,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code connections}
+		 * Required - API name: {@code connections}
 		 */
 		public Builder connections(Connection... value) {
 			this.connections = Arrays.asList(value);
@@ -183,7 +183,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #connections(List)}, creating the list if needed. 4
+		 * Add a value to {@link #connections(List)}, creating the list if needed.
 		 */
 		public Builder addConnections(Connection value) {
 			if (this.connections == null) {
@@ -201,14 +201,14 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #connections(List)}, creating the list if needed. 5
+		 * Add a value to {@link #connections(List)}, creating the list if needed.
 		 */
 		public Builder addConnections(Function<Connection.Builder, ObjectBuilder<Connection>> fn) {
 			return this.addConnections(fn.apply(new Connection.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(List<ShardFailure> value) {
 			this.failures = value;
@@ -216,7 +216,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(ShardFailure... value) {
 			this.failures = Arrays.asList(value);
@@ -224,7 +224,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(ShardFailure value) {
 			if (this.failures == null) {
@@ -242,14 +242,14 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return this.addFailures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code timed_out}
+		 * Required - API name: {@code timed_out}
 		 */
 		public Builder timedOut(boolean value) {
 			this.timedOut = value;
@@ -257,7 +257,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder took(long value) {
 			this.took = value;
@@ -265,7 +265,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(List<Vertex> value) {
 			this.vertices = value;
@@ -273,7 +273,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(Vertex... value) {
 			this.vertices = Arrays.asList(value);
@@ -281,7 +281,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
 		 */
 		public Builder addVertices(Vertex value) {
 			if (this.vertices == null) {
@@ -299,7 +299,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
 		 */
 		public Builder addVertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
 			return this.addVertices(fn.apply(new Vertex.Builder()).build());

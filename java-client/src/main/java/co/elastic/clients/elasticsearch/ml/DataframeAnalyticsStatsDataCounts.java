@@ -60,11 +60,11 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	}
 
 	/**
-	 * The number of documents that are skipped during the analysis because they
-	 * contained values that are not supported by the analysis. For example, outlier
-	 * detection does not support missing fields so it skips documents with missing
-	 * fields. Likewise, all types of analysis skip documents that contain arrays
-	 * with more than one element.
+	 * Required - The number of documents that are skipped during the analysis
+	 * because they contained values that are not supported by the analysis. For
+	 * example, outlier detection does not support missing fields so it skips
+	 * documents with missing fields. Likewise, all types of analysis skip documents
+	 * that contain arrays with more than one element.
 	 * <p>
 	 * API name: {@code skipped_docs_count}
 	 */
@@ -73,8 +73,8 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	}
 
 	/**
-	 * The number of documents that are not used for training the model and can be
-	 * used for testing.
+	 * Required - The number of documents that are not used for training the model
+	 * and can be used for testing.
 	 * <p>
 	 * API name: {@code test_docs_count}
 	 */
@@ -83,7 +83,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	}
 
 	/**
-	 * The number of documents that are used for training the model.
+	 * Required - The number of documents that are used for training the model.
 	 * <p>
 	 * API name: {@code training_docs_count}
 	 */
@@ -126,11 +126,11 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		private Integer trainingDocsCount;
 
 		/**
-		 * The number of documents that are skipped during the analysis because they
-		 * contained values that are not supported by the analysis. For example, outlier
-		 * detection does not support missing fields so it skips documents with missing
-		 * fields. Likewise, all types of analysis skip documents that contain arrays
-		 * with more than one element.
+		 * Required - The number of documents that are skipped during the analysis
+		 * because they contained values that are not supported by the analysis. For
+		 * example, outlier detection does not support missing fields so it skips
+		 * documents with missing fields. Likewise, all types of analysis skip documents
+		 * that contain arrays with more than one element.
 		 * <p>
 		 * API name: {@code skipped_docs_count}
 		 */
@@ -140,8 +140,8 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		}
 
 		/**
-		 * The number of documents that are not used for training the model and can be
-		 * used for testing.
+		 * Required - The number of documents that are not used for training the model
+		 * and can be used for testing.
 		 * <p>
 		 * API name: {@code test_docs_count}
 		 */
@@ -151,7 +151,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		}
 
 		/**
-		 * The number of documents that are used for training the model.
+		 * Required - The number of documents that are used for training the model.
 		 * <p>
 		 * API name: {@code training_docs_count}
 		 */

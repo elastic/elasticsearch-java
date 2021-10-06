@@ -60,7 +60,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -121,7 +121,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		private Integer size;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public BuilderT field(String value) {
 			this.field = value;

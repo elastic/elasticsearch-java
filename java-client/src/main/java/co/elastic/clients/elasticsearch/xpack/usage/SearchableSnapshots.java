@@ -63,7 +63,7 @@ public final class SearchableSnapshots extends Base {
 	}
 
 	/**
-	 * API name: {@code indices_count}
+	 * Required - API name: {@code indices_count}
 	 */
 	public int indicesCount() {
 		return this.indicesCount;
@@ -122,7 +122,7 @@ public final class SearchableSnapshots extends Base {
 		private Integer sharedCacheIndicesCount;
 
 		/**
-		 * API name: {@code indices_count}
+		 * Required - API name: {@code indices_count}
 		 */
 		public Builder indicesCount(int value) {
 			this.indicesCount = value;

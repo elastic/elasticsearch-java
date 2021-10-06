@@ -89,7 +89,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * ID for the snapshot lifecycle policy you want to create or update.
+	 * Required - ID for the snapshot lifecycle policy you want to create or update.
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
@@ -248,7 +248,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		private String schedule;
 
 		/**
-		 * ID for the snapshot lifecycle policy you want to create or update.
+		 * Required - ID for the snapshot lifecycle policy you want to create or update.
 		 * <p>
 		 * API name: {@code policy_id}
 		 */

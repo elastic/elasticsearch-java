@@ -59,14 +59,14 @@ public final class ExecutionState implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code successful}
+	 * Required - API name: {@code successful}
 	 */
 	public boolean successful() {
 		return this.successful;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -102,7 +102,7 @@ public final class ExecutionState implements JsonpSerializable {
 		private String timestamp;
 
 		/**
-		 * API name: {@code successful}
+		 * Required - API name: {@code successful}
 		 */
 		public Builder successful(boolean value) {
 			this.successful = value;
@@ -110,7 +110,7 @@ public final class ExecutionState implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;

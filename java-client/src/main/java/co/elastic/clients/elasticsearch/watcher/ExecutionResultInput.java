@@ -64,21 +64,21 @@ public final class ExecutionResultInput implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code payload}
+	 * Required - API name: {@code payload}
 	 */
 	public Map<String, JsonData> payload() {
 		return this.payload;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public InputType type() {
 		return this.type;
@@ -125,7 +125,7 @@ public final class ExecutionResultInput implements JsonpSerializable {
 		private InputType type;
 
 		/**
-		 * API name: {@code payload}
+		 * Required - API name: {@code payload}
 		 */
 		public Builder payload(Map<String, JsonData> value) {
 			this.payload = value;
@@ -144,7 +144,7 @@ public final class ExecutionResultInput implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ActionStatusOptions value) {
 			this.status = value;
@@ -152,7 +152,7 @@ public final class ExecutionResultInput implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(InputType value) {
 			this.type = value;

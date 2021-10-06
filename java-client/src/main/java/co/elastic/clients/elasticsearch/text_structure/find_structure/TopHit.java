@@ -59,14 +59,14 @@ public final class TopHit implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public JsonData value() {
 		return this.value;
@@ -102,7 +102,7 @@ public final class TopHit implements JsonpSerializable {
 		private JsonData value;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -110,7 +110,7 @@ public final class TopHit implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(JsonData value) {
 			this.value = value;

@@ -68,7 +68,8 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains events matching the query. Each object represents a matching event.
+	 * Required - Contains events matching the query. Each object represents a
+	 * matching event.
 	 * <p>
 	 * API name: {@code events}
 	 */
@@ -77,8 +78,8 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 	}
 
 	/**
-	 * Shared field values used to constrain matches in the sequence. These are
-	 * defined using the by keyword in the EQL query syntax.
+	 * Required - Shared field values used to constrain matches in the sequence.
+	 * These are defined using the by keyword in the EQL query syntax.
 	 * <p>
 	 * API name: {@code join_keys}
 	 */
@@ -129,7 +130,8 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		private JsonpSerializer<TEvent> tEventSerializer;
 
 		/**
-		 * Contains events matching the query. Each object represents a matching event.
+		 * Required - Contains events matching the query. Each object represents a
+		 * matching event.
 		 * <p>
 		 * API name: {@code events}
 		 */
@@ -139,7 +141,8 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains events matching the query. Each object represents a matching event.
+		 * Required - Contains events matching the query. Each object represents a
+		 * matching event.
 		 * <p>
 		 * API name: {@code events}
 		 */
@@ -149,7 +152,7 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 4
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addEvents(HitsEvent<TEvent> value) {
 			if (this.events == null) {
@@ -167,15 +170,15 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 5
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addEvents(Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn) {
 			return this.addEvents(fn.apply(new HitsEvent.Builder<TEvent>()).build());
 		}
 
 		/**
-		 * Shared field values used to constrain matches in the sequence. These are
-		 * defined using the by keyword in the EQL query syntax.
+		 * Required - Shared field values used to constrain matches in the sequence.
+		 * These are defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
 		 */
@@ -185,8 +188,8 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Shared field values used to constrain matches in the sequence. These are
-		 * defined using the by keyword in the EQL query syntax.
+		 * Required - Shared field values used to constrain matches in the sequence.
+		 * These are defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
 		 */
@@ -196,7 +199,7 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #joinKeys(List)}, creating the list if needed. 4
+		 * Add a value to {@link #joinKeys(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addJoinKeys(JsonData value) {
 			if (this.joinKeys == null) {

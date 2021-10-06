@@ -110,14 +110,14 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aggregations}
+	 * Required - API name: {@code aggregations}
 	 */
 	public Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
-	 * API name: {@code chunking_config}
+	 * Required - API name: {@code chunking_config}
 	 */
 	public ChunkingConfig chunkingConfig() {
 		return this.chunkingConfig;
@@ -132,28 +132,28 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code datafeed_id}
+	 * Required - API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
-	 * API name: {@code frequency}
+	 * Required - API name: {@code frequency}
 	 */
 	public String frequency() {
 		return this.frequency;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
@@ -168,21 +168,21 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_empty_searches}
+	 * Required - API name: {@code max_empty_searches}
 	 */
 	public int maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
 	}
 
 	/**
-	 * API name: {@code query_delay}
+	 * Required - API name: {@code query_delay}
 	 */
 	public String queryDelay() {
 		return this.queryDelay;
@@ -205,7 +205,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code scroll_size}
+	 * Required - API name: {@code scroll_size}
 	 */
 	public int scrollSize() {
 		return this.scrollSize;
@@ -343,7 +343,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		private Integer scrollSize;
 
 		/**
-		 * API name: {@code aggregations}
+		 * Required - API name: {@code aggregations}
 		 */
 		public Builder aggregations(Map<String, Aggregation> value) {
 			this.aggregations = value;
@@ -376,7 +376,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code chunking_config}
+		 * Required - API name: {@code chunking_config}
 		 */
 		public Builder chunkingConfig(ChunkingConfig value) {
 			this.chunkingConfig = value;
@@ -384,7 +384,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code chunking_config}
+		 * Required - API name: {@code chunking_config}
 		 */
 		public Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
 			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
@@ -407,7 +407,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeed_id}
+		 * Required - API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
 			this.datafeedId = value;
@@ -415,7 +415,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code frequency}
+		 * Required - API name: {@code frequency}
 		 */
 		public Builder frequency(String value) {
 			this.frequency = value;
@@ -423,7 +423,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -431,7 +431,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -439,7 +439,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -450,7 +450,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -474,7 +474,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_empty_searches}
+		 * Required - API name: {@code max_empty_searches}
 		 */
 		public Builder maxEmptySearches(int value) {
 			this.maxEmptySearches = value;
@@ -482,7 +482,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -490,14 +490,14 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code query_delay}
+		 * Required - API name: {@code query_delay}
 		 */
 		public Builder queryDelay(String value) {
 			this.queryDelay = value;
@@ -571,7 +571,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code scroll_size}
+		 * Required - API name: {@code scroll_size}
 		 */
 		public Builder scrollSize(int value) {
 			this.scrollSize = value;

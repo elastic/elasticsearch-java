@@ -63,7 +63,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the namespace
+	 * Required - An identifier for the namespace
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -72,7 +72,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the service name
+	 * Required - An identifier for the service name
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -81,7 +81,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the token name
+	 * Required - An identifier for the token name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -102,7 +102,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * An identifier for the namespace
+		 * Required - An identifier for the namespace
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -112,7 +112,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the service name
+		 * Required - An identifier for the service name
 		 * <p>
 		 * API name: {@code service}
 		 */
@@ -122,7 +122,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the token name
+		 * Required - An identifier for the token name
 		 * <p>
 		 * API name: {@code name}
 		 */

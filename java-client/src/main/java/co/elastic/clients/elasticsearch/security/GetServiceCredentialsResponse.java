@@ -73,35 +73,35 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code service_account}
+	 * Required - API name: {@code service_account}
 	 */
 	public String serviceAccount() {
 		return this.serviceAccount;
 	}
 
 	/**
-	 * API name: {@code node_name}
+	 * Required - API name: {@code node_name}
 	 */
 	public String nodeName() {
 		return this.nodeName;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code tokens}
+	 * Required - API name: {@code tokens}
 	 */
 	public Map<String, EmptyObject> tokens() {
 		return this.tokens;
 	}
 
 	/**
-	 * API name: {@code file_tokens}
+	 * Required - API name: {@code file_tokens}
 	 */
 	public Map<String, EmptyObject> fileTokens() {
 		return this.fileTokens;
@@ -164,7 +164,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		private Map<String, EmptyObject> fileTokens;
 
 		/**
-		 * API name: {@code service_account}
+		 * Required - API name: {@code service_account}
 		 */
 		public Builder serviceAccount(String value) {
 			this.serviceAccount = value;
@@ -172,7 +172,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_name}
+		 * Required - API name: {@code node_name}
 		 */
 		public Builder nodeName(String value) {
 			this.nodeName = value;
@@ -180,7 +180,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -188,7 +188,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokens}
+		 * Required - API name: {@code tokens}
 		 */
 		public Builder tokens(Map<String, EmptyObject> value) {
 			this.tokens = value;
@@ -221,7 +221,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code file_tokens}
+		 * Required - API name: {@code file_tokens}
 		 */
 		public Builder fileTokens(Map<String, EmptyObject> value) {
 			this.fileTokens = value;

@@ -62,7 +62,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field_types}
+	 * Required - API name: {@code field_types}
 	 */
 	public List<FieldTypes> fieldTypes() {
 		return this.fieldTypes;
@@ -121,7 +121,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		private List<RuntimeFieldTypes> runtimeFieldTypes;
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(List<FieldTypes> value) {
 			this.fieldTypes = value;
@@ -129,7 +129,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(FieldTypes... value) {
 			this.fieldTypes = Arrays.asList(value);
@@ -137,7 +137,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
 		 */
 		public Builder addFieldTypes(FieldTypes value) {
 			if (this.fieldTypes == null) {
@@ -155,7 +155,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
 		 */
 		public Builder addFieldTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return this.addFieldTypes(fn.apply(new FieldTypes.Builder()).build());
@@ -179,7 +179,6 @@ public final class FieldTypesMappings implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #runtimeFieldTypes(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addRuntimeFieldTypes(RuntimeFieldTypes value) {
 			if (this.runtimeFieldTypes == null) {
@@ -198,7 +197,6 @@ public final class FieldTypesMappings implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #runtimeFieldTypes(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addRuntimeFieldTypes(Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
 			return this.addRuntimeFieldTypes(fn.apply(new RuntimeFieldTypes.Builder()).build());

@@ -62,14 +62,14 @@ public final class CharFilterDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code filtered_text}
+	 * Required - API name: {@code filtered_text}
 	 */
 	public List<String> filteredText() {
 		return this.filteredText;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -110,7 +110,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code filtered_text}
+		 * Required - API name: {@code filtered_text}
 		 */
 		public Builder filteredText(List<String> value) {
 			this.filteredText = value;
@@ -118,7 +118,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filtered_text}
+		 * Required - API name: {@code filtered_text}
 		 */
 		public Builder filteredText(String... value) {
 			this.filteredText = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filteredText(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filteredText(List)}, creating the list if needed.
 		 */
 		public Builder addFilteredText(String value) {
 			if (this.filteredText == null) {
@@ -137,7 +137,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

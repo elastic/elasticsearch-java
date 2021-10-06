@@ -70,7 +70,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * The UUID of the dangling index
+	 * Required - The UUID of the dangling index
 	 * <p>
 	 * API name: {@code index_uuid}
 	 */
@@ -79,7 +79,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Must be set to true in order to delete the dangling index
+	 * Required - Must be set to true in order to delete the dangling index
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
@@ -124,7 +124,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * The UUID of the dangling index
+		 * Required - The UUID of the dangling index
 		 * <p>
 		 * API name: {@code index_uuid}
 		 */
@@ -134,7 +134,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Must be set to true in order to delete the dangling index
+		 * Required - Must be set to true in order to delete the dangling index
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */

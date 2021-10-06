@@ -64,14 +64,14 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, JsonValue /*
 									 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
@@ -115,7 +115,7 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 										 */> nodes;
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -123,7 +123,7 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(
 				Map<String, JsonValue /*

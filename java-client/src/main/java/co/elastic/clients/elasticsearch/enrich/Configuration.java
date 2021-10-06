@@ -66,7 +66,7 @@ public final class Configuration implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code match}
+	 * Required - API name: {@code match}
 	 */
 	public Policy match() {
 		return this.match;
@@ -122,7 +122,7 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(Policy value) {
 			this.match = value;
@@ -130,7 +130,7 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.match(fn.apply(new Policy.Builder()).build());

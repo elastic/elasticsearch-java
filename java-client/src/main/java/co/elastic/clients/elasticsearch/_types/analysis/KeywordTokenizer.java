@@ -62,7 +62,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 	}
 
 	/**
-	 * API name: {@code buffer_size}
+	 * Required - API name: {@code buffer_size}
 	 */
 	public int bufferSize() {
 		return this.bufferSize;
@@ -89,7 +89,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 		private Integer bufferSize;
 
 		/**
-		 * API name: {@code buffer_size}
+		 * Required - API name: {@code buffer_size}
 		 */
 		public Builder bufferSize(int value) {
 			this.bufferSize = value;

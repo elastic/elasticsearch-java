@@ -71,14 +71,14 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code max_token_length}
+	 * Required - API name: {@code max_token_length}
 	 */
 	public int maxTokenLength() {
 		return this.maxTokenLength;
 	}
 
 	/**
-	 * API name: {@code stopwords}
+	 * Required - API name: {@code stopwords}
 	 */
 	public List<String> stopwords() {
 		return this.stopwords;
@@ -121,7 +121,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		private List<String> stopwords;
 
 		/**
-		 * API name: {@code max_token_length}
+		 * Required - API name: {@code max_token_length}
 		 */
 		public Builder maxTokenLength(int value) {
 			this.maxTokenLength = value;
@@ -129,7 +129,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(List<String> value) {
 			this.stopwords = value;
@@ -137,7 +137,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
@@ -145,7 +145,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {

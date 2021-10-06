@@ -62,14 +62,14 @@ public final class Overlapping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code index_patterns}
+	 * Required - API name: {@code index_patterns}
 	 */
 	public List<String> indexPatterns() {
 		return this.indexPatterns;
@@ -110,7 +110,7 @@ public final class Overlapping implements JsonpSerializable {
 		private List<String> indexPatterns;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -118,7 +118,7 @@ public final class Overlapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_patterns}
+		 * Required - API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(List<String> value) {
 			this.indexPatterns = value;
@@ -126,7 +126,7 @@ public final class Overlapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_patterns}
+		 * Required - API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(String... value) {
 			this.indexPatterns = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class Overlapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {

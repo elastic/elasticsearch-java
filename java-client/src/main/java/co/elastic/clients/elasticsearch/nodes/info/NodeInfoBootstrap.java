@@ -55,7 +55,7 @@ public final class NodeInfoBootstrap implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code memory_lock}
+	 * Required - API name: {@code memory_lock}
 	 */
 	public String memoryLock() {
 		return this.memoryLock;
@@ -86,7 +86,7 @@ public final class NodeInfoBootstrap implements JsonpSerializable {
 		private String memoryLock;
 
 		/**
-		 * API name: {@code memory_lock}
+		 * Required - API name: {@code memory_lock}
 		 */
 		public Builder memoryLock(String value) {
 			this.memoryLock = value;

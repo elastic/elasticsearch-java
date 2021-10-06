@@ -63,7 +63,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * API name: {@code language}
+	 * Required - API name: {@code language}
 	 */
 	public String language() {
 		return this.language;
@@ -90,7 +90,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 		private String language;
 
 		/**
-		 * API name: {@code language}
+		 * Required - API name: {@code language}
 		 */
 		public Builder language(String value) {
 			this.language = value;

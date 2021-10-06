@@ -78,7 +78,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	}
 
 	/**
-	 * Lists node attributes.
+	 * Required - Lists node attributes.
 	 * <p>
 	 * API name: {@code attributes}
 	 */
@@ -87,7 +87,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	}
 
 	/**
-	 * The ephemeral ID of the node.
+	 * Required - The ephemeral ID of the node.
 	 * <p>
 	 * API name: {@code ephemeral_id}
 	 */
@@ -106,7 +106,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	}
 
 	/**
-	 * The unique identifier of the node.
+	 * Required - The unique identifier of the node.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -115,7 +115,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	}
 
 	/**
-	 * The host and port where transport HTTP connections are accepted.
+	 * Required - The host and port where transport HTTP connections are accepted.
 	 * <p>
 	 * API name: {@code transport_address}
 	 */
@@ -201,7 +201,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		private List<NodeRole> roles;
 
 		/**
-		 * Lists node attributes.
+		 * Required - Lists node attributes.
 		 * <p>
 		 * API name: {@code attributes}
 		 */
@@ -222,7 +222,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * The ephemeral ID of the node.
+		 * Required - The ephemeral ID of the node.
 		 * <p>
 		 * API name: {@code ephemeral_id}
 		 */
@@ -242,7 +242,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * The unique identifier of the node.
+		 * Required - The unique identifier of the node.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -252,7 +252,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * The host and port where transport HTTP connections are accepted.
+		 * Required - The host and port where transport HTTP connections are accepted.
 		 * <p>
 		 * API name: {@code transport_address}
 		 */
@@ -278,7 +278,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {

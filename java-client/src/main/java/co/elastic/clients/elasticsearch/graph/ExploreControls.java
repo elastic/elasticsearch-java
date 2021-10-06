@@ -93,7 +93,7 @@ public final class ExploreControls implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code use_significance}
+	 * Required - API name: {@code use_significance}
 	 */
 	public boolean useSignificance() {
 		return this.useSignificance;
@@ -183,7 +183,7 @@ public final class ExploreControls implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code use_significance}
+		 * Required - API name: {@code use_significance}
 		 */
 		public Builder useSignificance(boolean value) {
 			this.useSignificance = value;

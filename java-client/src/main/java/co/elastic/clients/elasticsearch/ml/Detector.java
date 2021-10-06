@@ -169,9 +169,9 @@ public final class Detector implements JsonpSerializable {
 	}
 
 	/**
-	 * The analysis function that is used. For example, <code>count</code>,
-	 * <code>rare</code>, <code>mean</code>, <code>min</code>, <code>max</code>, or
-	 * <code>sum</code>.
+	 * Required - The analysis function that is used. For example,
+	 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
+	 * <code>max</code>, or <code>sum</code>.
 	 * <p>
 	 * API name: {@code function}
 	 */
@@ -361,7 +361,7 @@ public final class Detector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #customRules(List)}, creating the list if needed. 4
+		 * Add a value to {@link #customRules(List)}, creating the list if needed.
 		 */
 		public Builder addCustomRules(DetectionRule value) {
 			if (this.customRules == null) {
@@ -379,7 +379,7 @@ public final class Detector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #customRules(List)}, creating the list if needed. 5
+		 * Add a value to {@link #customRules(List)}, creating the list if needed.
 		 */
 		public Builder addCustomRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn) {
 			return this.addCustomRules(fn.apply(new DetectionRule.Builder()).build());
@@ -434,9 +434,9 @@ public final class Detector implements JsonpSerializable {
 		}
 
 		/**
-		 * The analysis function that is used. For example, <code>count</code>,
-		 * <code>rare</code>, <code>mean</code>, <code>min</code>, <code>max</code>, or
-		 * <code>sum</code>.
+		 * Required - The analysis function that is used. For example,
+		 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
+		 * <code>max</code>, or <code>sum</code>.
 		 * <p>
 		 * API name: {@code function}
 		 */

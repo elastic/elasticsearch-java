@@ -63,7 +63,7 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public JsonValue /* _types.Script */ script() {
 		return this.script;
@@ -89,7 +89,7 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 		private JsonValue /* _types.Script */ script;
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;

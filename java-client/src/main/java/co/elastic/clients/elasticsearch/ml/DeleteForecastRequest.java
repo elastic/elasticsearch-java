@@ -71,7 +71,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job from which to delete forecasts
+	 * Required - The ID of the job from which to delete forecasts
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -129,7 +129,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * The ID of the job from which to delete forecasts
+		 * Required - The ID of the job from which to delete forecasts
 		 * <p>
 		 * API name: {@code job_id}
 		 */

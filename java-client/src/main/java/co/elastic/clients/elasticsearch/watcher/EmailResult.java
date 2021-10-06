@@ -71,7 +71,7 @@ public final class EmailResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public EmailResult message() {
 		return this.message;
@@ -138,7 +138,7 @@ public final class EmailResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(EmailResult value) {
 			this.message = value;
@@ -146,7 +146,7 @@ public final class EmailResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
 			return this.message(fn.apply(new EmailResult.Builder()).build());

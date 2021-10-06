@@ -64,14 +64,14 @@ public final class Vector extends Base {
 	}
 
 	/**
-	 * API name: {@code dense_vector_dims_avg_count}
+	 * Required - API name: {@code dense_vector_dims_avg_count}
 	 */
 	public int denseVectorDimsAvgCount() {
 		return this.denseVectorDimsAvgCount;
 	}
 
 	/**
-	 * API name: {@code dense_vector_fields_count}
+	 * Required - API name: {@code dense_vector_fields_count}
 	 */
 	public int denseVectorFieldsCount() {
 		return this.denseVectorFieldsCount;
@@ -118,7 +118,7 @@ public final class Vector extends Base {
 		private Integer sparseVectorFieldsCount;
 
 		/**
-		 * API name: {@code dense_vector_dims_avg_count}
+		 * Required - API name: {@code dense_vector_dims_avg_count}
 		 */
 		public Builder denseVectorDimsAvgCount(int value) {
 			this.denseVectorDimsAvgCount = value;
@@ -126,7 +126,7 @@ public final class Vector extends Base {
 		}
 
 		/**
-		 * API name: {@code dense_vector_fields_count}
+		 * Required - API name: {@code dense_vector_fields_count}
 		 */
 		public Builder denseVectorFieldsCount(int value) {
 			this.denseVectorFieldsCount = value;

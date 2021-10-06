@@ -57,14 +57,14 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	}
 
 	/**
-	 * API name: {@code pivot}
+	 * Required - API name: {@code pivot}
 	 */
 	public float pivot() {
 		return this.pivot;
 	}
 
 	/**
-	 * API name: {@code exponent}
+	 * Required - API name: {@code exponent}
 	 */
 	public float exponent() {
 		return this.exponent;
@@ -100,7 +100,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		private Float exponent;
 
 		/**
-		 * API name: {@code pivot}
+		 * Required - API name: {@code pivot}
 		 */
 		public Builder pivot(float value) {
 			this.pivot = value;
@@ -108,7 +108,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		}
 
 		/**
-		 * API name: {@code exponent}
+		 * Required - API name: {@code exponent}
 		 */
 		public Builder exponent(float value) {
 			this.exponent = value;

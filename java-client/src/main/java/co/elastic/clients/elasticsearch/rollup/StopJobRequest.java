@@ -67,7 +67,7 @@ public final class StopJobRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job to stop
+	 * Required - The ID of the job to stop
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -112,7 +112,7 @@ public final class StopJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * The ID of the job to stop
+		 * Required - The ID of the job to stop
 		 * <p>
 		 * API name: {@code id}
 		 */

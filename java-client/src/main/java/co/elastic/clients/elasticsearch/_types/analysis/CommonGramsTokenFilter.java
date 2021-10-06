@@ -77,28 +77,28 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	}
 
 	/**
-	 * API name: {@code common_words}
+	 * Required - API name: {@code common_words}
 	 */
 	public List<String> commonWords() {
 		return this.commonWords;
 	}
 
 	/**
-	 * API name: {@code common_words_path}
+	 * Required - API name: {@code common_words_path}
 	 */
 	public String commonWordsPath() {
 		return this.commonWordsPath;
 	}
 
 	/**
-	 * API name: {@code ignore_case}
+	 * Required - API name: {@code ignore_case}
 	 */
 	public boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
 	/**
-	 * API name: {@code query_mode}
+	 * Required - API name: {@code query_mode}
 	 */
 	public boolean queryMode() {
 		return this.queryMode;
@@ -145,7 +145,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		private Boolean queryMode;
 
 		/**
-		 * API name: {@code common_words}
+		 * Required - API name: {@code common_words}
 		 */
 		public Builder commonWords(List<String> value) {
 			this.commonWords = value;
@@ -153,7 +153,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code common_words}
+		 * Required - API name: {@code common_words}
 		 */
 		public Builder commonWords(String... value) {
 			this.commonWords = Arrays.asList(value);
@@ -161,7 +161,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * Add a value to {@link #commonWords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #commonWords(List)}, creating the list if needed.
 		 */
 		public Builder addCommonWords(String value) {
 			if (this.commonWords == null) {
@@ -172,7 +172,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code common_words_path}
+		 * Required - API name: {@code common_words_path}
 		 */
 		public Builder commonWordsPath(String value) {
 			this.commonWordsPath = value;
@@ -180,7 +180,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code ignore_case}
+		 * Required - API name: {@code ignore_case}
 		 */
 		public Builder ignoreCase(boolean value) {
 			this.ignoreCase = value;
@@ -188,7 +188,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code query_mode}
+		 * Required - API name: {@code query_mode}
 		 */
 		public Builder queryMode(boolean value) {
 			this.queryMode = value;

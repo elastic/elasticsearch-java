@@ -62,7 +62,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * the name of the autoscaling policy
+	 * Required - the name of the autoscaling policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -71,7 +71,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -98,7 +98,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		private AutoscalingPolicy policy;
 
 		/**
-		 * the name of the autoscaling policy
+		 * Required - the name of the autoscaling policy
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -108,7 +108,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -118,7 +118,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

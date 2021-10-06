@@ -100,7 +100,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * The ID of the job
+	 * Required - The ID of the job
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -276,7 +276,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		private String end;
 
 		/**
-		 * The ID of the job
+		 * Required - The ID of the job
 		 * <p>
 		 * API name: {@code job_id}
 		 */

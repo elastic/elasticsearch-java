@@ -55,7 +55,7 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code strategy}
+	 * Required - API name: {@code strategy}
 	 */
 	public String strategy() {
 		return this.strategy;
@@ -86,7 +86,7 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 		private String strategy;
 
 		/**
-		 * API name: {@code strategy}
+		 * Required - API name: {@code strategy}
 		 */
 		public Builder strategy(String value) {
 			this.strategy = value;

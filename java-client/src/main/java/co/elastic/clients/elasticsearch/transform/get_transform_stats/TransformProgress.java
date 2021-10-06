@@ -67,35 +67,35 @@ public final class TransformProgress implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code docs_indexed}
+	 * Required - API name: {@code docs_indexed}
 	 */
 	public long docsIndexed() {
 		return this.docsIndexed;
 	}
 
 	/**
-	 * API name: {@code docs_processed}
+	 * Required - API name: {@code docs_processed}
 	 */
 	public long docsProcessed() {
 		return this.docsProcessed;
 	}
 
 	/**
-	 * API name: {@code docs_remaining}
+	 * Required - API name: {@code docs_remaining}
 	 */
 	public long docsRemaining() {
 		return this.docsRemaining;
 	}
 
 	/**
-	 * API name: {@code percent_complete}
+	 * Required - API name: {@code percent_complete}
 	 */
 	public double percentComplete() {
 		return this.percentComplete;
 	}
 
 	/**
-	 * API name: {@code total_docs}
+	 * Required - API name: {@code total_docs}
 	 */
 	public long totalDocs() {
 		return this.totalDocs;
@@ -146,7 +146,7 @@ public final class TransformProgress implements JsonpSerializable {
 		private Long totalDocs;
 
 		/**
-		 * API name: {@code docs_indexed}
+		 * Required - API name: {@code docs_indexed}
 		 */
 		public Builder docsIndexed(long value) {
 			this.docsIndexed = value;
@@ -154,7 +154,7 @@ public final class TransformProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code docs_processed}
+		 * Required - API name: {@code docs_processed}
 		 */
 		public Builder docsProcessed(long value) {
 			this.docsProcessed = value;
@@ -162,7 +162,7 @@ public final class TransformProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code docs_remaining}
+		 * Required - API name: {@code docs_remaining}
 		 */
 		public Builder docsRemaining(long value) {
 			this.docsRemaining = value;
@@ -170,7 +170,7 @@ public final class TransformProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code percent_complete}
+		 * Required - API name: {@code percent_complete}
 		 */
 		public Builder percentComplete(double value) {
 			this.percentComplete = value;
@@ -178,7 +178,7 @@ public final class TransformProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_docs}
+		 * Required - API name: {@code total_docs}
 		 */
 		public Builder totalDocs(long value) {
 			this.totalDocs = value;

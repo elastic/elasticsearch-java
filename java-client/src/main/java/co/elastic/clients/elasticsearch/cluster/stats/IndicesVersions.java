@@ -66,28 +66,28 @@ public final class IndicesVersions implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index_count}
+	 * Required - API name: {@code index_count}
 	 */
 	public int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
-	 * API name: {@code primary_shard_count}
+	 * Required - API name: {@code primary_shard_count}
 	 */
 	public int primaryShardCount() {
 		return this.primaryShardCount;
 	}
 
 	/**
-	 * API name: {@code total_primary_bytes}
+	 * Required - API name: {@code total_primary_bytes}
 	 */
 	public long totalPrimaryBytes() {
 		return this.totalPrimaryBytes;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -133,7 +133,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		private String version;
 
 		/**
-		 * API name: {@code index_count}
+		 * Required - API name: {@code index_count}
 		 */
 		public Builder indexCount(int value) {
 			this.indexCount = value;
@@ -141,7 +141,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primary_shard_count}
+		 * Required - API name: {@code primary_shard_count}
 		 */
 		public Builder primaryShardCount(int value) {
 			this.primaryShardCount = value;
@@ -149,7 +149,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_primary_bytes}
+		 * Required - API name: {@code total_primary_bytes}
 		 */
 		public Builder totalPrimaryBytes(long value) {
 			this.totalPrimaryBytes = value;
@@ -157,7 +157,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;

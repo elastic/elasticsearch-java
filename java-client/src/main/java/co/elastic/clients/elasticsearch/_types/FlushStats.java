@@ -66,14 +66,14 @@ public final class FlushStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code periodic}
+	 * Required - API name: {@code periodic}
 	 */
 	public long periodic() {
 		return this.periodic;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -88,7 +88,7 @@ public final class FlushStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -139,7 +139,7 @@ public final class FlushStats implements JsonpSerializable {
 		private Long totalTimeInMillis;
 
 		/**
-		 * API name: {@code periodic}
+		 * Required - API name: {@code periodic}
 		 */
 		public Builder periodic(long value) {
 			this.periodic = value;
@@ -147,7 +147,7 @@ public final class FlushStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -163,7 +163,7 @@ public final class FlushStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;

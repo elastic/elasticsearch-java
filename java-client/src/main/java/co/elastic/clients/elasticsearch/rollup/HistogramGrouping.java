@@ -63,14 +63,14 @@ public final class HistogramGrouping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public List<String> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * API name: {@code interval}
+	 * Required - API name: {@code interval}
 	 */
 	public long interval() {
 		return this.interval;
@@ -111,7 +111,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		private Long interval;
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(List<String> value) {
 			this.fields = value;
@@ -119,7 +119,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
@@ -127,7 +127,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -138,7 +138,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code interval}
+		 * Required - API name: {@code interval}
 		 */
 		public Builder interval(long value) {
 			this.interval = value;

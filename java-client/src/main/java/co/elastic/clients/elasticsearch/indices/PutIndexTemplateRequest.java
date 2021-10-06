@@ -99,7 +99,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Index or template name
+	 * Required - Index or template name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -265,7 +265,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		private Map<String, JsonData> meta;
 
 		/**
-		 * Index or template name
+		 * Required - Index or template name
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -291,7 +291,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -318,7 +318,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed. 4
+		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
 		 */
 		public Builder addComposedOf(String value) {
 			if (this.composedOf == null) {

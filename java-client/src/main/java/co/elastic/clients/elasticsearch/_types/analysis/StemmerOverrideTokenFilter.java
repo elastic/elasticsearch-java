@@ -70,14 +70,14 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 	}
 
 	/**
-	 * API name: {@code rules}
+	 * Required - API name: {@code rules}
 	 */
 	public List<String> rules() {
 		return this.rules;
 	}
 
 	/**
-	 * API name: {@code rules_path}
+	 * Required - API name: {@code rules_path}
 	 */
 	public String rulesPath() {
 		return this.rulesPath;
@@ -114,7 +114,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 		private String rulesPath;
 
 		/**
-		 * API name: {@code rules}
+		 * Required - API name: {@code rules}
 		 */
 		public Builder rules(List<String> value) {
 			this.rules = value;
@@ -122,7 +122,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 		}
 
 		/**
-		 * API name: {@code rules}
+		 * Required - API name: {@code rules}
 		 */
 		public Builder rules(String... value) {
 			this.rules = Arrays.asList(value);
@@ -130,7 +130,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 		}
 
 		/**
-		 * Add a value to {@link #rules(List)}, creating the list if needed. 4
+		 * Add a value to {@link #rules(List)}, creating the list if needed.
 		 */
 		public Builder addRules(String value) {
 			if (this.rules == null) {
@@ -141,7 +141,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 		}
 
 		/**
-		 * API name: {@code rules_path}
+		 * Required - API name: {@code rules_path}
 		 */
 		public Builder rulesPath(String value) {
 			this.rulesPath = value;

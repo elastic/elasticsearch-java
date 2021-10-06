@@ -478,7 +478,7 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
+		 * Add a value to {@link #exclude(List)}, creating the list if needed.
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {
@@ -545,7 +545,7 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed. 4
+		 * Add a value to {@link #include(List)}, creating the list if needed.
 		 */
 		public Builder addInclude(String value) {
 			if (this.include == null) {
@@ -651,7 +651,7 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		}
 
 		/**
-		 * Add a value to {@link #sourceFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceFields(List)}, creating the list if needed.
 		 */
 		public Builder addSourceFields(String value) {
 			if (this.sourceFields == null) {

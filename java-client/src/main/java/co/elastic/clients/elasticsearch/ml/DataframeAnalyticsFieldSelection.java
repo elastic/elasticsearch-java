@@ -77,7 +77,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	}
 
 	/**
-	 * Whether the field is selected to be included in the analysis.
+	 * Required - Whether the field is selected to be included in the analysis.
 	 * <p>
 	 * API name: {@code is_included}
 	 */
@@ -86,7 +86,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	}
 
 	/**
-	 * Whether the field is required.
+	 * Required - Whether the field is required.
 	 * <p>
 	 * API name: {@code is_required}
 	 */
@@ -106,7 +106,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	}
 
 	/**
-	 * The mapping types of the field.
+	 * Required - The mapping types of the field.
 	 * <p>
 	 * API name: {@code mapping_types}
 	 */
@@ -115,7 +115,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	}
 
 	/**
-	 * The field name.
+	 * Required - The field name.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -198,7 +198,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		private String reason;
 
 		/**
-		 * Whether the field is selected to be included in the analysis.
+		 * Required - Whether the field is selected to be included in the analysis.
 		 * <p>
 		 * API name: {@code is_included}
 		 */
@@ -208,7 +208,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		}
 
 		/**
-		 * Whether the field is required.
+		 * Required - Whether the field is required.
 		 * <p>
 		 * API name: {@code is_required}
 		 */
@@ -229,7 +229,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		}
 
 		/**
-		 * The mapping types of the field.
+		 * Required - The mapping types of the field.
 		 * <p>
 		 * API name: {@code mapping_types}
 		 */
@@ -239,7 +239,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		}
 
 		/**
-		 * The mapping types of the field.
+		 * Required - The mapping types of the field.
 		 * <p>
 		 * API name: {@code mapping_types}
 		 */
@@ -249,7 +249,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #mappingTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #mappingTypes(List)}, creating the list if needed.
 		 */
 		public Builder addMappingTypes(String value) {
 			if (this.mappingTypes == null) {
@@ -260,7 +260,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		}
 
 		/**
-		 * The field name.
+		 * Required - The field name.
 		 * <p>
 		 * API name: {@code name}
 		 */

@@ -63,7 +63,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code agg}
+	 * Required - API name: {@code agg}
 	 */
 	public String agg() {
 		return this.agg;
@@ -129,7 +129,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		private String calendarInterval;
 
 		/**
-		 * API name: {@code agg}
+		 * Required - API name: {@code agg}
 		 */
 		public Builder agg(String value) {
 			this.agg = value;

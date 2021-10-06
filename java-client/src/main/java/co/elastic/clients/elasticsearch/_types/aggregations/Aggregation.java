@@ -149,6 +149,10 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends AggregationVariant> Aggregation(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Aggregation(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

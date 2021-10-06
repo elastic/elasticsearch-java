@@ -62,21 +62,21 @@ public final class SlackAttachmentField implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code short}
+	 * Required - API name: {@code short}
 	 */
 	public boolean short_() {
 		return this.short_;
 	}
 
 	/**
-	 * API name: {@code title}
+	 * Required - API name: {@code title}
 	 */
 	public String title() {
 		return this.title;
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public String value() {
 		return this.value;
@@ -117,7 +117,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		private String value;
 
 		/**
-		 * API name: {@code short}
+		 * Required - API name: {@code short}
 		 */
 		public Builder short_(boolean value) {
 			this.short_ = value;
@@ -125,7 +125,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code title}
+		 * Required - API name: {@code title}
 		 */
 		public Builder title(String value) {
 			this.title = value;
@@ -133,7 +133,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(String value) {
 			this.value = value;

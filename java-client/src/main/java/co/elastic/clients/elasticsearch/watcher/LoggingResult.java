@@ -55,7 +55,7 @@ public final class LoggingResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code logged_text}
+	 * Required - API name: {@code logged_text}
 	 */
 	public String loggedText() {
 		return this.loggedText;
@@ -86,7 +86,7 @@ public final class LoggingResult implements JsonpSerializable {
 		private String loggedText;
 
 		/**
-		 * API name: {@code logged_text}
+		 * Required - API name: {@code logged_text}
 		 */
 		public Builder loggedText(String value) {
 			this.loggedText = value;

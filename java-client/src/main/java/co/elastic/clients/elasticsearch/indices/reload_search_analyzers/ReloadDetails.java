@@ -65,21 +65,21 @@ public final class ReloadDetails implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code reloaded_analyzers}
+	 * Required - API name: {@code reloaded_analyzers}
 	 */
 	public List<String> reloadedAnalyzers() {
 		return this.reloadedAnalyzers;
 	}
 
 	/**
-	 * API name: {@code reloaded_node_ids}
+	 * Required - API name: {@code reloaded_node_ids}
 	 */
 	public List<String> reloadedNodeIds() {
 		return this.reloadedNodeIds;
@@ -130,7 +130,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		private List<String> reloadedNodeIds;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -138,7 +138,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reloaded_analyzers}
+		 * Required - API name: {@code reloaded_analyzers}
 		 */
 		public Builder reloadedAnalyzers(List<String> value) {
 			this.reloadedAnalyzers = value;
@@ -146,7 +146,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reloaded_analyzers}
+		 * Required - API name: {@code reloaded_analyzers}
 		 */
 		public Builder reloadedAnalyzers(String... value) {
 			this.reloadedAnalyzers = Arrays.asList(value);
@@ -155,7 +155,6 @@ public final class ReloadDetails implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #reloadedAnalyzers(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addReloadedAnalyzers(String value) {
 			if (this.reloadedAnalyzers == null) {
@@ -166,7 +165,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reloaded_node_ids}
+		 * Required - API name: {@code reloaded_node_ids}
 		 */
 		public Builder reloadedNodeIds(List<String> value) {
 			this.reloadedNodeIds = value;
@@ -174,7 +173,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reloaded_node_ids}
+		 * Required - API name: {@code reloaded_node_ids}
 		 */
 		public Builder reloadedNodeIds(String... value) {
 			this.reloadedNodeIds = Arrays.asList(value);
@@ -182,7 +181,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reloadedNodeIds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #reloadedNodeIds(List)}, creating the list if needed.
 		 */
 		public Builder addReloadedNodeIds(String value) {
 			if (this.reloadedNodeIds == null) {

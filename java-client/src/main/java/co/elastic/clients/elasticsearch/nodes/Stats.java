@@ -119,133 +119,133 @@ public final class Stats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code adaptive_selection}
+	 * Required - API name: {@code adaptive_selection}
 	 */
 	public Map<String, AdaptiveSelection> adaptiveSelection() {
 		return this.adaptiveSelection;
 	}
 
 	/**
-	 * API name: {@code breakers}
+	 * Required - API name: {@code breakers}
 	 */
 	public Map<String, Breaker> breakers() {
 		return this.breakers;
 	}
 
 	/**
-	 * API name: {@code fs}
+	 * Required - API name: {@code fs}
 	 */
 	public FileSystem fs() {
 		return this.fs;
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public Http http() {
 		return this.http;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public IndexStats indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code ingest}
+	 * Required - API name: {@code ingest}
 	 */
 	public Ingest ingest() {
 		return this.ingest;
 	}
 
 	/**
-	 * API name: {@code ip}
+	 * Required - API name: {@code ip}
 	 */
 	public List<String> ip() {
 		return this.ip;
 	}
 
 	/**
-	 * API name: {@code jvm}
+	 * Required - API name: {@code jvm}
 	 */
 	public Jvm jvm() {
 		return this.jvm;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code os}
+	 * Required - API name: {@code os}
 	 */
 	public OperatingSystem os() {
 		return this.os;
 	}
 
 	/**
-	 * API name: {@code process}
+	 * Required - API name: {@code process}
 	 */
 	public Process process() {
 		return this.process;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public Scripting script() {
 		return this.script;
 	}
 
 	/**
-	 * API name: {@code thread_pool}
+	 * Required - API name: {@code thread_pool}
 	 */
 	public Map<String, ThreadCount> threadPool() {
 		return this.threadPool;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public Transport transport() {
 		return this.transport;
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
@@ -399,7 +399,7 @@ public final class Stats implements JsonpSerializable {
 		private Map<String, String> attributes;
 
 		/**
-		 * API name: {@code adaptive_selection}
+		 * Required - API name: {@code adaptive_selection}
 		 */
 		public Builder adaptiveSelection(Map<String, AdaptiveSelection> value) {
 			this.adaptiveSelection = value;
@@ -437,7 +437,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code breakers}
+		 * Required - API name: {@code breakers}
 		 */
 		public Builder breakers(Map<String, Breaker> value) {
 			this.breakers = value;
@@ -470,7 +470,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fs}
+		 * Required - API name: {@code fs}
 		 */
 		public Builder fs(FileSystem value) {
 			this.fs = value;
@@ -478,14 +478,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fs}
+		 * Required - API name: {@code fs}
 		 */
 		public Builder fs(Function<FileSystem.Builder, ObjectBuilder<FileSystem>> fn) {
 			return this.fs(fn.apply(new FileSystem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public Builder host(String value) {
 			this.host = value;
@@ -493,7 +493,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Http value) {
 			this.http = value;
@@ -501,14 +501,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<Http.Builder, ObjectBuilder<Http>> fn) {
 			return this.http(fn.apply(new Http.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(IndexStats value) {
 			this.indices = value;
@@ -516,14 +516,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.indices(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(Ingest value) {
 			this.ingest = value;
@@ -531,14 +531,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
 			return this.ingest(fn.apply(new Ingest.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ip}
+		 * Required - API name: {@code ip}
 		 */
 		public Builder ip(List<String> value) {
 			this.ip = value;
@@ -546,7 +546,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ip}
+		 * Required - API name: {@code ip}
 		 */
 		public Builder ip(String... value) {
 			this.ip = Arrays.asList(value);
@@ -554,7 +554,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #ip(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ip(List)}, creating the list if needed.
 		 */
 		public Builder addIp(String value) {
 			if (this.ip == null) {
@@ -565,7 +565,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code jvm}
+		 * Required - API name: {@code jvm}
 		 */
 		public Builder jvm(Jvm value) {
 			this.jvm = value;
@@ -573,14 +573,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code jvm}
+		 * Required - API name: {@code jvm}
 		 */
 		public Builder jvm(Function<Jvm.Builder, ObjectBuilder<Jvm>> fn) {
 			return this.jvm(fn.apply(new Jvm.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -588,7 +588,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code os}
+		 * Required - API name: {@code os}
 		 */
 		public Builder os(OperatingSystem value) {
 			this.os = value;
@@ -596,14 +596,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code os}
+		 * Required - API name: {@code os}
 		 */
 		public Builder os(Function<OperatingSystem.Builder, ObjectBuilder<OperatingSystem>> fn) {
 			return this.os(fn.apply(new OperatingSystem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code process}
+		 * Required - API name: {@code process}
 		 */
 		public Builder process(Process value) {
 			this.process = value;
@@ -611,14 +611,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code process}
+		 * Required - API name: {@code process}
 		 */
 		public Builder process(Function<Process.Builder, ObjectBuilder<Process>> fn) {
 			return this.process(fn.apply(new Process.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(List<NodeRole> value) {
 			this.roles = value;
@@ -626,7 +626,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
@@ -634,7 +634,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
@@ -645,7 +645,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(Scripting value) {
 			this.script = value;
@@ -653,14 +653,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(Function<Scripting.Builder, ObjectBuilder<Scripting>> fn) {
 			return this.script(fn.apply(new Scripting.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code thread_pool}
+		 * Required - API name: {@code thread_pool}
 		 */
 		public Builder threadPool(Map<String, ThreadCount> value) {
 			this.threadPool = value;
@@ -693,7 +693,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(long value) {
 			this.timestamp = value;
@@ -701,7 +701,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(Transport value) {
 			this.transport = value;
@@ -709,14 +709,14 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(Function<Transport.Builder, ObjectBuilder<Transport>> fn) {
 			return this.transport(fn.apply(new Transport.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
 			this.transportAddress = value;
@@ -724,7 +724,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;

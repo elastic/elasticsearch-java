@@ -69,14 +69,14 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code hits}
+	 * Required - API name: {@code hits}
 	 */
 	public List<Hit<Map<String, JsonData>>> hits() {
 		return this.hits;
@@ -135,7 +135,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		private Double maxScore;
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ value) {
 			this.total = value;
@@ -143,7 +143,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder hits(List<Hit<Map<String, JsonData>>> value) {
 			this.hits = value;
@@ -151,7 +151,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder hits(Hit<Map<String, JsonData>>... value) {
 			this.hits = Arrays.asList(value);
@@ -159,7 +159,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed. 4
+		 * Add a value to {@link #hits(List)}, creating the list if needed.
 		 */
 		public Builder addHits(Hit<Map<String, JsonData>> value) {
 			if (this.hits == null) {
@@ -178,7 +178,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed. 5
+		 * Add a value to {@link #hits(List)}, creating the list if needed.
 		 */
 		public Builder addHits(
 				Function<Hit.Builder<Map<String, JsonData>>, ObjectBuilder<Hit<Map<String, JsonData>>>> fn) {

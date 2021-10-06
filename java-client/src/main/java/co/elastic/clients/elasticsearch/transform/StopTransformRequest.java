@@ -79,7 +79,7 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * The id of the transform to stop
+	 * Required - The id of the transform to stop
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -165,7 +165,7 @@ public final class StopTransformRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * The id of the transform to stop
+		 * Required - The id of the transform to stop
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

@@ -85,42 +85,42 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 	}
 
 	/**
-	 * API name: {@code discard_punctuation}
+	 * Required - API name: {@code discard_punctuation}
 	 */
 	public boolean discardPunctuation() {
 		return this.discardPunctuation;
 	}
 
 	/**
-	 * API name: {@code mode}
+	 * Required - API name: {@code mode}
 	 */
 	public KuromojiTokenizationMode mode() {
 		return this.mode;
 	}
 
 	/**
-	 * API name: {@code nbest_cost}
+	 * Required - API name: {@code nbest_cost}
 	 */
 	public int nbestCost() {
 		return this.nbestCost;
 	}
 
 	/**
-	 * API name: {@code nbest_examples}
+	 * Required - API name: {@code nbest_examples}
 	 */
 	public String nbestExamples() {
 		return this.nbestExamples;
 	}
 
 	/**
-	 * API name: {@code user_dictionary}
+	 * Required - API name: {@code user_dictionary}
 	 */
 	public String userDictionary() {
 		return this.userDictionary;
 	}
 
 	/**
-	 * API name: {@code user_dictionary_rules}
+	 * Required - API name: {@code user_dictionary_rules}
 	 */
 	public List<String> userDictionaryRules() {
 		return this.userDictionaryRules;
@@ -177,7 +177,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		private List<String> userDictionaryRules;
 
 		/**
-		 * API name: {@code discard_punctuation}
+		 * Required - API name: {@code discard_punctuation}
 		 */
 		public Builder discardPunctuation(boolean value) {
 			this.discardPunctuation = value;
@@ -185,7 +185,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		}
 
 		/**
-		 * API name: {@code mode}
+		 * Required - API name: {@code mode}
 		 */
 		public Builder mode(KuromojiTokenizationMode value) {
 			this.mode = value;
@@ -193,7 +193,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		}
 
 		/**
-		 * API name: {@code nbest_cost}
+		 * Required - API name: {@code nbest_cost}
 		 */
 		public Builder nbestCost(int value) {
 			this.nbestCost = value;
@@ -201,7 +201,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		}
 
 		/**
-		 * API name: {@code nbest_examples}
+		 * Required - API name: {@code nbest_examples}
 		 */
 		public Builder nbestExamples(String value) {
 			this.nbestExamples = value;
@@ -209,7 +209,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		}
 
 		/**
-		 * API name: {@code user_dictionary}
+		 * Required - API name: {@code user_dictionary}
 		 */
 		public Builder userDictionary(String value) {
 			this.userDictionary = value;
@@ -217,7 +217,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		}
 
 		/**
-		 * API name: {@code user_dictionary_rules}
+		 * Required - API name: {@code user_dictionary_rules}
 		 */
 		public Builder userDictionaryRules(List<String> value) {
 			this.userDictionaryRules = value;
@@ -225,7 +225,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		}
 
 		/**
-		 * API name: {@code user_dictionary_rules}
+		 * Required - API name: {@code user_dictionary_rules}
 		 */
 		public Builder userDictionaryRules(String... value) {
 			this.userDictionaryRules = Arrays.asList(value);
@@ -234,7 +234,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 
 		/**
 		 * Add a value to {@link #userDictionaryRules(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addUserDictionaryRules(String value) {
 			if (this.userDictionaryRules == null) {

@@ -63,28 +63,28 @@ public final class JobStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code avg}
+	 * Required - API name: {@code avg}
 	 */
 	public double avg() {
 		return this.avg;
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public double max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public double min() {
 		return this.min;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public double total() {
 		return this.total;
@@ -130,7 +130,7 @@ public final class JobStatistics implements JsonpSerializable {
 		private Double total;
 
 		/**
-		 * API name: {@code avg}
+		 * Required - API name: {@code avg}
 		 */
 		public Builder avg(double value) {
 			this.avg = value;
@@ -138,7 +138,7 @@ public final class JobStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(double value) {
 			this.max = value;
@@ -146,7 +146,7 @@ public final class JobStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder min(double value) {
 			this.min = value;
@@ -154,7 +154,7 @@ public final class JobStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(double value) {
 			this.total = value;

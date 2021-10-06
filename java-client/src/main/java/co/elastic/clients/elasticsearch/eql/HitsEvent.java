@@ -77,7 +77,7 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 	}
 
 	/**
-	 * Name of the index containing the event.
+	 * Required - Name of the index containing the event.
 	 * <p>
 	 * API name: {@code _index}
 	 */
@@ -86,7 +86,8 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 	}
 
 	/**
-	 * Unique identifier for the event. This ID is only unique within the index.
+	 * Required - Unique identifier for the event. This ID is only unique within the
+	 * index.
 	 * <p>
 	 * API name: {@code _id}
 	 */
@@ -95,7 +96,7 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 	}
 
 	/**
-	 * Original JSON body passed for the event at index time.
+	 * Required - Original JSON body passed for the event at index time.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -170,7 +171,7 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 		private JsonpSerializer<TEvent> tEventSerializer;
 
 		/**
-		 * Name of the index containing the event.
+		 * Required - Name of the index containing the event.
 		 * <p>
 		 * API name: {@code _index}
 		 */
@@ -180,7 +181,8 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Unique identifier for the event. This ID is only unique within the index.
+		 * Required - Unique identifier for the event. This ID is only unique within the
+		 * index.
 		 * <p>
 		 * API name: {@code _id}
 		 */
@@ -190,7 +192,7 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Original JSON body passed for the event at index time.
+		 * Required - Original JSON body passed for the event at index time.
 		 * <p>
 		 * API name: {@code _source}
 		 */

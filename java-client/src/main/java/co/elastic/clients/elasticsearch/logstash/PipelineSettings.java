@@ -74,49 +74,49 @@ public final class PipelineSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code pipeline.workers}
+	 * Required - API name: {@code pipeline.workers}
 	 */
 	public int pipelineWorkers() {
 		return this.pipelineWorkers;
 	}
 
 	/**
-	 * API name: {@code pipeline.batch.size}
+	 * Required - API name: {@code pipeline.batch.size}
 	 */
 	public int pipelineBatchSize() {
 		return this.pipelineBatchSize;
 	}
 
 	/**
-	 * API name: {@code pipeline.batch.delay}
+	 * Required - API name: {@code pipeline.batch.delay}
 	 */
 	public int pipelineBatchDelay() {
 		return this.pipelineBatchDelay;
 	}
 
 	/**
-	 * API name: {@code queue.type}
+	 * Required - API name: {@code queue.type}
 	 */
 	public String queueType() {
 		return this.queueType;
 	}
 
 	/**
-	 * API name: {@code queue.max_bytes.number}
+	 * Required - API name: {@code queue.max_bytes.number}
 	 */
 	public int queueMaxBytesNumber() {
 		return this.queueMaxBytesNumber;
 	}
 
 	/**
-	 * API name: {@code queue.max_bytes.units}
+	 * Required - API name: {@code queue.max_bytes.units}
 	 */
 	public String queueMaxBytesUnits() {
 		return this.queueMaxBytesUnits;
 	}
 
 	/**
-	 * API name: {@code queue.checkpoint.writes}
+	 * Required - API name: {@code queue.checkpoint.writes}
 	 */
 	public int queueCheckpointWrites() {
 		return this.queueCheckpointWrites;
@@ -177,7 +177,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		private Integer queueCheckpointWrites;
 
 		/**
-		 * API name: {@code pipeline.workers}
+		 * Required - API name: {@code pipeline.workers}
 		 */
 		public Builder pipelineWorkers(int value) {
 			this.pipelineWorkers = value;
@@ -185,7 +185,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline.batch.size}
+		 * Required - API name: {@code pipeline.batch.size}
 		 */
 		public Builder pipelineBatchSize(int value) {
 			this.pipelineBatchSize = value;
@@ -193,7 +193,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline.batch.delay}
+		 * Required - API name: {@code pipeline.batch.delay}
 		 */
 		public Builder pipelineBatchDelay(int value) {
 			this.pipelineBatchDelay = value;
@@ -201,7 +201,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue.type}
+		 * Required - API name: {@code queue.type}
 		 */
 		public Builder queueType(String value) {
 			this.queueType = value;
@@ -209,7 +209,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue.max_bytes.number}
+		 * Required - API name: {@code queue.max_bytes.number}
 		 */
 		public Builder queueMaxBytesNumber(int value) {
 			this.queueMaxBytesNumber = value;
@@ -217,7 +217,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue.max_bytes.units}
+		 * Required - API name: {@code queue.max_bytes.units}
 		 */
 		public Builder queueMaxBytesUnits(String value) {
 			this.queueMaxBytesUnits = value;
@@ -225,7 +225,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue.checkpoint.writes}
+		 * Required - API name: {@code queue.checkpoint.writes}
 		 */
 		public Builder queueCheckpointWrites(int value) {
 			this.queueCheckpointWrites = value;

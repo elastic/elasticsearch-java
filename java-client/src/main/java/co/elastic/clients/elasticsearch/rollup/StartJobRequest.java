@@ -57,7 +57,7 @@ public final class StartJobRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job to start
+	 * Required - The ID of the job to start
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -74,7 +74,7 @@ public final class StartJobRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * The ID of the job to start
+		 * Required - The ID of the job to start
 		 * <p>
 		 * API name: {@code id}
 		 */

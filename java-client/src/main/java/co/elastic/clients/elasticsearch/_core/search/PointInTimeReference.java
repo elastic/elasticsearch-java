@@ -59,7 +59,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
@@ -108,7 +108,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 		private String keepAlive;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;

@@ -143,7 +143,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public List<String> dataStreams() {
 		return this.dataStreams;
@@ -198,7 +198,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
@@ -237,7 +237,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public String snapshot() {
 		return this.snapshot;
@@ -276,7 +276,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code uuid}
+	 * Required - API name: {@code uuid}
 	 */
 	public String uuid() {
 		return this.uuid;
@@ -535,7 +535,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		private List<InfoFeatureState> featureStates;
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(List<String> value) {
 			this.dataStreams = value;
@@ -543,7 +543,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(String... value) {
 			this.dataStreams = Arrays.asList(value);
@@ -551,7 +551,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(String value) {
 			if (this.dataStreams == null) {
@@ -610,7 +610,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(SnapshotShardFailure value) {
 			if (this.failures == null) {
@@ -628,7 +628,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
 			return this.addFailures(fn.apply(new SnapshotShardFailure.Builder()).build());
@@ -643,7 +643,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -651,7 +651,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -659,7 +659,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -738,7 +738,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
 			this.snapshot = value;
@@ -785,7 +785,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uuid}
+		 * Required - API name: {@code uuid}
 		 */
 		public Builder uuid(String value) {
 			this.uuid = value;
@@ -825,7 +825,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureStates(InfoFeatureState value) {
 			if (this.featureStates == null) {
@@ -843,7 +843,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 5
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
 			return this.addFeatureStates(fn.apply(new InfoFeatureState.Builder()).build());

@@ -61,21 +61,21 @@ public final class SecurityRolesNative implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code dls}
+	 * Required - API name: {@code dls}
 	 */
 	public boolean dls() {
 		return this.dls;
 	}
 
 	/**
-	 * API name: {@code fls}
+	 * Required - API name: {@code fls}
 	 */
 	public boolean fls() {
 		return this.fls;
 	}
 
 	/**
-	 * API name: {@code size}
+	 * Required - API name: {@code size}
 	 */
 	public long size() {
 		return this.size;
@@ -116,7 +116,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		private Long size;
 
 		/**
-		 * API name: {@code dls}
+		 * Required - API name: {@code dls}
 		 */
 		public Builder dls(boolean value) {
 			this.dls = value;
@@ -124,7 +124,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fls}
+		 * Required - API name: {@code fls}
 		 */
 		public Builder fls(boolean value) {
 			this.fls = value;
@@ -132,7 +132,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
 		public Builder size(long value) {
 			this.size = value;

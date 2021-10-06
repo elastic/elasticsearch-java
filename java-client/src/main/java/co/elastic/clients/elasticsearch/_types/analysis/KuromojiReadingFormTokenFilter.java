@@ -62,7 +62,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 	}
 
 	/**
-	 * API name: {@code use_romaji}
+	 * Required - API name: {@code use_romaji}
 	 */
 	public boolean useRomaji() {
 		return this.useRomaji;
@@ -89,7 +89,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 		private Boolean useRomaji;
 
 		/**
-		 * API name: {@code use_romaji}
+		 * Required - API name: {@code use_romaji}
 		 */
 		public Builder useRomaji(boolean value) {
 			this.useRomaji = value;

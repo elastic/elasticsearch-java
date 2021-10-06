@@ -81,28 +81,28 @@ public final class RecoveryFiles implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code percent}
+	 * Required - API name: {@code percent}
 	 */
 	public String percent() {
 		return this.percent;
 	}
 
 	/**
-	 * API name: {@code recovered}
+	 * Required - API name: {@code recovered}
 	 */
 	public long recovered() {
 		return this.recovered;
 	}
 
 	/**
-	 * API name: {@code reused}
+	 * Required - API name: {@code reused}
 	 */
 	public long reused() {
 		return this.reused;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -179,7 +179,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed. 4
+		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
 		public Builder addDetails(FileDetails value) {
 			if (this.details == null) {
@@ -197,14 +197,14 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed. 5
+		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
 		public Builder addDetails(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
 			return this.addDetails(fn.apply(new FileDetails.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code percent}
+		 * Required - API name: {@code percent}
 		 */
 		public Builder percent(String value) {
 			this.percent = value;
@@ -212,7 +212,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code recovered}
+		 * Required - API name: {@code recovered}
 		 */
 		public Builder recovered(long value) {
 			this.recovered = value;
@@ -220,7 +220,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reused}
+		 * Required - API name: {@code reused}
 		 */
 		public Builder reused(long value) {
 			this.reused = value;
@@ -228,7 +228,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;

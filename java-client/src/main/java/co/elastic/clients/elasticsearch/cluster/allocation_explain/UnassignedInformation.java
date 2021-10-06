@@ -80,7 +80,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code at}
+	 * Required - API name: {@code at}
 	 */
 	public String at() {
 		return this.at;
@@ -95,7 +95,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public UnassignedInformationReason reason() {
 		return this.reason;
@@ -209,7 +209,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		private String allocationStatus;
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(String value) {
 			this.at = value;
@@ -225,7 +225,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(UnassignedInformationReason value) {
 			this.reason = value;

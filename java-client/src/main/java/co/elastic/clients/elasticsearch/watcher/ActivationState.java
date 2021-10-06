@@ -59,14 +59,14 @@ public final class ActivationState implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code active}
+	 * Required - API name: {@code active}
 	 */
 	public boolean active() {
 		return this.active;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -102,7 +102,7 @@ public final class ActivationState implements JsonpSerializable {
 		private String timestamp;
 
 		/**
-		 * API name: {@code active}
+		 * Required - API name: {@code active}
 		 */
 		public Builder active(boolean value) {
 			this.active = value;
@@ -110,7 +110,7 @@ public final class ActivationState implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;

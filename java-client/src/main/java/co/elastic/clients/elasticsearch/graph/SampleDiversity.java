@@ -59,14 +59,14 @@ public final class SampleDiversity implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code max_docs_per_value}
+	 * Required - API name: {@code max_docs_per_value}
 	 */
 	public int maxDocsPerValue() {
 		return this.maxDocsPerValue;
@@ -102,7 +102,7 @@ public final class SampleDiversity implements JsonpSerializable {
 		private Integer maxDocsPerValue;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -110,7 +110,7 @@ public final class SampleDiversity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_docs_per_value}
+		 * Required - API name: {@code max_docs_per_value}
 		 */
 		public Builder maxDocsPerValue(int value) {
 			this.maxDocsPerValue = value;

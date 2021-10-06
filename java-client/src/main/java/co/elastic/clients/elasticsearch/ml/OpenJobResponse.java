@@ -54,7 +54,7 @@ public final class OpenJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code opened}
+	 * Required - API name: {@code opened}
 	 */
 	public boolean opened() {
 		return this.opened;
@@ -85,7 +85,7 @@ public final class OpenJobResponse implements JsonpSerializable {
 		private Boolean opened;
 
 		/**
-		 * API name: {@code opened}
+		 * Required - API name: {@code opened}
 		 */
 		public Builder opened(boolean value) {
 			this.opened = value;

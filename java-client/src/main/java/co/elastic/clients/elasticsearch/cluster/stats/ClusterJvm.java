@@ -68,28 +68,28 @@ public final class ClusterJvm implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_uptime_in_millis}
+	 * Required - API name: {@code max_uptime_in_millis}
 	 */
 	public long maxUptimeInMillis() {
 		return this.maxUptimeInMillis;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public ClusterJvmMemory mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code threads}
+	 * Required - API name: {@code threads}
 	 */
 	public long threads() {
 		return this.threads;
 	}
 
 	/**
-	 * API name: {@code versions}
+	 * Required - API name: {@code versions}
 	 */
 	public List<ClusterJvmVersion> versions() {
 		return this.versions;
@@ -140,7 +140,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		private List<ClusterJvmVersion> versions;
 
 		/**
-		 * API name: {@code max_uptime_in_millis}
+		 * Required - API name: {@code max_uptime_in_millis}
 		 */
 		public Builder maxUptimeInMillis(long value) {
 			this.maxUptimeInMillis = value;
@@ -148,7 +148,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(ClusterJvmMemory value) {
 			this.mem = value;
@@ -156,14 +156,14 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<ClusterJvmMemory.Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
 			return this.mem(fn.apply(new ClusterJvmMemory.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(long value) {
 			this.threads = value;
@@ -171,7 +171,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code versions}
+		 * Required - API name: {@code versions}
 		 */
 		public Builder versions(List<ClusterJvmVersion> value) {
 			this.versions = value;
@@ -179,7 +179,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code versions}
+		 * Required - API name: {@code versions}
 		 */
 		public Builder versions(ClusterJvmVersion... value) {
 			this.versions = Arrays.asList(value);
@@ -187,7 +187,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #versions(List)}, creating the list if needed.
 		 */
 		public Builder addVersions(ClusterJvmVersion value) {
 			if (this.versions == null) {
@@ -205,7 +205,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #versions(List)}, creating the list if needed.
 		 */
 		public Builder addVersions(Function<ClusterJvmVersion.Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
 			return this.addVersions(fn.apply(new ClusterJvmVersion.Builder()).build());

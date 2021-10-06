@@ -71,35 +71,35 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code application}
+	 * Required - API name: {@code application}
 	 */
 	public Map<String, Map<String, Map<String, Boolean>>> application() {
 		return this.application;
 	}
 
 	/**
-	 * API name: {@code cluster}
+	 * Required - API name: {@code cluster}
 	 */
 	public Map<String, Boolean> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * API name: {@code has_all_requested}
+	 * Required - API name: {@code has_all_requested}
 	 */
 	public boolean hasAllRequested() {
 		return this.hasAllRequested;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public Map<String, Map<String, Boolean>> index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
@@ -186,7 +186,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		private String username;
 
 		/**
-		 * API name: {@code application}
+		 * Required - API name: {@code application}
 		 */
 		public Builder application(Map<String, Map<String, Map<String, Boolean>>> value) {
 			this.application = value;
@@ -205,7 +205,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(Map<String, Boolean> value) {
 			this.cluster = value;
@@ -224,7 +224,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code has_all_requested}
+		 * Required - API name: {@code has_all_requested}
 		 */
 		public Builder hasAllRequested(boolean value) {
 			this.hasAllRequested = value;
@@ -232,7 +232,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(Map<String, Map<String, Boolean>> value) {
 			this.index = value;
@@ -251,7 +251,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;

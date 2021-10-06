@@ -143,14 +143,14 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allow_lazy_open}
+	 * Required - API name: {@code allow_lazy_open}
 	 */
 	public boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
 	/**
-	 * API name: {@code analysis_config}
+	 * Required - API name: {@code analysis_config}
 	 */
 	public AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
@@ -165,7 +165,7 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code background_persist_interval}
+	 * Required - API name: {@code background_persist_interval}
 	 */
 	public String backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
@@ -180,7 +180,7 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code create_time}
+	 * Required - API name: {@code create_time}
 	 */
 	public int createTime() {
 		return this.createTime;
@@ -203,7 +203,7 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_description}
+	 * Required - API name: {@code data_description}
 	 */
 	public DataDescription dataDescription() {
 		return this.dataDescription;
@@ -250,21 +250,21 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code job_type}
+	 * Required - API name: {@code job_type}
 	 */
 	public String jobType() {
 		return this.jobType;
 	}
 
 	/**
-	 * API name: {@code job_version}
+	 * Required - API name: {@code job_version}
 	 */
 	public String jobVersion() {
 		return this.jobVersion;
@@ -287,7 +287,7 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code model_snapshot_retention_days}
+	 * Required - API name: {@code model_snapshot_retention_days}
 	 */
 	public long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
@@ -302,7 +302,7 @@ public final class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code results_index_name}
+	 * Required - API name: {@code results_index_name}
 	 */
 	public String resultsIndexName() {
 		return this.resultsIndexName;
@@ -515,7 +515,7 @@ public final class Job implements JsonpSerializable {
 		private Long resultsRetentionDays;
 
 		/**
-		 * API name: {@code allow_lazy_open}
+		 * Required - API name: {@code allow_lazy_open}
 		 */
 		public Builder allowLazyOpen(boolean value) {
 			this.allowLazyOpen = value;
@@ -523,7 +523,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_config}
+		 * Required - API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(AnalysisConfig value) {
 			this.analysisConfig = value;
@@ -531,7 +531,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_config}
+		 * Required - API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
@@ -553,7 +553,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code background_persist_interval}
+		 * Required - API name: {@code background_persist_interval}
 		 */
 		public Builder backgroundPersistInterval(String value) {
 			this.backgroundPersistInterval = value;
@@ -576,7 +576,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code create_time}
+		 * Required - API name: {@code create_time}
 		 */
 		public Builder createTime(int value) {
 			this.createTime = value;
@@ -607,7 +607,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_description}
+		 * Required - API name: {@code data_description}
 		 */
 		public Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
@@ -615,7 +615,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_description}
+		 * Required - API name: {@code data_description}
 		 */
 		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
@@ -677,7 +677,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -688,7 +688,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -696,7 +696,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_type}
+		 * Required - API name: {@code job_type}
 		 */
 		public Builder jobType(String value) {
 			this.jobType = value;
@@ -704,7 +704,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_version}
+		 * Required - API name: {@code job_version}
 		 */
 		public Builder jobVersion(String value) {
 			this.jobVersion = value;
@@ -735,7 +735,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model_snapshot_retention_days}
+		 * Required - API name: {@code model_snapshot_retention_days}
 		 */
 		public Builder modelSnapshotRetentionDays(long value) {
 			this.modelSnapshotRetentionDays = value;
@@ -751,7 +751,7 @@ public final class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code results_index_name}
+		 * Required - API name: {@code results_index_name}
 		 */
 		public Builder resultsIndexName(String value) {
 			this.resultsIndexName = value;

@@ -72,6 +72,10 @@ public class Suggest implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends SuggestVariant> Suggest(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Suggest(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

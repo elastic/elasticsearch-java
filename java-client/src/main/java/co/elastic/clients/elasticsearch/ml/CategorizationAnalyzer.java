@@ -179,7 +179,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilter(CharFilter value) {
 			if (this.charFilter == null) {
@@ -197,7 +197,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 5
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
 			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
@@ -236,7 +236,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(TokenFilter value) {
 			if (this.filter == null) {
@@ -254,7 +254,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
 			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());

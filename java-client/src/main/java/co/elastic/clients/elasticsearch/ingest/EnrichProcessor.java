@@ -88,7 +88,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -119,7 +119,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	}
 
 	/**
-	 * API name: {@code policy_name}
+	 * Required - API name: {@code policy_name}
 	 */
 	public String policyName() {
 		return this.policyName;
@@ -134,7 +134,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -207,7 +207,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -239,7 +239,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code policy_name}
+		 * Required - API name: {@code policy_name}
 		 */
 		public Builder policyName(String value) {
 			this.policyName = value;
@@ -255,7 +255,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

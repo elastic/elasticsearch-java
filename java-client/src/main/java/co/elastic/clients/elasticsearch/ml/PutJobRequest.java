@@ -124,9 +124,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The identifier for the anomaly detection job. This identifier can contain
-	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
+	 * Required - The identifier for the anomaly detection job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -153,8 +153,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies how to analyze the data. After you create a job, you cannot change
-	 * the analysis configuration; all the properties are informational.
+	 * Required - Specifies how to analyze the data. After you create a job, you
+	 * cannot change the analysis configuration; all the properties are
+	 * informational.
 	 * <p>
 	 * API name: {@code analysis_config}
 	 */
@@ -176,11 +177,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Advanced configuration option. The time between each periodic persistence of
-	 * the model. The default value is a randomized value between 3 to 4 hours,
-	 * which avoids all jobs persisting at exactly the same time. The smallest
-	 * allowed value is 1 hour. For very large models (several GB), persistence
-	 * could take 10-20 minutes, so do not set the
+	 * Required - Advanced configuration option. The time between each periodic
+	 * persistence of the model. The default value is a randomized value between 3
+	 * to 4 hours, which avoids all jobs persisting at exactly the same time. The
+	 * smallest allowed value is 1 hour. For very large models (several GB),
+	 * persistence could take 10-20 minutes, so do not set the
 	 * <code>background_persist_interval</code> value too low.
 	 * <p>
 	 * API name: {@code background_persist_interval}
@@ -214,10 +215,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Defines the format of the input data when you send data to the job by using
-	 * the post data API. Note that when configure a datafeed, these properties are
-	 * automatically set. When data is received via the post data API, it is not
-	 * stored in Elasticsearch. Only the results for anomaly detection are retained.
+	 * Required - Defines the format of the input data when you send data to the job
+	 * by using the post data API. Note that when configure a datafeed, these
+	 * properties are automatically set. When data is received via the post data
+	 * API, it is not stored in Elasticsearch. Only the results for anomaly
+	 * detection are retained.
 	 * <p>
 	 * API name: {@code data_description}
 	 */
@@ -479,9 +481,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		private Long resultsRetentionDays;
 
 		/**
-		 * The identifier for the anomaly detection job. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * Required - The identifier for the anomaly detection job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -509,8 +511,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies how to analyze the data. After you create a job, you cannot change
-		 * the analysis configuration; all the properties are informational.
+		 * Required - Specifies how to analyze the data. After you create a job, you
+		 * cannot change the analysis configuration; all the properties are
+		 * informational.
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
@@ -520,8 +523,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies how to analyze the data. After you create a job, you cannot change
-		 * the analysis configuration; all the properties are informational.
+		 * Required - Specifies how to analyze the data. After you create a job, you
+		 * cannot change the analysis configuration; all the properties are
+		 * informational.
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
@@ -555,11 +559,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Advanced configuration option. The time between each periodic persistence of
-		 * the model. The default value is a randomized value between 3 to 4 hours,
-		 * which avoids all jobs persisting at exactly the same time. The smallest
-		 * allowed value is 1 hour. For very large models (several GB), persistence
-		 * could take 10-20 minutes, so do not set the
+		 * Required - Advanced configuration option. The time between each periodic
+		 * persistence of the model. The default value is a randomized value between 3
+		 * to 4 hours, which avoids all jobs persisting at exactly the same time. The
+		 * smallest allowed value is 1 hour. For very large models (several GB),
+		 * persistence could take 10-20 minutes, so do not set the
 		 * <code>background_persist_interval</code> value too low.
 		 * <p>
 		 * API name: {@code background_persist_interval}
@@ -603,10 +607,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Defines the format of the input data when you send data to the job by using
-		 * the post data API. Note that when configure a datafeed, these properties are
-		 * automatically set. When data is received via the post data API, it is not
-		 * stored in Elasticsearch. Only the results for anomaly detection are retained.
+		 * Required - Defines the format of the input data when you send data to the job
+		 * by using the post data API. Note that when configure a datafeed, these
+		 * properties are automatically set. When data is received via the post data
+		 * API, it is not stored in Elasticsearch. Only the results for anomaly
+		 * detection are retained.
 		 * <p>
 		 * API name: {@code data_description}
 		 */
@@ -616,10 +621,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Defines the format of the input data when you send data to the job by using
-		 * the post data API. Note that when configure a datafeed, these properties are
-		 * automatically set. When data is received via the post data API, it is not
-		 * stored in Elasticsearch. Only the results for anomaly detection are retained.
+		 * Required - Defines the format of the input data when you send data to the job
+		 * by using the post data API. Note that when configure a datafeed, these
+		 * properties are automatically set. When data is received via the post data
+		 * API, it is not stored in Elasticsearch. Only the results for anomaly
+		 * detection are retained.
 		 * <p>
 		 * API name: {@code data_description}
 		 */
@@ -677,7 +683,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {

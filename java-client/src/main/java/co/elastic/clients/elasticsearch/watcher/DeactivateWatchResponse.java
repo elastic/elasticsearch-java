@@ -54,7 +54,7 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ActivationStatus status() {
 		return this.status;
@@ -85,7 +85,7 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 		private ActivationStatus status;
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ActivationStatus value) {
 			this.status = value;
@@ -93,7 +93,7 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(Function<ActivationStatus.Builder, ObjectBuilder<ActivationStatus>> fn) {
 			return this.status(fn.apply(new ActivationStatus.Builder()).build());

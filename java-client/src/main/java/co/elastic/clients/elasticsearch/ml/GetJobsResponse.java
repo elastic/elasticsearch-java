@@ -62,14 +62,14 @@ public final class GetJobsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code jobs}
+	 * Required - API name: {@code jobs}
 	 */
 	public List<Job> jobs() {
 		return this.jobs;
@@ -110,7 +110,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		private List<Job> jobs;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code jobs}
+		 * Required - API name: {@code jobs}
 		 */
 		public Builder jobs(List<Job> value) {
 			this.jobs = value;
@@ -126,7 +126,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code jobs}
+		 * Required - API name: {@code jobs}
 		 */
 		public Builder jobs(Job... value) {
 			this.jobs = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #jobs(List)}, creating the list if needed.
 		 */
 		public Builder addJobs(Job value) {
 			if (this.jobs == null) {
@@ -152,7 +152,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #jobs(List)}, creating the list if needed.
 		 */
 		public Builder addJobs(Function<Job.Builder, ObjectBuilder<Job>> fn) {
 			return this.addJobs(fn.apply(new Job.Builder()).build());

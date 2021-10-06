@@ -74,28 +74,28 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code is_partial}
+	 * Required - API name: {@code is_partial}
 	 */
 	public boolean isPartial() {
 		return this.isPartial;
 	}
 
 	/**
-	 * API name: {@code is_running}
+	 * Required - API name: {@code is_running}
 	 */
 	public boolean isRunning() {
 		return this.isRunning;
 	}
 
 	/**
-	 * API name: {@code expiration_time_in_millis}
+	 * Required - API name: {@code expiration_time_in_millis}
 	 */
 	public String expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
 	public String startTimeInMillis() {
 		return this.startTimeInMillis;
@@ -154,7 +154,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code is_partial}
+		 * Required - API name: {@code is_partial}
 		 */
 		public BuilderT isPartial(boolean value) {
 			this.isPartial = value;
@@ -162,7 +162,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code is_running}
+		 * Required - API name: {@code is_running}
 		 */
 		public BuilderT isRunning(boolean value) {
 			this.isRunning = value;
@@ -170,7 +170,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code expiration_time_in_millis}
+		 * Required - API name: {@code expiration_time_in_millis}
 		 */
 		public BuilderT expirationTimeInMillis(String value) {
 			this.expirationTimeInMillis = value;
@@ -178,7 +178,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
 		public BuilderT startTimeInMillis(String value) {
 			this.startTimeInMillis = value;

@@ -81,56 +81,56 @@ public final class Status implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code include_global_state}
+	 * Required - API name: {@code include_global_state}
 	 */
 	public boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public Map<String, SnapshotIndexStats> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code repository}
+	 * Required - API name: {@code repository}
 	 */
 	public String repository() {
 		return this.repository;
 	}
 
 	/**
-	 * API name: {@code shards_stats}
+	 * Required - API name: {@code shards_stats}
 	 */
 	public ShardsStats shardsStats() {
 		return this.shardsStats;
 	}
 
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public String state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public SnapshotStats stats() {
 		return this.stats;
 	}
 
 	/**
-	 * API name: {@code uuid}
+	 * Required - API name: {@code uuid}
 	 */
 	public String uuid() {
 		return this.uuid;
@@ -202,7 +202,7 @@ public final class Status implements JsonpSerializable {
 		private String uuid;
 
 		/**
-		 * API name: {@code include_global_state}
+		 * Required - API name: {@code include_global_state}
 		 */
 		public Builder includeGlobalState(boolean value) {
 			this.includeGlobalState = value;
@@ -210,7 +210,7 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Map<String, SnapshotIndexStats> value) {
 			this.indices = value;
@@ -244,7 +244,7 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code repository}
+		 * Required - API name: {@code repository}
 		 */
 		public Builder repository(String value) {
 			this.repository = value;
@@ -252,7 +252,7 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards_stats}
+		 * Required - API name: {@code shards_stats}
 		 */
 		public Builder shardsStats(ShardsStats value) {
 			this.shardsStats = value;
@@ -260,14 +260,14 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards_stats}
+		 * Required - API name: {@code shards_stats}
 		 */
 		public Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
 			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
 			this.snapshot = value;
@@ -275,7 +275,7 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(String value) {
 			this.state = value;
@@ -283,7 +283,7 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(SnapshotStats value) {
 			this.stats = value;
@@ -291,14 +291,14 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
 			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code uuid}
+		 * Required - API name: {@code uuid}
 		 */
 		public Builder uuid(String value) {
 			this.uuid = value;

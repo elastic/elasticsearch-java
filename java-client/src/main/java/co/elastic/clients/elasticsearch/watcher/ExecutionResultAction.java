@@ -97,7 +97,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
@@ -144,14 +144,14 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public ActionType type() {
 		return this.type;
@@ -280,7 +280,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -356,7 +356,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ActionStatusOptions value) {
 			this.status = value;
@@ -364,7 +364,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(ActionType value) {
 			this.type = value;

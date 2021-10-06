@@ -55,7 +55,7 @@ public final class InferenceConfigRegression implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code results_field}
+	 * Required - API name: {@code results_field}
 	 */
 	public String resultsField() {
 		return this.resultsField;
@@ -86,7 +86,7 @@ public final class InferenceConfigRegression implements JsonpSerializable {
 		private String resultsField;
 
 		/**
-		 * API name: {@code results_field}
+		 * Required - API name: {@code results_field}
 		 */
 		public Builder resultsField(String value) {
 			this.resultsField = value;

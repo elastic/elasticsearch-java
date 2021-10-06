@@ -89,7 +89,7 @@ public final class Cpu implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code percent}
+	 * Required - API name: {@code percent}
 	 */
 	public int percent() {
 		return this.percent;
@@ -246,7 +246,7 @@ public final class Cpu implements JsonpSerializable {
 		private Map<String, Double> loadAverage;
 
 		/**
-		 * API name: {@code percent}
+		 * Required - API name: {@code percent}
 		 */
 		public Builder percent(int value) {
 			this.percent = value;

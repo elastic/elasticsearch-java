@@ -62,14 +62,14 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code watches}
+	 * Required - API name: {@code watches}
 	 */
 	public List<QueryWatch> watches() {
 		return this.watches;
@@ -110,7 +110,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		private List<QueryWatch> watches;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watches}
+		 * Required - API name: {@code watches}
 		 */
 		public Builder watches(List<QueryWatch> value) {
 			this.watches = value;
@@ -126,7 +126,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watches}
+		 * Required - API name: {@code watches}
 		 */
 		public Builder watches(QueryWatch... value) {
 			this.watches = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #watches(List)}, creating the list if needed. 4
+		 * Add a value to {@link #watches(List)}, creating the list if needed.
 		 */
 		public Builder addWatches(QueryWatch value) {
 			if (this.watches == null) {
@@ -152,7 +152,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #watches(List)}, creating the list if needed. 5
+		 * Add a value to {@link #watches(List)}, creating the list if needed.
 		 */
 		public Builder addWatches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
 			return this.addWatches(fn.apply(new QueryWatch.Builder()).build());

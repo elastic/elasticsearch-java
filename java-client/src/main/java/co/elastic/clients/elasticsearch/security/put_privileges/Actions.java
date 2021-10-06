@@ -74,7 +74,7 @@ public final class Actions implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public List<String> actions() {
 		return this.actions;
@@ -168,7 +168,7 @@ public final class Actions implements JsonpSerializable {
 		private Map<String, JsonData> metadata;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(List<String> value) {
 			this.actions = value;
@@ -176,7 +176,7 @@ public final class Actions implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(String... value) {
 			this.actions = Arrays.asList(value);
@@ -184,7 +184,7 @@ public final class Actions implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {

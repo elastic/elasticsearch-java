@@ -59,7 +59,7 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, UpdateByQueryRethrottleNode> nodes() {
 		return this.nodes;
@@ -96,7 +96,7 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 		private Map<String, UpdateByQueryRethrottleNode> nodes;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, UpdateByQueryRethrottleNode> value) {
 			this.nodes = value;

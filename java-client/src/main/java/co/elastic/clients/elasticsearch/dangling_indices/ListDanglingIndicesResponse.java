@@ -59,7 +59,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code dangling_indices}
+	 * Required - API name: {@code dangling_indices}
 	 */
 	public List<DanglingIndex> danglingIndices() {
 		return this.danglingIndices;
@@ -95,7 +95,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		private List<DanglingIndex> danglingIndices;
 
 		/**
-		 * API name: {@code dangling_indices}
+		 * Required - API name: {@code dangling_indices}
 		 */
 		public Builder danglingIndices(List<DanglingIndex> value) {
 			this.danglingIndices = value;
@@ -103,7 +103,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code dangling_indices}
+		 * Required - API name: {@code dangling_indices}
 		 */
 		public Builder danglingIndices(DanglingIndex... value) {
 			this.danglingIndices = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed.
 		 */
 		public Builder addDanglingIndices(DanglingIndex value) {
 			if (this.danglingIndices == null) {
@@ -129,7 +129,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed.
 		 */
 		public Builder addDanglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
 			return this.addDanglingIndices(fn.apply(new DanglingIndex.Builder()).build());

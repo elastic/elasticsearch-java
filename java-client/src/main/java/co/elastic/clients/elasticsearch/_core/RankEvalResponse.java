@@ -67,7 +67,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The overall evaluation quality calculated by the defined metric
+	 * Required - The overall evaluation quality calculated by the defined metric
 	 * <p>
 	 * API name: {@code metric_score}
 	 */
@@ -76,8 +76,8 @@ public final class RankEvalResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The details section contains one entry for every query in the original
-	 * requests section, keyed by the search request id
+	 * Required - The details section contains one entry for every query in the
+	 * original requests section, keyed by the search request id
 	 * <p>
 	 * API name: {@code details}
 	 */
@@ -86,7 +86,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code failures}
+	 * Required - API name: {@code failures}
 	 */
 	public Map<String, JsonData> failures() {
 		return this.failures;
@@ -139,7 +139,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 		private Map<String, JsonData> failures;
 
 		/**
-		 * The overall evaluation quality calculated by the defined metric
+		 * Required - The overall evaluation quality calculated by the defined metric
 		 * <p>
 		 * API name: {@code metric_score}
 		 */
@@ -149,8 +149,8 @@ public final class RankEvalResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The details section contains one entry for every query in the original
-		 * requests section, keyed by the search request id
+		 * Required - The details section contains one entry for every query in the
+		 * original requests section, keyed by the search request id
 		 * <p>
 		 * API name: {@code details}
 		 */
@@ -187,7 +187,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(Map<String, JsonData> value) {
 			this.failures = value;

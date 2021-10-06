@@ -97,7 +97,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields
+	 * Required - A comma-separated list of fields
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -223,7 +223,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		private Boolean local;
 
 		/**
-		 * A comma-separated list of fields
+		 * Required - A comma-separated list of fields
 		 * <p>
 		 * API name: {@code fields}
 		 */
@@ -233,7 +233,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields
+		 * Required - A comma-separated list of fields
 		 * <p>
 		 * API name: {@code fields}
 		 */
@@ -243,7 +243,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -274,7 +274,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -305,7 +305,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed. 4
+		 * Add a value to {@link #type(List)}, creating the list if needed.
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -350,7 +350,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

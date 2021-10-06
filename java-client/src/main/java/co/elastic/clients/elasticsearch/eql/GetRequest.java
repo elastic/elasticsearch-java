@@ -66,7 +66,7 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Identifier for the search.
+	 * Required - Identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -111,7 +111,7 @@ public final class GetRequest extends RequestBase {
 		private String waitForCompletionTimeout;
 
 		/**
-		 * Identifier for the search.
+		 * Required - Identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */

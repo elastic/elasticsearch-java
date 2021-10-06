@@ -212,7 +212,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of index names. Wildcards are supported.
+	 * Required - An array of index names. Wildcards are supported.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -255,7 +255,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * The Elasticsearch query domain-specific language (DSL). This value
+	 * Required - The Elasticsearch query domain-specific language (DSL). This value
 	 * corresponds to the query object in an Elasticsearch search POST body. All the
 	 * options that are supported by Elasticsearch can be used, as this object is
 	 * passed verbatim to Elasticsearch.
@@ -681,7 +681,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexes(List)}, creating the list if needed.
 		 */
 		public Builder addIndexes(String value) {
 			if (this.indexes == null) {
@@ -692,7 +692,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of index names. Wildcards are supported.
+		 * Required - An array of index names. Wildcards are supported.
 		 * <p>
 		 * API name: {@code indices}
 		 */
@@ -702,7 +702,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of index names. Wildcards are supported.
+		 * Required - An array of index names. Wildcards are supported.
 		 * <p>
 		 * API name: {@code indices}
 		 */
@@ -712,7 +712,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -767,7 +767,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * The Elasticsearch query domain-specific language (DSL). This value
+		 * Required - The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch.
@@ -780,7 +780,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * The Elasticsearch query domain-specific language (DSL). This value
+		 * Required - The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch.

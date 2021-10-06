@@ -62,7 +62,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 	}
 
 	/**
-	 * API name: {@code minimum_length}
+	 * Required - API name: {@code minimum_length}
 	 */
 	public int minimumLength() {
 		return this.minimumLength;
@@ -89,7 +89,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 		private Integer minimumLength;
 
 		/**
-		 * API name: {@code minimum_length}
+		 * Required - API name: {@code minimum_length}
 		 */
 		public Builder minimumLength(int value) {
 			this.minimumLength = value;

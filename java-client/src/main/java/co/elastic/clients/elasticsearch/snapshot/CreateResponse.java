@@ -67,7 +67,7 @@ public final class CreateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public SnapshotInfo snapshot() {
 		return this.snapshot;
@@ -116,7 +116,7 @@ public final class CreateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(SnapshotInfo value) {
 			this.snapshot = value;
@@ -124,7 +124,7 @@ public final class CreateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.snapshot(fn.apply(new SnapshotInfo.Builder()).build());

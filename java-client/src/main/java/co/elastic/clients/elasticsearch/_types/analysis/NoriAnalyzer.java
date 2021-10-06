@@ -76,28 +76,28 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code decompound_mode}
+	 * Required - API name: {@code decompound_mode}
 	 */
 	public NoriDecompoundMode decompoundMode() {
 		return this.decompoundMode;
 	}
 
 	/**
-	 * API name: {@code stoptags}
+	 * Required - API name: {@code stoptags}
 	 */
 	public List<String> stoptags() {
 		return this.stoptags;
 	}
 
 	/**
-	 * API name: {@code user_dictionary}
+	 * Required - API name: {@code user_dictionary}
 	 */
 	public String userDictionary() {
 		return this.userDictionary;
@@ -150,7 +150,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		private String userDictionary;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -158,7 +158,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code decompound_mode}
+		 * Required - API name: {@code decompound_mode}
 		 */
 		public Builder decompoundMode(NoriDecompoundMode value) {
 			this.decompoundMode = value;
@@ -166,7 +166,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stoptags}
+		 * Required - API name: {@code stoptags}
 		 */
 		public Builder stoptags(List<String> value) {
 			this.stoptags = value;
@@ -174,7 +174,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stoptags}
+		 * Required - API name: {@code stoptags}
 		 */
 		public Builder stoptags(String... value) {
 			this.stoptags = Arrays.asList(value);
@@ -182,7 +182,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stoptags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stoptags(List)}, creating the list if needed.
 		 */
 		public Builder addStoptags(String value) {
 			if (this.stoptags == null) {
@@ -193,7 +193,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code user_dictionary}
+		 * Required - API name: {@code user_dictionary}
 		 */
 		public Builder userDictionary(String value) {
 			this.userDictionary = value;

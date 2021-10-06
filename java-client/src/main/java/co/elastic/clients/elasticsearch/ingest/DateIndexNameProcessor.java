@@ -85,49 +85,49 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 	}
 
 	/**
-	 * API name: {@code date_formats}
+	 * Required - API name: {@code date_formats}
 	 */
 	public List<String> dateFormats() {
 		return this.dateFormats;
 	}
 
 	/**
-	 * API name: {@code date_rounding}
+	 * Required - API name: {@code date_rounding}
 	 */
 	public DateRounding dateRounding() {
 		return this.dateRounding;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code index_name_format}
+	 * Required - API name: {@code index_name_format}
 	 */
 	public String indexNameFormat() {
 		return this.indexNameFormat;
 	}
 
 	/**
-	 * API name: {@code index_name_prefix}
+	 * Required - API name: {@code index_name_prefix}
 	 */
 	public String indexNamePrefix() {
 		return this.indexNamePrefix;
 	}
 
 	/**
-	 * API name: {@code locale}
+	 * Required - API name: {@code locale}
 	 */
 	public String locale() {
 		return this.locale;
 	}
 
 	/**
-	 * API name: {@code timezone}
+	 * Required - API name: {@code timezone}
 	 */
 	public String timezone() {
 		return this.timezone;
@@ -188,7 +188,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		private String timezone;
 
 		/**
-		 * API name: {@code date_formats}
+		 * Required - API name: {@code date_formats}
 		 */
 		public Builder dateFormats(List<String> value) {
 			this.dateFormats = value;
@@ -196,7 +196,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code date_formats}
+		 * Required - API name: {@code date_formats}
 		 */
 		public Builder dateFormats(String... value) {
 			this.dateFormats = Arrays.asList(value);
@@ -204,7 +204,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * Add a value to {@link #dateFormats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #dateFormats(List)}, creating the list if needed.
 		 */
 		public Builder addDateFormats(String value) {
 			if (this.dateFormats == null) {
@@ -215,7 +215,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code date_rounding}
+		 * Required - API name: {@code date_rounding}
 		 */
 		public Builder dateRounding(DateRounding value) {
 			this.dateRounding = value;
@@ -223,7 +223,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -231,7 +231,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code index_name_format}
+		 * Required - API name: {@code index_name_format}
 		 */
 		public Builder indexNameFormat(String value) {
 			this.indexNameFormat = value;
@@ -239,7 +239,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code index_name_prefix}
+		 * Required - API name: {@code index_name_prefix}
 		 */
 		public Builder indexNamePrefix(String value) {
 			this.indexNamePrefix = value;
@@ -247,7 +247,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code locale}
+		 * Required - API name: {@code locale}
 		 */
 		public Builder locale(String value) {
 			this.locale = value;
@@ -255,7 +255,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * API name: {@code timezone}
+		 * Required - API name: {@code timezone}
 		 */
 		public Builder timezone(String value) {
 			this.timezone = value;

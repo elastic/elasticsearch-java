@@ -61,14 +61,14 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code http_types}
+	 * Required - API name: {@code http_types}
 	 */
 	public Map<String, Integer> httpTypes() {
 		return this.httpTypes;
 	}
 
 	/**
-	 * API name: {@code transport_types}
+	 * Required - API name: {@code transport_types}
 	 */
 	public Map<String, Integer> transportTypes() {
 		return this.transportTypes;
@@ -116,7 +116,7 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 		private Map<String, Integer> transportTypes;
 
 		/**
-		 * API name: {@code http_types}
+		 * Required - API name: {@code http_types}
 		 */
 		public Builder httpTypes(Map<String, Integer> value) {
 			this.httpTypes = value;
@@ -135,7 +135,7 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport_types}
+		 * Required - API name: {@code transport_types}
 		 */
 		public Builder transportTypes(Map<String, Integer> value) {
 			this.transportTypes = value;

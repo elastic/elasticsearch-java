@@ -62,7 +62,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 	}
 
 	/**
-	 * API name: {@code preserve_original}
+	 * Required - API name: {@code preserve_original}
 	 */
 	public boolean preserveOriginal() {
 		return this.preserveOriginal;
@@ -89,7 +89,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 		private Boolean preserveOriginal;
 
 		/**
-		 * API name: {@code preserve_original}
+		 * Required - API name: {@code preserve_original}
 		 */
 		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;

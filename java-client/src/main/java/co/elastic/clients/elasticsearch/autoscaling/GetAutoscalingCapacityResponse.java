@@ -59,7 +59,7 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code policies}
+	 * Required - API name: {@code policies}
 	 */
 	public Map<String, AutoscalingDeciders> policies() {
 		return this.policies;
@@ -96,7 +96,7 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 		private Map<String, AutoscalingDeciders> policies;
 
 		/**
-		 * API name: {@code policies}
+		 * Required - API name: {@code policies}
 		 */
 		public Builder policies(Map<String, AutoscalingDeciders> value) {
 			this.policies = value;

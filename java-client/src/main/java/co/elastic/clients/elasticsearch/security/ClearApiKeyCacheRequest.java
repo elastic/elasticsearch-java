@@ -62,7 +62,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of IDs of API keys to clear from the cache
+	 * Required - A comma-separated list of IDs of API keys to clear from the cache
 	 * <p>
 	 * API name: {@code ids}
 	 */
@@ -79,7 +79,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 		private List<String> ids;
 
 		/**
-		 * A comma-separated list of IDs of API keys to clear from the cache
+		 * Required - A comma-separated list of IDs of API keys to clear from the cache
 		 * <p>
 		 * API name: {@code ids}
 		 */
@@ -89,7 +89,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of IDs of API keys to clear from the cache
+		 * Required - A comma-separated list of IDs of API keys to clear from the cache
 		 * <p>
 		 * API name: {@code ids}
 		 */
@@ -99,7 +99,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ids(List)}, creating the list if needed.
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {

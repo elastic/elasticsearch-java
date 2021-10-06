@@ -73,7 +73,7 @@ public class GetRequest extends RequestBase {
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -111,7 +111,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Unique identifier of the document.
+	 * Required - Unique identifier of the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -120,7 +120,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Name of the index that contains the document.
+	 * Required - Name of the index that contains the document.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -188,7 +188,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -287,7 +287,7 @@ public class GetRequest extends RequestBase {
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -305,7 +305,7 @@ public class GetRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * Unique identifier of the document.
+		 * Required - Unique identifier of the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -315,7 +315,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Name of the index that contains the document.
+		 * Required - Name of the index that contains the document.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -383,7 +383,7 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public BuilderT source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
+		public BuilderT source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return self();
 		}
@@ -409,7 +409,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public BuilderT addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -440,7 +440,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public BuilderT addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -471,7 +471,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public BuilderT addStoredFields(String value) {
 			if (this.storedFields == null) {

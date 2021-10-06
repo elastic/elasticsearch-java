@@ -59,14 +59,14 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code blocked}
+	 * Required - API name: {@code blocked}
 	 */
 	public boolean blocked() {
 		return this.blocked;
@@ -102,7 +102,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 		private Boolean blocked;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -110,7 +110,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code blocked}
+		 * Required - API name: {@code blocked}
 		 */
 		public Builder blocked(boolean value) {
 			this.blocked = value;

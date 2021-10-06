@@ -58,14 +58,14 @@ public final class BuildInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code date}
+	 * Required - API name: {@code date}
 	 */
 	public String date() {
 		return this.date;
 	}
 
 	/**
-	 * API name: {@code hash}
+	 * Required - API name: {@code hash}
 	 */
 	public String hash() {
 		return this.hash;
@@ -101,7 +101,7 @@ public final class BuildInformation implements JsonpSerializable {
 		private String hash;
 
 		/**
-		 * API name: {@code date}
+		 * Required - API name: {@code date}
 		 */
 		public Builder date(String value) {
 			this.date = value;
@@ -109,7 +109,7 @@ public final class BuildInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hash}
+		 * Required - API name: {@code hash}
 		 */
 		public Builder hash(String value) {
 			this.hash = value;

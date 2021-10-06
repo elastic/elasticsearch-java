@@ -107,98 +107,98 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 	}
 
 	/**
-	 * API name: {@code adjust_offsets}
+	 * Required - API name: {@code adjust_offsets}
 	 */
 	public boolean adjustOffsets() {
 		return this.adjustOffsets;
 	}
 
 	/**
-	 * API name: {@code catenate_all}
+	 * Required - API name: {@code catenate_all}
 	 */
 	public boolean catenateAll() {
 		return this.catenateAll;
 	}
 
 	/**
-	 * API name: {@code catenate_numbers}
+	 * Required - API name: {@code catenate_numbers}
 	 */
 	public boolean catenateNumbers() {
 		return this.catenateNumbers;
 	}
 
 	/**
-	 * API name: {@code catenate_words}
+	 * Required - API name: {@code catenate_words}
 	 */
 	public boolean catenateWords() {
 		return this.catenateWords;
 	}
 
 	/**
-	 * API name: {@code generate_number_parts}
+	 * Required - API name: {@code generate_number_parts}
 	 */
 	public boolean generateNumberParts() {
 		return this.generateNumberParts;
 	}
 
 	/**
-	 * API name: {@code generate_word_parts}
+	 * Required - API name: {@code generate_word_parts}
 	 */
 	public boolean generateWordParts() {
 		return this.generateWordParts;
 	}
 
 	/**
-	 * API name: {@code preserve_original}
+	 * Required - API name: {@code preserve_original}
 	 */
 	public boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
 	/**
-	 * API name: {@code protected_words}
+	 * Required - API name: {@code protected_words}
 	 */
 	public List<String> protectedWords() {
 		return this.protectedWords;
 	}
 
 	/**
-	 * API name: {@code protected_words_path}
+	 * Required - API name: {@code protected_words_path}
 	 */
 	public String protectedWordsPath() {
 		return this.protectedWordsPath;
 	}
 
 	/**
-	 * API name: {@code split_on_case_change}
+	 * Required - API name: {@code split_on_case_change}
 	 */
 	public boolean splitOnCaseChange() {
 		return this.splitOnCaseChange;
 	}
 
 	/**
-	 * API name: {@code split_on_numerics}
+	 * Required - API name: {@code split_on_numerics}
 	 */
 	public boolean splitOnNumerics() {
 		return this.splitOnNumerics;
 	}
 
 	/**
-	 * API name: {@code stem_english_possessive}
+	 * Required - API name: {@code stem_english_possessive}
 	 */
 	public boolean stemEnglishPossessive() {
 		return this.stemEnglishPossessive;
 	}
 
 	/**
-	 * API name: {@code type_table}
+	 * Required - API name: {@code type_table}
 	 */
 	public List<String> typeTable() {
 		return this.typeTable;
 	}
 
 	/**
-	 * API name: {@code type_table_path}
+	 * Required - API name: {@code type_table_path}
 	 */
 	public String typeTablePath() {
 		return this.typeTablePath;
@@ -300,7 +300,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		private String typeTablePath;
 
 		/**
-		 * API name: {@code adjust_offsets}
+		 * Required - API name: {@code adjust_offsets}
 		 */
 		public Builder adjustOffsets(boolean value) {
 			this.adjustOffsets = value;
@@ -308,7 +308,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code catenate_all}
+		 * Required - API name: {@code catenate_all}
 		 */
 		public Builder catenateAll(boolean value) {
 			this.catenateAll = value;
@@ -316,7 +316,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code catenate_numbers}
+		 * Required - API name: {@code catenate_numbers}
 		 */
 		public Builder catenateNumbers(boolean value) {
 			this.catenateNumbers = value;
@@ -324,7 +324,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code catenate_words}
+		 * Required - API name: {@code catenate_words}
 		 */
 		public Builder catenateWords(boolean value) {
 			this.catenateWords = value;
@@ -332,7 +332,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code generate_number_parts}
+		 * Required - API name: {@code generate_number_parts}
 		 */
 		public Builder generateNumberParts(boolean value) {
 			this.generateNumberParts = value;
@@ -340,7 +340,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code generate_word_parts}
+		 * Required - API name: {@code generate_word_parts}
 		 */
 		public Builder generateWordParts(boolean value) {
 			this.generateWordParts = value;
@@ -348,7 +348,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code preserve_original}
+		 * Required - API name: {@code preserve_original}
 		 */
 		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
@@ -356,7 +356,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code protected_words}
+		 * Required - API name: {@code protected_words}
 		 */
 		public Builder protectedWords(List<String> value) {
 			this.protectedWords = value;
@@ -364,7 +364,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code protected_words}
+		 * Required - API name: {@code protected_words}
 		 */
 		public Builder protectedWords(String... value) {
 			this.protectedWords = Arrays.asList(value);
@@ -372,7 +372,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * Add a value to {@link #protectedWords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #protectedWords(List)}, creating the list if needed.
 		 */
 		public Builder addProtectedWords(String value) {
 			if (this.protectedWords == null) {
@@ -383,7 +383,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code protected_words_path}
+		 * Required - API name: {@code protected_words_path}
 		 */
 		public Builder protectedWordsPath(String value) {
 			this.protectedWordsPath = value;
@@ -391,7 +391,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code split_on_case_change}
+		 * Required - API name: {@code split_on_case_change}
 		 */
 		public Builder splitOnCaseChange(boolean value) {
 			this.splitOnCaseChange = value;
@@ -399,7 +399,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code split_on_numerics}
+		 * Required - API name: {@code split_on_numerics}
 		 */
 		public Builder splitOnNumerics(boolean value) {
 			this.splitOnNumerics = value;
@@ -407,7 +407,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code stem_english_possessive}
+		 * Required - API name: {@code stem_english_possessive}
 		 */
 		public Builder stemEnglishPossessive(boolean value) {
 			this.stemEnglishPossessive = value;
@@ -415,7 +415,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code type_table}
+		 * Required - API name: {@code type_table}
 		 */
 		public Builder typeTable(List<String> value) {
 			this.typeTable = value;
@@ -423,7 +423,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code type_table}
+		 * Required - API name: {@code type_table}
 		 */
 		public Builder typeTable(String... value) {
 			this.typeTable = Arrays.asList(value);
@@ -431,7 +431,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * Add a value to {@link #typeTable(List)}, creating the list if needed. 4
+		 * Add a value to {@link #typeTable(List)}, creating the list if needed.
 		 */
 		public Builder addTypeTable(String value) {
 			if (this.typeTable == null) {
@@ -442,7 +442,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * API name: {@code type_table_path}
+		 * Required - API name: {@code type_table_path}
 		 */
 		public Builder typeTablePath(String value) {
 			this.typeTablePath = value;

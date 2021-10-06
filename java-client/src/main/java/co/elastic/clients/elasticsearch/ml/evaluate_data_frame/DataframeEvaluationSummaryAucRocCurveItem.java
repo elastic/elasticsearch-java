@@ -60,21 +60,21 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 	}
 
 	/**
-	 * API name: {@code tpr}
+	 * Required - API name: {@code tpr}
 	 */
 	public double tpr() {
 		return this.tpr;
 	}
 
 	/**
-	 * API name: {@code fpr}
+	 * Required - API name: {@code fpr}
 	 */
 	public double fpr() {
 		return this.fpr;
 	}
 
 	/**
-	 * API name: {@code threshold}
+	 * Required - API name: {@code threshold}
 	 */
 	public double threshold() {
 		return this.threshold;
@@ -115,7 +115,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		private Double threshold;
 
 		/**
-		 * API name: {@code tpr}
+		 * Required - API name: {@code tpr}
 		 */
 		public Builder tpr(double value) {
 			this.tpr = value;
@@ -123,7 +123,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		}
 
 		/**
-		 * API name: {@code fpr}
+		 * Required - API name: {@code fpr}
 		 */
 		public Builder fpr(double value) {
 			this.fpr = value;
@@ -131,7 +131,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		}
 
 		/**
-		 * API name: {@code threshold}
+		 * Required - API name: {@code threshold}
 		 */
 		public Builder threshold(double value) {
 			this.threshold = value;

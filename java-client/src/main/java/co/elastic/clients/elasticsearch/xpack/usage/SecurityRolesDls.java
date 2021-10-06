@@ -54,7 +54,7 @@ public final class SecurityRolesDls implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bit_set_cache}
+	 * Required - API name: {@code bit_set_cache}
 	 */
 	public SecurityRolesDlsBitSetCache bitSetCache() {
 		return this.bitSetCache;
@@ -85,7 +85,7 @@ public final class SecurityRolesDls implements JsonpSerializable {
 		private SecurityRolesDlsBitSetCache bitSetCache;
 
 		/**
-		 * API name: {@code bit_set_cache}
+		 * Required - API name: {@code bit_set_cache}
 		 */
 		public Builder bitSetCache(SecurityRolesDlsBitSetCache value) {
 			this.bitSetCache = value;
@@ -93,7 +93,7 @@ public final class SecurityRolesDls implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bit_set_cache}
+		 * Required - API name: {@code bit_set_cache}
 		 */
 		public Builder bitSetCache(
 				Function<SecurityRolesDlsBitSetCache.Builder, ObjectBuilder<SecurityRolesDlsBitSetCache>> fn) {

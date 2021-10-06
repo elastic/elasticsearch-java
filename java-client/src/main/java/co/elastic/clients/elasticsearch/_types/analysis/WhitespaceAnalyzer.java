@@ -63,7 +63,7 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -96,7 +96,7 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 		private String version;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;

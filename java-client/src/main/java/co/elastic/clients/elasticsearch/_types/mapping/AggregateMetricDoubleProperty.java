@@ -70,14 +70,14 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 	}
 
 	/**
-	 * API name: {@code default_metric}
+	 * Required - API name: {@code default_metric}
 	 */
 	public String defaultMetric() {
 		return this.defaultMetric;
 	}
 
 	/**
-	 * API name: {@code metrics}
+	 * Required - API name: {@code metrics}
 	 */
 	public List<String> metrics() {
 		return this.metrics;
@@ -114,7 +114,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		private List<String> metrics;
 
 		/**
-		 * API name: {@code default_metric}
+		 * Required - API name: {@code default_metric}
 		 */
 		public Builder defaultMetric(String value) {
 			this.defaultMetric = value;
@@ -122,7 +122,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		}
 
 		/**
-		 * API name: {@code metrics}
+		 * Required - API name: {@code metrics}
 		 */
 		public Builder metrics(List<String> value) {
 			this.metrics = value;
@@ -130,7 +130,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		}
 
 		/**
-		 * API name: {@code metrics}
+		 * Required - API name: {@code metrics}
 		 */
 		public Builder metrics(String... value) {
 			this.metrics = Arrays.asList(value);
@@ -138,7 +138,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(String value) {
 			if (this.metrics == null) {

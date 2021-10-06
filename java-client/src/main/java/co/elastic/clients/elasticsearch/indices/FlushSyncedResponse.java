@@ -57,7 +57,7 @@ public final class FlushSyncedResponse extends DictionaryResponse<String, ShardS
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
@@ -83,7 +83,7 @@ public final class FlushSyncedResponse extends DictionaryResponse<String, ShardS
 		private ShardStatistics shards;
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -91,7 +91,7 @@ public final class FlushSyncedResponse extends DictionaryResponse<String, ShardS
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());

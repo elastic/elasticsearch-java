@@ -57,7 +57,7 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * the name of the autoscaling policy
+	 * Required - the name of the autoscaling policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -74,7 +74,7 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * the name of the autoscaling policy
+		 * Required - the name of the autoscaling policy
 		 * <p>
 		 * API name: {@code name}
 		 */

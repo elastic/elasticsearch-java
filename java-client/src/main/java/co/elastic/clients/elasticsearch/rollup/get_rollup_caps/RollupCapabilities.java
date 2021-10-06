@@ -58,7 +58,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code rollup_jobs}
+	 * Required - API name: {@code rollup_jobs}
 	 */
 	public List<RollupCapabilitySummary> rollupJobs() {
 		return this.rollupJobs;
@@ -94,7 +94,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 		private List<RollupCapabilitySummary> rollupJobs;
 
 		/**
-		 * API name: {@code rollup_jobs}
+		 * Required - API name: {@code rollup_jobs}
 		 */
 		public Builder rollupJobs(List<RollupCapabilitySummary> value) {
 			this.rollupJobs = value;
@@ -102,7 +102,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rollup_jobs}
+		 * Required - API name: {@code rollup_jobs}
 		 */
 		public Builder rollupJobs(RollupCapabilitySummary... value) {
 			this.rollupJobs = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
 		 */
 		public Builder addRollupJobs(RollupCapabilitySummary value) {
 			if (this.rollupJobs == null) {
@@ -129,7 +129,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
 		 */
 		public Builder addRollupJobs(
 				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {

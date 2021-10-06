@@ -60,7 +60,7 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 	}
 
 	/**
-	 * API name: {@code tasks}
+	 * Required - API name: {@code tasks}
 	 */
 	public Map<String, Info> tasks() {
 		return this.tasks;
@@ -92,7 +92,7 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 		private Map<String, Info> tasks;
 
 		/**
-		 * API name: {@code tasks}
+		 * Required - API name: {@code tasks}
 		 */
 		public Builder tasks(Map<String, Info> value) {
 			this.tasks = value;
