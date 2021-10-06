@@ -21,13 +21,14 @@ package co.elastic.clients.base;
 
 import co.elastic.clients.json.JsonpMapper;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
  * The transport layer that allows {@link ApiClient}s to send requests.
  */
-public interface Transport {
+public interface Transport extends Closeable {
 
     <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,

@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.end_to_end;
 import co.elastic.clients.base.ApiException;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.RestClientTransport;
+import co.elastic.clients.base.rest_client.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
