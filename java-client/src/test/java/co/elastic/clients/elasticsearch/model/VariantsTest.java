@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import org.junit.Test;
 
 public class VariantsTest extends ModelTestCase {
@@ -92,5 +93,12 @@ public class VariantsTest extends ModelTestCase {
         assertEquals(1.0, property.ip().boost().doubleValue(), 0.09);
 
         assertTrue(property.ip().fields().get("a-field").float_().coerce());
+    }
+
+    @Test
+    public void testBuilders() {
+        Query q = new Query(QueryBuilders.exists().field("foo"));
+
+        assertEquals("{\"exists\":{\"field\":\"foo\"}}", toJson(q));
     }
 }
