@@ -80,8 +80,8 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetResponse get(GetRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRequest.ENDPOINT);
+	public GetTasksResponse get(GetTasksRequest request) throws IOException {
+		return this.transport.performRequest(request, GetTasksRequest.ENDPOINT);
 	}
 
 	/**
@@ -96,8 +96,9 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetResponse get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final GetTasksResponse get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
+			throws IOException {
+		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: tasks.list

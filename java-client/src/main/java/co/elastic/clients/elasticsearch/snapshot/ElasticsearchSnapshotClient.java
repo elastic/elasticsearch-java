@@ -81,8 +81,8 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloneResponse clone(CloneRequest request) throws IOException {
-		return this.transport.performRequest(request, CloneRequest.ENDPOINT);
+	public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException {
+		return this.transport.performRequest(request, CloneSnapshotRequest.ENDPOINT);
 	}
 
 	/**
@@ -98,9 +98,9 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CloneResponse clone(Function<CloneRequest.Builder, ObjectBuilder<CloneRequest>> fn)
-			throws IOException {
-		return clone(fn.apply(new CloneRequest.Builder()).build());
+	public final CloneSnapshotResponse clone(
+			Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn) throws IOException {
+		return clone(fn.apply(new CloneSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: snapshot.create
@@ -113,8 +113,8 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateResponse create(CreateRequest request) throws IOException {
-		return this.transport.performRequest(request, CreateRequest.ENDPOINT);
+	public CreateSnapshotResponse create(CreateSnapshotRequest request) throws IOException {
+		return this.transport.performRequest(request, CreateSnapshotRequest.ENDPOINT);
 	}
 
 	/**
@@ -129,9 +129,9 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateResponse create(Function<CreateRequest.Builder, ObjectBuilder<CreateRequest>> fn)
-			throws IOException {
-		return create(fn.apply(new CreateRequest.Builder()).build());
+	public final CreateSnapshotResponse create(
+			Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn) throws IOException {
+		return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: snapshot.create_repository
@@ -175,8 +175,8 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
+	public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException {
+		return this.transport.performRequest(request, DeleteSnapshotRequest.ENDPOINT);
 	}
 
 	/**
@@ -191,9 +191,9 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
-			throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	public final DeleteSnapshotResponse delete(
+			Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn) throws IOException {
+		return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: snapshot.delete_repository
@@ -237,8 +237,8 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetResponse get(GetRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRequest.ENDPOINT);
+	public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException {
+		return this.transport.performRequest(request, GetSnapshotRequest.ENDPOINT);
 	}
 
 	/**
@@ -253,8 +253,9 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetResponse get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final GetSnapshotResponse get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
+			throws IOException {
+		return get(fn.apply(new GetSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: snapshot.get_repository

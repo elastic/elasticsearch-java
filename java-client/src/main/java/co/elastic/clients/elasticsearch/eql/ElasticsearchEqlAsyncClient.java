@@ -51,8 +51,8 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRequest.ENDPOINT);
+	public CompletableFuture<EqlDeleteResponse> delete(EqlDeleteRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, EqlDeleteRequest.ENDPOINT);
 	}
 
 	/**
@@ -68,9 +68,9 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteResponse> delete(
-			Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn) throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	public final CompletableFuture<EqlDeleteResponse> delete(
+			Function<EqlDeleteRequest.Builder, ObjectBuilder<EqlDeleteRequest>> fn) throws IOException {
+		return delete(fn.apply(new EqlDeleteRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: eql.get
@@ -84,9 +84,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TEvent> CompletableFuture<GetResponse<TEvent>> get(GetRequest request, Class<TEvent> tEventClass)
+	public <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(EqlGetRequest request, Class<TEvent> tEventClass)
 			throws IOException {
-		return this.transport.performRequestAsync(request, GetRequest.createGetEndpoint(getDeserializer(tEventClass)));
+		return this.transport.performRequestAsync(request,
+				EqlGetRequest.createGetEndpoint(getDeserializer(tEventClass)));
 	}
 
 	/**
@@ -102,9 +103,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> CompletableFuture<GetResponse<TEvent>> get(
-			Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn, Class<TEvent> tEventClass) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build(), tEventClass);
+	public final <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(
+			Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn, Class<TEvent> tEventClass)
+			throws IOException {
+		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventClass);
 	}
 
 	// ----- Endpoint: eql.get_status
@@ -150,10 +152,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TEvent> CompletableFuture<SearchResponse<TEvent>> search(SearchRequest request, Class<TEvent> tEventClass)
-			throws IOException {
+	public <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(EqlSearchRequest request,
+			Class<TEvent> tEventClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				SearchRequest.createSearchEndpoint(getDeserializer(tEventClass)));
+				EqlSearchRequest.createSearchEndpoint(getDeserializer(tEventClass)));
 	}
 
 	/**
@@ -168,10 +170,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> CompletableFuture<SearchResponse<TEvent>> search(
-			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TEvent> tEventClass)
+	public final <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(
+			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
 			throws IOException {
-		return search(fn.apply(new SearchRequest.Builder()).build(), tEventClass);
+		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
 	}
 
 }

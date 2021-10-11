@@ -31,8 +31,8 @@ import co.elastic.clients.elasticsearch._core.IndexResponse;
 import co.elastic.clients.elasticsearch._core.SearchResponse;
 import co.elastic.clients.elasticsearch._core.bulk.ResponseItem;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
-import co.elastic.clients.elasticsearch.indices.CreateResponse;
-import co.elastic.clients.elasticsearch.indices.GetResponse;
+import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
+import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,10 +50,12 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class RequestTest extends Assert {
 
@@ -87,13 +89,13 @@ public class RequestTest extends Assert {
         assertTrue(client.ping().value());
 
         // Create an index...
-        final CreateResponse createResponse = client.indices().create(b -> b.index("my-index"));
+        final CreateIndexResponse createResponse = client.indices().create(b -> b.index("my-index"));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
         // Find info about it, using the async client
-        CompletableFuture<GetResponse> futureResponse = asyncClient.indices().get(b -> b.index("my-index"));
-        GetResponse response = futureResponse.get(10, TimeUnit.SECONDS);
+        CompletableFuture<GetIndexResponse> futureResponse = asyncClient.indices().get(b -> b.index("my-index"));
+        GetIndexResponse response = futureResponse.get(10, TimeUnit.SECONDS);
 
         Map<String, IndexState> indices = response.result();
 
@@ -113,7 +115,7 @@ public class RequestTest extends Assert {
         String index = "ingest-test";
 
         // Create an index
-        CreateResponse createIndexResponse = client.indices().create(b -> b
+        CreateIndexResponse createIndexResponse = client.indices().create(b -> b
             .index(index)
         );
 

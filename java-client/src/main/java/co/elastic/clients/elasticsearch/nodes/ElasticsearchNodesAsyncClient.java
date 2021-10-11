@@ -81,8 +81,8 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<InfoResponse> info(InfoRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, InfoRequest.ENDPOINT);
+	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, NodesInfoRequest.ENDPOINT);
 	}
 
 	/**
@@ -97,9 +97,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<InfoResponse> info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn)
-			throws IOException {
-		return info(fn.apply(new InfoRequest.Builder()).build());
+	public final CompletableFuture<NodesInfoResponse> info(
+			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn) throws IOException {
+		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: nodes.reload_secure_settings
@@ -145,8 +145,8 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatsResponse> stats(StatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StatsRequest.ENDPOINT);
+	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, NodesStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -161,9 +161,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StatsResponse> stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final CompletableFuture<NodesStatsResponse> stats(
+			Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: nodes.usage

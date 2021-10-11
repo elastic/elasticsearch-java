@@ -51,8 +51,8 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRequest.ENDPOINT);
+	public CompletableFuture<DeleteAsyncSearchResponse> delete(DeleteAsyncSearchRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, DeleteAsyncSearchRequest.ENDPOINT);
 	}
 
 	/**
@@ -68,9 +68,9 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteResponse> delete(
-			Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn) throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	public final CompletableFuture<DeleteAsyncSearchResponse> delete(
+			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn) throws IOException {
+		return delete(fn.apply(new DeleteAsyncSearchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: async_search.get
@@ -84,10 +84,10 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request,
+	public <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(GetAsyncSearchRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
+				GetAsyncSearchRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -103,10 +103,10 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
-			Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
+	public final <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(
+			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn,
+			Class<TDocument> tDocumentClass) throws IOException {
+		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: async_search.status

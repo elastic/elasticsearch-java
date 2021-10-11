@@ -300,8 +300,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StartResponse> start() throws IOException {
-		return this.transport.performRequestAsync(StartRequest._INSTANCE, StartRequest.ENDPOINT);
+	public CompletableFuture<StartWatcherResponse> start() throws IOException {
+		return this.transport.performRequestAsync(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: watcher.stats
@@ -314,8 +314,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatsResponse> stats(StatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StatsRequest.ENDPOINT);
+	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, WatcherStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -330,9 +330,9 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StatsResponse> stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final CompletableFuture<WatcherStatsResponse> stats(
+			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.stop
@@ -344,8 +344,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StopResponse> stop() throws IOException {
-		return this.transport.performRequestAsync(StopRequest._INSTANCE, StopRequest.ENDPOINT);
+	public CompletableFuture<StopWatcherResponse> stop() throws IOException {
+		return this.transport.performRequestAsync(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT);
 	}
 
 }
