@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.elasticsearch._core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch._types.query_dsl.SpanGapQuery;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import org.junit.Test;
