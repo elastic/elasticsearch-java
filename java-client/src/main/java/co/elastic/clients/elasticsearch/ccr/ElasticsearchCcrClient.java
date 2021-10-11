@@ -411,8 +411,8 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StatsResponse stats() throws IOException {
-		return this.transport.performRequest(StatsRequest._INSTANCE, StatsRequest.ENDPOINT);
+	public CcrStatsResponse stats() throws IOException {
+		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ccr.unfollow

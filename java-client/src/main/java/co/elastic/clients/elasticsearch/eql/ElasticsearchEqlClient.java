@@ -50,8 +50,8 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
+	public EqlDeleteResponse delete(EqlDeleteRequest request) throws IOException {
+		return this.transport.performRequest(request, EqlDeleteRequest.ENDPOINT);
 	}
 
 	/**
@@ -67,9 +67,9 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
+	public final EqlDeleteResponse delete(Function<EqlDeleteRequest.Builder, ObjectBuilder<EqlDeleteRequest>> fn)
 			throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+		return delete(fn.apply(new EqlDeleteRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: eql.get
@@ -83,8 +83,8 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TEvent> GetResponse<TEvent> get(GetRequest request, Class<TEvent> tEventClass) throws IOException {
-		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tEventClass)));
+	public <TEvent> EqlGetResponse<TEvent> get(EqlGetRequest request, Class<TEvent> tEventClass) throws IOException {
+		return this.transport.performRequest(request, EqlGetRequest.createGetEndpoint(getDeserializer(tEventClass)));
 	}
 
 	/**
@@ -100,9 +100,9 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> GetResponse<TEvent> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
+	public final <TEvent> EqlGetResponse<TEvent> get(Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn,
 			Class<TEvent> tEventClass) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build(), tEventClass);
+		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventClass);
 	}
 
 	// ----- Endpoint: eql.get_status
@@ -148,8 +148,10 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TEvent> SearchResponse<TEvent> search(SearchRequest request, Class<TEvent> tEventClass) throws IOException {
-		return this.transport.performRequest(request, SearchRequest.createSearchEndpoint(getDeserializer(tEventClass)));
+	public <TEvent> EqlSearchResponse<TEvent> search(EqlSearchRequest request, Class<TEvent> tEventClass)
+			throws IOException {
+		return this.transport.performRequest(request,
+				EqlSearchRequest.createSearchEndpoint(getDeserializer(tEventClass)));
 	}
 
 	/**
@@ -164,10 +166,10 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> SearchResponse<TEvent> search(
-			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TEvent> tEventClass)
+	public final <TEvent> EqlSearchResponse<TEvent> search(
+			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
 			throws IOException {
-		return search(fn.apply(new SearchRequest.Builder()).build(), tEventClass);
+		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
 	}
 
 }

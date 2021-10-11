@@ -49,8 +49,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<DeleteResponse> delete() throws IOException {
-		return this.transport.performRequestAsync(DeleteRequest._INSTANCE, DeleteRequest.ENDPOINT);
+	public CompletableFuture<DeleteLicenseResponse> delete() throws IOException {
+		return this.transport.performRequestAsync(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: license.get
@@ -63,8 +63,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRequest.ENDPOINT);
+	public CompletableFuture<GetLicenseResponse> get(GetLicenseRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, GetLicenseRequest.ENDPOINT);
 	}
 
 	/**
@@ -79,9 +79,9 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetResponse> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
-			throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final CompletableFuture<GetLicenseResponse> get(
+			Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn) throws IOException {
+		return get(fn.apply(new GetLicenseRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: license.get_basic_status

@@ -288,8 +288,8 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartResponse> start(StartRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StartRequest.ENDPOINT);
+	public CompletableFuture<StartIlmResponse> start(StartIlmRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, StartIlmRequest.ENDPOINT);
 	}
 
 	/**
@@ -304,9 +304,9 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StartResponse> start(Function<StartRequest.Builder, ObjectBuilder<StartRequest>> fn)
-			throws IOException {
-		return start(fn.apply(new StartRequest.Builder()).build());
+	public final CompletableFuture<StartIlmResponse> start(
+			Function<StartIlmRequest.Builder, ObjectBuilder<StartIlmRequest>> fn) throws IOException {
+		return start(fn.apply(new StartIlmRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.stop
@@ -320,8 +320,8 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopResponse> stop(StopRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StopRequest.ENDPOINT);
+	public CompletableFuture<StopIlmResponse> stop(StopIlmRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, StopIlmRequest.ENDPOINT);
 	}
 
 	/**
@@ -337,9 +337,9 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StopResponse> stop(Function<StopRequest.Builder, ObjectBuilder<StopRequest>> fn)
-			throws IOException {
-		return stop(fn.apply(new StopRequest.Builder()).build());
+	public final CompletableFuture<StopIlmResponse> stop(
+			Function<StopIlmRequest.Builder, ObjectBuilder<StopIlmRequest>> fn) throws IOException {
+		return stop(fn.apply(new StopIlmRequest.Builder()).build());
 	}
 
 }

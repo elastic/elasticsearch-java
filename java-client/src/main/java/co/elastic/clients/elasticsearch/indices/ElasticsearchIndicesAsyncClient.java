@@ -146,8 +146,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CloneResponse> clone(CloneRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CloneRequest.ENDPOINT);
+	public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, CloneIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -162,9 +162,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CloneResponse> clone(Function<CloneRequest.Builder, ObjectBuilder<CloneRequest>> fn)
-			throws IOException {
-		return clone(fn.apply(new CloneRequest.Builder()).build());
+	public final CompletableFuture<CloneIndexResponse> clone(
+			Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn) throws IOException {
+		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.close
@@ -177,8 +177,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CloseResponse> close(CloseRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CloseRequest.ENDPOINT);
+	public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, CloseIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -193,9 +193,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CloseResponse> close(Function<CloseRequest.Builder, ObjectBuilder<CloseRequest>> fn)
-			throws IOException {
-		return close(fn.apply(new CloseRequest.Builder()).build());
+	public final CompletableFuture<CloseIndexResponse> close(
+			Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn) throws IOException {
+		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.create
@@ -208,8 +208,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateResponse> create(CreateRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CreateRequest.ENDPOINT);
+	public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, CreateIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -224,9 +224,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CreateResponse> create(
-			Function<CreateRequest.Builder, ObjectBuilder<CreateRequest>> fn) throws IOException {
-		return create(fn.apply(new CreateRequest.Builder()).build());
+	public final CompletableFuture<CreateIndexResponse> create(
+			Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn) throws IOException {
+		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.create_data_stream
@@ -303,8 +303,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRequest.ENDPOINT);
+	public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, DeleteIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -319,9 +319,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteResponse> delete(
-			Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn) throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	public final CompletableFuture<DeleteIndexResponse> delete(
+			Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn) throws IOException {
+		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_alias
@@ -746,8 +746,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRequest.ENDPOINT);
+	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, GetIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -762,9 +762,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetResponse> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
-			throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final CompletableFuture<GetIndexResponse> get(
+			Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn) throws IOException {
+		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_alias
@@ -1602,8 +1602,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatsResponse> stats(StatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StatsRequest.ENDPOINT);
+	public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, IndicesStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -1618,9 +1618,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StatsResponse> stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final CompletableFuture<IndicesStatsResponse> stats(
+			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.unfreeze

@@ -81,8 +81,8 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRequest.ENDPOINT);
+	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, GetTasksRequest.ENDPOINT);
 	}
 
 	/**
@@ -97,9 +97,9 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetResponse> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
-			throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final CompletableFuture<GetTasksResponse> get(
+			Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn) throws IOException {
+		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: tasks.list

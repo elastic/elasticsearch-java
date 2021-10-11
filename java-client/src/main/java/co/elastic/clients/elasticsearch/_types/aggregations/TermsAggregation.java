@@ -47,11 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
 @JsonpDeserializable
-public final class TermsAggregation extends BucketAggregationBase
-		implements
-			AggregationVariant,
-			PivotGroupByVariant,
-			CompositeAggregationSourceVariant {
+public final class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
@@ -121,8 +117,7 @@ public final class TermsAggregation extends BucketAggregationBase
 	}
 
 	/**
-	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
-	 * variant type
+	 * {@link Aggregation}, {@link PivotGroupBy} variant type
 	 */
 	@Override
 	public String _variantType() {

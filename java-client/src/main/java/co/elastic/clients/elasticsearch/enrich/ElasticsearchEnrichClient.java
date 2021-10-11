@@ -173,8 +173,8 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StatsResponse stats() throws IOException {
-		return this.transport.performRequest(StatsRequest._INSTANCE, StatsRequest.ENDPOINT);
+	public EnrichStatsResponse stats() throws IOException {
+		return this.transport.performRequest(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT);
 	}
 
 }

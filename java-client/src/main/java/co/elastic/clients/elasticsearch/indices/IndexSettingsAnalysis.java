@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
 import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
-import co.elastic.clients.elasticsearch._types.analysis.Normalizer;
+import co.elastic.clients.elasticsearch._types.analysis.CustomNormalizer;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -57,7 +57,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 	private final Map<String, TokenFilter> filter;
 
 	@Nullable
-	private final Map<String, Normalizer> normalizer;
+	private final Map<String, CustomNormalizer> normalizer;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 	 * API name: {@code normalizer}
 	 */
 	@Nullable
-	public Map<String, Normalizer> normalizer() {
+	public Map<String, CustomNormalizer> normalizer() {
 		return this.normalizer;
 	}
 
@@ -157,7 +157,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 
 			generator.writeKey("normalizer");
 			generator.writeStartObject();
-			for (Map.Entry<String, Normalizer> item0 : this.normalizer.entrySet()) {
+			for (Map.Entry<String, CustomNormalizer> item0 : this.normalizer.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -184,7 +184,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		private Map<String, TokenFilter> filter;
 
 		@Nullable
-		private Map<String, Normalizer> normalizer;
+		private Map<String, CustomNormalizer> normalizer;
 
 		/**
 		 * API name: {@code analyzer}
@@ -288,7 +288,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * API name: {@code normalizer}
 		 */
-		public Builder normalizer(@Nullable Map<String, Normalizer> value) {
+		public Builder normalizer(@Nullable Map<String, CustomNormalizer> value) {
 			this.normalizer = value;
 			return this;
 		}
@@ -296,7 +296,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #normalizer(Map)}, creating the map if needed.
 		 */
-		public Builder putNormalizer(String key, Normalizer value) {
+		public Builder putNormalizer(String key, CustomNormalizer value) {
 			if (this.normalizer == null) {
 				this.normalizer = new HashMap<>();
 			}
@@ -307,15 +307,16 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * Set {@link #normalizer(Map)} to a singleton map.
 		 */
-		public Builder normalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
-			return this.normalizer(Collections.singletonMap(key, fn.apply(new Normalizer.Builder()).build()));
+		public Builder normalizer(String key, Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> fn) {
+			return this.normalizer(Collections.singletonMap(key, fn.apply(new CustomNormalizer.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #normalizer(Map)}, creating the map if needed.
 		 */
-		public Builder putNormalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
-			return this.putNormalizer(key, fn.apply(new Normalizer.Builder()).build());
+		public Builder putNormalizer(String key,
+				Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> fn) {
+			return this.putNormalizer(key, fn.apply(new CustomNormalizer.Builder()).build());
 		}
 
 		/**
@@ -344,7 +345,8 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		op.add(Builder::analyzer, JsonpDeserializer.stringMapDeserializer(Analyzer._DESERIALIZER), "analyzer");
 		op.add(Builder::charFilter, JsonpDeserializer.stringMapDeserializer(CharFilter._DESERIALIZER), "char_filter");
 		op.add(Builder::filter, JsonpDeserializer.stringMapDeserializer(TokenFilter._DESERIALIZER), "filter");
-		op.add(Builder::normalizer, JsonpDeserializer.stringMapDeserializer(Normalizer._DESERIALIZER), "normalizer");
+		op.add(Builder::normalizer, JsonpDeserializer.stringMapDeserializer(CustomNormalizer._DESERIALIZER),
+				"normalizer");
 
 	}
 

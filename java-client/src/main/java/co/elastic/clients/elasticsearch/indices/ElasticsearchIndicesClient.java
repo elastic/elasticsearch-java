@@ -145,8 +145,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloneResponse clone(CloneRequest request) throws IOException {
-		return this.transport.performRequest(request, CloneRequest.ENDPOINT);
+	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, CloneIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -161,9 +161,9 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CloneResponse clone(Function<CloneRequest.Builder, ObjectBuilder<CloneRequest>> fn)
+	public final CloneIndexResponse clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
 			throws IOException {
-		return clone(fn.apply(new CloneRequest.Builder()).build());
+		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.close
@@ -176,8 +176,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloseResponse close(CloseRequest request) throws IOException {
-		return this.transport.performRequest(request, CloseRequest.ENDPOINT);
+	public CloseIndexResponse close(CloseIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, CloseIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -192,9 +192,9 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CloseResponse close(Function<CloseRequest.Builder, ObjectBuilder<CloseRequest>> fn)
+	public final CloseIndexResponse close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
 			throws IOException {
-		return close(fn.apply(new CloseRequest.Builder()).build());
+		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.create
@@ -207,8 +207,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateResponse create(CreateRequest request) throws IOException {
-		return this.transport.performRequest(request, CreateRequest.ENDPOINT);
+	public CreateIndexResponse create(CreateIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, CreateIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -223,9 +223,9 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateResponse create(Function<CreateRequest.Builder, ObjectBuilder<CreateRequest>> fn)
+	public final CreateIndexResponse create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
 			throws IOException {
-		return create(fn.apply(new CreateRequest.Builder()).build());
+		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.create_data_stream
@@ -300,8 +300,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
+	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, DeleteIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -316,9 +316,9 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
+	public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
 			throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_alias
@@ -740,8 +740,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetResponse get(GetRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRequest.ENDPOINT);
+	public GetIndexResponse get(GetIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, GetIndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -756,8 +756,9 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetResponse get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
+			throws IOException {
+		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_alias
@@ -1588,8 +1589,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StatsResponse stats(StatsRequest request) throws IOException {
-		return this.transport.performRequest(request, StatsRequest.ENDPOINT);
+	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException {
+		return this.transport.performRequest(request, IndicesStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -1604,9 +1605,9 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final IndicesStatsResponse stats(
+			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.unfreeze

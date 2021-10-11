@@ -285,8 +285,8 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StartResponse start(StartRequest request) throws IOException {
-		return this.transport.performRequest(request, StartRequest.ENDPOINT);
+	public StartIlmResponse start(StartIlmRequest request) throws IOException {
+		return this.transport.performRequest(request, StartIlmRequest.ENDPOINT);
 	}
 
 	/**
@@ -301,9 +301,9 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final StartResponse start(Function<StartRequest.Builder, ObjectBuilder<StartRequest>> fn)
+	public final StartIlmResponse start(Function<StartIlmRequest.Builder, ObjectBuilder<StartIlmRequest>> fn)
 			throws IOException {
-		return start(fn.apply(new StartRequest.Builder()).build());
+		return start(fn.apply(new StartIlmRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.stop
@@ -317,8 +317,8 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StopResponse stop(StopRequest request) throws IOException {
-		return this.transport.performRequest(request, StopRequest.ENDPOINT);
+	public StopIlmResponse stop(StopIlmRequest request) throws IOException {
+		return this.transport.performRequest(request, StopIlmRequest.ENDPOINT);
 	}
 
 	/**
@@ -334,8 +334,9 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final StopResponse stop(Function<StopRequest.Builder, ObjectBuilder<StopRequest>> fn) throws IOException {
-		return stop(fn.apply(new StopRequest.Builder()).build());
+	public final StopIlmResponse stop(Function<StopIlmRequest.Builder, ObjectBuilder<StopIlmRequest>> fn)
+			throws IOException {
+		return stop(fn.apply(new StopIlmRequest.Builder()).build());
 	}
 
 }

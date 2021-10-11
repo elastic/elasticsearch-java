@@ -1138,8 +1138,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<InfoResponse> info() throws IOException {
-		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
+	public CompletableFuture<MlInfoResponse> info() throws IOException {
+		return this.transport.performRequestAsync(MlInfoRequest._INSTANCE, MlInfoRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ml.open_job

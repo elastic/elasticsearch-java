@@ -80,8 +80,8 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public InfoResponse info(InfoRequest request) throws IOException {
-		return this.transport.performRequest(request, InfoRequest.ENDPOINT);
+	public NodesInfoResponse info(NodesInfoRequest request) throws IOException {
+		return this.transport.performRequest(request, NodesInfoRequest.ENDPOINT);
 	}
 
 	/**
@@ -96,8 +96,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final InfoResponse info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn) throws IOException {
-		return info(fn.apply(new InfoRequest.Builder()).build());
+	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
+			throws IOException {
+		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: nodes.reload_secure_settings
@@ -142,8 +143,8 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StatsResponse stats(StatsRequest request) throws IOException {
-		return this.transport.performRequest(request, StatsRequest.ENDPOINT);
+	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException {
+		return this.transport.performRequest(request, NodesStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -158,9 +159,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
+	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
 			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: nodes.usage

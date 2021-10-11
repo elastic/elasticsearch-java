@@ -174,8 +174,8 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StatsResponse> stats() throws IOException {
-		return this.transport.performRequestAsync(StatsRequest._INSTANCE, StatsRequest.ENDPOINT);
+	public CompletableFuture<EnrichStatsResponse> stats() throws IOException {
+		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT);
 	}
 
 }
