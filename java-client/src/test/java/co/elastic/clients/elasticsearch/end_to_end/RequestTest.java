@@ -26,10 +26,11 @@ import co.elastic.clients.base.rest_client.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._core.BulkResponse;
-import co.elastic.clients.elasticsearch._core.IndexResponse;
-import co.elastic.clients.elasticsearch._core.SearchResponse;
-import co.elastic.clients.elasticsearch._core.bulk.ResponseItem;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.bulk.ResponseItem;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
@@ -253,7 +254,7 @@ public class RequestTest extends Assert {
         assertFalse(exists.value());
 
         try {
-            co.elastic.clients.elasticsearch._core.GetResponse<String> response = client.get(
+            GetResponse<String> response = client.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
         } catch(ApiException apie) {
@@ -264,7 +265,7 @@ public class RequestTest extends Assert {
 
         try {
             ElasticsearchAsyncClient aClient = new ElasticsearchAsyncClient(transport);
-            co.elastic.clients.elasticsearch._core.GetResponse<String> response = aClient.get(
+            GetResponse<String> response = aClient.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
         } catch(ExecutionException ee) {
