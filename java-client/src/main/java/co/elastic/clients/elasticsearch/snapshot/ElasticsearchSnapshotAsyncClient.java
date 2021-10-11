@@ -293,6 +293,19 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 		return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about a repository.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetRepositoryResponse> getRepository() throws IOException {
+		return this.transport.performRequestAsync(new GetRepositoryRequest.Builder().build(),
+				GetRepositoryRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: snapshot.restore
 
 	/**
@@ -353,6 +366,18 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	public final CompletableFuture<StatusResponse> status(
 			Function<StatusRequest.Builder, ObjectBuilder<StatusRequest>> fn) throws IOException {
 		return status(fn.apply(new StatusRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about the status of a snapshot.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<StatusResponse> status() throws IOException {
+		return this.transport.performRequestAsync(new StatusRequest.Builder().build(), StatusRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: snapshot.verify_repository

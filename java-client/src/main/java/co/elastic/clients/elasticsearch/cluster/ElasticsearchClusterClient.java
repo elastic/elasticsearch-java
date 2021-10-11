@@ -71,6 +71,19 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
 	}
 
+	/**
+	 * Provides explanations for shard allocations in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public AllocationExplainResponse allocationExplain() throws IOException {
+		return this.transport.performRequest(new AllocationExplainRequest.Builder().build(),
+				AllocationExplainRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.delete_component_template
 
 	/**
@@ -137,6 +150,19 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
 	}
 
+	/**
+	 * Clears cluster voting config exclusions.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BooleanResponse deleteVotingConfigExclusions() throws IOException {
+		return this.transport.performRequest(new DeleteVotingConfigExclusionsRequest.Builder().build(),
+				DeleteVotingConfigExclusionsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.exists_component_template
 
 	/**
@@ -201,6 +227,19 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns one or more component templates
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetComponentTemplateResponse getComponentTemplate() throws IOException {
+		return this.transport.performRequest(new GetComponentTemplateRequest.Builder().build(),
+				GetComponentTemplateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.get_settings
 
 	/**
@@ -232,6 +271,18 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns cluster settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetSettingsResponse getSettings() throws IOException {
+		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.health
 
 	/**
@@ -261,6 +312,18 @@ public class ElasticsearchClusterClient extends ApiClient {
 	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
 			throws IOException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns basic information about the health of the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HealthResponse health() throws IOException {
+		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cluster.pending_tasks
@@ -296,6 +359,19 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns a list of any cluster-level changes (e.g. create index, update
+	 * mapping, allocate or fail shard) which have not yet been executed.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PendingTasksResponse pendingTasks() throws IOException {
+		return this.transport.performRequest(new PendingTasksRequest.Builder().build(), PendingTasksRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.post_voting_config_exclusions
 
 	/**
@@ -326,6 +402,19 @@ public class ElasticsearchClusterClient extends ApiClient {
 			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
 			throws IOException {
 		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
+	}
+
+	/**
+	 * Updates the cluster voting config exclusions by node ids or node names.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BooleanResponse postVotingConfigExclusions() throws IOException {
+		return this.transport.performRequest(new PostVotingConfigExclusionsRequest.Builder().build(),
+				PostVotingConfigExclusionsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cluster.put_component_template
@@ -391,6 +480,18 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates the cluster settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutSettingsResponse putSettings() throws IOException {
+		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.remote_info
 
 	/**
@@ -435,6 +536,18 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return reroute(fn.apply(new RerouteRequest.Builder()).build());
 	}
 
+	/**
+	 * Allows to manually change the allocation of individual shards in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RerouteResponse reroute() throws IOException {
+		return this.transport.performRequest(new RerouteRequest.Builder().build(), RerouteRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.state
 
 	/**
@@ -466,6 +579,18 @@ public class ElasticsearchClusterClient extends ApiClient {
 		return state(fn.apply(new StateRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns a comprehensive information about the state of the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public StateResponse state() throws IOException {
+		return this.transport.performRequest(new StateRequest.Builder().build(), StateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cluster.stats
 
 	/**
@@ -495,6 +620,18 @@ public class ElasticsearchClusterClient extends ApiClient {
 	public final ClusterStatsResponse stats(
 			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn) throws IOException {
 		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns high-level overview of cluster statistics.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ClusterStatsResponse stats() throws IOException {
+		return this.transport.performRequest(new ClusterStatsRequest.Builder().build(), ClusterStatsRequest.ENDPOINT);
 	}
 
 }

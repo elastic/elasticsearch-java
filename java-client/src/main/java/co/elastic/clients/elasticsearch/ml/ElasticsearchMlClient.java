@@ -454,6 +454,19 @@ public class ElasticsearchMlClient extends ApiClient {
 		return estimateModelMemory(fn.apply(new EstimateModelMemoryRequest.Builder()).build());
 	}
 
+	/**
+	 * Estimates the model memory
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public EstimateModelMemoryResponse estimateModelMemory() throws IOException {
+		return this.transport.performRequest(new EstimateModelMemoryRequest.Builder().build(),
+				EstimateModelMemoryRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.evaluate_data_frame
 
 	/**
@@ -708,6 +721,18 @@ public class ElasticsearchMlClient extends ApiClient {
 		return getCalendars(fn.apply(new GetCalendarsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves configuration information for calendars.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetCalendarsResponse getCalendars() throws IOException {
+		return this.transport.performRequest(new GetCalendarsRequest.Builder().build(), GetCalendarsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.get_categories
 
 	/**
@@ -772,6 +797,19 @@ public class ElasticsearchMlClient extends ApiClient {
 		return getDataFrameAnalytics(fn.apply(new GetDataFrameAnalyticsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves configuration information for data frame analytics jobs.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataFrameAnalyticsResponse getDataFrameAnalytics() throws IOException {
+		return this.transport.performRequest(new GetDataFrameAnalyticsRequest.Builder().build(),
+				GetDataFrameAnalyticsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.get_data_frame_analytics_stats
 
 	/**
@@ -805,6 +843,19 @@ public class ElasticsearchMlClient extends ApiClient {
 		return getDataFrameAnalyticsStats(fn.apply(new GetDataFrameAnalyticsStatsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves usage information for data frame analytics jobs.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats() throws IOException {
+		return this.transport.performRequest(new GetDataFrameAnalyticsStatsRequest.Builder().build(),
+				GetDataFrameAnalyticsStatsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.get_datafeed_stats
 
 	/**
@@ -834,6 +885,19 @@ public class ElasticsearchMlClient extends ApiClient {
 	public final GetDatafeedStatsResponse getDatafeedStats(
 			Function<GetDatafeedStatsRequest.Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn) throws IOException {
 		return getDatafeedStats(fn.apply(new GetDatafeedStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves usage information for datafeeds.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDatafeedStatsResponse getDatafeedStats() throws IOException {
+		return this.transport.performRequest(new GetDatafeedStatsRequest.Builder().build(),
+				GetDatafeedStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ml.get_datafeeds
@@ -867,6 +931,18 @@ public class ElasticsearchMlClient extends ApiClient {
 		return getDatafeeds(fn.apply(new GetDatafeedsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves configuration information for datafeeds.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDatafeedsResponse getDatafeeds() throws IOException {
+		return this.transport.performRequest(new GetDatafeedsRequest.Builder().build(), GetDatafeedsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.get_filters
 
 	/**
@@ -896,6 +972,18 @@ public class ElasticsearchMlClient extends ApiClient {
 	public final GetFiltersResponse getFilters(Function<GetFiltersRequest.Builder, ObjectBuilder<GetFiltersRequest>> fn)
 			throws IOException {
 		return getFilters(fn.apply(new GetFiltersRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves filters.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetFiltersResponse getFilters() throws IOException {
+		return this.transport.performRequest(new GetFiltersRequest.Builder().build(), GetFiltersRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ml.get_influencers
@@ -960,6 +1048,18 @@ public class ElasticsearchMlClient extends ApiClient {
 		return getJobStats(fn.apply(new GetJobStatsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves usage information for anomaly detection jobs.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetJobStatsResponse getJobStats() throws IOException {
+		return this.transport.performRequest(new GetJobStatsRequest.Builder().build(), GetJobStatsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.get_jobs
 
 	/**
@@ -989,6 +1089,18 @@ public class ElasticsearchMlClient extends ApiClient {
 	public final GetJobsResponse getJobs(Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
 			throws IOException {
 		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves configuration information for anomaly detection jobs.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetJobsResponse getJobs() throws IOException {
+		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ml.get_model_snapshots
@@ -1117,6 +1229,19 @@ public class ElasticsearchMlClient extends ApiClient {
 		return getTrainedModels(fn.apply(new GetTrainedModelsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves configuration information for a trained inference model.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTrainedModelsResponse getTrainedModels() throws IOException {
+		return this.transport.performRequest(new GetTrainedModelsRequest.Builder().build(),
+				GetTrainedModelsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.get_trained_models_stats
 
 	/**
@@ -1148,6 +1273,19 @@ public class ElasticsearchMlClient extends ApiClient {
 			Function<GetTrainedModelsStatsRequest.Builder, ObjectBuilder<GetTrainedModelsStatsRequest>> fn)
 			throws IOException {
 		return getTrainedModelsStats(fn.apply(new GetTrainedModelsStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves usage information for trained inference models.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTrainedModelsStatsResponse getTrainedModelsStats() throws IOException {
+		return this.transport.performRequest(new GetTrainedModelsStatsRequest.Builder().build(),
+				GetTrainedModelsStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ml.info
@@ -1288,6 +1426,19 @@ public class ElasticsearchMlClient extends ApiClient {
 			Function<PreviewDataFrameAnalyticsRequest.Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn)
 			throws IOException {
 		return previewDataFrameAnalytics(fn.apply(new PreviewDataFrameAnalyticsRequest.Builder()).build());
+	}
+
+	/**
+	 * Previews that will be analyzed given a data frame analytics config.
+	 * 
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics() throws IOException {
+		return this.transport.performRequest(new PreviewDataFrameAnalyticsRequest.Builder().build(),
+				PreviewDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ml.preview_datafeed
@@ -1673,6 +1824,20 @@ public class ElasticsearchMlClient extends ApiClient {
 		return setUpgradeMode(fn.apply(new SetUpgradeModeRequest.Builder()).build());
 	}
 
+	/**
+	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
+	 * indices for an upgrade.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SetUpgradeModeResponse setUpgradeMode() throws IOException {
+		return this.transport.performRequest(new SetUpgradeModeRequest.Builder().build(),
+				SetUpgradeModeRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.start_data_frame_analytics
 
 	/**
@@ -1991,6 +2156,18 @@ public class ElasticsearchMlClient extends ApiClient {
 		return validate(fn.apply(new ValidateRequest.Builder()).build());
 	}
 
+	/**
+	 * Validates an anomaly detection job.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ValidateResponse validate() throws IOException {
+		return this.transport.performRequest(new ValidateRequest.Builder().build(), ValidateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ml.validate_detector
 
 	/**
@@ -2020,6 +2197,19 @@ public class ElasticsearchMlClient extends ApiClient {
 	public final ValidateDetectorResponse validateDetector(
 			Function<ValidateDetectorRequest.Builder, ObjectBuilder<ValidateDetectorRequest>> fn) throws IOException {
 		return validateDetector(fn.apply(new ValidateDetectorRequest.Builder()).build());
+	}
+
+	/**
+	 * Validates an anomaly detection detector.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ValidateDetectorResponse validateDetector() throws IOException {
+		return this.transport.performRequest(new ValidateDetectorRequest.Builder().build(),
+				ValidateDetectorRequest.ENDPOINT);
 	}
 
 }

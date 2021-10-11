@@ -101,6 +101,18 @@ public class ElasticsearchTransformClient extends ApiClient {
 		return getTransform(fn.apply(new GetTransformRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves configuration information for transforms.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTransformResponse getTransform() throws IOException {
+		return this.transport.performRequest(new GetTransformRequest.Builder().build(), GetTransformRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: transform.get_transform_stats
 
 	/**
