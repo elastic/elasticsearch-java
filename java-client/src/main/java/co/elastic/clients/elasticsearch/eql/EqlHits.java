@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.elasticsearch._core.search.TotalHits;
+import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;

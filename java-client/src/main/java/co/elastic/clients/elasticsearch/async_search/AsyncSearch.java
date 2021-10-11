@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.elasticsearch._core.search.HitsMetadata;
-import co.elastic.clients.elasticsearch._core.search.Profile;
-import co.elastic.clients.elasticsearch._core.search.Suggestion;
 import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
+import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
+import co.elastic.clients.elasticsearch.core.search.Profile;
+import co.elastic.clients.elasticsearch.core.search.Suggestion;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
