@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.elasticsearch._core.search.InnerHits;
+import co.elastic.clients.elasticsearch.core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;

@@ -26,8 +26,8 @@ package co.elastic.clients.elasticsearch.monitoring;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._core.bulk.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.core.bulk.Operation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -229,6 +229,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 
 		/**
 		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
+		 * <p>
+		 * 
+		 * @deprecated
 		 */
 		public Builder<TSource> addOperation(Operation value) {
 			if (this.operations == null) {

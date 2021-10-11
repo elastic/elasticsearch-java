@@ -23,8 +23,8 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.elasticsearch._core.reindex.Destination;
-import co.elastic.clients.elasticsearch._core.reindex.Source;
+import co.elastic.clients.elasticsearch.core.reindex.Destination;
+import co.elastic.clients.elasticsearch.core.reindex.Source;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
