@@ -476,8 +476,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StatsResponse stats(StatsRequest request) throws IOException {
-		return this.transport.performRequest(request, StatsRequest.ENDPOINT);
+	public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException {
+		return this.transport.performRequest(request, ClusterStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -492,9 +492,9 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final ClusterStatsResponse stats(
+			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
 }

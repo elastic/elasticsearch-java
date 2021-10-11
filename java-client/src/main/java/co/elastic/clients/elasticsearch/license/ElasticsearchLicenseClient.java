@@ -48,8 +48,8 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public DeleteResponse delete() throws IOException {
-		return this.transport.performRequest(DeleteRequest._INSTANCE, DeleteRequest.ENDPOINT);
+	public DeleteLicenseResponse delete() throws IOException {
+		return this.transport.performRequest(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: license.get
@@ -62,8 +62,8 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetResponse get(GetRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRequest.ENDPOINT);
+	public GetLicenseResponse get(GetLicenseRequest request) throws IOException {
+		return this.transport.performRequest(request, GetLicenseRequest.ENDPOINT);
 	}
 
 	/**
@@ -78,8 +78,9 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetResponse get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build());
+	public final GetLicenseResponse get(Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn)
+			throws IOException {
+		return get(fn.apply(new GetLicenseRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: license.get_basic_status

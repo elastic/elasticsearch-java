@@ -49,8 +49,8 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public InfoResponse info(InfoRequest request) throws IOException {
-		return this.transport.performRequest(request, InfoRequest.ENDPOINT);
+	public XpackInfoResponse info(XpackInfoRequest request) throws IOException {
+		return this.transport.performRequest(request, XpackInfoRequest.ENDPOINT);
 	}
 
 	/**
@@ -65,8 +65,9 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final InfoResponse info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn) throws IOException {
-		return info(fn.apply(new InfoRequest.Builder()).build());
+	public final XpackInfoResponse info(Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn)
+			throws IOException {
+		return info(fn.apply(new XpackInfoRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: xpack.usage

@@ -220,8 +220,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StartResponse> start() throws IOException {
-		return this.transport.performRequestAsync(StartRequest._INSTANCE, StartRequest.ENDPOINT);
+	public CompletableFuture<StartSlmResponse> start() throws IOException {
+		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: slm.stop
@@ -233,8 +233,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StopResponse> stop() throws IOException {
-		return this.transport.performRequestAsync(StopRequest._INSTANCE, StopRequest.ENDPOINT);
+	public CompletableFuture<StopSlmResponse> stop() throws IOException {
+		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT);
 	}
 
 }

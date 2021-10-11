@@ -482,8 +482,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatsResponse> stats(StatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StatsRequest.ENDPOINT);
+	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, ClusterStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -498,9 +498,9 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StatsResponse> stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final CompletableFuture<ClusterStatsResponse> stats(
+			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
 }

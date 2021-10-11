@@ -112,8 +112,9 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatsResponse> stats(StatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StatsRequest.ENDPOINT);
+	public CompletableFuture<SearchableSnapshotsStatsResponse> stats(SearchableSnapshotsStatsRequest request)
+			throws IOException {
+		return this.transport.performRequestAsync(request, SearchableSnapshotsStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -128,9 +129,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StatsResponse> stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
+	public final CompletableFuture<SearchableSnapshotsStatsResponse> stats(
+			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
 			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
 	}
 
 }

@@ -50,8 +50,8 @@ public class ElasticsearchXpackAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<InfoResponse> info(InfoRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, InfoRequest.ENDPOINT);
+	public CompletableFuture<XpackInfoResponse> info(XpackInfoRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, XpackInfoRequest.ENDPOINT);
 	}
 
 	/**
@@ -66,9 +66,9 @@ public class ElasticsearchXpackAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<InfoResponse> info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn)
-			throws IOException {
-		return info(fn.apply(new InfoRequest.Builder()).build());
+	public final CompletableFuture<XpackInfoResponse> info(
+			Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn) throws IOException {
+		return info(fn.apply(new XpackInfoRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: xpack.usage

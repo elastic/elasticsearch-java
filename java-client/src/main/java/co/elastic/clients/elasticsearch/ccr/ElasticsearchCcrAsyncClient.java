@@ -414,8 +414,8 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StatsResponse> stats() throws IOException {
-		return this.transport.performRequestAsync(StatsRequest._INSTANCE, StatsRequest.ENDPOINT);
+	public CompletableFuture<CcrStatsResponse> stats() throws IOException {
+		return this.transport.performRequestAsync(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: ccr.unfollow

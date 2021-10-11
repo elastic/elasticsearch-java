@@ -298,8 +298,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StartResponse start() throws IOException {
-		return this.transport.performRequest(StartRequest._INSTANCE, StartRequest.ENDPOINT);
+	public StartWatcherResponse start() throws IOException {
+		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: watcher.stats
@@ -312,8 +312,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StatsResponse stats(StatsRequest request) throws IOException {
-		return this.transport.performRequest(request, StatsRequest.ENDPOINT);
+	public WatcherStatsResponse stats(WatcherStatsRequest request) throws IOException {
+		return this.transport.performRequest(request, WatcherStatsRequest.ENDPOINT);
 	}
 
 	/**
@@ -328,9 +328,9 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
-			throws IOException {
-		return stats(fn.apply(new StatsRequest.Builder()).build());
+	public final WatcherStatsResponse stats(
+			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn) throws IOException {
+		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.stop
@@ -342,8 +342,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StopResponse stop() throws IOException {
-		return this.transport.performRequest(StopRequest._INSTANCE, StopRequest.ENDPOINT);
+	public StopWatcherResponse stop() throws IOException {
+		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT);
 	}
 
 }

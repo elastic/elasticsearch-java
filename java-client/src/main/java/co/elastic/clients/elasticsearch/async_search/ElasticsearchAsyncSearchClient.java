@@ -50,8 +50,8 @@ public class ElasticsearchAsyncSearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
+	public DeleteAsyncSearchResponse delete(DeleteAsyncSearchRequest request) throws IOException {
+		return this.transport.performRequest(request, DeleteAsyncSearchRequest.ENDPOINT);
 	}
 
 	/**
@@ -67,9 +67,9 @@ public class ElasticsearchAsyncSearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
-			throws IOException {
-		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	public final DeleteAsyncSearchResponse delete(
+			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn) throws IOException {
+		return delete(fn.apply(new DeleteAsyncSearchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: async_search.get
@@ -83,9 +83,10 @@ public class ElasticsearchAsyncSearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
+	public <TDocument> GetAsyncSearchResponse<TDocument> get(GetAsyncSearchRequest request,
+			Class<TDocument> tDocumentClass) throws IOException {
+		return this.transport.performRequest(request,
+				GetAsyncSearchRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -101,9 +102,10 @@ public class ElasticsearchAsyncSearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
+	public final <TDocument> GetAsyncSearchResponse<TDocument> get(
+			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException {
-		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
+		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: async_search.status

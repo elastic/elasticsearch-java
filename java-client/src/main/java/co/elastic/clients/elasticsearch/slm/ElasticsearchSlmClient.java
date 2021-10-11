@@ -217,8 +217,8 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StartResponse start() throws IOException {
-		return this.transport.performRequest(StartRequest._INSTANCE, StartRequest.ENDPOINT);
+	public StartSlmResponse start() throws IOException {
+		return this.transport.performRequest(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: slm.stop
@@ -230,8 +230,8 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StopResponse stop() throws IOException {
-		return this.transport.performRequest(StopRequest._INSTANCE, StopRequest.ENDPOINT);
+	public StopSlmResponse stop() throws IOException {
+		return this.transport.performRequest(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT);
 	}
 
 }
