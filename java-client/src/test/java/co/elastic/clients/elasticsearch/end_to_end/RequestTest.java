@@ -31,8 +31,8 @@ import co.elastic.clients.elasticsearch._core.IndexResponse;
 import co.elastic.clients.elasticsearch._core.SearchResponse;
 import co.elastic.clients.elasticsearch._core.bulk.ResponseItem;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
-import co.elastic.clients.elasticsearch.indices.CreateResponse;
-import co.elastic.clients.elasticsearch.indices.GetResponse;
+import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
+import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonpMapper;
@@ -77,6 +77,16 @@ public class RequestTest extends Assert {
     }
 
     @Test
+    public void testCount() throws Exception {
+        // Tests that a no-parameter method exists for endpoints that only have optional properties
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        assertTrue(client.count().count() >= 0);
+    }
+
+    @Test
     public void testIndexCreation() throws Exception {
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         Transport transport = new RestClientTransport(restClient, mapper);
@@ -87,13 +97,13 @@ public class RequestTest extends Assert {
         assertTrue(client.ping().value());
 
         // Create an index...
-        final CreateResponse createResponse = client.indices().create(b -> b.index("my-index"));
+        final CreateIndexResponse createResponse = client.indices().create(b -> b.index("my-index"));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
         // Find info about it, using the async client
-        CompletableFuture<GetResponse> futureResponse = asyncClient.indices().get(b -> b.index("my-index"));
-        GetResponse response = futureResponse.get(10, TimeUnit.SECONDS);
+        CompletableFuture<GetIndexResponse> futureResponse = asyncClient.indices().get(b -> b.index("my-index"));
+        GetIndexResponse response = futureResponse.get(10, TimeUnit.SECONDS);
 
         Map<String, IndexState> indices = response.result();
 
@@ -113,7 +123,7 @@ public class RequestTest extends Assert {
         String index = "ingest-test";
 
         // Create an index
-        CreateResponse createIndexResponse = client.indices().create(b -> b
+        CreateIndexResponse createIndexResponse = client.indices().create(b -> b
             .index(index)
         );
 
