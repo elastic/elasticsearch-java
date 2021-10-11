@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch._core.GetSourceResponse;
+import co.elastic.clients.elasticsearch.core.GetSourceResponse;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;

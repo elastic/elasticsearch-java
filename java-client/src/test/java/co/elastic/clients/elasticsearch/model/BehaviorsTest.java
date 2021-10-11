@@ -21,7 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.base.ElasticsearchCatRequest;
 import co.elastic.clients.base.ElasticsearchCommonRequest;
-import co.elastic.clients.elasticsearch._core.IndexRequest;
+import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch._types.ShapeRelation;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
