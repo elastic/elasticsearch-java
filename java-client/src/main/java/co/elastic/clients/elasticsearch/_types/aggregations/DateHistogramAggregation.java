@@ -50,7 +50,8 @@ import javax.annotation.Nullable;
 public final class DateHistogramAggregation extends BucketAggregationBase
 		implements
 			AggregationVariant,
-			PivotGroupByVariant {
+			PivotGroupByVariant,
+			CompositeAggregationSourceVariant {
 	@Nullable
 	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval;
 
@@ -124,7 +125,8 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 	}
 
 	/**
-	 * {@link Aggregation}, {@link PivotGroupBy} variant type
+	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
+	 * variant type
 	 */
 	@Override
 	public String _variantType() {

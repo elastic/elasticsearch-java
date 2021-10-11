@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 public abstract class PipelineAggregationBase extends AggregationBase {
 	@Nullable
-	private final BucketsPath bucketsPath;
+	private final String bucketsPath;
 
 	@Nullable
 	private final String format;
@@ -63,7 +63,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code buckets_path}
 	 */
 	@Nullable
-	public BucketsPath bucketsPath() {
+	public String bucketsPath() {
 		return this.bucketsPath;
 	}
 
@@ -89,7 +89,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		if (this.bucketsPath != null) {
 
 			generator.writeKey("buckets_path");
-			this.bucketsPath.serialize(generator, mapper);
+			generator.write(this.bucketsPath);
 
 		}
 		if (this.format != null) {
@@ -110,7 +110,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 			extends
 				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private BucketsPath bucketsPath;
+		private String bucketsPath;
 
 		@Nullable
 		private String format;
@@ -121,16 +121,9 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code buckets_path}
 		 */
-		public BuilderT bucketsPath(@Nullable BucketsPath value) {
+		public BuilderT bucketsPath(@Nullable String value) {
 			this.bucketsPath = value;
 			return self();
-		}
-
-		/**
-		 * API name: {@code buckets_path}
-		 */
-		public BuilderT bucketsPath(Function<BucketsPath.Builder, ObjectBuilder<BucketsPath>> fn) {
-			return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
 		}
 
 		/**
@@ -155,7 +148,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
-		op.add(AbstractBuilder::bucketsPath, BucketsPath._DESERIALIZER, "buckets_path");
+		op.add(AbstractBuilder::bucketsPath, JsonpDeserializer.stringDeserializer(), "buckets_path");
 		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(AbstractBuilder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
 

@@ -21,26 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
+import co.elastic.clients.util.UnionVariant;
 
-@JsonpDeserializable
-public enum GeoOrientation implements StringEnum {
-	Right("right"), Counterclockwise("counterclockwise"), Ccw("ccw"), Left("left"), Clockwise("clockwise"), Cw("cw");
+/**
+ * Base interface for {@link CompositeAggregationSource} variants.
+ */
+public interface CompositeAggregationSourceVariant extends UnionVariant {
 
-	private final String jsonValue;
-
-	GeoOrientation(String jsonValue) {
-		this.jsonValue = jsonValue;
+	default CompositeAggregationSource _toCompositeAggregationSource() {
+		return new CompositeAggregationSource(this);
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final StringEnum.Deserializer<GeoOrientation> _DESERIALIZER = new StringEnum.Deserializer<>(
-			GeoOrientation.values());
 }

@@ -198,6 +198,19 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 		return executeWatch(fn.apply(new ExecuteWatchRequest.Builder()).build());
 	}
 
+	/**
+	 * Forces the execution of a stored watch.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ExecuteWatchResponse> executeWatch() throws IOException {
+		return this.transport.performRequestAsync(new ExecuteWatchRequest.Builder().build(),
+				ExecuteWatchRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: watcher.get_watch
 
 	/**
@@ -291,6 +304,19 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 		return queryWatches(fn.apply(new QueryWatchesRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves stored watches.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryWatchesResponse> queryWatches() throws IOException {
+		return this.transport.performRequestAsync(new QueryWatchesRequest.Builder().build(),
+				QueryWatchesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: watcher.start
 
 	/**
@@ -333,6 +359,19 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	public final CompletableFuture<WatcherStatsResponse> stats(
 			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn) throws IOException {
 		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves the current Watcher metrics.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<WatcherStatsResponse> stats() throws IOException {
+		return this.transport.performRequestAsync(new WatcherStatsRequest.Builder().build(),
+				WatcherStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: watcher.stop

@@ -101,6 +101,18 @@ public class ElasticsearchSqlClient extends ApiClient {
 		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
+	/**
+	 * Executes a SQL request
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public QueryResponse query() throws IOException {
+		return this.transport.performRequest(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: sql.translate
 
 	/**

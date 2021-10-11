@@ -70,6 +70,18 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
+	/**
+	 * Clear the cache of searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ClearCacheResponse clearCache() throws IOException {
+		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: searchable_snapshots.mount
 
 	/**
@@ -131,6 +143,19 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
 			throws IOException {
 		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieve shard-level statistics about searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SearchableSnapshotsStatsResponse stats() throws IOException {
+		return this.transport.performRequest(new SearchableSnapshotsStatsRequest.Builder().build(),
+				SearchableSnapshotsStatsRequest.ENDPOINT);
 	}
 
 }

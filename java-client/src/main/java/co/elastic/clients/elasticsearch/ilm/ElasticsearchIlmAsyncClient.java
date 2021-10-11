@@ -141,6 +141,20 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns the specified policy definition. Includes the policy version and last
+	 * modified date.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException {
+		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
+				GetLifecycleRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ilm.get_status
 
 	/**
@@ -309,6 +323,18 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 		return start(fn.apply(new StartIlmRequest.Builder()).build());
 	}
 
+	/**
+	 * Start the index lifecycle management (ILM) plugin.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<StartIlmResponse> start() throws IOException {
+		return this.transport.performRequestAsync(new StartIlmRequest.Builder().build(), StartIlmRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ilm.stop
 
 	/**
@@ -340,6 +366,19 @@ public class ElasticsearchIlmAsyncClient extends ApiClient {
 	public final CompletableFuture<StopIlmResponse> stop(
 			Function<StopIlmRequest.Builder, ObjectBuilder<StopIlmRequest>> fn) throws IOException {
 		return stop(fn.apply(new StopIlmRequest.Builder()).build());
+	}
+
+	/**
+	 * Halts all lifecycle management operations and stops the index lifecycle
+	 * management (ILM) plugin
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<StopIlmResponse> stop() throws IOException {
+		return this.transport.performRequestAsync(new StopIlmRequest.Builder().build(), StopIlmRequest.ENDPOINT);
 	}
 
 }

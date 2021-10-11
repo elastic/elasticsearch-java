@@ -42,12 +42,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 
 	private final int usedPercent;
 
-	private final int totalInBytes;
-
-	private final int freeInBytes;
-
-	private final int usedInBytes;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public ExtendedMemoryStats(Builder builder) {
@@ -55,9 +49,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 
 		this.freePercent = Objects.requireNonNull(builder.freePercent, "free_percent");
 		this.usedPercent = Objects.requireNonNull(builder.usedPercent, "used_percent");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
-		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
-		this.usedInBytes = Objects.requireNonNull(builder.usedInBytes, "used_in_bytes");
 
 	}
 
@@ -79,27 +70,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		return this.usedPercent;
 	}
 
-	/**
-	 * Required - API name: {@code total_in_bytes}
-	 */
-	public int totalInBytes() {
-		return this.totalInBytes;
-	}
-
-	/**
-	 * Required - API name: {@code free_in_bytes}
-	 */
-	public int freeInBytes() {
-		return this.freeInBytes;
-	}
-
-	/**
-	 * Required - API name: {@code used_in_bytes}
-	 */
-	public int usedInBytes() {
-		return this.usedInBytes;
-	}
-
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -109,15 +79,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 
 		generator.writeKey("used_percent");
 		generator.write(this.usedPercent);
-
-		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes);
-
-		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes);
-
-		generator.writeKey("used_in_bytes");
-		generator.write(this.usedInBytes);
 
 	}
 
@@ -133,12 +94,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 
 		private Integer usedPercent;
 
-		private Integer totalInBytes;
-
-		private Integer freeInBytes;
-
-		private Integer usedInBytes;
-
 		/**
 		 * Required - API name: {@code free_percent}
 		 */
@@ -152,30 +107,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		 */
 		public Builder usedPercent(int value) {
 			this.usedPercent = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code total_in_bytes}
-		 */
-		public Builder totalInBytes(int value) {
-			this.totalInBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code free_in_bytes}
-		 */
-		public Builder freeInBytes(int value) {
-			this.freeInBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code used_in_bytes}
-		 */
-		public Builder usedInBytes(int value) {
-			this.usedInBytes = value;
 			return this;
 		}
 
@@ -208,9 +139,6 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		MemoryStats.setupMemoryStatsDeserializer(op);
 		op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");
 		op.add(Builder::usedPercent, JsonpDeserializer.integerDeserializer(), "used_percent");
-		op.add(Builder::totalInBytes, JsonpDeserializer.integerDeserializer(), "total_in_bytes");
-		op.add(Builder::freeInBytes, JsonpDeserializer.integerDeserializer(), "free_in_bytes");
-		op.add(Builder::usedInBytes, JsonpDeserializer.integerDeserializer(), "used_in_bytes");
 
 	}
 

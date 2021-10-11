@@ -344,6 +344,19 @@ public class ElasticsearchAsyncClient extends ApiClient {
 		return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
 	}
 
+	/**
+	 * Explicitly clears the search context for a scroll.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ClearScrollResponse> clearScroll() throws IOException {
+		return this.transport.performRequestAsync(new ClearScrollRequest.Builder().build(),
+				ClearScrollRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: close_point_in_time
 
 	/**
@@ -405,6 +418,18 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
 			throws IOException {
 		return count(fn.apply(new CountRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns number of documents matching a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CountResponse> count() throws IOException {
+		return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: create
@@ -699,6 +724,19 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	public final CompletableFuture<FieldCapsResponse> fieldCaps(
 			Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn) throws IOException {
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns the information about the capabilities of fields among multiple
+	 * indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FieldCapsResponse> fieldCaps() throws IOException {
+		return this.transport.performRequestAsync(new FieldCapsRequest.Builder().build(), FieldCapsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get
@@ -1004,6 +1042,19 @@ public class ElasticsearchAsyncClient extends ApiClient {
 		return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns multiple termvectors in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MtermvectorsResponse> mtermvectors() throws IOException {
+		return this.transport.performRequestAsync(new MtermvectorsRequest.Builder().build(),
+				MtermvectorsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: open_point_in_time
 
 	/**
@@ -1146,6 +1197,20 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	public final CompletableFuture<ReindexResponse> reindex(
 			Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn) throws IOException {
 		return reindex(fn.apply(new ReindexRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows to copy documents from one index to another, optionally filtering the
+	 * source documents by a query, changing the destination index settings, or
+	 * fetching the documents from a remote cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ReindexResponse> reindex() throws IOException {
+		return this.transport.performRequestAsync(new ReindexRequest.Builder().build(), ReindexRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: reindex_rethrottle
@@ -1312,6 +1377,20 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	public final CompletableFuture<SearchShardsResponse> searchShards(
 			Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn) throws IOException {
 		return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about the indices and shards that a search request would
+	 * be executed against.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SearchShardsResponse> searchShards() throws IOException {
+		return this.transport.performRequestAsync(new SearchShardsRequest.Builder().build(),
+				SearchShardsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: search_template

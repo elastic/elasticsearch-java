@@ -70,6 +70,18 @@ public class ElasticsearchTasksClient extends ApiClient {
 		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
+	/**
+	 * Cancels a task, if it can be cancelled through an API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CancelResponse cancel() throws IOException {
+		return this.transport.performRequest(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: tasks.get
 
 	/**
@@ -129,6 +141,18 @@ public class ElasticsearchTasksClient extends ApiClient {
 
 	public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn) throws IOException {
 		return list(fn.apply(new ListRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns a list of tasks.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ListResponse list() throws IOException {
+		return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest.ENDPOINT);
 	}
 
 }

@@ -102,6 +102,18 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves the configuration, stats, and status of rollup jobs.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetJobsResponse> getJobs() throws IOException {
+		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: rollup.get_rollup_caps
 
 	/**
@@ -133,6 +145,20 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	public final CompletableFuture<GetRollupCapsResponse> getRollupCaps(
 			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn) throws IOException {
 		return getRollupCaps(fn.apply(new GetRollupCapsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns the capabilities of any rollup jobs that have been configured for a
+	 * specific index or index pattern.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetRollupCapsResponse> getRollupCaps() throws IOException {
+		return this.transport.performRequestAsync(new GetRollupCapsRequest.Builder().build(),
+				GetRollupCapsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: rollup.get_rollup_index_caps

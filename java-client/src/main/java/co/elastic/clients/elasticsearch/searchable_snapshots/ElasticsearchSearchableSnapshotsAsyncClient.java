@@ -71,6 +71,18 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
+	/**
+	 * Clear the cache of searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException {
+		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: searchable_snapshots.mount
 
 	/**
@@ -133,6 +145,19 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
 			throws IOException {
 		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieve shard-level statistics about searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SearchableSnapshotsStatsResponse> stats() throws IOException {
+		return this.transport.performRequestAsync(new SearchableSnapshotsStatsRequest.Builder().build(),
+				SearchableSnapshotsStatsRequest.ENDPOINT);
 	}
 
 }

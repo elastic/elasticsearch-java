@@ -133,6 +133,18 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 		return getPolicy(fn.apply(new GetPolicyRequest.Builder()).build());
 	}
 
+	/**
+	 * Gets information about an enrich policy.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetPolicyResponse> getPolicy() throws IOException {
+		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: enrich.put_policy
 
 	/**

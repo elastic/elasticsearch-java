@@ -84,6 +84,19 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return changePassword(fn.apply(new ChangePasswordRequest.Builder()).build());
 	}
 
+	/**
+	 * Changes the passwords of users in the native realm and built-in users.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ChangePasswordResponse changePassword() throws IOException {
+		return this.transport.performRequest(new ChangePasswordRequest.Builder().build(),
+				ChangePasswordRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.clear_api_key_cache
 
 	/**
@@ -274,6 +287,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	public final CreateApiKeyResponse createApiKey(
 			Function<CreateApiKeyRequest.Builder, ObjectBuilder<CreateApiKeyRequest>> fn) throws IOException {
 		return createApiKey(fn.apply(new CreateApiKeyRequest.Builder()).build());
+	}
+
+	/**
+	 * Creates an API key for access without requiring basic authentication.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CreateApiKeyResponse createApiKey() throws IOException {
+		return this.transport.performRequest(new CreateApiKeyRequest.Builder().build(), CreateApiKeyRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: security.create_service_token
@@ -559,6 +584,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return getApiKey(fn.apply(new GetApiKeyRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves information for one or more API keys.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetApiKeyResponse getApiKey() throws IOException {
+		return this.transport.performRequest(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.get_builtin_privileges
 
 	/**
@@ -605,6 +642,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return getPrivileges(fn.apply(new GetPrivilegesRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves application privileges.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetPrivilegesResponse getPrivileges() throws IOException {
+		return this.transport.performRequest(new GetPrivilegesRequest.Builder().build(), GetPrivilegesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.get_role
 
 	/**
@@ -634,6 +683,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	public final GetRoleResponse getRole(Function<GetRoleRequest.Builder, ObjectBuilder<GetRoleRequest>> fn)
 			throws IOException {
 		return getRole(fn.apply(new GetRoleRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves roles in the native realm.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetRoleResponse getRole() throws IOException {
+		return this.transport.performRequest(new GetRoleRequest.Builder().build(), GetRoleRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: security.get_role_mapping
@@ -667,6 +728,19 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return getRoleMapping(fn.apply(new GetRoleMappingRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves role mappings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetRoleMappingResponse getRoleMapping() throws IOException {
+		return this.transport.performRequest(new GetRoleMappingRequest.Builder().build(),
+				GetRoleMappingRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.get_service_accounts
 
 	/**
@@ -697,6 +771,19 @@ public class ElasticsearchSecurityClient extends ApiClient {
 			Function<GetServiceAccountsRequest.Builder, ObjectBuilder<GetServiceAccountsRequest>> fn)
 			throws IOException {
 		return getServiceAccounts(fn.apply(new GetServiceAccountsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves information about service accounts.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetServiceAccountsResponse getServiceAccounts() throws IOException {
+		return this.transport.performRequest(new GetServiceAccountsRequest.Builder().build(),
+				GetServiceAccountsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: security.get_service_credentials
@@ -763,6 +850,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return getToken(fn.apply(new GetTokenRequest.Builder()).build());
 	}
 
+	/**
+	 * Creates a bearer token for access without requiring basic authentication.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTokenResponse getToken() throws IOException {
+		return this.transport.performRequest(new GetTokenRequest.Builder().build(), GetTokenRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.get_user
 
 	/**
@@ -794,6 +893,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return getUser(fn.apply(new GetUserRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves information about users in the native realm and built-in users.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetUserResponse getUser() throws IOException {
+		return this.transport.performRequest(new GetUserRequest.Builder().build(), GetUserRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.get_user_privileges
 
 	/**
@@ -823,6 +934,19 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	public final GetUserPrivilegesResponse getUserPrivileges(
 			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn) throws IOException {
 		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves security privileges for the logged in user.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetUserPrivilegesResponse getUserPrivileges() throws IOException {
+		return this.transport.performRequest(new GetUserPrivilegesRequest.Builder().build(),
+				GetUserPrivilegesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: security.grant_api_key
@@ -887,6 +1011,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return hasPrivileges(fn.apply(new HasPrivilegesRequest.Builder()).build());
 	}
 
+	/**
+	 * Determines whether the specified user has a specified list of privileges.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HasPrivilegesResponse hasPrivileges() throws IOException {
+		return this.transport.performRequest(new HasPrivilegesRequest.Builder().build(), HasPrivilegesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.invalidate_api_key
 
 	/**
@@ -916,6 +1052,19 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	public final InvalidateApiKeyResponse invalidateApiKey(
 			Function<InvalidateApiKeyRequest.Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn) throws IOException {
 		return invalidateApiKey(fn.apply(new InvalidateApiKeyRequest.Builder()).build());
+	}
+
+	/**
+	 * Invalidates one or more API keys.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public InvalidateApiKeyResponse invalidateApiKey() throws IOException {
+		return this.transport.performRequest(new InvalidateApiKeyRequest.Builder().build(),
+				InvalidateApiKeyRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: security.invalidate_token
@@ -949,6 +1098,19 @@ public class ElasticsearchSecurityClient extends ApiClient {
 		return invalidateToken(fn.apply(new InvalidateTokenRequest.Builder()).build());
 	}
 
+	/**
+	 * Invalidates one or more access tokens or refresh tokens.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public InvalidateTokenResponse invalidateToken() throws IOException {
+		return this.transport.performRequest(new InvalidateTokenRequest.Builder().build(),
+				InvalidateTokenRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: security.put_privileges
 
 	/**
@@ -978,6 +1140,18 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	public final PutPrivilegesResponse putPrivileges(
 			Function<PutPrivilegesRequest.Builder, ObjectBuilder<PutPrivilegesRequest>> fn) throws IOException {
 		return putPrivileges(fn.apply(new PutPrivilegesRequest.Builder()).build());
+	}
+
+	/**
+	 * Adds or updates application privileges.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutPrivilegesResponse putPrivileges() throws IOException {
+		return this.transport.performRequest(new PutPrivilegesRequest.Builder().build(), PutPrivilegesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: security.put_role

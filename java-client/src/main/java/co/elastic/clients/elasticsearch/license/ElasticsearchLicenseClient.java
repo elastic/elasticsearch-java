@@ -83,6 +83,18 @@ public class ElasticsearchLicenseClient extends ApiClient {
 		return get(fn.apply(new GetLicenseRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves licensing information for the cluster
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetLicenseResponse get() throws IOException {
+		return this.transport.performRequest(new GetLicenseRequest.Builder().build(), GetLicenseRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: license.get_basic_status
 
 	/**
@@ -139,6 +151,18 @@ public class ElasticsearchLicenseClient extends ApiClient {
 		return post(fn.apply(new PostRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates the license for the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PostResponse post() throws IOException {
+		return this.transport.performRequest(new PostRequest.Builder().build(), PostRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: license.post_start_basic
 
 	/**
@@ -170,6 +194,19 @@ public class ElasticsearchLicenseClient extends ApiClient {
 		return postStartBasic(fn.apply(new PostStartBasicRequest.Builder()).build());
 	}
 
+	/**
+	 * Starts an indefinite basic license.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PostStartBasicResponse postStartBasic() throws IOException {
+		return this.transport.performRequest(new PostStartBasicRequest.Builder().build(),
+				PostStartBasicRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: license.post_start_trial
 
 	/**
@@ -199,6 +236,19 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	public final PostStartTrialResponse postStartTrial(
 			Function<PostStartTrialRequest.Builder, ObjectBuilder<PostStartTrialRequest>> fn) throws IOException {
 		return postStartTrial(fn.apply(new PostStartTrialRequest.Builder()).build());
+	}
+
+	/**
+	 * starts a limited time trial license.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PostStartTrialResponse postStartTrial() throws IOException {
+		return this.transport.performRequest(new PostStartTrialRequest.Builder().build(),
+				PostStartTrialRequest.ENDPOINT);
 	}
 
 }

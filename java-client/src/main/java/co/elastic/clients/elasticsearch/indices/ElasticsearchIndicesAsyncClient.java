@@ -105,6 +105,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
+	/**
+	 * Performs the analysis process on a text and return the tokens breakdown of
+	 * the text.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<AnalyzeResponse> analyze() throws IOException {
+		return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.clear_cache
 
 	/**
@@ -134,6 +147,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<ClearCacheResponse> clearCache(
 			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn) throws IOException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
+	}
+
+	/**
+	 * Clears all or specific caches for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException {
+		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.clone
@@ -291,6 +316,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(
 			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) throws IOException {
 		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides statistics on operations happening in a data stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats() throws IOException {
+		return this.transport.performRequestAsync(new DataStreamsStatsRequest.Builder().build(),
+				DataStreamsStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.delete
@@ -672,6 +710,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
+	/**
+	 * Performs the flush operation on one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FlushResponse> flush() throws IOException {
+		return this.transport.performRequestAsync(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.forcemerge
 
 	/**
@@ -701,6 +751,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<ForcemergeResponse> forcemerge(
 			Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn) throws IOException {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the force merge operation on one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException {
+		return this.transport.performRequestAsync(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.freeze
@@ -798,6 +860,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns an alias.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetAliasResponse> getAlias() throws IOException {
+		return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.get_data_stream
 
 	/**
@@ -827,6 +901,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<GetDataStreamResponse> getDataStream(
 			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn) throws IOException {
 		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetDataStreamResponse> getDataStream() throws IOException {
+		return this.transport.performRequestAsync(new GetDataStreamRequest.Builder().build(),
+				GetDataStreamRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.get_field_mapping
@@ -893,6 +980,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException {
+		return this.transport.performRequestAsync(new GetIndexTemplateRequest.Builder().build(),
+				GetIndexTemplateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.get_mapping
 
 	/**
@@ -922,6 +1022,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<GetMappingResponse> getMapping(
 			Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn) throws IOException {
 		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns mappings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetMappingResponse> getMapping() throws IOException {
+		return this.transport.performRequestAsync(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.get_settings
@@ -955,6 +1067,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns settings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException {
+		return this.transport.performRequestAsync(new GetSettingsRequest.Builder().build(),
+				GetSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.get_template
 
 	/**
@@ -984,6 +1109,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<GetTemplateResponse> getTemplate(
 			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) throws IOException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetTemplateResponse> getTemplate() throws IOException {
+		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(),
+				GetTemplateRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1209,6 +1347,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates the index settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException {
+		return this.transport.performRequestAsync(new PutSettingsRequest.Builder().build(),
+				PutSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.put_template
 
 	/**
@@ -1271,6 +1422,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about ongoing index shard recoveries.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RecoveryResponse> recovery() throws IOException {
+		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.refresh
 
 	/**
@@ -1300,6 +1463,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<RefreshResponse> refresh(
 			Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn) throws IOException {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RefreshResponse> refresh() throws IOException {
+		return this.transport.performRequestAsync(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.reload_search_analyzers
@@ -1430,6 +1605,18 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
+	/**
+	 * Provides low-level information about segments in a Lucene index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SegmentsResponse> segments() throws IOException {
+		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.shard_stores
 
 	/**
@@ -1459,6 +1646,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<ShardStoresResponse> shardStores(
 			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn) throws IOException {
 		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides store information for shard copies of indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ShardStoresResponse> shardStores() throws IOException {
+		return this.transport.performRequestAsync(new ShardStoresRequest.Builder().build(),
+				ShardStoresRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.shrink
@@ -1559,6 +1759,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
+	/**
+	 * Simulate resolving the given template name or body
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() throws IOException {
+		return this.transport.performRequestAsync(new SimulateTemplateRequest.Builder().build(),
+				SimulateTemplateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.split
 
 	/**
@@ -1621,6 +1834,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<IndicesStatsResponse> stats(
 			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn) throws IOException {
 		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides statistics on operations happening in an index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<IndicesStatsResponse> stats() throws IOException {
+		return this.transport.performRequestAsync(new IndicesStatsRequest.Builder().build(),
+				IndicesStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.unfreeze
@@ -1687,6 +1913,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates index aliases.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException {
+		return this.transport.performRequestAsync(new UpdateAliasesRequest.Builder().build(),
+				UpdateAliasesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.validate_query
 
 	/**
@@ -1716,6 +1955,19 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<ValidateQueryResponse> validateQuery(
 			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn) throws IOException {
 		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows a user to validate a potentially expensive query without executing it.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException {
+		return this.transport.performRequestAsync(new ValidateQueryRequest.Builder().build(),
+				ValidateQueryRequest.ENDPOINT);
 	}
 
 }

@@ -21,26 +21,29 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
-
-@JsonpDeserializable
-public enum GeoOrientation implements StringEnum {
-	Right("right"), Counterclockwise("counterclockwise"), Ccw("ccw"), Left("left"), Clockwise("clockwise"), Cw("cw");
-
-	private final String jsonValue;
-
-	GeoOrientation(String jsonValue) {
-		this.jsonValue = jsonValue;
+/**
+ * Builders for {@link Normalizer} variants.
+ */
+public class NormalizerBuilders {
+	private NormalizerBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	/**
+	 * Creates a builder for the {@link CustomNormalizer custom} {@code Normalizer}
+	 * variant.
+	 */
+	public static CustomNormalizer.Builder custom() {
+		return new CustomNormalizer.Builder();
 	}
 
-	public static final StringEnum.Deserializer<GeoOrientation> _DESERIALIZER = new StringEnum.Deserializer<>(
-			GeoOrientation.values());
+	/**
+	 * Creates a builder for the {@link LowercaseNormalizer lowercase}
+	 * {@code Normalizer} variant.
+	 */
+	public static LowercaseNormalizer.Builder lowercase() {
+		return new LowercaseNormalizer.Builder();
+	}
+
 }

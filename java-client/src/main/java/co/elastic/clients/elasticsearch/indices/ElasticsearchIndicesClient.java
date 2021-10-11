@@ -104,6 +104,19 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
+	/**
+	 * Performs the analysis process on a text and return the tokens breakdown of
+	 * the text.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public AnalyzeResponse analyze() throws IOException {
+		return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.clear_cache
 
 	/**
@@ -133,6 +146,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
 			throws IOException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
+	}
+
+	/**
+	 * Clears all or specific caches for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ClearCacheResponse clearCache() throws IOException {
+		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.clone
@@ -288,6 +313,19 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final DataStreamsStatsResponse dataStreamsStats(
 			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) throws IOException {
 		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides statistics on operations happening in a data stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DataStreamsStatsResponse dataStreamsStats() throws IOException {
+		return this.transport.performRequest(new DataStreamsStatsRequest.Builder().build(),
+				DataStreamsStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.delete
@@ -666,6 +704,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
+	/**
+	 * Performs the flush operation on one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public FlushResponse flush() throws IOException {
+		return this.transport.performRequest(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.forcemerge
 
 	/**
@@ -695,6 +745,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final ForcemergeResponse forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
 			throws IOException {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the force merge operation on one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ForcemergeResponse forcemerge() throws IOException {
+		return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.freeze
@@ -792,6 +854,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns an alias.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetAliasResponse getAlias() throws IOException {
+		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.get_data_stream
 
 	/**
@@ -821,6 +895,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final GetDataStreamResponse getDataStream(
 			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn) throws IOException {
 		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamResponse getDataStream() throws IOException {
+		return this.transport.performRequest(new GetDataStreamRequest.Builder().build(), GetDataStreamRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.get_field_mapping
@@ -885,6 +971,19 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIndexTemplateResponse getIndexTemplate() throws IOException {
+		return this.transport.performRequest(new GetIndexTemplateRequest.Builder().build(),
+				GetIndexTemplateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.get_mapping
 
 	/**
@@ -914,6 +1013,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final GetMappingResponse getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
 			throws IOException {
 		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns mappings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetMappingResponse getMapping() throws IOException {
+		return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.get_settings
@@ -947,6 +1058,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns settings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetSettingsResponse getSettings() throws IOException {
+		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.get_template
 
 	/**
@@ -976,6 +1099,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final GetTemplateResponse getTemplate(
 			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) throws IOException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTemplateResponse getTemplate() throws IOException {
+		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1197,6 +1332,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates the index settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutSettingsResponse putSettings() throws IOException {
+		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.put_template
 
 	/**
@@ -1259,6 +1406,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about ongoing index shard recoveries.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RecoveryResponse recovery() throws IOException {
+		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.refresh
 
 	/**
@@ -1288,6 +1447,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
 			throws IOException {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RefreshResponse refresh() throws IOException {
+		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.reload_search_analyzers
@@ -1418,6 +1589,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
+	/**
+	 * Provides low-level information about segments in a Lucene index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SegmentsResponse segments() throws IOException {
+		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.shard_stores
 
 	/**
@@ -1447,6 +1630,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final ShardStoresResponse shardStores(
 			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn) throws IOException {
 		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides store information for shard copies of indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ShardStoresResponse shardStores() throws IOException {
+		return this.transport.performRequest(new ShardStoresRequest.Builder().build(), ShardStoresRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.shrink
@@ -1546,6 +1741,19 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
+	/**
+	 * Simulate resolving the given template name or body
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SimulateTemplateResponse simulateTemplate() throws IOException {
+		return this.transport.performRequest(new SimulateTemplateRequest.Builder().build(),
+				SimulateTemplateRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.split
 
 	/**
@@ -1608,6 +1816,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final IndicesStatsResponse stats(
 			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn) throws IOException {
 		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides statistics on operations happening in an index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public IndicesStatsResponse stats() throws IOException {
+		return this.transport.performRequest(new IndicesStatsRequest.Builder().build(), IndicesStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: indices.unfreeze
@@ -1674,6 +1894,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates index aliases.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateAliasesResponse updateAliases() throws IOException {
+		return this.transport.performRequest(new UpdateAliasesRequest.Builder().build(), UpdateAliasesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: indices.validate_query
 
 	/**
@@ -1703,6 +1935,18 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	public final ValidateQueryResponse validateQuery(
 			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn) throws IOException {
 		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows a user to validate a potentially expensive query without executing it.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ValidateQueryResponse validateQuery() throws IOException {
+		return this.transport.performRequest(new ValidateQueryRequest.Builder().build(), ValidateQueryRequest.ENDPOINT);
 	}
 
 }

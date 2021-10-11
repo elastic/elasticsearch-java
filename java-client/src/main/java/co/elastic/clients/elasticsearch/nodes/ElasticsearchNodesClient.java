@@ -70,6 +70,18 @@ public class ElasticsearchNodesClient extends ApiClient {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about hot threads on each node in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HotThreadsResponse hotThreads() throws IOException {
+		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: nodes.info
 
 	/**
@@ -99,6 +111,18 @@ public class ElasticsearchNodesClient extends ApiClient {
 	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
 			throws IOException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about nodes in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public NodesInfoResponse info() throws IOException {
+		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: nodes.reload_secure_settings
@@ -133,6 +157,19 @@ public class ElasticsearchNodesClient extends ApiClient {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Reloads secure settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException {
+		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
+				ReloadSecureSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: nodes.stats
 
 	/**
@@ -164,6 +201,18 @@ public class ElasticsearchNodesClient extends ApiClient {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns statistical information about nodes in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public NodesStatsResponse stats() throws IOException {
+		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: nodes.usage
 
 	/**
@@ -193,6 +242,18 @@ public class ElasticsearchNodesClient extends ApiClient {
 	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
 			throws IOException {
 		return usage(fn.apply(new UsageRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns low-level information about REST actions usage on nodes.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UsageResponse usage() throws IOException {
+		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
 	}
 
 }

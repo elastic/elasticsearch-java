@@ -21,39 +21,18 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+import co.elastic.clients.util.UnionVariant;
 
-@JsonpDeserializable
-public class BucketsPath implements JsonpSerializable {
+/**
+ * Base interface for {@link Normalizer} variants.
+ */
+public interface NormalizerVariant extends UnionVariant, JsonpSerializable {
 
-	public static final class Builder implements ObjectBuilder<BucketsPath> {
-		@Override
-		public BucketsPath build() {
-			return BucketsPath._INSTANCE;
-		}
+	default Normalizer _toNormalizer() {
+		return new Normalizer(this);
 	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
-	}
-
-	/**
-	 * Singleton instance for empty class {@link BucketsPath}.
-	 */
-	public static final BucketsPath _INSTANCE = new BucketsPath();
-
-	public static final JsonpDeserializer<BucketsPath> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(BucketsPath._INSTANCE);
 
 }

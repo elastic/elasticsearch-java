@@ -236,6 +236,20 @@ public class ElasticsearchCcrClient extends ApiClient {
 		return getAutoFollowPattern(fn.apply(new GetAutoFollowPatternRequest.Builder()).build());
 	}
 
+	/**
+	 * Gets configured auto-follow patterns. Returns the specified auto-follow
+	 * pattern collection.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-auto-follow-pattern.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetAutoFollowPatternResponse getAutoFollowPattern() throws IOException {
+		return this.transport.performRequest(new GetAutoFollowPatternRequest.Builder().build(),
+				GetAutoFollowPatternRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ccr.pause_auto_follow_pattern
 
 	/**

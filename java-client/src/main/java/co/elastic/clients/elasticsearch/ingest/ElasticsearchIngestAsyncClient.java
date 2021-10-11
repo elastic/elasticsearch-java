@@ -115,6 +115,19 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns a pipeline.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException {
+		return this.transport.performRequestAsync(new GetPipelineRequest.Builder().build(),
+				GetPipelineRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: ingest.processor_grok
 
 	/**
@@ -188,6 +201,18 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	public final CompletableFuture<SimulateResponse> simulate(
 			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn) throws IOException {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows to simulate a pipeline with example documents.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SimulateResponse> simulate() throws IOException {
+		return this.transport.performRequestAsync(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT);
 	}
 
 }
