@@ -75,4 +75,19 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient {
 		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves information about different cluster, node, and index level settings
+	 * that use deprecated features that will be removed or changed in the next
+	 * major version.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeprecationsResponse> deprecations() throws IOException {
+		return this.transport.performRequestAsync(new DeprecationsRequest.Builder().build(),
+				DeprecationsRequest.ENDPOINT);
+	}
+
 }

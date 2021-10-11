@@ -153,6 +153,20 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves one or more snapshot lifecycle policy definitions and information
+	 * about the latest snapshot attempts.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException {
+		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
+				GetLifecycleRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: slm.get_stats
 
 	/**

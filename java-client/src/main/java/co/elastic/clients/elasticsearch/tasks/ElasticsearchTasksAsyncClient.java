@@ -71,6 +71,18 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
+	/**
+	 * Cancels a task, if it can be cancelled through an API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CancelResponse> cancel() throws IOException {
+		return this.transport.performRequestAsync(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: tasks.get
 
 	/**
@@ -131,6 +143,18 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
 			throws IOException {
 		return list(fn.apply(new ListRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns a list of tasks.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ListResponse> list() throws IOException {
+		return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest.ENDPOINT);
 	}
 
 }

@@ -71,6 +71,18 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about hot threads on each node in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException {
+		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: nodes.info
 
 	/**
@@ -100,6 +112,18 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	public final CompletableFuture<NodesInfoResponse> info(
 			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn) throws IOException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about nodes in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<NodesInfoResponse> info() throws IOException {
+		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: nodes.reload_secure_settings
@@ -135,6 +159,19 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
+	/**
+	 * Reloads secure settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings() throws IOException {
+		return this.transport.performRequestAsync(new ReloadSecureSettingsRequest.Builder().build(),
+				ReloadSecureSettingsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: nodes.stats
 
 	/**
@@ -166,6 +203,18 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns statistical information about nodes in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<NodesStatsResponse> stats() throws IOException {
+		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: nodes.usage
 
 	/**
@@ -195,6 +244,18 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	public final CompletableFuture<UsageResponse> usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
 			throws IOException {
 		return usage(fn.apply(new UsageRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns low-level information about REST actions usage on nodes.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UsageResponse> usage() throws IOException {
+		return this.transport.performRequestAsync(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
 	}
 
 }

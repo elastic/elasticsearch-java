@@ -73,6 +73,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return aliases(fn.apply(new AliasesRequest.Builder()).build());
 	}
 
+	/**
+	 * Shows information about currently configured aliases to indices including
+	 * filter and routing infos.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<AliasesResponse> aliases() throws IOException {
+		return this.transport.performRequestAsync(new AliasesRequest.Builder().build(), AliasesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.allocation
 
 	/**
@@ -104,6 +117,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<AllocationResponse> allocation(
 			Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn) throws IOException {
 		return allocation(fn.apply(new AllocationRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides a snapshot of how many shards are allocated to each data node and
+	 * how much disk space they are using.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<AllocationResponse> allocation() throws IOException {
+		return this.transport.performRequestAsync(new AllocationRequest.Builder().build(), AllocationRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.count
@@ -139,6 +165,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
+	/**
+	 * Provides quick access to the document count of the entire cluster, or
+	 * individual indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CountResponse> count() throws IOException {
+		return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.fielddata
 
 	/**
@@ -172,6 +211,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return fielddata(fn.apply(new FielddataRequest.Builder()).build());
 	}
 
+	/**
+	 * Shows how much heap memory is currently being used by fielddata on every data
+	 * node in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FielddataResponse> fielddata() throws IOException {
+		return this.transport.performRequestAsync(new FielddataRequest.Builder().build(), FielddataRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.health
 
 	/**
@@ -201,6 +253,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<HealthResponse> health(
 			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) throws IOException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns a concise representation of the cluster health.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<HealthResponse> health() throws IOException {
+		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.help
@@ -249,6 +313,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return indices(fn.apply(new IndicesRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about indices: number of primaries and replicas, document
+	 * counts, disk size, ...
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<IndicesResponse> indices() throws IOException {
+		return this.transport.performRequestAsync(new IndicesRequest.Builder().build(), IndicesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.master
 
 	/**
@@ -295,6 +372,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return mlDataFrameAnalytics(fn.apply(new MlDataFrameAnalyticsRequest.Builder()).build());
 	}
 
+	/**
+	 * Gets configuration and usage information about data frame analytics jobs.
+	 * 
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics() throws IOException {
+		return this.transport.performRequestAsync(new MlDataFrameAnalyticsRequest.Builder().build(),
+				MlDataFrameAnalyticsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.ml_datafeeds
 
 	/**
@@ -324,6 +414,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<MlDatafeedsResponse> mlDatafeeds(
 			Function<MlDatafeedsRequest.Builder, ObjectBuilder<MlDatafeedsRequest>> fn) throws IOException {
 		return mlDatafeeds(fn.apply(new MlDatafeedsRequest.Builder()).build());
+	}
+
+	/**
+	 * Gets configuration and usage information about datafeeds.
+	 * 
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MlDatafeedsResponse> mlDatafeeds() throws IOException {
+		return this.transport.performRequestAsync(new MlDatafeedsRequest.Builder().build(),
+				MlDatafeedsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.ml_jobs
@@ -357,6 +460,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return mlJobs(fn.apply(new MlJobsRequest.Builder()).build());
 	}
 
+	/**
+	 * Gets configuration and usage information about anomaly detection jobs.
+	 * 
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MlJobsResponse> mlJobs() throws IOException {
+		return this.transport.performRequestAsync(new MlJobsRequest.Builder().build(), MlJobsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.ml_trained_models
 
 	/**
@@ -387,6 +502,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(
 			Function<MlTrainedModelsRequest.Builder, ObjectBuilder<MlTrainedModelsRequest>> fn) throws IOException {
 		return mlTrainedModels(fn.apply(new MlTrainedModelsRequest.Builder()).build());
+	}
+
+	/**
+	 * Gets configuration and usage information about inference trained models.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MlTrainedModelsResponse> mlTrainedModels() throws IOException {
+		return this.transport.performRequestAsync(new MlTrainedModelsRequest.Builder().build(),
+				MlTrainedModelsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.nodeattrs
@@ -431,6 +559,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<NodesResponse> nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
 			throws IOException {
 		return nodes(fn.apply(new NodesRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns basic statistics about performance of cluster nodes.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<NodesResponse> nodes() throws IOException {
+		return this.transport.performRequestAsync(new NodesRequest.Builder().build(), NodesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.pending_tasks
@@ -490,6 +630,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about index shard recoveries, both on-going completed.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RecoveryResponse> recovery() throws IOException {
+		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.repositories
 
 	/**
@@ -534,6 +686,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
+	/**
+	 * Provides low-level information about the segments in the shards of an index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SegmentsResponse> segments() throws IOException {
+		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.shards
 
 	/**
@@ -565,6 +729,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return shards(fn.apply(new ShardsRequest.Builder()).build());
 	}
 
+	/**
+	 * Provides a detailed view of shard allocation on nodes.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ShardsResponse> shards() throws IOException {
+		return this.transport.performRequestAsync(new ShardsRequest.Builder().build(), ShardsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.snapshots
 
 	/**
@@ -594,6 +770,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<SnapshotsResponse> snapshots(
 			Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn) throws IOException {
 		return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns all snapshots in a specific repository.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SnapshotsResponse> snapshots() throws IOException {
+		return this.transport.performRequestAsync(new SnapshotsRequest.Builder().build(), SnapshotsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.tasks
@@ -629,6 +817,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return tasks(fn.apply(new TasksRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about the tasks currently executing on one or more nodes
+	 * in the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<TasksResponse> tasks() throws IOException {
+		return this.transport.performRequestAsync(new TasksRequest.Builder().build(), TasksRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.templates
 
 	/**
@@ -658,6 +859,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<TemplatesResponse> templates(
 			Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn) throws IOException {
 		return templates(fn.apply(new TemplatesRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about existing templates.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<TemplatesResponse> templates() throws IOException {
+		return this.transport.performRequestAsync(new TemplatesRequest.Builder().build(), TemplatesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: cat.thread_pool
@@ -693,6 +906,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns cluster-wide thread pool statistics per node. By default the active,
+	 * queue and rejected statistics are returned for all thread pools.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ThreadPoolResponse> threadPool() throws IOException {
+		return this.transport.performRequestAsync(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: cat.transforms
 
 	/**
@@ -722,6 +948,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	public final CompletableFuture<TransformsResponse> transforms(
 			Function<TransformsRequest.Builder, ObjectBuilder<TransformsRequest>> fn) throws IOException {
 		return transforms(fn.apply(new TransformsRequest.Builder()).build());
+	}
+
+	/**
+	 * Gets configuration and usage information about transforms.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<TransformsResponse> transforms() throws IOException {
+		return this.transport.performRequestAsync(new TransformsRequest.Builder().build(), TransformsRequest.ENDPOINT);
 	}
 
 }

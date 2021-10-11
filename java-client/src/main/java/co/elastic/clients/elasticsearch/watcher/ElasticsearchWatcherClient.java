@@ -196,6 +196,18 @@ public class ElasticsearchWatcherClient extends ApiClient {
 		return executeWatch(fn.apply(new ExecuteWatchRequest.Builder()).build());
 	}
 
+	/**
+	 * Forces the execution of a stored watch.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ExecuteWatchResponse executeWatch() throws IOException {
+		return this.transport.performRequest(new ExecuteWatchRequest.Builder().build(), ExecuteWatchRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: watcher.get_watch
 
 	/**
@@ -289,6 +301,18 @@ public class ElasticsearchWatcherClient extends ApiClient {
 		return queryWatches(fn.apply(new QueryWatchesRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves stored watches.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public QueryWatchesResponse queryWatches() throws IOException {
+		return this.transport.performRequest(new QueryWatchesRequest.Builder().build(), QueryWatchesRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: watcher.start
 
 	/**
@@ -331,6 +355,18 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	public final WatcherStatsResponse stats(
 			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn) throws IOException {
 		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves the current Watcher metrics.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public WatcherStatsResponse stats() throws IOException {
+		return this.transport.performRequest(new WatcherStatsRequest.Builder().build(), WatcherStatsRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: watcher.stop

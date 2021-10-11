@@ -107,6 +107,20 @@ public class ElasticsearchShutdownClient extends ApiClient {
 		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieve status of a node or nodes that are currently marked as shutting
+	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+	 * supported.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetNodeResponse getNode() throws IOException {
+		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: shutdown.put_node
 
 	/**

@@ -71,6 +71,18 @@ public class ElasticsearchXpackAsyncClient extends ApiClient {
 		return info(fn.apply(new XpackInfoRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves information about the installed X-Pack features.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<XpackInfoResponse> info() throws IOException {
+		return this.transport.performRequestAsync(new XpackInfoRequest.Builder().build(), XpackInfoRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: xpack.usage
 
 	/**
@@ -100,6 +112,18 @@ public class ElasticsearchXpackAsyncClient extends ApiClient {
 	public final CompletableFuture<UsageResponse> usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
 			throws IOException {
 		return usage(fn.apply(new UsageRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves usage information about the installed X-Pack features.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UsageResponse> usage() throws IOException {
+		return this.transport.performRequestAsync(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
 	}
 
 }
