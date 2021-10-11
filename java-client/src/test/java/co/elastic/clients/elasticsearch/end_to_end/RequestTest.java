@@ -79,6 +79,16 @@ public class RequestTest extends Assert {
     }
 
     @Test
+    public void testCount() throws Exception {
+        // Tests that a no-parameter method exists for endpoints that only have optional properties
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        assertTrue(client.count().count() >= 0);
+    }
+
+    @Test
     public void testIndexCreation() throws Exception {
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         Transport transport = new RestClientTransport(restClient, mapper);
