@@ -36,6 +36,13 @@ java {
     withSourcesJar()
 }
 
+tasks.withType<ProcessResources> {
+    expand(
+        "version" to version,
+        "git_revision" to (rootProject.extra.get("gitHashFull") ?: "unknown")
+    )
+}
+
 tasks.withType<Jar> {
     doFirst {
         if (rootProject.extra.has("gitHashFull")) {
