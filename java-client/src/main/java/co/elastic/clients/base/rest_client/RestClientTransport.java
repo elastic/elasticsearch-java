@@ -19,17 +19,13 @@
 
 package co.elastic.clients.base.rest_client;
 
-import co.elastic.clients.base.ApiException;
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchCatRequest;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.base.*;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import org.apache.http.Header;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Cancellable;
@@ -51,12 +47,30 @@ public class RestClientTransport implements Transport {
 
     private final RestClient restClient;
     private final JsonpMapper mapper;
-    private RequestOptions requestOptions;
+    private final RequestOptions requestOptions;
 
-    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable RequestOptions options) {
+    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable RequestOptions options,
+                               @Nullable UserAgent userAgent) {
         this.restClient = restClient;
         this.mapper = mapper;
-        this.requestOptions = options;
+        RequestOptions baseOptions = options == null ? RequestOptions.DEFAULT : options;
+        String manualUserAgent = findUserAgentIn(baseOptions);
+        if (manualUserAgent == null && userAgent == null) {
+            this.requestOptions = baseOptions.toBuilder().addHeader("User-Agent", UserAgent.DEFAULT.toString()).build();
+        }
+        else if (manualUserAgent == null) {
+            this.requestOptions = baseOptions.toBuilder().addHeader("User-Agent", userAgent.toString()).build();
+        }
+        else if (userAgent == null) {
+            this.requestOptions = baseOptions;
+        }
+        else {
+            throw new IllegalArgumentException("Multiple user agents specified");
+        }
+    }
+
+    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable RequestOptions options) {
+        this(restClient, mapper, options, null);
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
@@ -84,14 +98,39 @@ public class RestClientTransport implements Transport {
         return withRequestOptions(fn.apply(builder).build());
     }
 
+    public RestClientTransport withUserAgent(UserAgent userAgent) {
+        return new RestClientTransport(this.restClient, this.mapper, this.requestOptions, userAgent);
+    }
+
     @Override
     public JsonpMapper jsonpMapper() {
         return mapper;
     }
 
+    /**
+     * Find and return the first header value which is keyed under any
+     * case-insensitive variant of "User-Agent".
+     *
+     * @return user agent string
+     */
+    @Override
+    public String userAgent() {
+        return findUserAgentIn(requestOptions);
+    }
+
     @Override
     public void close() throws IOException {
         this.restClient.close();
+    }
+
+    private static String findUserAgentIn(RequestOptions options) {
+        // TODO: move this into RequestOptions?
+        for (Header header : options.getHeaders()) {
+            if (header.getName().equalsIgnoreCase("User-Agent")) {
+                return header.getValue();
+            }
+        }
+        return null;
     }
 
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
@@ -154,9 +193,7 @@ public class RestClientTransport implements Transport {
 
         org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(method, path);
         clientReq.addParameters(params);
-        if (requestOptions != null) {
-            clientReq.setOptions(requestOptions);
-        }
+        clientReq.setOptions(requestOptions);
 
         // Request-type specific parameters.
         if (request instanceof ElasticsearchCatRequest) {

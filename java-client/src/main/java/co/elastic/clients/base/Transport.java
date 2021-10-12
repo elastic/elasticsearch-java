@@ -41,4 +41,6 @@ public interface Transport extends Closeable {
     );
 
     JsonpMapper jsonpMapper();
+
+    String userAgent();
 }
