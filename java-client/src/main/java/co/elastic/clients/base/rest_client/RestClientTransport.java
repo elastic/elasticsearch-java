@@ -22,9 +22,10 @@ package co.elastic.clients.base.rest_client;
 import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchCatRequest;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.RequestOptions;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +35,6 @@ import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Cancellable;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
@@ -46,19 +46,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 
 public class RestClientTransport implements Transport {
 
     private final RestClient restClient;
     private final JsonpMapper mapper;
-    private RequestOptions requestOptions;
+    private final RequestOptions requestOptions;
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable RequestOptions options) {
         this.restClient = restClient;
         this.mapper = mapper;
-        this.requestOptions = options;
+        this.requestOptions = options == null ? RequestOptions.DEFAULT : options;
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
@@ -72,23 +72,27 @@ public class RestClientTransport implements Transport {
         return new RestClientTransport(this.restClient, this.mapper, options);
     }
 
-    /**
-     * Creates a new {@link #RestClientTransport} with specific request options, inheriting existing options.
-     *
-     * @param fn a function taking an options builder initialized with the current request options, or initialized
-     *           with default values.
-     */
-    public RestClientTransport withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
-        RequestOptions.Builder builder = requestOptions == null ?
-            RequestOptions.DEFAULT.toBuilder() :
-            requestOptions.toBuilder();
-
-        return withRequestOptions(fn.apply(builder).build());
-    }
-
     @Override
     public JsonpMapper jsonpMapper() {
         return mapper;
+    }
+
+    @Override
+    public Map<String, String> headers() {
+        Map<String, String> headers = new TreeMap<>(String::compareToIgnoreCase);
+        requestOptions.headers().forEach(header -> {
+            headers.put(header.name(), header.value());
+        });
+        return headers;
+    }
+
+    @Override
+    public Map<String, String> queryParameters() {
+        Map<String, String> queryParameters = new TreeMap<>(String::compareTo);
+        requestOptions.queryParameters().forEach(parameter -> {
+            queryParameters.put(parameter.name(), parameter.value());
+        });
+        return queryParameters;
     }
 
     @Override
@@ -155,10 +159,11 @@ public class RestClientTransport implements Transport {
         Map<String, String> params = endpoint.queryParameters(request);
 
         org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(method, path);
+        org.elasticsearch.client.RequestOptions.Builder optBuilder = org.elasticsearch.client.RequestOptions.DEFAULT.toBuilder();
+        headers().forEach(optBuilder::addHeader);
+        queryParameters().forEach(optBuilder::addParameter);
         clientReq.addParameters(params);
-        if (requestOptions != null) {
-            clientReq.setOptions(requestOptions);
-        }
+        clientReq.setOptions(optBuilder.build());
 
         // Request-type specific parameters.
         if (request instanceof ElasticsearchCatRequest) {

@@ -19,17 +19,22 @@
 
 package co.elastic.clients.util;
 
+import co.elastic.clients.base.Header;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.stream.JsonParser;
 
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class NamedValue<T> {
 
+    // Case-insensitive name
     private final String name;
+
+    // Generic object value
     private final T value;
 
     public NamedValue(String name, T value) {
@@ -45,10 +50,34 @@ public class NamedValue<T> {
         return this.value;
     }
 
-    public static <T> JsonpDeserializer<NamedValue<T>> deserializer(Supplier<JsonpDeserializer<T>> valueParserBuilder) {
-        return new JsonpDeserializer<NamedValue<T>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof Header)) return false;
+        Header header = (Header) other;
+        return name.equalsIgnoreCase(header.name()) && Objects.equals(value(), header.value());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name(), value());
+    }
+
+    @Override
+    public String toString() {
+        if (name == null || value == null) {
+            return "";
+        }
+        else {
+            return String.format("%s: %s", name(), value());
+        }
+    }
+
+    public static <T> JsonpDeserializer<co.elastic.clients.util.NamedValue<T>>
+            deserializer(Supplier<JsonpDeserializer<T>> valueParserBuilder) {
+        return new JsonpDeserializer<co.elastic.clients.util.NamedValue<T>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
             @Override
-            public NamedValue<T> deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            public co.elastic.clients.util.NamedValue<T> deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
                 JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
                 String name = parser.getString();
@@ -56,8 +85,9 @@ public class NamedValue<T> {
                 T value = valueParserBuilder.get().deserialize(parser, mapper);
                 JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 
-                return new NamedValue<>(name, value);
+                return new co.elastic.clients.util.NamedValue<>(name, value);
             }
         };
     }
+
 }
