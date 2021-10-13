@@ -173,9 +173,9 @@ Query query = new Query.Builder()
 
 
 * Variant objects have getter methods for every available implementation. These 
-methods check that the object actually holds a variant of that type and return 
-the value downcasted to the correct type. They throw an `IllegalStateException` 
-otherwise. This approach allows writing fluent code to traverse variants.
+  methods check that the object actually holds a variant of that type and return 
+  the value downcasted to the correct type. They throw an `IllegalStateException` 
+  otherwise. This approach allows writing fluent code to traverse variants.
 
 [discrete]
 === Blocking and asynchronous clients
