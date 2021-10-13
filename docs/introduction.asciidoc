@@ -1,9 +1,50 @@
 [[introduction]]
 == Introduction
 
-experimental[]
+beta[]
 
-This is the official Java API client for {es}. The client provides strongly 
-typed requests and responses for all {es} APIs. It delegates protocol handling 
-to an http client such as the <<java-rest-low>> that takes care of all 
-transport-level concerns.
+This is the documentation for the official Java API Client for {es}. The client 
+provides strongly typed requests and responses for all {es} APIs.
+
+[discrete]
+=== Features
+
+* Strongly typed requests and responses for all {es} APIs.
+* Blocking and asynchronous versions of all APIs.
+* Use of fluent builders and functional patterns to allow writing concise yet 
+  readable code when creating complex nested structures.
+* Seamless integration of application classes by using an object mapper such as 
+  Jackson or any JSON-B implementation.
+* Delegates protocol handling to an http client such as the Java Low Level REST 
+  Client that takes care of all transport-level concerns: HTTP connection 
+  pooling, retries, node discovery, and so on.
+
+[discrete]
+=== Beta status
+
+The Java API Client is a new product and is still in beta. What this means in 
+concrete terms:
+
+* Although the general structure will not change, some renaming may happen to 
+  improve ease of use.
+* Some APIs may not be implemented yet. The code for APIs is generated from the 
+  https://github.com/elastic/elasticsearch-specification[{es} API specification] 
+  where complete coverage is targeted for the GA release of the Java client.
+* Some complex API data types are not yet fully supported. This revolves mostly 
+  around union types where the JSON API accepts many different shapes for some 
+  property. These types are currently represented as raw `JsonValue` objects.
+* Some built-in types like dates are represented as primitive strings. 
+  Additional support for standard JDK types will be added for the GA release.
+
+[discrete]
+=== Compatibility
+
+The main branch targets the next major release (8.0), the 7.x branch targets the 
+next minor release for the 7.x series. Support is still incomplete as the API 
+code is generated from the {es} Specification that is also still a work in 
+progress.
+
+The {es} Java client is forward compatible; meaning that the client supports 
+communicating with greater or equal minor versions of {es}. {es} language 
+clients are only backwards compatible with default distributions and without 
+guarantees made.
