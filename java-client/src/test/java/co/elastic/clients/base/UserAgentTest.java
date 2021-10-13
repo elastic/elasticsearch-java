@@ -23,7 +23,11 @@ import co.elastic.clients.base.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static co.elastic.clients.base.UserAgent.DEFAULT_NAME;
 import static co.elastic.clients.base.UserAgent.DEFAULT_VERSION;
@@ -41,16 +45,26 @@ public class UserAgentTest {
     private static final String CUSTOM_NAME_2 = "MegaClient";
     private static final String CUSTOM_VERSION_2 = "6.7.8";
 
+    public static RestClient restClient;
+
+    @BeforeClass
+    public static void setUp() {
+        restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
+    }
+
+    @AfterClass
+    public static void tearDown() throws IOException {
+        restClient.close();
+    }
+
     @Test
     public void testDefaultUserAgent() throws Exception {
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
         Transport transport = new RestClientTransport(restClient, null);
         assertEquals(DEFAULT_USER_AGENT, transport.userAgent());
     }
 
     @Test
     public void testCustomUserAgent() throws Exception {
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
         Transport transport = new RestClientTransport(restClient, null, null,
                 new UserAgent(CUSTOM_NAME, CUSTOM_VERSION));
         assertEquals(CUSTOM_USER_AGENT, transport.userAgent());
@@ -58,7 +72,6 @@ public class UserAgentTest {
 
     @Test
     public void testManualUserAgent() throws Exception {
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
         Transport transport = new RestClientTransport(restClient, null,
                 RequestOptions.DEFAULT.toBuilder().addHeader("User-Agent", CUSTOM_USER_AGENT).build());
         assertEquals(CUSTOM_USER_AGENT, transport.userAgent());
@@ -66,7 +79,6 @@ public class UserAgentTest {
 
     @Test
     public void testMultipleUserAgentsThrowsException() throws Exception {
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             Transport transport = new RestClientTransport(restClient, null,
                     RequestOptions.DEFAULT.toBuilder().addHeader("User-Agent", CUSTOM_USER_AGENT).build(),
