@@ -1,0 +1,59 @@
+[[migrate-hlrc]]
+== Migrating from the High Level Rest Client
+
+The {es} Java API Client is an entirely new client library that has no relation 
+to the older High Level Rest Client (HLRC). This was a deliberate choice to 
+provide a library that is independent from the {es} server code and that 
+provides a very consistent and easier to use API for all {es} features.
+
+Migrating from the HLRC therefore requires some code rewrite in your 
+application. This transition can however happen progressively as the two client 
+libraries can coexist in a single application with no operational overhead.
+
+[duscrete]
+=== Transition strategies
+
+There are different ways you can start transitioning away from the HLRC in your 
+application code.
+
+For example:
+
+* keep the existing code as-is and use the new Java API Client for new features 
+  in your application, then later migrate the existing code,
+* rewrite the parts of your application where the new Java API Client is much 
+  easier to use than that of the HLRC, like everything related to search,
+* rewrite those parts where you need to map application objects to/from JSON, by 
+  leveraging the tight integration of the new Java API Client with JSON object 
+  mappers.
+
+
+[discrete]
+=== Using the same transport with the HLRC and the Java API Client
+
+To avoid any operational overhead during the transition phase where an 
+application would use both the HLRC and the new Java API Client, both clients 
+can share the same Low Level Rest Client, which is the network layer that 
+manages all connections, round-robin strategies, node sniffing, and so on.
+
+The code below shows how to initialize both clients with the same HTTP client:
+
+["source","java"]
+--------------------------------------------------
+// Create the low-level client
+RestClientBuilder httpClientBuilder = RestClient.builder(
+    new HttpHost("localhost", 9200)
+);
+
+// Create the HLRC
+RestHighLevelClient hlrc = new RestHighLevelClient(httpClientBuilder);
+
+// Create the new Java Client with the same low level client
+Transport transport = new RestClientTransport(
+    hlrc.getLowLevelClient(),
+    new JacksonJsonpMapper()
+);
+
+ElasticsearchClient esClient = new ElasticsearchClient(transport);
+
+// hlrc and esClient share the same httpClient
+--------------------------------------------------
