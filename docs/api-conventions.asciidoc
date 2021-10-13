@@ -158,17 +158,18 @@ features guide you to build and navigate complex nested structures:
   expression and a ready-made object of the actual type of the variant. Here’s an 
   example to build a term query:
 
-  ["source","java"]
-  --------------------------------------------------
-  Query query = new Query.Builder()
-      .term(                                // <1>
-          t -> t.field("name").value("foo") // <2>
-      )
-      .build();                             // <3>
-  --------------------------------------------------
-  <1> Choose the `term` variant to build a term query.
-  <2> Build the terms query with a builder lambda expression.
-  <3> Build the `Query` that now holds a `TermQuery` object with tag `term`.
+["source","java"]
+--------------------------------------------------
+Query query = new Query.Builder()
+    .term(                                // <1>
+        t -> t.field("name").value("foo") // <2>
+    )
+    .build();                             // <3>
+
+--------------------------------------------------
+<1> Choose the `term` variant to build a term query.
+<2> Build the terms query with a builder lambda expression.
+<3> Build the `Query` that now holds a `TermQuery` object with tag `term`.
 
 * Variant objects have getter methods for every available implementation. These 
 methods check that the object actually holds a variant of that type and return 
@@ -205,6 +206,7 @@ asyncClient.exists(b -> b.index("products").id("foo")).thenAccept(response -> {
 === Exceptions
 
 Client methods can throw two kinds of exceptions:
+
 * Requests that were received by the {es} server but that were rejected 
 (validation error, server internal timeout exceeded, etc) will produce an 
 `ApiException`. This exception contains details about the error provided by 
