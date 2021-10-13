@@ -26,260 +26,257 @@ package co.elastic.clients.elasticsearch;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch._global.BulkRequest;
-import co.elastic.clients.elasticsearch._global.BulkResponse;
-import co.elastic.clients.elasticsearch._global.ClearScrollRequest;
-import co.elastic.clients.elasticsearch._global.ClearScrollResponse;
-import co.elastic.clients.elasticsearch._global.ClosePointInTimeRequest;
-import co.elastic.clients.elasticsearch._global.ClosePointInTimeResponse;
-import co.elastic.clients.elasticsearch._global.CountRequest;
-import co.elastic.clients.elasticsearch._global.CountResponse;
-import co.elastic.clients.elasticsearch._global.CreateRequest;
-import co.elastic.clients.elasticsearch._global.CreateResponse;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRequest;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryResponse;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.DeleteRequest;
-import co.elastic.clients.elasticsearch._global.DeleteResponse;
-import co.elastic.clients.elasticsearch._global.DeleteScriptRequest;
-import co.elastic.clients.elasticsearch._global.DeleteScriptResponse;
-import co.elastic.clients.elasticsearch._global.ExistsRequest;
-import co.elastic.clients.elasticsearch._global.ExistsSourceRequest;
-import co.elastic.clients.elasticsearch._global.ExplainRequest;
-import co.elastic.clients.elasticsearch._global.ExplainResponse;
-import co.elastic.clients.elasticsearch._global.FieldCapsRequest;
-import co.elastic.clients.elasticsearch._global.FieldCapsResponse;
-import co.elastic.clients.elasticsearch._global.GetRequest;
-import co.elastic.clients.elasticsearch._global.GetResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptContextRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptContextResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptLanguagesRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptLanguagesResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptResponse;
-import co.elastic.clients.elasticsearch._global.GetSourceRequest;
-import co.elastic.clients.elasticsearch._global.GetSourceResponse;
-import co.elastic.clients.elasticsearch._global.IndexRequest;
-import co.elastic.clients.elasticsearch._global.IndexResponse;
-import co.elastic.clients.elasticsearch._global.InfoRequest;
-import co.elastic.clients.elasticsearch._global.InfoResponse;
-import co.elastic.clients.elasticsearch._global.MgetRequest;
-import co.elastic.clients.elasticsearch._global.MgetResponse;
-import co.elastic.clients.elasticsearch._global.MsearchRequest;
-import co.elastic.clients.elasticsearch._global.MsearchResponse;
-import co.elastic.clients.elasticsearch._global.MsearchTemplateRequest;
-import co.elastic.clients.elasticsearch._global.MsearchTemplateResponse;
-import co.elastic.clients.elasticsearch._global.MtermvectorsRequest;
-import co.elastic.clients.elasticsearch._global.MtermvectorsResponse;
-import co.elastic.clients.elasticsearch._global.OpenPointInTimeRequest;
-import co.elastic.clients.elasticsearch._global.OpenPointInTimeResponse;
-import co.elastic.clients.elasticsearch._global.PingRequest;
-import co.elastic.clients.elasticsearch._global.PutScriptRequest;
-import co.elastic.clients.elasticsearch._global.PutScriptResponse;
-import co.elastic.clients.elasticsearch._global.RankEvalRequest;
-import co.elastic.clients.elasticsearch._global.RankEvalResponse;
-import co.elastic.clients.elasticsearch._global.ReindexRequest;
-import co.elastic.clients.elasticsearch._global.ReindexResponse;
-import co.elastic.clients.elasticsearch._global.ReindexRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.ReindexRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteRequest;
-import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteResponse;
-import co.elastic.clients.elasticsearch._global.SearchRequest;
-import co.elastic.clients.elasticsearch._global.SearchResponse;
-import co.elastic.clients.elasticsearch._global.SearchShardsRequest;
-import co.elastic.clients.elasticsearch._global.SearchShardsResponse;
-import co.elastic.clients.elasticsearch._global.SearchTemplateRequest;
-import co.elastic.clients.elasticsearch._global.SearchTemplateResponse;
-import co.elastic.clients.elasticsearch._global.TermsEnumRequest;
-import co.elastic.clients.elasticsearch._global.TermsEnumResponse;
-import co.elastic.clients.elasticsearch._global.TermvectorsRequest;
-import co.elastic.clients.elasticsearch._global.TermvectorsResponse;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRequest;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryResponse;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.UpdateRequest;
-import co.elastic.clients.elasticsearch._global.UpdateResponse;
-import co.elastic.clients.elasticsearch.api.async_search.AsyncSearchClient;
-import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingClient;
-import co.elastic.clients.elasticsearch.api.cat.CatClient;
-import co.elastic.clients.elasticsearch.api.ccr.CcrClient;
-import co.elastic.clients.elasticsearch.api.cluster.ClusterClient;
-import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesClient;
-import co.elastic.clients.elasticsearch.api.enrich.EnrichClient;
-import co.elastic.clients.elasticsearch.api.eql.EqlClient;
-import co.elastic.clients.elasticsearch.api.features.FeaturesClient;
-import co.elastic.clients.elasticsearch.api.graph.GraphClient;
-import co.elastic.clients.elasticsearch.api.ilm.IlmClient;
-import co.elastic.clients.elasticsearch.api.indices.IndicesClient;
-import co.elastic.clients.elasticsearch.api.ingest.IngestClient;
-import co.elastic.clients.elasticsearch.api.license.LicenseClient;
-import co.elastic.clients.elasticsearch.api.logstash.LogstashClient;
-import co.elastic.clients.elasticsearch.api.migration.MigrationClient;
-import co.elastic.clients.elasticsearch.api.ml.MlClient;
-import co.elastic.clients.elasticsearch.api.monitoring.MonitoringClient;
-import co.elastic.clients.elasticsearch.api.nodes.NodesClient;
-import co.elastic.clients.elasticsearch.api.rollup.RollupClient;
-import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsClient;
-import co.elastic.clients.elasticsearch.api.security.SecurityClient;
-import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
-import co.elastic.clients.elasticsearch.api.slm.SlmClient;
-import co.elastic.clients.elasticsearch.api.snapshot.SnapshotClient;
-import co.elastic.clients.elasticsearch.api.sql.SqlClient;
-import co.elastic.clients.elasticsearch.api.ssl.SslClient;
-import co.elastic.clients.elasticsearch.api.tasks.TasksClient;
-import co.elastic.clients.elasticsearch.api.text_structure.TextStructureClient;
-import co.elastic.clients.elasticsearch.api.transform.TransformClient;
-import co.elastic.clients.elasticsearch.api.watcher.WatcherClient;
-import co.elastic.clients.elasticsearch.api.xpack.XpackClient;
+import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchClient;
+import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingClient;
+import co.elastic.clients.elasticsearch.cat.ElasticsearchCatClient;
+import co.elastic.clients.elasticsearch.ccr.ElasticsearchCcrClient;
+import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterClient;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.ClearScrollRequest;
+import co.elastic.clients.elasticsearch.core.ClearScrollResponse;
+import co.elastic.clients.elasticsearch.core.ClosePointInTimeRequest;
+import co.elastic.clients.elasticsearch.core.ClosePointInTimeResponse;
+import co.elastic.clients.elasticsearch.core.CountRequest;
+import co.elastic.clients.elasticsearch.core.CountResponse;
+import co.elastic.clients.elasticsearch.core.CreateRequest;
+import co.elastic.clients.elasticsearch.core.CreateResponse;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryRequest;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryResponse;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryRethrottleRequest;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryRethrottleResponse;
+import co.elastic.clients.elasticsearch.core.DeleteRequest;
+import co.elastic.clients.elasticsearch.core.DeleteResponse;
+import co.elastic.clients.elasticsearch.core.DeleteScriptRequest;
+import co.elastic.clients.elasticsearch.core.DeleteScriptResponse;
+import co.elastic.clients.elasticsearch.core.ExistsRequest;
+import co.elastic.clients.elasticsearch.core.ExistsSourceRequest;
+import co.elastic.clients.elasticsearch.core.ExplainRequest;
+import co.elastic.clients.elasticsearch.core.ExplainResponse;
+import co.elastic.clients.elasticsearch.core.FieldCapsRequest;
+import co.elastic.clients.elasticsearch.core.FieldCapsResponse;
+import co.elastic.clients.elasticsearch.core.GetRequest;
+import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.GetScriptContextRequest;
+import co.elastic.clients.elasticsearch.core.GetScriptContextResponse;
+import co.elastic.clients.elasticsearch.core.GetScriptLanguagesRequest;
+import co.elastic.clients.elasticsearch.core.GetScriptLanguagesResponse;
+import co.elastic.clients.elasticsearch.core.GetScriptRequest;
+import co.elastic.clients.elasticsearch.core.GetScriptResponse;
+import co.elastic.clients.elasticsearch.core.GetSourceRequest;
+import co.elastic.clients.elasticsearch.core.GetSourceResponse;
+import co.elastic.clients.elasticsearch.core.IndexRequest;
+import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.InfoRequest;
+import co.elastic.clients.elasticsearch.core.InfoResponse;
+import co.elastic.clients.elasticsearch.core.MgetRequest;
+import co.elastic.clients.elasticsearch.core.MgetResponse;
+import co.elastic.clients.elasticsearch.core.MsearchRequest;
+import co.elastic.clients.elasticsearch.core.MsearchResponse;
+import co.elastic.clients.elasticsearch.core.MsearchTemplateRequest;
+import co.elastic.clients.elasticsearch.core.MsearchTemplateResponse;
+import co.elastic.clients.elasticsearch.core.MtermvectorsRequest;
+import co.elastic.clients.elasticsearch.core.MtermvectorsResponse;
+import co.elastic.clients.elasticsearch.core.OpenPointInTimeRequest;
+import co.elastic.clients.elasticsearch.core.OpenPointInTimeResponse;
+import co.elastic.clients.elasticsearch.core.PingRequest;
+import co.elastic.clients.elasticsearch.core.PutScriptRequest;
+import co.elastic.clients.elasticsearch.core.PutScriptResponse;
+import co.elastic.clients.elasticsearch.core.RankEvalRequest;
+import co.elastic.clients.elasticsearch.core.RankEvalResponse;
+import co.elastic.clients.elasticsearch.core.ReindexRequest;
+import co.elastic.clients.elasticsearch.core.ReindexResponse;
+import co.elastic.clients.elasticsearch.core.ReindexRethrottleRequest;
+import co.elastic.clients.elasticsearch.core.ReindexRethrottleResponse;
+import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteRequest;
+import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteResponse;
+import co.elastic.clients.elasticsearch.core.SearchMvtRequest;
+import co.elastic.clients.elasticsearch.core.SearchMvtResponse;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.SearchShardsRequest;
+import co.elastic.clients.elasticsearch.core.SearchShardsResponse;
+import co.elastic.clients.elasticsearch.core.SearchTemplateRequest;
+import co.elastic.clients.elasticsearch.core.SearchTemplateResponse;
+import co.elastic.clients.elasticsearch.core.TermsEnumRequest;
+import co.elastic.clients.elasticsearch.core.TermsEnumResponse;
+import co.elastic.clients.elasticsearch.core.TermvectorsRequest;
+import co.elastic.clients.elasticsearch.core.TermvectorsResponse;
+import co.elastic.clients.elasticsearch.core.UpdateByQueryRequest;
+import co.elastic.clients.elasticsearch.core.UpdateByQueryResponse;
+import co.elastic.clients.elasticsearch.core.UpdateByQueryRethrottleRequest;
+import co.elastic.clients.elasticsearch.core.UpdateByQueryRethrottleResponse;
+import co.elastic.clients.elasticsearch.core.UpdateRequest;
+import co.elastic.clients.elasticsearch.core.UpdateResponse;
+import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesClient;
+import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichClient;
+import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlClient;
+import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesClient;
+import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphClient;
+import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmClient;
+import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesClient;
+import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestClient;
+import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseClient;
+import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashClient;
+import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationClient;
+import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
+import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringClient;
+import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesClient;
+import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupClient;
+import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsClient;
+import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
+import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownClient;
+import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmClient;
+import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
+import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
+import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslClient;
+import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
+import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureClient;
+import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformClient;
+import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherClient;
+import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the namespace.
  */
-public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
+public class ElasticsearchClient extends ApiClient {
 
 	public ElasticsearchClient(Transport transport) {
-		super(transport, null);
-	}
-
-	public ElasticsearchClient(Transport transport, RequestOptions options) {
-		super(transport, options);
+		super(transport);
 	}
 
 	// ----- Child clients
 
-	public AsyncSearchClient asyncSearch() {
-		return new AsyncSearchClient(this.transport);
+	public ElasticsearchAsyncSearchClient asyncSearch() {
+		return new ElasticsearchAsyncSearchClient(this.transport);
 	}
 
-	public AutoscalingClient autoscaling() {
-		return new AutoscalingClient(this.transport);
+	public ElasticsearchAutoscalingClient autoscaling() {
+		return new ElasticsearchAutoscalingClient(this.transport);
 	}
 
-	public CatClient cat() {
-		return new CatClient(this.transport);
+	public ElasticsearchCatClient cat() {
+		return new ElasticsearchCatClient(this.transport);
 	}
 
-	public CcrClient ccr() {
-		return new CcrClient(this.transport);
+	public ElasticsearchCcrClient ccr() {
+		return new ElasticsearchCcrClient(this.transport);
 	}
 
-	public ClusterClient cluster() {
-		return new ClusterClient(this.transport);
+	public ElasticsearchClusterClient cluster() {
+		return new ElasticsearchClusterClient(this.transport);
 	}
 
-	public DanglingIndicesClient danglingIndices() {
-		return new DanglingIndicesClient(this.transport);
+	public ElasticsearchDanglingIndicesClient danglingIndices() {
+		return new ElasticsearchDanglingIndicesClient(this.transport);
 	}
 
-	public EnrichClient enrich() {
-		return new EnrichClient(this.transport);
+	public ElasticsearchEnrichClient enrich() {
+		return new ElasticsearchEnrichClient(this.transport);
 	}
 
-	public EqlClient eql() {
-		return new EqlClient(this.transport);
+	public ElasticsearchEqlClient eql() {
+		return new ElasticsearchEqlClient(this.transport);
 	}
 
-	public FeaturesClient features() {
-		return new FeaturesClient(this.transport);
+	public ElasticsearchFeaturesClient features() {
+		return new ElasticsearchFeaturesClient(this.transport);
 	}
 
-	public GraphClient graph() {
-		return new GraphClient(this.transport);
+	public ElasticsearchGraphClient graph() {
+		return new ElasticsearchGraphClient(this.transport);
 	}
 
-	public IlmClient ilm() {
-		return new IlmClient(this.transport);
+	public ElasticsearchIlmClient ilm() {
+		return new ElasticsearchIlmClient(this.transport);
 	}
 
-	public IndicesClient indices() {
-		return new IndicesClient(this.transport);
+	public ElasticsearchIndicesClient indices() {
+		return new ElasticsearchIndicesClient(this.transport);
 	}
 
-	public IngestClient ingest() {
-		return new IngestClient(this.transport);
+	public ElasticsearchIngestClient ingest() {
+		return new ElasticsearchIngestClient(this.transport);
 	}
 
-	public LicenseClient license() {
-		return new LicenseClient(this.transport);
+	public ElasticsearchLicenseClient license() {
+		return new ElasticsearchLicenseClient(this.transport);
 	}
 
-	public LogstashClient logstash() {
-		return new LogstashClient(this.transport);
+	public ElasticsearchLogstashClient logstash() {
+		return new ElasticsearchLogstashClient(this.transport);
 	}
 
-	public MigrationClient migration() {
-		return new MigrationClient(this.transport);
+	public ElasticsearchMigrationClient migration() {
+		return new ElasticsearchMigrationClient(this.transport);
 	}
 
-	public MlClient ml() {
-		return new MlClient(this.transport);
+	public ElasticsearchMlClient ml() {
+		return new ElasticsearchMlClient(this.transport);
 	}
 
-	public MonitoringClient monitoring() {
-		return new MonitoringClient(this.transport);
+	public ElasticsearchMonitoringClient monitoring() {
+		return new ElasticsearchMonitoringClient(this.transport);
 	}
 
-	public NodesClient nodes() {
-		return new NodesClient(this.transport);
+	public ElasticsearchNodesClient nodes() {
+		return new ElasticsearchNodesClient(this.transport);
 	}
 
-	public RollupClient rollup() {
-		return new RollupClient(this.transport);
+	public ElasticsearchRollupClient rollup() {
+		return new ElasticsearchRollupClient(this.transport);
 	}
 
-	public SearchableSnapshotsClient searchableSnapshots() {
-		return new SearchableSnapshotsClient(this.transport);
+	public ElasticsearchSearchableSnapshotsClient searchableSnapshots() {
+		return new ElasticsearchSearchableSnapshotsClient(this.transport);
 	}
 
-	public SecurityClient security() {
-		return new SecurityClient(this.transport);
+	public ElasticsearchSecurityClient security() {
+		return new ElasticsearchSecurityClient(this.transport);
 	}
 
-	public ShutdownClient shutdown() {
-		return new ShutdownClient(this.transport);
+	public ElasticsearchShutdownClient shutdown() {
+		return new ElasticsearchShutdownClient(this.transport);
 	}
 
-	public SlmClient slm() {
-		return new SlmClient(this.transport);
+	public ElasticsearchSlmClient slm() {
+		return new ElasticsearchSlmClient(this.transport);
 	}
 
-	public SnapshotClient snapshot() {
-		return new SnapshotClient(this.transport);
+	public ElasticsearchSnapshotClient snapshot() {
+		return new ElasticsearchSnapshotClient(this.transport);
 	}
 
-	public SqlClient sql() {
-		return new SqlClient(this.transport);
+	public ElasticsearchSqlClient sql() {
+		return new ElasticsearchSqlClient(this.transport);
 	}
 
-	public SslClient ssl() {
-		return new SslClient(this.transport);
+	public ElasticsearchSslClient ssl() {
+		return new ElasticsearchSslClient(this.transport);
 	}
 
-	public TasksClient tasks() {
-		return new TasksClient(this.transport);
+	public ElasticsearchTasksClient tasks() {
+		return new ElasticsearchTasksClient(this.transport);
 	}
 
-	public TextStructureClient textStructure() {
-		return new TextStructureClient(this.transport);
+	public ElasticsearchTextStructureClient textStructure() {
+		return new ElasticsearchTextStructureClient(this.transport);
 	}
 
-	public TransformClient transform() {
-		return new TransformClient(this.transport);
+	public ElasticsearchTransformClient transform() {
+		return new ElasticsearchTransformClient(this.transport);
 	}
 
-	public WatcherClient watcher() {
-		return new WatcherClient(this.transport);
+	public ElasticsearchWatcherClient watcher() {
+		return new ElasticsearchWatcherClient(this.transport);
 	}
 
-	public XpackClient xpack() {
-		return new XpackClient(this.transport);
+	public ElasticsearchXpackClient xpack() {
+		return new ElasticsearchXpackClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk
@@ -287,23 +284,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
-		return this.transport.performRequest(request, BulkRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
 	}
 
 	/**
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TSource> BulkResponse bulk(
@@ -315,22 +316,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Explicitly clears the search context for a scroll.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException {
-		return this.transport.performRequest(request, ClearScrollRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ClearScrollRequest.ENDPOINT);
 	}
 
 	/**
 	 * Explicitly clears the search context for a scroll.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ClearScrollResponse clearScroll(
@@ -338,26 +343,42 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
 	}
 
+	/**
+	 * Explicitly clears the search context for a scroll.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ClearScrollResponse clearScroll() throws IOException {
+		return this.transport.performRequest(new ClearScrollRequest.Builder().build(), ClearScrollRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: close_point_in_time
 
 	/**
 	 * Close a point in time
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request) throws IOException {
-		return this.transport.performRequest(request, ClosePointInTimeRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ClosePointInTimeRequest.ENDPOINT);
 	}
 
 	/**
 	 * Close a point in time
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ClosePointInTimeResponse closePointInTime(
@@ -369,22 +390,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns number of documents matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CountResponse count(CountRequest request) throws IOException {
-		return this.transport.performRequest(request, CountRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, CountRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns number of documents matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -392,32 +417,48 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns number of documents matching a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CountResponse count() throws IOException {
+		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: create
 
 	/**
 	 * Creates a new document in the index.
-	 *
+	 * <p>
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CreateResponse create(CreateRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, CreateRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, CreateRequest.ENDPOINT);
 	}
 
 	/**
 	 * Creates a new document in the index.
-	 *
+	 * <p>
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CreateResponse create(
@@ -429,22 +470,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Removes a document from the index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
 	}
 
 	/**
 	 * Removes a document from the index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
@@ -456,22 +501,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Deletes documents matching the provided query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteByQueryRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteByQueryRequest.ENDPOINT);
 	}
 
 	/**
 	 * Deletes documents matching the provided query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteByQueryResponse deleteByQuery(
@@ -484,24 +533,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
 			throws IOException {
-		return this.transport.performRequest(request, DeleteByQueryRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteByQueryRethrottleRequest.ENDPOINT);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
@@ -514,22 +567,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Deletes a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteScriptRequest.ENDPOINT);
 	}
 
 	/**
 	 * Deletes a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteScriptResponse deleteScript(
@@ -541,22 +598,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns information about whether a document exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException {
-		return this.transport.performRequest(request, ExistsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ExistsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information about whether a document exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
@@ -568,22 +629,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns information about whether a document source exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException {
-		return this.transport.performRequest(request, ExistsSourceRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ExistsSourceRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information about whether a document source exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse existsSource(
@@ -595,24 +660,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> ExplainResponse<TDocument> explain(
@@ -626,23 +695,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException {
-		return this.transport.performRequest(request, FieldCapsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, FieldCapsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn)
@@ -650,28 +723,44 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns the information about the capabilities of fields among multiple
+	 * indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public FieldCapsResponse fieldCaps() throws IOException {
+		return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: get
 
 	/**
 	 * Returns a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
-		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
@@ -683,22 +772,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetScriptResponse getScript(GetScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, GetScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, GetScriptRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetScriptResponse getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
@@ -710,48 +803,54 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns all script contexts.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public GetScriptContextResponse getScriptContext() throws IOException {
-		return this.transport.performRequest(GetScriptContextRequest.INSTANCE, GetScriptContextRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get_script_languages
 
 	/**
 	 * Returns available script types, languages and contexts
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public GetScriptLanguagesResponse getScriptLanguages() throws IOException {
-		return this.transport.performRequest(GetScriptLanguagesRequest.INSTANCE, GetScriptLanguagesRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get_source
 
 	/**
 	 * Returns the source of a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns the source of a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> GetSourceResponse<TDocument> getSource(
@@ -764,22 +863,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Creates or updates a document in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, IndexRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, IndexRequest.ENDPOINT);
 	}
 
 	/**
 	 * Creates or updates a document in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> IndexResponse index(
@@ -791,35 +894,40 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns basic information about the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public InfoResponse info() throws IOException {
-		return this.transport.performRequest(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: mget
 
 	/**
 	 * Allows to get multiple documents in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
-		return this.transport.performRequest(request, MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+		return this.transport.performRequest(request, MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to get multiple documents in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
@@ -831,24 +939,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Allows to execute several search operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to execute several search operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> MsearchResponse<TDocument> msearch(
@@ -861,25 +973,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Allows to execute several search template operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequest(request,
-				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to execute several search template operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(
@@ -892,22 +1007,26 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns multiple termvectors in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException {
-		return this.transport.performRequest(request, MtermvectorsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, MtermvectorsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns multiple termvectors in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final MtermvectorsResponse mtermvectors(
@@ -915,26 +1034,42 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns multiple termvectors in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public MtermvectorsResponse mtermvectors() throws IOException {
+		return this.transport.performRequest(new MtermvectorsRequest.Builder().build(), MtermvectorsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: open_point_in_time
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request) throws IOException {
-		return this.transport.performRequest(request, OpenPointInTimeRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, OpenPointInTimeRequest.ENDPOINT);
 	}
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final OpenPointInTimeResponse openPointInTime(
@@ -946,33 +1081,39 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns whether the cluster is running.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public BooleanResponse ping() throws IOException {
-		return this.transport.performRequest(PingRequest.INSTANCE, PingRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: put_script
 
 	/**
 	 * Creates or updates a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutScriptResponse putScript(PutScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, PutScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, PutScriptRequest.ENDPOINT);
 	}
 
 	/**
 	 * Creates or updates a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutScriptResponse putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
@@ -985,23 +1126,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException {
-		return this.transport.performRequest(request, RankEvalRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, RankEvalRequest.ENDPOINT);
 	}
 
 	/**
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final RankEvalResponse rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn)
@@ -1015,24 +1160,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Allows to copy documents from one index to another, optionally filtering the
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ReindexResponse reindex(ReindexRequest request) throws IOException {
-		return this.transport.performRequest(request, ReindexRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ReindexRequest.ENDPOINT);
 	}
 
 	/**
 	 * Allows to copy documents from one index to another, optionally filtering the
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
@@ -1040,26 +1189,44 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return reindex(fn.apply(new ReindexRequest.Builder()).build());
 	}
 
+	/**
+	 * Allows to copy documents from one index to another, optionally filtering the
+	 * source documents by a query, changing the destination index settings, or
+	 * fetching the documents from a remote cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ReindexResponse reindex() throws IOException {
+		return this.transport.performRequest(new ReindexRequest.Builder().build(), ReindexRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: reindex_rethrottle
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request) throws IOException {
-		return this.transport.performRequest(request, ReindexRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ReindexRethrottleRequest.ENDPOINT);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ReindexRethrottleResponse reindexRethrottle(
@@ -1071,25 +1238,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
 			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass) throws IOException {
 		return this.transport.performRequest(request,
-				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)),
-				this.requestOptions);
+				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)));
 	}
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
@@ -1102,24 +1272,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Returns results matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns results matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> SearchResponse<TDocument> search(
@@ -1128,28 +1302,65 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
 	}
 
+	// ----- Endpoint: search_mvt
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SearchMvtResponse searchMvt(SearchMvtRequest request) throws IOException {
+		return this.transport.performRequest(request, SearchMvtRequest.ENDPOINT);
+	}
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final SearchMvtResponse searchMvt(Function<SearchMvtRequest.Builder, ObjectBuilder<SearchMvtRequest>> fn)
+			throws IOException {
+		return searchMvt(fn.apply(new SearchMvtRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: search_shards
 
 	/**
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException {
-		return this.transport.performRequest(request, SearchShardsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, SearchShardsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final SearchShardsResponse searchShards(
@@ -1157,29 +1368,45 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns information about the indices and shards that a search request would
+	 * be executed against.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SearchShardsResponse searchShards() throws IOException {
+		return this.transport.performRequest(new SearchShardsRequest.Builder().build(), SearchShardsRequest.ENDPOINT);
+	}
+
 	// ----- Endpoint: search_template
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequest(request,
-				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
@@ -1194,24 +1421,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * The terms enum API can be used to discover terms in the index that begin with
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException {
-		return this.transport.performRequest(request, TermsEnumRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, TermsEnumRequest.ENDPOINT);
 	}
 
 	/**
 	 * The terms enum API can be used to discover terms in the index that begin with
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final TermsEnumResponse termsEnum(Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn)
@@ -1224,23 +1455,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, TermvectorsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, TermvectorsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> TermvectorsResponse termvectors(
@@ -1253,24 +1488,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	/**
 	 * Updates a document with a script or partial document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
 			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequest(request,
-				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Updates a document with a script or partial document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
@@ -1284,23 +1523,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request) throws IOException {
-		return this.transport.performRequest(request, UpdateByQueryRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, UpdateByQueryRequest.ENDPOINT);
 	}
 
 	/**
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final UpdateByQueryResponse updateByQuery(
@@ -1313,24 +1556,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
 			throws IOException {
-		return this.transport.performRequest(request, UpdateByQueryRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, UpdateByQueryRethrottleRequest.ENDPOINT);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(
@@ -1339,29 +1586,4 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
 	}
 
-	// ----- Misc
-
-	/**
-	 * Creates a new {@link #ElasticsearchClient} with specific request options.
-	 */
-	@Override
-	public ElasticsearchClient withRequestOptions(@Nullable RequestOptions options) {
-		return new ElasticsearchClient(transport, options);
-	}
-
-	/**
-	 * Creates a new {@link #ElasticsearchClient} with specific request options,
-	 * inheriting existing options.
-	 *
-	 * @param fn
-	 *            a function taking an options builder initialized with the current
-	 *            request options, or initialized with default values.
-	 */
-	public ElasticsearchClient withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
-		RequestOptions.Builder builder = requestOptions == null
-				? RequestOptions.DEFAULT.toBuilder()
-				: requestOptions.toBuilder();
-
-		return withRequestOptions(fn.apply(builder).build());
-	}
 }

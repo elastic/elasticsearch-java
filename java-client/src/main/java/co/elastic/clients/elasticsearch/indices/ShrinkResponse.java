@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,39 +35,47 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shrink.Response
+@JsonpDeserializable
 public final class ShrinkResponse extends AcknowledgedResponseBase {
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShrinkResponse(Builder builder) {
+	public ShrinkResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 		this.index = Objects.requireNonNull(builder.index, "index");
 
 	}
 
+	public ShrinkResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -89,15 +98,15 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 		private String index;
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -124,10 +133,10 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShrinkResponse
+	 * Json deserializer for {@link ShrinkResponse}
 	 */
-	public static final JsonpDeserializer<ShrinkResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShrinkResponse::setupShrinkResponseDeserializer);
+	public static final JsonpDeserializer<ShrinkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShrinkResponse::setupShrinkResponseDeserializer, Builder::build);
 
 	protected static void setupShrinkResponseDeserializer(DelegatingDeserializer<ShrinkResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.indices.get_alias;
 
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -40,19 +42,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_alias.IndexAliases
-public final class IndexAliases implements ToJsonp {
+@JsonpDeserializable
+public final class IndexAliases implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexAliases(Builder builder) {
+	public IndexAliases(Builder builder) {
 
-		this.aliases = Objects.requireNonNull(builder.aliases, "aliases");
+		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
 
 	}
 
+	public IndexAliases(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code aliases}
+	 * Required - API name: {@code aliases}
 	 */
 	public Map<String, AliasDefinition> aliases() {
 		return this.aliases;
@@ -61,19 +68,19 @@ public final class IndexAliases implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("aliases");
 		generator.writeStartObject();
 		for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -89,7 +96,7 @@ public final class IndexAliases implements ToJsonp {
 		private Map<String, AliasDefinition> aliases;
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(Map<String, AliasDefinition> value) {
 			this.aliases = value;
@@ -136,14 +143,14 @@ public final class IndexAliases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexAliases
+	 * Json deserializer for {@link IndexAliases}
 	 */
-	public static final JsonpDeserializer<IndexAliases> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexAliases::setupIndexAliasesDeserializer);
+	public static final JsonpDeserializer<IndexAliases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexAliases::setupIndexAliasesDeserializer, Builder::build);
 
 	protected static void setupIndexAliasesDeserializer(DelegatingDeserializer<IndexAliases.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 
 	}
 

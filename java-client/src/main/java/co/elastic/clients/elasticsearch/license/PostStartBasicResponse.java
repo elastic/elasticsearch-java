@@ -25,10 +25,12 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,49 +39,57 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Response
+@JsonpDeserializable
 public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	private final Map<String, List<String>> acknowledge;
 
-	private final Boolean basicWasStarted;
+	private final boolean basicWasStarted;
 
 	private final String errorMessage;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartBasicResponse(Builder builder) {
+	public PostStartBasicResponse(Builder builder) {
 		super(builder);
-		this.acknowledge = Objects.requireNonNull(builder.acknowledge, "acknowledge");
+
+		this.acknowledge = ModelTypeHelper.unmodifiableNonNull(builder.acknowledge, "acknowledge");
 		this.basicWasStarted = Objects.requireNonNull(builder.basicWasStarted, "basic_was_started");
 		this.errorMessage = Objects.requireNonNull(builder.errorMessage, "error_message");
 
 	}
 
+	public PostStartBasicResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code acknowledge}
+	 * Required - API name: {@code acknowledge}
 	 */
 	public Map<String, List<String>> acknowledge() {
 		return this.acknowledge;
 	}
 
 	/**
-	 * API name: {@code basic_was_started}
+	 * Required - API name: {@code basic_was_started}
 	 */
-	public Boolean basicWasStarted() {
+	public boolean basicWasStarted() {
 		return this.basicWasStarted;
 	}
 
 	/**
-	 * API name: {@code error_message}
+	 * Required - API name: {@code error_message}
 	 */
 	public String errorMessage() {
 		return this.errorMessage;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("acknowledge");
 		generator.writeStartObject();
@@ -118,7 +128,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		private String errorMessage;
 
 		/**
-		 * API name: {@code acknowledge}
+		 * Required - API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(Map<String, List<String>> value) {
 			this.acknowledge = value;
@@ -137,15 +147,15 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code basic_was_started}
+		 * Required - API name: {@code basic_was_started}
 		 */
-		public Builder basicWasStarted(Boolean value) {
+		public Builder basicWasStarted(boolean value) {
 			this.basicWasStarted = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code error_message}
+		 * Required - API name: {@code error_message}
 		 */
 		public Builder errorMessage(String value) {
 			this.errorMessage = value;
@@ -172,10 +182,10 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostStartBasicResponse
+	 * Json deserializer for {@link PostStartBasicResponse}
 	 */
-	public static final JsonpDeserializer<PostStartBasicResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseDeserializer);
+	public static final JsonpDeserializer<PostStartBasicResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseDeserializer, Builder::build);
 
 	protected static void setupPostStartBasicResponseDeserializer(
 			DelegatingDeserializer<PostStartBasicResponse.Builder> op) {

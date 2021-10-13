@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,55 +42,60 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Response
-public final class GetCategoriesResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetCategoriesResponse implements JsonpSerializable {
 	private final List<Category> categories;
 
-	private final Number count;
+	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetCategoriesResponse(Builder builder) {
+	public GetCategoriesResponse(Builder builder) {
 
-		this.categories = Objects.requireNonNull(builder.categories, "categories");
+		this.categories = ModelTypeHelper.unmodifiableNonNull(builder.categories, "categories");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
 	}
 
+	public GetCategoriesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code categories}
+	 * Required - API name: {@code categories}
 	 */
 	public List<Category> categories() {
 		return this.categories;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("categories");
 		generator.writeStartArray();
 		for (Category item0 : this.categories) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -100,10 +107,10 @@ public final class GetCategoriesResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<GetCategoriesResponse> {
 		private List<Category> categories;
 
-		private Number count;
+		private Long count;
 
 		/**
-		 * API name: {@code categories}
+		 * Required - API name: {@code categories}
 		 */
 		public Builder categories(List<Category> value) {
 			this.categories = value;
@@ -111,7 +118,7 @@ public final class GetCategoriesResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code categories}
+		 * Required - API name: {@code categories}
 		 */
 		public Builder categories(Category... value) {
 			this.categories = Arrays.asList(value);
@@ -144,9 +151,9 @@ public final class GetCategoriesResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -166,16 +173,16 @@ public final class GetCategoriesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetCategoriesResponse
+	 * Json deserializer for {@link GetCategoriesResponse}
 	 */
-	public static final JsonpDeserializer<GetCategoriesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCategoriesResponse::setupGetCategoriesResponseDeserializer);
+	public static final JsonpDeserializer<GetCategoriesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCategoriesResponse::setupGetCategoriesResponseDeserializer, Builder::build);
 
 	protected static void setupGetCategoriesResponseDeserializer(
 			DelegatingDeserializer<GetCategoriesResponse.Builder> op) {
 
-		op.add(Builder::categories, JsonpDeserializer.arrayDeserializer(Category.DESERIALIZER), "categories");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::categories, JsonpDeserializer.arrayDeserializer(Category._DESERIALIZER), "categories");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

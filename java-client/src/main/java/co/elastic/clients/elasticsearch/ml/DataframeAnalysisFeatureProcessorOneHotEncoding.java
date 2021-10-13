@@ -24,35 +24,53 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorOneHotEncoding
-public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalysisFeatureProcessorOneHotEncoding
+		implements
+			DataframeAnalysisFeatureProcessorVariant,
+			JsonpSerializable {
 	private final String field;
 
 	private final String hotMap;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
+	public DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.hotMap = Objects.requireNonNull(builder.hotMap, "hot_map");
 
 	}
 
+	public DataframeAnalysisFeatureProcessorOneHotEncoding(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The name of the field to encode.
-	 *
+	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "one_hot_encoding";
+	}
+
+	/**
+	 * Required - The name of the field to encode.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -60,8 +78,8 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 	}
 
 	/**
-	 * The one hot map mapping the field value with the column name.
-	 *
+	 * Required - The one hot map mapping the field value with the column name.
+	 * <p>
 	 * API name: {@code hot_map}
 	 */
 	public String hotMap() {
@@ -71,13 +89,13 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -98,8 +116,8 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 		private String hotMap;
 
 		/**
-		 * The name of the field to encode.
-		 *
+		 * Required - The name of the field to encode.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -108,8 +126,8 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 		}
 
 		/**
-		 * The one hot map mapping the field value with the column name.
-		 *
+		 * Required - The one hot map mapping the field value with the column name.
+		 * <p>
 		 * API name: {@code hot_map}
 		 */
 		public Builder hotMap(String value) {
@@ -132,11 +150,12 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalysisFeatureProcessorOneHotEncoding
+	 * Json deserializer for {@link DataframeAnalysisFeatureProcessorOneHotEncoding}
 	 */
-	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer);
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> op) {

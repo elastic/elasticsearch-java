@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,19 +32,35 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ReverseNestedAggregation
-public final class ReverseNestedAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class ReverseNestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String path;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReverseNestedAggregation(Builder builder) {
+	public ReverseNestedAggregation(Builder builder) {
 		super(builder);
+
 		this.path = builder.path;
 
+	}
+
+	public ReverseNestedAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "reverse_nested";
 	}
 
 	/**
@@ -54,8 +71,9 @@ public final class ReverseNestedAggregation extends BucketAggregationBase {
 		return this.path;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.path != null) {
 
 			generator.writeKey("path");
@@ -104,10 +122,10 @@ public final class ReverseNestedAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReverseNestedAggregation
+	 * Json deserializer for {@link ReverseNestedAggregation}
 	 */
-	public static final JsonpDeserializer<ReverseNestedAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReverseNestedAggregation::setupReverseNestedAggregationDeserializer);
+	public static final JsonpDeserializer<ReverseNestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ReverseNestedAggregation::setupReverseNestedAggregationDeserializer, Builder::build);
 
 	protected static void setupReverseNestedAggregationDeserializer(
 			DelegatingDeserializer<ReverseNestedAggregation.Builder> op) {

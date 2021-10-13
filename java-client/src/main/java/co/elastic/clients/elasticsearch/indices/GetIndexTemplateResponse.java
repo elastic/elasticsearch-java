@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplateItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,19 +42,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Response
-public final class GetIndexTemplateResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetIndexTemplateResponse implements JsonpSerializable {
 	private final List<IndexTemplateItem> indexTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetIndexTemplateResponse(Builder builder) {
+	public GetIndexTemplateResponse(Builder builder) {
 
-		this.indexTemplates = Objects.requireNonNull(builder.indexTemplates, "index_templates");
+		this.indexTemplates = ModelTypeHelper.unmodifiableNonNull(builder.indexTemplates, "index_templates");
 
 	}
 
+	public GetIndexTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code index_templates}
+	 * Required - API name: {@code index_templates}
 	 */
 	public List<IndexTemplateItem> indexTemplates() {
 		return this.indexTemplates;
@@ -61,18 +68,18 @@ public final class GetIndexTemplateResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_templates");
 		generator.writeStartArray();
 		for (IndexTemplateItem item0 : this.indexTemplates) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -88,7 +95,7 @@ public final class GetIndexTemplateResponse implements ToJsonp {
 		private List<IndexTemplateItem> indexTemplates;
 
 		/**
-		 * API name: {@code index_templates}
+		 * Required - API name: {@code index_templates}
 		 */
 		public Builder indexTemplates(List<IndexTemplateItem> value) {
 			this.indexTemplates = value;
@@ -96,7 +103,7 @@ public final class GetIndexTemplateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code index_templates}
+		 * Required - API name: {@code index_templates}
 		 */
 		public Builder indexTemplates(IndexTemplateItem... value) {
 			this.indexTemplates = Arrays.asList(value);
@@ -143,15 +150,15 @@ public final class GetIndexTemplateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetIndexTemplateResponse
+	 * Json deserializer for {@link GetIndexTemplateResponse}
 	 */
-	public static final JsonpDeserializer<GetIndexTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer);
+	public static final JsonpDeserializer<GetIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupGetIndexTemplateResponseDeserializer(
 			DelegatingDeserializer<GetIndexTemplateResponse.Builder> op) {
 
-		op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem.DESERIALIZER),
+		op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem._DESERIALIZER),
 				"index_templates");
 
 	}

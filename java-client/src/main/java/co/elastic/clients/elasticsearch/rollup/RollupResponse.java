@@ -23,50 +23,50 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Response
-public final class RollupResponse implements ToJsonp {
-	private final Number stub;
+@JsonpDeserializable
+public final class RollupResponse implements JsonpSerializable {
+	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupResponse(Builder builder) {
+	public RollupResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public RollupResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Required - Response value.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public Number stub() {
-		return this.stub;
+	public JsonData valueBody() {
+		return this.valueBody;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -76,13 +76,15 @@ public final class RollupResponse implements ToJsonp {
 	 * Builder for {@link RollupResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupResponse> {
-		private Number stub;
+		private JsonData valueBody;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder valueBody(JsonData value) {
+			this.valueBody = value;
 			return this;
 		}
 
@@ -98,18 +100,13 @@ public final class RollupResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<RollupResponse> _DESERIALIZER = createRollupResponseDeserializer();
+	protected static JsonpDeserializer<RollupResponse> createRollupResponseDeserializer() {
 
-	/**
-	 * Json deserializer for RollupResponse
-	 */
-	public static final JsonpDeserializer<RollupResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupResponse::setupRollupResponseDeserializer);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupRollupResponseDeserializer(DelegatingDeserializer<RollupResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

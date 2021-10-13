@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionStatus
-public final class ActionStatus implements ToJsonp {
+@JsonpDeserializable
+public final class ActionStatus implements JsonpSerializable {
 	private final AcknowledgeState ack;
 
 	@Nullable
@@ -50,7 +52,7 @@ public final class ActionStatus implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ActionStatus(Builder builder) {
+	public ActionStatus(Builder builder) {
 
 		this.ack = Objects.requireNonNull(builder.ack, "ack");
 		this.lastExecution = builder.lastExecution;
@@ -59,8 +61,12 @@ public final class ActionStatus implements ToJsonp {
 
 	}
 
+	public ActionStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code ack}
+	 * Required - API name: {@code ack}
 	 */
 	public AcknowledgeState ack() {
 		return this.ack;
@@ -93,33 +99,33 @@ public final class ActionStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("ack");
-		this.ack.toJsonp(generator, mapper);
+		this.ack.serialize(generator, mapper);
 
 		if (this.lastExecution != null) {
 
 			generator.writeKey("last_execution");
-			this.lastExecution.toJsonp(generator, mapper);
+			this.lastExecution.serialize(generator, mapper);
 
 		}
 		if (this.lastSuccessfulExecution != null) {
 
 			generator.writeKey("last_successful_execution");
-			this.lastSuccessfulExecution.toJsonp(generator, mapper);
+			this.lastSuccessfulExecution.serialize(generator, mapper);
 
 		}
 		if (this.lastThrottle != null) {
 
 			generator.writeKey("last_throttle");
-			this.lastThrottle.toJsonp(generator, mapper);
+			this.lastThrottle.serialize(generator, mapper);
 
 		}
 
@@ -143,7 +149,7 @@ public final class ActionStatus implements ToJsonp {
 		private ThrottleState lastThrottle;
 
 		/**
-		 * API name: {@code ack}
+		 * Required - API name: {@code ack}
 		 */
 		public Builder ack(AcknowledgeState value) {
 			this.ack = value;
@@ -151,7 +157,7 @@ public final class ActionStatus implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ack}
+		 * Required - API name: {@code ack}
 		 */
 		public Builder ack(Function<AcknowledgeState.Builder, ObjectBuilder<AcknowledgeState>> fn) {
 			return this.ack(fn.apply(new AcknowledgeState.Builder()).build());
@@ -217,17 +223,17 @@ public final class ActionStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ActionStatus
+	 * Json deserializer for {@link ActionStatus}
 	 */
-	public static final JsonpDeserializer<ActionStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ActionStatus::setupActionStatusDeserializer);
+	public static final JsonpDeserializer<ActionStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ActionStatus::setupActionStatusDeserializer, Builder::build);
 
 	protected static void setupActionStatusDeserializer(DelegatingDeserializer<ActionStatus.Builder> op) {
 
-		op.add(Builder::ack, AcknowledgeState.DESERIALIZER, "ack");
-		op.add(Builder::lastExecution, ExecutionState.DESERIALIZER, "last_execution");
-		op.add(Builder::lastSuccessfulExecution, ExecutionState.DESERIALIZER, "last_successful_execution");
-		op.add(Builder::lastThrottle, ThrottleState.DESERIALIZER, "last_throttle");
+		op.add(Builder::ack, AcknowledgeState._DESERIALIZER, "ack");
+		op.add(Builder::lastExecution, ExecutionState._DESERIALIZER, "last_execution");
+		op.add(Builder::lastSuccessfulExecution, ExecutionState._DESERIALIZER, "last_successful_execution");
+		op.add(Builder::lastThrottle, ThrottleState._DESERIALIZER, "last_throttle");
 
 	}
 

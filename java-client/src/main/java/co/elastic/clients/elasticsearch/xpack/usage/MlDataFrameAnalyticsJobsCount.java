@@ -24,49 +24,55 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobsCount
-public final class MlDataFrameAnalyticsJobsCount implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
+	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlDataFrameAnalyticsJobsCount(Builder builder) {
+	public MlDataFrameAnalyticsJobsCount(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 
 	}
 
+	public MlDataFrameAnalyticsJobsCount(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -76,12 +82,12 @@ public final class MlDataFrameAnalyticsJobsCount implements ToJsonp {
 	 * Builder for {@link MlDataFrameAnalyticsJobsCount}.
 	 */
 	public static class Builder implements ObjectBuilder<MlDataFrameAnalyticsJobsCount> {
-		private Number count;
+		private Long count;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -101,16 +107,16 @@ public final class MlDataFrameAnalyticsJobsCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlDataFrameAnalyticsJobsCount
+	 * Json deserializer for {@link MlDataFrameAnalyticsJobsCount}
 	 */
-	public static final JsonpDeserializer<MlDataFrameAnalyticsJobsCount> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					MlDataFrameAnalyticsJobsCount::setupMlDataFrameAnalyticsJobsCountDeserializer);
+	public static final JsonpDeserializer<MlDataFrameAnalyticsJobsCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MlDataFrameAnalyticsJobsCount::setupMlDataFrameAnalyticsJobsCountDeserializer,
+			Builder::build);
 
 	protected static void setupMlDataFrameAnalyticsJobsCountDeserializer(
 			DelegatingDeserializer<MlDataFrameAnalyticsJobsCount.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

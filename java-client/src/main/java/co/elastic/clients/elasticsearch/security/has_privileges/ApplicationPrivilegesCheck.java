@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security.has_privileges;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
-public final class ApplicationPrivilegesCheck implements ToJsonp {
+@JsonpDeserializable
+public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	private final String application;
 
 	private final List<String> privileges;
@@ -48,30 +52,34 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ApplicationPrivilegesCheck(Builder builder) {
+	public ApplicationPrivilegesCheck(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
-		this.privileges = Objects.requireNonNull(builder.privileges, "privileges");
-		this.resources = Objects.requireNonNull(builder.resources, "resources");
+		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
+		this.resources = ModelTypeHelper.unmodifiableNonNull(builder.resources, "resources");
 
 	}
 
+	public ApplicationPrivilegesCheck(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code application}
+	 * Required - API name: {@code application}
 	 */
 	public String application() {
 		return this.application;
 	}
 
 	/**
-	 * API name: {@code privileges}
+	 * Required - API name: {@code privileges}
 	 */
 	public List<String> privileges() {
 		return this.privileges;
 	}
 
 	/**
-	 * API name: {@code resources}
+	 * Required - API name: {@code resources}
 	 */
 	public List<String> resources() {
 		return this.resources;
@@ -80,13 +88,13 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("application");
 		generator.write(this.application);
@@ -122,7 +130,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		private List<String> resources;
 
 		/**
-		 * API name: {@code application}
+		 * Required - API name: {@code application}
 		 */
 		public Builder application(String value) {
 			this.application = value;
@@ -130,7 +138,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
 		public Builder privileges(List<String> value) {
 			this.privileges = value;
@@ -138,7 +146,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
 		public Builder privileges(String... value) {
 			this.privileges = Arrays.asList(value);
@@ -157,7 +165,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code resources}
+		 * Required - API name: {@code resources}
 		 */
 		public Builder resources(List<String> value) {
 			this.resources = value;
@@ -165,7 +173,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code resources}
+		 * Required - API name: {@code resources}
 		 */
 		public Builder resources(String... value) {
 			this.resources = Arrays.asList(value);
@@ -198,10 +206,10 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ApplicationPrivilegesCheck
+	 * Json deserializer for {@link ApplicationPrivilegesCheck}
 	 */
-	public static final JsonpDeserializer<ApplicationPrivilegesCheck> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ApplicationPrivilegesCheck::setupApplicationPrivilegesCheckDeserializer);
+	public static final JsonpDeserializer<ApplicationPrivilegesCheck> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ApplicationPrivilegesCheck::setupApplicationPrivilegesCheckDeserializer, Builder::build);
 
 	protected static void setupApplicationPrivilegesCheckDeserializer(
 			DelegatingDeserializer<ApplicationPrivilegesCheck.Builder> op) {

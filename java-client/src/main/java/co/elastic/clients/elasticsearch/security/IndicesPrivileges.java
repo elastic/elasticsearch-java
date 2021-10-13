@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -42,41 +44,51 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.IndicesPrivileges
-public final class IndicesPrivileges implements ToJsonp {
+@JsonpDeserializable
+public final class IndicesPrivileges implements JsonpSerializable {
 	@Nullable
-	private final FieldSecurity fieldSecurity;
+	private final List<FieldSecurity> fieldSecurity;
 
 	private final List<String> names;
 
-	private final List<String> privileges;
+	private final List<IndexPrivilege> privileges;
 
 	@Nullable
-	private final JsonValue query;
+	private final JsonValue /* Union(Array<internal.string> | _types.query_dsl.QueryContainer) */ query;
 
 	@Nullable
 	private final Boolean allowRestrictedIndices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesPrivileges(Builder builder) {
+	public IndicesPrivileges(Builder builder) {
 
-		this.fieldSecurity = builder.fieldSecurity;
-		this.names = Objects.requireNonNull(builder.names, "names");
-		this.privileges = Objects.requireNonNull(builder.privileges, "privileges");
+		this.fieldSecurity = ModelTypeHelper.unmodifiable(builder.fieldSecurity);
+		this.names = ModelTypeHelper.unmodifiableNonNull(builder.names, "names");
+		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
 		this.query = builder.query;
 		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
 
+	public IndicesPrivileges(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The document fields that the owners of the role have read access to.
+	 * <p>
 	 * API name: {@code field_security}
 	 */
 	@Nullable
-	public FieldSecurity fieldSecurity() {
+	public List<FieldSecurity> fieldSecurity() {
 		return this.fieldSecurity;
 	}
 
 	/**
+	 * Required - A list of indices (or index name patterns) to which the
+	 * permissions in this entry apply.
+	 * <p>
 	 * API name: {@code names}
 	 */
 	public List<String> names() {
@@ -84,21 +96,35 @@ public final class IndicesPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * Required - The index level privileges that owners of the role have on the
+	 * specified indices.
+	 * <p>
 	 * API name: {@code privileges}
 	 */
-	public List<String> privileges() {
+	public List<IndexPrivilege> privileges() {
 		return this.privileges;
 	}
 
 	/**
+	 * A search query that defines the documents the owners of the role have read
+	 * access to. A document within the specified indices must match this query for
+	 * it to be accessible by the owners of the role.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public JsonValue query() {
+	public JsonValue /* Union(Array<internal.string> | _types.query_dsl.QueryContainer) */ query() {
 		return this.query;
 	}
 
 	/**
+	 * Set to <code>true</code> if using wildcard or regular expressions for
+	 * patterns that cover restricted indices. Implicitly, restricted indices have
+	 * limited privileges that can cause pattern tests to fail. If restricted
+	 * indices are explicitly included in the <code>names</code> list, Elasticsearch
+	 * checks privileges against these indices regardless of the value set for
+	 * <code>allow_restricted_indices</code>.
+	 * <p>
 	 * API name: {@code allow_restricted_indices}
 	 */
 	@Nullable
@@ -109,18 +135,23 @@ public final class IndicesPrivileges implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.fieldSecurity != null) {
 
 			generator.writeKey("field_security");
-			this.fieldSecurity.toJsonp(generator, mapper);
+			generator.writeStartArray();
+			for (FieldSecurity item0 : this.fieldSecurity) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -134,9 +165,8 @@ public final class IndicesPrivileges implements ToJsonp {
 
 		generator.writeKey("privileges");
 		generator.writeStartArray();
-		for (String item0 : this.privileges) {
-			generator.write(item0);
-
+		for (IndexPrivilege item0 : this.privileges) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
@@ -162,34 +192,67 @@ public final class IndicesPrivileges implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<IndicesPrivileges> {
 		@Nullable
-		private FieldSecurity fieldSecurity;
+		private List<FieldSecurity> fieldSecurity;
 
 		private List<String> names;
 
-		private List<String> privileges;
+		private List<IndexPrivilege> privileges;
 
 		@Nullable
-		private JsonValue query;
+		private JsonValue /* Union(Array<internal.string> | _types.query_dsl.QueryContainer) */ query;
 
 		@Nullable
 		private Boolean allowRestrictedIndices;
 
 		/**
+		 * The document fields that the owners of the role have read access to.
+		 * <p>
 		 * API name: {@code field_security}
 		 */
-		public Builder fieldSecurity(@Nullable FieldSecurity value) {
+		public Builder fieldSecurity(@Nullable List<FieldSecurity> value) {
 			this.fieldSecurity = value;
 			return this;
 		}
 
 		/**
+		 * The document fields that the owners of the role have read access to.
+		 * <p>
 		 * API name: {@code field_security}
+		 */
+		public Builder fieldSecurity(FieldSecurity... value) {
+			this.fieldSecurity = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #fieldSecurity(List)}, creating the list if needed.
+		 */
+		public Builder addFieldSecurity(FieldSecurity value) {
+			if (this.fieldSecurity == null) {
+				this.fieldSecurity = new ArrayList<>();
+			}
+			this.fieldSecurity.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #fieldSecurity(List)} to a singleton list.
 		 */
 		public Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
 			return this.fieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
 		}
 
 		/**
+		 * Add a value to {@link #fieldSecurity(List)}, creating the list if needed.
+		 */
+		public Builder addFieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
+			return this.addFieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
+		}
+
+		/**
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
+		 * <p>
 		 * API name: {@code names}
 		 */
 		public Builder names(List<String> value) {
@@ -198,6 +261,9 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
+		 * <p>
 		 * API name: {@code names}
 		 */
 		public Builder names(String... value) {
@@ -217,17 +283,23 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Required - The index level privileges that owners of the role have on the
+		 * specified indices.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
-		public Builder privileges(List<String> value) {
+		public Builder privileges(List<IndexPrivilege> value) {
 			this.privileges = value;
 			return this;
 		}
 
 		/**
+		 * Required - The index level privileges that owners of the role have on the
+		 * specified indices.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
-		public Builder privileges(String... value) {
+		public Builder privileges(IndexPrivilege... value) {
 			this.privileges = Arrays.asList(value);
 			return this;
 		}
@@ -235,7 +307,7 @@ public final class IndicesPrivileges implements ToJsonp {
 		/**
 		 * Add a value to {@link #privileges(List)}, creating the list if needed.
 		 */
-		public Builder addPrivileges(String value) {
+		public Builder addPrivileges(IndexPrivilege value) {
 			if (this.privileges == null) {
 				this.privileges = new ArrayList<>();
 			}
@@ -244,14 +316,26 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A search query that defines the documents the owners of the role have read
+		 * access to. A document within the specified indices must match this query for
+		 * it to be accessible by the owners of the role.
+		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable JsonValue value) {
+		public Builder query(
+				@Nullable JsonValue /* Union(Array<internal.string> | _types.query_dsl.QueryContainer) */ value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
+		 * Set to <code>true</code> if using wildcard or regular expressions for
+		 * patterns that cover restricted indices. Implicitly, restricted indices have
+		 * limited privileges that can cause pattern tests to fail. If restricted
+		 * indices are explicitly included in the <code>names</code> list, Elasticsearch
+		 * checks privileges against these indices regardless of the value set for
+		 * <code>allow_restricted_indices</code>.
+		 * <p>
 		 * API name: {@code allow_restricted_indices}
 		 */
 		public Builder allowRestrictedIndices(@Nullable Boolean value) {
@@ -274,17 +358,17 @@ public final class IndicesPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesPrivileges
+	 * Json deserializer for {@link IndicesPrivileges}
 	 */
-	public static final JsonpDeserializer<IndicesPrivileges> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesPrivileges::setupIndicesPrivilegesDeserializer);
+	public static final JsonpDeserializer<IndicesPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesPrivileges::setupIndicesPrivilegesDeserializer, Builder::build);
 
 	protected static void setupIndicesPrivilegesDeserializer(DelegatingDeserializer<IndicesPrivileges.Builder> op) {
 
-		op.add(Builder::fieldSecurity, FieldSecurity.DESERIALIZER, "field_security");
+		op.add(Builder::fieldSecurity, JsonpDeserializer.arrayDeserializer(FieldSecurity._DESERIALIZER),
+				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"privileges");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
 		op.add(Builder::query, JsonpDeserializer.jsonValueDeserializer(), "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 

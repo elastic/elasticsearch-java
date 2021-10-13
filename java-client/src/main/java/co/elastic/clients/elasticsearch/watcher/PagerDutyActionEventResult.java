@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,18 +38,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyActionEventResult
-public final class PagerDutyActionEventResult implements ToJsonp {
+@JsonpDeserializable
+public final class PagerDutyActionEventResult implements JsonpSerializable {
 	private final PagerDutyEvent event;
 
 	private final String reason;
 
-	private final JsonValue request;
+	private final HttpInputRequestResult request;
 
 	private final HttpInputResponseResult response;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PagerDutyActionEventResult(Builder builder) {
+	public PagerDutyActionEventResult(Builder builder) {
 
 		this.event = Objects.requireNonNull(builder.event, "event");
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
@@ -58,29 +59,33 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 
 	}
 
+	public PagerDutyActionEventResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code event}
+	 * Required - API name: {@code event}
 	 */
 	public PagerDutyEvent event() {
 		return this.event;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code request}
+	 * Required - API name: {@code request}
 	 */
-	public JsonValue request() {
+	public HttpInputRequestResult request() {
 		return this.request;
 	}
 
 	/**
-	 * API name: {@code response}
+	 * Required - API name: {@code response}
 	 */
 	public HttpInputResponseResult response() {
 		return this.response;
@@ -89,25 +94,25 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("event");
-		this.event.toJsonp(generator, mapper);
+		this.event.serialize(generator, mapper);
 
 		generator.writeKey("reason");
 		generator.write(this.reason);
 
 		generator.writeKey("request");
-		generator.write(this.request);
+		this.request.serialize(generator, mapper);
 
 		generator.writeKey("response");
-		this.response.toJsonp(generator, mapper);
+		this.response.serialize(generator, mapper);
 
 	}
 
@@ -121,12 +126,12 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 
 		private String reason;
 
-		private JsonValue request;
+		private HttpInputRequestResult request;
 
 		private HttpInputResponseResult response;
 
 		/**
-		 * API name: {@code event}
+		 * Required - API name: {@code event}
 		 */
 		public Builder event(PagerDutyEvent value) {
 			this.event = value;
@@ -134,14 +139,14 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code event}
+		 * Required - API name: {@code event}
 		 */
 		public Builder event(Function<PagerDutyEvent.Builder, ObjectBuilder<PagerDutyEvent>> fn) {
 			return this.event(fn.apply(new PagerDutyEvent.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;
@@ -149,15 +154,22 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
-		public Builder request(JsonValue value) {
+		public Builder request(HttpInputRequestResult value) {
 			this.request = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code request}
+		 */
+		public Builder request(Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code response}
 		 */
 		public Builder response(HttpInputResponseResult value) {
 			this.response = value;
@@ -165,7 +177,7 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public Builder response(Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
 			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
@@ -186,18 +198,18 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PagerDutyActionEventResult
+	 * Json deserializer for {@link PagerDutyActionEventResult}
 	 */
-	public static final JsonpDeserializer<PagerDutyActionEventResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PagerDutyActionEventResult::setupPagerDutyActionEventResultDeserializer);
+	public static final JsonpDeserializer<PagerDutyActionEventResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PagerDutyActionEventResult::setupPagerDutyActionEventResultDeserializer, Builder::build);
 
 	protected static void setupPagerDutyActionEventResultDeserializer(
 			DelegatingDeserializer<PagerDutyActionEventResult.Builder> op) {
 
-		op.add(Builder::event, PagerDutyEvent.DESERIALIZER, "event");
+		op.add(Builder::event, PagerDutyEvent._DESERIALIZER, "event");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::request, JsonpDeserializer.jsonValueDeserializer(), "request");
-		op.add(Builder::response, HttpInputResponseResult.DESERIALIZER, "response");
+		op.add(Builder::request, HttpInputRequestResult._DESERIALIZER, "request");
+		op.add(Builder::response, HttpInputResponseResult._DESERIALIZER, "response");
 
 	}
 

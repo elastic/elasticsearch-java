@@ -24,85 +24,97 @@
 package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.translate.Response
-public final class TranslateResponse implements ToJsonp {
-	private final Number size;
+@JsonpDeserializable
+public final class TranslateResponse implements JsonpSerializable {
+	private final long size;
 
-	private final JsonValue source;
+	private final JsonValue /*
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+							 */ source;
 
 	private final List<Map<String, String>> fields;
 
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TranslateResponse(Builder builder) {
+	public TranslateResponse(Builder builder) {
 
 		this.size = Objects.requireNonNull(builder.size, "size");
 		this.source = Objects.requireNonNull(builder.source, "_source");
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
-		this.sort = Objects.requireNonNull(builder.sort, "sort");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.sort = ModelTypeHelper.unmodifiableNonNull(builder.sort, "sort");
 
 	}
 
+	public TranslateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code size}
+	 * Required - API name: {@code size}
 	 */
-	public Number size() {
+	public long size() {
 		return this.size;
 	}
 
 	/**
-	 * API name: {@code _source}
+	 * Required - API name: {@code _source}
 	 */
-	public JsonValue source() {
+	public JsonValue /*
+						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+						 */ source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public List<Map<String, String>> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * API name: {@code sort}
+	 * Required - API name: {@code sort}
 	 */
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("size");
-		generator.write(this.size.doubleValue());
+		generator.write(this.size);
 
 		generator.writeKey("_source");
 		generator.write(this.source);
@@ -123,7 +135,7 @@ public final class TranslateResponse implements ToJsonp {
 
 		generator.writeKey("sort");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.sort) {
+		for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 			generator.write(item0);
 
 		}
@@ -137,32 +149,36 @@ public final class TranslateResponse implements ToJsonp {
 	 * Builder for {@link TranslateResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<TranslateResponse> {
-		private Number size;
+		private Long size;
 
-		private JsonValue source;
+		private JsonValue /*
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+							 */ source;
 
 		private List<Map<String, String>> fields;
 
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
-		public Builder size(Number value) {
+		public Builder size(long value) {
 			this.size = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code _source}
+		 * Required - API name: {@code _source}
 		 */
-		public Builder source(JsonValue value) {
+		public Builder source(JsonValue /*
+										 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+										 */ value) {
 			this.source = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(List<Map<String, String>> value) {
 			this.fields = value;
@@ -170,7 +186,7 @@ public final class TranslateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(Map<String, String>... value) {
 			this.fields = Arrays.asList(value);
@@ -189,17 +205,17 @@ public final class TranslateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sort}
+		 * Required - API name: {@code sort}
 		 */
-		public Builder sort(List<JsonValue> value) {
+		public Builder sort(List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code sort}
+		 * Required - API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -207,7 +223,7 @@ public final class TranslateResponse implements ToJsonp {
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -230,14 +246,14 @@ public final class TranslateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TranslateResponse
+	 * Json deserializer for {@link TranslateResponse}
 	 */
-	public static final JsonpDeserializer<TranslateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TranslateResponse::setupTranslateResponseDeserializer);
+	public static final JsonpDeserializer<TranslateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TranslateResponse::setupTranslateResponseDeserializer, Builder::build);
 
 	protected static void setupTranslateResponseDeserializer(DelegatingDeserializer<TranslateResponse.Builder> op) {
 
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "fields");

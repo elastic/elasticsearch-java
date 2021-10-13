@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -38,31 +40,46 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsAggregation
-public final class MultiTermsAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<MultiTermLookup> terms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MultiTermsAggregation(Builder builder) {
+	public MultiTermsAggregation(Builder builder) {
 		super(builder);
-		this.terms = Objects.requireNonNull(builder.terms, "terms");
+
+		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
 
 	}
 
+	public MultiTermsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code terms}
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "multi_terms";
+	}
+
+	/**
+	 * Required - API name: {@code terms}
 	 */
 	public List<MultiTermLookup> terms() {
 		return this.terms;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("terms");
 		generator.writeStartArray();
 		for (MultiTermLookup item0 : this.terms) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -80,7 +97,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 		private List<MultiTermLookup> terms;
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(List<MultiTermLookup> value) {
 			this.terms = value;
@@ -88,7 +105,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(MultiTermLookup... value) {
 			this.terms = Arrays.asList(value);
@@ -140,15 +157,15 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MultiTermsAggregation
+	 * Json deserializer for {@link MultiTermsAggregation}
 	 */
-	public static final JsonpDeserializer<MultiTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer);
+	public static final JsonpDeserializer<MultiTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer, Builder::build);
 
 	protected static void setupMultiTermsAggregationDeserializer(
 			DelegatingDeserializer<MultiTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup.DESERIALIZER), "terms");
+		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup._DESERIALIZER), "terms");
 
 	}
 

@@ -25,62 +25,59 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
-public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
-	@Nullable
+@JsonpDeserializable
+public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	private final String policy;
-
-	@Nullable
-	private final String policyId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutLifecycleRequest(Builder builder) {
+	public PutLifecycleRequest(Builder builder) {
 
-		this.policy = builder.policy;
-		this.policyId = builder.policyId;
+		this.policy = Objects.requireNonNull(builder.policy, "policy");
 
 	}
 
+	public PutLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the index lifecycle policy
+	 * <p>
 	 * API name: {@code policy}
 	 */
-	@Nullable
 	public String policy() {
 		return this.policy;
 	}
 
 	/**
-	 * API name: {@code policy_id}
-	 */
-	@Nullable
-	public String policyId() {
-		return this.policyId;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 	}
 
@@ -90,25 +87,15 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
-		@Nullable
 		private String policy;
 
-		@Nullable
-		private String policyId;
-
 		/**
+		 * Required - The name of the index lifecycle policy
+		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(@Nullable String value) {
+		public Builder policy(String value) {
 			this.policy = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(@Nullable String value) {
-			this.policyId = value;
 			return this;
 		}
 
@@ -127,10 +114,10 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutLifecycleRequest
+	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
-	public static final JsonpDeserializer<PutLifecycleRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
+	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
 
 	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
 
@@ -141,7 +128,7 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ilm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -151,24 +138,20 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _policy = 1 << 0;
-				final int _policyId = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.policy() != null)
-					propsSet |= _policy;
-				if (request.policyId() != null)
-					propsSet |= _policyId;
+				propsSet |= _policy;
 
 				if (propsSet == (_policy)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policy);
+					SimpleEndpoint.pathEncode(request.policy, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -176,5 +159,5 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

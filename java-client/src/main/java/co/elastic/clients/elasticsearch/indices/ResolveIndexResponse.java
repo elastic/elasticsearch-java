@@ -27,11 +27,13 @@ import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexAliasI
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexDataStreamsItem;
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -42,7 +44,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.Response
-public final class ResolveIndexResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ResolveIndexResponse implements JsonpSerializable {
 	private final List<ResolveIndexItem> indices;
 
 	private final List<ResolveIndexAliasItem> aliases;
@@ -51,30 +54,34 @@ public final class ResolveIndexResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResolveIndexResponse(Builder builder) {
+	public ResolveIndexResponse(Builder builder) {
 
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.aliases = Objects.requireNonNull(builder.aliases, "aliases");
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
+		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
 
 	}
 
+	public ResolveIndexResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<ResolveIndexItem> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code aliases}
+	 * Required - API name: {@code aliases}
 	 */
 	public List<ResolveIndexAliasItem> aliases() {
 		return this.aliases;
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public List<ResolveIndexDataStreamsItem> dataStreams() {
 		return this.dataStreams;
@@ -83,18 +90,18 @@ public final class ResolveIndexResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices");
 		generator.writeStartArray();
 		for (ResolveIndexItem item0 : this.indices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -102,7 +109,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		generator.writeKey("aliases");
 		generator.writeStartArray();
 		for (ResolveIndexAliasItem item0 : this.aliases) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -110,7 +117,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		generator.writeKey("data_streams");
 		generator.writeStartArray();
 		for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -130,7 +137,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		private List<ResolveIndexDataStreamsItem> dataStreams;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<ResolveIndexItem> value) {
 			this.indices = value;
@@ -138,7 +145,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(ResolveIndexItem... value) {
 			this.indices = Arrays.asList(value);
@@ -171,7 +178,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(List<ResolveIndexAliasItem> value) {
 			this.aliases = value;
@@ -179,7 +186,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(ResolveIndexAliasItem... value) {
 			this.aliases = Arrays.asList(value);
@@ -212,7 +219,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
 			this.dataStreams = value;
@@ -220,7 +227,7 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(ResolveIndexDataStreamsItem... value) {
 			this.dataStreams = Arrays.asList(value);
@@ -269,17 +276,17 @@ public final class ResolveIndexResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResolveIndexResponse
+	 * Json deserializer for {@link ResolveIndexResponse}
 	 */
-	public static final JsonpDeserializer<ResolveIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResolveIndexResponse::setupResolveIndexResponseDeserializer);
+	public static final JsonpDeserializer<ResolveIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexResponse::setupResolveIndexResponseDeserializer, Builder::build);
 
 	protected static void setupResolveIndexResponseDeserializer(
 			DelegatingDeserializer<ResolveIndexResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem.DESERIALIZER), "indices");
-		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem.DESERIALIZER), "aliases");
-		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(ResolveIndexDataStreamsItem.DESERIALIZER),
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem._DESERIALIZER), "indices");
+		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem._DESERIALIZER), "aliases");
+		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(ResolveIndexDataStreamsItem._DESERIALIZER),
 				"data_streams");
 
 	}

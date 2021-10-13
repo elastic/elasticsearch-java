@@ -24,24 +24,27 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Response
-public final class CreateApiKeyResponse implements ToJsonp {
+@JsonpDeserializable
+public final class CreateApiKeyResponse implements JsonpSerializable {
 	private final String apiKey;
 
 	@Nullable
-	private final Number expiration;
+	private final Long expiration;
 
 	private final String id;
 
@@ -49,7 +52,7 @@ public final class CreateApiKeyResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateApiKeyResponse(Builder builder) {
+	public CreateApiKeyResponse(Builder builder) {
 
 		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
 		this.expiration = builder.expiration;
@@ -58,8 +61,12 @@ public final class CreateApiKeyResponse implements ToJsonp {
 
 	}
 
+	public CreateApiKeyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code api_key}
+	 * Required - API name: {@code api_key}
 	 */
 	public String apiKey() {
 		return this.apiKey;
@@ -69,19 +76,19 @@ public final class CreateApiKeyResponse implements ToJsonp {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public Number expiration() {
+	public Long expiration() {
 		return this.expiration;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -90,13 +97,13 @@ public final class CreateApiKeyResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("api_key");
 		generator.write(this.apiKey);
@@ -104,7 +111,7 @@ public final class CreateApiKeyResponse implements ToJsonp {
 		if (this.expiration != null) {
 
 			generator.writeKey("expiration");
-			generator.write(this.expiration.doubleValue());
+			generator.write(this.expiration);
 
 		}
 
@@ -125,14 +132,14 @@ public final class CreateApiKeyResponse implements ToJsonp {
 		private String apiKey;
 
 		@Nullable
-		private Number expiration;
+		private Long expiration;
 
 		private String id;
 
 		private String name;
 
 		/**
-		 * API name: {@code api_key}
+		 * Required - API name: {@code api_key}
 		 */
 		public Builder apiKey(String value) {
 			this.apiKey = value;
@@ -142,13 +149,13 @@ public final class CreateApiKeyResponse implements ToJsonp {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable Number value) {
+		public Builder expiration(@Nullable Long value) {
 			this.expiration = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -156,7 +163,7 @@ public final class CreateApiKeyResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -178,16 +185,16 @@ public final class CreateApiKeyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateApiKeyResponse
+	 * Json deserializer for {@link CreateApiKeyResponse}
 	 */
-	public static final JsonpDeserializer<CreateApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateApiKeyResponse::setupCreateApiKeyResponseDeserializer);
+	public static final JsonpDeserializer<CreateApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateApiKeyResponse::setupCreateApiKeyResponseDeserializer, Builder::build);
 
 	protected static void setupCreateApiKeyResponseDeserializer(
 			DelegatingDeserializer<CreateApiKeyResponse.Builder> op) {
 
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
-		op.add(Builder::expiration, JsonpDeserializer.numberDeserializer(), "expiration");
+		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

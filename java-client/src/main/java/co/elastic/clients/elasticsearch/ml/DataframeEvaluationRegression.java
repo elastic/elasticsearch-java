@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegression
-public final class DataframeEvaluationRegression implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationRegression implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	private final String predictedField;
@@ -47,7 +49,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationRegression(Builder builder) {
+	public DataframeEvaluationRegression(Builder builder) {
 
 		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
 		this.predictedField = Objects.requireNonNull(builder.predictedField, "predicted_field");
@@ -55,10 +57,22 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 
 	}
 
+	public DataframeEvaluationRegression(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The field of the index which contains the ground truth. The data type of this
-	 * field must be numerical.
-	 *
+	 * {@link DataframeEvaluation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "regression";
+	}
+
+	/**
+	 * Required - The field of the index which contains the ground truth. The data
+	 * type of this field must be numerical.
+	 * <p>
 	 * API name: {@code actual_field}
 	 */
 	public String actualField() {
@@ -66,9 +80,9 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	}
 
 	/**
-	 * The field in the index that contains the predicted value, in other words the
-	 * results of the regression analysis.
-	 *
+	 * Required - The field in the index that contains the predicted value, in other
+	 * words the results of the regression analysis.
+	 * <p>
 	 * API name: {@code predicted_field}
 	 */
 	public String predictedField() {
@@ -79,7 +93,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	 * Specifies the metrics that are used for the evaluation. For more information
 	 * on mse, msle, and huber, consult the Jupyter notebook on regression loss
 	 * functions.
-	 *
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	@Nullable
@@ -90,13 +104,13 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -107,7 +121,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		if (this.metrics != null) {
 
 			generator.writeKey("metrics");
-			this.metrics.toJsonp(generator, mapper);
+			this.metrics.serialize(generator, mapper);
 
 		}
 
@@ -127,9 +141,9 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		private DataframeEvaluationRegressionMetrics metrics;
 
 		/**
-		 * The field of the index which contains the ground truth. The data type of this
-		 * field must be numerical.
-		 *
+		 * Required - The field of the index which contains the ground truth. The data
+		 * type of this field must be numerical.
+		 * <p>
 		 * API name: {@code actual_field}
 		 */
 		public Builder actualField(String value) {
@@ -138,9 +152,9 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		}
 
 		/**
-		 * The field in the index that contains the predicted value, in other words the
-		 * results of the regression analysis.
-		 *
+		 * Required - The field in the index that contains the predicted value, in other
+		 * words the results of the regression analysis.
+		 * <p>
 		 * API name: {@code predicted_field}
 		 */
 		public Builder predictedField(String value) {
@@ -152,7 +166,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		 * Specifies the metrics that are used for the evaluation. For more information
 		 * on mse, msle, and huber, consult the Jupyter notebook on regression loss
 		 * functions.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(@Nullable DataframeEvaluationRegressionMetrics value) {
@@ -164,7 +178,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		 * Specifies the metrics that are used for the evaluation. For more information
 		 * on mse, msle, and huber, consult the Jupyter notebook on regression loss
 		 * functions.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(
@@ -187,18 +201,18 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationRegression
+	 * Json deserializer for {@link DataframeEvaluationRegression}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegression> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegression::setupDataframeEvaluationRegressionDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeEvaluationRegression::setupDataframeEvaluationRegressionDeserializer,
+			Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegression.Builder> op) {
 
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedField, JsonpDeserializer.stringDeserializer(), "predicted_field");
-		op.add(Builder::metrics, DataframeEvaluationRegressionMetrics.DESERIALIZER, "metrics");
+		op.add(Builder::metrics, DataframeEvaluationRegressionMetrics._DESERIALIZER, "metrics");
 
 	}
 

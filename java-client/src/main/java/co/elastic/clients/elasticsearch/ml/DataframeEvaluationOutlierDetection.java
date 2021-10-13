@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetection
-public final class DataframeEvaluationOutlierDetection implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationOutlierDetection implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	private final String predictedProbabilityField;
@@ -47,7 +49,7 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationOutlierDetection(Builder builder) {
+	public DataframeEvaluationOutlierDetection(Builder builder) {
 
 		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
 		this.predictedProbabilityField = Objects.requireNonNull(builder.predictedProbabilityField,
@@ -56,11 +58,23 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 	}
 
+	public DataframeEvaluationOutlierDetection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The field of the index which contains the ground truth. The data type of this
-	 * field can be boolean or integer. If the data type is integer, the value has
-	 * to be either 0 (false) or 1 (true).
-	 *
+	 * {@link DataframeEvaluation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "outlier_detection";
+	}
+
+	/**
+	 * Required - The field of the index which contains the ground truth. The data
+	 * type of this field can be boolean or integer. If the data type is integer,
+	 * the value has to be either 0 (false) or 1 (true).
+	 * <p>
 	 * API name: {@code actual_field}
 	 */
 	public String actualField() {
@@ -68,10 +82,10 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 	}
 
 	/**
-	 * The field of the index that defines the probability of whether the item
-	 * belongs to the class in question or not. It’s the field that contains the
-	 * results of the analysis.
-	 *
+	 * Required - The field of the index that defines the probability of whether the
+	 * item belongs to the class in question or not. It’s the field that contains
+	 * the results of the analysis.
+	 * <p>
 	 * API name: {@code predicted_probability_field}
 	 */
 	public String predictedProbabilityField() {
@@ -80,7 +94,7 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 	/**
 	 * Specifies the metrics that are used for the evaluation.
-	 *
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	@Nullable
@@ -91,13 +105,13 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -108,7 +122,7 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 		if (this.metrics != null) {
 
 			generator.writeKey("metrics");
-			this.metrics.toJsonp(generator, mapper);
+			this.metrics.serialize(generator, mapper);
 
 		}
 
@@ -128,10 +142,10 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 		private DataframeEvaluationOutlierDetectionMetrics metrics;
 
 		/**
-		 * The field of the index which contains the ground truth. The data type of this
-		 * field can be boolean or integer. If the data type is integer, the value has
-		 * to be either 0 (false) or 1 (true).
-		 *
+		 * Required - The field of the index which contains the ground truth. The data
+		 * type of this field can be boolean or integer. If the data type is integer,
+		 * the value has to be either 0 (false) or 1 (true).
+		 * <p>
 		 * API name: {@code actual_field}
 		 */
 		public Builder actualField(String value) {
@@ -140,10 +154,10 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 		}
 
 		/**
-		 * The field of the index that defines the probability of whether the item
-		 * belongs to the class in question or not. It’s the field that contains the
-		 * results of the analysis.
-		 *
+		 * Required - The field of the index that defines the probability of whether the
+		 * item belongs to the class in question or not. It’s the field that contains
+		 * the results of the analysis.
+		 * <p>
 		 * API name: {@code predicted_probability_field}
 		 */
 		public Builder predictedProbabilityField(String value) {
@@ -153,7 +167,7 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 		/**
 		 * Specifies the metrics that are used for the evaluation.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(@Nullable DataframeEvaluationOutlierDetectionMetrics value) {
@@ -163,7 +177,7 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 		/**
 		 * Specifies the metrics that are used for the evaluation.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(
@@ -186,11 +200,12 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationOutlierDetection
+	 * Json deserializer for {@link DataframeEvaluationOutlierDetection}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationOutlierDetection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationOutlierDetection::setupDataframeEvaluationOutlierDetectionDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationOutlierDetection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationOutlierDetection::setupDataframeEvaluationOutlierDetectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeEvaluationOutlierDetection.Builder> op) {
@@ -198,7 +213,7 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedProbabilityField, JsonpDeserializer.stringDeserializer(),
 				"predicted_probability_field");
-		op.add(Builder::metrics, DataframeEvaluationOutlierDetectionMetrics.DESERIALIZER, "metrics");
+		op.add(Builder::metrics, DataframeEvaluationOutlierDetectionMetrics._DESERIALIZER, "metrics");
 
 	}
 

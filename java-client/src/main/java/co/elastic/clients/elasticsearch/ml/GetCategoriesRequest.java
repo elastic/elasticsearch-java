@@ -25,16 +25,18 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,17 +45,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Request
-public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
 	private final String categoryId;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String partitionFieldValue;
@@ -63,7 +66,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetCategoriesRequest(Builder builder) {
+	public GetCategoriesRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.categoryId = builder.categoryId;
@@ -74,9 +77,13 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public GetCategoriesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Identifier for the anomaly detection job.
-	 *
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -89,7 +96,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	 * information about all categories. If you specify only the
 	 * partition_field_value, it returns information about all categories for the
 	 * specified partition.
-	 *
+	 * <p>
 	 * API name: {@code category_id}
 	 */
 	@Nullable
@@ -98,24 +105,28 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * skips a number of categories
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
 	/**
+	 * specifies a max number of categories to get
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * Only return categories for the specified partition.
-	 *
+	 * <p>
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
@@ -134,18 +145,18 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.page != null) {
 
 			generator.writeKey("page");
-			this.page.toJsonp(generator, mapper);
+			this.page.serialize(generator, mapper);
 
 		}
 
@@ -163,10 +174,10 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		private String categoryId;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String partitionFieldValue;
@@ -175,8 +186,8 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		private Page page;
 
 		/**
-		 * Identifier for the anomaly detection job.
-		 *
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -190,7 +201,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		 * information about all categories. If you specify only the
 		 * partition_field_value, it returns information about all categories for the
 		 * specified partition.
-		 *
+		 * <p>
 		 * API name: {@code category_id}
 		 */
 		public Builder categoryId(@Nullable String value) {
@@ -199,24 +210,28 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * skips a number of categories
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
+		 * specifies a max number of categories to get
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
 
 		/**
 		 * Only return categories for the specified partition.
-		 *
+		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
 		public Builder partitionFieldValue(@Nullable String value) {
@@ -254,15 +269,15 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetCategoriesRequest
+	 * Json deserializer for {@link GetCategoriesRequest}
 	 */
-	public static final JsonpDeserializer<GetCategoriesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCategoriesRequest::setupGetCategoriesRequestDeserializer);
+	public static final JsonpDeserializer<GetCategoriesRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCategoriesRequest::setupGetCategoriesRequestDeserializer, Builder::build);
 
 	protected static void setupGetCategoriesRequestDeserializer(
 			DelegatingDeserializer<GetCategoriesRequest.Builder> op) {
 
-		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
 
 	}
 
@@ -271,7 +286,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.get_categories}".
 	 */
-	public static final Endpoint<GetCategoriesRequest, GetCategoriesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetCategoriesRequest, GetCategoriesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -285,8 +300,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.categoryId() != null)
 					propsSet |= _categoryId;
 
@@ -295,11 +309,11 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/results");
 					buf.append("/categories");
 					buf.append("/");
-					buf.append(request.categoryId);
+					SimpleEndpoint.pathEncode(request.categoryId, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_jobId)) {
@@ -307,12 +321,12 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/results");
 					buf.append("/categories");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -320,15 +334,15 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.partitionFieldValue != null) {
 					params.put("partition_field_value", request.partitionFieldValue);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCategoriesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetCategoriesResponse._DESERIALIZER);
 }

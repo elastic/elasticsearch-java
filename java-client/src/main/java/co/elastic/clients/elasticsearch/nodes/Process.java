@@ -24,31 +24,34 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Process
-public final class Process implements ToJsonp {
+@JsonpDeserializable
+public final class Process implements JsonpSerializable {
 	private final Cpu cpu;
 
 	private final MemoryStats mem;
 
-	private final Number openFileDescriptors;
+	private final int openFileDescriptors;
 
-	private final Number timestamp;
+	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Process(Builder builder) {
+	public Process(Builder builder) {
 
 		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
@@ -57,56 +60,60 @@ public final class Process implements ToJsonp {
 
 	}
 
+	public Process(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cpu}
+	 * Required - API name: {@code cpu}
 	 */
 	public Cpu cpu() {
 		return this.cpu;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public MemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code open_file_descriptors}
+	 * Required - API name: {@code open_file_descriptors}
 	 */
-	public Number openFileDescriptors() {
+	public int openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cpu");
-		this.cpu.toJsonp(generator, mapper);
+		this.cpu.serialize(generator, mapper);
 
 		generator.writeKey("mem");
-		this.mem.toJsonp(generator, mapper);
+		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("open_file_descriptors");
-		generator.write(this.openFileDescriptors.doubleValue());
+		generator.write(this.openFileDescriptors);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -120,12 +127,12 @@ public final class Process implements ToJsonp {
 
 		private MemoryStats mem;
 
-		private Number openFileDescriptors;
+		private Integer openFileDescriptors;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Cpu value) {
 			this.cpu = value;
@@ -133,14 +140,14 @@ public final class Process implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
 			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(MemoryStats value) {
 			this.mem = value;
@@ -148,24 +155,24 @@ public final class Process implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code open_file_descriptors}
+		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(Number value) {
+		public Builder openFileDescriptors(int value) {
 			this.openFileDescriptors = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -185,17 +192,17 @@ public final class Process implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Process
+	 * Json deserializer for {@link Process}
 	 */
-	public static final JsonpDeserializer<Process> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Process::setupProcessDeserializer);
+	public static final JsonpDeserializer<Process> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Process::setupProcessDeserializer, Builder::build);
 
 	protected static void setupProcessDeserializer(DelegatingDeserializer<Process.Builder> op) {
 
-		op.add(Builder::cpu, Cpu.DESERIALIZER, "cpu");
-		op.add(Builder::mem, MemoryStats.DESERIALIZER, "mem");
-		op.add(Builder::openFileDescriptors, JsonpDeserializer.numberDeserializer(), "open_file_descriptors");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
+		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");
+		op.add(Builder::openFileDescriptors, JsonpDeserializer.integerDeserializer(), "open_file_descriptors");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

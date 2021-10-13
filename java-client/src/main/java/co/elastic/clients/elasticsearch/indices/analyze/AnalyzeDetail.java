@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,14 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeDetail
-public final class AnalyzeDetail implements ToJsonp {
+@JsonpDeserializable
+public final class AnalyzeDetail implements JsonpSerializable {
 	@Nullable
 	private final AnalyzerDetail analyzer;
 
 	@Nullable
 	private final List<CharFilterDetail> charfilters;
 
-	private final Boolean customAnalyzer;
+	private final boolean customAnalyzer;
 
 	@Nullable
 	private final List<TokenDetail> tokenfilters;
@@ -57,14 +60,18 @@ public final class AnalyzeDetail implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnalyzeDetail(Builder builder) {
+	public AnalyzeDetail(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.charfilters = builder.charfilters;
+		this.charfilters = ModelTypeHelper.unmodifiable(builder.charfilters);
 		this.customAnalyzer = Objects.requireNonNull(builder.customAnalyzer, "custom_analyzer");
-		this.tokenfilters = builder.tokenfilters;
+		this.tokenfilters = ModelTypeHelper.unmodifiable(builder.tokenfilters);
 		this.tokenizer = builder.tokenizer;
 
+	}
+
+	public AnalyzeDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -84,9 +91,9 @@ public final class AnalyzeDetail implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code custom_analyzer}
+	 * Required - API name: {@code custom_analyzer}
 	 */
-	public Boolean customAnalyzer() {
+	public boolean customAnalyzer() {
 		return this.customAnalyzer;
 	}
 
@@ -109,18 +116,18 @@ public final class AnalyzeDetail implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
-			this.analyzer.toJsonp(generator, mapper);
+			this.analyzer.serialize(generator, mapper);
 
 		}
 		if (this.charfilters != null) {
@@ -128,7 +135,7 @@ public final class AnalyzeDetail implements ToJsonp {
 			generator.writeKey("charfilters");
 			generator.writeStartArray();
 			for (CharFilterDetail item0 : this.charfilters) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -143,7 +150,7 @@ public final class AnalyzeDetail implements ToJsonp {
 			generator.writeKey("tokenfilters");
 			generator.writeStartArray();
 			for (TokenDetail item0 : this.tokenfilters) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -152,7 +159,7 @@ public final class AnalyzeDetail implements ToJsonp {
 		if (this.tokenizer != null) {
 
 			generator.writeKey("tokenizer");
-			this.tokenizer.toJsonp(generator, mapper);
+			this.tokenizer.serialize(generator, mapper);
 
 		}
 
@@ -235,9 +242,9 @@ public final class AnalyzeDetail implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code custom_analyzer}
+		 * Required - API name: {@code custom_analyzer}
 		 */
-		public Builder customAnalyzer(Boolean value) {
+		public Builder customAnalyzer(boolean value) {
 			this.customAnalyzer = value;
 			return this;
 		}
@@ -313,18 +320,19 @@ public final class AnalyzeDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnalyzeDetail
+	 * Json deserializer for {@link AnalyzeDetail}
 	 */
-	public static final JsonpDeserializer<AnalyzeDetail> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnalyzeDetail::setupAnalyzeDetailDeserializer);
+	public static final JsonpDeserializer<AnalyzeDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnalyzeDetail::setupAnalyzeDetailDeserializer, Builder::build);
 
 	protected static void setupAnalyzeDetailDeserializer(DelegatingDeserializer<AnalyzeDetail.Builder> op) {
 
-		op.add(Builder::analyzer, AnalyzerDetail.DESERIALIZER, "analyzer");
-		op.add(Builder::charfilters, JsonpDeserializer.arrayDeserializer(CharFilterDetail.DESERIALIZER), "charfilters");
+		op.add(Builder::analyzer, AnalyzerDetail._DESERIALIZER, "analyzer");
+		op.add(Builder::charfilters, JsonpDeserializer.arrayDeserializer(CharFilterDetail._DESERIALIZER),
+				"charfilters");
 		op.add(Builder::customAnalyzer, JsonpDeserializer.booleanDeserializer(), "custom_analyzer");
-		op.add(Builder::tokenfilters, JsonpDeserializer.arrayDeserializer(TokenDetail.DESERIALIZER), "tokenfilters");
-		op.add(Builder::tokenizer, TokenDetail.DESERIALIZER, "tokenizer");
+		op.add(Builder::tokenfilters, JsonpDeserializer.arrayDeserializer(TokenDetail._DESERIALIZER), "tokenfilters");
+		op.add(Builder::tokenizer, TokenDetail._DESERIALIZER, "tokenizer");
 
 	}
 

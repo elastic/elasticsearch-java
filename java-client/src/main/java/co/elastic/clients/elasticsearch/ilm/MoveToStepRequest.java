@@ -25,14 +25,16 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ilm.move_to_step.StepKey;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -42,7 +44,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.Request
-public final class MoveToStepRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class MoveToStepRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -53,7 +56,7 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MoveToStepRequest(Builder builder) {
+	public MoveToStepRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.currentStep = builder.currentStep;
@@ -61,7 +64,13 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public MoveToStepRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the index whose lifecycle step is to change
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -87,24 +96,24 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.currentStep != null) {
 
 			generator.writeKey("current_step");
-			this.currentStep.toJsonp(generator, mapper);
+			this.currentStep.serialize(generator, mapper);
 
 		}
 		if (this.nextStep != null) {
 
 			generator.writeKey("next_step");
-			this.nextStep.toJsonp(generator, mapper);
+			this.nextStep.serialize(generator, mapper);
 
 		}
 
@@ -125,6 +134,8 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 		private StepKey nextStep;
 
 		/**
+		 * Required - The name of the index whose lifecycle step is to change
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -177,15 +188,15 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MoveToStepRequest
+	 * Json deserializer for {@link MoveToStepRequest}
 	 */
-	public static final JsonpDeserializer<MoveToStepRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer);
+	public static final JsonpDeserializer<MoveToStepRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer, Builder::build);
 
 	protected static void setupMoveToStepRequestDeserializer(DelegatingDeserializer<MoveToStepRequest.Builder> op) {
 
-		op.add(Builder::currentStep, StepKey.DESERIALIZER, "current_step");
-		op.add(Builder::nextStep, StepKey.DESERIALIZER, "next_step");
+		op.add(Builder::currentStep, StepKey._DESERIALIZER, "current_step");
+		op.add(Builder::nextStep, StepKey._DESERIALIZER, "next_step");
 
 	}
 
@@ -194,7 +205,7 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ilm.move_to_step}".
 	 */
-	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -207,18 +218,17 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/move");
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -226,5 +236,5 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, MoveToStepResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MoveToStepResponse._DESERIALIZER);
 }

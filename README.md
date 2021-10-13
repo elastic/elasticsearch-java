@@ -6,7 +6,7 @@ The official Java client for [Elasticsearch](https://github.com/elastic/elastics
 
 ---
 
-**Note: this project is still a work in progress.** This client is meant to replace the existing [Java High Level Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-high.html) and remove all dependencies to the Elasticsearch server code base.
+**Note: this project is still in beta.** This client is meant to replace the existing [Java High Level Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-high.html) and remove all dependencies to the Elasticsearch server code base.
 
 ---
 
@@ -26,21 +26,13 @@ This library requires at least Java 8.
 
 Along with this library, you also need a JSON/object mapping library. `elasticsearch-java` has built-in support for [Jackson](https://github.com/FasterXML/jackson) and [JSON-B](http://json-b.net/) implementations such as [Eclipse Yasson](https://github.com/eclipse-ee4j/yasson).
 
-While it's a work in progress, snapshots of this library are published to Elastic's snapshot repository. Snapshots are currently available for the upcoming version 7.15.0, built from the `7.x` branch.
+Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:co.elastic.clients). If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at https://snapshots.elastic.co/maven/.
 
 Gradle project (Groovy flavor) setup using Jackson:
 
 ```groovy
-repositories {
-    mavenCentral()
-    maven {
-        name = "Elastic-Snapshots"
-        url = uri("https://snapshots.elastic.co/maven")
-    }
-}
-
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:7.15.0-SNAPSHOT'
+    implementation 'co.elastic.clients:elasticsearch-java:7.15.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 ```
@@ -49,22 +41,11 @@ In the `pom.xml` for your project add the following repository definition and de
 
 ```xml
 <project>
-    
-  <repositories>
-    <repository>
-      <id>Elastic-Snapshots</id>
-      <url>https://snapshots.elastic.co/maven</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      </repository>
-  </repositories>
-    
   <dependencies>
     <dependency>
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
-      <version>7.15.0-SNAPSHOT</version>
+      <version>7.15.0</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -72,7 +53,7 @@ In the `pom.xml` for your project add the following repository definition and de
       <version>2.12.3</version>
     </dependency>
   </dependencies>
-    
+
 </project>
 ```
 
@@ -107,10 +88,14 @@ if (search.hits().hits().isEmpty()) {
 
 The `main` branch targets the next major release (8.0) and the `7.x` branch targets the next minor release. Support is still incomplete as the API code is generated from the [Elasticsearch Specification](https://github.com/elastic/elasticsearch-specification) that is also still a work in progress.
 
+The Elasticsearch Java client is forward compatible; meaning that the client supports communicating with greater minor versions of Elasticsearch. Elastic language clients are also backwards compatible with lesser supported minor Elasticsearch versions.
+
 ## Current status
 
-While not complete, this library is already fairly usable. What's missing falls in two main categories, related to the [Elasticsearch specification](https://github.com/elastic/elasticsearch-specification):
-* incomplete support for some data types used in specification (e.g. unions). Until they have been implemented in the code generator, they are represented as raw `JsonValue` objects. 
+Beta state means we don't expect large architectural changes and the library is already fairly usable. This library also essentially deals with request & response serialization & deserialization and delegates all http request processing to the battle-tested [Low Level Rest Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-low.html).
+
+What's missing falls in two main categories, related to the [Elasticsearch specification](https://github.com/elastic/elasticsearch-specification):
+* incomplete support for some data types used in specification (e.g. unions). Until they have been implemented in the code generator, they are represented as raw `JsonValue` objects.
 * incomplete APIs: as the API specification is still incomplete, so are their implementations in this library since their code is entirely generated from the spec.
 
 ## Contributing

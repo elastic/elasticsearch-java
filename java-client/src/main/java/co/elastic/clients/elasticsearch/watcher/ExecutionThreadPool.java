@@ -24,62 +24,68 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: watcher._types.ExecutionThreadPool
-public final class ExecutionThreadPool implements ToJsonp {
-	private final Number maxSize;
+@JsonpDeserializable
+public final class ExecutionThreadPool implements JsonpSerializable {
+	private final long maxSize;
 
-	private final Number queueSize;
+	private final long queueSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutionThreadPool(Builder builder) {
+	public ExecutionThreadPool(Builder builder) {
 
 		this.maxSize = Objects.requireNonNull(builder.maxSize, "max_size");
 		this.queueSize = Objects.requireNonNull(builder.queueSize, "queue_size");
 
 	}
 
+	public ExecutionThreadPool(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code max_size}
+	 * Required - API name: {@code max_size}
 	 */
-	public Number maxSize() {
+	public long maxSize() {
 		return this.maxSize;
 	}
 
 	/**
-	 * API name: {@code queue_size}
+	 * Required - API name: {@code queue_size}
 	 */
-	public Number queueSize() {
+	public long queueSize() {
 		return this.queueSize;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("max_size");
-		generator.write(this.maxSize.doubleValue());
+		generator.write(this.maxSize);
 
 		generator.writeKey("queue_size");
-		generator.write(this.queueSize.doubleValue());
+		generator.write(this.queueSize);
 
 	}
 
@@ -89,22 +95,22 @@ public final class ExecutionThreadPool implements ToJsonp {
 	 * Builder for {@link ExecutionThreadPool}.
 	 */
 	public static class Builder implements ObjectBuilder<ExecutionThreadPool> {
-		private Number maxSize;
+		private Long maxSize;
 
-		private Number queueSize;
+		private Long queueSize;
 
 		/**
-		 * API name: {@code max_size}
+		 * Required - API name: {@code max_size}
 		 */
-		public Builder maxSize(Number value) {
+		public Builder maxSize(long value) {
 			this.maxSize = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code queue_size}
+		 * Required - API name: {@code queue_size}
 		 */
-		public Builder queueSize(Number value) {
+		public Builder queueSize(long value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -124,15 +130,15 @@ public final class ExecutionThreadPool implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutionThreadPool
+	 * Json deserializer for {@link ExecutionThreadPool}
 	 */
-	public static final JsonpDeserializer<ExecutionThreadPool> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionThreadPool::setupExecutionThreadPoolDeserializer);
+	public static final JsonpDeserializer<ExecutionThreadPool> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecutionThreadPool::setupExecutionThreadPoolDeserializer, Builder::build);
 
 	protected static void setupExecutionThreadPoolDeserializer(DelegatingDeserializer<ExecutionThreadPool.Builder> op) {
 
-		op.add(Builder::maxSize, JsonpDeserializer.numberDeserializer(), "max_size");
-		op.add(Builder::queueSize, JsonpDeserializer.numberDeserializer(), "queue_size");
+		op.add(Builder::maxSize, JsonpDeserializer.longDeserializer(), "max_size");
+		op.add(Builder::queueSize, JsonpDeserializer.longDeserializer(), "queue_size");
 
 	}
 

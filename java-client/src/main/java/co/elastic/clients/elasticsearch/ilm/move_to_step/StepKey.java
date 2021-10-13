@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.ilm.move_to_step;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.StepKey
-public final class StepKey implements ToJsonp {
+@JsonpDeserializable
+public final class StepKey implements JsonpSerializable {
 	private final String action;
 
 	private final String name;
@@ -45,7 +48,7 @@ public final class StepKey implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StepKey(Builder builder) {
+	public StepKey(Builder builder) {
 
 		this.action = Objects.requireNonNull(builder.action, "action");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -53,22 +56,26 @@ public final class StepKey implements ToJsonp {
 
 	}
 
+	public StepKey(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code action}
+	 * Required - API name: {@code action}
 	 */
 	public String action() {
 		return this.action;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code phase}
+	 * Required - API name: {@code phase}
 	 */
 	public String phase() {
 		return this.phase;
@@ -77,13 +84,13 @@ public final class StepKey implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("action");
 		generator.write(this.action);
@@ -109,7 +116,7 @@ public final class StepKey implements ToJsonp {
 		private String phase;
 
 		/**
-		 * API name: {@code action}
+		 * Required - API name: {@code action}
 		 */
 		public Builder action(String value) {
 			this.action = value;
@@ -117,7 +124,7 @@ public final class StepKey implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -125,7 +132,7 @@ public final class StepKey implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code phase}
+		 * Required - API name: {@code phase}
 		 */
 		public Builder phase(String value) {
 			this.phase = value;
@@ -147,10 +154,10 @@ public final class StepKey implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StepKey
+	 * Json deserializer for {@link StepKey}
 	 */
-	public static final JsonpDeserializer<StepKey> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StepKey::setupStepKeyDeserializer);
+	public static final JsonpDeserializer<StepKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StepKey::setupStepKeyDeserializer, Builder::build);
 
 	protected static void setupStepKeyDeserializer(DelegatingDeserializer<StepKey.Builder> op) {
 

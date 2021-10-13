@@ -1,0 +1,9 @@
+[[introduction]]
+== Introduction
+
+experimental[]
+
+This is the official Java API client for {es}. The client provides strongly 
+typed requests and responses for all {es} APIs. It delegates protocol handling 
+to an http client such as the <<java-rest-low>> that takes care of all 
+transport-level concerns.

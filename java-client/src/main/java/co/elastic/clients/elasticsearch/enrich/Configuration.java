@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Configuration
-public final class Configuration implements ToJsonp {
+@JsonpDeserializable
+public final class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Policy geoMatch;
 
@@ -44,11 +46,15 @@ public final class Configuration implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Configuration(Builder builder) {
+	public Configuration(Builder builder) {
 
 		this.geoMatch = builder.geoMatch;
 		this.match = Objects.requireNonNull(builder.match, "match");
 
+	}
+
+	public Configuration(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -60,7 +66,7 @@ public final class Configuration implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code match}
+	 * Required - API name: {@code match}
 	 */
 	public Policy match() {
 		return this.match;
@@ -69,23 +75,23 @@ public final class Configuration implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.geoMatch != null) {
 
 			generator.writeKey("geo_match");
-			this.geoMatch.toJsonp(generator, mapper);
+			this.geoMatch.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("match");
-		this.match.toJsonp(generator, mapper);
+		this.match.serialize(generator, mapper);
 
 	}
 
@@ -116,7 +122,7 @@ public final class Configuration implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(Policy value) {
 			this.match = value;
@@ -124,7 +130,7 @@ public final class Configuration implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.match(fn.apply(new Policy.Builder()).build());
@@ -145,15 +151,15 @@ public final class Configuration implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Configuration
+	 * Json deserializer for {@link Configuration}
 	 */
-	public static final JsonpDeserializer<Configuration> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Configuration::setupConfigurationDeserializer);
+	public static final JsonpDeserializer<Configuration> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Configuration::setupConfigurationDeserializer, Builder::build);
 
 	protected static void setupConfigurationDeserializer(DelegatingDeserializer<Configuration.Builder> op) {
 
-		op.add(Builder::geoMatch, Policy.DESERIALIZER, "geo_match");
-		op.add(Builder::match, Policy.DESERIALIZER, "match");
+		op.add(Builder::geoMatch, Policy._DESERIALIZER, "geo_match");
+		op.add(Builder::match, Policy._DESERIALIZER, "match");
 
 	}
 

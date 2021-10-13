@@ -24,24 +24,26 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsHyperparameters
-public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable {
 	private final Hyperparameters hyperparameters;
 
-	private final Number iteration;
+	private final int iteration;
 
 	private final String timestamp;
 
@@ -51,7 +53,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsStatsHyperparameters(Builder builder) {
+	public DataframeAnalyticsStatsHyperparameters(Builder builder) {
 
 		this.hyperparameters = Objects.requireNonNull(builder.hyperparameters, "hyperparameters");
 		this.iteration = Objects.requireNonNull(builder.iteration, "iteration");
@@ -61,38 +63,42 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 
 	}
 
+	public DataframeAnalyticsStatsHyperparameters(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code hyperparameters}
+	 * Required - API name: {@code hyperparameters}
 	 */
 	public Hyperparameters hyperparameters() {
 		return this.hyperparameters;
 	}
 
 	/**
-	 * The number of iterations on the analysis.
-	 *
+	 * Required - The number of iterations on the analysis.
+	 * <p>
 	 * API name: {@code iteration}
 	 */
-	public Number iteration() {
+	public int iteration() {
 		return this.iteration;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code timing_stats}
+	 * Required - API name: {@code timing_stats}
 	 */
 	public TimingStats timingStats() {
 		return this.timingStats;
 	}
 
 	/**
-	 * API name: {@code validation_loss}
+	 * Required - API name: {@code validation_loss}
 	 */
 	public ValidationLoss validationLoss() {
 		return this.validationLoss;
@@ -101,28 +107,28 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("hyperparameters");
-		this.hyperparameters.toJsonp(generator, mapper);
+		this.hyperparameters.serialize(generator, mapper);
 
 		generator.writeKey("iteration");
-		generator.write(this.iteration.doubleValue());
+		generator.write(this.iteration);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
 		generator.writeKey("timing_stats");
-		this.timingStats.toJsonp(generator, mapper);
+		this.timingStats.serialize(generator, mapper);
 
 		generator.writeKey("validation_loss");
-		this.validationLoss.toJsonp(generator, mapper);
+		this.validationLoss.serialize(generator, mapper);
 
 	}
 
@@ -134,7 +140,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsHyperparameters> {
 		private Hyperparameters hyperparameters;
 
-		private Number iteration;
+		private Integer iteration;
 
 		private String timestamp;
 
@@ -143,7 +149,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 		private ValidationLoss validationLoss;
 
 		/**
-		 * API name: {@code hyperparameters}
+		 * Required - API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(Hyperparameters value) {
 			this.hyperparameters = value;
@@ -151,24 +157,24 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code hyperparameters}
+		 * Required - API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(Function<Hyperparameters.Builder, ObjectBuilder<Hyperparameters>> fn) {
 			return this.hyperparameters(fn.apply(new Hyperparameters.Builder()).build());
 		}
 
 		/**
-		 * The number of iterations on the analysis.
-		 *
+		 * Required - The number of iterations on the analysis.
+		 * <p>
 		 * API name: {@code iteration}
 		 */
-		public Builder iteration(Number value) {
+		public Builder iteration(int value) {
 			this.iteration = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;
@@ -176,7 +182,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(TimingStats value) {
 			this.timingStats = value;
@@ -184,14 +190,14 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
 			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code validation_loss}
+		 * Required - API name: {@code validation_loss}
 		 */
 		public Builder validationLoss(ValidationLoss value) {
 			this.validationLoss = value;
@@ -199,7 +205,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code validation_loss}
+		 * Required - API name: {@code validation_loss}
 		 */
 		public Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
 			return this.validationLoss(fn.apply(new ValidationLoss.Builder()).build());
@@ -220,20 +226,21 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsStatsHyperparameters
+	 * Json deserializer for {@link DataframeAnalyticsStatsHyperparameters}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsHyperparametersDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsHyperparameters.Builder> op) {
 
-		op.add(Builder::hyperparameters, Hyperparameters.DESERIALIZER, "hyperparameters");
-		op.add(Builder::iteration, JsonpDeserializer.numberDeserializer(), "iteration");
+		op.add(Builder::hyperparameters, Hyperparameters._DESERIALIZER, "hyperparameters");
+		op.add(Builder::iteration, JsonpDeserializer.integerDeserializer(), "iteration");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::timingStats, TimingStats.DESERIALIZER, "timing_stats");
-		op.add(Builder::validationLoss, ValidationLoss.DESERIALIZER, "validation_loss");
+		op.add(Builder::timingStats, TimingStats._DESERIALIZER, "timing_stats");
+		op.add(Builder::validationLoss, ValidationLoss._DESERIALIZER, "validation_loss");
 
 	}
 

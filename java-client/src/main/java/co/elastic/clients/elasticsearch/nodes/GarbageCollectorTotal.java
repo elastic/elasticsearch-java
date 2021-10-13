@@ -24,29 +24,32 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollectorTotal
-public final class GarbageCollectorTotal implements ToJsonp {
-	private final Number collectionCount;
+@JsonpDeserializable
+public final class GarbageCollectorTotal implements JsonpSerializable {
+	private final long collectionCount;
 
 	private final String collectionTime;
 
-	private final Number collectionTimeInMillis;
+	private final long collectionTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GarbageCollectorTotal(Builder builder) {
+	public GarbageCollectorTotal(Builder builder) {
 
 		this.collectionCount = Objects.requireNonNull(builder.collectionCount, "collection_count");
 		this.collectionTime = Objects.requireNonNull(builder.collectionTime, "collection_time");
@@ -55,46 +58,50 @@ public final class GarbageCollectorTotal implements ToJsonp {
 
 	}
 
+	public GarbageCollectorTotal(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code collection_count}
+	 * Required - API name: {@code collection_count}
 	 */
-	public Number collectionCount() {
+	public long collectionCount() {
 		return this.collectionCount;
 	}
 
 	/**
-	 * API name: {@code collection_time}
+	 * Required - API name: {@code collection_time}
 	 */
 	public String collectionTime() {
 		return this.collectionTime;
 	}
 
 	/**
-	 * API name: {@code collection_time_in_millis}
+	 * Required - API name: {@code collection_time_in_millis}
 	 */
-	public Number collectionTimeInMillis() {
+	public long collectionTimeInMillis() {
 		return this.collectionTimeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("collection_count");
-		generator.write(this.collectionCount.doubleValue());
+		generator.write(this.collectionCount);
 
 		generator.writeKey("collection_time");
 		generator.write(this.collectionTime);
 
 		generator.writeKey("collection_time_in_millis");
-		generator.write(this.collectionTimeInMillis.doubleValue());
+		generator.write(this.collectionTimeInMillis);
 
 	}
 
@@ -104,22 +111,22 @@ public final class GarbageCollectorTotal implements ToJsonp {
 	 * Builder for {@link GarbageCollectorTotal}.
 	 */
 	public static class Builder implements ObjectBuilder<GarbageCollectorTotal> {
-		private Number collectionCount;
+		private Long collectionCount;
 
 		private String collectionTime;
 
-		private Number collectionTimeInMillis;
+		private Long collectionTimeInMillis;
 
 		/**
-		 * API name: {@code collection_count}
+		 * Required - API name: {@code collection_count}
 		 */
-		public Builder collectionCount(Number value) {
+		public Builder collectionCount(long value) {
 			this.collectionCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code collection_time}
+		 * Required - API name: {@code collection_time}
 		 */
 		public Builder collectionTime(String value) {
 			this.collectionTime = value;
@@ -127,9 +134,9 @@ public final class GarbageCollectorTotal implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code collection_time_in_millis}
+		 * Required - API name: {@code collection_time_in_millis}
 		 */
-		public Builder collectionTimeInMillis(Number value) {
+		public Builder collectionTimeInMillis(long value) {
 			this.collectionTimeInMillis = value;
 			return this;
 		}
@@ -149,17 +156,17 @@ public final class GarbageCollectorTotal implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GarbageCollectorTotal
+	 * Json deserializer for {@link GarbageCollectorTotal}
 	 */
-	public static final JsonpDeserializer<GarbageCollectorTotal> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer);
+	public static final JsonpDeserializer<GarbageCollectorTotal> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer, Builder::build);
 
 	protected static void setupGarbageCollectorTotalDeserializer(
 			DelegatingDeserializer<GarbageCollectorTotal.Builder> op) {
 
-		op.add(Builder::collectionCount, JsonpDeserializer.numberDeserializer(), "collection_count");
+		op.add(Builder::collectionCount, JsonpDeserializer.longDeserializer(), "collection_count");
 		op.add(Builder::collectionTime, JsonpDeserializer.stringDeserializer(), "collection_time");
-		op.add(Builder::collectionTimeInMillis, JsonpDeserializer.numberDeserializer(), "collection_time_in_millis");
+		op.add(Builder::collectionTimeInMillis, JsonpDeserializer.longDeserializer(), "collection_time_in_millis");
 
 	}
 

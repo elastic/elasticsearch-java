@@ -25,48 +25,68 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.Request
+
 public final class GetDataStreamRequest extends RequestBase {
 	@Nullable
-	private final String name;
+	private final List<String> name;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDataStreamRequest(Builder builder) {
+	public GetDataStreamRequest(Builder builder) {
 
-		this.name = builder.name;
-		this.expandWildcards = builder.expandWildcards;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 
 	}
 
+	public GetDataStreamRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of data streams to get; use <code>*</code> to get all
+	 * data streams
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public List<String> name() {
 		return this.name;
 	}
 
 	/**
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -77,24 +97,74 @@ public final class GetDataStreamRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDataStreamRequest> {
 		@Nullable
-		private String name;
+		private List<String> name;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		/**
+		 * A comma-separated list of data streams to get; use <code>*</code> to get all
+		 * data streams
+		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public Builder name(@Nullable List<String> value) {
 			this.name = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of data streams to get; use <code>*</code> to get all
+		 * data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
+			return this;
+		}
+
+		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -115,7 +185,7 @@ public final class GetDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_data_stream}".
 	 */
-	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -140,10 +210,10 @@ public final class GetDataStreamRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -151,9 +221,10 @@ public final class GetDataStreamRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetDataStreamResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDataStreamResponse._DESERIALIZER);
 }

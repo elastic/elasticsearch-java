@@ -24,35 +24,42 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SlicedScroll
-public final class SlicedScroll implements ToJsonp {
+@JsonpDeserializable
+public final class SlicedScroll implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
-	private final Number id;
+	private final int id;
 
-	private final Number max;
+	private final int max;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SlicedScroll(Builder builder) {
+	public SlicedScroll(Builder builder) {
 
 		this.field = builder.field;
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.max = Objects.requireNonNull(builder.max, "max");
 
+	}
+
+	public SlicedScroll(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,29 +71,29 @@ public final class SlicedScroll implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
-	public Number id() {
+	public int id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
-	public Number max() {
+	public int max() {
 		return this.max;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
 
@@ -96,10 +103,10 @@ public final class SlicedScroll implements ToJsonp {
 		}
 
 		generator.writeKey("id");
-		generator.write(this.id.doubleValue());
+		generator.write(this.id);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 	}
 
@@ -112,9 +119,9 @@ public final class SlicedScroll implements ToJsonp {
 		@Nullable
 		private String field;
 
-		private Number id;
+		private Integer id;
 
-		private Number max;
+		private Integer max;
 
 		/**
 		 * API name: {@code field}
@@ -125,17 +132,17 @@ public final class SlicedScroll implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
-		public Builder id(Number value) {
+		public Builder id(int value) {
 			this.id = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(int value) {
 			this.max = value;
 			return this;
 		}
@@ -155,16 +162,16 @@ public final class SlicedScroll implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SlicedScroll
+	 * Json deserializer for {@link SlicedScroll}
 	 */
-	public static final JsonpDeserializer<SlicedScroll> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlicedScroll::setupSlicedScrollDeserializer);
+	public static final JsonpDeserializer<SlicedScroll> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SlicedScroll::setupSlicedScrollDeserializer, Builder::build);
 
 	protected static void setupSlicedScrollDeserializer(DelegatingDeserializer<SlicedScroll.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
+		op.add(Builder::id, JsonpDeserializer.integerDeserializer(), "id");
+		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
 
 	}
 

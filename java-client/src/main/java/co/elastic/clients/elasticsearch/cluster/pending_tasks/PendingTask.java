@@ -24,21 +24,24 @@
 package co.elastic.clients.elasticsearch.cluster.pending_tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
-public final class PendingTask implements ToJsonp {
-	private final Number insertOrder;
+@JsonpDeserializable
+public final class PendingTask implements JsonpSerializable {
+	private final int insertOrder;
 
 	private final String priority;
 
@@ -46,11 +49,11 @@ public final class PendingTask implements ToJsonp {
 
 	private final String timeInQueue;
 
-	private final Number timeInQueueMillis;
+	private final int timeInQueueMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PendingTask(Builder builder) {
+	public PendingTask(Builder builder) {
 
 		this.insertOrder = Objects.requireNonNull(builder.insertOrder, "insert_order");
 		this.priority = Objects.requireNonNull(builder.priority, "priority");
@@ -60,54 +63,58 @@ public final class PendingTask implements ToJsonp {
 
 	}
 
+	public PendingTask(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code insert_order}
+	 * Required - API name: {@code insert_order}
 	 */
-	public Number insertOrder() {
+	public int insertOrder() {
 		return this.insertOrder;
 	}
 
 	/**
-	 * API name: {@code priority}
+	 * Required - API name: {@code priority}
 	 */
 	public String priority() {
 		return this.priority;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public String source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code time_in_queue}
+	 * Required - API name: {@code time_in_queue}
 	 */
 	public String timeInQueue() {
 		return this.timeInQueue;
 	}
 
 	/**
-	 * API name: {@code time_in_queue_millis}
+	 * Required - API name: {@code time_in_queue_millis}
 	 */
-	public Number timeInQueueMillis() {
+	public int timeInQueueMillis() {
 		return this.timeInQueueMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("insert_order");
-		generator.write(this.insertOrder.doubleValue());
+		generator.write(this.insertOrder);
 
 		generator.writeKey("priority");
 		generator.write(this.priority);
@@ -119,7 +126,7 @@ public final class PendingTask implements ToJsonp {
 		generator.write(this.timeInQueue);
 
 		generator.writeKey("time_in_queue_millis");
-		generator.write(this.timeInQueueMillis.doubleValue());
+		generator.write(this.timeInQueueMillis);
 
 	}
 
@@ -129,7 +136,7 @@ public final class PendingTask implements ToJsonp {
 	 * Builder for {@link PendingTask}.
 	 */
 	public static class Builder implements ObjectBuilder<PendingTask> {
-		private Number insertOrder;
+		private Integer insertOrder;
 
 		private String priority;
 
@@ -137,18 +144,18 @@ public final class PendingTask implements ToJsonp {
 
 		private String timeInQueue;
 
-		private Number timeInQueueMillis;
+		private Integer timeInQueueMillis;
 
 		/**
-		 * API name: {@code insert_order}
+		 * Required - API name: {@code insert_order}
 		 */
-		public Builder insertOrder(Number value) {
+		public Builder insertOrder(int value) {
 			this.insertOrder = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code priority}
+		 * Required - API name: {@code priority}
 		 */
 		public Builder priority(String value) {
 			this.priority = value;
@@ -156,7 +163,7 @@ public final class PendingTask implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(String value) {
 			this.source = value;
@@ -164,7 +171,7 @@ public final class PendingTask implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code time_in_queue}
+		 * Required - API name: {@code time_in_queue}
 		 */
 		public Builder timeInQueue(String value) {
 			this.timeInQueue = value;
@@ -172,9 +179,9 @@ public final class PendingTask implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code time_in_queue_millis}
+		 * Required - API name: {@code time_in_queue_millis}
 		 */
-		public Builder timeInQueueMillis(Number value) {
+		public Builder timeInQueueMillis(int value) {
 			this.timeInQueueMillis = value;
 			return this;
 		}
@@ -194,18 +201,18 @@ public final class PendingTask implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PendingTask
+	 * Json deserializer for {@link PendingTask}
 	 */
-	public static final JsonpDeserializer<PendingTask> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PendingTask::setupPendingTaskDeserializer);
+	public static final JsonpDeserializer<PendingTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PendingTask::setupPendingTaskDeserializer, Builder::build);
 
 	protected static void setupPendingTaskDeserializer(DelegatingDeserializer<PendingTask.Builder> op) {
 
-		op.add(Builder::insertOrder, JsonpDeserializer.numberDeserializer(), "insert_order");
+		op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 		op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
-		op.add(Builder::timeInQueueMillis, JsonpDeserializer.numberDeserializer(), "time_in_queue_millis");
+		op.add(Builder::timeInQueueMillis, JsonpDeserializer.integerDeserializer(), "time_in_queue_millis");
 
 	}
 

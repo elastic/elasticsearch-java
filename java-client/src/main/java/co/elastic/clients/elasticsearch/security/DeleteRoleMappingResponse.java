@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: security.delete_role_mapping.Response
-public final class DeleteRoleMappingResponse implements ToJsonp {
-	private final Boolean found;
+@JsonpDeserializable
+public final class DeleteRoleMappingResponse implements JsonpSerializable {
+	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRoleMappingResponse(Builder builder) {
+	public DeleteRoleMappingResponse(Builder builder) {
 
 		this.found = Objects.requireNonNull(builder.found, "found");
 
 	}
 
+	public DeleteRoleMappingResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("found");
 		generator.write(this.found);
@@ -79,9 +85,9 @@ public final class DeleteRoleMappingResponse implements ToJsonp {
 		private Boolean found;
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class DeleteRoleMappingResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteRoleMappingResponse
+	 * Json deserializer for {@link DeleteRoleMappingResponse}
 	 */
-	public static final JsonpDeserializer<DeleteRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer);
+	public static final JsonpDeserializer<DeleteRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteRoleMappingResponseDeserializer(
 			DelegatingDeserializer<DeleteRoleMappingResponse.Builder> op) {

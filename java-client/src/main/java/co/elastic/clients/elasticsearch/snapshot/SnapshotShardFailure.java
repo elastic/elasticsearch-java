@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardFailure
-public final class SnapshotShardFailure implements ToJsonp {
+@JsonpDeserializable
+public final class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;
 
 	private final String nodeId;
@@ -49,7 +52,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotShardFailure(Builder builder) {
+	public SnapshotShardFailure(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
@@ -59,36 +62,40 @@ public final class SnapshotShardFailure implements ToJsonp {
 
 	}
 
+	public SnapshotShardFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code shard_id}
+	 * Required - API name: {@code shard_id}
 	 */
 	public String shardId() {
 		return this.shardId;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public String status() {
 		return this.status;
@@ -97,13 +104,13 @@ public final class SnapshotShardFailure implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -139,7 +146,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 		private String status;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -147,7 +154,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -155,7 +162,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;
@@ -163,7 +170,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shard_id}
+		 * Required - API name: {@code shard_id}
 		 */
 		public Builder shardId(String value) {
 			this.shardId = value;
@@ -171,7 +178,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(String value) {
 			this.status = value;
@@ -193,10 +200,10 @@ public final class SnapshotShardFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotShardFailure
+	 * Json deserializer for {@link SnapshotShardFailure}
 	 */
-	public static final JsonpDeserializer<SnapshotShardFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer);
+	public static final JsonpDeserializer<SnapshotShardFailure> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer, Builder::build);
 
 	protected static void setupSnapshotShardFailureDeserializer(
 			DelegatingDeserializer<SnapshotShardFailure.Builder> op) {

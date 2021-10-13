@@ -25,11 +25,14 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -38,10 +41,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.Request
+
 public final class RecoveryRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> index;
@@ -50,23 +56,30 @@ public final class RecoveryRequest extends CatRequestBase {
 	private final Boolean activeOnly;
 
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	@Nullable
 	private final Boolean detailed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryRequest(Builder builder) {
+	public RecoveryRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.activeOnly = builder.activeOnly;
 		this.bytes = builder.bytes;
 		this.detailed = builder.detailed;
 
 	}
 
+	public RecoveryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Comma-separated list or wildcard expression of index names to limit the
+	 * returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -75,6 +88,8 @@ public final class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * If <code>true</code>, the response only includes ongoing shard recoveries
+	 * <p>
 	 * API name: {@code active_only}
 	 */
 	@Nullable
@@ -83,14 +98,19 @@ public final class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
 	/**
+	 * If <code>true</code>, the response includes detailed information about shard
+	 * recoveries
+	 * <p>
 	 * API name: {@code detailed}
 	 */
 	@Nullable
@@ -111,12 +131,15 @@ public final class RecoveryRequest extends CatRequestBase {
 		private Boolean activeOnly;
 
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		@Nullable
 		private Boolean detailed;
 
 		/**
+		 * Comma-separated list or wildcard expression of index names to limit the
+		 * returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -125,6 +148,9 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Comma-separated list or wildcard expression of index names to limit the
+		 * returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -144,6 +170,8 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * If <code>true</code>, the response only includes ongoing shard recoveries
+		 * <p>
 		 * API name: {@code active_only}
 		 */
 		public Builder activeOnly(@Nullable Boolean value) {
@@ -152,14 +180,19 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
 
 		/**
+		 * If <code>true</code>, the response includes detailed information about shard
+		 * recoveries
+		 * <p>
 		 * API name: {@code detailed}
 		 */
 		public Builder detailed(@Nullable Boolean value) {
@@ -184,7 +217,7 @@ public final class RecoveryRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.recovery}".
 	 */
-	public static final Endpoint<RecoveryRequest, RecoveryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RecoveryRequest, RecoveryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -211,10 +244,10 @@ public final class RecoveryRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/recovery");
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -232,5 +265,5 @@ public final class RecoveryRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, RecoveryResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RecoveryResponse._DESERIALIZER);
 }

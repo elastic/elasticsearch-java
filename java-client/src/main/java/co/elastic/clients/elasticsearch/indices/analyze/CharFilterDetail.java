@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,32 +38,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
-public final class CharFilterDetail implements ToJsonp {
+@JsonpDeserializable
+public final class CharFilterDetail implements JsonpSerializable {
 	private final List<String> filteredText;
 
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CharFilterDetail(Builder builder) {
+	public CharFilterDetail(Builder builder) {
 
-		this.filteredText = Objects.requireNonNull(builder.filteredText, "filtered_text");
+		this.filteredText = ModelTypeHelper.unmodifiableNonNull(builder.filteredText, "filtered_text");
 		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
+	public CharFilterDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code filtered_text}
+	 * Required - API name: {@code filtered_text}
 	 */
 	public List<String> filteredText() {
 		return this.filteredText;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -70,13 +78,13 @@ public final class CharFilterDetail implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("filtered_text");
 		generator.writeStartArray();
@@ -102,7 +110,7 @@ public final class CharFilterDetail implements ToJsonp {
 		private String name;
 
 		/**
-		 * API name: {@code filtered_text}
+		 * Required - API name: {@code filtered_text}
 		 */
 		public Builder filteredText(List<String> value) {
 			this.filteredText = value;
@@ -110,7 +118,7 @@ public final class CharFilterDetail implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code filtered_text}
+		 * Required - API name: {@code filtered_text}
 		 */
 		public Builder filteredText(String... value) {
 			this.filteredText = Arrays.asList(value);
@@ -129,7 +137,7 @@ public final class CharFilterDetail implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -151,10 +159,10 @@ public final class CharFilterDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CharFilterDetail
+	 * Json deserializer for {@link CharFilterDetail}
 	 */
-	public static final JsonpDeserializer<CharFilterDetail> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CharFilterDetail::setupCharFilterDetailDeserializer);
+	public static final JsonpDeserializer<CharFilterDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CharFilterDetail::setupCharFilterDetailDeserializer, Builder::build);
 
 	protected static void setupCharFilterDetailDeserializer(DelegatingDeserializer<CharFilterDetail.Builder> op) {
 

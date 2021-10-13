@@ -24,45 +24,60 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNearQuery
-public final class SpanNearQuery extends QueryBase {
-	@Nullable
+@JsonpDeserializable
+public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final List<SpanQuery> clauses;
 
 	@Nullable
 	private final Boolean inOrder;
 
 	@Nullable
-	private final Number slop;
+	private final Integer slop;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanNearQuery(Builder builder) {
+	public SpanNearQuery(Builder builder) {
 		super(builder);
-		this.clauses = builder.clauses;
+
+		this.clauses = ModelTypeHelper.unmodifiableNonNull(builder.clauses, "clauses");
 		this.inOrder = builder.inOrder;
 		this.slop = builder.slop;
 
 	}
 
+	public SpanNearQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code clauses}
+	 * {@link SpanQuery}, {@link Query} variant type
 	 */
-	@Nullable
+	@Override
+	public String _variantType() {
+		return "span_near";
+	}
+
+	/**
+	 * Required - API name: {@code clauses}
+	 */
 	public List<SpanQuery> clauses() {
 		return this.clauses;
 	}
@@ -79,23 +94,22 @@ public final class SpanNearQuery extends QueryBase {
 	 * API name: {@code slop}
 	 */
 	@Nullable
-	public Number slop() {
+	public Integer slop() {
 		return this.slop;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.clauses != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("clauses");
-			generator.writeStartArray();
-			for (SpanQuery item0 : this.clauses) {
-				item0.toJsonp(generator, mapper);
+		super.serializeInternal(generator, mapper);
 
-			}
-			generator.writeEnd();
+		generator.writeKey("clauses");
+		generator.writeStartArray();
+		for (SpanQuery item0 : this.clauses) {
+			item0.serialize(generator, mapper);
 
 		}
+		generator.writeEnd();
+
 		if (this.inOrder != null) {
 
 			generator.writeKey("in_order");
@@ -105,7 +119,7 @@ public final class SpanNearQuery extends QueryBase {
 		if (this.slop != null) {
 
 			generator.writeKey("slop");
-			generator.write(this.slop.doubleValue());
+			generator.write(this.slop);
 
 		}
 
@@ -117,25 +131,24 @@ public final class SpanNearQuery extends QueryBase {
 	 * Builder for {@link SpanNearQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanNearQuery> {
-		@Nullable
 		private List<SpanQuery> clauses;
 
 		@Nullable
 		private Boolean inOrder;
 
 		@Nullable
-		private Number slop;
+		private Integer slop;
 
 		/**
-		 * API name: {@code clauses}
+		 * Required - API name: {@code clauses}
 		 */
-		public Builder clauses(@Nullable List<SpanQuery> value) {
+		public Builder clauses(List<SpanQuery> value) {
 			this.clauses = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code clauses}
+		 * Required - API name: {@code clauses}
 		 */
 		public Builder clauses(SpanQuery... value) {
 			this.clauses = Arrays.asList(value);
@@ -178,7 +191,7 @@ public final class SpanNearQuery extends QueryBase {
 		/**
 		 * API name: {@code slop}
 		 */
-		public Builder slop(@Nullable Number value) {
+		public Builder slop(@Nullable Integer value) {
 			this.slop = value;
 			return this;
 		}
@@ -203,16 +216,16 @@ public final class SpanNearQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SpanNearQuery
+	 * Json deserializer for {@link SpanNearQuery}
 	 */
-	public static final JsonpDeserializer<SpanNearQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanNearQuery::setupSpanNearQueryDeserializer);
+	public static final JsonpDeserializer<SpanNearQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SpanNearQuery::setupSpanNearQueryDeserializer, Builder::build);
 
 	protected static void setupSpanNearQueryDeserializer(DelegatingDeserializer<SpanNearQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery.DESERIALIZER), "clauses");
+		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery._DESERIALIZER), "clauses");
 		op.add(Builder::inOrder, JsonpDeserializer.booleanDeserializer(), "in_order");
-		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
+		op.add(Builder::slop, JsonpDeserializer.integerDeserializer(), "slop");
 
 	}
 

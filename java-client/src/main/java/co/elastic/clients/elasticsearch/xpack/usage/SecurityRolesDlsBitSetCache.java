@@ -24,30 +24,34 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.Number;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDlsBitSetCache
-public final class SecurityRolesDlsBitSetCache implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
+	private final int count;
 
 	@Nullable
-	private final JsonValue memory;
+	private final String memory;
 
 	private final Number memoryInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SecurityRolesDlsBitSetCache(Builder builder) {
+	public SecurityRolesDlsBitSetCache(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.memory = builder.memory;
@@ -55,10 +59,14 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 
 	}
 
+	public SecurityRolesDlsBitSetCache(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -66,12 +74,12 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 	 * API name: {@code memory}
 	 */
 	@Nullable
-	public JsonValue memory() {
+	public String memory() {
 		return this.memory;
 	}
 
 	/**
-	 * API name: {@code memory_in_bytes}
+	 * Required - API name: {@code memory_in_bytes}
 	 */
 	public Number memoryInBytes() {
 		return this.memoryInBytes;
@@ -80,16 +88,16 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		if (this.memory != null) {
 
@@ -109,17 +117,17 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 	 * Builder for {@link SecurityRolesDlsBitSetCache}.
 	 */
 	public static class Builder implements ObjectBuilder<SecurityRolesDlsBitSetCache> {
-		private Number count;
+		private Integer count;
 
 		@Nullable
-		private JsonValue memory;
+		private String memory;
 
 		private Number memoryInBytes;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -127,13 +135,13 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 		/**
 		 * API name: {@code memory}
 		 */
-		public Builder memory(@Nullable JsonValue value) {
+		public Builder memory(@Nullable String value) {
 			this.memory = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code memory_in_bytes}
+		 * Required - API name: {@code memory_in_bytes}
 		 */
 		public Builder memoryInBytes(Number value) {
 			this.memoryInBytes = value;
@@ -155,16 +163,16 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SecurityRolesDlsBitSetCache
+	 * Json deserializer for {@link SecurityRolesDlsBitSetCache}
 	 */
-	public static final JsonpDeserializer<SecurityRolesDlsBitSetCache> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SecurityRolesDlsBitSetCache::setupSecurityRolesDlsBitSetCacheDeserializer);
+	public static final JsonpDeserializer<SecurityRolesDlsBitSetCache> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SecurityRolesDlsBitSetCache::setupSecurityRolesDlsBitSetCacheDeserializer, Builder::build);
 
 	protected static void setupSecurityRolesDlsBitSetCacheDeserializer(
 			DelegatingDeserializer<SecurityRolesDlsBitSetCache.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::memory, JsonpDeserializer.jsonValueDeserializer(), "memory");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::memory, JsonpDeserializer.stringDeserializer(), "memory");
 		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
 
 	}

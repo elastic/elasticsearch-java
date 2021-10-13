@@ -25,42 +25,45 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
-public final class GetOverallBucketsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final JsonValue bucketSpan;
+	private final String bucketSpan;
 
 	@Nullable
-	private final JsonValue overallScore;
+	private final String overallScore;
 
 	@Nullable
-	private final Number topN;
+	private final Integer topN;
 
 	@Nullable
-	private final JsonValue end;
+	private final String end;
 
 	@Nullable
-	private final JsonValue start;
+	private final String start;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -73,7 +76,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetOverallBucketsRequest(Builder builder) {
+	public GetOverallBucketsRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.bucketSpan = builder.bucketSpan;
@@ -87,10 +90,15 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 	}
 
+	public GetOverallBucketsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Identifier for the anomaly detection job. It can be a job identifier, a group
-	 * name, a comma-separated list of jobs or groups, or a wildcard expression.
-	 *
+	 * Required - Identifier for the anomaly detection job. It can be a job
+	 * identifier, a group name, a comma-separated list of jobs or groups, or a
+	 * wildcard expression.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -101,60 +109,60 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	 * The span of the overall buckets. Must be greater or equal to the largest
 	 * bucket span of the specified anomaly detection jobs, which is the default
 	 * value.
-	 *
+	 * <p>
 	 * API name: {@code bucket_span}
 	 */
 	@Nullable
-	public JsonValue bucketSpan() {
+	public String bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
 	 * Returns overall buckets with overall scores greater than or equal to this
 	 * value.
-	 *
+	 * <p>
 	 * API name: {@code overall_score}
 	 */
 	@Nullable
-	public JsonValue overallScore() {
+	public String overallScore() {
 		return this.overallScore;
 	}
 
 	/**
 	 * The number of top anomaly detection job bucket scores to be used in the
 	 * overall_score calculation.
-	 *
+	 * <p>
 	 * API name: {@code top_n}
 	 */
 	@Nullable
-	public Number topN() {
+	public Integer topN() {
 		return this.topN;
 	}
 
 	/**
 	 * Returns overall buckets with timestamps earlier than this time.
-	 *
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public JsonValue end() {
+	public String end() {
 		return this.end;
 	}
 
 	/**
 	 * Returns overall buckets with timestamps after this time.
-	 *
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public JsonValue start() {
+	public String start() {
 		return this.start;
 	}
 
 	/**
 	 * If true, the output excludes interim results. By default, interim results are
 	 * included.
-	 *
+	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
@@ -163,6 +171,9 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -181,13 +192,13 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowNoJobs != null) {
 
@@ -207,19 +218,19 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		private String jobId;
 
 		@Nullable
-		private JsonValue bucketSpan;
+		private String bucketSpan;
 
 		@Nullable
-		private JsonValue overallScore;
+		private String overallScore;
 
 		@Nullable
-		private Number topN;
+		private Integer topN;
 
 		@Nullable
-		private JsonValue end;
+		private String end;
 
 		@Nullable
-		private JsonValue start;
+		private String start;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -231,9 +242,10 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		private Boolean allowNoJobs;
 
 		/**
-		 * Identifier for the anomaly detection job. It can be a job identifier, a group
-		 * name, a comma-separated list of jobs or groups, or a wildcard expression.
-		 *
+		 * Required - Identifier for the anomaly detection job. It can be a job
+		 * identifier, a group name, a comma-separated list of jobs or groups, or a
+		 * wildcard expression.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -245,10 +257,10 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		 * The span of the overall buckets. Must be greater or equal to the largest
 		 * bucket span of the specified anomaly detection jobs, which is the default
 		 * value.
-		 *
+		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(@Nullable JsonValue value) {
+		public Builder bucketSpan(@Nullable String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -256,10 +268,10 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * Returns overall buckets with overall scores greater than or equal to this
 		 * value.
-		 *
+		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(@Nullable JsonValue value) {
+		public Builder overallScore(@Nullable String value) {
 			this.overallScore = value;
 			return this;
 		}
@@ -267,30 +279,30 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * The number of top anomaly detection job bucket scores to be used in the
 		 * overall_score calculation.
-		 *
+		 * <p>
 		 * API name: {@code top_n}
 		 */
-		public Builder topN(@Nullable Number value) {
+		public Builder topN(@Nullable Integer value) {
 			this.topN = value;
 			return this;
 		}
 
 		/**
 		 * Returns overall buckets with timestamps earlier than this time.
-		 *
+		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable JsonValue value) {
+		public Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
 		 * Returns overall buckets with timestamps after this time.
-		 *
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable JsonValue value) {
+		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -298,7 +310,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * If true, the output excludes interim results. By default, interim results are
 		 * included.
-		 *
+		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
 		public Builder excludeInterim(@Nullable Boolean value) {
@@ -307,6 +319,9 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -337,10 +352,10 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetOverallBucketsRequest
+	 * Json deserializer for {@link GetOverallBucketsRequest}
 	 */
-	public static final JsonpDeserializer<GetOverallBucketsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer);
+	public static final JsonpDeserializer<GetOverallBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer, Builder::build);
 
 	protected static void setupGetOverallBucketsRequestDeserializer(
 			DelegatingDeserializer<GetOverallBucketsRequest.Builder> op) {
@@ -354,7 +369,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	/**
 	 * Endpoint "{@code ml.get_overall_buckets}".
 	 */
-	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -367,20 +382,19 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/results");
 					buf.append("/overall_buckets");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -388,19 +402,19 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.bucketSpan != null) {
-					params.put("bucket_span", request.bucketSpan.toString());
+					params.put("bucket_span", request.bucketSpan);
 				}
 				if (request.overallScore != null) {
-					params.put("overall_score", request.overallScore.toString());
+					params.put("overall_score", request.overallScore);
 				}
 				if (request.topN != null) {
-					params.put("top_n", request.topN.toString());
+					params.put("top_n", String.valueOf(request.topN));
 				}
 				if (request.end != null) {
-					params.put("end", request.end.toString());
+					params.put("end", request.end);
 				}
 				if (request.start != null) {
-					params.put("start", request.start.toString());
+					params.put("start", request.start);
 				}
 				if (request.excludeInterim != null) {
 					params.put("exclude_interim", String.valueOf(request.excludeInterim));
@@ -410,5 +424,5 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetOverallBucketsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
 }

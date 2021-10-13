@@ -25,67 +25,51 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Request
-public final class GetNodeRequest extends RequestBase implements ToJsonp {
-	@Nullable
-	private final String nodeId;
 
-	private final String stub;
+public final class GetNodeRequest extends RequestBase {
+	@Nullable
+	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetNodeRequest(Builder builder) {
+	public GetNodeRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
+	public GetNodeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Auto generated - missing in the input spec
-	 *
+	 * Which node for which to retrieve the shutdown status
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
-	}
-
-	/**
-	 * API name: {@code stub}
-	 */
-	public String stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -95,25 +79,36 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<GetNodeRequest> {
 		@Nullable
-		private String nodeId;
-
-		private String stub;
+		private List<String> nodeId;
 
 		/**
-		 * Auto generated - missing in the input spec
-		 *
+		 * Which node for which to retrieve the shutdown status
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub}
+		 * Which node for which to retrieve the shutdown status
+		 * <p>
+		 * API name: {@code node_id}
 		 */
-		public Builder stub(String value) {
-			this.stub = value;
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
 			return this;
 		}
 
@@ -132,23 +127,9 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetNodeRequest
-	 */
-	public static final JsonpDeserializer<GetNodeRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetNodeRequest::setupGetNodeRequestDeserializer);
-
-	protected static void setupGetNodeRequestDeserializer(DelegatingDeserializer<GetNodeRequest.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code shutdown.get_node}".
 	 */
-	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -174,11 +155,12 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/shutdown");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -186,5 +168,5 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GetNodeResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetNodeResponse._DESERIALIZER);
 }

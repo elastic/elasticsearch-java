@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.KeyValueProcessor
-public final class KeyValueProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class KeyValueProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final List<String> excludeKeys;
 
@@ -72,13 +76,14 @@ public final class KeyValueProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected KeyValueProcessor(Builder builder) {
+	public KeyValueProcessor(Builder builder) {
 		super(builder);
-		this.excludeKeys = builder.excludeKeys;
+
+		this.excludeKeys = ModelTypeHelper.unmodifiable(builder.excludeKeys);
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.fieldSplit = Objects.requireNonNull(builder.fieldSplit, "field_split");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.includeKeys = builder.includeKeys;
+		this.includeKeys = ModelTypeHelper.unmodifiable(builder.includeKeys);
 		this.prefix = builder.prefix;
 		this.stripBrackets = builder.stripBrackets;
 		this.targetField = builder.targetField;
@@ -86,6 +91,18 @@ public final class KeyValueProcessor extends ProcessorBase {
 		this.trimValue = builder.trimValue;
 		this.valueSplit = Objects.requireNonNull(builder.valueSplit, "value_split");
 
+	}
+
+	public KeyValueProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "kv";
 	}
 
 	/**
@@ -97,14 +114,14 @@ public final class KeyValueProcessor extends ProcessorBase {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code field_split}
+	 * Required - API name: {@code field_split}
 	 */
 	public String fieldSplit() {
 		return this.fieldSplit;
@@ -167,14 +184,15 @@ public final class KeyValueProcessor extends ProcessorBase {
 	}
 
 	/**
-	 * API name: {@code value_split}
+	 * Required - API name: {@code value_split}
 	 */
 	public String valueSplit() {
 		return this.valueSplit;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.excludeKeys != null) {
 
 			generator.writeKey("exclude_keys");
@@ -312,7 +330,7 @@ public final class KeyValueProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -320,7 +338,7 @@ public final class KeyValueProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code field_split}
+		 * Required - API name: {@code field_split}
 		 */
 		public Builder fieldSplit(String value) {
 			this.fieldSplit = value;
@@ -403,7 +421,7 @@ public final class KeyValueProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code value_split}
+		 * Required - API name: {@code value_split}
 		 */
 		public Builder valueSplit(String value) {
 			this.valueSplit = value;
@@ -430,10 +448,10 @@ public final class KeyValueProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for KeyValueProcessor
+	 * Json deserializer for {@link KeyValueProcessor}
 	 */
-	public static final JsonpDeserializer<KeyValueProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer);
+	public static final JsonpDeserializer<KeyValueProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer, Builder::build);
 
 	protected static void setupKeyValueProcessorDeserializer(DelegatingDeserializer<KeyValueProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

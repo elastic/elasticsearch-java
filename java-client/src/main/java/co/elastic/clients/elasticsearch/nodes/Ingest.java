@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -39,29 +41,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Ingest
-public final class Ingest implements ToJsonp {
+@JsonpDeserializable
+public final class Ingest implements JsonpSerializable {
 	private final Map<String, IngestTotal> pipelines;
 
 	private final IngestTotal total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Ingest(Builder builder) {
+	public Ingest(Builder builder) {
 
-		this.pipelines = Objects.requireNonNull(builder.pipelines, "pipelines");
+		this.pipelines = ModelTypeHelper.unmodifiableNonNull(builder.pipelines, "pipelines");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
 	}
 
+	public Ingest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code pipelines}
+	 * Required - API name: {@code pipelines}
 	 */
 	public Map<String, IngestTotal> pipelines() {
 		return this.pipelines;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public IngestTotal total() {
 		return this.total;
@@ -70,25 +77,25 @@ public final class Ingest implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("pipelines");
 		generator.writeStartObject();
 		for (Map.Entry<String, IngestTotal> item0 : this.pipelines.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("total");
-		this.total.toJsonp(generator, mapper);
+		this.total.serialize(generator, mapper);
 
 	}
 
@@ -103,7 +110,7 @@ public final class Ingest implements ToJsonp {
 		private IngestTotal total;
 
 		/**
-		 * API name: {@code pipelines}
+		 * Required - API name: {@code pipelines}
 		 */
 		public Builder pipelines(Map<String, IngestTotal> value) {
 			this.pipelines = value;
@@ -136,7 +143,7 @@ public final class Ingest implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(IngestTotal value) {
 			this.total = value;
@@ -144,7 +151,7 @@ public final class Ingest implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
 			return this.total(fn.apply(new IngestTotal.Builder()).build());
@@ -165,15 +172,15 @@ public final class Ingest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Ingest
+	 * Json deserializer for {@link Ingest}
 	 */
-	public static final JsonpDeserializer<Ingest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Ingest::setupIngestDeserializer);
+	public static final JsonpDeserializer<Ingest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ingest::setupIngestDeserializer, Builder::build);
 
 	protected static void setupIngestDeserializer(DelegatingDeserializer<Ingest.Builder> op) {
 
-		op.add(Builder::pipelines, JsonpDeserializer.stringMapDeserializer(IngestTotal.DESERIALIZER), "pipelines");
-		op.add(Builder::total, IngestTotal.DESERIALIZER, "total");
+		op.add(Builder::pipelines, JsonpDeserializer.stringMapDeserializer(IngestTotal._DESERIALIZER), "pipelines");
+		op.add(Builder::total, IngestTotal._DESERIALIZER, "total");
 
 	}
 

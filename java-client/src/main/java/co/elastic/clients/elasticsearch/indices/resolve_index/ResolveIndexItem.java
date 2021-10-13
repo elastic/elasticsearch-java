@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexItem
-public final class ResolveIndexItem implements ToJsonp {
+@JsonpDeserializable
+public final class ResolveIndexItem implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -52,17 +56,21 @@ public final class ResolveIndexItem implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResolveIndexItem(Builder builder) {
+	public ResolveIndexItem(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.aliases = builder.aliases;
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.dataStream = builder.dataStream;
 
 	}
 
+	public ResolveIndexItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -77,7 +85,7 @@ public final class ResolveIndexItem implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public List<String> attributes() {
 		return this.attributes;
@@ -94,13 +102,13 @@ public final class ResolveIndexItem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -151,7 +159,7 @@ public final class ResolveIndexItem implements ToJsonp {
 		private String dataStream;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -186,7 +194,7 @@ public final class ResolveIndexItem implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(List<String> value) {
 			this.attributes = value;
@@ -194,7 +202,7 @@ public final class ResolveIndexItem implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(String... value) {
 			this.attributes = Arrays.asList(value);
@@ -235,10 +243,10 @@ public final class ResolveIndexItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResolveIndexItem
+	 * Json deserializer for {@link ResolveIndexItem}
 	 */
-	public static final JsonpDeserializer<ResolveIndexItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResolveIndexItem::setupResolveIndexItemDeserializer);
+	public static final JsonpDeserializer<ResolveIndexItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ResolveIndexItem::setupResolveIndexItemDeserializer, Builder::build);
 
 	protected static void setupResolveIndexItemDeserializer(DelegatingDeserializer<ResolveIndexItem.Builder> op) {
 

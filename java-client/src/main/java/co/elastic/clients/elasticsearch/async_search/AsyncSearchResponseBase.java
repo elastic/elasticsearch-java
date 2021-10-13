@@ -24,35 +24,37 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchResponseBase
-public abstract class AsyncSearchResponseBase implements ToJsonp {
+
+public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
-	private final Boolean isPartial;
+	private final boolean isPartial;
 
-	private final Boolean isRunning;
+	private final boolean isRunning;
 
-	private final JsonValue expirationTimeInMillis;
+	private final String expirationTimeInMillis;
 
-	private final JsonValue startTimeInMillis;
+	private final String startTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AsyncSearchResponseBase(AbstractBuilder<?> builder) {
+	public AsyncSearchResponseBase(AbstractBuilder<?> builder) {
 
 		this.id = builder.id;
 		this.isPartial = Objects.requireNonNull(builder.isPartial, "is_partial");
@@ -72,43 +74,43 @@ public abstract class AsyncSearchResponseBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code is_partial}
+	 * Required - API name: {@code is_partial}
 	 */
-	public Boolean isPartial() {
+	public boolean isPartial() {
 		return this.isPartial;
 	}
 
 	/**
-	 * API name: {@code is_running}
+	 * Required - API name: {@code is_running}
 	 */
-	public Boolean isRunning() {
+	public boolean isRunning() {
 		return this.isRunning;
 	}
 
 	/**
-	 * API name: {@code expiration_time_in_millis}
+	 * Required - API name: {@code expiration_time_in_millis}
 	 */
-	public JsonValue expirationTimeInMillis() {
+	public String expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public JsonValue startTimeInMillis() {
+	public String startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -139,9 +141,9 @@ public abstract class AsyncSearchResponseBase implements ToJsonp {
 
 		private Boolean isRunning;
 
-		private JsonValue expirationTimeInMillis;
+		private String expirationTimeInMillis;
 
-		private JsonValue startTimeInMillis;
+		private String startTimeInMillis;
 
 		/**
 		 * API name: {@code id}
@@ -152,33 +154,33 @@ public abstract class AsyncSearchResponseBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code is_partial}
+		 * Required - API name: {@code is_partial}
 		 */
-		public BuilderT isPartial(Boolean value) {
+		public BuilderT isPartial(boolean value) {
 			this.isPartial = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code is_running}
+		 * Required - API name: {@code is_running}
 		 */
-		public BuilderT isRunning(Boolean value) {
+		public BuilderT isRunning(boolean value) {
 			this.isRunning = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code expiration_time_in_millis}
+		 * Required - API name: {@code expiration_time_in_millis}
 		 */
-		public BuilderT expirationTimeInMillis(JsonValue value) {
+		public BuilderT expirationTimeInMillis(String value) {
 			this.expirationTimeInMillis = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public BuilderT startTimeInMillis(JsonValue value) {
+		public BuilderT startTimeInMillis(String value) {
 			this.startTimeInMillis = value;
 			return self();
 		}
@@ -194,9 +196,9 @@ public abstract class AsyncSearchResponseBase implements ToJsonp {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(AbstractBuilder::expirationTimeInMillis, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(AbstractBuilder::expirationTimeInMillis, JsonpDeserializer.stringDeserializer(),
 				"expiration_time_in_millis");
-		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
+		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
 
 	}
 

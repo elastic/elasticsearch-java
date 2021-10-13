@@ -25,13 +25,14 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -40,31 +41,36 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate_detector.Request
-public final class ValidateDetectorRequest extends RequestBase implements ToJsonp {
-	private final Detector value;
+@JsonpDeserializable
+public final class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
+	private final Detector detector;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateDetectorRequest(Builder builder) {
+	public ValidateDetectorRequest(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.detector = Objects.requireNonNull(builder.detector, "_value_body");
 
 	}
 
+	public ValidateDetectorRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Request body.
-	 *
-	 * API name: {@code value}
+	 * Required - Request body.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public Detector value() {
-		return this.value;
+	public Detector detector() {
+		return this.detector;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.detector.serialize(generator, mapper);
 
 	}
 
@@ -74,25 +80,25 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 	 * Builder for {@link ValidateDetectorRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ValidateDetectorRequest> {
-		private Detector value;
+		private Detector detector;
 
 		/**
-		 * Request body.
-		 *
-		 * API name: {@code value}
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Detector value) {
-			this.value = value;
+		public Builder detector(Detector value) {
+			this.detector = value;
 			return this;
 		}
 
 		/**
-		 * Request body.
-		 *
-		 * API name: {@code value}
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
-			return this.value(fn.apply(new Detector.Builder()).build());
+		public Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
+			return this.detector(fn.apply(new Detector.Builder()).build());
 		}
 
 		/**
@@ -107,19 +113,13 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<ValidateDetectorRequest> _DESERIALIZER = createValidateDetectorRequestDeserializer();
+	protected static JsonpDeserializer<ValidateDetectorRequest> createValidateDetectorRequestDeserializer() {
 
-	/**
-	 * Json deserializer for ValidateDetectorRequest
-	 */
-	public static final JsonpDeserializer<ValidateDetectorRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidateDetectorRequest::setupValidateDetectorRequestDeserializer);
+		JsonpDeserializer<Detector> valueDeserializer = Detector._DESERIALIZER;
 
-	protected static void setupValidateDetectorRequestDeserializer(
-			DelegatingDeserializer<ValidateDetectorRequest.Builder> op) {
-
-		op.add(Builder::value, Detector.DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.detector(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 	/**
 	 * Endpoint "{@code ml.validate_detector}".
 	 */
-	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -144,5 +144,5 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateDetectorResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ValidateDetectorResponse._DESERIALIZER);
 }

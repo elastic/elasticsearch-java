@@ -25,10 +25,18 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.WaitForEvents;
+import co.elastic.clients.elasticsearch._types.WaitForStatus;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,34 +47,37 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Request
+
 public final class HealthRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final JsonValue level;
+	private final Level level;
 
 	@Nullable
 	private final Boolean local;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
-	private final JsonValue waitForEvents;
+	private final WaitForEvents waitForEvents;
 
 	@Nullable
 	private final String waitForNodes;
@@ -78,14 +89,14 @@ public final class HealthRequest extends RequestBase {
 	private final Boolean waitForNoRelocatingShards;
 
 	@Nullable
-	private final JsonValue waitForStatus;
+	private final WaitForStatus waitForStatus;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthRequest(Builder builder) {
+	public HealthRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.expandWildcards = builder.expandWildcards;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.level = builder.level;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
@@ -99,11 +110,15 @@ public final class HealthRequest extends RequestBase {
 
 	}
 
+	public HealthRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Comma-separated list of data streams, indices, and index aliases used to
 	 * limit the request. Wildcard expressions (*) are supported. To target all data
 	 * streams and indices in a cluster, omit this parameter or use _all or *.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -112,28 +127,31 @@ public final class HealthRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
 	 * Can be one of cluster, indices or shards. Controls the details level of the
 	 * health information returned.
-	 *
+	 * <p>
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public JsonValue level() {
+	public Level level() {
 		return this.level;
 	}
 
 	/**
 	 * If true, the request retrieves information from the local node only. Defaults
 	 * to false, which means information is retrieved from the master node.
-	 *
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -144,44 +162,44 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * A number controlling to how many active shards to wait for, all to wait for
 	 * all shards in the cluster to be active, or 0 to not wait.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
 	/**
 	 * Can be one of immediate, urgent, high, normal, low, languid. Wait until all
 	 * currently queued events with the given priority are processed.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_events}
 	 */
 	@Nullable
-	public JsonValue waitForEvents() {
+	public WaitForEvents waitForEvents() {
 		return this.waitForEvents;
 	}
 
@@ -189,7 +207,7 @@ public final class HealthRequest extends RequestBase {
 	 * The request waits until the specified number N of nodes is available. It also
 	 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
 	 * ge(N), le(N), gt(N) and lt(N) notation.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_nodes}
 	 */
 	@Nullable
@@ -201,7 +219,7 @@ public final class HealthRequest extends RequestBase {
 	 * A boolean value which controls whether to wait (until the timeout provided)
 	 * for the cluster to have no shard initializations. Defaults to false, which
 	 * means it will not wait for initializing shards.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_no_initializing_shards}
 	 */
 	@Nullable
@@ -213,7 +231,7 @@ public final class HealthRequest extends RequestBase {
 	 * A boolean value which controls whether to wait (until the timeout provided)
 	 * for the cluster to have no shard relocations. Defaults to false, which means
 	 * it will not wait for relocating shards.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_no_relocating_shards}
 	 */
 	@Nullable
@@ -225,11 +243,11 @@ public final class HealthRequest extends RequestBase {
 	 * One of green, yellow or red. Will wait (until the timeout provided) until the
 	 * status of the cluster changes to the one provided or better, i.e. green &gt;
 	 * yellow &gt; red. By default, will not wait for any status.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_status}
 	 */
 	@Nullable
-	public JsonValue waitForStatus() {
+	public WaitForStatus waitForStatus() {
 		return this.waitForStatus;
 	}
 
@@ -243,25 +261,25 @@ public final class HealthRequest extends RequestBase {
 		private List<String> index;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
-		private JsonValue level;
+		private Level level;
 
 		@Nullable
 		private Boolean local;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
-		private JsonValue waitForEvents;
+		private WaitForEvents waitForEvents;
 
 		@Nullable
 		private String waitForNodes;
@@ -273,13 +291,13 @@ public final class HealthRequest extends RequestBase {
 		private Boolean waitForNoRelocatingShards;
 
 		@Nullable
-		private JsonValue waitForStatus;
+		private WaitForStatus waitForStatus;
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard expressions (*) are supported. To target all data
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -291,7 +309,7 @@ public final class HealthRequest extends RequestBase {
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard expressions (*) are supported. To target all data
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -311,20 +329,45 @@ public final class HealthRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
 		/**
 		 * Can be one of cluster, indices or shards. Controls the details level of the
 		 * health information returned.
-		 *
+		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable JsonValue value) {
+		public Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
@@ -332,7 +375,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
-		 *
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -343,10 +386,10 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -354,10 +397,10 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -365,10 +408,10 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * A number controlling to how many active shards to wait for, all to wait for
 		 * all shards in the cluster to be active, or 0 to not wait.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -376,10 +419,10 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Can be one of immediate, urgent, high, normal, low, languid. Wait until all
 		 * currently queued events with the given priority are processed.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_events}
 		 */
-		public Builder waitForEvents(@Nullable JsonValue value) {
+		public Builder waitForEvents(@Nullable WaitForEvents value) {
 			this.waitForEvents = value;
 			return this;
 		}
@@ -388,7 +431,7 @@ public final class HealthRequest extends RequestBase {
 		 * The request waits until the specified number N of nodes is available. It also
 		 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
 		 * ge(N), le(N), gt(N) and lt(N) notation.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_nodes}
 		 */
 		public Builder waitForNodes(@Nullable String value) {
@@ -400,7 +443,7 @@ public final class HealthRequest extends RequestBase {
 		 * A boolean value which controls whether to wait (until the timeout provided)
 		 * for the cluster to have no shard initializations. Defaults to false, which
 		 * means it will not wait for initializing shards.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_no_initializing_shards}
 		 */
 		public Builder waitForNoInitializingShards(@Nullable Boolean value) {
@@ -412,7 +455,7 @@ public final class HealthRequest extends RequestBase {
 		 * A boolean value which controls whether to wait (until the timeout provided)
 		 * for the cluster to have no shard relocations. Defaults to false, which means
 		 * it will not wait for relocating shards.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_no_relocating_shards}
 		 */
 		public Builder waitForNoRelocatingShards(@Nullable Boolean value) {
@@ -424,10 +467,10 @@ public final class HealthRequest extends RequestBase {
 		 * One of green, yellow or red. Will wait (until the timeout provided) until the
 		 * status of the cluster changes to the one provided or better, i.e. green &gt;
 		 * yellow &gt; red. By default, will not wait for any status.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_status}
 		 */
-		public Builder waitForStatus(@Nullable JsonValue value) {
+		public Builder waitForStatus(@Nullable WaitForStatus value) {
 			this.waitForStatus = value;
 			return this;
 		}
@@ -449,7 +492,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.health}".
 	 */
-	public static final Endpoint<HealthRequest, HealthResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HealthRequest, HealthResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -476,10 +519,10 @@ public final class HealthRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/health");
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -487,7 +530,8 @@ public final class HealthRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.level != null) {
 					params.put("level", request.level.toString());
@@ -496,13 +540,13 @@ public final class HealthRequest extends RequestBase {
 					params.put("local", String.valueOf(request.local));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.waitForEvents != null) {
 					params.put("wait_for_events", request.waitForEvents.toString());
@@ -521,5 +565,5 @@ public final class HealthRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, HealthResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER);
 }

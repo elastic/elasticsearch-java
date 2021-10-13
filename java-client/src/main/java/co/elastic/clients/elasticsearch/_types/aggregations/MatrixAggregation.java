@@ -24,35 +24,41 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
-public abstract class MatrixAggregation extends Aggregation {
+
+public abstract class MatrixAggregation extends AggregationBase {
 	@Nullable
 	private final List<String> fields;
 
 	@Nullable
-	private final Map<String, Number> missing;
+	private final Map<String, Double> missing;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatrixAggregation(AbstractBuilder<?> builder) {
+	public MatrixAggregation(AbstractBuilder<?> builder) {
 		super(builder);
-		this.fields = builder.fields;
-		this.missing = builder.missing;
+
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
 
 	}
 
@@ -68,12 +74,13 @@ public abstract class MatrixAggregation extends Aggregation {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Map<String, Number> missing() {
+	public Map<String, Double> missing() {
 		return this.missing;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.fields != null) {
 
 			generator.writeKey("fields");
@@ -89,9 +96,9 @@ public abstract class MatrixAggregation extends Aggregation {
 
 			generator.writeKey("missing");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.missing.entrySet()) {
+			for (Map.Entry<String, Double> item0 : this.missing.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -102,12 +109,12 @@ public abstract class MatrixAggregation extends Aggregation {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				Aggregation.AbstractBuilder<BuilderT> {
+				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
 		private List<String> fields;
 
 		@Nullable
-		private Map<String, Number> missing;
+		private Map<String, Double> missing;
 
 		/**
 		 * API name: {@code fields}
@@ -139,7 +146,7 @@ public abstract class MatrixAggregation extends Aggregation {
 		/**
 		 * API name: {@code missing}
 		 */
-		public BuilderT missing(@Nullable Map<String, Number> value) {
+		public BuilderT missing(@Nullable Map<String, Double> value) {
 			this.missing = value;
 			return self();
 		}
@@ -147,7 +154,7 @@ public abstract class MatrixAggregation extends Aggregation {
 		/**
 		 * Add a key/value to {@link #missing(Map)}, creating the map if needed.
 		 */
-		public BuilderT putMissing(String key, Number value) {
+		public BuilderT putMissing(String key, Double value) {
 			if (this.missing == null) {
 				this.missing = new HashMap<>();
 			}
@@ -160,11 +167,11 @@ public abstract class MatrixAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMatrixAggregationDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
-		Aggregation.setupAggregationDeserializer(op);
+		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(AbstractBuilder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"fields");
 		op.add(AbstractBuilder::missing,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()), "missing");
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()), "missing");
 
 	}
 

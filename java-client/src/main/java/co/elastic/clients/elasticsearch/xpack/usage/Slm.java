@@ -25,38 +25,46 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.slm.Statistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Slm
+@JsonpDeserializable
 public final class Slm extends Base {
 	@Nullable
-	private final Number policyCount;
+	private final Integer policyCount;
 
 	@Nullable
 	private final Statistics policyStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Slm(Builder builder) {
+	public Slm(Builder builder) {
 		super(builder);
+
 		this.policyCount = builder.policyCount;
 		this.policyStats = builder.policyStats;
 
+	}
+
+	public Slm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code policy_count}
 	 */
 	@Nullable
-	public Number policyCount() {
+	public Integer policyCount() {
 		return this.policyCount;
 	}
 
@@ -68,18 +76,19 @@ public final class Slm extends Base {
 		return this.policyStats;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.policyCount != null) {
 
 			generator.writeKey("policy_count");
-			generator.write(this.policyCount.doubleValue());
+			generator.write(this.policyCount);
 
 		}
 		if (this.policyStats != null) {
 
 			generator.writeKey("policy_stats");
-			this.policyStats.toJsonp(generator, mapper);
+			this.policyStats.serialize(generator, mapper);
 
 		}
 
@@ -92,7 +101,7 @@ public final class Slm extends Base {
 	 */
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Slm> {
 		@Nullable
-		private Number policyCount;
+		private Integer policyCount;
 
 		@Nullable
 		private Statistics policyStats;
@@ -100,7 +109,7 @@ public final class Slm extends Base {
 		/**
 		 * API name: {@code policy_count}
 		 */
-		public Builder policyCount(@Nullable Number value) {
+		public Builder policyCount(@Nullable Integer value) {
 			this.policyCount = value;
 			return this;
 		}
@@ -140,15 +149,15 @@ public final class Slm extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Slm
+	 * Json deserializer for {@link Slm}
 	 */
-	public static final JsonpDeserializer<Slm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Slm::setupSlmDeserializer);
+	public static final JsonpDeserializer<Slm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Slm::setupSlmDeserializer, Builder::build);
 
 	protected static void setupSlmDeserializer(DelegatingDeserializer<Slm.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::policyCount, JsonpDeserializer.numberDeserializer(), "policy_count");
-		op.add(Builder::policyStats, Statistics.DESERIALIZER, "policy_stats");
+		op.add(Builder::policyCount, JsonpDeserializer.integerDeserializer(), "policy_count");
+		op.add(Builder::policyStats, Statistics._DESERIALIZER, "policy_stats");
 
 	}
 

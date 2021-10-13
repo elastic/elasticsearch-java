@@ -24,18 +24,20 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,12 +50,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Datafeed
-public final class Datafeed implements ToJsonp {
+@JsonpDeserializable
+public final class Datafeed implements JsonpSerializable {
 	@Nullable
-	private final Map<String, AggregationContainer> aggregations;
+	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
-	private final Map<String, AggregationContainer> aggs;
+	private final Map<String, Aggregation> aggs;
 
 	@Nullable
 	private final ChunkingConfig chunkingConfig;
@@ -71,9 +74,9 @@ public final class Datafeed implements ToJsonp {
 	private final String jobId;
 
 	@Nullable
-	private final Number maxEmptySearches;
+	private final Integer maxEmptySearches;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
 	private final String queryDelay;
@@ -82,7 +85,7 @@ public final class Datafeed implements ToJsonp {
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
-	private final Number scrollSize;
+	private final Integer scrollSize;
 
 	private final DelayedDataCheckConfig delayedDataCheckConfig;
 
@@ -94,33 +97,37 @@ public final class Datafeed implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Datafeed(Builder builder) {
+	public Datafeed(Builder builder) {
 
-		this.aggregations = builder.aggregations;
-		this.aggs = builder.aggs;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.chunkingConfig = builder.chunkingConfig;
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.frequency = builder.frequency;
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.indexes = builder.indexes;
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.indexes = ModelTypeHelper.unmodifiable(builder.indexes);
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.queryDelay = builder.queryDelay;
-		this.scriptFields = builder.scriptFields;
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 		this.delayedDataCheckConfig = Objects.requireNonNull(builder.delayedDataCheckConfig,
 				"delayed_data_check_config");
-		this.runtimeMappings = builder.runtimeMappings;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.indicesOptions = builder.indicesOptions;
 
+	}
+
+	public Datafeed(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code aggregations}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggregations() {
+	public Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
@@ -128,7 +135,7 @@ public final class Datafeed implements ToJsonp {
 	 * API name: {@code aggs}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggs() {
+	public Map<String, Aggregation> aggs() {
 		return this.aggs;
 	}
 
@@ -141,7 +148,7 @@ public final class Datafeed implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code datafeed_id}
+	 * Required - API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
 		return this.datafeedId;
@@ -156,7 +163,7 @@ public final class Datafeed implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
@@ -171,7 +178,7 @@ public final class Datafeed implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
@@ -181,14 +188,14 @@ public final class Datafeed implements ToJsonp {
 	 * API name: {@code max_empty_searches}
 	 */
 	@Nullable
-	public Number maxEmptySearches() {
+	public Integer maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -212,12 +219,12 @@ public final class Datafeed implements ToJsonp {
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Number scrollSize() {
+	public Integer scrollSize() {
 		return this.scrollSize;
 	}
 
 	/**
-	 * API name: {@code delayed_data_check_config}
+	 * Required - API name: {@code delayed_data_check_config}
 	 */
 	public DelayedDataCheckConfig delayedDataCheckConfig() {
 		return this.delayedDataCheckConfig;
@@ -242,21 +249,21 @@ public final class Datafeed implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aggregations != null) {
 
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggregations.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -266,9 +273,9 @@ public final class Datafeed implements ToJsonp {
 
 			generator.writeKey("aggs");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggs.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -277,7 +284,7 @@ public final class Datafeed implements ToJsonp {
 		if (this.chunkingConfig != null) {
 
 			generator.writeKey("chunking_config");
-			this.chunkingConfig.toJsonp(generator, mapper);
+			this.chunkingConfig.serialize(generator, mapper);
 
 		}
 
@@ -317,12 +324,12 @@ public final class Datafeed implements ToJsonp {
 		if (this.maxEmptySearches != null) {
 
 			generator.writeKey("max_empty_searches");
-			generator.write(this.maxEmptySearches.doubleValue());
+			generator.write(this.maxEmptySearches);
 
 		}
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		if (this.queryDelay != null) {
 
@@ -336,7 +343,7 @@ public final class Datafeed implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -345,12 +352,12 @@ public final class Datafeed implements ToJsonp {
 		if (this.scrollSize != null) {
 
 			generator.writeKey("scroll_size");
-			generator.write(this.scrollSize.doubleValue());
+			generator.write(this.scrollSize);
 
 		}
 
 		generator.writeKey("delayed_data_check_config");
-		this.delayedDataCheckConfig.toJsonp(generator, mapper);
+		this.delayedDataCheckConfig.serialize(generator, mapper);
 
 		if (this.runtimeMappings != null) {
 
@@ -358,7 +365,7 @@ public final class Datafeed implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -367,7 +374,7 @@ public final class Datafeed implements ToJsonp {
 		if (this.indicesOptions != null) {
 
 			generator.writeKey("indices_options");
-			this.indicesOptions.toJsonp(generator, mapper);
+			this.indicesOptions.serialize(generator, mapper);
 
 		}
 
@@ -380,10 +387,10 @@ public final class Datafeed implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Datafeed> {
 		@Nullable
-		private Map<String, AggregationContainer> aggregations;
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
-		private Map<String, AggregationContainer> aggs;
+		private Map<String, Aggregation> aggs;
 
 		@Nullable
 		private ChunkingConfig chunkingConfig;
@@ -401,9 +408,9 @@ public final class Datafeed implements ToJsonp {
 		private String jobId;
 
 		@Nullable
-		private Number maxEmptySearches;
+		private Integer maxEmptySearches;
 
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
 		private String queryDelay;
@@ -412,7 +419,7 @@ public final class Datafeed implements ToJsonp {
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private Number scrollSize;
+		private Integer scrollSize;
 
 		private DelayedDataCheckConfig delayedDataCheckConfig;
 
@@ -425,7 +432,7 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder aggregations(@Nullable Map<String, AggregationContainer> value) {
+		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -433,7 +440,7 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key, AggregationContainer value) {
+		public Builder putAggregations(String key, Aggregation value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -444,24 +451,21 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder aggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this
-					.aggregations(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggregations(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code aggs}
 		 */
-		public Builder aggs(@Nullable Map<String, AggregationContainer> value) {
+		public Builder aggs(@Nullable Map<String, Aggregation> value) {
 			this.aggs = value;
 			return this;
 		}
@@ -469,7 +473,7 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key, AggregationContainer value) {
+		public Builder putAggs(String key, Aggregation value) {
 			if (this.aggs == null) {
 				this.aggs = new HashMap<>();
 			}
@@ -480,17 +484,15 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * Set {@link #aggs(Map)} to a singleton map.
 		 */
-		public Builder aggs(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggs(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -509,7 +511,7 @@ public final class Datafeed implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code datafeed_id}
+		 * Required - API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
 			this.datafeedId = value;
@@ -525,7 +527,7 @@ public final class Datafeed implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -533,7 +535,7 @@ public final class Datafeed implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -579,7 +581,7 @@ public final class Datafeed implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -589,24 +591,24 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(@Nullable Number value) {
+		public Builder maxEmptySearches(@Nullable Integer value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -653,13 +655,13 @@ public final class Datafeed implements ToJsonp {
 		/**
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Number value) {
+		public Builder scrollSize(@Nullable Integer value) {
 			this.scrollSize = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code delayed_data_check_config}
+		 * Required - API name: {@code delayed_data_check_config}
 		 */
 		public Builder delayedDataCheckConfig(DelayedDataCheckConfig value) {
 			this.delayedDataCheckConfig = value;
@@ -667,7 +669,7 @@ public final class Datafeed implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code delayed_data_check_config}
+		 * Required - API name: {@code delayed_data_check_config}
 		 */
 		public Builder delayedDataCheckConfig(
 				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
@@ -738,17 +740,17 @@ public final class Datafeed implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Datafeed
+	 * Json deserializer for {@link Datafeed}
 	 */
-	public static final JsonpDeserializer<Datafeed> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Datafeed::setupDatafeedDeserializer);
+	public static final JsonpDeserializer<Datafeed> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Datafeed::setupDatafeedDeserializer, Builder::build);
 
 	protected static void setupDatafeedDeserializer(DelegatingDeserializer<Datafeed.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggs");
-		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
 		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -756,16 +758,16 @@ public final class Datafeed implements ToJsonp {
 		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indexes");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
-		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
-		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig.DESERIALIZER, "delayed_data_check_config");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
+		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions.DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
 
 	}
 

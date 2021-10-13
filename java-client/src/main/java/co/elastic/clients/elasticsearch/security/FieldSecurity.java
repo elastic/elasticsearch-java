@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
-public final class FieldSecurity implements ToJsonp {
+@JsonpDeserializable
+public final class FieldSecurity implements JsonpSerializable {
 	@Nullable
 	private final List<String> except;
 
@@ -47,11 +51,15 @@ public final class FieldSecurity implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldSecurity(Builder builder) {
+	public FieldSecurity(Builder builder) {
 
-		this.except = builder.except;
-		this.grant = Objects.requireNonNull(builder.grant, "grant");
+		this.except = ModelTypeHelper.unmodifiable(builder.except);
+		this.grant = ModelTypeHelper.unmodifiableNonNull(builder.grant, "grant");
 
+	}
+
+	public FieldSecurity(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -63,7 +71,7 @@ public final class FieldSecurity implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code grant}
+	 * Required - API name: {@code grant}
 	 */
 	public List<String> grant() {
 		return this.grant;
@@ -72,13 +80,13 @@ public final class FieldSecurity implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.except != null) {
 
@@ -141,7 +149,7 @@ public final class FieldSecurity implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code grant}
+		 * Required - API name: {@code grant}
 		 */
 		public Builder grant(List<String> value) {
 			this.grant = value;
@@ -149,7 +157,7 @@ public final class FieldSecurity implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code grant}
+		 * Required - API name: {@code grant}
 		 */
 		public Builder grant(String... value) {
 			this.grant = Arrays.asList(value);
@@ -182,10 +190,10 @@ public final class FieldSecurity implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldSecurity
+	 * Json deserializer for {@link FieldSecurity}
 	 */
-	public static final JsonpDeserializer<FieldSecurity> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldSecurity::setupFieldSecurityDeserializer);
+	public static final JsonpDeserializer<FieldSecurity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldSecurity::setupFieldSecurityDeserializer, Builder::build);
 
 	protected static void setupFieldSecurityDeserializer(DelegatingDeserializer<FieldSecurity.Builder> op) {
 

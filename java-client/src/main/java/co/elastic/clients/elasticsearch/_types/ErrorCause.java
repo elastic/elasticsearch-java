@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._global.scripts_painless_execute.PainlessExecutionPosition;
+import co.elastic.clients.elasticsearch.core.scripts_painless_execute.PainlessExecutionPosition;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,34 +48,35 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorCause
-public class ErrorCause implements ToJsonp {
+@JsonpDeserializable
+public class ErrorCause implements JsonpSerializable {
 	private final String type;
 
 	private final String reason;
 
 	@Nullable
-	private final co.elastic.clients.elasticsearch._types.ErrorCause causedBy;
+	private final ErrorCause causedBy;
 
 	@Nullable
-	private final JsonValue shard;
+	private final String shard;
 
 	@Nullable
 	private final String stackTrace;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._types.ErrorCause> rootCause;
+	private final List<ErrorCause> rootCause;
 
 	@Nullable
-	private final Number bytesLimit;
+	private final Long bytesLimit;
 
 	@Nullable
-	private final Number bytesWanted;
+	private final Long bytesWanted;
 
 	@Nullable
-	private final Number column;
+	private final Integer column;
 
 	@Nullable
-	private final Number col;
+	private final Integer col;
 
 	@Nullable
 	private final List<ShardFailure> failedShards;
@@ -94,10 +97,10 @@ public class ErrorCause implements ToJsonp {
 	private final String licensedExpiredFeature;
 
 	@Nullable
-	private final Number line;
+	private final Integer line;
 
 	@Nullable
-	private final Number maxBuckets;
+	private final Integer maxBuckets;
 
 	@Nullable
 	private final String phase;
@@ -131,19 +134,19 @@ public class ErrorCause implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ErrorCause(AbstractBuilder<?> builder) {
+	public ErrorCause(AbstractBuilder<?> builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 		this.causedBy = builder.causedBy;
 		this.shard = builder.shard;
 		this.stackTrace = builder.stackTrace;
-		this.rootCause = builder.rootCause;
+		this.rootCause = ModelTypeHelper.unmodifiable(builder.rootCause);
 		this.bytesLimit = builder.bytesLimit;
 		this.bytesWanted = builder.bytesWanted;
 		this.column = builder.column;
 		this.col = builder.col;
-		this.failedShards = builder.failedShards;
+		this.failedShards = ModelTypeHelper.unmodifiable(builder.failedShards);
 		this.grouped = builder.grouped;
 		this.index = builder.index;
 		this.indexUuid = builder.indexUuid;
@@ -154,25 +157,25 @@ public class ErrorCause implements ToJsonp {
 		this.phase = builder.phase;
 		this.propertyName = builder.propertyName;
 		this.processorType = builder.processorType;
-		this.resourceId = builder.resourceId;
+		this.resourceId = ModelTypeHelper.unmodifiable(builder.resourceId);
 		this.resourceType = builder.resourceType;
 		this.script = builder.script;
-		this.scriptStack = builder.scriptStack;
-		this.header = builder.header;
+		this.scriptStack = ModelTypeHelper.unmodifiable(builder.scriptStack);
+		this.header = ModelTypeHelper.unmodifiable(builder.header);
 		this.lang = builder.lang;
 		this.position = builder.position;
 
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
@@ -182,7 +185,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code caused_by}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch._types.ErrorCause causedBy() {
+	public ErrorCause causedBy() {
 		return this.causedBy;
 	}
 
@@ -190,7 +193,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public JsonValue shard() {
+	public String shard() {
 		return this.shard;
 	}
 
@@ -206,7 +209,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code root_cause}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._types.ErrorCause> rootCause() {
+	public List<ErrorCause> rootCause() {
 		return this.rootCause;
 	}
 
@@ -214,7 +217,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code bytes_limit}
 	 */
 	@Nullable
-	public Number bytesLimit() {
+	public Long bytesLimit() {
 		return this.bytesLimit;
 	}
 
@@ -222,7 +225,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code bytes_wanted}
 	 */
 	@Nullable
-	public Number bytesWanted() {
+	public Long bytesWanted() {
 		return this.bytesWanted;
 	}
 
@@ -230,7 +233,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code column}
 	 */
 	@Nullable
-	public Number column() {
+	public Integer column() {
 		return this.column;
 	}
 
@@ -238,7 +241,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code col}
 	 */
 	@Nullable
-	public Number col() {
+	public Integer col() {
 		return this.col;
 	}
 
@@ -294,7 +297,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code line}
 	 */
 	@Nullable
-	public Number line() {
+	public Integer line() {
 		return this.line;
 	}
 
@@ -302,7 +305,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code max_buckets}
 	 */
 	@Nullable
-	public Number maxBuckets() {
+	public Integer maxBuckets() {
 		return this.maxBuckets;
 	}
 
@@ -332,7 +335,7 @@ public class ErrorCause implements ToJsonp {
 
 	/**
 	 * resource id
-	 *
+	 * <p>
 	 * API name: {@code resource_id}
 	 */
 	@Nullable
@@ -342,7 +345,7 @@ public class ErrorCause implements ToJsonp {
 
 	/**
 	 * resource type
-	 *
+	 * <p>
 	 * API name: {@code resource_type}
 	 */
 	@Nullable
@@ -393,13 +396,13 @@ public class ErrorCause implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -410,7 +413,7 @@ public class ErrorCause implements ToJsonp {
 		if (this.causedBy != null) {
 
 			generator.writeKey("caused_by");
-			this.causedBy.toJsonp(generator, mapper);
+			this.causedBy.serialize(generator, mapper);
 
 		}
 		if (this.shard != null) {
@@ -429,8 +432,8 @@ public class ErrorCause implements ToJsonp {
 
 			generator.writeKey("root_cause");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._types.ErrorCause item0 : this.rootCause) {
-				item0.toJsonp(generator, mapper);
+			for (ErrorCause item0 : this.rootCause) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -439,25 +442,25 @@ public class ErrorCause implements ToJsonp {
 		if (this.bytesLimit != null) {
 
 			generator.writeKey("bytes_limit");
-			generator.write(this.bytesLimit.doubleValue());
+			generator.write(this.bytesLimit);
 
 		}
 		if (this.bytesWanted != null) {
 
 			generator.writeKey("bytes_wanted");
-			generator.write(this.bytesWanted.doubleValue());
+			generator.write(this.bytesWanted);
 
 		}
 		if (this.column != null) {
 
 			generator.writeKey("column");
-			generator.write(this.column.doubleValue());
+			generator.write(this.column);
 
 		}
 		if (this.col != null) {
 
 			generator.writeKey("col");
-			generator.write(this.col.doubleValue());
+			generator.write(this.col);
 
 		}
 		if (this.failedShards != null) {
@@ -465,7 +468,7 @@ public class ErrorCause implements ToJsonp {
 			generator.writeKey("failed_shards");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failedShards) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -504,13 +507,13 @@ public class ErrorCause implements ToJsonp {
 		if (this.line != null) {
 
 			generator.writeKey("line");
-			generator.write(this.line.doubleValue());
+			generator.write(this.line);
 
 		}
 		if (this.maxBuckets != null) {
 
 			generator.writeKey("max_buckets");
-			generator.write(this.maxBuckets.doubleValue());
+			generator.write(this.maxBuckets);
 
 		}
 		if (this.phase != null) {
@@ -591,7 +594,7 @@ public class ErrorCause implements ToJsonp {
 		if (this.position != null) {
 
 			generator.writeKey("position");
-			this.position.toJsonp(generator, mapper);
+			this.position.serialize(generator, mapper);
 
 		}
 
@@ -626,28 +629,28 @@ public class ErrorCause implements ToJsonp {
 		private String reason;
 
 		@Nullable
-		private co.elastic.clients.elasticsearch._types.ErrorCause causedBy;
+		private ErrorCause causedBy;
 
 		@Nullable
-		private JsonValue shard;
+		private String shard;
 
 		@Nullable
 		private String stackTrace;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._types.ErrorCause> rootCause;
+		private List<ErrorCause> rootCause;
 
 		@Nullable
-		private Number bytesLimit;
+		private Long bytesLimit;
 
 		@Nullable
-		private Number bytesWanted;
+		private Long bytesWanted;
 
 		@Nullable
-		private Number column;
+		private Integer column;
 
 		@Nullable
-		private Number col;
+		private Integer col;
 
 		@Nullable
 		private List<ShardFailure> failedShards;
@@ -668,10 +671,10 @@ public class ErrorCause implements ToJsonp {
 		private String licensedExpiredFeature;
 
 		@Nullable
-		private Number line;
+		private Integer line;
 
 		@Nullable
-		private Number maxBuckets;
+		private Integer maxBuckets;
 
 		@Nullable
 		private String phase;
@@ -704,7 +707,7 @@ public class ErrorCause implements ToJsonp {
 		private PainlessExecutionPosition position;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public BuilderT type(String value) {
 			this.type = value;
@@ -712,7 +715,7 @@ public class ErrorCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public BuilderT reason(String value) {
 			this.reason = value;
@@ -722,7 +725,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public BuilderT causedBy(@Nullable co.elastic.clients.elasticsearch._types.ErrorCause value) {
+		public BuilderT causedBy(@Nullable ErrorCause value) {
 			this.causedBy = value;
 			return self();
 		}
@@ -730,15 +733,14 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public BuilderT causedBy(
-				Function<co.elastic.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.ErrorCause>> fn) {
-			return this.causedBy(fn.apply(new co.elastic.clients.elasticsearch._types.ErrorCause.Builder()).build());
+		public BuilderT causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.causedBy(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code shard}
 		 */
-		public BuilderT shard(@Nullable JsonValue value) {
+		public BuilderT shard(@Nullable String value) {
 			this.shard = value;
 			return self();
 		}
@@ -754,7 +756,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code root_cause}
 		 */
-		public BuilderT rootCause(@Nullable List<co.elastic.clients.elasticsearch._types.ErrorCause> value) {
+		public BuilderT rootCause(@Nullable List<ErrorCause> value) {
 			this.rootCause = value;
 			return self();
 		}
@@ -762,7 +764,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code root_cause}
 		 */
-		public BuilderT rootCause(co.elastic.clients.elasticsearch._types.ErrorCause... value) {
+		public BuilderT rootCause(ErrorCause... value) {
 			this.rootCause = Arrays.asList(value);
 			return self();
 		}
@@ -770,7 +772,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
-		public BuilderT addRootCause(co.elastic.clients.elasticsearch._types.ErrorCause value) {
+		public BuilderT addRootCause(ErrorCause value) {
 			if (this.rootCause == null) {
 				this.rootCause = new ArrayList<>();
 			}
@@ -781,24 +783,21 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * Set {@link #rootCause(List)} to a singleton list.
 		 */
-		public BuilderT rootCause(
-				Function<co.elastic.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.ErrorCause>> fn) {
-			return this.rootCause(fn.apply(new co.elastic.clients.elasticsearch._types.ErrorCause.Builder()).build());
+		public BuilderT rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.rootCause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
-		public BuilderT addRootCause(
-				Function<co.elastic.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.ErrorCause>> fn) {
-			return this
-					.addRootCause(fn.apply(new co.elastic.clients.elasticsearch._types.ErrorCause.Builder()).build());
+		public BuilderT addRootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.addRootCause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code bytes_limit}
 		 */
-		public BuilderT bytesLimit(@Nullable Number value) {
+		public BuilderT bytesLimit(@Nullable Long value) {
 			this.bytesLimit = value;
 			return self();
 		}
@@ -806,7 +805,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code bytes_wanted}
 		 */
-		public BuilderT bytesWanted(@Nullable Number value) {
+		public BuilderT bytesWanted(@Nullable Long value) {
 			this.bytesWanted = value;
 			return self();
 		}
@@ -814,7 +813,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code column}
 		 */
-		public BuilderT column(@Nullable Number value) {
+		public BuilderT column(@Nullable Integer value) {
 			this.column = value;
 			return self();
 		}
@@ -822,7 +821,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code col}
 		 */
-		public BuilderT col(@Nullable Number value) {
+		public BuilderT col(@Nullable Integer value) {
 			this.col = value;
 			return self();
 		}
@@ -911,7 +910,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code line}
 		 */
-		public BuilderT line(@Nullable Number value) {
+		public BuilderT line(@Nullable Integer value) {
 			this.line = value;
 			return self();
 		}
@@ -919,7 +918,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code max_buckets}
 		 */
-		public BuilderT maxBuckets(@Nullable Number value) {
+		public BuilderT maxBuckets(@Nullable Integer value) {
 			this.maxBuckets = value;
 			return self();
 		}
@@ -950,7 +949,7 @@ public class ErrorCause implements ToJsonp {
 
 		/**
 		 * resource id
-		 *
+		 * <p>
 		 * API name: {@code resource_id}
 		 */
 		public BuilderT resourceId(@Nullable List<String> value) {
@@ -960,7 +959,7 @@ public class ErrorCause implements ToJsonp {
 
 		/**
 		 * resource id
-		 *
+		 * <p>
 		 * API name: {@code resource_id}
 		 */
 		public BuilderT resourceId(String... value) {
@@ -981,7 +980,7 @@ public class ErrorCause implements ToJsonp {
 
 		/**
 		 * resource type
-		 *
+		 * <p>
 		 * API name: {@code resource_type}
 		 */
 		public BuilderT resourceType(@Nullable String value) {
@@ -1074,27 +1073,25 @@ public class ErrorCause implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ErrorCause
+	 * Json deserializer for {@link ErrorCause}
 	 */
-	public static final JsonpDeserializer<ErrorCause> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ErrorCause::setupErrorCauseDeserializer);
+	public static final JsonpDeserializer<ErrorCause> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ErrorCause::setupErrorCauseDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupErrorCauseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(AbstractBuilder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(AbstractBuilder::causedBy, co.elastic.clients.elasticsearch._types.ErrorCause.DESERIALIZER, "caused_by");
-		op.add(AbstractBuilder::shard, JsonpDeserializer.jsonValueDeserializer(), "shard");
+		op.add(AbstractBuilder::causedBy, ErrorCause._DESERIALIZER, "caused_by");
+		op.add(AbstractBuilder::shard, JsonpDeserializer.stringDeserializer(), "shard");
 		op.add(AbstractBuilder::stackTrace, JsonpDeserializer.stringDeserializer(), "stack_trace");
-		op.add(AbstractBuilder::rootCause,
-				JsonpDeserializer.arrayDeserializer(co.elastic.clients.elasticsearch._types.ErrorCause.DESERIALIZER),
-				"root_cause");
-		op.add(AbstractBuilder::bytesLimit, JsonpDeserializer.numberDeserializer(), "bytes_limit");
-		op.add(AbstractBuilder::bytesWanted, JsonpDeserializer.numberDeserializer(), "bytes_wanted");
-		op.add(AbstractBuilder::column, JsonpDeserializer.numberDeserializer(), "column");
-		op.add(AbstractBuilder::col, JsonpDeserializer.numberDeserializer(), "col");
-		op.add(AbstractBuilder::failedShards, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER),
+		op.add(AbstractBuilder::rootCause, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "root_cause");
+		op.add(AbstractBuilder::bytesLimit, JsonpDeserializer.longDeserializer(), "bytes_limit");
+		op.add(AbstractBuilder::bytesWanted, JsonpDeserializer.longDeserializer(), "bytes_wanted");
+		op.add(AbstractBuilder::column, JsonpDeserializer.integerDeserializer(), "column");
+		op.add(AbstractBuilder::col, JsonpDeserializer.integerDeserializer(), "col");
+		op.add(AbstractBuilder::failedShards, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER),
 				"failed_shards");
 		op.add(AbstractBuilder::grouped, JsonpDeserializer.booleanDeserializer(), "grouped");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "index");
@@ -1102,8 +1099,8 @@ public class ErrorCause implements ToJsonp {
 		op.add(AbstractBuilder::language, JsonpDeserializer.stringDeserializer(), "language");
 		op.add(AbstractBuilder::licensedExpiredFeature, JsonpDeserializer.stringDeserializer(),
 				"licensed_expired_feature");
-		op.add(AbstractBuilder::line, JsonpDeserializer.numberDeserializer(), "line");
-		op.add(AbstractBuilder::maxBuckets, JsonpDeserializer.numberDeserializer(), "max_buckets");
+		op.add(AbstractBuilder::line, JsonpDeserializer.integerDeserializer(), "line");
+		op.add(AbstractBuilder::maxBuckets, JsonpDeserializer.integerDeserializer(), "max_buckets");
 		op.add(AbstractBuilder::phase, JsonpDeserializer.stringDeserializer(), "phase");
 		op.add(AbstractBuilder::propertyName, JsonpDeserializer.stringDeserializer(), "property_name");
 		op.add(AbstractBuilder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
@@ -1116,7 +1113,7 @@ public class ErrorCause implements ToJsonp {
 		op.add(AbstractBuilder::header, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "header");
 		op.add(AbstractBuilder::lang, JsonpDeserializer.stringDeserializer(), "lang");
-		op.add(AbstractBuilder::position, PainlessExecutionPosition.DESERIALIZER, "position");
+		op.add(AbstractBuilder::position, PainlessExecutionPosition._DESERIALIZER, "position");
 
 	}
 

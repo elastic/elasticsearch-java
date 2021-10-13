@@ -24,63 +24,79 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
-public final class PinnedQuery extends QueryBase {
-	@Nullable
-	private final JsonValue ids;
+@JsonpDeserializable
+public final class PinnedQuery extends QueryBase implements QueryVariant {
+	private final List<String> ids;
 
-	@Nullable
-	private final QueryContainer organic;
+	private final Query organic;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PinnedQuery(Builder builder) {
+	public PinnedQuery(Builder builder) {
 		super(builder);
-		this.ids = builder.ids;
-		this.organic = builder.organic;
+
+		this.ids = ModelTypeHelper.unmodifiableNonNull(builder.ids, "ids");
+		this.organic = Objects.requireNonNull(builder.organic, "organic");
 
 	}
 
+	public PinnedQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code ids}
+	 * {@link Query} variant type
 	 */
-	@Nullable
-	public JsonValue ids() {
+	@Override
+	public String _variantType() {
+		return "pinned";
+	}
+
+	/**
+	 * Required - API name: {@code ids}
+	 */
+	public List<String> ids() {
 		return this.ids;
 	}
 
 	/**
-	 * API name: {@code organic}
+	 * Required - API name: {@code organic}
 	 */
-	@Nullable
-	public QueryContainer organic() {
+	public Query organic() {
 		return this.organic;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.ids != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("ids");
-			generator.write(this.ids);
+		super.serializeInternal(generator, mapper);
 
-		}
-		if (this.organic != null) {
-
-			generator.writeKey("organic");
-			this.organic.toJsonp(generator, mapper);
+		generator.writeKey("ids");
+		generator.writeStartArray();
+		for (String item0 : this.ids) {
+			generator.write(item0);
 
 		}
+		generator.writeEnd();
+
+		generator.writeKey("organic");
+		this.organic.serialize(generator, mapper);
 
 	}
 
@@ -90,33 +106,50 @@ public final class PinnedQuery extends QueryBase {
 	 * Builder for {@link PinnedQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<PinnedQuery> {
-		@Nullable
-		private JsonValue ids;
+		private List<String> ids;
 
-		@Nullable
-		private QueryContainer organic;
+		private Query organic;
 
 		/**
-		 * API name: {@code ids}
+		 * Required - API name: {@code ids}
 		 */
-		public Builder ids(@Nullable JsonValue value) {
+		public Builder ids(List<String> value) {
 			this.ids = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code organic}
+		 * Required - API name: {@code ids}
 		 */
-		public Builder organic(@Nullable QueryContainer value) {
+		public Builder ids(String... value) {
+			this.ids = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #ids(List)}, creating the list if needed.
+		 */
+		public Builder addIds(String value) {
+			if (this.ids == null) {
+				this.ids = new ArrayList<>();
+			}
+			this.ids.add(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code organic}
+		 */
+		public Builder organic(Query value) {
 			this.organic = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code organic}
+		 * Required - API name: {@code organic}
 		 */
-		public Builder organic(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.organic(fn.apply(new QueryContainer.Builder()).build());
+		public Builder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.organic(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -139,15 +172,15 @@ public final class PinnedQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PinnedQuery
+	 * Json deserializer for {@link PinnedQuery}
 	 */
-	public static final JsonpDeserializer<PinnedQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PinnedQuery::setupPinnedQueryDeserializer);
+	public static final JsonpDeserializer<PinnedQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PinnedQuery::setupPinnedQueryDeserializer, Builder::build);
 
 	protected static void setupPinnedQueryDeserializer(DelegatingDeserializer<PinnedQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::ids, JsonpDeserializer.jsonValueDeserializer(), "ids");
-		op.add(Builder::organic, QueryContainer.DESERIALIZER, "organic");
+		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
+		op.add(Builder::organic, Query._DESERIALIZER, "organic");
 
 	}
 

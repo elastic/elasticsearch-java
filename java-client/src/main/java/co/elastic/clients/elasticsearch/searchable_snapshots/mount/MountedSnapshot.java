@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.searchable_snapshots.mount;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.MountedSnapshot
-public final class MountedSnapshot implements ToJsonp {
+@JsonpDeserializable
+public final class MountedSnapshot implements JsonpSerializable {
 	private final String snapshot;
 
 	private final List<String> indices;
@@ -50,30 +53,34 @@ public final class MountedSnapshot implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MountedSnapshot(Builder builder) {
+	public MountedSnapshot(Builder builder) {
 
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.shards = Objects.requireNonNull(builder.shards, "shards");
 
 	}
 
+	public MountedSnapshot(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
@@ -82,13 +89,13 @@ public final class MountedSnapshot implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
@@ -102,7 +109,7 @@ public final class MountedSnapshot implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -119,7 +126,7 @@ public final class MountedSnapshot implements ToJsonp {
 		private ShardStatistics shards;
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
 			this.snapshot = value;
@@ -127,7 +134,7 @@ public final class MountedSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -135,7 +142,7 @@ public final class MountedSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -154,7 +161,7 @@ public final class MountedSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -162,7 +169,7 @@ public final class MountedSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
@@ -183,17 +190,17 @@ public final class MountedSnapshot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MountedSnapshot
+	 * Json deserializer for {@link MountedSnapshot}
 	 */
-	public static final JsonpDeserializer<MountedSnapshot> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MountedSnapshot::setupMountedSnapshotDeserializer);
+	public static final JsonpDeserializer<MountedSnapshot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MountedSnapshot::setupMountedSnapshotDeserializer, Builder::build);
 
 	protected static void setupMountedSnapshotDeserializer(DelegatingDeserializer<MountedSnapshot.Builder> op) {
 
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
 
 	}
 

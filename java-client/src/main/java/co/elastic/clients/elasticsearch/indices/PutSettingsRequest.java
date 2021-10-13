@@ -25,16 +25,17 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.indices.put_settings.IndexSettingsBody;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -49,7 +50,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_settings.Request
-public final class PutSettingsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
 
@@ -57,7 +59,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -66,33 +68,40 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean preserveExisting;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
-	private final IndexSettingsBody value;
+	private final IndexSettings settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutSettingsRequest(Builder builder) {
+	public PutSettingsRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.preserveExisting = builder.preserveExisting;
 		this.timeout = builder.timeout;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.settings = Objects.requireNonNull(builder.settings, "_value_body");
 
 	}
 
+	public PutSettingsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -101,6 +110,10 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -109,14 +122,19 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -125,6 +143,9 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -133,14 +154,19 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Whether to update existing settings. If set to <code>true</code> existing
+	 * settings on an index remain unchanged, the default is <code>false</code>
+	 * <p>
 	 * API name: {@code preserve_existing}
 	 */
 	@Nullable
@@ -149,27 +175,29 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
-	 * Request body.
-	 *
-	 * API name: {@code value}
+	 * Required - Request body.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public IndexSettingsBody value() {
-		return this.value;
+	public IndexSettings settings() {
+		return this.settings;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.settings.serialize(generator, mapper);
 
 	}
 
@@ -186,7 +214,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -195,17 +223,20 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean preserveExisting;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
-		private IndexSettingsBody value;
+		private IndexSettings settings;
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -214,6 +245,9 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -233,6 +267,10 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -241,14 +279,41 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -257,6 +322,9 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -265,14 +333,19 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Whether to update existing settings. If set to <code>true</code> existing
+		 * settings on an index remain unchanged, the default is <code>false</code>
+		 * <p>
 		 * API name: {@code preserve_existing}
 		 */
 		public Builder preserveExisting(@Nullable Boolean value) {
@@ -281,30 +354,32 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
-		 * Request body.
-		 *
-		 * API name: {@code value}
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(IndexSettingsBody value) {
-			this.value = value;
+		public Builder settings(IndexSettings value) {
+			this.settings = value;
 			return this;
 		}
 
 		/**
-		 * Request body.
-		 *
-		 * API name: {@code value}
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<IndexSettingsBody.Builder, ObjectBuilder<IndexSettingsBody>> fn) {
-			return this.value(fn.apply(new IndexSettingsBody.Builder()).build());
+		public Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -319,18 +394,13 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutSettingsRequest> _DESERIALIZER = createPutSettingsRequestDeserializer();
+	protected static JsonpDeserializer<PutSettingsRequest> createPutSettingsRequestDeserializer() {
 
-	/**
-	 * Json deserializer for PutSettingsRequest
-	 */
-	public static final JsonpDeserializer<PutSettingsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutSettingsRequest::setupPutSettingsRequestDeserializer);
+		JsonpDeserializer<IndexSettings> valueDeserializer = IndexSettings._DESERIALIZER;
 
-	protected static void setupPutSettingsRequestDeserializer(DelegatingDeserializer<PutSettingsRequest.Builder> op) {
-
-		op.add(Builder::value, IndexSettingsBody.DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.settings(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -338,7 +408,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code indices.put_settings}".
 	 */
-	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -362,11 +432,11 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_settings");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -377,7 +447,8 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
@@ -386,15 +457,15 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.preserveExisting != null) {
 					params.put("preserve_existing", String.valueOf(request.preserveExisting));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutSettingsResponse._DESERIALIZER);
 }

@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,10 +40,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Request
+
 public final class AckWatchRequest extends RequestBase {
 	private final String watchId;
 
@@ -49,14 +54,20 @@ public final class AckWatchRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AckWatchRequest(Builder builder) {
+	public AckWatchRequest(Builder builder) {
 
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
-		this.actionId = builder.actionId;
+		this.actionId = ModelTypeHelper.unmodifiable(builder.actionId);
 
 	}
 
+	public AckWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - Watch ID
+	 * <p>
 	 * API name: {@code watch_id}
 	 */
 	public String watchId() {
@@ -64,6 +75,8 @@ public final class AckWatchRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of the action ids to be acked
+	 * <p>
 	 * API name: {@code action_id}
 	 */
 	@Nullable
@@ -83,6 +96,8 @@ public final class AckWatchRequest extends RequestBase {
 		private List<String> actionId;
 
 		/**
+		 * Required - Watch ID
+		 * <p>
 		 * API name: {@code watch_id}
 		 */
 		public Builder watchId(String value) {
@@ -91,6 +106,8 @@ public final class AckWatchRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of the action ids to be acked
+		 * <p>
 		 * API name: {@code action_id}
 		 */
 		public Builder actionId(@Nullable List<String> value) {
@@ -99,6 +116,8 @@ public final class AckWatchRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of the action ids to be acked
+		 * <p>
 		 * API name: {@code action_id}
 		 */
 		public Builder actionId(String... value) {
@@ -134,7 +153,7 @@ public final class AckWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.ack_watch}".
 	 */
-	public static final Endpoint<AckWatchRequest, AckWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AckWatchRequest, AckWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -148,8 +167,7 @@ public final class AckWatchRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.watchId() != null)
-					propsSet |= _watchId;
+				propsSet |= _watchId;
 				if (request.actionId() != null)
 					propsSet |= _actionId;
 
@@ -158,7 +176,7 @@ public final class AckWatchRequest extends RequestBase {
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.watchId);
+					SimpleEndpoint.pathEncode(request.watchId, buf);
 					buf.append("/_ack");
 					return buf.toString();
 				}
@@ -167,13 +185,14 @@ public final class AckWatchRequest extends RequestBase {
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.watchId);
+					SimpleEndpoint.pathEncode(request.watchId, buf);
 					buf.append("/_ack");
 					buf.append("/");
-					buf.append(request.actionId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.actionId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -181,5 +200,5 @@ public final class AckWatchRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, AckWatchResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AckWatchResponse._DESERIALIZER);
 }

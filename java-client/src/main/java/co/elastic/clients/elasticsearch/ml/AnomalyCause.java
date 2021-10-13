@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +43,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnomalyCause
-public final class AnomalyCause implements ToJsonp {
-	private final List<Number> actual;
+@JsonpDeserializable
+public final class AnomalyCause implements JsonpSerializable {
+	private final List<Double> actual;
 
 	private final String byFieldName;
 
@@ -66,15 +69,15 @@ public final class AnomalyCause implements ToJsonp {
 
 	private final String partitionFieldValue;
 
-	private final Number probability;
+	private final double probability;
 
-	private final List<Number> typical;
+	private final List<Double> typical;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnomalyCause(Builder builder) {
+	public AnomalyCause(Builder builder) {
 
-		this.actual = Objects.requireNonNull(builder.actual, "actual");
+		this.actual = ModelTypeHelper.unmodifiableNonNull(builder.actual, "actual");
 		this.byFieldName = Objects.requireNonNull(builder.byFieldName, "by_field_name");
 		this.byFieldValue = Objects.requireNonNull(builder.byFieldValue, "by_field_value");
 		this.correlatedByFieldValue = Objects.requireNonNull(builder.correlatedByFieldValue,
@@ -82,129 +85,133 @@ public final class AnomalyCause implements ToJsonp {
 		this.fieldName = Objects.requireNonNull(builder.fieldName, "field_name");
 		this.function = Objects.requireNonNull(builder.function, "function");
 		this.functionDescription = Objects.requireNonNull(builder.functionDescription, "function_description");
-		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
+		this.influencers = ModelTypeHelper.unmodifiableNonNull(builder.influencers, "influencers");
 		this.overFieldName = Objects.requireNonNull(builder.overFieldName, "over_field_name");
 		this.overFieldValue = Objects.requireNonNull(builder.overFieldValue, "over_field_value");
 		this.partitionFieldName = Objects.requireNonNull(builder.partitionFieldName, "partition_field_name");
 		this.partitionFieldValue = Objects.requireNonNull(builder.partitionFieldValue, "partition_field_value");
 		this.probability = Objects.requireNonNull(builder.probability, "probability");
-		this.typical = Objects.requireNonNull(builder.typical, "typical");
+		this.typical = ModelTypeHelper.unmodifiableNonNull(builder.typical, "typical");
 
 	}
 
+	public AnomalyCause(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code actual}
+	 * Required - API name: {@code actual}
 	 */
-	public List<Number> actual() {
+	public List<Double> actual() {
 		return this.actual;
 	}
 
 	/**
-	 * API name: {@code by_field_name}
+	 * Required - API name: {@code by_field_name}
 	 */
 	public String byFieldName() {
 		return this.byFieldName;
 	}
 
 	/**
-	 * API name: {@code by_field_value}
+	 * Required - API name: {@code by_field_value}
 	 */
 	public String byFieldValue() {
 		return this.byFieldValue;
 	}
 
 	/**
-	 * API name: {@code correlated_by_field_value}
+	 * Required - API name: {@code correlated_by_field_value}
 	 */
 	public String correlatedByFieldValue() {
 		return this.correlatedByFieldValue;
 	}
 
 	/**
-	 * API name: {@code field_name}
+	 * Required - API name: {@code field_name}
 	 */
 	public String fieldName() {
 		return this.fieldName;
 	}
 
 	/**
-	 * API name: {@code function}
+	 * Required - API name: {@code function}
 	 */
 	public String function() {
 		return this.function;
 	}
 
 	/**
-	 * API name: {@code function_description}
+	 * Required - API name: {@code function_description}
 	 */
 	public String functionDescription() {
 		return this.functionDescription;
 	}
 
 	/**
-	 * API name: {@code influencers}
+	 * Required - API name: {@code influencers}
 	 */
 	public List<Influence> influencers() {
 		return this.influencers;
 	}
 
 	/**
-	 * API name: {@code over_field_name}
+	 * Required - API name: {@code over_field_name}
 	 */
 	public String overFieldName() {
 		return this.overFieldName;
 	}
 
 	/**
-	 * API name: {@code over_field_value}
+	 * Required - API name: {@code over_field_value}
 	 */
 	public String overFieldValue() {
 		return this.overFieldValue;
 	}
 
 	/**
-	 * API name: {@code partition_field_name}
+	 * Required - API name: {@code partition_field_name}
 	 */
 	public String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
 	/**
-	 * API name: {@code partition_field_value}
+	 * Required - API name: {@code partition_field_value}
 	 */
 	public String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
 
 	/**
-	 * API name: {@code probability}
+	 * Required - API name: {@code probability}
 	 */
-	public Number probability() {
+	public double probability() {
 		return this.probability;
 	}
 
 	/**
-	 * API name: {@code typical}
+	 * Required - API name: {@code typical}
 	 */
-	public List<Number> typical() {
+	public List<Double> typical() {
 		return this.typical;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actual");
 		generator.writeStartArray();
-		for (Number item0 : this.actual) {
-			generator.write(item0.doubleValue());
+		for (Double item0 : this.actual) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -230,7 +237,7 @@ public final class AnomalyCause implements ToJsonp {
 		generator.writeKey("influencers");
 		generator.writeStartArray();
 		for (Influence item0 : this.influencers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -248,12 +255,12 @@ public final class AnomalyCause implements ToJsonp {
 		generator.write(this.partitionFieldValue);
 
 		generator.writeKey("probability");
-		generator.write(this.probability.doubleValue());
+		generator.write(this.probability);
 
 		generator.writeKey("typical");
 		generator.writeStartArray();
-		for (Number item0 : this.typical) {
-			generator.write(item0.doubleValue());
+		for (Double item0 : this.typical) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -266,7 +273,7 @@ public final class AnomalyCause implements ToJsonp {
 	 * Builder for {@link AnomalyCause}.
 	 */
 	public static class Builder implements ObjectBuilder<AnomalyCause> {
-		private List<Number> actual;
+		private List<Double> actual;
 
 		private String byFieldName;
 
@@ -290,22 +297,22 @@ public final class AnomalyCause implements ToJsonp {
 
 		private String partitionFieldValue;
 
-		private Number probability;
+		private Double probability;
 
-		private List<Number> typical;
+		private List<Double> typical;
 
 		/**
-		 * API name: {@code actual}
+		 * Required - API name: {@code actual}
 		 */
-		public Builder actual(List<Number> value) {
+		public Builder actual(List<Double> value) {
 			this.actual = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code actual}
+		 * Required - API name: {@code actual}
 		 */
-		public Builder actual(Number... value) {
+		public Builder actual(Double... value) {
 			this.actual = Arrays.asList(value);
 			return this;
 		}
@@ -313,7 +320,7 @@ public final class AnomalyCause implements ToJsonp {
 		/**
 		 * Add a value to {@link #actual(List)}, creating the list if needed.
 		 */
-		public Builder addActual(Number value) {
+		public Builder addActual(Double value) {
 			if (this.actual == null) {
 				this.actual = new ArrayList<>();
 			}
@@ -322,7 +329,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code by_field_name}
+		 * Required - API name: {@code by_field_name}
 		 */
 		public Builder byFieldName(String value) {
 			this.byFieldName = value;
@@ -330,7 +337,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code by_field_value}
+		 * Required - API name: {@code by_field_value}
 		 */
 		public Builder byFieldValue(String value) {
 			this.byFieldValue = value;
@@ -338,7 +345,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code correlated_by_field_value}
+		 * Required - API name: {@code correlated_by_field_value}
 		 */
 		public Builder correlatedByFieldValue(String value) {
 			this.correlatedByFieldValue = value;
@@ -346,7 +353,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code field_name}
+		 * Required - API name: {@code field_name}
 		 */
 		public Builder fieldName(String value) {
 			this.fieldName = value;
@@ -354,7 +361,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code function}
+		 * Required - API name: {@code function}
 		 */
 		public Builder function(String value) {
 			this.function = value;
@@ -362,7 +369,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code function_description}
+		 * Required - API name: {@code function_description}
 		 */
 		public Builder functionDescription(String value) {
 			this.functionDescription = value;
@@ -370,7 +377,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code influencers}
+		 * Required - API name: {@code influencers}
 		 */
 		public Builder influencers(List<Influence> value) {
 			this.influencers = value;
@@ -378,7 +385,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code influencers}
+		 * Required - API name: {@code influencers}
 		 */
 		public Builder influencers(Influence... value) {
 			this.influencers = Arrays.asList(value);
@@ -411,7 +418,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code over_field_name}
+		 * Required - API name: {@code over_field_name}
 		 */
 		public Builder overFieldName(String value) {
 			this.overFieldName = value;
@@ -419,7 +426,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code over_field_value}
+		 * Required - API name: {@code over_field_value}
 		 */
 		public Builder overFieldValue(String value) {
 			this.overFieldValue = value;
@@ -427,7 +434,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code partition_field_name}
+		 * Required - API name: {@code partition_field_name}
 		 */
 		public Builder partitionFieldName(String value) {
 			this.partitionFieldName = value;
@@ -435,7 +442,7 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code partition_field_value}
+		 * Required - API name: {@code partition_field_value}
 		 */
 		public Builder partitionFieldValue(String value) {
 			this.partitionFieldValue = value;
@@ -443,25 +450,25 @@ public final class AnomalyCause implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code probability}
+		 * Required - API name: {@code probability}
 		 */
-		public Builder probability(Number value) {
+		public Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code typical}
+		 * Required - API name: {@code typical}
 		 */
-		public Builder typical(List<Number> value) {
+		public Builder typical(List<Double> value) {
 			this.typical = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code typical}
+		 * Required - API name: {@code typical}
 		 */
-		public Builder typical(Number... value) {
+		public Builder typical(Double... value) {
 			this.typical = Arrays.asList(value);
 			return this;
 		}
@@ -469,7 +476,7 @@ public final class AnomalyCause implements ToJsonp {
 		/**
 		 * Add a value to {@link #typical(List)}, creating the list if needed.
 		 */
-		public Builder addTypical(Number value) {
+		public Builder addTypical(Double value) {
 			if (this.typical == null) {
 				this.typical = new ArrayList<>();
 			}
@@ -492,27 +499,27 @@ public final class AnomalyCause implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnomalyCause
+	 * Json deserializer for {@link AnomalyCause}
 	 */
-	public static final JsonpDeserializer<AnomalyCause> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnomalyCause::setupAnomalyCauseDeserializer);
+	public static final JsonpDeserializer<AnomalyCause> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnomalyCause::setupAnomalyCauseDeserializer, Builder::build);
 
 	protected static void setupAnomalyCauseDeserializer(DelegatingDeserializer<AnomalyCause.Builder> op) {
 
-		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "actual");
+		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
 		op.add(Builder::correlatedByFieldValue, JsonpDeserializer.stringDeserializer(), "correlated_by_field_value");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
-		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence.DESERIALIZER), "influencers");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence._DESERIALIZER), "influencers");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::overFieldValue, JsonpDeserializer.stringDeserializer(), "over_field_value");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
 		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
-		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
-		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
+		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"typical");
 
 	}

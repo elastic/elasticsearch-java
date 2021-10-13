@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
-public final class RemoveProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> field;
 
 	@Nullable
@@ -47,15 +51,28 @@ public final class RemoveProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RemoveProcessor(Builder builder) {
+	public RemoveProcessor(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+
+		this.field = ModelTypeHelper.unmodifiableNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 
 	}
 
+	public RemoveProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "remove";
+	}
+
+	/**
+	 * Required - API name: {@code field}
 	 */
 	public List<String> field() {
 		return this.field;
@@ -69,8 +86,9 @@ public final class RemoveProcessor extends ProcessorBase {
 		return this.ignoreMissing;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.writeStartArray();
@@ -103,7 +121,7 @@ public final class RemoveProcessor extends ProcessorBase {
 		private Boolean ignoreMissing;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(List<String> value) {
 			this.field = value;
@@ -111,7 +129,7 @@ public final class RemoveProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String... value) {
 			this.field = Arrays.asList(value);
@@ -157,10 +175,10 @@ public final class RemoveProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RemoveProcessor
+	 * Json deserializer for {@link RemoveProcessor}
 	 */
-	public static final JsonpDeserializer<RemoveProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RemoveProcessor::setupRemoveProcessorDeserializer);
+	public static final JsonpDeserializer<RemoveProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RemoveProcessor::setupRemoveProcessorDeserializer, Builder::build);
 
 	protected static void setupRemoveProcessorDeserializer(DelegatingDeserializer<RemoveProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

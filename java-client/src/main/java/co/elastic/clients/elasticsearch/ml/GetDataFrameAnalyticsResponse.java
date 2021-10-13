@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,31 +42,37 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics.Response
-public final class GetDataFrameAnalyticsResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
+	private final int count;
 
 	private final List<DataframeAnalyticsSummary> dataFrameAnalytics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDataFrameAnalyticsResponse(Builder builder) {
+	public GetDataFrameAnalyticsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.dataFrameAnalytics = Objects.requireNonNull(builder.dataFrameAnalytics, "data_frame_analytics");
+		this.dataFrameAnalytics = ModelTypeHelper.unmodifiableNonNull(builder.dataFrameAnalytics,
+				"data_frame_analytics");
 
 	}
 
+	public GetDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * An array of data frame analytics job resources, which are sorted by the id
-	 * value in ascending order.
-	 *
+	 * Required - An array of data frame analytics job resources, which are sorted
+	 * by the id value in ascending order.
+	 * <p>
 	 * API name: {@code data_frame_analytics}
 	 */
 	public List<DataframeAnalyticsSummary> dataFrameAnalytics() {
@@ -74,21 +82,21 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("data_frame_analytics");
 		generator.writeStartArray();
 		for (DataframeAnalyticsSummary item0 : this.dataFrameAnalytics) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -101,22 +109,22 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 	 * Builder for {@link GetDataFrameAnalyticsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsResponse> {
-		private Number count;
+		private Integer count;
 
 		private List<DataframeAnalyticsSummary> dataFrameAnalytics;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
-		 * An array of data frame analytics job resources, which are sorted by the id
-		 * value in ascending order.
-		 *
+		 * Required - An array of data frame analytics job resources, which are sorted
+		 * by the id value in ascending order.
+		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
 		public Builder dataFrameAnalytics(List<DataframeAnalyticsSummary> value) {
@@ -125,9 +133,9 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 		}
 
 		/**
-		 * An array of data frame analytics job resources, which are sorted by the id
-		 * value in ascending order.
-		 *
+		 * Required - An array of data frame analytics job resources, which are sorted
+		 * by the id value in ascending order.
+		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
 		public Builder dataFrameAnalytics(DataframeAnalyticsSummary... value) {
@@ -179,18 +187,18 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetDataFrameAnalyticsResponse
+	 * Json deserializer for {@link GetDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<GetDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					GetDataFrameAnalyticsResponse::setupGetDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<GetDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetDataFrameAnalyticsResponse::setupGetDataFrameAnalyticsResponseDeserializer,
+			Builder::build);
 
 	protected static void setupGetDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<GetDataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::dataFrameAnalytics, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsSummary.DESERIALIZER),
-				"data_frame_analytics");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::dataFrameAnalytics,
+				JsonpDeserializer.arrayDeserializer(DataframeAnalyticsSummary._DESERIALIZER), "data_frame_analytics");
 
 	}
 

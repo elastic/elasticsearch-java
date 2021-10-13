@@ -24,49 +24,51 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationValue
-public class DataframeEvaluationValue implements ToJsonp {
-	private final Number value;
+@JsonpDeserializable
+public class DataframeEvaluationValue implements JsonpSerializable {
+	private final double value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationValue(AbstractBuilder<?> builder) {
+	public DataframeEvaluationValue(AbstractBuilder<?> builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
-	public Number value() {
+	public double value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -96,12 +98,12 @@ public class DataframeEvaluationValue implements ToJsonp {
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private Number value;
+		private Double value;
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
-		public BuilderT value(Number value) {
+		public BuilderT value(double value) {
 			this.value = value;
 			return self();
 		}
@@ -113,15 +115,15 @@ public class DataframeEvaluationValue implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationValue
+	 * Json deserializer for {@link DataframeEvaluationValue}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationValue> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeEvaluationValue::setupDataframeEvaluationValueDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationValue> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeEvaluationValue::setupDataframeEvaluationValueDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationValueDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(AbstractBuilder::value, JsonpDeserializer.doubleDeserializer(), "value");
 
 	}
 

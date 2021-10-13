@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,20 +38,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
-public final class DatafeedStats implements ToJsonp {
+@JsonpDeserializable
+public final class DatafeedStats implements JsonpSerializable {
 	private final String assignmentExplanation;
 
 	private final String datafeedId;
 
 	private final DiscoveryNode node;
 
-	private final JsonValue state;
+	private final DatafeedState state;
 
 	private final DatafeedTimingStats timingStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DatafeedStats(Builder builder) {
+	public DatafeedStats(Builder builder) {
 
 		this.assignmentExplanation = Objects.requireNonNull(builder.assignmentExplanation, "assignment_explanation");
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
@@ -61,36 +62,40 @@ public final class DatafeedStats implements ToJsonp {
 
 	}
 
+	public DatafeedStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code assignment_explanation}
+	 * Required - API name: {@code assignment_explanation}
 	 */
 	public String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
 	/**
-	 * API name: {@code datafeed_id}
+	 * Required - API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public DiscoveryNode node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
-	public JsonValue state() {
+	public DatafeedState state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code timing_stats}
+	 * Required - API name: {@code timing_stats}
 	 */
 	public DatafeedTimingStats timingStats() {
 		return this.timingStats;
@@ -99,13 +104,13 @@ public final class DatafeedStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("assignment_explanation");
 		generator.write(this.assignmentExplanation);
@@ -114,13 +119,13 @@ public final class DatafeedStats implements ToJsonp {
 		generator.write(this.datafeedId);
 
 		generator.writeKey("node");
-		this.node.toJsonp(generator, mapper);
+		this.node.serialize(generator, mapper);
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 		generator.writeKey("timing_stats");
-		this.timingStats.toJsonp(generator, mapper);
+		this.timingStats.serialize(generator, mapper);
 
 	}
 
@@ -136,12 +141,12 @@ public final class DatafeedStats implements ToJsonp {
 
 		private DiscoveryNode node;
 
-		private JsonValue state;
+		private DatafeedState state;
 
 		private DatafeedTimingStats timingStats;
 
 		/**
-		 * API name: {@code assignment_explanation}
+		 * Required - API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(String value) {
 			this.assignmentExplanation = value;
@@ -149,7 +154,7 @@ public final class DatafeedStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code datafeed_id}
+		 * Required - API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
 			this.datafeedId = value;
@@ -157,7 +162,7 @@ public final class DatafeedStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(DiscoveryNode value) {
 			this.node = value;
@@ -165,22 +170,22 @@ public final class DatafeedStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(DatafeedState value) {
 			this.state = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(DatafeedTimingStats value) {
 			this.timingStats = value;
@@ -188,7 +193,7 @@ public final class DatafeedStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
 			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());
@@ -209,18 +214,18 @@ public final class DatafeedStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DatafeedStats
+	 * Json deserializer for {@link DatafeedStats}
 	 */
-	public static final JsonpDeserializer<DatafeedStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DatafeedStats::setupDatafeedStatsDeserializer);
+	public static final JsonpDeserializer<DatafeedStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DatafeedStats::setupDatafeedStatsDeserializer, Builder::build);
 
 	protected static void setupDatafeedStatsDeserializer(DelegatingDeserializer<DatafeedStats.Builder> op) {
 
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
-		op.add(Builder::node, DiscoveryNode.DESERIALIZER, "node");
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
-		op.add(Builder::timingStats, DatafeedTimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
+		op.add(Builder::state, DatafeedState._DESERIALIZER, "state");
+		op.add(Builder::timingStats, DatafeedTimingStats._DESERIALIZER, "timing_stats");
 
 	}
 

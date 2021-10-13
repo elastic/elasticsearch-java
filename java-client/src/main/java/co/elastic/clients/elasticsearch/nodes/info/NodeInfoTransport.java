@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,10 +40,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoTransport
-public final class NodeInfoTransport implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoTransport implements JsonpSerializable {
 	private final List<String> boundAddress;
 
 	private final String publishAddress;
@@ -50,30 +54,34 @@ public final class NodeInfoTransport implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoTransport(Builder builder) {
+	public NodeInfoTransport(Builder builder) {
 
-		this.boundAddress = Objects.requireNonNull(builder.boundAddress, "bound_address");
+		this.boundAddress = ModelTypeHelper.unmodifiableNonNull(builder.boundAddress, "bound_address");
 		this.publishAddress = Objects.requireNonNull(builder.publishAddress, "publish_address");
-		this.profiles = Objects.requireNonNull(builder.profiles, "profiles");
+		this.profiles = ModelTypeHelper.unmodifiableNonNull(builder.profiles, "profiles");
 
 	}
 
+	public NodeInfoTransport(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code bound_address}
+	 * Required - API name: {@code bound_address}
 	 */
 	public List<String> boundAddress() {
 		return this.boundAddress;
 	}
 
 	/**
-	 * API name: {@code publish_address}
+	 * Required - API name: {@code publish_address}
 	 */
 	public String publishAddress() {
 		return this.publishAddress;
 	}
 
 	/**
-	 * API name: {@code profiles}
+	 * Required - API name: {@code profiles}
 	 */
 	public Map<String, String> profiles() {
 		return this.profiles;
@@ -82,13 +90,13 @@ public final class NodeInfoTransport implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bound_address");
 		generator.writeStartArray();
@@ -125,7 +133,7 @@ public final class NodeInfoTransport implements ToJsonp {
 		private Map<String, String> profiles;
 
 		/**
-		 * API name: {@code bound_address}
+		 * Required - API name: {@code bound_address}
 		 */
 		public Builder boundAddress(List<String> value) {
 			this.boundAddress = value;
@@ -133,7 +141,7 @@ public final class NodeInfoTransport implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code bound_address}
+		 * Required - API name: {@code bound_address}
 		 */
 		public Builder boundAddress(String... value) {
 			this.boundAddress = Arrays.asList(value);
@@ -152,7 +160,7 @@ public final class NodeInfoTransport implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code publish_address}
+		 * Required - API name: {@code publish_address}
 		 */
 		public Builder publishAddress(String value) {
 			this.publishAddress = value;
@@ -160,7 +168,7 @@ public final class NodeInfoTransport implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code profiles}
+		 * Required - API name: {@code profiles}
 		 */
 		public Builder profiles(Map<String, String> value) {
 			this.profiles = value;
@@ -193,10 +201,10 @@ public final class NodeInfoTransport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoTransport
+	 * Json deserializer for {@link NodeInfoTransport}
 	 */
-	public static final JsonpDeserializer<NodeInfoTransport> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoTransport::setupNodeInfoTransportDeserializer);
+	public static final JsonpDeserializer<NodeInfoTransport> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoTransport::setupNodeInfoTransportDeserializer, Builder::build);
 
 	protected static void setupNodeInfoTransportDeserializer(DelegatingDeserializer<NodeInfoTransport.Builder> op) {
 

@@ -20,33 +20,27 @@
 package co.elastic.clients.base;
 
 import co.elastic.clients.json.JsonpDeserializer;
-import org.elasticsearch.client.RequestOptions;
+import co.elastic.clients.json.JsonpMapperBase;
 
-import javax.annotation.Nullable;
-
-public abstract class ApiClient<Self extends ApiClient<Self>> {
+public abstract class ApiClient {
 
     protected final Transport transport;
 
-    @Nullable
-    protected final RequestOptions requestOptions;
-
-    protected ApiClient(Transport transport, @Nullable RequestOptions requestOptions) {
+    protected ApiClient(Transport transport) {
         this.transport = transport;
-        this.requestOptions = requestOptions;
-    }
-
-    /**
-     * Creates a new client with some request options
-     */
-    public abstract Self withRequestOptions(@Nullable RequestOptions requestOptions);
-
-    @Nullable
-    public final RequestOptions requestOptions() {
-        return this.requestOptions;
     }
 
     protected <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
-        return transport.jsonpMapper().getDeserializer(clazz);
+        // Try the built-in deserializers first to avoid repeated lookups in the Jsonp mapper for client-defined classes
+        JsonpDeserializer<T> result = JsonpMapperBase.findDeserializer(clazz);
+        if (result != null) {
+            return result;
+        }
+
+        return JsonpDeserializer.of(clazz);
+    }
+
+    public Transport _transport() {
+        return this.transport;
     }
 }

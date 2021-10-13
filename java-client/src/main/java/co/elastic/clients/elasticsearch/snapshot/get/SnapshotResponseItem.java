@@ -26,11 +26,13 @@ package co.elastic.clients.elasticsearch.snapshot.get;
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch.snapshot.SnapshotInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -42,7 +44,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.SnapshotResponseItem
-public final class SnapshotResponseItem implements ToJsonp {
+@JsonpDeserializable
+public final class SnapshotResponseItem implements JsonpSerializable {
 	private final String repository;
 
 	@Nullable
@@ -53,16 +56,20 @@ public final class SnapshotResponseItem implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotResponseItem(Builder builder) {
+	public SnapshotResponseItem(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshots = builder.snapshots;
+		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
 		this.error = builder.error;
 
 	}
 
+	public SnapshotResponseItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code repository}
+	 * Required - API name: {@code repository}
 	 */
 	public String repository() {
 		return this.repository;
@@ -87,13 +94,13 @@ public final class SnapshotResponseItem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("repository");
 		generator.write(this.repository);
@@ -103,7 +110,7 @@ public final class SnapshotResponseItem implements ToJsonp {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -112,7 +119,7 @@ public final class SnapshotResponseItem implements ToJsonp {
 		if (this.error != null) {
 
 			generator.writeKey("error");
-			this.error.toJsonp(generator, mapper);
+			this.error.serialize(generator, mapper);
 
 		}
 
@@ -133,7 +140,7 @@ public final class SnapshotResponseItem implements ToJsonp {
 		private ErrorCause error;
 
 		/**
-		 * API name: {@code repository}
+		 * Required - API name: {@code repository}
 		 */
 		public Builder repository(String value) {
 			this.repository = value;
@@ -211,17 +218,17 @@ public final class SnapshotResponseItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotResponseItem
+	 * Json deserializer for {@link SnapshotResponseItem}
 	 */
-	public static final JsonpDeserializer<SnapshotResponseItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer);
+	public static final JsonpDeserializer<SnapshotResponseItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer, Builder::build);
 
 	protected static void setupSnapshotResponseItemDeserializer(
 			DelegatingDeserializer<SnapshotResponseItem.Builder> op) {
 
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo.DESERIALIZER), "snapshots");
-		op.add(Builder::error, ErrorCause.DESERIALIZER, "error");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}
 

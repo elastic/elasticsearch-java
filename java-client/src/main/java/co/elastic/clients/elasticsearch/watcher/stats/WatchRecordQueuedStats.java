@@ -24,31 +24,34 @@
 package co.elastic.clients.elasticsearch.watcher.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordQueuedStats
-public class WatchRecordQueuedStats implements ToJsonp {
+@JsonpDeserializable
+public class WatchRecordQueuedStats implements JsonpSerializable {
 	private final String executionTime;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatchRecordQueuedStats(AbstractBuilder<?> builder) {
+	public WatchRecordQueuedStats(AbstractBuilder<?> builder) {
 
 		this.executionTime = Objects.requireNonNull(builder.executionTime, "execution_time");
 
 	}
 
 	/**
-	 * API name: {@code execution_time}
+	 * Required - API name: {@code execution_time}
 	 */
 	public String executionTime() {
 		return this.executionTime;
@@ -57,13 +60,13 @@ public class WatchRecordQueuedStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("execution_time");
 		generator.write(this.executionTime);
@@ -99,7 +102,7 @@ public class WatchRecordQueuedStats implements ToJsonp {
 		private String executionTime;
 
 		/**
-		 * API name: {@code execution_time}
+		 * Required - API name: {@code execution_time}
 		 */
 		public BuilderT executionTime(String value) {
 			this.executionTime = value;
@@ -113,10 +116,10 @@ public class WatchRecordQueuedStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatchRecordQueuedStats
+	 * Json deserializer for {@link WatchRecordQueuedStats}
 	 */
-	public static final JsonpDeserializer<WatchRecordQueuedStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer);
+	public static final JsonpDeserializer<WatchRecordQueuedStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWatchRecordQueuedStatsDeserializer(
 			DelegatingDeserializer<BuilderT> op) {

@@ -23,39 +23,42 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResultSummary
-public final class IndexResultSummary implements ToJsonp {
-	private final Boolean created;
+@JsonpDeserializable
+public final class IndexResultSummary implements JsonpSerializable {
+	private final boolean created;
 
 	private final String id;
 
 	private final String index;
 
-	private final JsonValue result;
+	private final Result result;
 
-	private final Number version;
+	private final long version;
 
 	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexResultSummary(Builder builder) {
+	public IndexResultSummary(Builder builder) {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 		this.id = Objects.requireNonNull(builder.id, "id");
@@ -66,38 +69,42 @@ public final class IndexResultSummary implements ToJsonp {
 
 	}
 
+	public IndexResultSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code result}
+	 * Required - API name: {@code result}
 	 */
-	public JsonValue result() {
+	public Result result() {
 		return this.result;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
-	public Number version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -112,13 +119,13 @@ public final class IndexResultSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("created");
 		generator.write(this.created);
@@ -130,10 +137,10 @@ public final class IndexResultSummary implements ToJsonp {
 		generator.write(this.index);
 
 		generator.writeKey("result");
-		generator.write(this.result);
+		this.result.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 		if (this.type != null) {
 
@@ -156,23 +163,23 @@ public final class IndexResultSummary implements ToJsonp {
 
 		private String index;
 
-		private JsonValue result;
+		private Result result;
 
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private String type;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -180,7 +187,7 @@ public final class IndexResultSummary implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -188,17 +195,17 @@ public final class IndexResultSummary implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code result}
+		 * Required - API name: {@code result}
 		 */
-		public Builder result(JsonValue value) {
+		public Builder result(Result value) {
 			this.result = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -226,18 +233,18 @@ public final class IndexResultSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexResultSummary
+	 * Json deserializer for {@link IndexResultSummary}
 	 */
-	public static final JsonpDeserializer<IndexResultSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer);
+	public static final JsonpDeserializer<IndexResultSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer, Builder::build);
 
 	protected static void setupIndexResultSummaryDeserializer(DelegatingDeserializer<IndexResultSummary.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::result, JsonpDeserializer.jsonValueDeserializer(), "result");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::result, Result._DESERIALIZER, "result");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

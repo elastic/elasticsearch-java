@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_api_key.ApiKey;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,19 +42,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Response
-public final class GetApiKeyResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetApiKeyResponse implements JsonpSerializable {
 	private final List<ApiKey> apiKeys;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetApiKeyResponse(Builder builder) {
+	public GetApiKeyResponse(Builder builder) {
 
-		this.apiKeys = Objects.requireNonNull(builder.apiKeys, "api_keys");
+		this.apiKeys = ModelTypeHelper.unmodifiableNonNull(builder.apiKeys, "api_keys");
 
 	}
 
+	public GetApiKeyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code api_keys}
+	 * Required - API name: {@code api_keys}
 	 */
 	public List<ApiKey> apiKeys() {
 		return this.apiKeys;
@@ -61,18 +68,18 @@ public final class GetApiKeyResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("api_keys");
 		generator.writeStartArray();
 		for (ApiKey item0 : this.apiKeys) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -88,7 +95,7 @@ public final class GetApiKeyResponse implements ToJsonp {
 		private List<ApiKey> apiKeys;
 
 		/**
-		 * API name: {@code api_keys}
+		 * Required - API name: {@code api_keys}
 		 */
 		public Builder apiKeys(List<ApiKey> value) {
 			this.apiKeys = value;
@@ -96,7 +103,7 @@ public final class GetApiKeyResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code api_keys}
+		 * Required - API name: {@code api_keys}
 		 */
 		public Builder apiKeys(ApiKey... value) {
 			this.apiKeys = Arrays.asList(value);
@@ -143,14 +150,14 @@ public final class GetApiKeyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetApiKeyResponse
+	 * Json deserializer for {@link GetApiKeyResponse}
 	 */
-	public static final JsonpDeserializer<GetApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer);
+	public static final JsonpDeserializer<GetApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer, Builder::build);
 
 	protected static void setupGetApiKeyResponseDeserializer(DelegatingDeserializer<GetApiKeyResponse.Builder> op) {
 
-		op.add(Builder::apiKeys, JsonpDeserializer.arrayDeserializer(ApiKey.DESERIALIZER), "api_keys");
+		op.add(Builder::apiKeys, JsonpDeserializer.arrayDeserializer(ApiKey._DESERIALIZER), "api_keys");
 
 	}
 

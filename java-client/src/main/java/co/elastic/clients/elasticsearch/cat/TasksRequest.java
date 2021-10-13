@@ -25,23 +25,29 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.Request
+
 public final class TasksRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> actions;
@@ -53,20 +59,27 @@ public final class TasksRequest extends CatRequestBase {
 	private final List<String> nodeId;
 
 	@Nullable
-	private final Number parentTask;
+	private final Long parentTask;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TasksRequest(Builder builder) {
+	public TasksRequest(Builder builder) {
 
-		this.actions = builder.actions;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
-		this.nodeId = builder.nodeId;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.parentTask = builder.parentTask;
 
 	}
 
+	public TasksRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of actions that should be returned. Leave empty to
+	 * return all.
+	 * <p>
 	 * API name: {@code actions}
 	 */
 	@Nullable
@@ -75,6 +88,8 @@ public final class TasksRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Return detailed task information (default: false)
+	 * <p>
 	 * API name: {@code detailed}
 	 */
 	@Nullable
@@ -94,7 +109,7 @@ public final class TasksRequest extends CatRequestBase {
 	 * API name: {@code parent_task}
 	 */
 	@Nullable
-	public Number parentTask() {
+	public Long parentTask() {
 		return this.parentTask;
 	}
 
@@ -114,9 +129,12 @@ public final class TasksRequest extends CatRequestBase {
 		private List<String> nodeId;
 
 		@Nullable
-		private Number parentTask;
+		private Long parentTask;
 
 		/**
+		 * A comma-separated list of actions that should be returned. Leave empty to
+		 * return all.
+		 * <p>
 		 * API name: {@code actions}
 		 */
 		public Builder actions(@Nullable List<String> value) {
@@ -125,6 +143,9 @@ public final class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of actions that should be returned. Leave empty to
+		 * return all.
+		 * <p>
 		 * API name: {@code actions}
 		 */
 		public Builder actions(String... value) {
@@ -144,6 +165,8 @@ public final class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Return detailed task information (default: false)
+		 * <p>
 		 * API name: {@code detailed}
 		 */
 		public Builder detailed(@Nullable Boolean value) {
@@ -181,7 +204,7 @@ public final class TasksRequest extends CatRequestBase {
 		/**
 		 * API name: {@code parent_task}
 		 */
-		public Builder parentTask(@Nullable Number value) {
+		public Builder parentTask(@Nullable Long value) {
 			this.parentTask = value;
 			return this;
 		}
@@ -203,7 +226,7 @@ public final class TasksRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.tasks}".
 	 */
-	public static final Endpoint<TasksRequest, TasksResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TasksRequest, TasksResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -229,9 +252,9 @@ public final class TasksRequest extends CatRequestBase {
 					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.parentTask != null) {
-					params.put("parent_task", request.parentTask.toString());
+					params.put("parent_task", String.valueOf(request.parentTask));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, TasksResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, TasksResponse._DESERIALIZER);
 }

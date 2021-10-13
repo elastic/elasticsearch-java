@@ -25,21 +25,24 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.stop_transform.Request
+
 public final class StopTransformRequest extends RequestBase {
 	private final String transformId;
 
@@ -50,7 +53,7 @@ public final class StopTransformRequest extends RequestBase {
 	private final Boolean force;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean waitForCheckpoint;
@@ -60,7 +63,7 @@ public final class StopTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopTransformRequest(Builder builder) {
+	public StopTransformRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;
@@ -71,7 +74,13 @@ public final class StopTransformRequest extends RequestBase {
 
 	}
 
+	public StopTransformRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The id of the transform to stop
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -79,6 +88,9 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no transforms. (This
+	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -87,6 +99,8 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to force stop a failed transform or not. Default to false
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -95,14 +109,20 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait until the transform has stopped. Default to 30
+	 * seconds
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
+	 * Whether to wait for the transform to reach a checkpoint before stopping.
+	 * Default to false
+	 * <p>
 	 * API name: {@code wait_for_checkpoint}
 	 */
 	@Nullable
@@ -111,6 +131,9 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to wait for the transform to fully stop before returning or not.
+	 * Default to false
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -133,7 +156,7 @@ public final class StopTransformRequest extends RequestBase {
 		private Boolean force;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean waitForCheckpoint;
@@ -142,6 +165,8 @@ public final class StopTransformRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
+		 * Required - The id of the transform to stop
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -150,6 +175,9 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no transforms. (This
+		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -158,6 +186,8 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to force stop a failed transform or not. Default to false
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -166,14 +196,20 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait until the transform has stopped. Default to 30
+		 * seconds
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
+		 * Whether to wait for the transform to reach a checkpoint before stopping.
+		 * Default to false
+		 * <p>
 		 * API name: {@code wait_for_checkpoint}
 		 */
 		public Builder waitForCheckpoint(@Nullable Boolean value) {
@@ -182,6 +218,9 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to wait for the transform to fully stop before returning or not.
+		 * Default to false
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -206,7 +245,7 @@ public final class StopTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.stop_transform}".
 	 */
-	public static final Endpoint<StopTransformRequest, StopTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StopTransformRequest, StopTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -219,18 +258,17 @@ public final class StopTransformRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
-					propsSet |= _transformId;
+				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_stop");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -244,7 +282,7 @@ public final class StopTransformRequest extends RequestBase {
 					params.put("force", String.valueOf(request.force));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForCheckpoint != null) {
 					params.put("wait_for_checkpoint", String.valueOf(request.waitForCheckpoint));
@@ -254,5 +292,5 @@ public final class StopTransformRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StopTransformResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StopTransformResponse._DESERIALIZER);
 }

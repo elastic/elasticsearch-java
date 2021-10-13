@@ -23,17 +23,19 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch.indices.stats.IndexStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +48,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Stats
-public final class Stats implements ToJsonp {
+@JsonpDeserializable
+public final class Stats implements JsonpSerializable {
 	private final Map<String, AdaptiveSelection> adaptiveSelection;
 
 	private final Map<String, Breaker> breakers;
@@ -71,13 +74,13 @@ public final class Stats implements ToJsonp {
 
 	private final Process process;
 
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	private final Scripting script;
 
 	private final Map<String, ThreadCount> threadPool;
 
-	private final Number timestamp;
+	private final long timestamp;
 
 	private final Transport transport;
 
@@ -87,158 +90,162 @@ public final class Stats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Stats(Builder builder) {
+	public Stats(Builder builder) {
 
-		this.adaptiveSelection = Objects.requireNonNull(builder.adaptiveSelection, "adaptive_selection");
-		this.breakers = Objects.requireNonNull(builder.breakers, "breakers");
+		this.adaptiveSelection = ModelTypeHelper.unmodifiableNonNull(builder.adaptiveSelection, "adaptive_selection");
+		this.breakers = ModelTypeHelper.unmodifiableNonNull(builder.breakers, "breakers");
 		this.fs = Objects.requireNonNull(builder.fs, "fs");
 		this.host = Objects.requireNonNull(builder.host, "host");
 		this.http = Objects.requireNonNull(builder.http, "http");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 		this.ingest = Objects.requireNonNull(builder.ingest, "ingest");
-		this.ip = Objects.requireNonNull(builder.ip, "ip");
+		this.ip = ModelTypeHelper.unmodifiableNonNull(builder.ip, "ip");
 		this.jvm = Objects.requireNonNull(builder.jvm, "jvm");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.os = Objects.requireNonNull(builder.os, "os");
 		this.process = Objects.requireNonNull(builder.process, "process");
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.script = Objects.requireNonNull(builder.script, "script");
-		this.threadPool = Objects.requireNonNull(builder.threadPool, "thread_pool");
+		this.threadPool = ModelTypeHelper.unmodifiableNonNull(builder.threadPool, "thread_pool");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.transport = Objects.requireNonNull(builder.transport, "transport");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 
 	}
 
+	public Stats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code adaptive_selection}
+	 * Required - API name: {@code adaptive_selection}
 	 */
 	public Map<String, AdaptiveSelection> adaptiveSelection() {
 		return this.adaptiveSelection;
 	}
 
 	/**
-	 * API name: {@code breakers}
+	 * Required - API name: {@code breakers}
 	 */
 	public Map<String, Breaker> breakers() {
 		return this.breakers;
 	}
 
 	/**
-	 * API name: {@code fs}
+	 * Required - API name: {@code fs}
 	 */
 	public FileSystem fs() {
 		return this.fs;
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public Http http() {
 		return this.http;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public IndexStats indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code ingest}
+	 * Required - API name: {@code ingest}
 	 */
 	public Ingest ingest() {
 		return this.ingest;
 	}
 
 	/**
-	 * API name: {@code ip}
+	 * Required - API name: {@code ip}
 	 */
 	public List<String> ip() {
 		return this.ip;
 	}
 
 	/**
-	 * API name: {@code jvm}
+	 * Required - API name: {@code jvm}
 	 */
 	public Jvm jvm() {
 		return this.jvm;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code os}
+	 * Required - API name: {@code os}
 	 */
 	public OperatingSystem os() {
 		return this.os;
 	}
 
 	/**
-	 * API name: {@code process}
+	 * Required - API name: {@code process}
 	 */
 	public Process process() {
 		return this.process;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public Scripting script() {
 		return this.script;
 	}
 
 	/**
-	 * API name: {@code thread_pool}
+	 * Required - API name: {@code thread_pool}
 	 */
 	public Map<String, ThreadCount> threadPool() {
 		return this.threadPool;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public Transport transport() {
 		return this.transport;
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
@@ -247,19 +254,19 @@ public final class Stats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("adaptive_selection");
 		generator.writeStartObject();
 		for (Map.Entry<String, AdaptiveSelection> item0 : this.adaptiveSelection.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -268,25 +275,25 @@ public final class Stats implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, Breaker> item0 : this.breakers.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("fs");
-		this.fs.toJsonp(generator, mapper);
+		this.fs.serialize(generator, mapper);
 
 		generator.writeKey("host");
 		generator.write(this.host);
 
 		generator.writeKey("http");
-		this.http.toJsonp(generator, mapper);
+		this.http.serialize(generator, mapper);
 
 		generator.writeKey("indices");
-		this.indices.toJsonp(generator, mapper);
+		this.indices.serialize(generator, mapper);
 
 		generator.writeKey("ingest");
-		this.ingest.toJsonp(generator, mapper);
+		this.ingest.serialize(generator, mapper);
 
 		generator.writeKey("ip");
 		generator.writeStartArray();
@@ -297,42 +304,41 @@ public final class Stats implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("jvm");
-		this.jvm.toJsonp(generator, mapper);
+		this.jvm.serialize(generator, mapper);
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("os");
-		this.os.toJsonp(generator, mapper);
+		this.os.serialize(generator, mapper);
 
 		generator.writeKey("process");
-		this.process.toJsonp(generator, mapper);
+		this.process.serialize(generator, mapper);
 
 		generator.writeKey("roles");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.roles) {
-			generator.write(item0);
-
+		for (NodeRole item0 : this.roles) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
 		generator.writeKey("script");
-		this.script.toJsonp(generator, mapper);
+		this.script.serialize(generator, mapper);
 
 		generator.writeKey("thread_pool");
 		generator.writeStartObject();
 		for (Map.Entry<String, ThreadCount> item0 : this.threadPool.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 		generator.writeKey("transport");
-		this.transport.toJsonp(generator, mapper);
+		this.transport.serialize(generator, mapper);
 
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
@@ -378,13 +384,13 @@ public final class Stats implements ToJsonp {
 
 		private Process process;
 
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		private Scripting script;
 
 		private Map<String, ThreadCount> threadPool;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		private Transport transport;
 
@@ -393,7 +399,7 @@ public final class Stats implements ToJsonp {
 		private Map<String, String> attributes;
 
 		/**
-		 * API name: {@code adaptive_selection}
+		 * Required - API name: {@code adaptive_selection}
 		 */
 		public Builder adaptiveSelection(Map<String, AdaptiveSelection> value) {
 			this.adaptiveSelection = value;
@@ -431,7 +437,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code breakers}
+		 * Required - API name: {@code breakers}
 		 */
 		public Builder breakers(Map<String, Breaker> value) {
 			this.breakers = value;
@@ -464,7 +470,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code fs}
+		 * Required - API name: {@code fs}
 		 */
 		public Builder fs(FileSystem value) {
 			this.fs = value;
@@ -472,14 +478,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code fs}
+		 * Required - API name: {@code fs}
 		 */
 		public Builder fs(Function<FileSystem.Builder, ObjectBuilder<FileSystem>> fn) {
 			return this.fs(fn.apply(new FileSystem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public Builder host(String value) {
 			this.host = value;
@@ -487,7 +493,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Http value) {
 			this.http = value;
@@ -495,14 +501,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<Http.Builder, ObjectBuilder<Http>> fn) {
 			return this.http(fn.apply(new Http.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(IndexStats value) {
 			this.indices = value;
@@ -510,14 +516,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.indices(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(Ingest value) {
 			this.ingest = value;
@@ -525,14 +531,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
 			return this.ingest(fn.apply(new Ingest.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ip}
+		 * Required - API name: {@code ip}
 		 */
 		public Builder ip(List<String> value) {
 			this.ip = value;
@@ -540,7 +546,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ip}
+		 * Required - API name: {@code ip}
 		 */
 		public Builder ip(String... value) {
 			this.ip = Arrays.asList(value);
@@ -559,7 +565,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code jvm}
+		 * Required - API name: {@code jvm}
 		 */
 		public Builder jvm(Jvm value) {
 			this.jvm = value;
@@ -567,14 +573,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code jvm}
+		 * Required - API name: {@code jvm}
 		 */
 		public Builder jvm(Function<Jvm.Builder, ObjectBuilder<Jvm>> fn) {
 			return this.jvm(fn.apply(new Jvm.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -582,7 +588,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code os}
+		 * Required - API name: {@code os}
 		 */
 		public Builder os(OperatingSystem value) {
 			this.os = value;
@@ -590,14 +596,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code os}
+		 * Required - API name: {@code os}
 		 */
 		public Builder os(Function<OperatingSystem.Builder, ObjectBuilder<OperatingSystem>> fn) {
 			return this.os(fn.apply(new OperatingSystem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code process}
+		 * Required - API name: {@code process}
 		 */
 		public Builder process(Process value) {
 			this.process = value;
@@ -605,24 +611,24 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code process}
+		 * Required - API name: {@code process}
 		 */
 		public Builder process(Function<Process.Builder, ObjectBuilder<Process>> fn) {
 			return this.process(fn.apply(new Process.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
-		public Builder roles(List<JsonValue> value) {
+		public Builder roles(List<NodeRole> value) {
 			this.roles = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
-		public Builder roles(JsonValue... value) {
+		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return this;
 		}
@@ -630,7 +636,7 @@ public final class Stats implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public Builder addRoles(JsonValue value) {
+		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -639,7 +645,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(Scripting value) {
 			this.script = value;
@@ -647,14 +653,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(Function<Scripting.Builder, ObjectBuilder<Scripting>> fn) {
 			return this.script(fn.apply(new Scripting.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code thread_pool}
+		 * Required - API name: {@code thread_pool}
 		 */
 		public Builder threadPool(Map<String, ThreadCount> value) {
 			this.threadPool = value;
@@ -687,15 +693,15 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(Transport value) {
 			this.transport = value;
@@ -703,14 +709,14 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(Function<Transport.Builder, ObjectBuilder<Transport>> fn) {
 			return this.transport(fn.apply(new Transport.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
 			this.transportAddress = value;
@@ -718,7 +724,7 @@ public final class Stats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -751,31 +757,31 @@ public final class Stats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Stats
+	 * Json deserializer for {@link Stats}
 	 */
-	public static final JsonpDeserializer<Stats> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Stats::setupStatsDeserializer);
+	public static final JsonpDeserializer<Stats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Stats::setupStatsDeserializer, Builder::build);
 
 	protected static void setupStatsDeserializer(DelegatingDeserializer<Stats.Builder> op) {
 
-		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection.DESERIALIZER),
+		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection._DESERIALIZER),
 				"adaptive_selection");
-		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker.DESERIALIZER), "breakers");
-		op.add(Builder::fs, FileSystem.DESERIALIZER, "fs");
+		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker._DESERIALIZER), "breakers");
+		op.add(Builder::fs, FileSystem._DESERIALIZER, "fs");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(Builder::http, Http.DESERIALIZER, "http");
-		op.add(Builder::indices, IndexStats.DESERIALIZER, "indices");
-		op.add(Builder::ingest, Ingest.DESERIALIZER, "ingest");
+		op.add(Builder::http, Http._DESERIALIZER, "http");
+		op.add(Builder::indices, IndexStats._DESERIALIZER, "indices");
+		op.add(Builder::ingest, Ingest._DESERIALIZER, "ingest");
 		op.add(Builder::ip, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ip");
-		op.add(Builder::jvm, Jvm.DESERIALIZER, "jvm");
+		op.add(Builder::jvm, Jvm._DESERIALIZER, "jvm");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::os, OperatingSystem.DESERIALIZER, "os");
-		op.add(Builder::process, Process.DESERIALIZER, "process");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
-		op.add(Builder::script, Scripting.DESERIALIZER, "script");
-		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(ThreadCount.DESERIALIZER), "thread_pool");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
-		op.add(Builder::transport, Transport.DESERIALIZER, "transport");
+		op.add(Builder::os, OperatingSystem._DESERIALIZER, "os");
+		op.add(Builder::process, Process._DESERIALIZER, "process");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
+		op.add(Builder::script, Scripting._DESERIALIZER, "script");
+		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(ThreadCount._DESERIALIZER), "thread_pool");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+		op.add(Builder::transport, Transport._DESERIALIZER, "transport");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");

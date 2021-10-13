@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,22 +38,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoAggregation
-public final class NodeInfoAggregation implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoAggregation implements JsonpSerializable {
 	private final List<String> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoAggregation(Builder builder) {
+	public NodeInfoAggregation(Builder builder) {
 
-		this.types = Objects.requireNonNull(builder.types, "types");
+		this.types = ModelTypeHelper.unmodifiableNonNull(builder.types, "types");
 
 	}
 
+	public NodeInfoAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code types}
+	 * Required - API name: {@code types}
 	 */
 	public List<String> types() {
 		return this.types;
@@ -60,13 +68,13 @@ public final class NodeInfoAggregation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("types");
 		generator.writeStartArray();
@@ -87,7 +95,7 @@ public final class NodeInfoAggregation implements ToJsonp {
 		private List<String> types;
 
 		/**
-		 * API name: {@code types}
+		 * Required - API name: {@code types}
 		 */
 		public Builder types(List<String> value) {
 			this.types = value;
@@ -95,7 +103,7 @@ public final class NodeInfoAggregation implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code types}
+		 * Required - API name: {@code types}
 		 */
 		public Builder types(String... value) {
 			this.types = Arrays.asList(value);
@@ -128,10 +136,10 @@ public final class NodeInfoAggregation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoAggregation
+	 * Json deserializer for {@link NodeInfoAggregation}
 	 */
-	public static final JsonpDeserializer<NodeInfoAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationDeserializer);
+	public static final JsonpDeserializer<NodeInfoAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationDeserializer, Builder::build);
 
 	protected static void setupNodeInfoAggregationDeserializer(DelegatingDeserializer<NodeInfoAggregation.Builder> op) {
 

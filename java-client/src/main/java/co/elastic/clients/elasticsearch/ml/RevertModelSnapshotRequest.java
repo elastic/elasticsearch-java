@@ -25,23 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
-public final class RevertModelSnapshotRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class RevertModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	private final String snapshotId;
@@ -51,7 +55,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RevertModelSnapshotRequest(Builder builder) {
+	public RevertModelSnapshotRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
@@ -59,7 +63,13 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 
 	}
 
+	public RevertModelSnapshotRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The ID of the job to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -67,6 +77,8 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 	}
 
 	/**
+	 * Required - The ID of the snapshot to revert to
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -84,13 +96,13 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.deleteInterveningResults != null) {
 
@@ -115,6 +127,8 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 		private Boolean deleteInterveningResults;
 
 		/**
+		 * Required - The ID of the job to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -123,6 +137,8 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 		}
 
 		/**
+		 * Required - The ID of the snapshot to revert to
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {
@@ -153,10 +169,10 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RevertModelSnapshotRequest
+	 * Json deserializer for {@link RevertModelSnapshotRequest}
 	 */
-	public static final JsonpDeserializer<RevertModelSnapshotRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer);
+	public static final JsonpDeserializer<RevertModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer, Builder::build);
 
 	protected static void setupRevertModelSnapshotRequestDeserializer(
 			DelegatingDeserializer<RevertModelSnapshotRequest.Builder> op) {
@@ -171,7 +187,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 	/**
 	 * Endpoint "{@code ml.revert_model_snapshot}".
 	 */
-	public static final Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -185,24 +201,22 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
-				if (request.snapshotId() != null)
-					propsSet |= _snapshotId;
+				propsSet |= _jobId;
+				propsSet |= _snapshotId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/model_snapshots");
 					buf.append("/");
-					buf.append(request.snapshotId);
+					SimpleEndpoint.pathEncode(request.snapshotId, buf);
 					buf.append("/_revert");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -210,5 +224,5 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RevertModelSnapshotResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RevertModelSnapshotResponse._DESERIALIZER);
 }

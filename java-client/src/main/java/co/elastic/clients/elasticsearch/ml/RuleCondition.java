@@ -24,29 +24,31 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.RuleCondition
-public final class RuleCondition implements ToJsonp {
-	private final JsonValue appliesTo;
+@JsonpDeserializable
+public final class RuleCondition implements JsonpSerializable {
+	private final AppliesTo appliesTo;
 
-	private final JsonValue operator;
+	private final ConditionOperator operator;
 
-	private final Number value;
+	private final double value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RuleCondition(Builder builder) {
+	public RuleCondition(Builder builder) {
 
 		this.appliesTo = Objects.requireNonNull(builder.appliesTo, "applies_to");
 		this.operator = Objects.requireNonNull(builder.operator, "operator");
@@ -54,46 +56,60 @@ public final class RuleCondition implements ToJsonp {
 
 	}
 
+	public RuleCondition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - Specifies the result property to which the condition applies. If
+	 * your detector uses lat_long, metric, rare, or freq_rare functions, you can
+	 * only specify conditions that apply to time.
+	 * <p>
 	 * API name: {@code applies_to}
 	 */
-	public JsonValue appliesTo() {
+	public AppliesTo appliesTo() {
 		return this.appliesTo;
 	}
 
 	/**
+	 * Required - Specifies the condition operator. The available options are
+	 * greater than, greater than or equals, less than, and less than or equals.
+	 * <p>
 	 * API name: {@code operator}
 	 */
-	public JsonValue operator() {
+	public ConditionOperator operator() {
 		return this.operator;
 	}
 
 	/**
+	 * Required - The value that is compared against the <code>applies_to</code>
+	 * field using the operator.
+	 * <p>
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public double value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("applies_to");
-		generator.write(this.appliesTo);
+		this.appliesTo.serialize(generator, mapper);
 
 		generator.writeKey("operator");
-		generator.write(this.operator);
+		this.operator.serialize(generator, mapper);
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -103,32 +119,42 @@ public final class RuleCondition implements ToJsonp {
 	 * Builder for {@link RuleCondition}.
 	 */
 	public static class Builder implements ObjectBuilder<RuleCondition> {
-		private JsonValue appliesTo;
+		private AppliesTo appliesTo;
 
-		private JsonValue operator;
+		private ConditionOperator operator;
 
-		private Number value;
+		private Double value;
 
 		/**
+		 * Required - Specifies the result property to which the condition applies. If
+		 * your detector uses lat_long, metric, rare, or freq_rare functions, you can
+		 * only specify conditions that apply to time.
+		 * <p>
 		 * API name: {@code applies_to}
 		 */
-		public Builder appliesTo(JsonValue value) {
+		public Builder appliesTo(AppliesTo value) {
 			this.appliesTo = value;
 			return this;
 		}
 
 		/**
+		 * Required - Specifies the condition operator. The available options are
+		 * greater than, greater than or equals, less than, and less than or equals.
+		 * <p>
 		 * API name: {@code operator}
 		 */
-		public Builder operator(JsonValue value) {
+		public Builder operator(ConditionOperator value) {
 			this.operator = value;
 			return this;
 		}
 
 		/**
+		 * Required - The value that is compared against the <code>applies_to</code>
+		 * field using the operator.
+		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(double value) {
 			this.value = value;
 			return this;
 		}
@@ -148,16 +174,16 @@ public final class RuleCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RuleCondition
+	 * Json deserializer for {@link RuleCondition}
 	 */
-	public static final JsonpDeserializer<RuleCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RuleCondition::setupRuleConditionDeserializer);
+	public static final JsonpDeserializer<RuleCondition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RuleCondition::setupRuleConditionDeserializer, Builder::build);
 
 	protected static void setupRuleConditionDeserializer(DelegatingDeserializer<RuleCondition.Builder> op) {
 
-		op.add(Builder::appliesTo, JsonpDeserializer.jsonValueDeserializer(), "applies_to");
-		op.add(Builder::operator, JsonpDeserializer.jsonValueDeserializer(), "operator");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::appliesTo, AppliesTo._DESERIALIZER, "applies_to");
+		op.add(Builder::operator, ConditionOperator._DESERIALIZER, "operator");
+		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 
 	}
 

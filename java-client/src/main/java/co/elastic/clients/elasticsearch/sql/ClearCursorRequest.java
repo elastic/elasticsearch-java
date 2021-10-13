@@ -25,34 +25,42 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Request
-public final class ClearCursorRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class ClearCursorRequest extends RequestBase implements JsonpSerializable {
 	private final String cursor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCursorRequest(Builder builder) {
+	public ClearCursorRequest(Builder builder) {
 
 		this.cursor = Objects.requireNonNull(builder.cursor, "cursor");
 
 	}
 
+	public ClearCursorRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cursor}
+	 * Required - API name: {@code cursor}
 	 */
 	public String cursor() {
 		return this.cursor;
@@ -61,13 +69,13 @@ public final class ClearCursorRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cursor");
 		generator.write(this.cursor);
@@ -83,7 +91,7 @@ public final class ClearCursorRequest extends RequestBase implements ToJsonp {
 		private String cursor;
 
 		/**
-		 * API name: {@code cursor}
+		 * Required - API name: {@code cursor}
 		 */
 		public Builder cursor(String value) {
 			this.cursor = value;
@@ -105,10 +113,10 @@ public final class ClearCursorRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClearCursorRequest
+	 * Json deserializer for {@link ClearCursorRequest}
 	 */
-	public static final JsonpDeserializer<ClearCursorRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer);
+	public static final JsonpDeserializer<ClearCursorRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer, Builder::build);
 
 	protected static void setupClearCursorRequestDeserializer(DelegatingDeserializer<ClearCursorRequest.Builder> op) {
 
@@ -121,7 +129,7 @@ public final class ClearCursorRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code sql.clear_cursor}".
 	 */
-	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -138,5 +146,5 @@ public final class ClearCursorRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ClearCursorResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ClearCursorResponse._DESERIALIZER);
 }

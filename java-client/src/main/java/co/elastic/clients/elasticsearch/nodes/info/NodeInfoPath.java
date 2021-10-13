@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
-public final class NodeInfoPath implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoPath implements JsonpSerializable {
 	private final String logs;
 
 	private final String home;
@@ -51,31 +55,35 @@ public final class NodeInfoPath implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoPath(Builder builder) {
+	public NodeInfoPath(Builder builder) {
 
 		this.logs = Objects.requireNonNull(builder.logs, "logs");
 		this.home = Objects.requireNonNull(builder.home, "home");
-		this.repo = Objects.requireNonNull(builder.repo, "repo");
-		this.data = builder.data;
+		this.repo = ModelTypeHelper.unmodifiableNonNull(builder.repo, "repo");
+		this.data = ModelTypeHelper.unmodifiable(builder.data);
 
 	}
 
+	public NodeInfoPath(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code logs}
+	 * Required - API name: {@code logs}
 	 */
 	public String logs() {
 		return this.logs;
 	}
 
 	/**
-	 * API name: {@code home}
+	 * Required - API name: {@code home}
 	 */
 	public String home() {
 		return this.home;
 	}
 
 	/**
-	 * API name: {@code repo}
+	 * Required - API name: {@code repo}
 	 */
 	public List<String> repo() {
 		return this.repo;
@@ -92,13 +100,13 @@ public final class NodeInfoPath implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("logs");
 		generator.write(this.logs);
@@ -144,7 +152,7 @@ public final class NodeInfoPath implements ToJsonp {
 		private List<String> data;
 
 		/**
-		 * API name: {@code logs}
+		 * Required - API name: {@code logs}
 		 */
 		public Builder logs(String value) {
 			this.logs = value;
@@ -152,7 +160,7 @@ public final class NodeInfoPath implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code home}
+		 * Required - API name: {@code home}
 		 */
 		public Builder home(String value) {
 			this.home = value;
@@ -160,7 +168,7 @@ public final class NodeInfoPath implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code repo}
+		 * Required - API name: {@code repo}
 		 */
 		public Builder repo(List<String> value) {
 			this.repo = value;
@@ -168,7 +176,7 @@ public final class NodeInfoPath implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code repo}
+		 * Required - API name: {@code repo}
 		 */
 		public Builder repo(String... value) {
 			this.repo = Arrays.asList(value);
@@ -228,10 +236,10 @@ public final class NodeInfoPath implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoPath
+	 * Json deserializer for {@link NodeInfoPath}
 	 */
-	public static final JsonpDeserializer<NodeInfoPath> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoPath::setupNodeInfoPathDeserializer);
+	public static final JsonpDeserializer<NodeInfoPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoPath::setupNodeInfoPathDeserializer, Builder::build);
 
 	protected static void setupNodeInfoPathDeserializer(DelegatingDeserializer<NodeInfoPath.Builder> op) {
 

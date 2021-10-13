@@ -24,25 +24,28 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateIndexNameProcessor
-public final class DateIndexNameProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DateIndexNameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> dateFormats;
 
-	private final JsonValue dateRounding;
+	private final DateRounding dateRounding;
 
 	private final String field;
 
@@ -56,9 +59,10 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DateIndexNameProcessor(Builder builder) {
+	public DateIndexNameProcessor(Builder builder) {
 		super(builder);
-		this.dateFormats = Objects.requireNonNull(builder.dateFormats, "date_formats");
+
+		this.dateFormats = ModelTypeHelper.unmodifiableNonNull(builder.dateFormats, "date_formats");
 		this.dateRounding = Objects.requireNonNull(builder.dateRounding, "date_rounding");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.indexNameFormat = Objects.requireNonNull(builder.indexNameFormat, "index_name_format");
@@ -68,57 +72,70 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 
 	}
 
+	public DateIndexNameProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code date_formats}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "date_index_name";
+	}
+
+	/**
+	 * Required - API name: {@code date_formats}
 	 */
 	public List<String> dateFormats() {
 		return this.dateFormats;
 	}
 
 	/**
-	 * API name: {@code date_rounding}
+	 * Required - API name: {@code date_rounding}
 	 */
-	public JsonValue dateRounding() {
+	public DateRounding dateRounding() {
 		return this.dateRounding;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code index_name_format}
+	 * Required - API name: {@code index_name_format}
 	 */
 	public String indexNameFormat() {
 		return this.indexNameFormat;
 	}
 
 	/**
-	 * API name: {@code index_name_prefix}
+	 * Required - API name: {@code index_name_prefix}
 	 */
 	public String indexNamePrefix() {
 		return this.indexNamePrefix;
 	}
 
 	/**
-	 * API name: {@code locale}
+	 * Required - API name: {@code locale}
 	 */
 	public String locale() {
 		return this.locale;
 	}
 
 	/**
-	 * API name: {@code timezone}
+	 * Required - API name: {@code timezone}
 	 */
 	public String timezone() {
 		return this.timezone;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("date_formats");
 		generator.writeStartArray();
@@ -129,7 +146,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		generator.writeEnd();
 
 		generator.writeKey("date_rounding");
-		generator.write(this.dateRounding);
+		this.dateRounding.serialize(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -158,7 +175,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 				ObjectBuilder<DateIndexNameProcessor> {
 		private List<String> dateFormats;
 
-		private JsonValue dateRounding;
+		private DateRounding dateRounding;
 
 		private String field;
 
@@ -171,7 +188,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		private String timezone;
 
 		/**
-		 * API name: {@code date_formats}
+		 * Required - API name: {@code date_formats}
 		 */
 		public Builder dateFormats(List<String> value) {
 			this.dateFormats = value;
@@ -179,7 +196,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code date_formats}
+		 * Required - API name: {@code date_formats}
 		 */
 		public Builder dateFormats(String... value) {
 			this.dateFormats = Arrays.asList(value);
@@ -198,15 +215,15 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code date_rounding}
+		 * Required - API name: {@code date_rounding}
 		 */
-		public Builder dateRounding(JsonValue value) {
+		public Builder dateRounding(DateRounding value) {
 			this.dateRounding = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -214,7 +231,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code index_name_format}
+		 * Required - API name: {@code index_name_format}
 		 */
 		public Builder indexNameFormat(String value) {
 			this.indexNameFormat = value;
@@ -222,7 +239,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code index_name_prefix}
+		 * Required - API name: {@code index_name_prefix}
 		 */
 		public Builder indexNamePrefix(String value) {
 			this.indexNamePrefix = value;
@@ -230,7 +247,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code locale}
+		 * Required - API name: {@code locale}
 		 */
 		public Builder locale(String value) {
 			this.locale = value;
@@ -238,7 +255,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code timezone}
+		 * Required - API name: {@code timezone}
 		 */
 		public Builder timezone(String value) {
 			this.timezone = value;
@@ -265,17 +282,17 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DateIndexNameProcessor
+	 * Json deserializer for {@link DateIndexNameProcessor}
 	 */
-	public static final JsonpDeserializer<DateIndexNameProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorDeserializer);
+	public static final JsonpDeserializer<DateIndexNameProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorDeserializer, Builder::build);
 
 	protected static void setupDateIndexNameProcessorDeserializer(
 			DelegatingDeserializer<DateIndexNameProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::dateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"date_formats");
-		op.add(Builder::dateRounding, JsonpDeserializer.jsonValueDeserializer(), "date_rounding");
+		op.add(Builder::dateRounding, DateRounding._DESERIALIZER, "date_rounding");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::indexNameFormat, JsonpDeserializer.stringDeserializer(), "index_name_format");
 		op.add(Builder::indexNamePrefix, JsonpDeserializer.stringDeserializer(), "index_name_prefix");

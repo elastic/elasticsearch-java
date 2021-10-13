@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -33,22 +34,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DissectProcessor
-public final class DissectProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DissectProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String appendSeparator;
 
 	private final String field;
 
-	private final Boolean ignoreMissing;
+	private final boolean ignoreMissing;
 
 	private final String pattern;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DissectProcessor(Builder builder) {
+	public DissectProcessor(Builder builder) {
 		super(builder);
+
 		this.appendSeparator = Objects.requireNonNull(builder.appendSeparator, "append_separator");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
@@ -56,36 +60,49 @@ public final class DissectProcessor extends ProcessorBase {
 
 	}
 
+	public DissectProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code append_separator}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "dissect";
+	}
+
+	/**
+	 * Required - API name: {@code append_separator}
 	 */
 	public String appendSeparator() {
 		return this.appendSeparator;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code ignore_missing}
+	 * Required - API name: {@code ignore_missing}
 	 */
-	public Boolean ignoreMissing() {
+	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public String pattern() {
 		return this.pattern;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("append_separator");
 		generator.write(this.appendSeparator);
@@ -118,7 +135,7 @@ public final class DissectProcessor extends ProcessorBase {
 		private String pattern;
 
 		/**
-		 * API name: {@code append_separator}
+		 * Required - API name: {@code append_separator}
 		 */
 		public Builder appendSeparator(String value) {
 			this.appendSeparator = value;
@@ -126,7 +143,7 @@ public final class DissectProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -134,15 +151,15 @@ public final class DissectProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code ignore_missing}
+		 * Required - API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(Boolean value) {
+		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(String value) {
 			this.pattern = value;
@@ -169,10 +186,10 @@ public final class DissectProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DissectProcessor
+	 * Json deserializer for {@link DissectProcessor}
 	 */
-	public static final JsonpDeserializer<DissectProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DissectProcessor::setupDissectProcessorDeserializer);
+	public static final JsonpDeserializer<DissectProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DissectProcessor::setupDissectProcessorDeserializer, Builder::build);
 
 	protected static void setupDissectProcessorDeserializer(DelegatingDeserializer<DissectProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

@@ -24,33 +24,41 @@
 package co.elastic.clients.elasticsearch.indices.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
-public final class IndexSegment implements ToJsonp {
+@JsonpDeserializable
+public final class IndexSegment implements JsonpSerializable {
 	private final Map<String, List<ShardsSegment>> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexSegment(Builder builder) {
+	public IndexSegment(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
 
 	}
 
+	public IndexSegment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public Map<String, List<ShardsSegment>> shards() {
 		return this.shards;
@@ -59,13 +67,13 @@ public final class IndexSegment implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("shards");
 		generator.writeStartObject();
@@ -73,7 +81,7 @@ public final class IndexSegment implements ToJsonp {
 			generator.writeKey(item0.getKey());
 			generator.writeStartArray();
 			for (ShardsSegment item1 : item0.getValue()) {
-				item1.toJsonp(generator, mapper);
+				item1.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -92,7 +100,7 @@ public final class IndexSegment implements ToJsonp {
 		private Map<String, List<ShardsSegment>> shards;
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(Map<String, List<ShardsSegment>> value) {
 			this.shards = value;
@@ -125,15 +133,15 @@ public final class IndexSegment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexSegment
+	 * Json deserializer for {@link IndexSegment}
 	 */
-	public static final JsonpDeserializer<IndexSegment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexSegment::setupIndexSegmentDeserializer);
+	public static final JsonpDeserializer<IndexSegment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexSegment::setupIndexSegmentDeserializer, Builder::build);
 
 	protected static void setupIndexSegmentDeserializer(DelegatingDeserializer<IndexSegment.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer
-				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardsSegment.DESERIALIZER)), "shards");
+				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardsSegment._DESERIALIZER)), "shards");
 
 	}
 

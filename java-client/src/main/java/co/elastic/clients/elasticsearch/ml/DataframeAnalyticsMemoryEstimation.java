@@ -24,26 +24,29 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsMemoryEstimation
-public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 	private final String expectedMemoryWithDisk;
 
 	private final String expectedMemoryWithoutDisk;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsMemoryEstimation(Builder builder) {
+	public DataframeAnalyticsMemoryEstimation(Builder builder) {
 
 		this.expectedMemoryWithDisk = Objects.requireNonNull(builder.expectedMemoryWithDisk,
 				"expected_memory_with_disk");
@@ -52,12 +55,16 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 
 	}
 
+	public DataframeAnalyticsMemoryEstimation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Estimated memory usage under the assumption that overflowing to disk is
-	 * allowed during data frame analytics. expected_memory_with_disk is usually
-	 * smaller than expected_memory_without_disk as using disk allows to limit the
-	 * main memory needed to perform data frame analytics.
-	 *
+	 * Required - Estimated memory usage under the assumption that overflowing to
+	 * disk is allowed during data frame analytics. expected_memory_with_disk is
+	 * usually smaller than expected_memory_without_disk as using disk allows to
+	 * limit the main memory needed to perform data frame analytics.
+	 * <p>
 	 * API name: {@code expected_memory_with_disk}
 	 */
 	public String expectedMemoryWithDisk() {
@@ -65,9 +72,9 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	}
 
 	/**
-	 * Estimated memory usage under the assumption that the whole data frame
-	 * analytics should happen in memory (i.e. without overflowing to disk).
-	 *
+	 * Required - Estimated memory usage under the assumption that the whole data
+	 * frame analytics should happen in memory (i.e. without overflowing to disk).
+	 * <p>
 	 * API name: {@code expected_memory_without_disk}
 	 */
 	public String expectedMemoryWithoutDisk() {
@@ -77,13 +84,13 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expected_memory_with_disk");
 		generator.write(this.expectedMemoryWithDisk);
@@ -104,11 +111,11 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 		private String expectedMemoryWithoutDisk;
 
 		/**
-		 * Estimated memory usage under the assumption that overflowing to disk is
-		 * allowed during data frame analytics. expected_memory_with_disk is usually
-		 * smaller than expected_memory_without_disk as using disk allows to limit the
-		 * main memory needed to perform data frame analytics.
-		 *
+		 * Required - Estimated memory usage under the assumption that overflowing to
+		 * disk is allowed during data frame analytics. expected_memory_with_disk is
+		 * usually smaller than expected_memory_without_disk as using disk allows to
+		 * limit the main memory needed to perform data frame analytics.
+		 * <p>
 		 * API name: {@code expected_memory_with_disk}
 		 */
 		public Builder expectedMemoryWithDisk(String value) {
@@ -117,9 +124,9 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 		}
 
 		/**
-		 * Estimated memory usage under the assumption that the whole data frame
-		 * analytics should happen in memory (i.e. without overflowing to disk).
-		 *
+		 * Required - Estimated memory usage under the assumption that the whole data
+		 * frame analytics should happen in memory (i.e. without overflowing to disk).
+		 * <p>
 		 * API name: {@code expected_memory_without_disk}
 		 */
 		public Builder expectedMemoryWithoutDisk(String value) {
@@ -142,11 +149,11 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsMemoryEstimation
+	 * Json deserializer for {@link DataframeAnalyticsMemoryEstimation}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsMemoryEstimation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsMemoryEstimation::setupDataframeAnalyticsMemoryEstimationDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsMemoryEstimation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsMemoryEstimation::setupDataframeAnalyticsMemoryEstimationDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsMemoryEstimationDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsMemoryEstimation.Builder> op) {

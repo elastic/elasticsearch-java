@@ -23,32 +23,33 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.elasticsearch._global.reindex.Destination;
-import co.elastic.clients.elasticsearch._global.reindex.Source;
+import co.elastic.clients.elasticsearch.core.reindex.Destination;
+import co.elastic.clients.elasticsearch.core.reindex.Source;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Response
-public final class UpdateTransformResponse implements ToJsonp {
-	private final Number createTime;
+@JsonpDeserializable
+public final class UpdateTransformResponse implements JsonpSerializable {
+	private final long createTime;
 
 	private final String description;
 
 	private final Destination dest;
 
-	private final JsonValue frequency;
+	private final String frequency;
 
 	private final String id;
 
@@ -59,13 +60,13 @@ public final class UpdateTransformResponse implements ToJsonp {
 	private final Source source;
 
 	@Nullable
-	private final SyncContainer sync;
+	private final Sync sync;
 
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateTransformResponse(Builder builder) {
+	public UpdateTransformResponse(Builder builder) {
 
 		this.createTime = Objects.requireNonNull(builder.createTime, "create_time");
 		this.description = Objects.requireNonNull(builder.description, "description");
@@ -80,57 +81,61 @@ public final class UpdateTransformResponse implements ToJsonp {
 
 	}
 
+	public UpdateTransformResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code create_time}
+	 * Required - API name: {@code create_time}
 	 */
-	public Number createTime() {
+	public long createTime() {
 		return this.createTime;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code dest}
+	 * Required - API name: {@code dest}
 	 */
 	public Destination dest() {
 		return this.dest;
 	}
 
 	/**
-	 * API name: {@code frequency}
+	 * Required - API name: {@code frequency}
 	 */
-	public JsonValue frequency() {
+	public String frequency() {
 		return this.frequency;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code pivot}
+	 * Required - API name: {@code pivot}
 	 */
 	public Pivot pivot() {
 		return this.pivot;
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public Settings settings() {
 		return this.settings;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public Source source() {
 		return this.source;
@@ -140,12 +145,12 @@ public final class UpdateTransformResponse implements ToJsonp {
 	 * API name: {@code sync}
 	 */
 	@Nullable
-	public SyncContainer sync() {
+	public Sync sync() {
 		return this.sync;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -154,22 +159,22 @@ public final class UpdateTransformResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("create_time");
-		generator.write(this.createTime.doubleValue());
+		generator.write(this.createTime);
 
 		generator.writeKey("description");
 		generator.write(this.description);
 
 		generator.writeKey("dest");
-		this.dest.toJsonp(generator, mapper);
+		this.dest.serialize(generator, mapper);
 
 		generator.writeKey("frequency");
 		generator.write(this.frequency);
@@ -178,18 +183,18 @@ public final class UpdateTransformResponse implements ToJsonp {
 		generator.write(this.id);
 
 		generator.writeKey("pivot");
-		this.pivot.toJsonp(generator, mapper);
+		this.pivot.serialize(generator, mapper);
 
 		generator.writeKey("settings");
-		this.settings.toJsonp(generator, mapper);
+		this.settings.serialize(generator, mapper);
 
 		generator.writeKey("source");
-		this.source.toJsonp(generator, mapper);
+		this.source.serialize(generator, mapper);
 
 		if (this.sync != null) {
 
 			generator.writeKey("sync");
-			this.sync.toJsonp(generator, mapper);
+			this.sync.serialize(generator, mapper);
 
 		}
 
@@ -204,13 +209,13 @@ public final class UpdateTransformResponse implements ToJsonp {
 	 * Builder for {@link UpdateTransformResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateTransformResponse> {
-		private Number createTime;
+		private Long createTime;
 
 		private String description;
 
 		private Destination dest;
 
-		private JsonValue frequency;
+		private String frequency;
 
 		private String id;
 
@@ -221,20 +226,20 @@ public final class UpdateTransformResponse implements ToJsonp {
 		private Source source;
 
 		@Nullable
-		private SyncContainer sync;
+		private Sync sync;
 
 		private String version;
 
 		/**
-		 * API name: {@code create_time}
+		 * Required - API name: {@code create_time}
 		 */
-		public Builder createTime(Number value) {
+		public Builder createTime(long value) {
 			this.createTime = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -242,7 +247,7 @@ public final class UpdateTransformResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public Builder dest(Destination value) {
 			this.dest = value;
@@ -250,22 +255,22 @@ public final class UpdateTransformResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code frequency}
+		 * Required - API name: {@code frequency}
 		 */
-		public Builder frequency(JsonValue value) {
+		public Builder frequency(String value) {
 			this.frequency = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -273,7 +278,7 @@ public final class UpdateTransformResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code pivot}
+		 * Required - API name: {@code pivot}
 		 */
 		public Builder pivot(Pivot value) {
 			this.pivot = value;
@@ -281,14 +286,14 @@ public final class UpdateTransformResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code pivot}
+		 * Required - API name: {@code pivot}
 		 */
 		public Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
 			return this.pivot(fn.apply(new Pivot.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Settings value) {
 			this.settings = value;
@@ -296,14 +301,14 @@ public final class UpdateTransformResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
 			return this.settings(fn.apply(new Settings.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Source value) {
 			this.source = value;
@@ -311,7 +316,7 @@ public final class UpdateTransformResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
 			return this.source(fn.apply(new Source.Builder()).build());
@@ -320,7 +325,7 @@ public final class UpdateTransformResponse implements ToJsonp {
 		/**
 		 * API name: {@code sync}
 		 */
-		public Builder sync(@Nullable SyncContainer value) {
+		public Builder sync(@Nullable Sync value) {
 			this.sync = value;
 			return this;
 		}
@@ -328,12 +333,12 @@ public final class UpdateTransformResponse implements ToJsonp {
 		/**
 		 * API name: {@code sync}
 		 */
-		public Builder sync(Function<SyncContainer.Builder, ObjectBuilder<SyncContainer>> fn) {
-			return this.sync(fn.apply(new SyncContainer.Builder()).build());
+		public Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
+			return this.sync(fn.apply(new Sync.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -355,23 +360,23 @@ public final class UpdateTransformResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateTransformResponse
+	 * Json deserializer for {@link UpdateTransformResponse}
 	 */
-	public static final JsonpDeserializer<UpdateTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer);
+	public static final JsonpDeserializer<UpdateTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateTransformResponseDeserializer(
 			DelegatingDeserializer<UpdateTransformResponse.Builder> op) {
 
-		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::dest, Destination.DESERIALIZER, "dest");
-		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
+		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::pivot, Pivot.DESERIALIZER, "pivot");
-		op.add(Builder::settings, Settings.DESERIALIZER, "settings");
-		op.add(Builder::source, Source.DESERIALIZER, "source");
-		op.add(Builder::sync, SyncContainer.DESERIALIZER, "sync");
+		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
+		op.add(Builder::settings, Settings._DESERIALIZER, "settings");
+		op.add(Builder::source, Source._DESERIALIZER, "source");
+		op.add(Builder::sync, Sync._DESERIALIZER, "sync");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}

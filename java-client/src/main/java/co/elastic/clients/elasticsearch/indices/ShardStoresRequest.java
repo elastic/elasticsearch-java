@@ -25,12 +25,16 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.indices.shard_stores.ShardStatus;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +43,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.Request
+
 public final class ShardStoresRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
@@ -51,27 +58,33 @@ public final class ShardStoresRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final List<String> status;
+	private final List<ShardStatus> status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStoresRequest(Builder builder) {
+	public ShardStoresRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.status = builder.status;
+		this.status = ModelTypeHelper.unmodifiable(builder.status);
 
 	}
 
+	public ShardStoresRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * List of data streams, indices, and aliases used to limit the request.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -80,6 +93,10 @@ public final class ShardStoresRequest extends RequestBase {
 	}
 
 	/**
+	 * If false, the request returns an error if any wildcard expression, index
+	 * alias, or _all value targets only missing or closed indices. This behavior
+	 * applies even if the request targets other open indices.
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -88,14 +105,20 @@ public final class ShardStoresRequest extends RequestBase {
 	}
 
 	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * If true, missing or closed indices are not included in the response.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -104,10 +127,12 @@ public final class ShardStoresRequest extends RequestBase {
 	}
 
 	/**
+	 * List of shard health statuses used to limit the request.
+	 * <p>
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public List<String> status() {
+	public List<ShardStatus> status() {
 		return this.status;
 	}
 
@@ -124,15 +149,17 @@ public final class ShardStoresRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private List<String> status;
+		private List<ShardStatus> status;
 
 		/**
+		 * List of data streams, indices, and aliases used to limit the request.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -141,6 +168,8 @@ public final class ShardStoresRequest extends RequestBase {
 		}
 
 		/**
+		 * List of data streams, indices, and aliases used to limit the request.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -160,6 +189,10 @@ public final class ShardStoresRequest extends RequestBase {
 		}
 
 		/**
+		 * If false, the request returns an error if any wildcard expression, index
+		 * alias, or _all value targets only missing or closed indices. This behavior
+		 * applies even if the request targets other open indices.
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -168,14 +201,43 @@ public final class ShardStoresRequest extends RequestBase {
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * If true, missing or closed indices are not included in the response.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -184,17 +246,21 @@ public final class ShardStoresRequest extends RequestBase {
 		}
 
 		/**
+		 * List of shard health statuses used to limit the request.
+		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable List<String> value) {
+		public Builder status(@Nullable List<ShardStatus> value) {
 			this.status = value;
 			return this;
 		}
 
 		/**
+		 * List of shard health statuses used to limit the request.
+		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(String... value) {
+		public Builder status(ShardStatus... value) {
 			this.status = Arrays.asList(value);
 			return this;
 		}
@@ -202,7 +268,7 @@ public final class ShardStoresRequest extends RequestBase {
 		/**
 		 * Add a value to {@link #status(List)}, creating the list if needed.
 		 */
-		public Builder addStatus(String value) {
+		public Builder addStatus(ShardStatus value) {
 			if (this.status == null) {
 				this.status = new ArrayList<>();
 			}
@@ -227,7 +293,7 @@ public final class ShardStoresRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.shard_stores}".
 	 */
-	public static final Endpoint<ShardStoresRequest, ShardStoresResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ShardStoresRequest, ShardStoresResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -251,11 +317,11 @@ public final class ShardStoresRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_shard_stores");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -266,15 +332,17 @@ public final class ShardStoresRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.status != null) {
-					params.put("status", request.status.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("status",
+							request.status.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ShardStoresResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ShardStoresResponse._DESERIALIZER);
 }

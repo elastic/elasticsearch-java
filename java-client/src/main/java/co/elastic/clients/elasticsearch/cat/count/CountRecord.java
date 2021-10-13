@@ -24,21 +24,24 @@
 package co.elastic.clients.elasticsearch.cat.count;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.CountRecord
-public final class CountRecord implements ToJsonp {
+@JsonpDeserializable
+public final class CountRecord implements JsonpSerializable {
 	@Nullable
-	private final JsonValue epoch;
+	private final String epoch;
 
 	@Nullable
 	private final String timestamp;
@@ -48,7 +51,7 @@ public final class CountRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CountRecord(Builder builder) {
+	public CountRecord(Builder builder) {
 
 		this.epoch = builder.epoch;
 		this.timestamp = builder.timestamp;
@@ -56,19 +59,23 @@ public final class CountRecord implements ToJsonp {
 
 	}
 
+	public CountRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * seconds since 1969-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code epoch}
 	 */
 	@Nullable
-	public JsonValue epoch() {
+	public String epoch() {
 		return this.epoch;
 	}
 
 	/**
 	 * time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -78,7 +85,7 @@ public final class CountRecord implements ToJsonp {
 
 	/**
 	 * the document count
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
 	@Nullable
@@ -89,13 +96,13 @@ public final class CountRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.epoch != null) {
 
@@ -125,7 +132,7 @@ public final class CountRecord implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<CountRecord> {
 		@Nullable
-		private JsonValue epoch;
+		private String epoch;
 
 		@Nullable
 		private String timestamp;
@@ -135,17 +142,17 @@ public final class CountRecord implements ToJsonp {
 
 		/**
 		 * seconds since 1969-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code epoch}
 		 */
-		public Builder epoch(@Nullable JsonValue value) {
+		public Builder epoch(@Nullable String value) {
 			this.epoch = value;
 			return this;
 		}
 
 		/**
 		 * time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(@Nullable String value) {
@@ -155,7 +162,7 @@ public final class CountRecord implements ToJsonp {
 
 		/**
 		 * the document count
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(@Nullable String value) {
@@ -178,14 +185,14 @@ public final class CountRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CountRecord
+	 * Json deserializer for {@link CountRecord}
 	 */
-	public static final JsonpDeserializer<CountRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CountRecord::setupCountRecordDeserializer);
+	public static final JsonpDeserializer<CountRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CountRecord::setupCountRecordDeserializer, Builder::build);
 
 	protected static void setupCountRecordDeserializer(DelegatingDeserializer<CountRecord.Builder> op) {
 
-		op.add(Builder::epoch, JsonpDeserializer.jsonValueDeserializer(), "epoch", "t", "time");
+		op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch", "t", "time");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
 		op.add(Builder::count, JsonpDeserializer.stringDeserializer(), "count", "dc", "docs.count", "docsCount");
 

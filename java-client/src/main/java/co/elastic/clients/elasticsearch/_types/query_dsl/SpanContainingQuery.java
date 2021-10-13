@@ -24,62 +24,69 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanContainingQuery
-public final class SpanContainingQuery extends QueryBase {
-	@Nullable
+@JsonpDeserializable
+public final class SpanContainingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final SpanQuery big;
 
-	@Nullable
 	private final SpanQuery little;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanContainingQuery(Builder builder) {
+	public SpanContainingQuery(Builder builder) {
 		super(builder);
-		this.big = builder.big;
-		this.little = builder.little;
+
+		this.big = Objects.requireNonNull(builder.big, "big");
+		this.little = Objects.requireNonNull(builder.little, "little");
 
 	}
 
+	public SpanContainingQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code big}
+	 * {@link SpanQuery}, {@link Query} variant type
 	 */
-	@Nullable
+	@Override
+	public String _variantType() {
+		return "span_containing";
+	}
+
+	/**
+	 * Required - API name: {@code big}
+	 */
 	public SpanQuery big() {
 		return this.big;
 	}
 
 	/**
-	 * API name: {@code little}
+	 * Required - API name: {@code little}
 	 */
-	@Nullable
 	public SpanQuery little() {
 		return this.little;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.big != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("big");
-			this.big.toJsonp(generator, mapper);
+		super.serializeInternal(generator, mapper);
 
-		}
-		if (this.little != null) {
+		generator.writeKey("big");
+		this.big.serialize(generator, mapper);
 
-			generator.writeKey("little");
-			this.little.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("little");
+		this.little.serialize(generator, mapper);
 
 	}
 
@@ -91,37 +98,35 @@ public final class SpanContainingQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanContainingQuery> {
-		@Nullable
 		private SpanQuery big;
 
-		@Nullable
 		private SpanQuery little;
 
 		/**
-		 * API name: {@code big}
+		 * Required - API name: {@code big}
 		 */
-		public Builder big(@Nullable SpanQuery value) {
+		public Builder big(SpanQuery value) {
 			this.big = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code big}
+		 * Required - API name: {@code big}
 		 */
 		public Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.big(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code little}
+		 * Required - API name: {@code little}
 		 */
-		public Builder little(@Nullable SpanQuery value) {
+		public Builder little(SpanQuery value) {
 			this.little = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code little}
+		 * Required - API name: {@code little}
 		 */
 		public Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.little(fn.apply(new SpanQuery.Builder()).build());
@@ -147,15 +152,15 @@ public final class SpanContainingQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SpanContainingQuery
+	 * Json deserializer for {@link SpanContainingQuery}
 	 */
-	public static final JsonpDeserializer<SpanContainingQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanContainingQuery::setupSpanContainingQueryDeserializer);
+	public static final JsonpDeserializer<SpanContainingQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SpanContainingQuery::setupSpanContainingQueryDeserializer, Builder::build);
 
 	protected static void setupSpanContainingQueryDeserializer(DelegatingDeserializer<SpanContainingQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::big, SpanQuery.DESERIALIZER, "big");
-		op.add(Builder::little, SpanQuery.DESERIALIZER, "little");
+		op.add(Builder::big, SpanQuery._DESERIALIZER, "big");
+		op.add(Builder::little, SpanQuery._DESERIALIZER, "little");
 
 	}
 

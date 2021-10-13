@@ -24,39 +24,42 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoOSCPU
-public final class NodeInfoOSCPU implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoOSCPU implements JsonpSerializable {
 	private final String cacheSize;
 
-	private final Number cacheSizeInBytes;
+	private final int cacheSizeInBytes;
 
-	private final Number coresPerSocket;
+	private final int coresPerSocket;
 
-	private final Number mhz;
+	private final int mhz;
 
 	private final String model;
 
-	private final Number totalCores;
+	private final int totalCores;
 
-	private final Number totalSockets;
+	private final int totalSockets;
 
 	private final String vendor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoOSCPU(Builder builder) {
+	public NodeInfoOSCPU(Builder builder) {
 
 		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
 		this.cacheSizeInBytes = Objects.requireNonNull(builder.cacheSizeInBytes, "cache_size_in_bytes");
@@ -69,57 +72,61 @@ public final class NodeInfoOSCPU implements ToJsonp {
 
 	}
 
+	public NodeInfoOSCPU(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cache_size}
+	 * Required - API name: {@code cache_size}
 	 */
 	public String cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
-	 * API name: {@code cache_size_in_bytes}
+	 * Required - API name: {@code cache_size_in_bytes}
 	 */
-	public Number cacheSizeInBytes() {
+	public int cacheSizeInBytes() {
 		return this.cacheSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code cores_per_socket}
+	 * Required - API name: {@code cores_per_socket}
 	 */
-	public Number coresPerSocket() {
+	public int coresPerSocket() {
 		return this.coresPerSocket;
 	}
 
 	/**
-	 * API name: {@code mhz}
+	 * Required - API name: {@code mhz}
 	 */
-	public Number mhz() {
+	public int mhz() {
 		return this.mhz;
 	}
 
 	/**
-	 * API name: {@code model}
+	 * Required - API name: {@code model}
 	 */
 	public String model() {
 		return this.model;
 	}
 
 	/**
-	 * API name: {@code total_cores}
+	 * Required - API name: {@code total_cores}
 	 */
-	public Number totalCores() {
+	public int totalCores() {
 		return this.totalCores;
 	}
 
 	/**
-	 * API name: {@code total_sockets}
+	 * Required - API name: {@code total_sockets}
 	 */
-	public Number totalSockets() {
+	public int totalSockets() {
 		return this.totalSockets;
 	}
 
 	/**
-	 * API name: {@code vendor}
+	 * Required - API name: {@code vendor}
 	 */
 	public String vendor() {
 		return this.vendor;
@@ -128,34 +135,34 @@ public final class NodeInfoOSCPU implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cache_size");
 		generator.write(this.cacheSize);
 
 		generator.writeKey("cache_size_in_bytes");
-		generator.write(this.cacheSizeInBytes.doubleValue());
+		generator.write(this.cacheSizeInBytes);
 
 		generator.writeKey("cores_per_socket");
-		generator.write(this.coresPerSocket.doubleValue());
+		generator.write(this.coresPerSocket);
 
 		generator.writeKey("mhz");
-		generator.write(this.mhz.doubleValue());
+		generator.write(this.mhz);
 
 		generator.writeKey("model");
 		generator.write(this.model);
 
 		generator.writeKey("total_cores");
-		generator.write(this.totalCores.doubleValue());
+		generator.write(this.totalCores);
 
 		generator.writeKey("total_sockets");
-		generator.write(this.totalSockets.doubleValue());
+		generator.write(this.totalSockets);
 
 		generator.writeKey("vendor");
 		generator.write(this.vendor);
@@ -170,22 +177,22 @@ public final class NodeInfoOSCPU implements ToJsonp {
 	public static class Builder implements ObjectBuilder<NodeInfoOSCPU> {
 		private String cacheSize;
 
-		private Number cacheSizeInBytes;
+		private Integer cacheSizeInBytes;
 
-		private Number coresPerSocket;
+		private Integer coresPerSocket;
 
-		private Number mhz;
+		private Integer mhz;
 
 		private String model;
 
-		private Number totalCores;
+		private Integer totalCores;
 
-		private Number totalSockets;
+		private Integer totalSockets;
 
 		private String vendor;
 
 		/**
-		 * API name: {@code cache_size}
+		 * Required - API name: {@code cache_size}
 		 */
 		public Builder cacheSize(String value) {
 			this.cacheSize = value;
@@ -193,31 +200,31 @@ public final class NodeInfoOSCPU implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code cache_size_in_bytes}
+		 * Required - API name: {@code cache_size_in_bytes}
 		 */
-		public Builder cacheSizeInBytes(Number value) {
+		public Builder cacheSizeInBytes(int value) {
 			this.cacheSizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code cores_per_socket}
+		 * Required - API name: {@code cores_per_socket}
 		 */
-		public Builder coresPerSocket(Number value) {
+		public Builder coresPerSocket(int value) {
 			this.coresPerSocket = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code mhz}
+		 * Required - API name: {@code mhz}
 		 */
-		public Builder mhz(Number value) {
+		public Builder mhz(int value) {
 			this.mhz = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code model}
+		 * Required - API name: {@code model}
 		 */
 		public Builder model(String value) {
 			this.model = value;
@@ -225,23 +232,23 @@ public final class NodeInfoOSCPU implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code total_cores}
+		 * Required - API name: {@code total_cores}
 		 */
-		public Builder totalCores(Number value) {
+		public Builder totalCores(int value) {
 			this.totalCores = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total_sockets}
+		 * Required - API name: {@code total_sockets}
 		 */
-		public Builder totalSockets(Number value) {
+		public Builder totalSockets(int value) {
 			this.totalSockets = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code vendor}
+		 * Required - API name: {@code vendor}
 		 */
 		public Builder vendor(String value) {
 			this.vendor = value;
@@ -263,20 +270,20 @@ public final class NodeInfoOSCPU implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoOSCPU
+	 * Json deserializer for {@link NodeInfoOSCPU}
 	 */
-	public static final JsonpDeserializer<NodeInfoOSCPU> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoOSCPU::setupNodeInfoOSCPUDeserializer);
+	public static final JsonpDeserializer<NodeInfoOSCPU> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoOSCPU::setupNodeInfoOSCPUDeserializer, Builder::build);
 
 	protected static void setupNodeInfoOSCPUDeserializer(DelegatingDeserializer<NodeInfoOSCPU.Builder> op) {
 
 		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
-		op.add(Builder::cacheSizeInBytes, JsonpDeserializer.numberDeserializer(), "cache_size_in_bytes");
-		op.add(Builder::coresPerSocket, JsonpDeserializer.numberDeserializer(), "cores_per_socket");
-		op.add(Builder::mhz, JsonpDeserializer.numberDeserializer(), "mhz");
+		op.add(Builder::cacheSizeInBytes, JsonpDeserializer.integerDeserializer(), "cache_size_in_bytes");
+		op.add(Builder::coresPerSocket, JsonpDeserializer.integerDeserializer(), "cores_per_socket");
+		op.add(Builder::mhz, JsonpDeserializer.integerDeserializer(), "mhz");
 		op.add(Builder::model, JsonpDeserializer.stringDeserializer(), "model");
-		op.add(Builder::totalCores, JsonpDeserializer.numberDeserializer(), "total_cores");
-		op.add(Builder::totalSockets, JsonpDeserializer.numberDeserializer(), "total_sockets");
+		op.add(Builder::totalCores, JsonpDeserializer.integerDeserializer(), "total_cores");
+		op.add(Builder::totalSockets, JsonpDeserializer.integerDeserializer(), "total_sockets");
 		op.add(Builder::vendor, JsonpDeserializer.stringDeserializer(), "vendor");
 
 	}

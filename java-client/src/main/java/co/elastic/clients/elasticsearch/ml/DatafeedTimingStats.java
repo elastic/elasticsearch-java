@@ -24,35 +24,40 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedTimingStats
-public final class DatafeedTimingStats implements ToJsonp {
-	private final Number bucketCount;
+@JsonpDeserializable
+public final class DatafeedTimingStats implements JsonpSerializable {
+	private final long bucketCount;
 
-	private final Number exponentialAverageSearchTimePerHourMs;
+	private final double exponentialAverageSearchTimePerHourMs;
 
 	private final String jobId;
 
-	private final Number searchCount;
+	private final long searchCount;
 
-	private final Number totalSearchTimeMs;
+	private final double totalSearchTimeMs;
 
 	private final Number averageSearchTimePerBucketMs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DatafeedTimingStats(Builder builder) {
+	public DatafeedTimingStats(Builder builder) {
 
 		this.bucketCount = Objects.requireNonNull(builder.bucketCount, "bucket_count");
 		this.exponentialAverageSearchTimePerHourMs = Objects.requireNonNull(
@@ -65,43 +70,47 @@ public final class DatafeedTimingStats implements ToJsonp {
 
 	}
 
+	public DatafeedTimingStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code bucket_count}
+	 * Required - API name: {@code bucket_count}
 	 */
-	public Number bucketCount() {
+	public long bucketCount() {
 		return this.bucketCount;
 	}
 
 	/**
-	 * API name: {@code exponential_average_search_time_per_hour_ms}
+	 * Required - API name: {@code exponential_average_search_time_per_hour_ms}
 	 */
-	public Number exponentialAverageSearchTimePerHourMs() {
+	public double exponentialAverageSearchTimePerHourMs() {
 		return this.exponentialAverageSearchTimePerHourMs;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code search_count}
+	 * Required - API name: {@code search_count}
 	 */
-	public Number searchCount() {
+	public long searchCount() {
 		return this.searchCount;
 	}
 
 	/**
-	 * API name: {@code total_search_time_ms}
+	 * Required - API name: {@code total_search_time_ms}
 	 */
-	public Number totalSearchTimeMs() {
+	public double totalSearchTimeMs() {
 		return this.totalSearchTimeMs;
 	}
 
 	/**
-	 * API name: {@code average_search_time_per_bucket_ms}
+	 * Required - API name: {@code average_search_time_per_bucket_ms}
 	 */
 	public Number averageSearchTimePerBucketMs() {
 		return this.averageSearchTimePerBucketMs;
@@ -110,28 +119,28 @@ public final class DatafeedTimingStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_count");
-		generator.write(this.bucketCount.doubleValue());
+		generator.write(this.bucketCount);
 
 		generator.writeKey("exponential_average_search_time_per_hour_ms");
-		generator.write(this.exponentialAverageSearchTimePerHourMs.doubleValue());
+		generator.write(this.exponentialAverageSearchTimePerHourMs);
 
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
 		generator.writeKey("search_count");
-		generator.write(this.searchCount.doubleValue());
+		generator.write(this.searchCount);
 
 		generator.writeKey("total_search_time_ms");
-		generator.write(this.totalSearchTimeMs.doubleValue());
+		generator.write(this.totalSearchTimeMs);
 
 		generator.writeKey("average_search_time_per_bucket_ms");
 		generator.write(this.averageSearchTimePerBucketMs.doubleValue());
@@ -144,36 +153,36 @@ public final class DatafeedTimingStats implements ToJsonp {
 	 * Builder for {@link DatafeedTimingStats}.
 	 */
 	public static class Builder implements ObjectBuilder<DatafeedTimingStats> {
-		private Number bucketCount;
+		private Long bucketCount;
 
-		private Number exponentialAverageSearchTimePerHourMs;
+		private Double exponentialAverageSearchTimePerHourMs;
 
 		private String jobId;
 
-		private Number searchCount;
+		private Long searchCount;
 
-		private Number totalSearchTimeMs;
+		private Double totalSearchTimeMs;
 
 		private Number averageSearchTimePerBucketMs;
 
 		/**
-		 * API name: {@code bucket_count}
+		 * Required - API name: {@code bucket_count}
 		 */
-		public Builder bucketCount(Number value) {
+		public Builder bucketCount(long value) {
 			this.bucketCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code exponential_average_search_time_per_hour_ms}
+		 * Required - API name: {@code exponential_average_search_time_per_hour_ms}
 		 */
-		public Builder exponentialAverageSearchTimePerHourMs(Number value) {
+		public Builder exponentialAverageSearchTimePerHourMs(double value) {
 			this.exponentialAverageSearchTimePerHourMs = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -181,23 +190,23 @@ public final class DatafeedTimingStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code search_count}
+		 * Required - API name: {@code search_count}
 		 */
-		public Builder searchCount(Number value) {
+		public Builder searchCount(long value) {
 			this.searchCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total_search_time_ms}
+		 * Required - API name: {@code total_search_time_ms}
 		 */
-		public Builder totalSearchTimeMs(Number value) {
+		public Builder totalSearchTimeMs(double value) {
 			this.totalSearchTimeMs = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code average_search_time_per_bucket_ms}
+		 * Required - API name: {@code average_search_time_per_bucket_ms}
 		 */
 		public Builder averageSearchTimePerBucketMs(Number value) {
 			this.averageSearchTimePerBucketMs = value;
@@ -219,19 +228,19 @@ public final class DatafeedTimingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DatafeedTimingStats
+	 * Json deserializer for {@link DatafeedTimingStats}
 	 */
-	public static final JsonpDeserializer<DatafeedTimingStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DatafeedTimingStats::setupDatafeedTimingStatsDeserializer);
+	public static final JsonpDeserializer<DatafeedTimingStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DatafeedTimingStats::setupDatafeedTimingStatsDeserializer, Builder::build);
 
 	protected static void setupDatafeedTimingStatsDeserializer(DelegatingDeserializer<DatafeedTimingStats.Builder> op) {
 
-		op.add(Builder::bucketCount, JsonpDeserializer.numberDeserializer(), "bucket_count");
-		op.add(Builder::exponentialAverageSearchTimePerHourMs, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::bucketCount, JsonpDeserializer.longDeserializer(), "bucket_count");
+		op.add(Builder::exponentialAverageSearchTimePerHourMs, JsonpDeserializer.doubleDeserializer(),
 				"exponential_average_search_time_per_hour_ms");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::searchCount, JsonpDeserializer.numberDeserializer(), "search_count");
-		op.add(Builder::totalSearchTimeMs, JsonpDeserializer.numberDeserializer(), "total_search_time_ms");
+		op.add(Builder::searchCount, JsonpDeserializer.longDeserializer(), "search_count");
+		op.add(Builder::totalSearchTimeMs, JsonpDeserializer.doubleDeserializer(), "total_search_time_ms");
 		op.add(Builder::averageSearchTimePerBucketMs, JsonpDeserializer.numberDeserializer(),
 				"average_search_time_per_bucket_ms");
 

@@ -24,13 +24,14 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -39,10 +40,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
-public final class NodeAttributes implements ToJsonp {
+@JsonpDeserializable
+public final class NodeAttributes implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String ephemeralId;
@@ -55,24 +58,28 @@ public final class NodeAttributes implements ToJsonp {
 	private final String transportAddress;
 
 	@Nullable
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeAttributes(Builder builder) {
+	public NodeAttributes(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
 		this.id = builder.id;
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
-		this.roles = builder.roles;
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 
 	}
 
+	public NodeAttributes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Lists node attributes.
-	 *
+	 * Required - Lists node attributes.
+	 * <p>
 	 * API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
@@ -80,8 +87,8 @@ public final class NodeAttributes implements ToJsonp {
 	}
 
 	/**
-	 * The ephemeral ID of the node.
-	 *
+	 * Required - The ephemeral ID of the node.
+	 * <p>
 	 * API name: {@code ephemeral_id}
 	 */
 	public String ephemeralId() {
@@ -90,7 +97,7 @@ public final class NodeAttributes implements ToJsonp {
 
 	/**
 	 * The unique identifier of the node.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -99,8 +106,8 @@ public final class NodeAttributes implements ToJsonp {
 	}
 
 	/**
-	 * The unique identifier of the node.
-	 *
+	 * Required - The unique identifier of the node.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -108,8 +115,8 @@ public final class NodeAttributes implements ToJsonp {
 	}
 
 	/**
-	 * The host and port where transport HTTP connections are accepted.
-	 *
+	 * Required - The host and port where transport HTTP connections are accepted.
+	 * <p>
 	 * API name: {@code transport_address}
 	 */
 	public String transportAddress() {
@@ -120,20 +127,20 @@ public final class NodeAttributes implements ToJsonp {
 	 * API name: {@code roles}
 	 */
 	@Nullable
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -164,9 +171,8 @@ public final class NodeAttributes implements ToJsonp {
 
 			generator.writeKey("roles");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.roles) {
-				generator.write(item0);
-
+			for (NodeRole item0 : this.roles) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -192,11 +198,11 @@ public final class NodeAttributes implements ToJsonp {
 		private String transportAddress;
 
 		@Nullable
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		/**
-		 * Lists node attributes.
-		 *
+		 * Required - Lists node attributes.
+		 * <p>
 		 * API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
@@ -216,8 +222,8 @@ public final class NodeAttributes implements ToJsonp {
 		}
 
 		/**
-		 * The ephemeral ID of the node.
-		 *
+		 * Required - The ephemeral ID of the node.
+		 * <p>
 		 * API name: {@code ephemeral_id}
 		 */
 		public Builder ephemeralId(String value) {
@@ -227,7 +233,7 @@ public final class NodeAttributes implements ToJsonp {
 
 		/**
 		 * The unique identifier of the node.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -236,8 +242,8 @@ public final class NodeAttributes implements ToJsonp {
 		}
 
 		/**
-		 * The unique identifier of the node.
-		 *
+		 * Required - The unique identifier of the node.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -246,8 +252,8 @@ public final class NodeAttributes implements ToJsonp {
 		}
 
 		/**
-		 * The host and port where transport HTTP connections are accepted.
-		 *
+		 * Required - The host and port where transport HTTP connections are accepted.
+		 * <p>
 		 * API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
@@ -258,7 +264,7 @@ public final class NodeAttributes implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(@Nullable List<JsonValue> value) {
+		public Builder roles(@Nullable List<NodeRole> value) {
 			this.roles = value;
 			return this;
 		}
@@ -266,7 +272,7 @@ public final class NodeAttributes implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(JsonValue... value) {
+		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return this;
 		}
@@ -274,7 +280,7 @@ public final class NodeAttributes implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public Builder addRoles(JsonValue value) {
+		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -297,10 +303,10 @@ public final class NodeAttributes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeAttributes
+	 * Json deserializer for {@link NodeAttributes}
 	 */
-	public static final JsonpDeserializer<NodeAttributes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeAttributes::setupNodeAttributesDeserializer);
+	public static final JsonpDeserializer<NodeAttributes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeAttributes::setupNodeAttributesDeserializer, Builder::build);
 
 	protected static void setupNodeAttributesDeserializer(DelegatingDeserializer<NodeAttributes.Builder> op) {
 
@@ -310,7 +316,7 @@ public final class NodeAttributes implements ToJsonp {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
 
 	}
 

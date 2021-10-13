@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_role_mapping.Response
-public final class GetRoleMappingResponse extends AdditionalProperties<String, RoleMapping> {
+@JsonpDeserializable
+public final class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRoleMappingResponse(Builder builder) {
+	public GetRoleMappingResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetRoleMappingResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -46,7 +54,7 @@ public final class GetRoleMappingResponse extends AdditionalProperties<String, R
 	/**
 	 * Builder for {@link GetRoleMappingResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, RoleMapping, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleMapping, Builder>
 			implements
 				ObjectBuilder<GetRoleMappingResponse> {
 		@Override
@@ -71,15 +79,15 @@ public final class GetRoleMappingResponse extends AdditionalProperties<String, R
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetRoleMappingResponse
+	 * Json deserializer for {@link GetRoleMappingResponse}
 	 */
-	public static final JsonpDeserializer<GetRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer);
+	public static final JsonpDeserializer<GetRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer, Builder::build);
 
 	protected static void setupGetRoleMappingResponseDeserializer(
 			DelegatingDeserializer<GetRoleMappingResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RoleMapping.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				RoleMapping._DESERIALIZER);
 
 	}
 

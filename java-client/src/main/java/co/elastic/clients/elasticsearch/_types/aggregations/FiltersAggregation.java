@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -33,12 +34,18 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FiltersAggregation
-public final class FiltersAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue filters;
+	private final JsonValue /*
+							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+							 * _types.query_dsl.QueryContainer> (singleKey = false))
+							 */ filters;
 
 	@Nullable
 	private final Boolean otherBucket;
@@ -46,21 +53,41 @@ public final class FiltersAggregation extends BucketAggregationBase {
 	@Nullable
 	private final String otherBucketKey;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected FiltersAggregation(Builder builder) {
+	public FiltersAggregation(Builder builder) {
 		super(builder);
+
 		this.filters = builder.filters;
 		this.otherBucket = builder.otherBucket;
 		this.otherBucketKey = builder.otherBucketKey;
+		this.keyed = builder.keyed;
 
+	}
+
+	public FiltersAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "filters";
 	}
 
 	/**
 	 * API name: {@code filters}
 	 */
 	@Nullable
-	public JsonValue filters() {
+	public JsonValue /*
+						 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+						 * _types.query_dsl.QueryContainer> (singleKey = false))
+						 */ filters() {
 		return this.filters;
 	}
 
@@ -80,8 +107,17 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		return this.otherBucketKey;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.filters != null) {
 
 			generator.writeKey("filters");
@@ -100,6 +136,12 @@ public final class FiltersAggregation extends BucketAggregationBase {
 			generator.write(this.otherBucketKey);
 
 		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
+
+		}
 
 	}
 
@@ -112,7 +154,10 @@ public final class FiltersAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<FiltersAggregation> {
 		@Nullable
-		private JsonValue filters;
+		private JsonValue /*
+							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+							 * _types.query_dsl.QueryContainer> (singleKey = false))
+							 */ filters;
 
 		@Nullable
 		private Boolean otherBucket;
@@ -120,10 +165,17 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		@Nullable
 		private String otherBucketKey;
 
+		@Nullable
+		private Boolean keyed;
+
 		/**
 		 * API name: {@code filters}
 		 */
-		public Builder filters(@Nullable JsonValue value) {
+		public Builder filters(
+				@Nullable JsonValue /*
+									 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+									 * _types.query_dsl.QueryContainer> (singleKey = false))
+									 */ value) {
 			this.filters = value;
 			return this;
 		}
@@ -141,6 +193,14 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		 */
 		public Builder otherBucketKey(@Nullable String value) {
 			this.otherBucketKey = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
 			return this;
 		}
 
@@ -164,16 +224,17 @@ public final class FiltersAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FiltersAggregation
+	 * Json deserializer for {@link FiltersAggregation}
 	 */
-	public static final JsonpDeserializer<FiltersAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer);
+	public static final JsonpDeserializer<FiltersAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer, Builder::build);
 
 	protected static void setupFiltersAggregationDeserializer(DelegatingDeserializer<FiltersAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::filters, JsonpDeserializer.jsonValueDeserializer(), "filters");
 		op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
 		op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

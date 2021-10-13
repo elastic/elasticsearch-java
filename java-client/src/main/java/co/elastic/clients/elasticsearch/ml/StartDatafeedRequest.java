@@ -25,38 +25,41 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
-public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
-	private final JsonValue end;
+	private final String end;
 
 	@Nullable
-	private final JsonValue start;
+	private final String start;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartDatafeedRequest(Builder builder) {
+	public StartDatafeedRequest(Builder builder) {
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.end = builder.end;
@@ -65,7 +68,13 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public StartDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The ID of the datafeed to start
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -76,7 +85,7 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public JsonValue end() {
+	public String end() {
 		return this.end;
 	}
 
@@ -84,7 +93,7 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public JsonValue start() {
+	public String start() {
 		return this.start;
 	}
 
@@ -92,20 +101,20 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.end != null) {
 
@@ -137,15 +146,17 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 		private String datafeedId;
 
 		@Nullable
-		private JsonValue end;
+		private String end;
 
 		@Nullable
-		private JsonValue start;
+		private String start;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * Required - The ID of the datafeed to start
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -156,7 +167,7 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable JsonValue value) {
+		public Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -164,7 +175,7 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable JsonValue value) {
+		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -172,7 +183,7 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -192,17 +203,17 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StartDatafeedRequest
+	 * Json deserializer for {@link StartDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<StartDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<StartDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupStartDatafeedRequestDeserializer(
 			DelegatingDeserializer<StartDatafeedRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpDeserializer.jsonValueDeserializer(), "end");
-		op.add(Builder::start, JsonpDeserializer.jsonValueDeserializer(), "start");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 
@@ -211,7 +222,7 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.start_datafeed}".
 	 */
-	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -224,19 +235,18 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
-					propsSet |= _datafeedId;
+				propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					buf.append("/_start");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -245,5 +255,5 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 				Map<String, String> params = new HashMap<>();
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StartDatafeedResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StartDatafeedResponse._DESERIALIZER);
 }

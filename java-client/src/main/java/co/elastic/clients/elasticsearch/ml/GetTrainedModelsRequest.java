@@ -25,20 +25,25 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Request
+
 public final class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
 	private final String modelId;
@@ -53,20 +58,20 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	private final Boolean excludeGenerated;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
 	private final String include;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String tags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTrainedModelsRequest(Builder builder) {
+	public GetTrainedModelsRequest(Builder builder) {
 
 		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
@@ -79,9 +84,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 	}
 
+	public GetTrainedModelsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The unique identifier of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	@Nullable
@@ -90,11 +99,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies what to do when the request: - Contains wildcard expressions and
-	 * there are no models that match. - Contains the _all string or no identifiers
-	 * and there are no matches. - Contains wildcard expressions and there are only
-	 * partial matches.
-	 *
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no models that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -105,7 +116,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Specifies whether the included model definition should be returned as a JSON
 	 * map (true) or in a custom compressed format (false).
-	 *
+	 * <p>
 	 * API name: {@code decompress_definition}
 	 */
 	@Nullable
@@ -117,7 +128,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * Indicates if certain fields should be removed from the configuration on
 	 * retrieval. This allows the configuration to be in an acceptable format to be
 	 * retrieved and then added to another cluster.
-	 *
+	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
@@ -127,17 +138,17 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 	/**
 	 * Skips the specified number of models.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
 	/**
 	 * A comma delimited string of optional fields to include in the response body.
-	 *
+	 * <p>
 	 * API name: {@code include}
 	 */
 	@Nullable
@@ -147,11 +158,11 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 	/**
 	 * Specifies the maximum number of models to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -159,7 +170,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * A comma delimited string of tags. A trained model can have many tags, or
 	 * none. When supplied, only trained models that contain all the supplied tags
 	 * are returned.
-	 *
+	 * <p>
 	 * API name: {@code tags}
 	 */
 	@Nullable
@@ -186,20 +197,20 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
 		private String include;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String tags;
 
 		/**
 		 * The unique identifier of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(@Nullable String value) {
@@ -208,11 +219,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies what to do when the request: - Contains wildcard expressions and
-		 * there are no models that match. - Contains the _all string or no identifiers
-		 * and there are no matches. - Contains wildcard expressions and there are only
-		 * partial matches.
-		 *
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no models that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -223,7 +236,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		/**
 		 * Specifies whether the included model definition should be returned as a JSON
 		 * map (true) or in a custom compressed format (false).
-		 *
+		 * <p>
 		 * API name: {@code decompress_definition}
 		 */
 		public Builder decompressDefinition(@Nullable Boolean value) {
@@ -235,7 +248,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * Indicates if certain fields should be removed from the configuration on
 		 * retrieval. This allows the configuration to be in an acceptable format to be
 		 * retrieved and then added to another cluster.
-		 *
+		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
 		public Builder excludeGenerated(@Nullable Boolean value) {
@@ -245,17 +258,17 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 		/**
 		 * Skips the specified number of models.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
 		 * A comma delimited string of optional fields to include in the response body.
-		 *
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public Builder include(@Nullable String value) {
@@ -265,10 +278,10 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 		/**
 		 * Specifies the maximum number of models to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -277,7 +290,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * A comma delimited string of tags. A trained model can have many tags, or
 		 * none. When supplied, only trained models that contain all the supplied tags
 		 * are returned.
-		 *
+		 * <p>
 		 * API name: {@code tags}
 		 */
 		public Builder tags(@Nullable String value) {
@@ -302,7 +315,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_trained_models}".
 	 */
-	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -323,7 +336,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					buf.append(request.modelId);
+					SimpleEndpoint.pathEncode(request.modelId, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -332,7 +345,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 					buf.append("/trained_models");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -349,18 +362,18 @@ public final class GetTrainedModelsRequest extends RequestBase {
 					params.put("exclude_generated", String.valueOf(request.excludeGenerated));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.include != null) {
 					params.put("include", request.include);
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.tags != null) {
 					params.put("tags", request.tags);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTrainedModelsResponse._DESERIALIZER);
 }

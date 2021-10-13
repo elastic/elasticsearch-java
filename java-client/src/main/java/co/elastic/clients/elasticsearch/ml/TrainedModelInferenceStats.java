@@ -24,33 +24,36 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelInferenceStats
-public final class TrainedModelInferenceStats implements ToJsonp {
-	private final Number failureCount;
+@JsonpDeserializable
+public final class TrainedModelInferenceStats implements JsonpSerializable {
+	private final long failureCount;
 
-	private final Number inferenceCount;
+	private final long inferenceCount;
 
-	private final Number cacheMissCount;
+	private final long cacheMissCount;
 
-	private final Number missingAllFieldsCount;
+	private final long missingAllFieldsCount;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelInferenceStats(Builder builder) {
+	public TrainedModelInferenceStats(Builder builder) {
 
 		this.failureCount = Objects.requireNonNull(builder.failureCount, "failure_count");
 		this.inferenceCount = Objects.requireNonNull(builder.inferenceCount, "inference_count");
@@ -60,79 +63,83 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 
 	}
 
+	public TrainedModelInferenceStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The number of failures when using the model for inference.
-	 *
+	 * Required - The number of failures when using the model for inference.
+	 * <p>
 	 * API name: {@code failure_count}
 	 */
-	public Number failureCount() {
+	public long failureCount() {
 		return this.failureCount;
 	}
 
 	/**
-	 * The total number of times the model has been called for inference. This is
-	 * across all inference contexts, including all pipelines.
-	 *
+	 * Required - The total number of times the model has been called for inference.
+	 * This is across all inference contexts, including all pipelines.
+	 * <p>
 	 * API name: {@code inference_count}
 	 */
-	public Number inferenceCount() {
+	public long inferenceCount() {
 		return this.inferenceCount;
 	}
 
 	/**
-	 * The number of times the model was loaded for inference and was not retrieved
-	 * from the cache. If this number is close to the inference_count, then the
-	 * cache is not being appropriately used. This can be solved by increasing the
-	 * cache size or its time-to-live (TTL). See General machine learning settings
-	 * for the appropriate settings.
-	 *
+	 * Required - The number of times the model was loaded for inference and was not
+	 * retrieved from the cache. If this number is close to the inference_count,
+	 * then the cache is not being appropriately used. This can be solved by
+	 * increasing the cache size or its time-to-live (TTL). See General machine
+	 * learning settings for the appropriate settings.
+	 * <p>
 	 * API name: {@code cache_miss_count}
 	 */
-	public Number cacheMissCount() {
+	public long cacheMissCount() {
 		return this.cacheMissCount;
 	}
 
 	/**
-	 * The number of inference calls where all the training features for the model
-	 * were missing.
-	 *
+	 * Required - The number of inference calls where all the training features for
+	 * the model were missing.
+	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
-	public Number missingAllFieldsCount() {
+	public long missingAllFieldsCount() {
 		return this.missingAllFieldsCount;
 	}
 
 	/**
-	 * The time when the statistics were last updated.
-	 *
+	 * Required - The time when the statistics were last updated.
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("failure_count");
-		generator.write(this.failureCount.doubleValue());
+		generator.write(this.failureCount);
 
 		generator.writeKey("inference_count");
-		generator.write(this.inferenceCount.doubleValue());
+		generator.write(this.inferenceCount);
 
 		generator.writeKey("cache_miss_count");
-		generator.write(this.cacheMissCount.doubleValue());
+		generator.write(this.cacheMissCount);
 
 		generator.writeKey("missing_all_fields_count");
-		generator.write(this.missingAllFieldsCount.doubleValue());
+		generator.write(this.missingAllFieldsCount);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
@@ -145,68 +152,68 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 	 * Builder for {@link TrainedModelInferenceStats}.
 	 */
 	public static class Builder implements ObjectBuilder<TrainedModelInferenceStats> {
-		private Number failureCount;
+		private Long failureCount;
 
-		private Number inferenceCount;
+		private Long inferenceCount;
 
-		private Number cacheMissCount;
+		private Long cacheMissCount;
 
-		private Number missingAllFieldsCount;
+		private Long missingAllFieldsCount;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		/**
-		 * The number of failures when using the model for inference.
-		 *
+		 * Required - The number of failures when using the model for inference.
+		 * <p>
 		 * API name: {@code failure_count}
 		 */
-		public Builder failureCount(Number value) {
+		public Builder failureCount(long value) {
 			this.failureCount = value;
 			return this;
 		}
 
 		/**
-		 * The total number of times the model has been called for inference. This is
-		 * across all inference contexts, including all pipelines.
-		 *
+		 * Required - The total number of times the model has been called for inference.
+		 * This is across all inference contexts, including all pipelines.
+		 * <p>
 		 * API name: {@code inference_count}
 		 */
-		public Builder inferenceCount(Number value) {
+		public Builder inferenceCount(long value) {
 			this.inferenceCount = value;
 			return this;
 		}
 
 		/**
-		 * The number of times the model was loaded for inference and was not retrieved
-		 * from the cache. If this number is close to the inference_count, then the
-		 * cache is not being appropriately used. This can be solved by increasing the
-		 * cache size or its time-to-live (TTL). See General machine learning settings
-		 * for the appropriate settings.
-		 *
+		 * Required - The number of times the model was loaded for inference and was not
+		 * retrieved from the cache. If this number is close to the inference_count,
+		 * then the cache is not being appropriately used. This can be solved by
+		 * increasing the cache size or its time-to-live (TTL). See General machine
+		 * learning settings for the appropriate settings.
+		 * <p>
 		 * API name: {@code cache_miss_count}
 		 */
-		public Builder cacheMissCount(Number value) {
+		public Builder cacheMissCount(long value) {
 			this.cacheMissCount = value;
 			return this;
 		}
 
 		/**
-		 * The number of inference calls where all the training features for the model
-		 * were missing.
-		 *
+		 * Required - The number of inference calls where all the training features for
+		 * the model were missing.
+		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
-		public Builder missingAllFieldsCount(Number value) {
+		public Builder missingAllFieldsCount(long value) {
 			this.missingAllFieldsCount = value;
 			return this;
 		}
 
 		/**
-		 * The time when the statistics were last updated.
-		 *
+		 * Required - The time when the statistics were last updated.
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -226,19 +233,19 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelInferenceStats
+	 * Json deserializer for {@link TrainedModelInferenceStats}
 	 */
-	public static final JsonpDeserializer<TrainedModelInferenceStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer);
+	public static final JsonpDeserializer<TrainedModelInferenceStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer, Builder::build);
 
 	protected static void setupTrainedModelInferenceStatsDeserializer(
 			DelegatingDeserializer<TrainedModelInferenceStats.Builder> op) {
 
-		op.add(Builder::failureCount, JsonpDeserializer.numberDeserializer(), "failure_count");
-		op.add(Builder::inferenceCount, JsonpDeserializer.numberDeserializer(), "inference_count");
-		op.add(Builder::cacheMissCount, JsonpDeserializer.numberDeserializer(), "cache_miss_count");
-		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.numberDeserializer(), "missing_all_fields_count");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::failureCount, JsonpDeserializer.longDeserializer(), "failure_count");
+		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");
+		op.add(Builder::cacheMissCount, JsonpDeserializer.longDeserializer(), "cache_miss_count");
+		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.longDeserializer(), "missing_all_fields_count");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

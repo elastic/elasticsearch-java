@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,19 +32,35 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregation
-public final class GeoBoundsAggregation extends MetricAggregationBase {
+@JsonpDeserializable
+public final class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean wrapLongitude;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoBoundsAggregation(Builder builder) {
+	public GeoBoundsAggregation(Builder builder) {
 		super(builder);
+
 		this.wrapLongitude = builder.wrapLongitude;
 
+	}
+
+	public GeoBoundsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "geo_bounds";
 	}
 
 	/**
@@ -54,8 +71,9 @@ public final class GeoBoundsAggregation extends MetricAggregationBase {
 		return this.wrapLongitude;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.wrapLongitude != null) {
 
 			generator.writeKey("wrap_longitude");
@@ -104,10 +122,10 @@ public final class GeoBoundsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoBoundsAggregation
+	 * Json deserializer for {@link GeoBoundsAggregation}
 	 */
-	public static final JsonpDeserializer<GeoBoundsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer);
+	public static final JsonpDeserializer<GeoBoundsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer, Builder::build);
 
 	protected static void setupGeoBoundsAggregationDeserializer(
 			DelegatingDeserializer<GeoBoundsAggregation.Builder> op) {

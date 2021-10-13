@@ -24,34 +24,36 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: snapshot._types.ShardsStats
-public final class ShardsStats implements ToJsonp {
-	private final Number done;
+@JsonpDeserializable
+public final class ShardsStats implements JsonpSerializable {
+	private final long done;
 
-	private final Number failed;
+	private final long failed;
 
-	private final Number finalizing;
+	private final long finalizing;
 
-	private final Number initializing;
+	private final long initializing;
 
-	private final Number started;
+	private final long started;
 
-	private final Number total;
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardsStats(Builder builder) {
+	public ShardsStats(Builder builder) {
 
 		this.done = Objects.requireNonNull(builder.done, "done");
 		this.failed = Objects.requireNonNull(builder.failed, "failed");
@@ -62,76 +64,80 @@ public final class ShardsStats implements ToJsonp {
 
 	}
 
+	public ShardsStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code done}
+	 * Required - API name: {@code done}
 	 */
-	public Number done() {
+	public long done() {
 		return this.done;
 	}
 
 	/**
-	 * API name: {@code failed}
+	 * Required - API name: {@code failed}
 	 */
-	public Number failed() {
+	public long failed() {
 		return this.failed;
 	}
 
 	/**
-	 * API name: {@code finalizing}
+	 * Required - API name: {@code finalizing}
 	 */
-	public Number finalizing() {
+	public long finalizing() {
 		return this.finalizing;
 	}
 
 	/**
-	 * API name: {@code initializing}
+	 * Required - API name: {@code initializing}
 	 */
-	public Number initializing() {
+	public long initializing() {
 		return this.initializing;
 	}
 
 	/**
-	 * API name: {@code started}
+	 * Required - API name: {@code started}
 	 */
-	public Number started() {
+	public long started() {
 		return this.started;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("done");
-		generator.write(this.done.doubleValue());
+		generator.write(this.done);
 
 		generator.writeKey("failed");
-		generator.write(this.failed.doubleValue());
+		generator.write(this.failed);
 
 		generator.writeKey("finalizing");
-		generator.write(this.finalizing.doubleValue());
+		generator.write(this.finalizing);
 
 		generator.writeKey("initializing");
-		generator.write(this.initializing.doubleValue());
+		generator.write(this.initializing);
 
 		generator.writeKey("started");
-		generator.write(this.started.doubleValue());
+		generator.write(this.started);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -141,62 +147,62 @@ public final class ShardsStats implements ToJsonp {
 	 * Builder for {@link ShardsStats}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardsStats> {
-		private Number done;
+		private Long done;
 
-		private Number failed;
+		private Long failed;
 
-		private Number finalizing;
+		private Long finalizing;
 
-		private Number initializing;
+		private Long initializing;
 
-		private Number started;
+		private Long started;
 
-		private Number total;
+		private Long total;
 
 		/**
-		 * API name: {@code done}
+		 * Required - API name: {@code done}
 		 */
-		public Builder done(Number value) {
+		public Builder done(long value) {
 			this.done = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code failed}
+		 * Required - API name: {@code failed}
 		 */
-		public Builder failed(Number value) {
+		public Builder failed(long value) {
 			this.failed = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code finalizing}
+		 * Required - API name: {@code finalizing}
 		 */
-		public Builder finalizing(Number value) {
+		public Builder finalizing(long value) {
 			this.finalizing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code initializing}
+		 * Required - API name: {@code initializing}
 		 */
-		public Builder initializing(Number value) {
+		public Builder initializing(long value) {
 			this.initializing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code started}
+		 * Required - API name: {@code started}
 		 */
-		public Builder started(Number value) {
+		public Builder started(long value) {
 			this.started = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -216,19 +222,19 @@ public final class ShardsStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardsStats
+	 * Json deserializer for {@link ShardsStats}
 	 */
-	public static final JsonpDeserializer<ShardsStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardsStats::setupShardsStatsDeserializer);
+	public static final JsonpDeserializer<ShardsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardsStats::setupShardsStatsDeserializer, Builder::build);
 
 	protected static void setupShardsStatsDeserializer(DelegatingDeserializer<ShardsStats.Builder> op) {
 
-		op.add(Builder::done, JsonpDeserializer.numberDeserializer(), "done");
-		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
-		op.add(Builder::finalizing, JsonpDeserializer.numberDeserializer(), "finalizing");
-		op.add(Builder::initializing, JsonpDeserializer.numberDeserializer(), "initializing");
-		op.add(Builder::started, JsonpDeserializer.numberDeserializer(), "started");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::done, JsonpDeserializer.longDeserializer(), "done");
+		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::finalizing, JsonpDeserializer.longDeserializer(), "finalizing");
+		op.add(Builder::initializing, JsonpDeserializer.longDeserializer(), "initializing");
+		op.add(Builder::started, JsonpDeserializer.longDeserializer(), "started");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

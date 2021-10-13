@@ -24,52 +24,60 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TDigest
-public final class TDigest implements ToJsonp {
+@JsonpDeserializable
+public final class TDigest implements JsonpSerializable {
 	@Nullable
-	private final Number compression;
+	private final Integer compression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TDigest(Builder builder) {
+	public TDigest(Builder builder) {
 
 		this.compression = builder.compression;
 
+	}
+
+	public TDigest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Number compression() {
+	public Integer compression() {
 		return this.compression;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.compression != null) {
 
 			generator.writeKey("compression");
-			generator.write(this.compression.doubleValue());
+			generator.write(this.compression);
 
 		}
 
@@ -82,12 +90,12 @@ public final class TDigest implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<TDigest> {
 		@Nullable
-		private Number compression;
+		private Integer compression;
 
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Number value) {
+		public Builder compression(@Nullable Integer value) {
 			this.compression = value;
 			return this;
 		}
@@ -107,14 +115,14 @@ public final class TDigest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TDigest
+	 * Json deserializer for {@link TDigest}
 	 */
-	public static final JsonpDeserializer<TDigest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TDigest::setupTDigestDeserializer);
+	public static final JsonpDeserializer<TDigest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TDigest::setupTDigestDeserializer, Builder::build);
 
 	protected static void setupTDigestDeserializer(DelegatingDeserializer<TDigest.Builder> op) {
 
-		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
+		op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
 
 	}
 

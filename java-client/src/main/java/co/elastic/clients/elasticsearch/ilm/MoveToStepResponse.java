@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ilm.move_to_step.Response
+@JsonpDeserializable
 public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected MoveToStepResponse(Builder builder) {
+	public MoveToStepResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public MoveToStepResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MoveToStepResponse
+	 * Json deserializer for {@link MoveToStepResponse}
 	 */
-	public static final JsonpDeserializer<MoveToStepResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer);
+	public static final JsonpDeserializer<MoveToStepResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer, Builder::build);
 
 	protected static void setupMoveToStepResponseDeserializer(DelegatingDeserializer<MoveToStepResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Response
-public final class UpdateFilterResponse implements ToJsonp {
+@JsonpDeserializable
+public final class UpdateFilterResponse implements JsonpSerializable {
 	private final String description;
 
 	private final String filterId;
@@ -48,30 +52,34 @@ public final class UpdateFilterResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateFilterResponse(Builder builder) {
+	public UpdateFilterResponse(Builder builder) {
 
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.items = Objects.requireNonNull(builder.items, "items");
+		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
 
 	}
 
+	public UpdateFilterResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code filter_id}
+	 * Required - API name: {@code filter_id}
 	 */
 	public String filterId() {
 		return this.filterId;
 	}
 
 	/**
-	 * API name: {@code items}
+	 * Required - API name: {@code items}
 	 */
 	public List<String> items() {
 		return this.items;
@@ -80,13 +88,13 @@ public final class UpdateFilterResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("description");
 		generator.write(this.description);
@@ -117,7 +125,7 @@ public final class UpdateFilterResponse implements ToJsonp {
 		private List<String> items;
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -125,7 +133,7 @@ public final class UpdateFilterResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code filter_id}
+		 * Required - API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {
 			this.filterId = value;
@@ -133,7 +141,7 @@ public final class UpdateFilterResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(List<String> value) {
 			this.items = value;
@@ -141,7 +149,7 @@ public final class UpdateFilterResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(String... value) {
 			this.items = Arrays.asList(value);
@@ -174,10 +182,10 @@ public final class UpdateFilterResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateFilterResponse
+	 * Json deserializer for {@link UpdateFilterResponse}
 	 */
-	public static final JsonpDeserializer<UpdateFilterResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseDeserializer);
+	public static final JsonpDeserializer<UpdateFilterResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateFilterResponseDeserializer(
 			DelegatingDeserializer<UpdateFilterResponse.Builder> op) {

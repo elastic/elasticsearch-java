@@ -23,39 +23,47 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.core.search.SortOrder;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramOrder
-public final class HistogramOrder implements ToJsonp {
+@JsonpDeserializable
+public final class HistogramOrder implements JsonpSerializable {
 	@Nullable
-	private final JsonValue count;
+	private final SortOrder count;
 
 	@Nullable
-	private final JsonValue key;
+	private final SortOrder key;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HistogramOrder(Builder builder) {
+	public HistogramOrder(Builder builder) {
 
 		this.count = builder.count;
 		this.key = builder.key;
 
 	}
 
+	public HistogramOrder(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code _count}
 	 */
 	@Nullable
-	public JsonValue count() {
+	public SortOrder count() {
 		return this.count;
 	}
 
@@ -63,32 +71,30 @@ public final class HistogramOrder implements ToJsonp {
 	 * API name: {@code _key}
 	 */
 	@Nullable
-	public JsonValue key() {
+	public SortOrder key() {
 		return this.key;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.count != null) {
 
 			generator.writeKey("_count");
-			generator.write(this.count);
-
+			this.count.serialize(generator, mapper);
 		}
 		if (this.key != null) {
 
 			generator.writeKey("_key");
-			generator.write(this.key);
-
+			this.key.serialize(generator, mapper);
 		}
 
 	}
@@ -100,15 +106,15 @@ public final class HistogramOrder implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<HistogramOrder> {
 		@Nullable
-		private JsonValue count;
+		private SortOrder count;
 
 		@Nullable
-		private JsonValue key;
+		private SortOrder key;
 
 		/**
 		 * API name: {@code _count}
 		 */
-		public Builder count(@Nullable JsonValue value) {
+		public Builder count(@Nullable SortOrder value) {
 			this.count = value;
 			return this;
 		}
@@ -116,7 +122,7 @@ public final class HistogramOrder implements ToJsonp {
 		/**
 		 * API name: {@code _key}
 		 */
-		public Builder key(@Nullable JsonValue value) {
+		public Builder key(@Nullable SortOrder value) {
 			this.key = value;
 			return this;
 		}
@@ -136,15 +142,15 @@ public final class HistogramOrder implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HistogramOrder
+	 * Json deserializer for {@link HistogramOrder}
 	 */
-	public static final JsonpDeserializer<HistogramOrder> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HistogramOrder::setupHistogramOrderDeserializer);
+	public static final JsonpDeserializer<HistogramOrder> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HistogramOrder::setupHistogramOrderDeserializer, Builder::build);
 
 	protected static void setupHistogramOrderDeserializer(DelegatingDeserializer<HistogramOrder.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.jsonValueDeserializer(), "_count");
-		op.add(Builder::key, JsonpDeserializer.jsonValueDeserializer(), "_key");
+		op.add(Builder::count, SortOrder._DESERIALIZER, "_count");
+		op.add(Builder::key, SortOrder._DESERIALIZER, "_key");
 
 	}
 

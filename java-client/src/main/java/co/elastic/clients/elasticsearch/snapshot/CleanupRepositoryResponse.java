@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.cleanup_repository.CleanupRepositoryResults;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,19 +38,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Response
-public final class CleanupRepositoryResponse implements ToJsonp {
+@JsonpDeserializable
+public final class CleanupRepositoryResponse implements JsonpSerializable {
 	private final CleanupRepositoryResults results;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CleanupRepositoryResponse(Builder builder) {
+	public CleanupRepositoryResponse(Builder builder) {
 
 		this.results = Objects.requireNonNull(builder.results, "results");
 
 	}
 
+	public CleanupRepositoryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code results}
+	 * Required - API name: {@code results}
 	 */
 	public CleanupRepositoryResults results() {
 		return this.results;
@@ -58,16 +64,16 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("results");
-		this.results.toJsonp(generator, mapper);
+		this.results.serialize(generator, mapper);
 
 	}
 
@@ -80,7 +86,7 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 		private CleanupRepositoryResults results;
 
 		/**
-		 * API name: {@code results}
+		 * Required - API name: {@code results}
 		 */
 		public Builder results(CleanupRepositoryResults value) {
 			this.results = value;
@@ -88,7 +94,7 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code results}
+		 * Required - API name: {@code results}
 		 */
 		public Builder results(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
 			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
@@ -109,15 +115,15 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CleanupRepositoryResponse
+	 * Json deserializer for {@link CleanupRepositoryResponse}
 	 */
-	public static final JsonpDeserializer<CleanupRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer);
+	public static final JsonpDeserializer<CleanupRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer, Builder::build);
 
 	protected static void setupCleanupRepositoryResponseDeserializer(
 			DelegatingDeserializer<CleanupRepositoryResponse.Builder> op) {
 
-		op.add(Builder::results, CleanupRepositoryResults.DESERIALIZER, "results");
+		op.add(Builder::results, CleanupRepositoryResults._DESERIALIZER, "results");
 
 	}
 

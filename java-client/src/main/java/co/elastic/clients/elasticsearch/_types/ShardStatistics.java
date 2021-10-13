@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardStatistics
-public final class ShardStatistics implements ToJsonp {
+@JsonpDeserializable
+public final class ShardStatistics implements JsonpSerializable {
 	private final Number failed;
 
 	private final Number successful;
@@ -55,32 +58,36 @@ public final class ShardStatistics implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStatistics(Builder builder) {
+	public ShardStatistics(Builder builder) {
 
 		this.failed = Objects.requireNonNull(builder.failed, "failed");
 		this.successful = Objects.requireNonNull(builder.successful, "successful");
 		this.total = Objects.requireNonNull(builder.total, "total");
-		this.failures = builder.failures;
+		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
 		this.skipped = builder.skipped;
 
 	}
 
+	public ShardStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code failed}
+	 * Required - API name: {@code failed}
 	 */
 	public Number failed() {
 		return this.failed;
 	}
 
 	/**
-	 * API name: {@code successful}
+	 * Required - API name: {@code successful}
 	 */
 	public Number successful() {
 		return this.successful;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public Number total() {
 		return this.total;
@@ -105,13 +112,13 @@ public final class ShardStatistics implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("failed");
 		generator.write(this.failed.doubleValue());
@@ -127,7 +134,7 @@ public final class ShardStatistics implements ToJsonp {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -161,7 +168,7 @@ public final class ShardStatistics implements ToJsonp {
 		private Number skipped;
 
 		/**
-		 * API name: {@code failed}
+		 * Required - API name: {@code failed}
 		 */
 		public Builder failed(Number value) {
 			this.failed = value;
@@ -169,7 +176,7 @@ public final class ShardStatistics implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code successful}
+		 * Required - API name: {@code successful}
 		 */
 		public Builder successful(Number value) {
 			this.successful = value;
@@ -177,7 +184,7 @@ public final class ShardStatistics implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Number value) {
 			this.total = value;
@@ -248,17 +255,17 @@ public final class ShardStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStatistics
+	 * Json deserializer for {@link ShardStatistics}
 	 */
-	public static final JsonpDeserializer<ShardStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStatistics::setupShardStatisticsDeserializer);
+	public static final JsonpDeserializer<ShardStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStatistics::setupShardStatisticsDeserializer, Builder::build);
 
 	protected static void setupShardStatisticsDeserializer(DelegatingDeserializer<ShardStatistics.Builder> op) {
 
 		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
 		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
 		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
 
 	}

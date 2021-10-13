@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,21 +36,30 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_auto_follow_pattern.Request
+
 public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResumeAutoFollowPatternRequest(Builder builder) {
+	public ResumeAutoFollowPatternRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
+	public ResumeAutoFollowPatternRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the auto follow pattern to resume discovering new
+	 * indices to follow.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -64,6 +75,9 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * Required - The name of the auto follow pattern to resume discovering new
+		 * indices to follow.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -88,7 +102,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.resume_auto_follow_pattern}".
 	 */
-	public static final Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -101,19 +115,18 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ccr");
 					buf.append("/auto_follow");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					buf.append("/resume");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -121,5 +134,5 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ResumeAutoFollowPatternResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ResumeAutoFollowPatternResponse._DESERIALIZER);
 }

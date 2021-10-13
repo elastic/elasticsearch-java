@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesJoin
-public final class EqlFeaturesJoin implements ToJsonp {
+@JsonpDeserializable
+public final class EqlFeaturesJoin implements JsonpSerializable {
 	private final Number joinQueriesTwo;
 
 	private final Number joinQueriesThree;
@@ -49,7 +52,7 @@ public final class EqlFeaturesJoin implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlFeaturesJoin(Builder builder) {
+	public EqlFeaturesJoin(Builder builder) {
 
 		this.joinQueriesTwo = Objects.requireNonNull(builder.joinQueriesTwo, "join_queries_two");
 		this.joinQueriesThree = Objects.requireNonNull(builder.joinQueriesThree, "join_queries_three");
@@ -59,36 +62,40 @@ public final class EqlFeaturesJoin implements ToJsonp {
 
 	}
 
+	public EqlFeaturesJoin(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code join_queries_two}
+	 * Required - API name: {@code join_queries_two}
 	 */
 	public Number joinQueriesTwo() {
 		return this.joinQueriesTwo;
 	}
 
 	/**
-	 * API name: {@code join_queries_three}
+	 * Required - API name: {@code join_queries_three}
 	 */
 	public Number joinQueriesThree() {
 		return this.joinQueriesThree;
 	}
 
 	/**
-	 * API name: {@code join_until}
+	 * Required - API name: {@code join_until}
 	 */
 	public Number joinUntil() {
 		return this.joinUntil;
 	}
 
 	/**
-	 * API name: {@code join_queries_five_or_more}
+	 * Required - API name: {@code join_queries_five_or_more}
 	 */
 	public Number joinQueriesFiveOrMore() {
 		return this.joinQueriesFiveOrMore;
 	}
 
 	/**
-	 * API name: {@code join_queries_four}
+	 * Required - API name: {@code join_queries_four}
 	 */
 	public Number joinQueriesFour() {
 		return this.joinQueriesFour;
@@ -97,13 +104,13 @@ public final class EqlFeaturesJoin implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("join_queries_two");
 		generator.write(this.joinQueriesTwo.doubleValue());
@@ -139,7 +146,7 @@ public final class EqlFeaturesJoin implements ToJsonp {
 		private Number joinQueriesFour;
 
 		/**
-		 * API name: {@code join_queries_two}
+		 * Required - API name: {@code join_queries_two}
 		 */
 		public Builder joinQueriesTwo(Number value) {
 			this.joinQueriesTwo = value;
@@ -147,7 +154,7 @@ public final class EqlFeaturesJoin implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code join_queries_three}
+		 * Required - API name: {@code join_queries_three}
 		 */
 		public Builder joinQueriesThree(Number value) {
 			this.joinQueriesThree = value;
@@ -155,7 +162,7 @@ public final class EqlFeaturesJoin implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code join_until}
+		 * Required - API name: {@code join_until}
 		 */
 		public Builder joinUntil(Number value) {
 			this.joinUntil = value;
@@ -163,7 +170,7 @@ public final class EqlFeaturesJoin implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code join_queries_five_or_more}
+		 * Required - API name: {@code join_queries_five_or_more}
 		 */
 		public Builder joinQueriesFiveOrMore(Number value) {
 			this.joinQueriesFiveOrMore = value;
@@ -171,7 +178,7 @@ public final class EqlFeaturesJoin implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code join_queries_four}
+		 * Required - API name: {@code join_queries_four}
 		 */
 		public Builder joinQueriesFour(Number value) {
 			this.joinQueriesFour = value;
@@ -193,10 +200,10 @@ public final class EqlFeaturesJoin implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EqlFeaturesJoin
+	 * Json deserializer for {@link EqlFeaturesJoin}
 	 */
-	public static final JsonpDeserializer<EqlFeaturesJoin> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeaturesJoin::setupEqlFeaturesJoinDeserializer);
+	public static final JsonpDeserializer<EqlFeaturesJoin> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeaturesJoin::setupEqlFeaturesJoinDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesJoinDeserializer(DelegatingDeserializer<EqlFeaturesJoin.Builder> op) {
 

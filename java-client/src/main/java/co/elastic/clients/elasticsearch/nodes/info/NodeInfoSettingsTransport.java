@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,29 +38,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
-public final class NodeInfoSettingsTransport implements ToJsonp {
-	private final JsonValue type;
+@JsonpDeserializable
+public final class NodeInfoSettingsTransport implements JsonpSerializable {
+	private final NodeInfoSettingsTransportType type;
 
 	@Nullable
-	private final String type_default;
+	private final String typeDefault;
 
 	@Nullable
 	private final NodeInfoSettingsTransportFeatures features;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsTransport(Builder builder) {
+	public NodeInfoSettingsTransport(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
-		this.type_default = builder.type_default;
+		this.typeDefault = builder.typeDefault;
 		this.features = builder.features;
 
 	}
 
+	public NodeInfoSettingsTransport(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
-	public JsonValue type() {
+	public NodeInfoSettingsTransportType type() {
 		return this.type;
 	}
 
@@ -68,8 +73,8 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	 * API name: {@code type.default}
 	 */
 	@Nullable
-	public String type_default() {
-		return this.type_default;
+	public String typeDefault() {
+		return this.typeDefault;
 	}
 
 	/**
@@ -83,27 +88,27 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
-		if (this.type_default != null) {
+		if (this.typeDefault != null) {
 
 			generator.writeKey("type.default");
-			generator.write(this.type_default);
+			generator.write(this.typeDefault);
 
 		}
 		if (this.features != null) {
 
 			generator.writeKey("features");
-			this.features.toJsonp(generator, mapper);
+			this.features.serialize(generator, mapper);
 
 		}
 
@@ -115,27 +120,35 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	 * Builder for {@link NodeInfoSettingsTransport}.
 	 */
 	public static class Builder implements ObjectBuilder<NodeInfoSettingsTransport> {
-		private JsonValue type;
+		private NodeInfoSettingsTransportType type;
 
 		@Nullable
-		private String type_default;
+		private String typeDefault;
 
 		@Nullable
 		private NodeInfoSettingsTransportFeatures features;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(NodeInfoSettingsTransportType value) {
 			this.type = value;
 			return this;
 		}
 
 		/**
+		 * Required - API name: {@code type}
+		 */
+		public Builder type(
+				Function<NodeInfoSettingsTransportType.Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
+			return this.type(fn.apply(new NodeInfoSettingsTransportType.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code type.default}
 		 */
-		public Builder type_default(@Nullable String value) {
-			this.type_default = value;
+		public Builder typeDefault(@Nullable String value) {
+			this.typeDefault = value;
 			return this;
 		}
 
@@ -170,17 +183,17 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsTransport
+	 * Json deserializer for {@link NodeInfoSettingsTransport}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettingsTransport> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSettingsTransport::setupNodeInfoSettingsTransportDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettingsTransport> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoSettingsTransport::setupNodeInfoSettingsTransportDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSettingsTransportDeserializer(
 			DelegatingDeserializer<NodeInfoSettingsTransport.Builder> op) {
 
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
-		op.add(Builder::type_default, JsonpDeserializer.stringDeserializer(), "type.default");
-		op.add(Builder::features, NodeInfoSettingsTransportFeatures.DESERIALIZER, "features");
+		op.add(Builder::type, NodeInfoSettingsTransportType._DESERIALIZER, "type");
+		op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
+		op.add(Builder::features, NodeInfoSettingsTransportFeatures._DESERIALIZER, "features");
 
 	}
 

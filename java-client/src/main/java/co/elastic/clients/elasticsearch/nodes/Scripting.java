@@ -24,62 +24,68 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: nodes._types.Scripting
-public final class Scripting implements ToJsonp {
-	private final Number cacheEvictions;
+@JsonpDeserializable
+public final class Scripting implements JsonpSerializable {
+	private final long cacheEvictions;
 
-	private final Number compilations;
+	private final long compilations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Scripting(Builder builder) {
+	public Scripting(Builder builder) {
 
 		this.cacheEvictions = Objects.requireNonNull(builder.cacheEvictions, "cache_evictions");
 		this.compilations = Objects.requireNonNull(builder.compilations, "compilations");
 
 	}
 
+	public Scripting(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cache_evictions}
+	 * Required - API name: {@code cache_evictions}
 	 */
-	public Number cacheEvictions() {
+	public long cacheEvictions() {
 		return this.cacheEvictions;
 	}
 
 	/**
-	 * API name: {@code compilations}
+	 * Required - API name: {@code compilations}
 	 */
-	public Number compilations() {
+	public long compilations() {
 		return this.compilations;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cache_evictions");
-		generator.write(this.cacheEvictions.doubleValue());
+		generator.write(this.cacheEvictions);
 
 		generator.writeKey("compilations");
-		generator.write(this.compilations.doubleValue());
+		generator.write(this.compilations);
 
 	}
 
@@ -89,22 +95,22 @@ public final class Scripting implements ToJsonp {
 	 * Builder for {@link Scripting}.
 	 */
 	public static class Builder implements ObjectBuilder<Scripting> {
-		private Number cacheEvictions;
+		private Long cacheEvictions;
 
-		private Number compilations;
+		private Long compilations;
 
 		/**
-		 * API name: {@code cache_evictions}
+		 * Required - API name: {@code cache_evictions}
 		 */
-		public Builder cacheEvictions(Number value) {
+		public Builder cacheEvictions(long value) {
 			this.cacheEvictions = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code compilations}
+		 * Required - API name: {@code compilations}
 		 */
-		public Builder compilations(Number value) {
+		public Builder compilations(long value) {
 			this.compilations = value;
 			return this;
 		}
@@ -124,15 +130,15 @@ public final class Scripting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Scripting
+	 * Json deserializer for {@link Scripting}
 	 */
-	public static final JsonpDeserializer<Scripting> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Scripting::setupScriptingDeserializer);
+	public static final JsonpDeserializer<Scripting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Scripting::setupScriptingDeserializer, Builder::build);
 
 	protected static void setupScriptingDeserializer(DelegatingDeserializer<Scripting.Builder> op) {
 
-		op.add(Builder::cacheEvictions, JsonpDeserializer.numberDeserializer(), "cache_evictions");
-		op.add(Builder::compilations, JsonpDeserializer.numberDeserializer(), "compilations");
+		op.add(Builder::cacheEvictions, JsonpDeserializer.longDeserializer(), "cache_evictions");
+		op.add(Builder::compilations, JsonpDeserializer.longDeserializer(), "compilations");
 
 	}
 

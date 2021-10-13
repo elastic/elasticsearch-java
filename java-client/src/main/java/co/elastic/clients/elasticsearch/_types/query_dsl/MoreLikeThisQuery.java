@@ -23,31 +23,41 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MoreLikeThisQuery
-public final class MoreLikeThisQuery extends QueryBase {
+@JsonpDeserializable
+public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String analyzer;
 
 	@Nullable
-	private final Number boostTerms;
+	private final Double boostTerms;
+
+	@Nullable
+	private final Boolean failOnUnsupportedField;
 
 	@Nullable
 	private final List<String> fields;
@@ -55,57 +65,58 @@ public final class MoreLikeThisQuery extends QueryBase {
 	@Nullable
 	private final Boolean include;
 
-	@Nullable
-	private final List<JsonValue> like;
+	private final List<LikeDocument> like;
 
 	@Nullable
-	private final Number maxDocFreq;
+	private final Integer maxDocFreq;
 
 	@Nullable
-	private final Number maxQueryTerms;
+	private final Integer maxQueryTerms;
 
 	@Nullable
-	private final Number maxWordLength;
+	private final Integer maxWordLength;
 
 	@Nullable
-	private final Number minDocFreq;
+	private final Integer minDocFreq;
 
 	@Nullable
-	private final JsonValue minimumShouldMatch;
+	private final String minimumShouldMatch;
 
 	@Nullable
-	private final Number minTermFreq;
+	private final Integer minTermFreq;
 
 	@Nullable
-	private final Number minWordLength;
+	private final Integer minWordLength;
 
 	@Nullable
 	private final Map<String, String> perFieldAnalyzer;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final List<String> stopWords;
 
 	@Nullable
-	private final List<JsonValue> unlike;
+	private final List<LikeDocument> unlike;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
-	private final JsonValue versionType;
+	private final VersionType versionType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MoreLikeThisQuery(Builder builder) {
+	public MoreLikeThisQuery(Builder builder) {
 		super(builder);
+
 		this.analyzer = builder.analyzer;
 		this.boostTerms = builder.boostTerms;
-		this.fields = builder.fields;
+		this.failOnUnsupportedField = builder.failOnUnsupportedField;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.include = builder.include;
-		this.like = builder.like;
+		this.like = ModelTypeHelper.unmodifiableNonNull(builder.like, "like");
 		this.maxDocFreq = builder.maxDocFreq;
 		this.maxQueryTerms = builder.maxQueryTerms;
 		this.maxWordLength = builder.maxWordLength;
@@ -113,13 +124,25 @@ public final class MoreLikeThisQuery extends QueryBase {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
-		this.perFieldAnalyzer = builder.perFieldAnalyzer;
+		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
-		this.stopWords = builder.stopWords;
-		this.unlike = builder.unlike;
+		this.stopWords = ModelTypeHelper.unmodifiable(builder.stopWords);
+		this.unlike = ModelTypeHelper.unmodifiable(builder.unlike);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public MoreLikeThisQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "more_like_this";
 	}
 
 	/**
@@ -134,8 +157,16 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code boost_terms}
 	 */
 	@Nullable
-	public Number boostTerms() {
+	public Double boostTerms() {
 		return this.boostTerms;
+	}
+
+	/**
+	 * API name: {@code fail_on_unsupported_field}
+	 */
+	@Nullable
+	public Boolean failOnUnsupportedField() {
+		return this.failOnUnsupportedField;
 	}
 
 	/**
@@ -155,10 +186,9 @@ public final class MoreLikeThisQuery extends QueryBase {
 	}
 
 	/**
-	 * API name: {@code like}
+	 * Required - API name: {@code like}
 	 */
-	@Nullable
-	public List<JsonValue> like() {
+	public List<LikeDocument> like() {
 		return this.like;
 	}
 
@@ -166,7 +196,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code max_doc_freq}
 	 */
 	@Nullable
-	public Number maxDocFreq() {
+	public Integer maxDocFreq() {
 		return this.maxDocFreq;
 	}
 
@@ -174,7 +204,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code max_query_terms}
 	 */
 	@Nullable
-	public Number maxQueryTerms() {
+	public Integer maxQueryTerms() {
 		return this.maxQueryTerms;
 	}
 
@@ -182,7 +212,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code max_word_length}
 	 */
 	@Nullable
-	public Number maxWordLength() {
+	public Integer maxWordLength() {
 		return this.maxWordLength;
 	}
 
@@ -190,7 +220,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
-	public Number minDocFreq() {
+	public Integer minDocFreq() {
 		return this.minDocFreq;
 	}
 
@@ -198,7 +228,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public JsonValue minimumShouldMatch() {
+	public String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -206,7 +236,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code min_term_freq}
 	 */
 	@Nullable
-	public Number minTermFreq() {
+	public Integer minTermFreq() {
 		return this.minTermFreq;
 	}
 
@@ -214,7 +244,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
-	public Number minWordLength() {
+	public Integer minWordLength() {
 		return this.minWordLength;
 	}
 
@@ -230,7 +260,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -246,7 +276,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code unlike}
 	 */
 	@Nullable
-	public List<JsonValue> unlike() {
+	public List<LikeDocument> unlike() {
 		return this.unlike;
 	}
 
@@ -254,7 +284,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -262,12 +292,13 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public JsonValue versionType() {
+	public VersionType versionType() {
 		return this.versionType;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -277,7 +308,13 @@ public final class MoreLikeThisQuery extends QueryBase {
 		if (this.boostTerms != null) {
 
 			generator.writeKey("boost_terms");
-			generator.write(this.boostTerms.doubleValue());
+			generator.write(this.boostTerms);
+
+		}
+		if (this.failOnUnsupportedField != null) {
+
+			generator.writeKey("fail_on_unsupported_field");
+			generator.write(this.failOnUnsupportedField);
 
 		}
 		if (this.fields != null) {
@@ -297,39 +334,37 @@ public final class MoreLikeThisQuery extends QueryBase {
 			generator.write(this.include);
 
 		}
-		if (this.like != null) {
 
-			generator.writeKey("like");
-			generator.writeStartArray();
-			for (JsonValue item0 : this.like) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+		generator.writeKey("like");
+		generator.writeStartArray();
+		for (LikeDocument item0 : this.like) {
+			item0.serialize(generator, mapper);
 
 		}
+		generator.writeEnd();
+
 		if (this.maxDocFreq != null) {
 
 			generator.writeKey("max_doc_freq");
-			generator.write(this.maxDocFreq.doubleValue());
+			generator.write(this.maxDocFreq);
 
 		}
 		if (this.maxQueryTerms != null) {
 
 			generator.writeKey("max_query_terms");
-			generator.write(this.maxQueryTerms.doubleValue());
+			generator.write(this.maxQueryTerms);
 
 		}
 		if (this.maxWordLength != null) {
 
 			generator.writeKey("max_word_length");
-			generator.write(this.maxWordLength.doubleValue());
+			generator.write(this.maxWordLength);
 
 		}
 		if (this.minDocFreq != null) {
 
 			generator.writeKey("min_doc_freq");
-			generator.write(this.minDocFreq.doubleValue());
+			generator.write(this.minDocFreq);
 
 		}
 		if (this.minimumShouldMatch != null) {
@@ -341,13 +376,13 @@ public final class MoreLikeThisQuery extends QueryBase {
 		if (this.minTermFreq != null) {
 
 			generator.writeKey("min_term_freq");
-			generator.write(this.minTermFreq.doubleValue());
+			generator.write(this.minTermFreq);
 
 		}
 		if (this.minWordLength != null) {
 
 			generator.writeKey("min_word_length");
-			generator.write(this.minWordLength.doubleValue());
+			generator.write(this.minWordLength);
 
 		}
 		if (this.perFieldAnalyzer != null) {
@@ -383,8 +418,8 @@ public final class MoreLikeThisQuery extends QueryBase {
 
 			generator.writeKey("unlike");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.unlike) {
-				generator.write(item0);
+			for (LikeDocument item0 : this.unlike) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -393,14 +428,13 @@ public final class MoreLikeThisQuery extends QueryBase {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
 
 			generator.writeKey("version_type");
-			generator.write(this.versionType);
-
+			this.versionType.serialize(generator, mapper);
 		}
 
 	}
@@ -415,7 +449,10 @@ public final class MoreLikeThisQuery extends QueryBase {
 		private String analyzer;
 
 		@Nullable
-		private Number boostTerms;
+		private Double boostTerms;
+
+		@Nullable
+		private Boolean failOnUnsupportedField;
 
 		@Nullable
 		private List<String> fields;
@@ -423,47 +460,46 @@ public final class MoreLikeThisQuery extends QueryBase {
 		@Nullable
 		private Boolean include;
 
-		@Nullable
-		private List<JsonValue> like;
+		private List<LikeDocument> like;
 
 		@Nullable
-		private Number maxDocFreq;
+		private Integer maxDocFreq;
 
 		@Nullable
-		private Number maxQueryTerms;
+		private Integer maxQueryTerms;
 
 		@Nullable
-		private Number maxWordLength;
+		private Integer maxWordLength;
 
 		@Nullable
-		private Number minDocFreq;
+		private Integer minDocFreq;
 
 		@Nullable
-		private JsonValue minimumShouldMatch;
+		private String minimumShouldMatch;
 
 		@Nullable
-		private Number minTermFreq;
+		private Integer minTermFreq;
 
 		@Nullable
-		private Number minWordLength;
+		private Integer minWordLength;
 
 		@Nullable
 		private Map<String, String> perFieldAnalyzer;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private List<String> stopWords;
 
 		@Nullable
-		private List<JsonValue> unlike;
+		private List<LikeDocument> unlike;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
-		private JsonValue versionType;
+		private VersionType versionType;
 
 		/**
 		 * API name: {@code analyzer}
@@ -476,8 +512,16 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code boost_terms}
 		 */
-		public Builder boostTerms(@Nullable Number value) {
+		public Builder boostTerms(@Nullable Double value) {
 			this.boostTerms = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fail_on_unsupported_field}
+		 */
+		public Builder failOnUnsupportedField(@Nullable Boolean value) {
+			this.failOnUnsupportedField = value;
 			return this;
 		}
 
@@ -517,17 +561,17 @@ public final class MoreLikeThisQuery extends QueryBase {
 		}
 
 		/**
-		 * API name: {@code like}
+		 * Required - API name: {@code like}
 		 */
-		public Builder like(@Nullable List<JsonValue> value) {
+		public Builder like(List<LikeDocument> value) {
 			this.like = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code like}
+		 * Required - API name: {@code like}
 		 */
-		public Builder like(JsonValue... value) {
+		public Builder like(LikeDocument... value) {
 			this.like = Arrays.asList(value);
 			return this;
 		}
@@ -535,7 +579,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * Add a value to {@link #like(List)}, creating the list if needed.
 		 */
-		public Builder addLike(JsonValue value) {
+		public Builder addLike(LikeDocument value) {
 			if (this.like == null) {
 				this.like = new ArrayList<>();
 			}
@@ -544,9 +588,23 @@ public final class MoreLikeThisQuery extends QueryBase {
 		}
 
 		/**
+		 * Set {@link #like(List)} to a singleton list.
+		 */
+		public Builder like(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
+			return this.like(fn.apply(new LikeDocument.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #like(List)}, creating the list if needed.
+		 */
+		public Builder addLike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
+			return this.addLike(fn.apply(new LikeDocument.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code max_doc_freq}
 		 */
-		public Builder maxDocFreq(@Nullable Number value) {
+		public Builder maxDocFreq(@Nullable Integer value) {
 			this.maxDocFreq = value;
 			return this;
 		}
@@ -554,7 +612,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code max_query_terms}
 		 */
-		public Builder maxQueryTerms(@Nullable Number value) {
+		public Builder maxQueryTerms(@Nullable Integer value) {
 			this.maxQueryTerms = value;
 			return this;
 		}
@@ -562,7 +620,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code max_word_length}
 		 */
-		public Builder maxWordLength(@Nullable Number value) {
+		public Builder maxWordLength(@Nullable Integer value) {
 			this.maxWordLength = value;
 			return this;
 		}
@@ -570,7 +628,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code min_doc_freq}
 		 */
-		public Builder minDocFreq(@Nullable Number value) {
+		public Builder minDocFreq(@Nullable Integer value) {
 			this.minDocFreq = value;
 			return this;
 		}
@@ -578,7 +636,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+		public Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -586,7 +644,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code min_term_freq}
 		 */
-		public Builder minTermFreq(@Nullable Number value) {
+		public Builder minTermFreq(@Nullable Integer value) {
 			this.minTermFreq = value;
 			return this;
 		}
@@ -594,7 +652,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code min_word_length}
 		 */
-		public Builder minWordLength(@Nullable Number value) {
+		public Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
 			return this;
 		}
@@ -622,7 +680,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -657,7 +715,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code unlike}
 		 */
-		public Builder unlike(@Nullable List<JsonValue> value) {
+		public Builder unlike(@Nullable List<LikeDocument> value) {
 			this.unlike = value;
 			return this;
 		}
@@ -665,7 +723,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code unlike}
 		 */
-		public Builder unlike(JsonValue... value) {
+		public Builder unlike(LikeDocument... value) {
 			this.unlike = Arrays.asList(value);
 			return this;
 		}
@@ -673,7 +731,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * Add a value to {@link #unlike(List)}, creating the list if needed.
 		 */
-		public Builder addUnlike(JsonValue value) {
+		public Builder addUnlike(LikeDocument value) {
 			if (this.unlike == null) {
 				this.unlike = new ArrayList<>();
 			}
@@ -682,9 +740,23 @@ public final class MoreLikeThisQuery extends QueryBase {
 		}
 
 		/**
+		 * Set {@link #unlike(List)} to a singleton list.
+		 */
+		public Builder unlike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
+			return this.unlike(fn.apply(new LikeDocument.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #unlike(List)}, creating the list if needed.
+		 */
+		public Builder addUnlike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
+			return this.addUnlike(fn.apply(new LikeDocument.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -692,7 +764,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable JsonValue value) {
+		public Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -717,34 +789,34 @@ public final class MoreLikeThisQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MoreLikeThisQuery
+	 * Json deserializer for {@link MoreLikeThisQuery}
 	 */
-	public static final JsonpDeserializer<MoreLikeThisQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer);
+	public static final JsonpDeserializer<MoreLikeThisQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer, Builder::build);
 
 	protected static void setupMoreLikeThisQueryDeserializer(DelegatingDeserializer<MoreLikeThisQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(Builder::boostTerms, JsonpDeserializer.numberDeserializer(), "boost_terms");
+		op.add(Builder::boostTerms, JsonpDeserializer.doubleDeserializer(), "boost_terms");
+		op.add(Builder::failOnUnsupportedField, JsonpDeserializer.booleanDeserializer(), "fail_on_unsupported_field");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::include, JsonpDeserializer.booleanDeserializer(), "include");
-		op.add(Builder::like, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "like");
-		op.add(Builder::maxDocFreq, JsonpDeserializer.numberDeserializer(), "max_doc_freq");
-		op.add(Builder::maxQueryTerms, JsonpDeserializer.numberDeserializer(), "max_query_terms");
-		op.add(Builder::maxWordLength, JsonpDeserializer.numberDeserializer(), "max_word_length");
-		op.add(Builder::minDocFreq, JsonpDeserializer.numberDeserializer(), "min_doc_freq");
-		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::minTermFreq, JsonpDeserializer.numberDeserializer(), "min_term_freq");
-		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
+		op.add(Builder::like, JsonpDeserializer.arrayDeserializer(LikeDocument._DESERIALIZER), "like");
+		op.add(Builder::maxDocFreq, JsonpDeserializer.integerDeserializer(), "max_doc_freq");
+		op.add(Builder::maxQueryTerms, JsonpDeserializer.integerDeserializer(), "max_query_terms");
+		op.add(Builder::maxWordLength, JsonpDeserializer.integerDeserializer(), "max_word_length");
+		op.add(Builder::minDocFreq, JsonpDeserializer.integerDeserializer(), "min_doc_freq");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
+		op.add(Builder::minTermFreq, JsonpDeserializer.integerDeserializer(), "min_term_freq");
+		op.add(Builder::minWordLength, JsonpDeserializer.integerDeserializer(), "min_word_length");
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stop_words");
-		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"unlike");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
+		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(LikeDocument._DESERIALIZER), "unlike");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 

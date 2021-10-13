@@ -24,41 +24,44 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.DataPathStats
-public final class DataPathStats implements ToJsonp {
+@JsonpDeserializable
+public final class DataPathStats implements JsonpSerializable {
 	private final String available;
 
-	private final Number availableInBytes;
+	private final long availableInBytes;
 
 	private final String diskQueue;
 
-	private final Number diskReads;
+	private final long diskReads;
 
 	private final String diskReadSize;
 
-	private final Number diskReadSizeInBytes;
+	private final long diskReadSizeInBytes;
 
-	private final Number diskWrites;
+	private final long diskWrites;
 
 	private final String diskWriteSize;
 
-	private final Number diskWriteSizeInBytes;
+	private final long diskWriteSizeInBytes;
 
 	private final String free;
 
-	private final Number freeInBytes;
+	private final long freeInBytes;
 
 	private final String mount;
 
@@ -66,13 +69,13 @@ public final class DataPathStats implements ToJsonp {
 
 	private final String total;
 
-	private final Number totalInBytes;
+	private final long totalInBytes;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataPathStats(Builder builder) {
+	public DataPathStats(Builder builder) {
 
 		this.available = Objects.requireNonNull(builder.available, "available");
 		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
@@ -93,113 +96,117 @@ public final class DataPathStats implements ToJsonp {
 
 	}
 
+	public DataPathStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code available}
+	 * Required - API name: {@code available}
 	 */
 	public String available() {
 		return this.available;
 	}
 
 	/**
-	 * API name: {@code available_in_bytes}
+	 * Required - API name: {@code available_in_bytes}
 	 */
-	public Number availableInBytes() {
+	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
-	 * API name: {@code disk_queue}
+	 * Required - API name: {@code disk_queue}
 	 */
 	public String diskQueue() {
 		return this.diskQueue;
 	}
 
 	/**
-	 * API name: {@code disk_reads}
+	 * Required - API name: {@code disk_reads}
 	 */
-	public Number diskReads() {
+	public long diskReads() {
 		return this.diskReads;
 	}
 
 	/**
-	 * API name: {@code disk_read_size}
+	 * Required - API name: {@code disk_read_size}
 	 */
 	public String diskReadSize() {
 		return this.diskReadSize;
 	}
 
 	/**
-	 * API name: {@code disk_read_size_in_bytes}
+	 * Required - API name: {@code disk_read_size_in_bytes}
 	 */
-	public Number diskReadSizeInBytes() {
+	public long diskReadSizeInBytes() {
 		return this.diskReadSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code disk_writes}
+	 * Required - API name: {@code disk_writes}
 	 */
-	public Number diskWrites() {
+	public long diskWrites() {
 		return this.diskWrites;
 	}
 
 	/**
-	 * API name: {@code disk_write_size}
+	 * Required - API name: {@code disk_write_size}
 	 */
 	public String diskWriteSize() {
 		return this.diskWriteSize;
 	}
 
 	/**
-	 * API name: {@code disk_write_size_in_bytes}
+	 * Required - API name: {@code disk_write_size_in_bytes}
 	 */
-	public Number diskWriteSizeInBytes() {
+	public long diskWriteSizeInBytes() {
 		return this.diskWriteSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code free}
+	 * Required - API name: {@code free}
 	 */
 	public String free() {
 		return this.free;
 	}
 
 	/**
-	 * API name: {@code free_in_bytes}
+	 * Required - API name: {@code free_in_bytes}
 	 */
-	public Number freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * API name: {@code mount}
+	 * Required - API name: {@code mount}
 	 */
 	public String mount() {
 		return this.mount;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public String total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -208,46 +215,46 @@ public final class DataPathStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available");
 		generator.write(this.available);
 
 		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes.doubleValue());
+		generator.write(this.availableInBytes);
 
 		generator.writeKey("disk_queue");
 		generator.write(this.diskQueue);
 
 		generator.writeKey("disk_reads");
-		generator.write(this.diskReads.doubleValue());
+		generator.write(this.diskReads);
 
 		generator.writeKey("disk_read_size");
 		generator.write(this.diskReadSize);
 
 		generator.writeKey("disk_read_size_in_bytes");
-		generator.write(this.diskReadSizeInBytes.doubleValue());
+		generator.write(this.diskReadSizeInBytes);
 
 		generator.writeKey("disk_writes");
-		generator.write(this.diskWrites.doubleValue());
+		generator.write(this.diskWrites);
 
 		generator.writeKey("disk_write_size");
 		generator.write(this.diskWriteSize);
 
 		generator.writeKey("disk_write_size_in_bytes");
-		generator.write(this.diskWriteSizeInBytes.doubleValue());
+		generator.write(this.diskWriteSizeInBytes);
 
 		generator.writeKey("free");
 		generator.write(this.free);
 
 		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes.doubleValue());
+		generator.write(this.freeInBytes);
 
 		generator.writeKey("mount");
 		generator.write(this.mount);
@@ -259,7 +266,7 @@ public final class DataPathStats implements ToJsonp {
 		generator.write(this.total);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -274,25 +281,25 @@ public final class DataPathStats implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataPathStats> {
 		private String available;
 
-		private Number availableInBytes;
+		private Long availableInBytes;
 
 		private String diskQueue;
 
-		private Number diskReads;
+		private Long diskReads;
 
 		private String diskReadSize;
 
-		private Number diskReadSizeInBytes;
+		private Long diskReadSizeInBytes;
 
-		private Number diskWrites;
+		private Long diskWrites;
 
 		private String diskWriteSize;
 
-		private Number diskWriteSizeInBytes;
+		private Long diskWriteSizeInBytes;
 
 		private String free;
 
-		private Number freeInBytes;
+		private Long freeInBytes;
 
 		private String mount;
 
@@ -300,12 +307,12 @@ public final class DataPathStats implements ToJsonp {
 
 		private String total;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		private String type;
 
 		/**
-		 * API name: {@code available}
+		 * Required - API name: {@code available}
 		 */
 		public Builder available(String value) {
 			this.available = value;
@@ -313,15 +320,15 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code available_in_bytes}
+		 * Required - API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Number value) {
+		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code disk_queue}
+		 * Required - API name: {@code disk_queue}
 		 */
 		public Builder diskQueue(String value) {
 			this.diskQueue = value;
@@ -329,15 +336,15 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code disk_reads}
+		 * Required - API name: {@code disk_reads}
 		 */
-		public Builder diskReads(Number value) {
+		public Builder diskReads(long value) {
 			this.diskReads = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code disk_read_size}
+		 * Required - API name: {@code disk_read_size}
 		 */
 		public Builder diskReadSize(String value) {
 			this.diskReadSize = value;
@@ -345,23 +352,23 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code disk_read_size_in_bytes}
+		 * Required - API name: {@code disk_read_size_in_bytes}
 		 */
-		public Builder diskReadSizeInBytes(Number value) {
+		public Builder diskReadSizeInBytes(long value) {
 			this.diskReadSizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code disk_writes}
+		 * Required - API name: {@code disk_writes}
 		 */
-		public Builder diskWrites(Number value) {
+		public Builder diskWrites(long value) {
 			this.diskWrites = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code disk_write_size}
+		 * Required - API name: {@code disk_write_size}
 		 */
 		public Builder diskWriteSize(String value) {
 			this.diskWriteSize = value;
@@ -369,15 +376,15 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code disk_write_size_in_bytes}
+		 * Required - API name: {@code disk_write_size_in_bytes}
 		 */
-		public Builder diskWriteSizeInBytes(Number value) {
+		public Builder diskWriteSizeInBytes(long value) {
 			this.diskWriteSizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code free}
+		 * Required - API name: {@code free}
 		 */
 		public Builder free(String value) {
 			this.free = value;
@@ -385,15 +392,15 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code free_in_bytes}
+		 * Required - API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Number value) {
+		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code mount}
+		 * Required - API name: {@code mount}
 		 */
 		public Builder mount(String value) {
 			this.mount = value;
@@ -401,7 +408,7 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -409,7 +416,7 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(String value) {
 			this.total = value;
@@ -417,15 +424,15 @@ public final class DataPathStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -447,28 +454,28 @@ public final class DataPathStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataPathStats
+	 * Json deserializer for {@link DataPathStats}
 	 */
-	public static final JsonpDeserializer<DataPathStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataPathStats::setupDataPathStatsDeserializer);
+	public static final JsonpDeserializer<DataPathStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataPathStats::setupDataPathStatsDeserializer, Builder::build);
 
 	protected static void setupDataPathStatsDeserializer(DelegatingDeserializer<DataPathStats.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
-		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
+		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
 		op.add(Builder::diskQueue, JsonpDeserializer.stringDeserializer(), "disk_queue");
-		op.add(Builder::diskReads, JsonpDeserializer.numberDeserializer(), "disk_reads");
+		op.add(Builder::diskReads, JsonpDeserializer.longDeserializer(), "disk_reads");
 		op.add(Builder::diskReadSize, JsonpDeserializer.stringDeserializer(), "disk_read_size");
-		op.add(Builder::diskReadSizeInBytes, JsonpDeserializer.numberDeserializer(), "disk_read_size_in_bytes");
-		op.add(Builder::diskWrites, JsonpDeserializer.numberDeserializer(), "disk_writes");
+		op.add(Builder::diskReadSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_read_size_in_bytes");
+		op.add(Builder::diskWrites, JsonpDeserializer.longDeserializer(), "disk_writes");
 		op.add(Builder::diskWriteSize, JsonpDeserializer.stringDeserializer(), "disk_write_size");
-		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.numberDeserializer(), "disk_write_size_in_bytes");
+		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_write_size_in_bytes");
 		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
-		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
 		op.add(Builder::mount, JsonpDeserializer.stringDeserializer(), "mount");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

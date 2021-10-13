@@ -24,60 +24,68 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfMonth
-public final class TimeOfMonth implements ToJsonp {
+@JsonpDeserializable
+public final class TimeOfMonth implements JsonpSerializable {
 	private final List<String> at;
 
-	private final List<Number> on;
+	private final List<Integer> on;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TimeOfMonth(Builder builder) {
+	public TimeOfMonth(Builder builder) {
 
-		this.at = Objects.requireNonNull(builder.at, "at");
-		this.on = Objects.requireNonNull(builder.on, "on");
+		this.at = ModelTypeHelper.unmodifiableNonNull(builder.at, "at");
+		this.on = ModelTypeHelper.unmodifiableNonNull(builder.on, "on");
 
 	}
 
+	public TimeOfMonth(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code at}
+	 * Required - API name: {@code at}
 	 */
 	public List<String> at() {
 		return this.at;
 	}
 
 	/**
-	 * API name: {@code on}
+	 * Required - API name: {@code on}
 	 */
-	public List<Number> on() {
+	public List<Integer> on() {
 		return this.on;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("at");
 		generator.writeStartArray();
@@ -89,8 +97,8 @@ public final class TimeOfMonth implements ToJsonp {
 
 		generator.writeKey("on");
 		generator.writeStartArray();
-		for (Number item0 : this.on) {
-			generator.write(item0.doubleValue());
+		for (Integer item0 : this.on) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -105,10 +113,10 @@ public final class TimeOfMonth implements ToJsonp {
 	public static class Builder implements ObjectBuilder<TimeOfMonth> {
 		private List<String> at;
 
-		private List<Number> on;
+		private List<Integer> on;
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(List<String> value) {
 			this.at = value;
@@ -116,7 +124,7 @@ public final class TimeOfMonth implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(String... value) {
 			this.at = Arrays.asList(value);
@@ -135,17 +143,17 @@ public final class TimeOfMonth implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code on}
+		 * Required - API name: {@code on}
 		 */
-		public Builder on(List<Number> value) {
+		public Builder on(List<Integer> value) {
 			this.on = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code on}
+		 * Required - API name: {@code on}
 		 */
-		public Builder on(Number... value) {
+		public Builder on(Integer... value) {
 			this.on = Arrays.asList(value);
 			return this;
 		}
@@ -153,7 +161,7 @@ public final class TimeOfMonth implements ToJsonp {
 		/**
 		 * Add a value to {@link #on(List)}, creating the list if needed.
 		 */
-		public Builder addOn(Number value) {
+		public Builder addOn(Integer value) {
 			if (this.on == null) {
 				this.on = new ArrayList<>();
 			}
@@ -176,15 +184,15 @@ public final class TimeOfMonth implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TimeOfMonth
+	 * Json deserializer for {@link TimeOfMonth}
 	 */
-	public static final JsonpDeserializer<TimeOfMonth> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TimeOfMonth::setupTimeOfMonthDeserializer);
+	public static final JsonpDeserializer<TimeOfMonth> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TimeOfMonth::setupTimeOfMonthDeserializer, Builder::build);
 
 	protected static void setupTimeOfMonthDeserializer(DelegatingDeserializer<TimeOfMonth.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
-		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "on");
+		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()), "on");
 
 	}
 

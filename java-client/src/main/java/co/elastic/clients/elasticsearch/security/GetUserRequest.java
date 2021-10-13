@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,27 +39,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user.Request
+
 public final class GetUserRequest extends RequestBase {
 	@Nullable
 	private final List<String> username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserRequest(Builder builder) {
+	public GetUserRequest(Builder builder) {
 
-		this.username = builder.username;
+		this.username = ModelTypeHelper.unmodifiable(builder.username);
 
+	}
+
+	public GetUserRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * An identifier for the user. You can specify multiple usernames as a
 	 * comma-separated list. If you omit this parameter, the API retrieves
 	 * information about all users.
-	 *
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -77,7 +87,7 @@ public final class GetUserRequest extends RequestBase {
 		 * An identifier for the user. You can specify multiple usernames as a
 		 * comma-separated list. If you omit this parameter, the API retrieves
 		 * information about all users.
-		 *
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(@Nullable List<String> value) {
@@ -89,7 +99,7 @@ public final class GetUserRequest extends RequestBase {
 		 * An identifier for the user. You can specify multiple usernames as a
 		 * comma-separated list. If you omit this parameter, the API retrieves
 		 * information about all users.
-		 *
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(String... value) {
@@ -125,7 +135,7 @@ public final class GetUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user}".
 	 */
-	public static final Endpoint<GetUserRequest, GetUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetUserRequest, GetUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -146,7 +156,8 @@ public final class GetUserRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.username.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.username.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -155,7 +166,7 @@ public final class GetUserRequest extends RequestBase {
 					buf.append("/user");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -163,5 +174,5 @@ public final class GetUserRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetUserResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetUserResponse._DESERIALIZER);
 }

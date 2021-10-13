@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.InProgress
-public final class InProgress implements ToJsonp {
+@JsonpDeserializable
+public final class InProgress implements JsonpSerializable {
 	private final String name;
 
 	private final String startTimeMillis;
@@ -47,7 +50,7 @@ public final class InProgress implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InProgress(Builder builder) {
+	public InProgress(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.startTimeMillis = Objects.requireNonNull(builder.startTimeMillis, "start_time_millis");
@@ -56,29 +59,33 @@ public final class InProgress implements ToJsonp {
 
 	}
 
+	public InProgress(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code start_time_millis}
+	 * Required - API name: {@code start_time_millis}
 	 */
 	public String startTimeMillis() {
 		return this.startTimeMillis;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public String state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code uuid}
+	 * Required - API name: {@code uuid}
 	 */
 	public String uuid() {
 		return this.uuid;
@@ -87,13 +94,13 @@ public final class InProgress implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -124,7 +131,7 @@ public final class InProgress implements ToJsonp {
 		private String uuid;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -132,7 +139,7 @@ public final class InProgress implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code start_time_millis}
+		 * Required - API name: {@code start_time_millis}
 		 */
 		public Builder startTimeMillis(String value) {
 			this.startTimeMillis = value;
@@ -140,7 +147,7 @@ public final class InProgress implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(String value) {
 			this.state = value;
@@ -148,7 +155,7 @@ public final class InProgress implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code uuid}
+		 * Required - API name: {@code uuid}
 		 */
 		public Builder uuid(String value) {
 			this.uuid = value;
@@ -170,10 +177,10 @@ public final class InProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InProgress
+	 * Json deserializer for {@link InProgress}
 	 */
-	public static final JsonpDeserializer<InProgress> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InProgress::setupInProgressDeserializer);
+	public static final JsonpDeserializer<InProgress> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InProgress::setupInProgressDeserializer, Builder::build);
 
 	protected static void setupInProgressDeserializer(DelegatingDeserializer<InProgress.Builder> op) {
 

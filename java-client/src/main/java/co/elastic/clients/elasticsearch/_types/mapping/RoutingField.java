@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.mapping.RoutingField
-public final class RoutingField implements ToJsonp {
-	private final Boolean required;
+@JsonpDeserializable
+public final class RoutingField implements JsonpSerializable {
+	private final boolean required;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RoutingField(Builder builder) {
+	public RoutingField(Builder builder) {
 
 		this.required = Objects.requireNonNull(builder.required, "required");
 
 	}
 
+	public RoutingField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code required}
+	 * Required - API name: {@code required}
 	 */
-	public Boolean required() {
+	public boolean required() {
 		return this.required;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("required");
 		generator.write(this.required);
@@ -79,9 +85,9 @@ public final class RoutingField implements ToJsonp {
 		private Boolean required;
 
 		/**
-		 * API name: {@code required}
+		 * Required - API name: {@code required}
 		 */
-		public Builder required(Boolean value) {
+		public Builder required(boolean value) {
 			this.required = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class RoutingField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RoutingField
+	 * Json deserializer for {@link RoutingField}
 	 */
-	public static final JsonpDeserializer<RoutingField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RoutingField::setupRoutingFieldDeserializer);
+	public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RoutingField::setupRoutingFieldDeserializer, Builder::build);
 
 	protected static void setupRoutingFieldDeserializer(DelegatingDeserializer<RoutingField.Builder> op) {
 

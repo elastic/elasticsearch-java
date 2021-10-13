@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.security.create_api_key;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.RoleDescriptor
-public final class RoleDescriptor implements ToJsonp {
+@JsonpDeserializable
+public final class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndexPrivileges> index;
@@ -51,23 +54,27 @@ public final class RoleDescriptor implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RoleDescriptor(Builder builder) {
+	public RoleDescriptor(Builder builder) {
 
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.applications = builder.applications;
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
 
 	}
 
+	public RoleDescriptor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cluster}
+	 * Required - API name: {@code cluster}
 	 */
 	public List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public List<IndexPrivileges> index() {
 		return this.index;
@@ -84,13 +91,13 @@ public final class RoleDescriptor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster");
 		generator.writeStartArray();
@@ -103,7 +110,7 @@ public final class RoleDescriptor implements ToJsonp {
 		generator.writeKey("index");
 		generator.writeStartArray();
 		for (IndexPrivileges item0 : this.index) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -113,7 +120,7 @@ public final class RoleDescriptor implements ToJsonp {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -136,7 +143,7 @@ public final class RoleDescriptor implements ToJsonp {
 		private List<ApplicationPrivileges> applications;
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(List<String> value) {
 			this.cluster = value;
@@ -144,7 +151,7 @@ public final class RoleDescriptor implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(String... value) {
 			this.cluster = Arrays.asList(value);
@@ -163,7 +170,7 @@ public final class RoleDescriptor implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(List<IndexPrivileges> value) {
 			this.index = value;
@@ -171,7 +178,7 @@ public final class RoleDescriptor implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(IndexPrivileges... value) {
 			this.index = Arrays.asList(value);
@@ -260,17 +267,17 @@ public final class RoleDescriptor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RoleDescriptor
+	 * Json deserializer for {@link RoleDescriptor}
 	 */
-	public static final JsonpDeserializer<RoleDescriptor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RoleDescriptor::setupRoleDescriptorDeserializer);
+	public static final JsonpDeserializer<RoleDescriptor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RoleDescriptor::setupRoleDescriptorDeserializer, Builder::build);
 
 	protected static void setupRoleDescriptorDeserializer(DelegatingDeserializer<RoleDescriptor.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivileges.DESERIALIZER), "index");
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivileges._DESERIALIZER), "index");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
 
 	}

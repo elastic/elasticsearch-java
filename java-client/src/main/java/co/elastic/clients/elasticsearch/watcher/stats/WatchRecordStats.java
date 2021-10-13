@@ -23,24 +23,28 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
+import co.elastic.clients.elasticsearch.watcher.ExecutionPhase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
+@JsonpDeserializable
 public final class WatchRecordStats extends WatchRecordQueuedStats {
-	private final JsonValue executionPhase;
+	private final ExecutionPhase executionPhase;
 
 	private final String triggeredTime;
 
@@ -53,25 +57,30 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatchRecordStats(Builder builder) {
+	public WatchRecordStats(Builder builder) {
 		super(builder);
+
 		this.executionPhase = Objects.requireNonNull(builder.executionPhase, "execution_phase");
 		this.triggeredTime = Objects.requireNonNull(builder.triggeredTime, "triggered_time");
-		this.executedActions = builder.executedActions;
+		this.executedActions = ModelTypeHelper.unmodifiable(builder.executedActions);
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 		this.watchRecordId = Objects.requireNonNull(builder.watchRecordId, "watch_record_id");
 
 	}
 
+	public WatchRecordStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code execution_phase}
+	 * Required - API name: {@code execution_phase}
 	 */
-	public JsonValue executionPhase() {
+	public ExecutionPhase executionPhase() {
 		return this.executionPhase;
 	}
 
 	/**
-	 * API name: {@code triggered_time}
+	 * Required - API name: {@code triggered_time}
 	 */
 	public String triggeredTime() {
 		return this.triggeredTime;
@@ -86,24 +95,25 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	}
 
 	/**
-	 * API name: {@code watch_id}
+	 * Required - API name: {@code watch_id}
 	 */
 	public String watchId() {
 		return this.watchId;
 	}
 
 	/**
-	 * API name: {@code watch_record_id}
+	 * Required - API name: {@code watch_record_id}
 	 */
 	public String watchRecordId() {
 		return this.watchRecordId;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("execution_phase");
-		generator.write(this.executionPhase);
+		this.executionPhase.serialize(generator, mapper);
 
 		generator.writeKey("triggered_time");
 		generator.write(this.triggeredTime);
@@ -136,7 +146,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	public static class Builder extends WatchRecordQueuedStats.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WatchRecordStats> {
-		private JsonValue executionPhase;
+		private ExecutionPhase executionPhase;
 
 		private String triggeredTime;
 
@@ -148,15 +158,15 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		private String watchRecordId;
 
 		/**
-		 * API name: {@code execution_phase}
+		 * Required - API name: {@code execution_phase}
 		 */
-		public Builder executionPhase(JsonValue value) {
+		public Builder executionPhase(ExecutionPhase value) {
 			this.executionPhase = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code triggered_time}
+		 * Required - API name: {@code triggered_time}
 		 */
 		public Builder triggeredTime(String value) {
 			this.triggeredTime = value;
@@ -191,7 +201,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * API name: {@code watch_id}
+		 * Required - API name: {@code watch_id}
 		 */
 		public Builder watchId(String value) {
 			this.watchId = value;
@@ -199,7 +209,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * API name: {@code watch_record_id}
+		 * Required - API name: {@code watch_record_id}
 		 */
 		public Builder watchRecordId(String value) {
 			this.watchRecordId = value;
@@ -226,14 +236,14 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatchRecordStats
+	 * Json deserializer for {@link WatchRecordStats}
 	 */
-	public static final JsonpDeserializer<WatchRecordStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatchRecordStats::setupWatchRecordStatsDeserializer);
+	public static final JsonpDeserializer<WatchRecordStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatchRecordStats::setupWatchRecordStatsDeserializer, Builder::build);
 
 	protected static void setupWatchRecordStatsDeserializer(DelegatingDeserializer<WatchRecordStats.Builder> op) {
 		WatchRecordQueuedStats.setupWatchRecordQueuedStatsDeserializer(op);
-		op.add(Builder::executionPhase, JsonpDeserializer.jsonValueDeserializer(), "execution_phase");
+		op.add(Builder::executionPhase, ExecutionPhase._DESERIALIZER, "execution_phase");
 		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
 		op.add(Builder::executedActions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"executed_actions");

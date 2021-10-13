@@ -24,42 +24,49 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStartStatus
-public final class RecoveryStartStatus implements ToJsonp {
-	private final Number checkIndexTime;
+@JsonpDeserializable
+public final class RecoveryStartStatus implements JsonpSerializable {
+	private final long checkIndexTime;
 
 	private final String totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryStartStatus(Builder builder) {
+	public RecoveryStartStatus(Builder builder) {
 
 		this.checkIndexTime = Objects.requireNonNull(builder.checkIndexTime, "check_index_time");
 		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
 
 	}
 
+	public RecoveryStartStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code check_index_time}
+	 * Required - API name: {@code check_index_time}
 	 */
-	public Number checkIndexTime() {
+	public long checkIndexTime() {
 		return this.checkIndexTime;
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -68,16 +75,16 @@ public final class RecoveryStartStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("check_index_time");
-		generator.write(this.checkIndexTime.doubleValue());
+		generator.write(this.checkIndexTime);
 
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
@@ -90,20 +97,20 @@ public final class RecoveryStartStatus implements ToJsonp {
 	 * Builder for {@link RecoveryStartStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryStartStatus> {
-		private Number checkIndexTime;
+		private Long checkIndexTime;
 
 		private String totalTimeInMillis;
 
 		/**
-		 * API name: {@code check_index_time}
+		 * Required - API name: {@code check_index_time}
 		 */
-		public Builder checkIndexTime(Number value) {
+		public Builder checkIndexTime(long value) {
 			this.checkIndexTime = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
@@ -125,14 +132,14 @@ public final class RecoveryStartStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryStartStatus
+	 * Json deserializer for {@link RecoveryStartStatus}
 	 */
-	public static final JsonpDeserializer<RecoveryStartStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer);
+	public static final JsonpDeserializer<RecoveryStartStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer, Builder::build);
 
 	protected static void setupRecoveryStartStatusDeserializer(DelegatingDeserializer<RecoveryStartStatus.Builder> op) {
 
-		op.add(Builder::checkIndexTime, JsonpDeserializer.numberDeserializer(), "check_index_time");
+		op.add(Builder::checkIndexTime, JsonpDeserializer.longDeserializer(), "check_index_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
 
 	}

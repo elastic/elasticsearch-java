@@ -25,24 +25,29 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Request
-public final class AllocationExplainRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class AllocationExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean includeDiskInfo;
 
@@ -59,11 +64,11 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	private final Boolean primary;
 
 	@Nullable
-	private final Number shard;
+	private final Integer shard;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationExplainRequest(Builder builder) {
+	public AllocationExplainRequest(Builder builder) {
 
 		this.includeDiskInfo = builder.includeDiskInfo;
 		this.includeYesDecisions = builder.includeYesDecisions;
@@ -74,9 +79,13 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	}
 
+	public AllocationExplainRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * If true, returns information about disk usage and shard sizes.
-	 *
+	 * <p>
 	 * API name: {@code include_disk_info}
 	 */
 	@Nullable
@@ -86,7 +95,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, returns YES decisions in explanation.
-	 *
+	 * <p>
 	 * API name: {@code include_yes_decisions}
 	 */
 	@Nullable
@@ -97,7 +106,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	/**
 	 * Specifies the node ID or the name of the node to only explain a shard that is
 	 * currently located on the specified node.
-	 *
+	 * <p>
 	 * API name: {@code current_node}
 	 */
 	@Nullable
@@ -107,7 +116,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * Specifies the name of the index that you would like an explanation for.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -117,7 +126,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, returns explanation for the primary shard for the given shard ID.
-	 *
+	 * <p>
 	 * API name: {@code primary}
 	 */
 	@Nullable
@@ -127,24 +136,24 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * Specifies the ID of the shard that you would like an explanation for.
-	 *
+	 * <p>
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.currentNode != null) {
 
@@ -167,7 +176,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 		if (this.shard != null) {
 
 			generator.writeKey("shard");
-			generator.write(this.shard.doubleValue());
+			generator.write(this.shard);
 
 		}
 
@@ -195,11 +204,11 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 		private Boolean primary;
 
 		@Nullable
-		private Number shard;
+		private Integer shard;
 
 		/**
 		 * If true, returns information about disk usage and shard sizes.
-		 *
+		 * <p>
 		 * API name: {@code include_disk_info}
 		 */
 		public Builder includeDiskInfo(@Nullable Boolean value) {
@@ -209,7 +218,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, returns YES decisions in explanation.
-		 *
+		 * <p>
 		 * API name: {@code include_yes_decisions}
 		 */
 		public Builder includeYesDecisions(@Nullable Boolean value) {
@@ -220,7 +229,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 		/**
 		 * Specifies the node ID or the name of the node to only explain a shard that is
 		 * currently located on the specified node.
-		 *
+		 * <p>
 		 * API name: {@code current_node}
 		 */
 		public Builder currentNode(@Nullable String value) {
@@ -230,7 +239,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * Specifies the name of the index that you would like an explanation for.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -240,7 +249,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, returns explanation for the primary shard for the given shard ID.
-		 *
+		 * <p>
 		 * API name: {@code primary}
 		 */
 		public Builder primary(@Nullable Boolean value) {
@@ -250,10 +259,10 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * Specifies the ID of the shard that you would like an explanation for.
-		 *
+		 * <p>
 		 * API name: {@code shard}
 		 */
-		public Builder shard(@Nullable Number value) {
+		public Builder shard(@Nullable Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -273,10 +282,10 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllocationExplainRequest
+	 * Json deserializer for {@link AllocationExplainRequest}
 	 */
-	public static final JsonpDeserializer<AllocationExplainRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer);
+	public static final JsonpDeserializer<AllocationExplainRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer, Builder::build);
 
 	protected static void setupAllocationExplainRequestDeserializer(
 			DelegatingDeserializer<AllocationExplainRequest.Builder> op) {
@@ -284,7 +293,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 		op.add(Builder::currentNode, JsonpDeserializer.stringDeserializer(), "current_node");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 
 	}
 
@@ -293,7 +302,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	/**
 	 * Endpoint "{@code cluster.allocation_explain}".
 	 */
-	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -317,5 +326,5 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, AllocationExplainResponse._DESERIALIZER);
 }

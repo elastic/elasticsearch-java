@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Watcher
+@JsonpDeserializable
 public final class Watcher extends Base {
 	private final WatcherActions execution;
 
@@ -44,46 +46,52 @@ public final class Watcher extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Watcher(Builder builder) {
+	public Watcher(Builder builder) {
 		super(builder);
+
 		this.execution = Objects.requireNonNull(builder.execution, "execution");
 		this.watch = Objects.requireNonNull(builder.watch, "watch");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
 	}
 
+	public Watcher(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code execution}
+	 * Required - API name: {@code execution}
 	 */
 	public WatcherActions execution() {
 		return this.execution;
 	}
 
 	/**
-	 * API name: {@code watch}
+	 * Required - API name: {@code watch}
 	 */
 	public WatcherWatch watch() {
 		return this.watch;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public Counter count() {
 		return this.count;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("execution");
-		this.execution.toJsonp(generator, mapper);
+		this.execution.serialize(generator, mapper);
 
 		generator.writeKey("watch");
-		this.watch.toJsonp(generator, mapper);
+		this.watch.serialize(generator, mapper);
 
 		generator.writeKey("count");
-		this.count.toJsonp(generator, mapper);
+		this.count.serialize(generator, mapper);
 
 	}
 
@@ -100,7 +108,7 @@ public final class Watcher extends Base {
 		private Counter count;
 
 		/**
-		 * API name: {@code execution}
+		 * Required - API name: {@code execution}
 		 */
 		public Builder execution(WatcherActions value) {
 			this.execution = value;
@@ -108,14 +116,14 @@ public final class Watcher extends Base {
 		}
 
 		/**
-		 * API name: {@code execution}
+		 * Required - API name: {@code execution}
 		 */
 		public Builder execution(Function<WatcherActions.Builder, ObjectBuilder<WatcherActions>> fn) {
 			return this.execution(fn.apply(new WatcherActions.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code watch}
+		 * Required - API name: {@code watch}
 		 */
 		public Builder watch(WatcherWatch value) {
 			this.watch = value;
@@ -123,14 +131,14 @@ public final class Watcher extends Base {
 		}
 
 		/**
-		 * API name: {@code watch}
+		 * Required - API name: {@code watch}
 		 */
 		public Builder watch(Function<WatcherWatch.Builder, ObjectBuilder<WatcherWatch>> fn) {
 			return this.watch(fn.apply(new WatcherWatch.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(Counter value) {
 			this.count = value;
@@ -138,7 +146,7 @@ public final class Watcher extends Base {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.count(fn.apply(new Counter.Builder()).build());
@@ -164,16 +172,16 @@ public final class Watcher extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Watcher
+	 * Json deserializer for {@link Watcher}
 	 */
-	public static final JsonpDeserializer<Watcher> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Watcher::setupWatcherDeserializer);
+	public static final JsonpDeserializer<Watcher> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Watcher::setupWatcherDeserializer, Builder::build);
 
 	protected static void setupWatcherDeserializer(DelegatingDeserializer<Watcher.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::execution, WatcherActions.DESERIALIZER, "execution");
-		op.add(Builder::watch, WatcherWatch.DESERIALIZER, "watch");
-		op.add(Builder::count, Counter.DESERIALIZER, "count");
+		op.add(Builder::execution, WatcherActions._DESERIALIZER, "execution");
+		op.add(Builder::watch, WatcherWatch._DESERIALIZER, "watch");
+		op.add(Builder::count, Counter._DESERIALIZER, "count");
 
 	}
 

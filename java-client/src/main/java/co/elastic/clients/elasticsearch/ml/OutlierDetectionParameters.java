@@ -24,41 +24,46 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OutlierDetectionParameters
-public final class OutlierDetectionParameters implements ToJsonp {
+@JsonpDeserializable
+public final class OutlierDetectionParameters implements JsonpSerializable {
 	@Nullable
 	private final Boolean computeFeatureInfluence;
 
 	@Nullable
-	private final Number featureInfluenceThreshold;
+	private final Double featureInfluenceThreshold;
 
 	@Nullable
 	private final String method;
 
 	@Nullable
-	private final Number nNeighbors;
+	private final Integer nNeighbors;
 
 	@Nullable
-	private final Number outlierFraction;
+	private final Double outlierFraction;
 
 	@Nullable
 	private final Boolean standardizationEnabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected OutlierDetectionParameters(Builder builder) {
+	public OutlierDetectionParameters(Builder builder) {
 
 		this.computeFeatureInfluence = builder.computeFeatureInfluence;
 		this.featureInfluenceThreshold = builder.featureInfluenceThreshold;
@@ -67,6 +72,10 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		this.outlierFraction = builder.outlierFraction;
 		this.standardizationEnabled = builder.standardizationEnabled;
 
+	}
+
+	public OutlierDetectionParameters(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -81,7 +90,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 	 * API name: {@code feature_influence_threshold}
 	 */
 	@Nullable
-	public Number featureInfluenceThreshold() {
+	public Double featureInfluenceThreshold() {
 		return this.featureInfluenceThreshold;
 	}
 
@@ -97,7 +106,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 	 * API name: {@code n_neighbors}
 	 */
 	@Nullable
-	public Number nNeighbors() {
+	public Integer nNeighbors() {
 		return this.nNeighbors;
 	}
 
@@ -105,7 +114,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 	 * API name: {@code outlier_fraction}
 	 */
 	@Nullable
-	public Number outlierFraction() {
+	public Double outlierFraction() {
 		return this.outlierFraction;
 	}
 
@@ -120,13 +129,13 @@ public final class OutlierDetectionParameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.computeFeatureInfluence != null) {
 
@@ -137,7 +146,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		if (this.featureInfluenceThreshold != null) {
 
 			generator.writeKey("feature_influence_threshold");
-			generator.write(this.featureInfluenceThreshold.doubleValue());
+			generator.write(this.featureInfluenceThreshold);
 
 		}
 		if (this.method != null) {
@@ -149,13 +158,13 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		if (this.nNeighbors != null) {
 
 			generator.writeKey("n_neighbors");
-			generator.write(this.nNeighbors.doubleValue());
+			generator.write(this.nNeighbors);
 
 		}
 		if (this.outlierFraction != null) {
 
 			generator.writeKey("outlier_fraction");
-			generator.write(this.outlierFraction.doubleValue());
+			generator.write(this.outlierFraction);
 
 		}
 		if (this.standardizationEnabled != null) {
@@ -177,16 +186,16 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		private Boolean computeFeatureInfluence;
 
 		@Nullable
-		private Number featureInfluenceThreshold;
+		private Double featureInfluenceThreshold;
 
 		@Nullable
 		private String method;
 
 		@Nullable
-		private Number nNeighbors;
+		private Integer nNeighbors;
 
 		@Nullable
-		private Number outlierFraction;
+		private Double outlierFraction;
 
 		@Nullable
 		private Boolean standardizationEnabled;
@@ -202,7 +211,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		/**
 		 * API name: {@code feature_influence_threshold}
 		 */
-		public Builder featureInfluenceThreshold(@Nullable Number value) {
+		public Builder featureInfluenceThreshold(@Nullable Double value) {
 			this.featureInfluenceThreshold = value;
 			return this;
 		}
@@ -218,7 +227,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		/**
 		 * API name: {@code n_neighbors}
 		 */
-		public Builder nNeighbors(@Nullable Number value) {
+		public Builder nNeighbors(@Nullable Integer value) {
 			this.nNeighbors = value;
 			return this;
 		}
@@ -226,7 +235,7 @@ public final class OutlierDetectionParameters implements ToJsonp {
 		/**
 		 * API name: {@code outlier_fraction}
 		 */
-		public Builder outlierFraction(@Nullable Number value) {
+		public Builder outlierFraction(@Nullable Double value) {
 			this.outlierFraction = value;
 			return this;
 		}
@@ -254,20 +263,20 @@ public final class OutlierDetectionParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for OutlierDetectionParameters
+	 * Json deserializer for {@link OutlierDetectionParameters}
 	 */
-	public static final JsonpDeserializer<OutlierDetectionParameters> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OutlierDetectionParameters::setupOutlierDetectionParametersDeserializer);
+	public static final JsonpDeserializer<OutlierDetectionParameters> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, OutlierDetectionParameters::setupOutlierDetectionParametersDeserializer, Builder::build);
 
 	protected static void setupOutlierDetectionParametersDeserializer(
 			DelegatingDeserializer<OutlierDetectionParameters.Builder> op) {
 
 		op.add(Builder::computeFeatureInfluence, JsonpDeserializer.booleanDeserializer(), "compute_feature_influence");
-		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.doubleDeserializer(),
 				"feature_influence_threshold");
 		op.add(Builder::method, JsonpDeserializer.stringDeserializer(), "method");
-		op.add(Builder::nNeighbors, JsonpDeserializer.numberDeserializer(), "n_neighbors");
-		op.add(Builder::outlierFraction, JsonpDeserializer.numberDeserializer(), "outlier_fraction");
+		op.add(Builder::nNeighbors, JsonpDeserializer.integerDeserializer(), "n_neighbors");
+		op.add(Builder::outlierFraction, JsonpDeserializer.doubleDeserializer(), "outlier_fraction");
 		op.add(Builder::standardizationEnabled, JsonpDeserializer.booleanDeserializer(), "standardization_enabled");
 
 	}

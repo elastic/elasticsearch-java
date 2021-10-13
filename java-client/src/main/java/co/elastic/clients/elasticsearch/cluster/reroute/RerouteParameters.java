@@ -24,28 +24,31 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteParameters
-public final class RerouteParameters implements ToJsonp {
-	private final Boolean allowPrimary;
+@JsonpDeserializable
+public final class RerouteParameters implements JsonpSerializable {
+	private final boolean allowPrimary;
 
 	private final String index;
 
 	private final String node;
 
-	private final Number shard;
+	private final int shard;
 
 	@Nullable
 	private final String fromNode;
@@ -55,7 +58,7 @@ public final class RerouteParameters implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteParameters(Builder builder) {
+	public RerouteParameters(Builder builder) {
 
 		this.allowPrimary = Objects.requireNonNull(builder.allowPrimary, "allow_primary");
 		this.index = Objects.requireNonNull(builder.index, "index");
@@ -66,31 +69,35 @@ public final class RerouteParameters implements ToJsonp {
 
 	}
 
+	public RerouteParameters(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code allow_primary}
+	 * Required - API name: {@code allow_primary}
 	 */
-	public Boolean allowPrimary() {
+	public boolean allowPrimary() {
 		return this.allowPrimary;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
-	public Number shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -113,13 +120,13 @@ public final class RerouteParameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allow_primary");
 		generator.write(this.allowPrimary);
@@ -131,7 +138,7 @@ public final class RerouteParameters implements ToJsonp {
 		generator.write(this.node);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		if (this.fromNode != null) {
 
@@ -160,7 +167,7 @@ public final class RerouteParameters implements ToJsonp {
 
 		private String node;
 
-		private Number shard;
+		private Integer shard;
 
 		@Nullable
 		private String fromNode;
@@ -169,15 +176,15 @@ public final class RerouteParameters implements ToJsonp {
 		private String toNode;
 
 		/**
-		 * API name: {@code allow_primary}
+		 * Required - API name: {@code allow_primary}
 		 */
-		public Builder allowPrimary(Boolean value) {
+		public Builder allowPrimary(boolean value) {
 			this.allowPrimary = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -185,7 +192,7 @@ public final class RerouteParameters implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -193,9 +200,9 @@ public final class RerouteParameters implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -231,17 +238,17 @@ public final class RerouteParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteParameters
+	 * Json deserializer for {@link RerouteParameters}
 	 */
-	public static final JsonpDeserializer<RerouteParameters> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteParameters::setupRerouteParametersDeserializer);
+	public static final JsonpDeserializer<RerouteParameters> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RerouteParameters::setupRerouteParametersDeserializer, Builder::build);
 
 	protected static void setupRerouteParametersDeserializer(DelegatingDeserializer<RerouteParameters.Builder> op) {
 
 		op.add(Builder::allowPrimary, JsonpDeserializer.booleanDeserializer(), "allow_primary");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
 		op.add(Builder::toNode, JsonpDeserializer.stringDeserializer(), "to_node");
 

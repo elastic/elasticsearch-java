@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
-public final class ClusterIndicesShardsIndex implements ToJsonp {
+@JsonpDeserializable
+public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	private final ClusterShardMetrics primaries;
 
 	private final ClusterShardMetrics replication;
@@ -45,7 +47,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterIndicesShardsIndex(Builder builder) {
+	public ClusterIndicesShardsIndex(Builder builder) {
 
 		this.primaries = Objects.requireNonNull(builder.primaries, "primaries");
 		this.replication = Objects.requireNonNull(builder.replication, "replication");
@@ -53,10 +55,14 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 
 	}
 
+	public ClusterIndicesShardsIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Contains statistics about the number of primary shards assigned to selected
-	 * nodes.
-	 *
+	 * Required - Contains statistics about the number of primary shards assigned to
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code primaries}
 	 */
 	public ClusterShardMetrics primaries() {
@@ -64,9 +70,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about the number of replication shards assigned to
-	 * selected nodes.
-	 *
+	 * Required - Contains statistics about the number of replication shards
+	 * assigned to selected nodes.
+	 * <p>
 	 * API name: {@code replication}
 	 */
 	public ClusterShardMetrics replication() {
@@ -74,8 +80,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about the number of shards assigned to selected nodes.
-	 *
+	 * Required - Contains statistics about the number of shards assigned to
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code shards}
 	 */
 	public ClusterShardMetrics shards() {
@@ -85,22 +92,22 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("primaries");
-		this.primaries.toJsonp(generator, mapper);
+		this.primaries.serialize(generator, mapper);
 
 		generator.writeKey("replication");
-		this.replication.toJsonp(generator, mapper);
+		this.replication.serialize(generator, mapper);
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -117,9 +124,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		private ClusterShardMetrics shards;
 
 		/**
-		 * Contains statistics about the number of primary shards assigned to selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about the number of primary shards assigned to
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code primaries}
 		 */
 		public Builder primaries(ClusterShardMetrics value) {
@@ -128,9 +135,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the number of primary shards assigned to selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about the number of primary shards assigned to
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code primaries}
 		 */
 		public Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
@@ -138,9 +145,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the number of replication shards assigned to
-		 * selected nodes.
-		 *
+		 * Required - Contains statistics about the number of replication shards
+		 * assigned to selected nodes.
+		 * <p>
 		 * API name: {@code replication}
 		 */
 		public Builder replication(ClusterShardMetrics value) {
@@ -149,9 +156,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the number of replication shards assigned to
-		 * selected nodes.
-		 *
+		 * Required - Contains statistics about the number of replication shards
+		 * assigned to selected nodes.
+		 * <p>
 		 * API name: {@code replication}
 		 */
 		public Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
@@ -159,8 +166,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the number of shards assigned to selected nodes.
-		 *
+		 * Required - Contains statistics about the number of shards assigned to
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(ClusterShardMetrics value) {
@@ -169,8 +177,9 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the number of shards assigned to selected nodes.
-		 *
+		 * Required - Contains statistics about the number of shards assigned to
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
@@ -192,17 +201,17 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterIndicesShardsIndex
+	 * Json deserializer for {@link ClusterIndicesShardsIndex}
 	 */
-	public static final JsonpDeserializer<ClusterIndicesShardsIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer);
+	public static final JsonpDeserializer<ClusterIndicesShardsIndex> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer, Builder::build);
 
 	protected static void setupClusterIndicesShardsIndexDeserializer(
 			DelegatingDeserializer<ClusterIndicesShardsIndex.Builder> op) {
 
-		op.add(Builder::primaries, ClusterShardMetrics.DESERIALIZER, "primaries");
-		op.add(Builder::replication, ClusterShardMetrics.DESERIALIZER, "replication");
-		op.add(Builder::shards, ClusterShardMetrics.DESERIALIZER, "shards");
+		op.add(Builder::primaries, ClusterShardMetrics._DESERIALIZER, "primaries");
+		op.add(Builder::replication, ClusterShardMetrics._DESERIALIZER, "replication");
+		op.add(Builder::shards, ClusterShardMetrics._DESERIALIZER, "shards");
 
 	}
 

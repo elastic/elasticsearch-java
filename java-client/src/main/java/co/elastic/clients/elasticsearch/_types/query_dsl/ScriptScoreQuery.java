@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,56 +32,81 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Float;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreQuery
-public final class ScriptScoreQuery extends QueryBase {
+@JsonpDeserializable
+public final class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable
-	private final QueryContainer query;
+	private final Float minScore;
 
-	@Nullable
-	private final JsonValue script;
+	private final Query query;
+
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptScoreQuery(Builder builder) {
+	public ScriptScoreQuery(Builder builder) {
 		super(builder);
-		this.query = builder.query;
-		this.script = builder.script;
+
+		this.minScore = builder.minScore;
+		this.query = Objects.requireNonNull(builder.query, "query");
+		this.script = Objects.requireNonNull(builder.script, "script");
 
 	}
 
+	public ScriptScoreQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code query}
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "script_score";
+	}
+
+	/**
+	 * API name: {@code min_score}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Float minScore() {
+		return this.minScore;
+	}
+
+	/**
+	 * Required - API name: {@code query}
+	 */
+	public Query query() {
 		return this.query;
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
-	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.query != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+		super.serializeInternal(generator, mapper);
+		if (this.minScore != null) {
 
-		}
-		if (this.script != null) {
-
-			generator.writeKey("script");
-			generator.write(this.script);
+			generator.writeKey("min_score");
+			generator.write(this.minScore);
 
 		}
+
+		generator.writeKey("query");
+		this.query.serialize(generator, mapper);
+
+		generator.writeKey("script");
+		generator.write(this.script);
 
 	}
 
@@ -91,30 +117,39 @@ public final class ScriptScoreQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptScoreQuery> {
 		@Nullable
-		private QueryContainer query;
+		private Float minScore;
 
-		@Nullable
-		private JsonValue script;
+		private Query query;
+
+		private JsonValue /* _types.Script */ script;
 
 		/**
-		 * API name: {@code query}
+		 * API name: {@code min_score}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder minScore(@Nullable Float value) {
+			this.minScore = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code query}
+		 */
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -139,14 +174,15 @@ public final class ScriptScoreQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScriptScoreQuery
+	 * Json deserializer for {@link ScriptScoreQuery}
 	 */
-	public static final JsonpDeserializer<ScriptScoreQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptScoreQuery::setupScriptScoreQueryDeserializer);
+	public static final JsonpDeserializer<ScriptScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ScriptScoreQuery::setupScriptScoreQueryDeserializer, Builder::build);
 
 	protected static void setupScriptScoreQueryDeserializer(DelegatingDeserializer<ScriptScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}

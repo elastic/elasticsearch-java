@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,23 +36,29 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Request
+
 public final class GetStatusRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetStatusRequest(Builder builder) {
+	public GetStatusRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
 	}
 
+	public GetStatusRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Identifier for the search.
-	 *
+	 * Required - Identifier for the search.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -66,8 +74,8 @@ public final class GetStatusRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Identifier for the search.
-		 *
+		 * Required - Identifier for the search.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -92,7 +100,7 @@ public final class GetStatusRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code eql.get_status}".
 	 */
-	public static final Endpoint<GetStatusRequest, GetStatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetStatusRequest, GetStatusResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -105,8 +113,7 @@ public final class GetStatusRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
@@ -114,10 +121,10 @@ public final class GetStatusRequest extends RequestBase {
 					buf.append("/search");
 					buf.append("/status");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -125,5 +132,5 @@ public final class GetStatusRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetStatusResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetStatusResponse._DESERIALIZER);
 }

@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.JobStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModels
-public final class MlInferenceTrainedModels implements ToJsonp {
+@JsonpDeserializable
+public final class MlInferenceTrainedModels implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics estimatedOperations;
 
@@ -51,13 +53,17 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInferenceTrainedModels(Builder builder) {
+	public MlInferenceTrainedModels(Builder builder) {
 
 		this.estimatedOperations = builder.estimatedOperations;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.count = builder.count;
 		this.all = Objects.requireNonNull(builder.all, "_all");
 
+	}
+
+	public MlInferenceTrainedModels(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -85,7 +91,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public MlCounter all() {
 		return this.all;
@@ -94,35 +100,35 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.estimatedOperations != null) {
 
 			generator.writeKey("estimated_operations");
-			this.estimatedOperations.toJsonp(generator, mapper);
+			this.estimatedOperations.serialize(generator, mapper);
 
 		}
 		if (this.estimatedHeapMemoryUsageBytes != null) {
 
 			generator.writeKey("estimated_heap_memory_usage_bytes");
-			this.estimatedHeapMemoryUsageBytes.toJsonp(generator, mapper);
+			this.estimatedHeapMemoryUsageBytes.serialize(generator, mapper);
 
 		}
 		if (this.count != null) {
 
 			generator.writeKey("count");
-			this.count.toJsonp(generator, mapper);
+			this.count.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("_all");
-		this.all.toJsonp(generator, mapper);
+		this.all.serialize(generator, mapper);
 
 	}
 
@@ -190,7 +196,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(MlCounter value) {
 			this.all = value;
@@ -198,7 +204,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
 			return this.all(fn.apply(new MlCounter.Builder()).build());
@@ -219,18 +225,19 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInferenceTrainedModels
+	 * Json deserializer for {@link MlInferenceTrainedModels}
 	 */
-	public static final JsonpDeserializer<MlInferenceTrainedModels> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer);
+	public static final JsonpDeserializer<MlInferenceTrainedModels> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer, Builder::build);
 
 	protected static void setupMlInferenceTrainedModelsDeserializer(
 			DelegatingDeserializer<MlInferenceTrainedModels.Builder> op) {
 
-		op.add(Builder::estimatedOperations, JobStatistics.DESERIALIZER, "estimated_operations");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics.DESERIALIZER, "estimated_heap_memory_usage_bytes");
-		op.add(Builder::count, MlInferenceTrainedModelsCount.DESERIALIZER, "count");
-		op.add(Builder::all, MlCounter.DESERIALIZER, "_all");
+		op.add(Builder::estimatedOperations, JobStatistics._DESERIALIZER, "estimated_operations");
+		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics._DESERIALIZER,
+				"estimated_heap_memory_usage_bytes");
+		op.add(Builder::count, MlInferenceTrainedModelsCount._DESERIALIZER, "count");
+		op.add(Builder::all, MlCounter._DESERIALIZER, "_all");
 
 	}
 

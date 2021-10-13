@@ -24,28 +24,30 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.ClusterStatistics
-public final class ClusterStatistics implements ToJsonp {
-	private final Number skipped;
+@JsonpDeserializable
+public final class ClusterStatistics implements JsonpSerializable {
+	private final int skipped;
 
-	private final Number successful;
+	private final int successful;
 
-	private final Number total;
+	private final int total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStatistics(Builder builder) {
+	public ClusterStatistics(Builder builder) {
 
 		this.skipped = Objects.requireNonNull(builder.skipped, "skipped");
 		this.successful = Objects.requireNonNull(builder.successful, "successful");
@@ -53,46 +55,50 @@ public final class ClusterStatistics implements ToJsonp {
 
 	}
 
+	public ClusterStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code skipped}
+	 * Required - API name: {@code skipped}
 	 */
-	public Number skipped() {
+	public int skipped() {
 		return this.skipped;
 	}
 
 	/**
-	 * API name: {@code successful}
+	 * Required - API name: {@code successful}
 	 */
-	public Number successful() {
+	public int successful() {
 		return this.successful;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
-	public Number total() {
+	public int total() {
 		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("skipped");
-		generator.write(this.skipped.doubleValue());
+		generator.write(this.skipped);
 
 		generator.writeKey("successful");
-		generator.write(this.successful.doubleValue());
+		generator.write(this.successful);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -102,32 +108,32 @@ public final class ClusterStatistics implements ToJsonp {
 	 * Builder for {@link ClusterStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterStatistics> {
-		private Number skipped;
+		private Integer skipped;
 
-		private Number successful;
+		private Integer successful;
 
-		private Number total;
+		private Integer total;
 
 		/**
-		 * API name: {@code skipped}
+		 * Required - API name: {@code skipped}
 		 */
-		public Builder skipped(Number value) {
+		public Builder skipped(int value) {
 			this.skipped = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code successful}
+		 * Required - API name: {@code successful}
 		 */
-		public Builder successful(Number value) {
+		public Builder successful(int value) {
 			this.successful = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -147,16 +153,16 @@ public final class ClusterStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStatistics
+	 * Json deserializer for {@link ClusterStatistics}
 	 */
-	public static final JsonpDeserializer<ClusterStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStatistics::setupClusterStatisticsDeserializer);
+	public static final JsonpDeserializer<ClusterStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStatistics::setupClusterStatisticsDeserializer, Builder::build);
 
 	protected static void setupClusterStatisticsDeserializer(DelegatingDeserializer<ClusterStatistics.Builder> op) {
 
-		op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
-		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::skipped, JsonpDeserializer.integerDeserializer(), "skipped");
+		op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
+		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
 
 	}
 

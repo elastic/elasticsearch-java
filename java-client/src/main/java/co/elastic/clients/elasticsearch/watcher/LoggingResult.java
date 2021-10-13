@@ -24,31 +24,38 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.LoggingResult
-public final class LoggingResult implements ToJsonp {
+@JsonpDeserializable
+public final class LoggingResult implements JsonpSerializable {
 	private final String loggedText;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected LoggingResult(Builder builder) {
+	public LoggingResult(Builder builder) {
 
 		this.loggedText = Objects.requireNonNull(builder.loggedText, "logged_text");
 
 	}
 
+	public LoggingResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code logged_text}
+	 * Required - API name: {@code logged_text}
 	 */
 	public String loggedText() {
 		return this.loggedText;
@@ -57,13 +64,13 @@ public final class LoggingResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("logged_text");
 		generator.write(this.loggedText);
@@ -79,7 +86,7 @@ public final class LoggingResult implements ToJsonp {
 		private String loggedText;
 
 		/**
-		 * API name: {@code logged_text}
+		 * Required - API name: {@code logged_text}
 		 */
 		public Builder loggedText(String value) {
 			this.loggedText = value;
@@ -101,10 +108,10 @@ public final class LoggingResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for LoggingResult
+	 * Json deserializer for {@link LoggingResult}
 	 */
-	public static final JsonpDeserializer<LoggingResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, LoggingResult::setupLoggingResultDeserializer);
+	public static final JsonpDeserializer<LoggingResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LoggingResult::setupLoggingResultDeserializer, Builder::build);
 
 	protected static void setupLoggingResultDeserializer(DelegatingDeserializer<LoggingResult.Builder> op) {
 

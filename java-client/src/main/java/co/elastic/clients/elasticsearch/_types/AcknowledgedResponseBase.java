@@ -24,49 +24,51 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.AcknowledgedResponseBase
-public abstract class AcknowledgedResponseBase implements ToJsonp {
-	private final Boolean acknowledged;
+
+public abstract class AcknowledgedResponseBase implements JsonpSerializable {
+	private final boolean acknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
+	public AcknowledgedResponseBase(AbstractBuilder<?> builder) {
 
 		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
 
 	}
 
 	/**
-	 * For a successful response, this value is always true. On failure, an
-	 * exception is returned instead.
-	 *
+	 * Required - For a successful response, this value is always true. On failure,
+	 * an exception is returned instead.
+	 * <p>
 	 * API name: {@code acknowledged}
 	 */
-	public Boolean acknowledged() {
+	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("acknowledged");
 		generator.write(this.acknowledged);
@@ -77,12 +79,12 @@ public abstract class AcknowledgedResponseBase implements ToJsonp {
 		private Boolean acknowledged;
 
 		/**
-		 * For a successful response, this value is always true. On failure, an
-		 * exception is returned instead.
-		 *
+		 * Required - For a successful response, this value is always true. On failure,
+		 * an exception is returned instead.
+		 * <p>
 		 * API name: {@code acknowledged}
 		 */
-		public BuilderT acknowledged(Boolean value) {
+		public BuilderT acknowledged(boolean value) {
 			this.acknowledged = value;
 			return self();
 		}

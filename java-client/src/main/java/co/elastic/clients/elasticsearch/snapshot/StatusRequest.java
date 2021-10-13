@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +41,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.status.Request
+
 public final class StatusRequest extends RequestBase {
 	@Nullable
 	private final String repository;
@@ -54,20 +59,26 @@ public final class StatusRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatusRequest(Builder builder) {
+	public StatusRequest(Builder builder) {
 
 		this.repository = builder.repository;
-		this.snapshot = builder.snapshot;
+		this.snapshot = ModelTypeHelper.unmodifiable(builder.snapshot);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 
 	}
 
+	public StatusRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -76,6 +87,8 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of snapshot names
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	@Nullable
@@ -84,6 +97,9 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore unavailable snapshots, defaults to false which means a
+	 * SnapshotMissingException is thrown
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -92,10 +108,12 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -115,9 +133,11 @@ public final class StatusRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
+		 * A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {
@@ -126,6 +146,8 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of snapshot names
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(@Nullable List<String> value) {
@@ -134,6 +156,8 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of snapshot names
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String... value) {
@@ -153,6 +177,9 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore unavailable snapshots, defaults to false which means a
+		 * SnapshotMissingException is thrown
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -161,9 +188,11 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -185,7 +214,7 @@ public final class StatusRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.status}".
 	 */
-	public static final Endpoint<StatusRequest, StatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatusRequest, StatusResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -214,7 +243,7 @@ public final class StatusRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/_status");
 					return buf.toString();
 				}
@@ -222,13 +251,14 @@ public final class StatusRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_status");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -239,9 +269,9 @@ public final class StatusRequest extends RequestBase {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatusResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatusResponse._DESERIALIZER);
 }

@@ -23,65 +23,82 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch.core.search.SortOrder;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SortProcessor
-public final class SortProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
-	private final JsonValue order;
+	private final SortOrder order;
 
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SortProcessor(Builder builder) {
+	public SortProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.order = Objects.requireNonNull(builder.order, "order");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
 	}
 
+	public SortProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "sort";
+	}
+
+	/**
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code order}
+	 * Required - API name: {@code order}
 	 */
-	public JsonValue order() {
+	public SortOrder order() {
 		return this.order;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("order");
-		generator.write(this.order);
+		this.order.serialize(generator, mapper);
 
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
@@ -96,12 +113,12 @@ public final class SortProcessor extends ProcessorBase {
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<SortProcessor> {
 		private String field;
 
-		private JsonValue order;
+		private SortOrder order;
 
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -109,15 +126,15 @@ public final class SortProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code order}
+		 * Required - API name: {@code order}
 		 */
-		public Builder order(JsonValue value) {
+		public Builder order(SortOrder value) {
 			this.order = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;
@@ -144,15 +161,15 @@ public final class SortProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SortProcessor
+	 * Json deserializer for {@link SortProcessor}
 	 */
-	public static final JsonpDeserializer<SortProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SortProcessor::setupSortProcessorDeserializer);
+	public static final JsonpDeserializer<SortProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SortProcessor::setupSortProcessorDeserializer, Builder::build);
 
 	protected static void setupSortProcessorDeserializer(DelegatingDeserializer<SortProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::order, JsonpDeserializer.jsonValueDeserializer(), "order");
+		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

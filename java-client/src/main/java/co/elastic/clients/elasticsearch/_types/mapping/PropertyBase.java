@@ -24,24 +24,31 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PropertyBase
-public class PropertyBase implements ToJsonp {
+
+public abstract class PropertyBase implements JsonpSerializable {
 	@Nullable
-	private final Map<String, JsonValue> localMetadata;
+	private final Map<String, JsonData> localMetadata;
 
 	@Nullable
 	private final Map<String, String> meta;
@@ -50,28 +57,28 @@ public class PropertyBase implements ToJsonp {
 	private final String name;
 
 	@Nullable
-	private final Map<String, JsonValue> properties;
+	private final Map<String, Property> properties;
 
 	@Nullable
-	private final Number ignoreAbove;
+	private final Integer ignoreAbove;
 
 	@Nullable
-	private final JsonValue dynamic;
+	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
 	@Nullable
-	private final Map<String, JsonValue> fields;
+	private final Map<String, Property> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PropertyBase(AbstractBuilder<?> builder) {
+	public PropertyBase(AbstractBuilder<?> builder) {
 
-		this.localMetadata = builder.localMetadata;
-		this.meta = builder.meta;
+		this.localMetadata = ModelTypeHelper.unmodifiable(builder.localMetadata);
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.name = builder.name;
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 		this.ignoreAbove = builder.ignoreAbove;
 		this.dynamic = builder.dynamic;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 
@@ -79,7 +86,7 @@ public class PropertyBase implements ToJsonp {
 	 * API name: {@code local_metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> localMetadata() {
+	public Map<String, JsonData> localMetadata() {
 		return this.localMetadata;
 	}
 
@@ -103,7 +110,7 @@ public class PropertyBase implements ToJsonp {
 	 * API name: {@code properties}
 	 */
 	@Nullable
-	public Map<String, JsonValue> properties() {
+	public Map<String, Property> properties() {
 		return this.properties;
 	}
 
@@ -111,7 +118,7 @@ public class PropertyBase implements ToJsonp {
 	 * API name: {@code ignore_above}
 	 */
 	@Nullable
-	public Number ignoreAbove() {
+	public Integer ignoreAbove() {
 		return this.ignoreAbove;
 	}
 
@@ -119,7 +126,7 @@ public class PropertyBase implements ToJsonp {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue dynamic() {
+	public JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
 		return this.dynamic;
 	}
 
@@ -127,28 +134,28 @@ public class PropertyBase implements ToJsonp {
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public Map<String, JsonValue> fields() {
+	public Map<String, Property> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.localMetadata != null) {
 
 			generator.writeKey("local_metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.localMetadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.localMetadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -176,9 +183,9 @@ public class PropertyBase implements ToJsonp {
 
 			generator.writeKey("properties");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.properties.entrySet()) {
+			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -187,7 +194,7 @@ public class PropertyBase implements ToJsonp {
 		if (this.ignoreAbove != null) {
 
 			generator.writeKey("ignore_above");
-			generator.write(this.ignoreAbove.doubleValue());
+			generator.write(this.ignoreAbove);
 
 		}
 		if (this.dynamic != null) {
@@ -200,9 +207,9 @@ public class PropertyBase implements ToJsonp {
 
 			generator.writeKey("fields");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.fields.entrySet()) {
+			for (Map.Entry<String, Property> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -211,32 +218,9 @@ public class PropertyBase implements ToJsonp {
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link PropertyBase}.
-	 */
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<PropertyBase> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link PropertyBase}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PropertyBase build() {
-
-			return new PropertyBase(this);
-		}
-	}
-
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private Map<String, JsonValue> localMetadata;
+		private Map<String, JsonData> localMetadata;
 
 		@Nullable
 		private Map<String, String> meta;
@@ -245,21 +229,21 @@ public class PropertyBase implements ToJsonp {
 		private String name;
 
 		@Nullable
-		private Map<String, JsonValue> properties;
+		private Map<String, Property> properties;
 
 		@Nullable
-		private Number ignoreAbove;
+		private Integer ignoreAbove;
 
 		@Nullable
-		private JsonValue dynamic;
+		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
 		@Nullable
-		private Map<String, JsonValue> fields;
+		private Map<String, Property> fields;
 
 		/**
 		 * API name: {@code local_metadata}
 		 */
-		public BuilderT localMetadata(@Nullable Map<String, JsonValue> value) {
+		public BuilderT localMetadata(@Nullable Map<String, JsonData> value) {
 			this.localMetadata = value;
 			return self();
 		}
@@ -267,7 +251,7 @@ public class PropertyBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #localMetadata(Map)}, creating the map if needed.
 		 */
-		public BuilderT putLocalMetadata(String key, JsonValue value) {
+		public BuilderT putLocalMetadata(String key, JsonData value) {
 			if (this.localMetadata == null) {
 				this.localMetadata = new HashMap<>();
 			}
@@ -305,7 +289,7 @@ public class PropertyBase implements ToJsonp {
 		/**
 		 * API name: {@code properties}
 		 */
-		public BuilderT properties(@Nullable Map<String, JsonValue> value) {
+		public BuilderT properties(@Nullable Map<String, Property> value) {
 			this.properties = value;
 			return self();
 		}
@@ -313,7 +297,7 @@ public class PropertyBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
 		 */
-		public BuilderT putProperties(String key, JsonValue value) {
+		public BuilderT putProperties(String key, Property value) {
 			if (this.properties == null) {
 				this.properties = new HashMap<>();
 			}
@@ -322,9 +306,23 @@ public class PropertyBase implements ToJsonp {
 		}
 
 		/**
+		 * Set {@link #properties(Map)} to a singleton map.
+		 */
+		public BuilderT properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
+		 */
+		public BuilderT putProperties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.putProperties(key, fn.apply(new Property.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code ignore_above}
 		 */
-		public BuilderT ignoreAbove(@Nullable Number value) {
+		public BuilderT ignoreAbove(@Nullable Integer value) {
 			this.ignoreAbove = value;
 			return self();
 		}
@@ -332,7 +330,8 @@ public class PropertyBase implements ToJsonp {
 		/**
 		 * API name: {@code dynamic}
 		 */
-		public BuilderT dynamic(@Nullable JsonValue value) {
+		public BuilderT dynamic(
+				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
 			this.dynamic = value;
 			return self();
 		}
@@ -340,7 +339,7 @@ public class PropertyBase implements ToJsonp {
 		/**
 		 * API name: {@code fields}
 		 */
-		public BuilderT fields(@Nullable Map<String, JsonValue> value) {
+		public BuilderT fields(@Nullable Map<String, Property> value) {
 			this.fields = value;
 			return self();
 		}
@@ -348,7 +347,7 @@ public class PropertyBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
 		 */
-		public BuilderT putFields(String key, JsonValue value) {
+		public BuilderT putFields(String key, Property value) {
 			if (this.fields == null) {
 				this.fields = new HashMap<>();
 			}
@@ -356,32 +355,38 @@ public class PropertyBase implements ToJsonp {
 			return self();
 		}
 
+		/**
+		 * Set {@link #fields(Map)} to a singleton map.
+		 */
+		public BuilderT fields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.fields(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
+		 */
+		public BuilderT putFields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.putFields(key, fn.apply(new Property.Builder()).build());
+		}
+
 		protected abstract BuilderT self();
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for PropertyBase
-	 */
-	public static final JsonpDeserializer<PropertyBase> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PropertyBase::setupPropertyBaseDeserializer);
-
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPropertyBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::localMetadata,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "local_metadata");
+		op.add(AbstractBuilder::localMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"local_metadata");
 		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"meta");
 		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(AbstractBuilder::properties,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "properties");
-		op.add(AbstractBuilder::ignoreAbove, JsonpDeserializer.numberDeserializer(), "ignore_above");
+		op.add(AbstractBuilder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER),
+				"properties");
+		op.add(AbstractBuilder::ignoreAbove, JsonpDeserializer.integerDeserializer(), "ignore_above");
 		op.add(AbstractBuilder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
-		op.add(AbstractBuilder::fields,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "fields");
+		op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "fields");
 
 	}
 

@@ -24,31 +24,38 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLinePoint
-public final class GeoLinePoint implements ToJsonp {
+@JsonpDeserializable
+public final class GeoLinePoint implements JsonpSerializable {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoLinePoint(Builder builder) {
+	public GeoLinePoint(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 
 	}
 
+	public GeoLinePoint(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -57,13 +64,13 @@ public final class GeoLinePoint implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -79,7 +86,7 @@ public final class GeoLinePoint implements ToJsonp {
 		private String field;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -101,10 +108,10 @@ public final class GeoLinePoint implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoLinePoint
+	 * Json deserializer for {@link GeoLinePoint}
 	 */
-	public static final JsonpDeserializer<GeoLinePoint> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoLinePoint::setupGeoLinePointDeserializer);
+	public static final JsonpDeserializer<GeoLinePoint> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoLinePoint::setupGeoLinePointDeserializer, Builder::build);
 
 	protected static void setupGeoLinePointDeserializer(DelegatingDeserializer<GeoLinePoint.Builder> op) {
 

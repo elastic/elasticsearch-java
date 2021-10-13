@@ -24,35 +24,38 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.ExplainAnalyzeToken
-public final class ExplainAnalyzeToken implements ToJsonp {
+@JsonpDeserializable
+public final class ExplainAnalyzeToken implements JsonpSerializable {
 	private final String bytes;
 
-	private final Number endOffset;
+	private final long endOffset;
 
 	@Nullable
 	private final Boolean keyword;
 
-	private final Number position;
+	private final long position;
 
-	private final Number positionlength;
+	private final long positionlength;
 
-	private final Number startOffset;
+	private final long startOffset;
 
-	private final Number termfrequency;
+	private final long termfrequency;
 
 	private final String token;
 
@@ -60,7 +63,7 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainAnalyzeToken(Builder builder) {
+	public ExplainAnalyzeToken(Builder builder) {
 
 		this.bytes = Objects.requireNonNull(builder.bytes, "bytes");
 		this.endOffset = Objects.requireNonNull(builder.endOffset, "end_offset");
@@ -74,17 +77,21 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 
 	}
 
+	public ExplainAnalyzeToken(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code bytes}
+	 * Required - API name: {@code bytes}
 	 */
 	public String bytes() {
 		return this.bytes;
 	}
 
 	/**
-	 * API name: {@code end_offset}
+	 * Required - API name: {@code end_offset}
 	 */
-	public Number endOffset() {
+	public long endOffset() {
 		return this.endOffset;
 	}
 
@@ -97,42 +104,42 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code position}
+	 * Required - API name: {@code position}
 	 */
-	public Number position() {
+	public long position() {
 		return this.position;
 	}
 
 	/**
-	 * API name: {@code positionLength}
+	 * Required - API name: {@code positionLength}
 	 */
-	public Number positionlength() {
+	public long positionlength() {
 		return this.positionlength;
 	}
 
 	/**
-	 * API name: {@code start_offset}
+	 * Required - API name: {@code start_offset}
 	 */
-	public Number startOffset() {
+	public long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
-	 * API name: {@code termFrequency}
+	 * Required - API name: {@code termFrequency}
 	 */
-	public Number termfrequency() {
+	public long termfrequency() {
 		return this.termfrequency;
 	}
 
 	/**
-	 * API name: {@code token}
+	 * Required - API name: {@code token}
 	 */
 	public String token() {
 		return this.token;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -141,19 +148,19 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bytes");
 		generator.write(this.bytes);
 
 		generator.writeKey("end_offset");
-		generator.write(this.endOffset.doubleValue());
+		generator.write(this.endOffset);
 
 		if (this.keyword != null) {
 
@@ -163,16 +170,16 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 		}
 
 		generator.writeKey("position");
-		generator.write(this.position.doubleValue());
+		generator.write(this.position);
 
 		generator.writeKey("positionLength");
-		generator.write(this.positionlength.doubleValue());
+		generator.write(this.positionlength);
 
 		generator.writeKey("start_offset");
-		generator.write(this.startOffset.doubleValue());
+		generator.write(this.startOffset);
 
 		generator.writeKey("termFrequency");
-		generator.write(this.termfrequency.doubleValue());
+		generator.write(this.termfrequency);
 
 		generator.writeKey("token");
 		generator.write(this.token);
@@ -190,25 +197,25 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ExplainAnalyzeToken> {
 		private String bytes;
 
-		private Number endOffset;
+		private Long endOffset;
 
 		@Nullable
 		private Boolean keyword;
 
-		private Number position;
+		private Long position;
 
-		private Number positionlength;
+		private Long positionlength;
 
-		private Number startOffset;
+		private Long startOffset;
 
-		private Number termfrequency;
+		private Long termfrequency;
 
 		private String token;
 
 		private String type;
 
 		/**
-		 * API name: {@code bytes}
+		 * Required - API name: {@code bytes}
 		 */
 		public Builder bytes(String value) {
 			this.bytes = value;
@@ -216,9 +223,9 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code end_offset}
+		 * Required - API name: {@code end_offset}
 		 */
-		public Builder endOffset(Number value) {
+		public Builder endOffset(long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -232,39 +239,39 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code position}
+		 * Required - API name: {@code position}
 		 */
-		public Builder position(Number value) {
+		public Builder position(long value) {
 			this.position = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code positionLength}
+		 * Required - API name: {@code positionLength}
 		 */
-		public Builder positionlength(Number value) {
+		public Builder positionlength(long value) {
 			this.positionlength = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code start_offset}
+		 * Required - API name: {@code start_offset}
 		 */
-		public Builder startOffset(Number value) {
+		public Builder startOffset(long value) {
 			this.startOffset = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code termFrequency}
+		 * Required - API name: {@code termFrequency}
 		 */
-		public Builder termfrequency(Number value) {
+		public Builder termfrequency(long value) {
 			this.termfrequency = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code token}
+		 * Required - API name: {@code token}
 		 */
 		public Builder token(String value) {
 			this.token = value;
@@ -272,7 +279,7 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -294,20 +301,20 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExplainAnalyzeToken
+	 * Json deserializer for {@link ExplainAnalyzeToken}
 	 */
-	public static final JsonpDeserializer<ExplainAnalyzeToken> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExplainAnalyzeToken::setupExplainAnalyzeTokenDeserializer);
+	public static final JsonpDeserializer<ExplainAnalyzeToken> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplainAnalyzeToken::setupExplainAnalyzeTokenDeserializer, Builder::build);
 
 	protected static void setupExplainAnalyzeTokenDeserializer(DelegatingDeserializer<ExplainAnalyzeToken.Builder> op) {
 
 		op.add(Builder::bytes, JsonpDeserializer.stringDeserializer(), "bytes");
-		op.add(Builder::endOffset, JsonpDeserializer.numberDeserializer(), "end_offset");
+		op.add(Builder::endOffset, JsonpDeserializer.longDeserializer(), "end_offset");
 		op.add(Builder::keyword, JsonpDeserializer.booleanDeserializer(), "keyword");
-		op.add(Builder::position, JsonpDeserializer.numberDeserializer(), "position");
-		op.add(Builder::positionlength, JsonpDeserializer.numberDeserializer(), "positionLength");
-		op.add(Builder::startOffset, JsonpDeserializer.numberDeserializer(), "start_offset");
-		op.add(Builder::termfrequency, JsonpDeserializer.numberDeserializer(), "termFrequency");
+		op.add(Builder::position, JsonpDeserializer.longDeserializer(), "position");
+		op.add(Builder::positionlength, JsonpDeserializer.longDeserializer(), "positionLength");
+		op.add(Builder::startOffset, JsonpDeserializer.longDeserializer(), "start_offset");
+		op.add(Builder::termfrequency, JsonpDeserializer.longDeserializer(), "termFrequency");
 		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

@@ -25,24 +25,28 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_data_frame_analytics.Request
-public final class UpdateDataFrameAnalyticsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class UpdateDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -52,14 +56,14 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
 	private final Boolean allowLazyStart;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateDataFrameAnalyticsRequest(Builder builder) {
+	public UpdateDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.description = builder.description;
@@ -69,11 +73,15 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 	}
 
+	public UpdateDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Identifier for the data frame analytics job. This identifier can contain
-	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
-	 *
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -82,7 +90,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 	/**
 	 * A description of the job.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -97,7 +105,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 	 * create data frame analytics jobs that have model_memory_limit values greater
 	 * than that setting.
-	 *
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
@@ -111,18 +119,18 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * analysis at the cost of using more CPU. Note that the process may use
 	 * additional threads for operational functionality other than the analysis
 	 * itself.
-	 *
+	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
 	/**
 	 * Specifies whether this job can start when there is insufficient machine
 	 * learning node capacity for it to be immediately assigned to a node.
-	 *
+	 * <p>
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
@@ -133,13 +141,13 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -156,7 +164,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.allowLazyStart != null) {
@@ -183,16 +191,16 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
 		private Boolean allowLazyStart;
 
 		/**
-		 * Identifier for the data frame analytics job. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
-		 *
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -202,7 +210,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 		/**
 		 * A description of the job.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -217,7 +225,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 		 * create data frame analytics jobs that have model_memory_limit values greater
 		 * than that setting.
-		 *
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(@Nullable String value) {
@@ -231,10 +239,10 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * analysis at the cost of using more CPU. Note that the process may use
 		 * additional threads for operational functionality other than the analysis
 		 * itself.
-		 *
+		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -242,7 +250,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node.
-		 *
+		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
 		public Builder allowLazyStart(@Nullable Boolean value) {
@@ -265,18 +273,18 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateDataFrameAnalyticsRequest
+	 * Json deserializer for {@link UpdateDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<UpdateDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					UpdateDataFrameAnalyticsRequest::setupUpdateDataFrameAnalyticsRequestDeserializer);
+	public static final JsonpDeserializer<UpdateDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateDataFrameAnalyticsRequest::setupUpdateDataFrameAnalyticsRequestDeserializer,
+					Builder::build);
 
 	protected static void setupUpdateDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<UpdateDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 
 	}
@@ -286,7 +294,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	/**
 	 * Endpoint "{@code ml.update_data_frame_analytics}".
 	 */
-	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -299,8 +307,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
@@ -308,11 +315,11 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -320,5 +327,5 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateDataFrameAnalyticsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateDataFrameAnalyticsResponse._DESERIALIZER);
 }

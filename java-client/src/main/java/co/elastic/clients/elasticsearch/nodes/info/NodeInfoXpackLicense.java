@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,19 +37,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicense
-public final class NodeInfoXpackLicense implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoXpackLicense implements JsonpSerializable {
 	private final NodeInfoXpackLicenseType selfGenerated;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackLicense(Builder builder) {
+	public NodeInfoXpackLicense(Builder builder) {
 
 		this.selfGenerated = Objects.requireNonNull(builder.selfGenerated, "self_generated");
 
 	}
 
+	public NodeInfoXpackLicense(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code self_generated}
+	 * Required - API name: {@code self_generated}
 	 */
 	public NodeInfoXpackLicenseType selfGenerated() {
 		return this.selfGenerated;
@@ -57,16 +63,16 @@ public final class NodeInfoXpackLicense implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("self_generated");
-		this.selfGenerated.toJsonp(generator, mapper);
+		this.selfGenerated.serialize(generator, mapper);
 
 	}
 
@@ -79,7 +85,7 @@ public final class NodeInfoXpackLicense implements ToJsonp {
 		private NodeInfoXpackLicenseType selfGenerated;
 
 		/**
-		 * API name: {@code self_generated}
+		 * Required - API name: {@code self_generated}
 		 */
 		public Builder selfGenerated(NodeInfoXpackLicenseType value) {
 			this.selfGenerated = value;
@@ -87,7 +93,7 @@ public final class NodeInfoXpackLicense implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code self_generated}
+		 * Required - API name: {@code self_generated}
 		 */
 		public Builder selfGenerated(
 				Function<NodeInfoXpackLicenseType.Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {
@@ -109,15 +115,15 @@ public final class NodeInfoXpackLicense implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackLicense
+	 * Json deserializer for {@link NodeInfoXpackLicense}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackLicense> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackLicense> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackLicenseDeserializer(
 			DelegatingDeserializer<NodeInfoXpackLicense.Builder> op) {
 
-		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType.DESERIALIZER, "self_generated");
+		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType._DESERIALIZER, "self_generated");
 
 	}
 

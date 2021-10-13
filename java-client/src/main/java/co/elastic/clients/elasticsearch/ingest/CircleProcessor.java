@@ -24,35 +24,38 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CircleProcessor
-public final class CircleProcessor extends ProcessorBase {
-	private final Number errorDistance;
+@JsonpDeserializable
+public final class CircleProcessor extends ProcessorBase implements ProcessorVariant {
+	private final double errorDistance;
 
 	private final String field;
 
-	private final Boolean ignoreMissing;
+	private final boolean ignoreMissing;
 
-	private final JsonValue shapeType;
+	private final ShapeType shapeType;
 
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CircleProcessor(Builder builder) {
+	public CircleProcessor(Builder builder) {
 		super(builder);
+
 		this.errorDistance = Objects.requireNonNull(builder.errorDistance, "error_distance");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
@@ -61,46 +64,59 @@ public final class CircleProcessor extends ProcessorBase {
 
 	}
 
+	public CircleProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code error_distance}
+	 * {@link Processor} variant type
 	 */
-	public Number errorDistance() {
+	@Override
+	public String _variantType() {
+		return "circle";
+	}
+
+	/**
+	 * Required - API name: {@code error_distance}
+	 */
+	public double errorDistance() {
 		return this.errorDistance;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code ignore_missing}
+	 * Required - API name: {@code ignore_missing}
 	 */
-	public Boolean ignoreMissing() {
+	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * API name: {@code shape_type}
+	 * Required - API name: {@code shape_type}
 	 */
-	public JsonValue shapeType() {
+	public ShapeType shapeType() {
 		return this.shapeType;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("error_distance");
-		generator.write(this.errorDistance.doubleValue());
+		generator.write(this.errorDistance);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -109,7 +125,7 @@ public final class CircleProcessor extends ProcessorBase {
 		generator.write(this.ignoreMissing);
 
 		generator.writeKey("shape_type");
-		generator.write(this.shapeType);
+		this.shapeType.serialize(generator, mapper);
 
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
@@ -124,26 +140,26 @@ public final class CircleProcessor extends ProcessorBase {
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CircleProcessor> {
-		private Number errorDistance;
+		private Double errorDistance;
 
 		private String field;
 
 		private Boolean ignoreMissing;
 
-		private JsonValue shapeType;
+		private ShapeType shapeType;
 
 		private String targetField;
 
 		/**
-		 * API name: {@code error_distance}
+		 * Required - API name: {@code error_distance}
 		 */
-		public Builder errorDistance(Number value) {
+		public Builder errorDistance(double value) {
 			this.errorDistance = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -151,23 +167,23 @@ public final class CircleProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code ignore_missing}
+		 * Required - API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(Boolean value) {
+		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code shape_type}
+		 * Required - API name: {@code shape_type}
 		 */
-		public Builder shapeType(JsonValue value) {
+		public Builder shapeType(ShapeType value) {
 			this.shapeType = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;
@@ -194,17 +210,17 @@ public final class CircleProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CircleProcessor
+	 * Json deserializer for {@link CircleProcessor}
 	 */
-	public static final JsonpDeserializer<CircleProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CircleProcessor::setupCircleProcessorDeserializer);
+	public static final JsonpDeserializer<CircleProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CircleProcessor::setupCircleProcessorDeserializer, Builder::build);
 
 	protected static void setupCircleProcessorDeserializer(DelegatingDeserializer<CircleProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::errorDistance, JsonpDeserializer.numberDeserializer(), "error_distance");
+		op.add(Builder::errorDistance, JsonpDeserializer.doubleDeserializer(), "error_distance");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::shapeType, JsonpDeserializer.jsonValueDeserializer(), "shape_type");
+		op.add(Builder::shapeType, ShapeType._DESERIALIZER, "shape_type");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

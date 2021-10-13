@@ -19,19 +19,19 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpDeserializer;
-
+import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.function.BiFunction;
 
 public class TaggedUnionParsers {
 
-    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion<T, V>> JsonpDeserializer<TU> externallyTagged(
+    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion2<T, V>> JsonpDeserializer<TU> externallyTagged(
         BiFunction<T, V, TU> unionCtor,
         EnumMap<T, JsonpDeserializer<? extends V>> variantParsers,
         StringEnum.Deserializer<T> tagParser
@@ -55,7 +55,7 @@ public class TaggedUnionParsers {
         });
     }
 
-    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion<T, V>> JsonpDeserializer<TU> internallyTagged(
+    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion2<T, V>> JsonpDeserializer<TU> internallyTagged(
         String tagField,
         BiFunction<T, V, TU> unionCtor,
         EnumMap<T, JsonpDeserializer<? extends V>> variantParsers,
@@ -75,7 +75,7 @@ public class TaggedUnionParsers {
                 throw new JsonParsingException("No parser for variant '" + tag.jsonValue() + "'", parser.getLocation());
             }
 
-            JsonParser objectParser = params.jsonpProvider().createParserFactory(null).createParser(object);
+            JsonParser objectParser = params.jsonProvider().createParserFactory(null).createParser(object);
             V value = variantParser.deserialize(objectParser, params);
 
             return unionCtor.apply(tag, value);
@@ -85,7 +85,7 @@ public class TaggedUnionParsers {
     /**
      * Externally tagged representation with a key that has already been parsed. Typically used for typed_keys
      */
-    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion<T, V>> JsonpDeserializer<TU> externallyTagged(
+    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion2<T, V>> JsonpDeserializer<TU> externallyTagged(
         BiFunction<T, V, TU> unionCtor,
         EnumMap<T, JsonpDeserializer<? extends V>> variantParsers,
         StringEnum.Deserializer<T> tagParser,

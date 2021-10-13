@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,26 +38,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ForeachProcessor
-public final class ForeachProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class ForeachProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
 	private final Boolean ignoreMissing;
 
-	private final ProcessorContainer processor;
+	private final Processor processor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ForeachProcessor(Builder builder) {
+	public ForeachProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.processor = Objects.requireNonNull(builder.processor, "processor");
 
 	}
 
+	public ForeachProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "foreach";
+	}
+
+	/**
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -71,14 +86,15 @@ public final class ForeachProcessor extends ProcessorBase {
 	}
 
 	/**
-	 * API name: {@code processor}
+	 * Required - API name: {@code processor}
 	 */
-	public ProcessorContainer processor() {
+	public Processor processor() {
 		return this.processor;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -91,7 +107,7 @@ public final class ForeachProcessor extends ProcessorBase {
 		}
 
 		generator.writeKey("processor");
-		this.processor.toJsonp(generator, mapper);
+		this.processor.serialize(generator, mapper);
 
 	}
 
@@ -108,10 +124,10 @@ public final class ForeachProcessor extends ProcessorBase {
 		@Nullable
 		private Boolean ignoreMissing;
 
-		private ProcessorContainer processor;
+		private Processor processor;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -127,18 +143,18 @@ public final class ForeachProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code processor}
+		 * Required - API name: {@code processor}
 		 */
-		public Builder processor(ProcessorContainer value) {
+		public Builder processor(Processor value) {
 			this.processor = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code processor}
+		 * Required - API name: {@code processor}
 		 */
-		public Builder processor(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.processor(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processor(fn.apply(new Processor.Builder()).build());
 		}
 
 		@Override
@@ -161,16 +177,16 @@ public final class ForeachProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ForeachProcessor
+	 * Json deserializer for {@link ForeachProcessor}
 	 */
-	public static final JsonpDeserializer<ForeachProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ForeachProcessor::setupForeachProcessorDeserializer);
+	public static final JsonpDeserializer<ForeachProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ForeachProcessor::setupForeachProcessorDeserializer, Builder::build);
 
 	protected static void setupForeachProcessorDeserializer(DelegatingDeserializer<ForeachProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::processor, ProcessorContainer.DESERIALIZER, "processor");
+		op.add(Builder::processor, Processor._DESERIALIZER, "processor");
 
 	}
 

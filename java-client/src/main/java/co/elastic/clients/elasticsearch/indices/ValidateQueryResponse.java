@@ -26,11 +26,13 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.validate_query.IndicesValidationExplanation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -43,27 +45,32 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Response
-public final class ValidateQueryResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ValidateQueryResponse implements JsonpSerializable {
 	@Nullable
 	private final List<IndicesValidationExplanation> explanations;
 
 	@Nullable
 	private final ShardStatistics shards;
 
-	private final Boolean valid;
+	private final boolean valid;
 
 	@Nullable
 	private final String error;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateQueryResponse(Builder builder) {
+	public ValidateQueryResponse(Builder builder) {
 
-		this.explanations = builder.explanations;
+		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
 		this.shards = builder.shards;
 		this.valid = Objects.requireNonNull(builder.valid, "valid");
 		this.error = builder.error;
 
+	}
+
+	public ValidateQueryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -83,9 +90,9 @@ public final class ValidateQueryResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code valid}
+	 * Required - API name: {@code valid}
 	 */
-	public Boolean valid() {
+	public boolean valid() {
 		return this.valid;
 	}
 
@@ -100,20 +107,20 @@ public final class ValidateQueryResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.explanations != null) {
 
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (IndicesValidationExplanation item0 : this.explanations) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -122,7 +129,7 @@ public final class ValidateQueryResponse implements ToJsonp {
 		if (this.shards != null) {
 
 			generator.writeKey("_shards");
-			this.shards.toJsonp(generator, mapper);
+			this.shards.serialize(generator, mapper);
 
 		}
 
@@ -214,9 +221,9 @@ public final class ValidateQueryResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code valid}
+		 * Required - API name: {@code valid}
 		 */
-		public Builder valid(Boolean value) {
+		public Builder valid(boolean value) {
 			this.valid = value;
 			return this;
 		}
@@ -244,17 +251,17 @@ public final class ValidateQueryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidateQueryResponse
+	 * Json deserializer for {@link ValidateQueryResponse}
 	 */
-	public static final JsonpDeserializer<ValidateQueryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer);
+	public static final JsonpDeserializer<ValidateQueryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer, Builder::build);
 
 	protected static void setupValidateQueryResponseDeserializer(
 			DelegatingDeserializer<ValidateQueryResponse.Builder> op) {
 
-		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation.DESERIALIZER),
+		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation._DESERIALIZER),
 				"explanations");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 

@@ -23,50 +23,66 @@
 
 package co.elastic.clients.elasticsearch.shutdown;
 
+import co.elastic.clients.elasticsearch.shutdown.get_node.NodeShutdownStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Response
-public final class GetNodeResponse implements ToJsonp {
-	private final Boolean stub;
+@JsonpDeserializable
+public final class GetNodeResponse implements JsonpSerializable {
+	private final List<NodeShutdownStatus> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetNodeResponse(Builder builder) {
+	public GetNodeResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
 
 	}
 
+	public GetNodeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code stub}
+	 * Required - API name: {@code nodes}
 	 */
-	public Boolean stub() {
-		return this.stub;
+	public List<NodeShutdownStatus> nodes() {
+		return this.nodes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub);
+		generator.writeKey("nodes");
+		generator.writeStartArray();
+		for (NodeShutdownStatus item0 : this.nodes) {
+			item0.serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
 
 	}
 
@@ -76,14 +92,47 @@ public final class GetNodeResponse implements ToJsonp {
 	 * Builder for {@link GetNodeResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetNodeResponse> {
-		private Boolean stub;
+		private List<NodeShutdownStatus> nodes;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - API name: {@code nodes}
 		 */
-		public Builder stub(Boolean value) {
-			this.stub = value;
+		public Builder nodes(List<NodeShutdownStatus> value) {
+			this.nodes = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 */
+		public Builder nodes(NodeShutdownStatus... value) {
+			this.nodes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodes(List)}, creating the list if needed.
+		 */
+		public Builder addNodes(NodeShutdownStatus value) {
+			if (this.nodes == null) {
+				this.nodes = new ArrayList<>();
+			}
+			this.nodes.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #nodes(List)} to a singleton list.
+		 */
+		public Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
+			return this.nodes(fn.apply(new NodeShutdownStatus.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #nodes(List)}, creating the list if needed.
+		 */
+		public Builder addNodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
+			return this.addNodes(fn.apply(new NodeShutdownStatus.Builder()).build());
 		}
 
 		/**
@@ -101,14 +150,14 @@ public final class GetNodeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetNodeResponse
+	 * Json deserializer for {@link GetNodeResponse}
 	 */
-	public static final JsonpDeserializer<GetNodeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetNodeResponse::setupGetNodeResponseDeserializer);
+	public static final JsonpDeserializer<GetNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetNodeResponse::setupGetNodeResponseDeserializer, Builder::build);
 
 	protected static void setupGetNodeResponseDeserializer(DelegatingDeserializer<GetNodeResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.booleanDeserializer(), "stub");
+		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus._DESERIALIZER), "nodes");
 
 	}
 

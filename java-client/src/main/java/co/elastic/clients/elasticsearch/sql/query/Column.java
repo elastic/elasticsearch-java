@@ -24,41 +24,48 @@
 package co.elastic.clients.elasticsearch.sql.query;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Column
-public final class Column implements ToJsonp {
+@JsonpDeserializable
+public final class Column implements JsonpSerializable {
 	private final String name;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Column(Builder builder) {
+	public Column(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
 	}
 
+	public Column(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -67,13 +74,13 @@ public final class Column implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -94,7 +101,7 @@ public final class Column implements ToJsonp {
 		private String type;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -102,7 +109,7 @@ public final class Column implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -124,10 +131,10 @@ public final class Column implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Column
+	 * Json deserializer for {@link Column}
 	 */
-	public static final JsonpDeserializer<Column> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Column::setupColumnDeserializer);
+	public static final JsonpDeserializer<Column> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Column::setupColumnDeserializer, Builder::build);
 
 	protected static void setupColumnDeserializer(DelegatingDeserializer<Column.Builder> op) {
 

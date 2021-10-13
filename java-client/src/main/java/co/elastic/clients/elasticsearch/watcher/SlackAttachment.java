@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachment
-public final class SlackAttachment implements ToJsonp {
+@JsonpDeserializable
+public final class SlackAttachment implements JsonpSerializable {
 	@Nullable
 	private final String authorIcon;
 
@@ -86,14 +89,14 @@ public final class SlackAttachment implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SlackAttachment(Builder builder) {
+	public SlackAttachment(Builder builder) {
 
 		this.authorIcon = builder.authorIcon;
 		this.authorLink = builder.authorLink;
 		this.authorName = Objects.requireNonNull(builder.authorName, "author_name");
 		this.color = builder.color;
 		this.fallback = builder.fallback;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.footer = builder.footer;
 		this.footerIcon = builder.footerIcon;
 		this.imageUrl = builder.imageUrl;
@@ -104,6 +107,10 @@ public final class SlackAttachment implements ToJsonp {
 		this.titleLink = builder.titleLink;
 		this.ts = builder.ts;
 
+	}
+
+	public SlackAttachment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -123,7 +130,7 @@ public final class SlackAttachment implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code author_name}
+	 * Required - API name: {@code author_name}
 	 */
 	public String authorName() {
 		return this.authorName;
@@ -202,7 +209,7 @@ public final class SlackAttachment implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code title}
+	 * Required - API name: {@code title}
 	 */
 	public String title() {
 		return this.title;
@@ -227,13 +234,13 @@ public final class SlackAttachment implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.authorIcon != null) {
 
@@ -268,7 +275,7 @@ public final class SlackAttachment implements ToJsonp {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (SlackAttachmentField item0 : this.fields) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -395,7 +402,7 @@ public final class SlackAttachment implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code author_name}
+		 * Required - API name: {@code author_name}
 		 */
 		public Builder authorName(String value) {
 			this.authorName = value;
@@ -508,7 +515,7 @@ public final class SlackAttachment implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code title}
+		 * Required - API name: {@code title}
 		 */
 		public Builder title(String value) {
 			this.title = value;
@@ -546,10 +553,10 @@ public final class SlackAttachment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SlackAttachment
+	 * Json deserializer for {@link SlackAttachment}
 	 */
-	public static final JsonpDeserializer<SlackAttachment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlackAttachment::setupSlackAttachmentDeserializer);
+	public static final JsonpDeserializer<SlackAttachment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SlackAttachment::setupSlackAttachmentDeserializer, Builder::build);
 
 	protected static void setupSlackAttachmentDeserializer(DelegatingDeserializer<SlackAttachment.Builder> op) {
 
@@ -558,7 +565,7 @@ public final class SlackAttachment implements ToJsonp {
 		op.add(Builder::authorName, JsonpDeserializer.stringDeserializer(), "author_name");
 		op.add(Builder::color, JsonpDeserializer.stringDeserializer(), "color");
 		op.add(Builder::fallback, JsonpDeserializer.stringDeserializer(), "fallback");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(SlackAttachmentField.DESERIALIZER), "fields");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(SlackAttachmentField._DESERIALIZER), "fields");
 		op.add(Builder::footer, JsonpDeserializer.stringDeserializer(), "footer");
 		op.add(Builder::footerIcon, JsonpDeserializer.stringDeserializer(), "footer_icon");
 		op.add(Builder::imageUrl, JsonpDeserializer.stringDeserializer(), "image_url");

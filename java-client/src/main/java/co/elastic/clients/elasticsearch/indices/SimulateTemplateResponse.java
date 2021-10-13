@@ -23,50 +23,57 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch.indices.simulate_template.Template;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Response
-public final class SimulateTemplateResponse implements ToJsonp {
-	private final String stub;
+@JsonpDeserializable
+public final class SimulateTemplateResponse implements JsonpSerializable {
+	private final Template template;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulateTemplateResponse(Builder builder) {
+	public SimulateTemplateResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.template = Objects.requireNonNull(builder.template, "template");
 
 	}
 
+	public SimulateTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code stub}
+	 * Required - API name: {@code template}
 	 */
-	public String stub() {
-		return this.stub;
+	public Template template() {
+		return this.template;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub);
+		generator.writeKey("template");
+		this.template.serialize(generator, mapper);
 
 	}
 
@@ -76,14 +83,21 @@ public final class SimulateTemplateResponse implements ToJsonp {
 	 * Builder for {@link SimulateTemplateResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<SimulateTemplateResponse> {
-		private String stub;
+		private Template template;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - API name: {@code template}
 		 */
-		public Builder stub(String value) {
-			this.stub = value;
+		public Builder template(Template value) {
+			this.template = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template}
+		 */
+		public Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
+			return this.template(fn.apply(new Template.Builder()).build());
 		}
 
 		/**
@@ -101,15 +115,15 @@ public final class SimulateTemplateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulateTemplateResponse
+	 * Json deserializer for {@link SimulateTemplateResponse}
 	 */
-	public static final JsonpDeserializer<SimulateTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer);
+	public static final JsonpDeserializer<SimulateTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupSimulateTemplateResponseDeserializer(
 			DelegatingDeserializer<SimulateTemplateResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
+		op.add(Builder::template, Template._DESERIALIZER, "template");
 
 	}
 

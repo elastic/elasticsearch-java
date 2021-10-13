@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,23 +38,28 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.EmailResult
-public final class EmailResult implements ToJsonp {
+@JsonpDeserializable
+public final class EmailResult implements JsonpSerializable {
 	@Nullable
 	private final String account;
 
-	private final co.elastic.clients.elasticsearch.watcher.EmailResult message;
+	private final EmailResult message;
 
 	@Nullable
 	private final String reason;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EmailResult(Builder builder) {
+	public EmailResult(Builder builder) {
 
 		this.account = builder.account;
 		this.message = Objects.requireNonNull(builder.message, "message");
 		this.reason = builder.reason;
 
+	}
+
+	public EmailResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -65,9 +71,9 @@ public final class EmailResult implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
-	public co.elastic.clients.elasticsearch.watcher.EmailResult message() {
+	public EmailResult message() {
 		return this.message;
 	}
 
@@ -82,13 +88,13 @@ public final class EmailResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.account != null) {
 
@@ -98,7 +104,7 @@ public final class EmailResult implements ToJsonp {
 		}
 
 		generator.writeKey("message");
-		this.message.toJsonp(generator, mapper);
+		this.message.serialize(generator, mapper);
 
 		if (this.reason != null) {
 
@@ -118,7 +124,7 @@ public final class EmailResult implements ToJsonp {
 		@Nullable
 		private String account;
 
-		private co.elastic.clients.elasticsearch.watcher.EmailResult message;
+		private EmailResult message;
 
 		@Nullable
 		private String reason;
@@ -132,19 +138,18 @@ public final class EmailResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
-		public Builder message(co.elastic.clients.elasticsearch.watcher.EmailResult value) {
+		public Builder message(EmailResult value) {
 			this.message = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
-		public Builder message(
-				Function<co.elastic.clients.elasticsearch.watcher.EmailResult.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.watcher.EmailResult>> fn) {
-			return this.message(fn.apply(new co.elastic.clients.elasticsearch.watcher.EmailResult.Builder()).build());
+		public Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
+			return this.message(fn.apply(new EmailResult.Builder()).build());
 		}
 
 		/**
@@ -170,15 +175,15 @@ public final class EmailResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EmailResult
+	 * Json deserializer for {@link EmailResult}
 	 */
-	public static final JsonpDeserializer<EmailResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EmailResult::setupEmailResultDeserializer);
+	public static final JsonpDeserializer<EmailResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EmailResult::setupEmailResultDeserializer, Builder::build);
 
 	protected static void setupEmailResultDeserializer(DelegatingDeserializer<EmailResult.Builder> op) {
 
 		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
-		op.add(Builder::message, co.elastic.clients.elasticsearch.watcher.EmailResult.DESERIALIZER, "message");
+		op.add(Builder::message, EmailResult._DESERIALIZER, "message");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}

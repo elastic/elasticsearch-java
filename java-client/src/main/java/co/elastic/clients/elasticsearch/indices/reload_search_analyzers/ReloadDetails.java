@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.reload_search_analyzers;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
-public final class ReloadDetails implements ToJsonp {
+@JsonpDeserializable
+public final class ReloadDetails implements JsonpSerializable {
 	private final String index;
 
 	private final List<String> reloadedAnalyzers;
@@ -48,30 +52,34 @@ public final class ReloadDetails implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadDetails(Builder builder) {
+	public ReloadDetails(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.reloadedAnalyzers = Objects.requireNonNull(builder.reloadedAnalyzers, "reloaded_analyzers");
-		this.reloadedNodeIds = Objects.requireNonNull(builder.reloadedNodeIds, "reloaded_node_ids");
+		this.reloadedAnalyzers = ModelTypeHelper.unmodifiableNonNull(builder.reloadedAnalyzers, "reloaded_analyzers");
+		this.reloadedNodeIds = ModelTypeHelper.unmodifiableNonNull(builder.reloadedNodeIds, "reloaded_node_ids");
 
 	}
 
+	public ReloadDetails(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code reloaded_analyzers}
+	 * Required - API name: {@code reloaded_analyzers}
 	 */
 	public List<String> reloadedAnalyzers() {
 		return this.reloadedAnalyzers;
 	}
 
 	/**
-	 * API name: {@code reloaded_node_ids}
+	 * Required - API name: {@code reloaded_node_ids}
 	 */
 	public List<String> reloadedNodeIds() {
 		return this.reloadedNodeIds;
@@ -80,13 +88,13 @@ public final class ReloadDetails implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -122,7 +130,7 @@ public final class ReloadDetails implements ToJsonp {
 		private List<String> reloadedNodeIds;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -130,7 +138,7 @@ public final class ReloadDetails implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reloaded_analyzers}
+		 * Required - API name: {@code reloaded_analyzers}
 		 */
 		public Builder reloadedAnalyzers(List<String> value) {
 			this.reloadedAnalyzers = value;
@@ -138,7 +146,7 @@ public final class ReloadDetails implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reloaded_analyzers}
+		 * Required - API name: {@code reloaded_analyzers}
 		 */
 		public Builder reloadedAnalyzers(String... value) {
 			this.reloadedAnalyzers = Arrays.asList(value);
@@ -157,7 +165,7 @@ public final class ReloadDetails implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reloaded_node_ids}
+		 * Required - API name: {@code reloaded_node_ids}
 		 */
 		public Builder reloadedNodeIds(List<String> value) {
 			this.reloadedNodeIds = value;
@@ -165,7 +173,7 @@ public final class ReloadDetails implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reloaded_node_ids}
+		 * Required - API name: {@code reloaded_node_ids}
 		 */
 		public Builder reloadedNodeIds(String... value) {
 			this.reloadedNodeIds = Arrays.asList(value);
@@ -198,10 +206,10 @@ public final class ReloadDetails implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReloadDetails
+	 * Json deserializer for {@link ReloadDetails}
 	 */
-	public static final JsonpDeserializer<ReloadDetails> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReloadDetails::setupReloadDetailsDeserializer);
+	public static final JsonpDeserializer<ReloadDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReloadDetails::setupReloadDetailsDeserializer, Builder::build);
 
 	protected static void setupReloadDetailsDeserializer(DelegatingDeserializer<ReloadDetails.Builder> op) {
 

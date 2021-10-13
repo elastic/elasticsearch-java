@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,32 +38,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.InfoFeatureState
-public final class InfoFeatureState implements ToJsonp {
+@JsonpDeserializable
+public final class InfoFeatureState implements JsonpSerializable {
 	private final String featureName;
 
 	private final List<String> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InfoFeatureState(Builder builder) {
+	public InfoFeatureState(Builder builder) {
 
 		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 
 	}
 
+	public InfoFeatureState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code feature_name}
+	 * Required - API name: {@code feature_name}
 	 */
 	public String featureName() {
 		return this.featureName;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
@@ -70,13 +78,13 @@ public final class InfoFeatureState implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
@@ -102,7 +110,7 @@ public final class InfoFeatureState implements ToJsonp {
 		private List<String> indices;
 
 		/**
-		 * API name: {@code feature_name}
+		 * Required - API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
 			this.featureName = value;
@@ -110,7 +118,7 @@ public final class InfoFeatureState implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -118,7 +126,7 @@ public final class InfoFeatureState implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -151,10 +159,10 @@ public final class InfoFeatureState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InfoFeatureState
+	 * Json deserializer for {@link InfoFeatureState}
 	 */
-	public static final JsonpDeserializer<InfoFeatureState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoFeatureState::setupInfoFeatureStateDeserializer);
+	public static final JsonpDeserializer<InfoFeatureState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoFeatureState::setupInfoFeatureStateDeserializer, Builder::build);
 
 	protected static void setupInfoFeatureStateDeserializer(DelegatingDeserializer<InfoFeatureState.Builder> op) {
 

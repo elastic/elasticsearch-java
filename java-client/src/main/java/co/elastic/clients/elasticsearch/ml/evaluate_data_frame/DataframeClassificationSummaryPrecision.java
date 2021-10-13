@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,55 +42,60 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryPrecision
-public final class DataframeClassificationSummaryPrecision implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeClassificationSummaryPrecision implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Number avgPrecision;
+	private final double avgPrecision;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeClassificationSummaryPrecision(Builder builder) {
+	public DataframeClassificationSummaryPrecision(Builder builder) {
 
-		this.classes = Objects.requireNonNull(builder.classes, "classes");
+		this.classes = ModelTypeHelper.unmodifiableNonNull(builder.classes, "classes");
 		this.avgPrecision = Objects.requireNonNull(builder.avgPrecision, "avg_precision");
 
 	}
 
+	public DataframeClassificationSummaryPrecision(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code classes}
+	 * Required - API name: {@code classes}
 	 */
 	public List<DataframeEvaluationClass> classes() {
 		return this.classes;
 	}
 
 	/**
-	 * API name: {@code avg_precision}
+	 * Required - API name: {@code avg_precision}
 	 */
-	public Number avgPrecision() {
+	public double avgPrecision() {
 		return this.avgPrecision;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("classes");
 		generator.writeStartArray();
 		for (DataframeEvaluationClass item0 : this.classes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("avg_precision");
-		generator.write(this.avgPrecision.doubleValue());
+		generator.write(this.avgPrecision);
 
 	}
 
@@ -100,10 +107,10 @@ public final class DataframeClassificationSummaryPrecision implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryPrecision> {
 		private List<DataframeEvaluationClass> classes;
 
-		private Number avgPrecision;
+		private Double avgPrecision;
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(List<DataframeEvaluationClass> value) {
 			this.classes = value;
@@ -111,7 +118,7 @@ public final class DataframeClassificationSummaryPrecision implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(DataframeEvaluationClass... value) {
 			this.classes = Arrays.asList(value);
@@ -145,9 +152,9 @@ public final class DataframeClassificationSummaryPrecision implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code avg_precision}
+		 * Required - API name: {@code avg_precision}
 		 */
-		public Builder avgPrecision(Number value) {
+		public Builder avgPrecision(double value) {
 			this.avgPrecision = value;
 			return this;
 		}
@@ -167,17 +174,19 @@ public final class DataframeClassificationSummaryPrecision implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeClassificationSummaryPrecision
+	 * Json deserializer for {@link DataframeClassificationSummaryPrecision}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummaryPrecision> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummaryPrecision::setupDataframeClassificationSummaryPrecisionDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummaryPrecision> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeClassificationSummaryPrecision::setupDataframeClassificationSummaryPrecisionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryPrecisionDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummaryPrecision.Builder> op) {
 
-		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass.DESERIALIZER), "classes");
-		op.add(Builder::avgPrecision, JsonpDeserializer.numberDeserializer(), "avg_precision");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass._DESERIALIZER),
+				"classes");
+		op.add(Builder::avgPrecision, JsonpDeserializer.doubleDeserializer(), "avg_precision");
 
 	}
 

@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.license.post;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,32 +38,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Acknowledgement
-public final class Acknowledgement implements ToJsonp {
+@JsonpDeserializable
+public final class Acknowledgement implements JsonpSerializable {
 	private final List<String> license;
 
 	private final String message;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Acknowledgement(Builder builder) {
+	public Acknowledgement(Builder builder) {
 
-		this.license = Objects.requireNonNull(builder.license, "license");
+		this.license = ModelTypeHelper.unmodifiableNonNull(builder.license, "license");
 		this.message = Objects.requireNonNull(builder.message, "message");
 
 	}
 
+	public Acknowledgement(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code license}
+	 * Required - API name: {@code license}
 	 */
 	public List<String> license() {
 		return this.license;
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public String message() {
 		return this.message;
@@ -70,13 +78,13 @@ public final class Acknowledgement implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("license");
 		generator.writeStartArray();
@@ -102,7 +110,7 @@ public final class Acknowledgement implements ToJsonp {
 		private String message;
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(List<String> value) {
 			this.license = value;
@@ -110,7 +118,7 @@ public final class Acknowledgement implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(String... value) {
 			this.license = Arrays.asList(value);
@@ -129,7 +137,7 @@ public final class Acknowledgement implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(String value) {
 			this.message = value;
@@ -151,10 +159,10 @@ public final class Acknowledgement implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Acknowledgement
+	 * Json deserializer for {@link Acknowledgement}
 	 */
-	public static final JsonpDeserializer<Acknowledgement> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Acknowledgement::setupAcknowledgementDeserializer);
+	public static final JsonpDeserializer<Acknowledgement> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Acknowledgement::setupAcknowledgementDeserializer, Builder::build);
 
 	protected static void setupAcknowledgementDeserializer(DelegatingDeserializer<Acknowledgement.Builder> op) {
 

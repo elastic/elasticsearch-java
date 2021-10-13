@@ -24,33 +24,35 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRouting
-public final class ShardRouting implements ToJsonp {
+@JsonpDeserializable
+public final class ShardRouting implements JsonpSerializable {
 	private final String node;
 
-	private final Boolean primary;
+	private final boolean primary;
 
 	@Nullable
 	private final String relocatingNode;
 
-	private final JsonValue state;
+	private final ShardRoutingState state;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardRouting(Builder builder) {
+	public ShardRouting(Builder builder) {
 
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.primary = Objects.requireNonNull(builder.primary, "primary");
@@ -59,17 +61,21 @@ public final class ShardRouting implements ToJsonp {
 
 	}
 
+	public ShardRouting(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
-	public Boolean primary() {
+	public boolean primary() {
 		return this.primary;
 	}
 
@@ -82,22 +88,22 @@ public final class ShardRouting implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
-	public JsonValue state() {
+	public ShardRoutingState state() {
 		return this.state;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -113,7 +119,7 @@ public final class ShardRouting implements ToJsonp {
 		}
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 	}
 
@@ -130,10 +136,10 @@ public final class ShardRouting implements ToJsonp {
 		@Nullable
 		private String relocatingNode;
 
-		private JsonValue state;
+		private ShardRoutingState state;
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -141,9 +147,9 @@ public final class ShardRouting implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
-		public Builder primary(Boolean value) {
+		public Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -157,9 +163,9 @@ public final class ShardRouting implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(ShardRoutingState value) {
 			this.state = value;
 			return this;
 		}
@@ -179,17 +185,17 @@ public final class ShardRouting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardRouting
+	 * Json deserializer for {@link ShardRouting}
 	 */
-	public static final JsonpDeserializer<ShardRouting> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardRouting::setupShardRoutingDeserializer);
+	public static final JsonpDeserializer<ShardRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardRouting::setupShardRoutingDeserializer, Builder::build);
 
 	protected static void setupShardRoutingDeserializer(DelegatingDeserializer<ShardRouting.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
 
 	}
 

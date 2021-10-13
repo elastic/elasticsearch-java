@@ -25,17 +25,20 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +47,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
-public final class PutAutoFollowPatternRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	private final String remoteCluster;
@@ -59,48 +64,52 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	private final List<String> leaderIndexPatterns;
 
 	@Nullable
-	private final Number maxOutstandingReadRequests;
+	private final List<String> leaderIndexExclusionPatterns;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Integer maxOutstandingReadRequests;
 
 	@Nullable
-	private final Number maxOutstandingWriteRequests;
+	private final Map<String, JsonData> settings;
 
 	@Nullable
-	private final JsonValue readPollTimeout;
+	private final Integer maxOutstandingWriteRequests;
 
 	@Nullable
-	private final Number maxReadRequestOperationCount;
+	private final String readPollTimeout;
 
 	@Nullable
-	private final JsonValue maxReadRequestSize;
+	private final Integer maxReadRequestOperationCount;
 
 	@Nullable
-	private final JsonValue maxRetryDelay;
+	private final String maxReadRequestSize;
 
 	@Nullable
-	private final Number maxWriteBufferCount;
+	private final String maxRetryDelay;
 
 	@Nullable
-	private final JsonValue maxWriteBufferSize;
+	private final Integer maxWriteBufferCount;
 
 	@Nullable
-	private final Number maxWriteRequestOperationCount;
+	private final String maxWriteBufferSize;
 
 	@Nullable
-	private final JsonValue maxWriteRequestSize;
+	private final Integer maxWriteRequestOperationCount;
+
+	@Nullable
+	private final String maxWriteRequestSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAutoFollowPatternRequest(Builder builder) {
+	public PutAutoFollowPatternRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = builder.leaderIndexPatterns;
+		this.leaderIndexPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexPatterns);
+		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
-		this.settings = builder.settings;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.readPollTimeout = builder.readPollTimeout;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -113,7 +122,13 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 
 	}
 
+	public PutAutoFollowPatternRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the collection of auto-follow patterns.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -121,6 +136,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * Required - The remote cluster containing the leader indices to match against.
+	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
 	public String remoteCluster() {
@@ -128,6 +145,11 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The name of follower index. The template {{leader_index}} can be used to
+	 * derive the name of the follower index from the name of the leader index. When
+	 * following a data stream, use {{leader_index}}; CCR does not support changes
+	 * to the names of a follower data stream’s backing indices.
+	 * <p>
 	 * API name: {@code follow_index_pattern}
 	 */
 	@Nullable
@@ -136,6 +158,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * An array of simple index patterns to match against indices in the remote
+	 * cluster specified by the remote_cluster field.
+	 * <p>
 	 * API name: {@code leader_index_patterns}
 	 */
 	@Nullable
@@ -144,103 +169,151 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * An array of simple index patterns that can be used to exclude indices from
+	 * being auto-followed. Indices in the remote cluster whose names are matching
+	 * one or more leader_index_patterns and one or more
+	 * leader_index_exclusion_patterns won’t be followed.
+	 * <p>
+	 * API name: {@code leader_index_exclusion_patterns}
+	 */
+	@Nullable
+	public List<String> leaderIndexExclusionPatterns() {
+		return this.leaderIndexExclusionPatterns;
+	}
+
+	/**
+	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	@Nullable
-	public Number maxOutstandingReadRequests() {
+	public Integer maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
 	/**
+	 * Settings to override from the leader index. Note that certain settings can
+	 * not be overrode (e.g., index.number_of_shards).
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
+	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * <p>
 	 * API name: {@code max_outstanding_write_requests}
 	 */
 	@Nullable
-	public Number maxOutstandingWriteRequests() {
+	public Integer maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
 	/**
+	 * The maximum time to wait for new operations on the remote cluster when the
+	 * follower index is synchronized with the leader index. When the timeout has
+	 * elapsed, the poll for operations will return to the follower so that it can
+	 * update some statistics. Then the follower will immediately attempt to read
+	 * from the leader again.
+	 * <p>
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public JsonValue readPollTimeout() {
+	public String readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
 	/**
+	 * The maximum number of operations to pull per read from the remote cluster.
+	 * <p>
 	 * API name: {@code max_read_request_operation_count}
 	 */
 	@Nullable
-	public Number maxReadRequestOperationCount() {
+	public Integer maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
 	/**
+	 * The maximum size in bytes of per read of a batch of operations pulled from
+	 * the remote cluster.
+	 * <p>
 	 * API name: {@code max_read_request_size}
 	 */
 	@Nullable
-	public JsonValue maxReadRequestSize() {
+	public String maxReadRequestSize() {
 		return this.maxReadRequestSize;
 	}
 
 	/**
+	 * The maximum time to wait before retrying an operation that failed
+	 * exceptionally. An exponential backoff strategy is employed when retrying.
+	 * <p>
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public JsonValue maxRetryDelay() {
+	public String maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
 	/**
+	 * The maximum number of operations that can be queued for writing. When this
+	 * limit is reached, reads from the remote cluster will be deferred until the
+	 * number of queued operations goes below the limit.
+	 * <p>
 	 * API name: {@code max_write_buffer_count}
 	 */
 	@Nullable
-	public Number maxWriteBufferCount() {
+	public Integer maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
 	/**
+	 * The maximum total bytes of operations that can be queued for writing. When
+	 * this limit is reached, reads from the remote cluster will be deferred until
+	 * the total bytes of queued operations goes below the limit.
+	 * <p>
 	 * API name: {@code max_write_buffer_size}
 	 */
 	@Nullable
-	public JsonValue maxWriteBufferSize() {
+	public String maxWriteBufferSize() {
 		return this.maxWriteBufferSize;
 	}
 
 	/**
+	 * The maximum number of operations per bulk write request executed on the
+	 * follower.
+	 * <p>
 	 * API name: {@code max_write_request_operation_count}
 	 */
 	@Nullable
-	public Number maxWriteRequestOperationCount() {
+	public Integer maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
 	/**
+	 * The maximum total bytes of operations per bulk write request executed on the
+	 * follower.
+	 * <p>
 	 * API name: {@code max_write_request_size}
 	 */
 	@Nullable
-	public JsonValue maxWriteRequestSize() {
+	public String maxWriteRequestSize() {
 		return this.maxWriteRequestSize;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("remote_cluster");
 		generator.write(this.remoteCluster);
@@ -262,19 +335,30 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 			generator.writeEnd();
 
 		}
+		if (this.leaderIndexExclusionPatterns != null) {
+
+			generator.writeKey("leader_index_exclusion_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.leaderIndexExclusionPatterns) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.maxOutstandingReadRequests != null) {
 
 			generator.writeKey("max_outstanding_read_requests");
-			generator.write(this.maxOutstandingReadRequests.doubleValue());
+			generator.write(this.maxOutstandingReadRequests);
 
 		}
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -283,7 +367,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		if (this.maxOutstandingWriteRequests != null) {
 
 			generator.writeKey("max_outstanding_write_requests");
-			generator.write(this.maxOutstandingWriteRequests.doubleValue());
+			generator.write(this.maxOutstandingWriteRequests);
 
 		}
 		if (this.readPollTimeout != null) {
@@ -295,7 +379,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		if (this.maxReadRequestOperationCount != null) {
 
 			generator.writeKey("max_read_request_operation_count");
-			generator.write(this.maxReadRequestOperationCount.doubleValue());
+			generator.write(this.maxReadRequestOperationCount);
 
 		}
 		if (this.maxReadRequestSize != null) {
@@ -313,7 +397,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		if (this.maxWriteBufferCount != null) {
 
 			generator.writeKey("max_write_buffer_count");
-			generator.write(this.maxWriteBufferCount.doubleValue());
+			generator.write(this.maxWriteBufferCount);
 
 		}
 		if (this.maxWriteBufferSize != null) {
@@ -325,7 +409,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		if (this.maxWriteRequestOperationCount != null) {
 
 			generator.writeKey("max_write_request_operation_count");
-			generator.write(this.maxWriteRequestOperationCount.doubleValue());
+			generator.write(this.maxWriteRequestOperationCount);
 
 		}
 		if (this.maxWriteRequestSize != null) {
@@ -354,39 +438,44 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		private List<String> leaderIndexPatterns;
 
 		@Nullable
-		private Number maxOutstandingReadRequests;
+		private List<String> leaderIndexExclusionPatterns;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Integer maxOutstandingReadRequests;
 
 		@Nullable
-		private Number maxOutstandingWriteRequests;
+		private Map<String, JsonData> settings;
 
 		@Nullable
-		private JsonValue readPollTimeout;
+		private Integer maxOutstandingWriteRequests;
 
 		@Nullable
-		private Number maxReadRequestOperationCount;
+		private String readPollTimeout;
 
 		@Nullable
-		private JsonValue maxReadRequestSize;
+		private Integer maxReadRequestOperationCount;
 
 		@Nullable
-		private JsonValue maxRetryDelay;
+		private String maxReadRequestSize;
 
 		@Nullable
-		private Number maxWriteBufferCount;
+		private String maxRetryDelay;
 
 		@Nullable
-		private JsonValue maxWriteBufferSize;
+		private Integer maxWriteBufferCount;
 
 		@Nullable
-		private Number maxWriteRequestOperationCount;
+		private String maxWriteBufferSize;
 
 		@Nullable
-		private JsonValue maxWriteRequestSize;
+		private Integer maxWriteRequestOperationCount;
+
+		@Nullable
+		private String maxWriteRequestSize;
 
 		/**
+		 * Required - The name of the collection of auto-follow patterns.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -395,6 +484,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * Required - The remote cluster containing the leader indices to match against.
+		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
 		public Builder remoteCluster(String value) {
@@ -403,6 +494,11 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The name of follower index. The template {{leader_index}} can be used to
+		 * derive the name of the follower index from the name of the leader index. When
+		 * following a data stream, use {{leader_index}}; CCR does not support changes
+		 * to the names of a follower data stream’s backing indices.
+		 * <p>
 		 * API name: {@code follow_index_pattern}
 		 */
 		public Builder followIndexPattern(@Nullable String value) {
@@ -411,6 +507,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
 		public Builder leaderIndexPatterns(@Nullable List<String> value) {
@@ -419,6 +518,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
 		public Builder leaderIndexPatterns(String... value) {
@@ -439,17 +541,60 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * An array of simple index patterns that can be used to exclude indices from
+		 * being auto-followed. Indices in the remote cluster whose names are matching
+		 * one or more leader_index_patterns and one or more
+		 * leader_index_exclusion_patterns won’t be followed.
+		 * <p>
+		 * API name: {@code leader_index_exclusion_patterns}
+		 */
+		public Builder leaderIndexExclusionPatterns(@Nullable List<String> value) {
+			this.leaderIndexExclusionPatterns = value;
+			return this;
+		}
+
+		/**
+		 * An array of simple index patterns that can be used to exclude indices from
+		 * being auto-followed. Indices in the remote cluster whose names are matching
+		 * one or more leader_index_patterns and one or more
+		 * leader_index_exclusion_patterns won’t be followed.
+		 * <p>
+		 * API name: {@code leader_index_exclusion_patterns}
+		 */
+		public Builder leaderIndexExclusionPatterns(String... value) {
+			this.leaderIndexExclusionPatterns = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
+		 * if needed.
+		 */
+		public Builder addLeaderIndexExclusionPatterns(String value) {
+			if (this.leaderIndexExclusionPatterns == null) {
+				this.leaderIndexExclusionPatterns = new ArrayList<>();
+			}
+			this.leaderIndexExclusionPatterns.add(value);
+			return this;
+		}
+
+		/**
+		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(@Nullable Number value) {
+		public Builder maxOutstandingReadRequests(@Nullable Integer value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
 
 		/**
+		 * Settings to override from the leader index. Note that certain settings can
+		 * not be overrode (e.g., index.number_of_shards).
+		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -457,7 +602,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -466,73 +611,103 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * <p>
 		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public Builder maxOutstandingWriteRequests(@Nullable Number value) {
+		public Builder maxOutstandingWriteRequests(@Nullable Integer value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
 
 		/**
+		 * The maximum time to wait for new operations on the remote cluster when the
+		 * follower index is synchronized with the leader index. When the timeout has
+		 * elapsed, the poll for operations will return to the follower so that it can
+		 * update some statistics. Then the follower will immediately attempt to read
+		 * from the leader again.
+		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
-		public Builder readPollTimeout(@Nullable JsonValue value) {
+		public Builder readPollTimeout(@Nullable String value) {
 			this.readPollTimeout = value;
 			return this;
 		}
 
 		/**
+		 * The maximum number of operations to pull per read from the remote cluster.
+		 * <p>
 		 * API name: {@code max_read_request_operation_count}
 		 */
-		public Builder maxReadRequestOperationCount(@Nullable Number value) {
+		public Builder maxReadRequestOperationCount(@Nullable Integer value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
 
 		/**
+		 * The maximum size in bytes of per read of a batch of operations pulled from
+		 * the remote cluster.
+		 * <p>
 		 * API name: {@code max_read_request_size}
 		 */
-		public Builder maxReadRequestSize(@Nullable JsonValue value) {
+		public Builder maxReadRequestSize(@Nullable String value) {
 			this.maxReadRequestSize = value;
 			return this;
 		}
 
 		/**
+		 * The maximum time to wait before retrying an operation that failed
+		 * exceptionally. An exponential backoff strategy is employed when retrying.
+		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
-		public Builder maxRetryDelay(@Nullable JsonValue value) {
+		public Builder maxRetryDelay(@Nullable String value) {
 			this.maxRetryDelay = value;
 			return this;
 		}
 
 		/**
+		 * The maximum number of operations that can be queued for writing. When this
+		 * limit is reached, reads from the remote cluster will be deferred until the
+		 * number of queued operations goes below the limit.
+		 * <p>
 		 * API name: {@code max_write_buffer_count}
 		 */
-		public Builder maxWriteBufferCount(@Nullable Number value) {
+		public Builder maxWriteBufferCount(@Nullable Integer value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
 
 		/**
+		 * The maximum total bytes of operations that can be queued for writing. When
+		 * this limit is reached, reads from the remote cluster will be deferred until
+		 * the total bytes of queued operations goes below the limit.
+		 * <p>
 		 * API name: {@code max_write_buffer_size}
 		 */
-		public Builder maxWriteBufferSize(@Nullable JsonValue value) {
+		public Builder maxWriteBufferSize(@Nullable String value) {
 			this.maxWriteBufferSize = value;
 			return this;
 		}
 
 		/**
+		 * The maximum number of operations per bulk write request executed on the
+		 * follower.
+		 * <p>
 		 * API name: {@code max_write_request_operation_count}
 		 */
-		public Builder maxWriteRequestOperationCount(@Nullable Number value) {
+		public Builder maxWriteRequestOperationCount(@Nullable Integer value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}
 
 		/**
+		 * The maximum total bytes of operations per bulk write request executed on the
+		 * follower.
+		 * <p>
 		 * API name: {@code max_write_request_size}
 		 */
-		public Builder maxWriteRequestSize(@Nullable JsonValue value) {
+		public Builder maxWriteRequestSize(@Nullable String value) {
 			this.maxWriteRequestSize = value;
 			return this;
 		}
@@ -552,10 +727,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAutoFollowPatternRequest
+	 * Json deserializer for {@link PutAutoFollowPatternRequest}
 	 */
-	public static final JsonpDeserializer<PutAutoFollowPatternRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer);
+	public static final JsonpDeserializer<PutAutoFollowPatternRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer, Builder::build);
 
 	protected static void setupPutAutoFollowPatternRequestDeserializer(
 			DelegatingDeserializer<PutAutoFollowPatternRequest.Builder> op) {
@@ -564,22 +739,24 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
 		op.add(Builder::leaderIndexPatterns,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
-		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::leaderIndexExclusionPatterns,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"leader_index_exclusion_patterns");
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_read_requests");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
-		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_write_requests");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_poll_timeout");
-		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_read_request_operation_count");
-		op.add(Builder::maxReadRequestSize, JsonpDeserializer.jsonValueDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.jsonValueDeserializer(), "max_retry_delay");
-		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.numberDeserializer(), "max_write_buffer_count");
-		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.jsonValueDeserializer(), "max_write_buffer_size");
-		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
+		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.integerDeserializer(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
+		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_write_request_operation_count");
-		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.jsonValueDeserializer(), "max_write_request_size");
+		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
 
 	}
 
@@ -588,7 +765,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	/**
 	 * Endpoint "{@code ccr.put_auto_follow_pattern}".
 	 */
-	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -601,18 +778,17 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ccr");
 					buf.append("/auto_follow");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -620,5 +796,5 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutAutoFollowPatternResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutAutoFollowPatternResponse._DESERIALIZER);
 }

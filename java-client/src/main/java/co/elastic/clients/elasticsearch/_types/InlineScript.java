@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,29 +33,37 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.InlineScript
+@JsonpDeserializable
 public final class InlineScript extends ScriptBase {
 	private final String source;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InlineScript(Builder builder) {
+	public InlineScript(Builder builder) {
 		super(builder);
+
 		this.source = Objects.requireNonNull(builder.source, "source");
 
 	}
 
+	public InlineScript(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public String source() {
 		return this.source;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("source");
 		generator.write(this.source);
@@ -70,7 +79,7 @@ public final class InlineScript extends ScriptBase {
 		private String source;
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(String value) {
 			this.source = value;
@@ -97,10 +106,10 @@ public final class InlineScript extends ScriptBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InlineScript
+	 * Json deserializer for {@link InlineScript}
 	 */
-	public static final JsonpDeserializer<InlineScript> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InlineScript::setupInlineScriptDeserializer);
+	public static final JsonpDeserializer<InlineScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InlineScript::setupInlineScriptDeserializer, Builder::build);
 
 	protected static void setupInlineScriptDeserializer(DelegatingDeserializer<InlineScript.Builder> op) {
 		ScriptBase.setupScriptBaseDeserializer(op);

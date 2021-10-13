@@ -25,19 +25,22 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,42 +54,46 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Request
-public final class RollupSearchRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class RollupSearchRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
 	@Nullable
 	private final String type;
 
 	@Nullable
-	private final Boolean restTotalHitsAsInt;
-
-	@Nullable
 	private final Boolean typedKeys;
 
 	@Nullable
-	private final Map<String, AggregationContainer> aggs;
+	private final Map<String, Aggregation> aggs;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupSearchRequest(Builder builder) {
+	public RollupSearchRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.type = builder.type;
-		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
 		this.typedKeys = builder.typedKeys;
-		this.aggs = builder.aggs;
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.query = builder.query;
 		this.size = builder.size;
 
 	}
 
+	public RollupSearchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The indices or index-pattern(s) (containing rollup or regular
+	 * data) that should be searched
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -94,6 +101,8 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The doc type inside the index
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -102,14 +111,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code rest_total_hits_as_int}
-	 */
-	@Nullable
-	public Boolean restTotalHitsAsInt() {
-		return this.restTotalHitsAsInt;
-	}
-
-	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -121,7 +125,7 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code aggs}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggs() {
+	public Map<String, Aggregation> aggs() {
 		return this.aggs;
 	}
 
@@ -129,7 +133,7 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -137,28 +141,28 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aggs != null) {
 
 			generator.writeKey("aggs");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggs.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -167,13 +171,13 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -191,21 +195,21 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		private String type;
 
 		@Nullable
-		private Boolean restTotalHitsAsInt;
-
-		@Nullable
 		private Boolean typedKeys;
 
 		@Nullable
-		private Map<String, AggregationContainer> aggs;
+		private Map<String, Aggregation> aggs;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
+		 * Required - The indices or index-pattern(s) (containing rollup or regular
+		 * data) that should be searched
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -214,6 +218,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Required - The indices or index-pattern(s) (containing rollup or regular
+		 * data) that should be searched
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -233,6 +240,8 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The doc type inside the index
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -241,14 +250,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code rest_total_hits_as_int}
-		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
-			this.restTotalHitsAsInt = value;
-			return this;
-		}
-
-		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {
@@ -259,7 +263,7 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code aggs}
 		 */
-		public Builder aggs(@Nullable Map<String, AggregationContainer> value) {
+		public Builder aggs(@Nullable Map<String, Aggregation> value) {
 			this.aggs = value;
 			return this;
 		}
@@ -267,7 +271,7 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key, AggregationContainer value) {
+		public Builder putAggs(String key, Aggregation value) {
 			if (this.aggs == null) {
 				this.aggs = new HashMap<>();
 			}
@@ -278,23 +282,21 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #aggs(Map)} to a singleton map.
 		 */
-		public Builder aggs(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggs(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -302,14 +304,14 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -329,16 +331,16 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupSearchRequest
+	 * Json deserializer for {@link RollupSearchRequest}
 	 */
-	public static final JsonpDeserializer<RollupSearchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer);
+	public static final JsonpDeserializer<RollupSearchRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer, Builder::build);
 
 	protected static void setupRollupSearchRequestDeserializer(DelegatingDeserializer<RollupSearchRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggs");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 
@@ -347,7 +349,7 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code rollup.rollup_search}".
 	 */
-	private static final Endpoint.Simple<RollupSearchRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<RollupSearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -361,43 +363,39 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 				if (request.type() != null)
 					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_rollup_search");
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					buf.append(request.type);
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_rollup_search");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.restTotalHitsAsInt != null) {
-					params.put("rest_total_hits_as_int", String.valueOf(request.restTotalHitsAsInt));
-				}
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code rollup.rollup_search}" endpoint.

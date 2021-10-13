@@ -24,38 +24,46 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Page
-public final class Page implements ToJsonp {
+@JsonpDeserializable
+public final class Page implements JsonpSerializable {
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Page(Builder builder) {
+	public Page(Builder builder) {
 
 		this.from = builder.from;
 		this.size = builder.size;
 
 	}
 
+	public Page(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -63,31 +71,31 @@ public final class Page implements ToJsonp {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
 
 			generator.writeKey("from");
-			generator.write(this.from.doubleValue());
+			generator.write(this.from);
 
 		}
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -100,15 +108,15 @@ public final class Page implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Page> {
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -116,7 +124,7 @@ public final class Page implements ToJsonp {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -136,15 +144,15 @@ public final class Page implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Page
+	 * Json deserializer for {@link Page}
 	 */
-	public static final JsonpDeserializer<Page> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Page::setupPageDeserializer);
+	public static final JsonpDeserializer<Page> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Page::setupPageDeserializer, Builder::build);
 
 	protected static void setupPageDeserializer(DelegatingDeserializer<Page.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml.get_calendars;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Calendar
-public final class Calendar implements ToJsonp {
+@JsonpDeserializable
+public final class Calendar implements JsonpSerializable {
 	private final String calendarId;
 
 	@Nullable
@@ -49,17 +53,21 @@ public final class Calendar implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Calendar(Builder builder) {
+	public Calendar(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.description = builder.description;
-		this.jobIds = Objects.requireNonNull(builder.jobIds, "job_ids");
+		this.jobIds = ModelTypeHelper.unmodifiableNonNull(builder.jobIds, "job_ids");
 
 	}
 
+	public Calendar(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * A string that uniquely identifies a calendar.
-	 *
+	 * Required - A string that uniquely identifies a calendar.
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -75,8 +83,8 @@ public final class Calendar implements ToJsonp {
 	}
 
 	/**
-	 * An array of anomaly detection job identifiers.
-	 *
+	 * Required - An array of anomaly detection job identifiers.
+	 * <p>
 	 * API name: {@code job_ids}
 	 */
 	public List<String> jobIds() {
@@ -86,13 +94,13 @@ public final class Calendar implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("calendar_id");
 		generator.write(this.calendarId);
@@ -128,8 +136,8 @@ public final class Calendar implements ToJsonp {
 		private List<String> jobIds;
 
 		/**
-		 * A string that uniquely identifies a calendar.
-		 *
+		 * Required - A string that uniquely identifies a calendar.
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
@@ -146,8 +154,8 @@ public final class Calendar implements ToJsonp {
 		}
 
 		/**
-		 * An array of anomaly detection job identifiers.
-		 *
+		 * Required - An array of anomaly detection job identifiers.
+		 * <p>
 		 * API name: {@code job_ids}
 		 */
 		public Builder jobIds(List<String> value) {
@@ -156,8 +164,8 @@ public final class Calendar implements ToJsonp {
 		}
 
 		/**
-		 * An array of anomaly detection job identifiers.
-		 *
+		 * Required - An array of anomaly detection job identifiers.
+		 * <p>
 		 * API name: {@code job_ids}
 		 */
 		public Builder jobIds(String... value) {
@@ -191,10 +199,10 @@ public final class Calendar implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Calendar
+	 * Json deserializer for {@link Calendar}
 	 */
-	public static final JsonpDeserializer<Calendar> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Calendar::setupCalendarDeserializer);
+	public static final JsonpDeserializer<Calendar> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Calendar::setupCalendarDeserializer, Builder::build);
 
 	protected static void setupCalendarDeserializer(DelegatingDeserializer<Calendar.Builder> op) {
 

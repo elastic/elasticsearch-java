@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
-public final class SecurityRoles implements ToJsonp {
+@JsonpDeserializable
+public final class SecurityRoles implements JsonpSerializable {
 	private final SecurityRolesNative native_;
 
 	private final SecurityRolesDls dls;
@@ -45,7 +47,7 @@ public final class SecurityRoles implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SecurityRoles(Builder builder) {
+	public SecurityRoles(Builder builder) {
 
 		this.native_ = Objects.requireNonNull(builder.native_, "native");
 		this.dls = Objects.requireNonNull(builder.dls, "dls");
@@ -53,22 +55,26 @@ public final class SecurityRoles implements ToJsonp {
 
 	}
 
+	public SecurityRoles(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code native}
+	 * Required - API name: {@code native}
 	 */
 	public SecurityRolesNative native_() {
 		return this.native_;
 	}
 
 	/**
-	 * API name: {@code dls}
+	 * Required - API name: {@code dls}
 	 */
 	public SecurityRolesDls dls() {
 		return this.dls;
 	}
 
 	/**
-	 * API name: {@code file}
+	 * Required - API name: {@code file}
 	 */
 	public SecurityRolesFile file() {
 		return this.file;
@@ -77,22 +83,22 @@ public final class SecurityRoles implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("native");
-		this.native_.toJsonp(generator, mapper);
+		this.native_.serialize(generator, mapper);
 
 		generator.writeKey("dls");
-		this.dls.toJsonp(generator, mapper);
+		this.dls.serialize(generator, mapper);
 
 		generator.writeKey("file");
-		this.file.toJsonp(generator, mapper);
+		this.file.serialize(generator, mapper);
 
 	}
 
@@ -109,7 +115,7 @@ public final class SecurityRoles implements ToJsonp {
 		private SecurityRolesFile file;
 
 		/**
-		 * API name: {@code native}
+		 * Required - API name: {@code native}
 		 */
 		public Builder native_(SecurityRolesNative value) {
 			this.native_ = value;
@@ -117,14 +123,14 @@ public final class SecurityRoles implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code native}
+		 * Required - API name: {@code native}
 		 */
 		public Builder native_(Function<SecurityRolesNative.Builder, ObjectBuilder<SecurityRolesNative>> fn) {
 			return this.native_(fn.apply(new SecurityRolesNative.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code dls}
+		 * Required - API name: {@code dls}
 		 */
 		public Builder dls(SecurityRolesDls value) {
 			this.dls = value;
@@ -132,14 +138,14 @@ public final class SecurityRoles implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code dls}
+		 * Required - API name: {@code dls}
 		 */
 		public Builder dls(Function<SecurityRolesDls.Builder, ObjectBuilder<SecurityRolesDls>> fn) {
 			return this.dls(fn.apply(new SecurityRolesDls.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code file}
+		 * Required - API name: {@code file}
 		 */
 		public Builder file(SecurityRolesFile value) {
 			this.file = value;
@@ -147,7 +153,7 @@ public final class SecurityRoles implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code file}
+		 * Required - API name: {@code file}
 		 */
 		public Builder file(Function<SecurityRolesFile.Builder, ObjectBuilder<SecurityRolesFile>> fn) {
 			return this.file(fn.apply(new SecurityRolesFile.Builder()).build());
@@ -168,16 +174,16 @@ public final class SecurityRoles implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SecurityRoles
+	 * Json deserializer for {@link SecurityRoles}
 	 */
-	public static final JsonpDeserializer<SecurityRoles> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SecurityRoles::setupSecurityRolesDeserializer);
+	public static final JsonpDeserializer<SecurityRoles> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SecurityRoles::setupSecurityRolesDeserializer, Builder::build);
 
 	protected static void setupSecurityRolesDeserializer(DelegatingDeserializer<SecurityRoles.Builder> op) {
 
-		op.add(Builder::native_, SecurityRolesNative.DESERIALIZER, "native");
-		op.add(Builder::dls, SecurityRolesDls.DESERIALIZER, "dls");
-		op.add(Builder::file, SecurityRolesFile.DESERIALIZER, "file");
+		op.add(Builder::native_, SecurityRolesNative._DESERIALIZER, "native");
+		op.add(Builder::dls, SecurityRolesDls._DESERIALIZER, "dls");
+		op.add(Builder::file, SecurityRolesFile._DESERIALIZER, "file");
 
 	}
 

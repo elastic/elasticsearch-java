@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,29 +37,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Defaults
-public final class Defaults implements ToJsonp {
+@JsonpDeserializable
+public final class Defaults implements JsonpSerializable {
 	private final AnomalyDetectors anomalyDetectors;
 
 	private final Datafeeds datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Defaults(Builder builder) {
+	public Defaults(Builder builder) {
 
 		this.anomalyDetectors = Objects.requireNonNull(builder.anomalyDetectors, "anomaly_detectors");
 		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
 
 	}
 
+	public Defaults(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code anomaly_detectors}
+	 * Required - API name: {@code anomaly_detectors}
 	 */
 	public AnomalyDetectors anomalyDetectors() {
 		return this.anomalyDetectors;
 	}
 
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public Datafeeds datafeeds() {
 		return this.datafeeds;
@@ -67,19 +73,19 @@ public final class Defaults implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("anomaly_detectors");
-		this.anomalyDetectors.toJsonp(generator, mapper);
+		this.anomalyDetectors.serialize(generator, mapper);
 
 		generator.writeKey("datafeeds");
-		this.datafeeds.toJsonp(generator, mapper);
+		this.datafeeds.serialize(generator, mapper);
 
 	}
 
@@ -94,7 +100,7 @@ public final class Defaults implements ToJsonp {
 		private Datafeeds datafeeds;
 
 		/**
-		 * API name: {@code anomaly_detectors}
+		 * Required - API name: {@code anomaly_detectors}
 		 */
 		public Builder anomalyDetectors(AnomalyDetectors value) {
 			this.anomalyDetectors = value;
@@ -102,14 +108,14 @@ public final class Defaults implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code anomaly_detectors}
+		 * Required - API name: {@code anomaly_detectors}
 		 */
 		public Builder anomalyDetectors(Function<AnomalyDetectors.Builder, ObjectBuilder<AnomalyDetectors>> fn) {
 			return this.anomalyDetectors(fn.apply(new AnomalyDetectors.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Datafeeds value) {
 			this.datafeeds = value;
@@ -117,7 +123,7 @@ public final class Defaults implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
 			return this.datafeeds(fn.apply(new Datafeeds.Builder()).build());
@@ -138,15 +144,15 @@ public final class Defaults implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Defaults
+	 * Json deserializer for {@link Defaults}
 	 */
-	public static final JsonpDeserializer<Defaults> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Defaults::setupDefaultsDeserializer);
+	public static final JsonpDeserializer<Defaults> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Defaults::setupDefaultsDeserializer, Builder::build);
 
 	protected static void setupDefaultsDeserializer(DelegatingDeserializer<Defaults.Builder> op) {
 
-		op.add(Builder::anomalyDetectors, AnomalyDetectors.DESERIALIZER, "anomaly_detectors");
-		op.add(Builder::datafeeds, Datafeeds.DESERIALIZER, "datafeeds");
+		op.add(Builder::anomalyDetectors, AnomalyDetectors._DESERIALIZER, "anomaly_detectors");
+		op.add(Builder::datafeeds, Datafeeds._DESERIALIZER, "datafeeds");
 
 	}
 

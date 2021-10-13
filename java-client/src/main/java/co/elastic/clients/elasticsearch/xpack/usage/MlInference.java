@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -39,29 +41,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInference
-public final class MlInference implements ToJsonp {
+@JsonpDeserializable
+public final class MlInference implements JsonpSerializable {
 	private final Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
 	private final MlInferenceTrainedModels trainedModels;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInference(Builder builder) {
+	public MlInference(Builder builder) {
 
-		this.ingestProcessors = Objects.requireNonNull(builder.ingestProcessors, "ingest_processors");
+		this.ingestProcessors = ModelTypeHelper.unmodifiableNonNull(builder.ingestProcessors, "ingest_processors");
 		this.trainedModels = Objects.requireNonNull(builder.trainedModels, "trained_models");
 
 	}
 
+	public MlInference(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code ingest_processors}
+	 * Required - API name: {@code ingest_processors}
 	 */
 	public Map<String, MlInferenceIngestProcessor> ingestProcessors() {
 		return this.ingestProcessors;
 	}
 
 	/**
-	 * API name: {@code trained_models}
+	 * Required - API name: {@code trained_models}
 	 */
 	public MlInferenceTrainedModels trainedModels() {
 		return this.trainedModels;
@@ -70,25 +77,25 @@ public final class MlInference implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("ingest_processors");
 		generator.writeStartObject();
 		for (Map.Entry<String, MlInferenceIngestProcessor> item0 : this.ingestProcessors.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("trained_models");
-		this.trainedModels.toJsonp(generator, mapper);
+		this.trainedModels.serialize(generator, mapper);
 
 	}
 
@@ -103,7 +110,7 @@ public final class MlInference implements ToJsonp {
 		private MlInferenceTrainedModels trainedModels;
 
 		/**
-		 * API name: {@code ingest_processors}
+		 * Required - API name: {@code ingest_processors}
 		 */
 		public Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> value) {
 			this.ingestProcessors = value;
@@ -141,7 +148,7 @@ public final class MlInference implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code trained_models}
+		 * Required - API name: {@code trained_models}
 		 */
 		public Builder trainedModels(MlInferenceTrainedModels value) {
 			this.trainedModels = value;
@@ -149,7 +156,7 @@ public final class MlInference implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code trained_models}
+		 * Required - API name: {@code trained_models}
 		 */
 		public Builder trainedModels(
 				Function<MlInferenceTrainedModels.Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {
@@ -171,16 +178,16 @@ public final class MlInference implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInference
+	 * Json deserializer for {@link MlInference}
 	 */
-	public static final JsonpDeserializer<MlInference> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlInference::setupMlInferenceDeserializer);
+	public static final JsonpDeserializer<MlInference> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MlInference::setupMlInferenceDeserializer, Builder::build);
 
 	protected static void setupMlInferenceDeserializer(DelegatingDeserializer<MlInference.Builder> op) {
 
 		op.add(Builder::ingestProcessors,
-				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor.DESERIALIZER), "ingest_processors");
-		op.add(Builder::trainedModels, MlInferenceTrainedModels.DESERIALIZER, "trained_models");
+				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor._DESERIALIZER), "ingest_processors");
+		op.add(Builder::trainedModels, MlInferenceTrainedModels._DESERIALIZER, "trained_models");
 
 	}
 

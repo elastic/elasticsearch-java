@@ -23,17 +23,19 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
+import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch._types.PluginStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +48,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfo
-public final class NodeInfo implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfo implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String buildFlavor;
@@ -79,7 +82,7 @@ public final class NodeInfo implements ToJsonp {
 	@Nullable
 	private final NodeProcessInfo process;
 
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	@Nullable
 	private final NodeInfoSettings settings;
@@ -88,10 +91,10 @@ public final class NodeInfo implements ToJsonp {
 	private final Map<String, NodeThreadPoolInfo> threadPool;
 
 	@Nullable
-	private final Number totalIndexingBuffer;
+	private final Long totalIndexingBuffer;
 
 	@Nullable
-	private final JsonValue totalIndexingBufferInBytes;
+	private final String totalIndexingBufferInBytes;
 
 	@Nullable
 	private final NodeInfoTransport transport;
@@ -111,9 +114,9 @@ public final class NodeInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfo(Builder builder) {
+	public NodeInfo(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
 		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
 		this.buildType = Objects.requireNonNull(builder.buildType, "build_type");
@@ -124,39 +127,43 @@ public final class NodeInfo implements ToJsonp {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.network = builder.network;
 		this.os = builder.os;
-		this.plugins = builder.plugins;
+		this.plugins = ModelTypeHelper.unmodifiable(builder.plugins);
 		this.process = builder.process;
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.settings = builder.settings;
-		this.threadPool = builder.threadPool;
+		this.threadPool = ModelTypeHelper.unmodifiable(builder.threadPool);
 		this.totalIndexingBuffer = builder.totalIndexingBuffer;
 		this.totalIndexingBufferInBytes = builder.totalIndexingBufferInBytes;
 		this.transport = builder.transport;
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 		this.version = Objects.requireNonNull(builder.version, "version");
-		this.modules = builder.modules;
+		this.modules = ModelTypeHelper.unmodifiable(builder.modules);
 		this.ingest = builder.ingest;
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 
 	}
 
+	public NodeInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code build_flavor}
+	 * Required - API name: {@code build_flavor}
 	 */
 	public String buildFlavor() {
 		return this.buildFlavor;
 	}
 
 	/**
-	 * Short hash of the last git commit in this release.
-	 *
+	 * Required - Short hash of the last git commit in this release.
+	 * <p>
 	 * API name: {@code build_hash}
 	 */
 	public String buildHash() {
@@ -164,15 +171,15 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code build_type}
+	 * Required - API name: {@code build_type}
 	 */
 	public String buildType() {
 		return this.buildType;
 	}
 
 	/**
-	 * The node’s host name.
-	 *
+	 * Required - The node’s host name.
+	 * <p>
 	 * API name: {@code host}
 	 */
 	public String host() {
@@ -188,8 +195,8 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * The node’s IP address.
-	 *
+	 * Required - The node’s IP address.
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	public String ip() {
@@ -205,8 +212,8 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * The node's name
-	 *
+	 * Required - The node's name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -246,9 +253,9 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
@@ -272,21 +279,21 @@ public final class NodeInfo implements ToJsonp {
 	 * Total heap allowed to be used to hold recently indexed documents before they
 	 * must be written to disk. This size is a shared pool across all shards on this
 	 * node, and is controlled by Indexing Buffer settings.
-	 *
+	 * <p>
 	 * API name: {@code total_indexing_buffer}
 	 */
 	@Nullable
-	public Number totalIndexingBuffer() {
+	public Long totalIndexingBuffer() {
 		return this.totalIndexingBuffer;
 	}
 
 	/**
 	 * Same as total_indexing_buffer, but expressed in bytes.
-	 *
+	 * <p>
 	 * API name: {@code total_indexing_buffer_in_bytes}
 	 */
 	@Nullable
-	public JsonValue totalIndexingBufferInBytes() {
+	public String totalIndexingBufferInBytes() {
 		return this.totalIndexingBufferInBytes;
 	}
 
@@ -299,8 +306,8 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * Host and port where transport HTTP connections are accepted.
-	 *
+	 * Required - Host and port where transport HTTP connections are accepted.
+	 * <p>
 	 * API name: {@code transport_address}
 	 */
 	public String transportAddress() {
@@ -308,8 +315,8 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * Elasticsearch version running on this node.
-	 *
+	 * Required - Elasticsearch version running on this node.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	public String version() {
@@ -343,13 +350,13 @@ public final class NodeInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -375,7 +382,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.http != null) {
 
 			generator.writeKey("http");
-			this.http.toJsonp(generator, mapper);
+			this.http.serialize(generator, mapper);
 
 		}
 
@@ -385,7 +392,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.jvm != null) {
 
 			generator.writeKey("jvm");
-			this.jvm.toJsonp(generator, mapper);
+			this.jvm.serialize(generator, mapper);
 
 		}
 
@@ -395,13 +402,13 @@ public final class NodeInfo implements ToJsonp {
 		if (this.network != null) {
 
 			generator.writeKey("network");
-			this.network.toJsonp(generator, mapper);
+			this.network.serialize(generator, mapper);
 
 		}
 		if (this.os != null) {
 
 			generator.writeKey("os");
-			this.os.toJsonp(generator, mapper);
+			this.os.serialize(generator, mapper);
 
 		}
 		if (this.plugins != null) {
@@ -409,7 +416,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeKey("plugins");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.plugins) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -418,22 +425,21 @@ public final class NodeInfo implements ToJsonp {
 		if (this.process != null) {
 
 			generator.writeKey("process");
-			this.process.toJsonp(generator, mapper);
+			this.process.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("roles");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.roles) {
-			generator.write(item0);
-
+		for (NodeRole item0 : this.roles) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
-			this.settings.toJsonp(generator, mapper);
+			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.threadPool != null) {
@@ -442,7 +448,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeThreadPoolInfo> item0 : this.threadPool.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -451,7 +457,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.totalIndexingBuffer != null) {
 
 			generator.writeKey("total_indexing_buffer");
-			generator.write(this.totalIndexingBuffer.doubleValue());
+			generator.write(this.totalIndexingBuffer);
 
 		}
 		if (this.totalIndexingBufferInBytes != null) {
@@ -463,7 +469,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.transport != null) {
 
 			generator.writeKey("transport");
-			this.transport.toJsonp(generator, mapper);
+			this.transport.serialize(generator, mapper);
 
 		}
 
@@ -478,7 +484,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeKey("modules");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.modules) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -487,7 +493,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.ingest != null) {
 
 			generator.writeKey("ingest");
-			this.ingest.toJsonp(generator, mapper);
+			this.ingest.serialize(generator, mapper);
 
 		}
 		if (this.aggregations != null) {
@@ -496,7 +502,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoAggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -543,7 +549,7 @@ public final class NodeInfo implements ToJsonp {
 		@Nullable
 		private NodeProcessInfo process;
 
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		@Nullable
 		private NodeInfoSettings settings;
@@ -552,10 +558,10 @@ public final class NodeInfo implements ToJsonp {
 		private Map<String, NodeThreadPoolInfo> threadPool;
 
 		@Nullable
-		private Number totalIndexingBuffer;
+		private Long totalIndexingBuffer;
 
 		@Nullable
-		private JsonValue totalIndexingBufferInBytes;
+		private String totalIndexingBufferInBytes;
 
 		@Nullable
 		private NodeInfoTransport transport;
@@ -574,7 +580,7 @@ public final class NodeInfo implements ToJsonp {
 		private Map<String, NodeInfoAggregation> aggregations;
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -593,7 +599,7 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code build_flavor}
+		 * Required - API name: {@code build_flavor}
 		 */
 		public Builder buildFlavor(String value) {
 			this.buildFlavor = value;
@@ -601,8 +607,8 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * Short hash of the last git commit in this release.
-		 *
+		 * Required - Short hash of the last git commit in this release.
+		 * <p>
 		 * API name: {@code build_hash}
 		 */
 		public Builder buildHash(String value) {
@@ -611,7 +617,7 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code build_type}
+		 * Required - API name: {@code build_type}
 		 */
 		public Builder buildType(String value) {
 			this.buildType = value;
@@ -619,8 +625,8 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * The node’s host name.
-		 *
+		 * Required - The node’s host name.
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(String value) {
@@ -644,8 +650,8 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * The node’s IP address.
-		 *
+		 * Required - The node’s IP address.
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(String value) {
@@ -669,8 +675,8 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * The node's name
-		 *
+		 * Required - The node's name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -765,17 +771,17 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
-		public Builder roles(List<JsonValue> value) {
+		public Builder roles(List<NodeRole> value) {
 			this.roles = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
-		public Builder roles(JsonValue... value) {
+		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return this;
 		}
@@ -783,7 +789,7 @@ public final class NodeInfo implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public Builder addRoles(JsonValue value) {
+		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -845,20 +851,20 @@ public final class NodeInfo implements ToJsonp {
 		 * Total heap allowed to be used to hold recently indexed documents before they
 		 * must be written to disk. This size is a shared pool across all shards on this
 		 * node, and is controlled by Indexing Buffer settings.
-		 *
+		 * <p>
 		 * API name: {@code total_indexing_buffer}
 		 */
-		public Builder totalIndexingBuffer(@Nullable Number value) {
+		public Builder totalIndexingBuffer(@Nullable Long value) {
 			this.totalIndexingBuffer = value;
 			return this;
 		}
 
 		/**
 		 * Same as total_indexing_buffer, but expressed in bytes.
-		 *
+		 * <p>
 		 * API name: {@code total_indexing_buffer_in_bytes}
 		 */
-		public Builder totalIndexingBufferInBytes(@Nullable JsonValue value) {
+		public Builder totalIndexingBufferInBytes(@Nullable String value) {
 			this.totalIndexingBufferInBytes = value;
 			return this;
 		}
@@ -879,8 +885,8 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * Host and port where transport HTTP connections are accepted.
-		 *
+		 * Required - Host and port where transport HTTP connections are accepted.
+		 * <p>
 		 * API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
@@ -889,8 +895,8 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * Elasticsearch version running on this node.
-		 *
+		 * Required - Elasticsearch version running on this node.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(String value) {
@@ -1005,10 +1011,10 @@ public final class NodeInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfo
+	 * Json deserializer for {@link NodeInfo}
 	 */
-	public static final JsonpDeserializer<NodeInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfo::setupNodeInfoDeserializer);
+	public static final JsonpDeserializer<NodeInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfo::setupNodeInfoDeserializer, Builder::build);
 
 	protected static void setupNodeInfoDeserializer(DelegatingDeserializer<NodeInfo.Builder> op) {
 
@@ -1018,27 +1024,27 @@ public final class NodeInfo implements ToJsonp {
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(Builder::http, NodeInfoHttp.DESERIALIZER, "http");
+		op.add(Builder::http, NodeInfoHttp._DESERIALIZER, "http");
 		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
-		op.add(Builder::jvm, NodeJvmInfo.DESERIALIZER, "jvm");
+		op.add(Builder::jvm, NodeJvmInfo._DESERIALIZER, "jvm");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::network, NodeInfoNetwork.DESERIALIZER, "network");
-		op.add(Builder::os, NodeOperatingSystemInfo.DESERIALIZER, "os");
-		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
-		op.add(Builder::process, NodeProcessInfo.DESERIALIZER, "process");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
-		op.add(Builder::settings, NodeInfoSettings.DESERIALIZER, "settings");
-		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo.DESERIALIZER),
+		op.add(Builder::network, NodeInfoNetwork._DESERIALIZER, "network");
+		op.add(Builder::os, NodeOperatingSystemInfo._DESERIALIZER, "os");
+		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "plugins");
+		op.add(Builder::process, NodeProcessInfo._DESERIALIZER, "process");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
+		op.add(Builder::settings, NodeInfoSettings._DESERIALIZER, "settings");
+		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo._DESERIALIZER),
 				"thread_pool");
-		op.add(Builder::totalIndexingBuffer, JsonpDeserializer.numberDeserializer(), "total_indexing_buffer");
-		op.add(Builder::totalIndexingBufferInBytes, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::totalIndexingBuffer, JsonpDeserializer.longDeserializer(), "total_indexing_buffer");
+		op.add(Builder::totalIndexingBufferInBytes, JsonpDeserializer.stringDeserializer(),
 				"total_indexing_buffer_in_bytes");
-		op.add(Builder::transport, NodeInfoTransport.DESERIALIZER, "transport");
+		op.add(Builder::transport, NodeInfoTransport._DESERIALIZER, "transport");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::modules, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "modules");
-		op.add(Builder::ingest, NodeInfoIngest.DESERIALIZER, "ingest");
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(NodeInfoAggregation.DESERIALIZER),
+		op.add(Builder::modules, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "modules");
+		op.add(Builder::ingest, NodeInfoIngest._DESERIALIZER, "ingest");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(NodeInfoAggregation._DESERIALIZER),
 				"aggregations");
 
 	}

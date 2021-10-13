@@ -24,23 +24,28 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
-public final class QueryStringQuery extends QueryBase {
+@JsonpDeserializable
+public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean allowLeadingWildcard;
 
@@ -57,7 +62,7 @@ public final class QueryStringQuery extends QueryBase {
 	private final String defaultField;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final Boolean enablePositionIncrements;
@@ -69,13 +74,13 @@ public final class QueryStringQuery extends QueryBase {
 	private final List<String> fields;
 
 	@Nullable
-	private final JsonValue fuzziness;
+	private final String fuzziness;
 
 	@Nullable
-	private final Number fuzzyMaxExpansions;
+	private final Integer fuzzyMaxExpansions;
 
 	@Nullable
-	private final Number fuzzyPrefixLength;
+	private final Integer fuzzyPrefixLength;
 
 	@Nullable
 	private final String fuzzyRewrite;
@@ -87,15 +92,14 @@ public final class QueryStringQuery extends QueryBase {
 	private final Boolean lenient;
 
 	@Nullable
-	private final Number maxDeterminizedStates;
+	private final Integer maxDeterminizedStates;
 
 	@Nullable
-	private final JsonValue minimumShouldMatch;
+	private final String minimumShouldMatch;
 
 	@Nullable
-	private final Number phraseSlop;
+	private final Double phraseSlop;
 
-	@Nullable
 	private final String query;
 
 	@Nullable
@@ -108,18 +112,19 @@ public final class QueryStringQuery extends QueryBase {
 	private final String rewrite;
 
 	@Nullable
-	private final Number tieBreaker;
+	private final Double tieBreaker;
 
 	@Nullable
 	private final String timeZone;
 
 	@Nullable
-	private final JsonValue type;
+	private final TextQueryType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryStringQuery(Builder builder) {
+	public QueryStringQuery(Builder builder) {
 		super(builder);
+
 		this.allowLeadingWildcard = builder.allowLeadingWildcard;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -128,7 +133,7 @@ public final class QueryStringQuery extends QueryBase {
 		this.defaultOperator = builder.defaultOperator;
 		this.enablePositionIncrements = builder.enablePositionIncrements;
 		this.escape = builder.escape;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
@@ -138,7 +143,7 @@ public final class QueryStringQuery extends QueryBase {
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.phraseSlop = builder.phraseSlop;
-		this.query = builder.query;
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.quoteAnalyzer = builder.quoteAnalyzer;
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 		this.rewrite = builder.rewrite;
@@ -146,6 +151,18 @@ public final class QueryStringQuery extends QueryBase {
 		this.timeZone = builder.timeZone;
 		this.type = builder.type;
 
+	}
+
+	public QueryStringQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "query_string";
 	}
 
 	/**
@@ -192,7 +209,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -224,7 +241,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public JsonValue fuzziness() {
+	public String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -232,7 +249,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code fuzzy_max_expansions}
 	 */
 	@Nullable
-	public Number fuzzyMaxExpansions() {
+	public Integer fuzzyMaxExpansions() {
 		return this.fuzzyMaxExpansions;
 	}
 
@@ -240,7 +257,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code fuzzy_prefix_length}
 	 */
 	@Nullable
-	public Number fuzzyPrefixLength() {
+	public Integer fuzzyPrefixLength() {
 		return this.fuzzyPrefixLength;
 	}
 
@@ -272,7 +289,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
-	public Number maxDeterminizedStates() {
+	public Integer maxDeterminizedStates() {
 		return this.maxDeterminizedStates;
 	}
 
@@ -280,7 +297,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public JsonValue minimumShouldMatch() {
+	public String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -288,14 +305,13 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code phrase_slop}
 	 */
 	@Nullable
-	public Number phraseSlop() {
+	public Double phraseSlop() {
 		return this.phraseSlop;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
-	@Nullable
 	public String query() {
 		return this.query;
 	}
@@ -328,7 +344,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Number tieBreaker() {
+	public Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
@@ -344,12 +360,13 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public JsonValue type() {
+	public TextQueryType type() {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.allowLeadingWildcard != null) {
 
 			generator.writeKey("allow_leading_wildcard");
@@ -383,8 +400,7 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.defaultOperator != null) {
 
 			generator.writeKey("default_operator");
-			generator.write(this.defaultOperator);
-
+			this.defaultOperator.serialize(generator, mapper);
 		}
 		if (this.enablePositionIncrements != null) {
 
@@ -418,13 +434,13 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.fuzzyMaxExpansions != null) {
 
 			generator.writeKey("fuzzy_max_expansions");
-			generator.write(this.fuzzyMaxExpansions.doubleValue());
+			generator.write(this.fuzzyMaxExpansions);
 
 		}
 		if (this.fuzzyPrefixLength != null) {
 
 			generator.writeKey("fuzzy_prefix_length");
-			generator.write(this.fuzzyPrefixLength.doubleValue());
+			generator.write(this.fuzzyPrefixLength);
 
 		}
 		if (this.fuzzyRewrite != null) {
@@ -448,7 +464,7 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.maxDeterminizedStates != null) {
 
 			generator.writeKey("max_determinized_states");
-			generator.write(this.maxDeterminizedStates.doubleValue());
+			generator.write(this.maxDeterminizedStates);
 
 		}
 		if (this.minimumShouldMatch != null) {
@@ -460,15 +476,13 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.phraseSlop != null) {
 
 			generator.writeKey("phrase_slop");
-			generator.write(this.phraseSlop.doubleValue());
+			generator.write(this.phraseSlop);
 
 		}
-		if (this.query != null) {
 
-			generator.writeKey("query");
-			generator.write(this.query);
+		generator.writeKey("query");
+		generator.write(this.query);
 
-		}
 		if (this.quoteAnalyzer != null) {
 
 			generator.writeKey("quote_analyzer");
@@ -490,7 +504,7 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.tieBreaker != null) {
 
 			generator.writeKey("tie_breaker");
-			generator.write(this.tieBreaker.doubleValue());
+			generator.write(this.tieBreaker);
 
 		}
 		if (this.timeZone != null) {
@@ -502,8 +516,7 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.type != null) {
 
 			generator.writeKey("type");
-			generator.write(this.type);
-
+			this.type.serialize(generator, mapper);
 		}
 
 	}
@@ -530,7 +543,7 @@ public final class QueryStringQuery extends QueryBase {
 		private String defaultField;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private Boolean enablePositionIncrements;
@@ -542,13 +555,13 @@ public final class QueryStringQuery extends QueryBase {
 		private List<String> fields;
 
 		@Nullable
-		private JsonValue fuzziness;
+		private String fuzziness;
 
 		@Nullable
-		private Number fuzzyMaxExpansions;
+		private Integer fuzzyMaxExpansions;
 
 		@Nullable
-		private Number fuzzyPrefixLength;
+		private Integer fuzzyPrefixLength;
 
 		@Nullable
 		private String fuzzyRewrite;
@@ -560,15 +573,14 @@ public final class QueryStringQuery extends QueryBase {
 		private Boolean lenient;
 
 		@Nullable
-		private Number maxDeterminizedStates;
+		private Integer maxDeterminizedStates;
 
 		@Nullable
-		private JsonValue minimumShouldMatch;
+		private String minimumShouldMatch;
 
 		@Nullable
-		private Number phraseSlop;
+		private Double phraseSlop;
 
-		@Nullable
 		private String query;
 
 		@Nullable
@@ -581,13 +593,13 @@ public final class QueryStringQuery extends QueryBase {
 		private String rewrite;
 
 		@Nullable
-		private Number tieBreaker;
+		private Double tieBreaker;
 
 		@Nullable
 		private String timeZone;
 
 		@Nullable
-		private JsonValue type;
+		private TextQueryType type;
 
 		/**
 		 * API name: {@code allow_leading_wildcard}
@@ -632,7 +644,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -683,7 +695,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable JsonValue value) {
+		public Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -691,7 +703,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code fuzzy_max_expansions}
 		 */
-		public Builder fuzzyMaxExpansions(@Nullable Number value) {
+		public Builder fuzzyMaxExpansions(@Nullable Integer value) {
 			this.fuzzyMaxExpansions = value;
 			return this;
 		}
@@ -699,7 +711,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code fuzzy_prefix_length}
 		 */
-		public Builder fuzzyPrefixLength(@Nullable Number value) {
+		public Builder fuzzyPrefixLength(@Nullable Integer value) {
 			this.fuzzyPrefixLength = value;
 			return this;
 		}
@@ -731,7 +743,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code max_determinized_states}
 		 */
-		public Builder maxDeterminizedStates(@Nullable Number value) {
+		public Builder maxDeterminizedStates(@Nullable Integer value) {
 			this.maxDeterminizedStates = value;
 			return this;
 		}
@@ -739,7 +751,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+		public Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -747,15 +759,15 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code phrase_slop}
 		 */
-		public Builder phraseSlop(@Nullable Number value) {
+		public Builder phraseSlop(@Nullable Double value) {
 			this.phraseSlop = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -787,7 +799,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Number value) {
+		public Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -803,7 +815,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable JsonValue value) {
+		public Builder type(@Nullable TextQueryType value) {
 			this.type = value;
 			return this;
 		}
@@ -828,10 +840,10 @@ public final class QueryStringQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryStringQuery
+	 * Json deserializer for {@link QueryStringQuery}
 	 */
-	public static final JsonpDeserializer<QueryStringQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryStringQuery::setupQueryStringQueryDeserializer);
+	public static final JsonpDeserializer<QueryStringQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			QueryStringQuery::setupQueryStringQueryDeserializer, Builder::build);
 
 	protected static void setupQueryStringQueryDeserializer(DelegatingDeserializer<QueryStringQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -841,27 +853,27 @@ public final class QueryStringQuery extends QueryBase {
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
 		op.add(Builder::defaultField, JsonpDeserializer.stringDeserializer(), "default_field");
-		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::defaultOperator, Operator._DESERIALIZER, "default_operator");
 		op.add(Builder::enablePositionIncrements, JsonpDeserializer.booleanDeserializer(),
 				"enable_position_increments");
 		op.add(Builder::escape, JsonpDeserializer.booleanDeserializer(), "escape");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::fuzziness, JsonpDeserializer.jsonValueDeserializer(), "fuzziness");
-		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.numberDeserializer(), "fuzzy_max_expansions");
-		op.add(Builder::fuzzyPrefixLength, JsonpDeserializer.numberDeserializer(), "fuzzy_prefix_length");
+		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");
+		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.integerDeserializer(), "fuzzy_max_expansions");
+		op.add(Builder::fuzzyPrefixLength, JsonpDeserializer.integerDeserializer(), "fuzzy_prefix_length");
 		op.add(Builder::fuzzyRewrite, JsonpDeserializer.stringDeserializer(), "fuzzy_rewrite");
 		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
-		op.add(Builder::maxDeterminizedStates, JsonpDeserializer.numberDeserializer(), "max_determinized_states");
-		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::phraseSlop, JsonpDeserializer.numberDeserializer(), "phrase_slop");
+		op.add(Builder::maxDeterminizedStates, JsonpDeserializer.integerDeserializer(), "max_determinized_states");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
+		op.add(Builder::phraseSlop, JsonpDeserializer.doubleDeserializer(), "phrase_slop");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::quoteAnalyzer, JsonpDeserializer.stringDeserializer(), "quote_analyzer");
 		op.add(Builder::quoteFieldSuffix, JsonpDeserializer.stringDeserializer(), "quote_field_suffix");
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
-		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
+		op.add(Builder::tieBreaker, JsonpDeserializer.doubleDeserializer(), "tie_breaker");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, TextQueryType._DESERIALIZER, "type");
 
 	}
 

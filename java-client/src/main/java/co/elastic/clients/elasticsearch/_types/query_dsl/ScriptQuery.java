@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,37 +32,49 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
-public final class ScriptQuery extends QueryBase {
-	@Nullable
-	private final JsonValue script;
+@JsonpDeserializable
+public final class ScriptQuery extends QueryBase implements QueryVariant {
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptQuery(Builder builder) {
+	public ScriptQuery(Builder builder) {
 		super(builder);
-		this.script = builder.script;
 
+		this.script = Objects.requireNonNull(builder.script, "script");
+
+	}
+
+	public ScriptQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code script}
+	 * {@link Query} variant type
 	 */
-	@Nullable
-	public JsonValue script() {
+	@Override
+	public String _variantType() {
+		return "script";
+	}
+
+	/**
+	 * Required - API name: {@code script}
+	 */
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.script != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("script");
-			generator.write(this.script);
+		super.serializeInternal(generator, mapper);
 
-		}
+		generator.writeKey("script");
+		generator.write(this.script);
 
 	}
 
@@ -71,13 +84,12 @@ public final class ScriptQuery extends QueryBase {
 	 * Builder for {@link ScriptQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
-		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -102,10 +114,10 @@ public final class ScriptQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScriptQuery
+	 * Json deserializer for {@link ScriptQuery}
 	 */
-	public static final JsonpDeserializer<ScriptQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptQuery::setupScriptQueryDeserializer);
+	public static final JsonpDeserializer<ScriptQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ScriptQuery::setupScriptQueryDeserializer, Builder::build);
 
 	protected static void setupScriptQueryDeserializer(DelegatingDeserializer<ScriptQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

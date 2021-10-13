@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.templates;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.TemplatesRecord
-public final class TemplatesRecord implements ToJsonp {
+@JsonpDeserializable
+public final class TemplatesRecord implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
@@ -53,7 +57,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TemplatesRecord(Builder builder) {
+	public TemplatesRecord(Builder builder) {
 
 		this.name = builder.name;
 		this.indexPatterns = builder.indexPatterns;
@@ -63,9 +67,13 @@ public final class TemplatesRecord implements ToJsonp {
 
 	}
 
+	public TemplatesRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * template name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -75,7 +83,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * template index patterns
-	 *
+	 * <p>
 	 * API name: {@code index_patterns}
 	 */
 	@Nullable
@@ -85,7 +93,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * template application order/priority number
-	 *
+	 * <p>
 	 * API name: {@code order}
 	 */
 	@Nullable
@@ -95,7 +103,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -105,7 +113,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * component templates comprising index template
-	 *
+	 * <p>
 	 * API name: {@code composed_of}
 	 */
 	@Nullable
@@ -116,13 +124,13 @@ public final class TemplatesRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.name != null) {
 
@@ -180,7 +188,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * template name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -190,7 +198,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * template index patterns
-		 *
+		 * <p>
 		 * API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(@Nullable String value) {
@@ -200,7 +208,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * template application order/priority number
-		 *
+		 * <p>
 		 * API name: {@code order}
 		 */
 		public Builder order(@Nullable String value) {
@@ -210,7 +218,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -220,7 +228,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * component templates comprising index template
-		 *
+		 * <p>
 		 * API name: {@code composed_of}
 		 */
 		public Builder composedOf(@Nullable String value) {
@@ -243,10 +251,10 @@ public final class TemplatesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TemplatesRecord
+	 * Json deserializer for {@link TemplatesRecord}
 	 */
-	public static final JsonpDeserializer<TemplatesRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TemplatesRecord::setupTemplatesRecordDeserializer);
+	public static final JsonpDeserializer<TemplatesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TemplatesRecord::setupTemplatesRecordDeserializer, Builder::build);
 
 	protected static void setupTemplatesRecordDeserializer(DelegatingDeserializer<TemplatesRecord.Builder> op) {
 

@@ -24,62 +24,68 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.LatLon
-public final class LatLon implements ToJsonp {
-	private final Number lat;
+@JsonpDeserializable
+public final class LatLon implements JsonpSerializable {
+	private final double lat;
 
-	private final Number lon;
+	private final double lon;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected LatLon(Builder builder) {
+	public LatLon(Builder builder) {
 
 		this.lat = Objects.requireNonNull(builder.lat, "lat");
 		this.lon = Objects.requireNonNull(builder.lon, "lon");
 
 	}
 
+	public LatLon(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code lat}
+	 * Required - API name: {@code lat}
 	 */
-	public Number lat() {
+	public double lat() {
 		return this.lat;
 	}
 
 	/**
-	 * API name: {@code lon}
+	 * Required - API name: {@code lon}
 	 */
-	public Number lon() {
+	public double lon() {
 		return this.lon;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("lat");
-		generator.write(this.lat.doubleValue());
+		generator.write(this.lat);
 
 		generator.writeKey("lon");
-		generator.write(this.lon.doubleValue());
+		generator.write(this.lon);
 
 	}
 
@@ -89,22 +95,22 @@ public final class LatLon implements ToJsonp {
 	 * Builder for {@link LatLon}.
 	 */
 	public static class Builder implements ObjectBuilder<LatLon> {
-		private Number lat;
+		private Double lat;
 
-		private Number lon;
+		private Double lon;
 
 		/**
-		 * API name: {@code lat}
+		 * Required - API name: {@code lat}
 		 */
-		public Builder lat(Number value) {
+		public Builder lat(double value) {
 			this.lat = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code lon}
+		 * Required - API name: {@code lon}
 		 */
-		public Builder lon(Number value) {
+		public Builder lon(double value) {
 			this.lon = value;
 			return this;
 		}
@@ -124,15 +130,15 @@ public final class LatLon implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for LatLon
+	 * Json deserializer for {@link LatLon}
 	 */
-	public static final JsonpDeserializer<LatLon> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			LatLon::setupLatLonDeserializer);
+	public static final JsonpDeserializer<LatLon> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LatLon::setupLatLonDeserializer, Builder::build);
 
 	protected static void setupLatLonDeserializer(DelegatingDeserializer<LatLon.Builder> op) {
 
-		op.add(Builder::lat, JsonpDeserializer.numberDeserializer(), "lat");
-		op.add(Builder::lon, JsonpDeserializer.numberDeserializer(), "lon");
+		op.add(Builder::lat, JsonpDeserializer.doubleDeserializer(), "lat");
+		op.add(Builder::lon, JsonpDeserializer.doubleDeserializer(), "lon");
 
 	}
 

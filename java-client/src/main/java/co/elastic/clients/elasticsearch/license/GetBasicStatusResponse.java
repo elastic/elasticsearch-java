@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: license.get_basic_status.Response
-public final class GetBasicStatusResponse implements ToJsonp {
-	private final Boolean eligibleToStartBasic;
+@JsonpDeserializable
+public final class GetBasicStatusResponse implements JsonpSerializable {
+	private final boolean eligibleToStartBasic;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetBasicStatusResponse(Builder builder) {
+	public GetBasicStatusResponse(Builder builder) {
 
 		this.eligibleToStartBasic = Objects.requireNonNull(builder.eligibleToStartBasic, "eligible_to_start_basic");
 
 	}
 
+	public GetBasicStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code eligible_to_start_basic}
+	 * Required - API name: {@code eligible_to_start_basic}
 	 */
-	public Boolean eligibleToStartBasic() {
+	public boolean eligibleToStartBasic() {
 		return this.eligibleToStartBasic;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("eligible_to_start_basic");
 		generator.write(this.eligibleToStartBasic);
@@ -79,9 +85,9 @@ public final class GetBasicStatusResponse implements ToJsonp {
 		private Boolean eligibleToStartBasic;
 
 		/**
-		 * API name: {@code eligible_to_start_basic}
+		 * Required - API name: {@code eligible_to_start_basic}
 		 */
-		public Builder eligibleToStartBasic(Boolean value) {
+		public Builder eligibleToStartBasic(boolean value) {
 			this.eligibleToStartBasic = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class GetBasicStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetBasicStatusResponse
+	 * Json deserializer for {@link GetBasicStatusResponse}
 	 */
-	public static final JsonpDeserializer<GetBasicStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer);
+	public static final JsonpDeserializer<GetBasicStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer, Builder::build);
 
 	protected static void setupGetBasicStatusResponseDeserializer(
 			DelegatingDeserializer<GetBasicStatusResponse.Builder> op) {

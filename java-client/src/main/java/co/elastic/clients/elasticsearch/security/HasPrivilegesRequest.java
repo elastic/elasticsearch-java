@@ -25,15 +25,18 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,11 +44,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Request
-public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class HasPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String user;
 
@@ -53,23 +58,29 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	private final List<ApplicationPrivilegesCheck> application;
 
 	@Nullable
-	private final List<String> cluster;
+	private final List<ClusterPrivilege> cluster;
 
 	@Nullable
 	private final List<IndexPrivilegesCheck> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HasPrivilegesRequest(Builder builder) {
+	public HasPrivilegesRequest(Builder builder) {
 
 		this.user = builder.user;
-		this.application = builder.application;
-		this.cluster = builder.cluster;
-		this.index = builder.index;
+		this.application = ModelTypeHelper.unmodifiable(builder.application);
+		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
+	public HasPrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Username
+	 * <p>
 	 * API name: {@code user}
 	 */
 	@Nullable
@@ -89,7 +100,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code cluster}
 	 */
 	@Nullable
-	public List<String> cluster() {
+	public List<ClusterPrivilege> cluster() {
 		return this.cluster;
 	}
 
@@ -104,20 +115,20 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.application != null) {
 
 			generator.writeKey("application");
 			generator.writeStartArray();
 			for (ApplicationPrivilegesCheck item0 : this.application) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -127,9 +138,8 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("cluster");
 			generator.writeStartArray();
-			for (String item0 : this.cluster) {
-				generator.write(item0);
-
+			for (ClusterPrivilege item0 : this.cluster) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -139,7 +149,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (IndexPrivilegesCheck item0 : this.index) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -161,12 +171,14 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		private List<ApplicationPrivilegesCheck> application;
 
 		@Nullable
-		private List<String> cluster;
+		private List<ClusterPrivilege> cluster;
 
 		@Nullable
 		private List<IndexPrivilegesCheck> index;
 
 		/**
+		 * Username
+		 * <p>
 		 * API name: {@code user}
 		 */
 		public Builder user(@Nullable String value) {
@@ -220,7 +232,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(@Nullable List<String> value) {
+		public Builder cluster(@Nullable List<ClusterPrivilege> value) {
 			this.cluster = value;
 			return this;
 		}
@@ -228,7 +240,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(String... value) {
+		public Builder cluster(ClusterPrivilege... value) {
 			this.cluster = Arrays.asList(value);
 			return this;
 		}
@@ -236,7 +248,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a value to {@link #cluster(List)}, creating the list if needed.
 		 */
-		public Builder addCluster(String value) {
+		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
 				this.cluster = new ArrayList<>();
 			}
@@ -300,19 +312,18 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HasPrivilegesRequest
+	 * Json deserializer for {@link HasPrivilegesRequest}
 	 */
-	public static final JsonpDeserializer<HasPrivilegesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer);
+	public static final JsonpDeserializer<HasPrivilegesRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer, Builder::build);
 
 	protected static void setupHasPrivilegesRequestDeserializer(
 			DelegatingDeserializer<HasPrivilegesRequest.Builder> op) {
 
-		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck.DESERIALIZER),
+		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck._DESERIALIZER),
 				"application");
-		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"cluster");
-		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivilegesCheck.DESERIALIZER), "index");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege._DESERIALIZER), "cluster");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivilegesCheck._DESERIALIZER), "index");
 
 	}
 
@@ -321,7 +332,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code security.has_privileges}".
 	 */
-	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -349,11 +360,11 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.user);
+					SimpleEndpoint.pathEncode(request.user, buf);
 					buf.append("/_has_privileges");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -361,5 +372,5 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, HasPrivilegesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, HasPrivilegesResponse._DESERIALIZER);
 }

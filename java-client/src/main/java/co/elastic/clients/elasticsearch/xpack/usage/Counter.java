@@ -24,26 +24,28 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Counter
-public class Counter implements ToJsonp {
-	private final Number active;
+@JsonpDeserializable
+public class Counter implements JsonpSerializable {
+	private final long active;
 
-	private final Number total;
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Counter(AbstractBuilder<?> builder) {
+	public Counter(AbstractBuilder<?> builder) {
 
 		this.active = Objects.requireNonNull(builder.active, "active");
 		this.total = Objects.requireNonNull(builder.total, "total");
@@ -51,35 +53,35 @@ public class Counter implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code active}
+	 * Required - API name: {@code active}
 	 */
-	public Number active() {
+	public long active() {
 		return this.active;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active");
-		generator.write(this.active.doubleValue());
+		generator.write(this.active);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -107,22 +109,22 @@ public class Counter implements ToJsonp {
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private Number active;
+		private Long active;
 
-		private Number total;
+		private Long total;
 
 		/**
-		 * API name: {@code active}
+		 * Required - API name: {@code active}
 		 */
-		public BuilderT active(Number value) {
+		public BuilderT active(long value) {
 			this.active = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
-		public BuilderT total(Number value) {
+		public BuilderT total(long value) {
 			this.total = value;
 			return self();
 		}
@@ -134,16 +136,16 @@ public class Counter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Counter
+	 * Json deserializer for {@link Counter}
 	 */
-	public static final JsonpDeserializer<Counter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Counter::setupCounterDeserializer);
+	public static final JsonpDeserializer<Counter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Counter::setupCounterDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCounterDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::active, JsonpDeserializer.numberDeserializer(), "active");
-		op.add(AbstractBuilder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(AbstractBuilder::active, JsonpDeserializer.longDeserializer(), "active");
+		op.add(AbstractBuilder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,19 +37,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearch
-public final class NodeInfoSearch implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoSearch implements JsonpSerializable {
 	private final NodeInfoSearchRemote remote;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSearch(Builder builder) {
+	public NodeInfoSearch(Builder builder) {
 
 		this.remote = Objects.requireNonNull(builder.remote, "remote");
 
 	}
 
+	public NodeInfoSearch(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code remote}
+	 * Required - API name: {@code remote}
 	 */
 	public NodeInfoSearchRemote remote() {
 		return this.remote;
@@ -57,16 +63,16 @@ public final class NodeInfoSearch implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("remote");
-		this.remote.toJsonp(generator, mapper);
+		this.remote.serialize(generator, mapper);
 
 	}
 
@@ -79,7 +85,7 @@ public final class NodeInfoSearch implements ToJsonp {
 		private NodeInfoSearchRemote remote;
 
 		/**
-		 * API name: {@code remote}
+		 * Required - API name: {@code remote}
 		 */
 		public Builder remote(NodeInfoSearchRemote value) {
 			this.remote = value;
@@ -87,7 +93,7 @@ public final class NodeInfoSearch implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code remote}
+		 * Required - API name: {@code remote}
 		 */
 		public Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
 			return this.remote(fn.apply(new NodeInfoSearchRemote.Builder()).build());
@@ -108,14 +114,14 @@ public final class NodeInfoSearch implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSearch
+	 * Json deserializer for {@link NodeInfoSearch}
 	 */
-	public static final JsonpDeserializer<NodeInfoSearch> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSearch::setupNodeInfoSearchDeserializer);
+	public static final JsonpDeserializer<NodeInfoSearch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoSearch::setupNodeInfoSearchDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSearchDeserializer(DelegatingDeserializer<NodeInfoSearch.Builder> op) {
 
-		op.add(Builder::remote, NodeInfoSearchRemote.DESERIALIZER, "remote");
+		op.add(Builder::remote, NodeInfoSearchRemote._DESERIALIZER, "remote");
 
 	}
 

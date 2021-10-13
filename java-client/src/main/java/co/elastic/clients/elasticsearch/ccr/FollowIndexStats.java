@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,29 +42,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.FollowIndexStats
-public final class FollowIndexStats implements ToJsonp {
+@JsonpDeserializable
+public final class FollowIndexStats implements JsonpSerializable {
 	private final String index;
 
 	private final List<ShardStats> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowIndexStats(Builder builder) {
+	public FollowIndexStats(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
 
 	}
 
+	public FollowIndexStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<ShardStats> shards() {
 		return this.shards;
@@ -71,13 +78,13 @@ public final class FollowIndexStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -85,7 +92,7 @@ public final class FollowIndexStats implements ToJsonp {
 		generator.writeKey("shards");
 		generator.writeStartArray();
 		for (ShardStats item0 : this.shards) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -103,7 +110,7 @@ public final class FollowIndexStats implements ToJsonp {
 		private List<ShardStats> shards;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -111,7 +118,7 @@ public final class FollowIndexStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<ShardStats> value) {
 			this.shards = value;
@@ -119,7 +126,7 @@ public final class FollowIndexStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardStats... value) {
 			this.shards = Arrays.asList(value);
@@ -166,15 +173,15 @@ public final class FollowIndexStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FollowIndexStats
+	 * Json deserializer for {@link FollowIndexStats}
 	 */
-	public static final JsonpDeserializer<FollowIndexStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FollowIndexStats::setupFollowIndexStatsDeserializer);
+	public static final JsonpDeserializer<FollowIndexStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FollowIndexStats::setupFollowIndexStatsDeserializer, Builder::build);
 
 	protected static void setupFollowIndexStatsDeserializer(DelegatingDeserializer<FollowIndexStats.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardStats.DESERIALIZER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardStats._DESERIALIZER), "shards");
 
 	}
 

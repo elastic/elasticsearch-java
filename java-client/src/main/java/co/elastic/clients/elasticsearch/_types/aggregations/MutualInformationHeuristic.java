@@ -24,56 +24,62 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.MutualInformationHeuristic
-public final class MutualInformationHeuristic implements ToJsonp {
-	private final Boolean backgroundIsSuperset;
+@JsonpDeserializable
+public final class MutualInformationHeuristic implements JsonpSerializable {
+	private final boolean backgroundIsSuperset;
 
-	private final Boolean includeNegatives;
+	private final boolean includeNegatives;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MutualInformationHeuristic(Builder builder) {
+	public MutualInformationHeuristic(Builder builder) {
 
 		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
 		this.includeNegatives = Objects.requireNonNull(builder.includeNegatives, "include_negatives");
 
 	}
 
+	public MutualInformationHeuristic(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code background_is_superset}
+	 * Required - API name: {@code background_is_superset}
 	 */
-	public Boolean backgroundIsSuperset() {
+	public boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
-	 * API name: {@code include_negatives}
+	 * Required - API name: {@code include_negatives}
 	 */
-	public Boolean includeNegatives() {
+	public boolean includeNegatives() {
 		return this.includeNegatives;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("background_is_superset");
 		generator.write(this.backgroundIsSuperset);
@@ -94,17 +100,17 @@ public final class MutualInformationHeuristic implements ToJsonp {
 		private Boolean includeNegatives;
 
 		/**
-		 * API name: {@code background_is_superset}
+		 * Required - API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(Boolean value) {
+		public Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code include_negatives}
+		 * Required - API name: {@code include_negatives}
 		 */
-		public Builder includeNegatives(Boolean value) {
+		public Builder includeNegatives(boolean value) {
 			this.includeNegatives = value;
 			return this;
 		}
@@ -124,10 +130,10 @@ public final class MutualInformationHeuristic implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MutualInformationHeuristic
+	 * Json deserializer for {@link MutualInformationHeuristic}
 	 */
-	public static final JsonpDeserializer<MutualInformationHeuristic> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MutualInformationHeuristic::setupMutualInformationHeuristicDeserializer);
+	public static final JsonpDeserializer<MutualInformationHeuristic> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MutualInformationHeuristic::setupMutualInformationHeuristicDeserializer, Builder::build);
 
 	protected static void setupMutualInformationHeuristicDeserializer(
 			DelegatingDeserializer<MutualInformationHeuristic.Builder> op) {

@@ -24,15 +24,17 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,29 +43,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
-public final class CompletionStats implements ToJsonp {
-	private final Number sizeInBytes;
+@JsonpDeserializable
+public final class CompletionStats implements JsonpSerializable {
+	private final long sizeInBytes;
 
 	@Nullable
-	private final JsonValue size;
+	private final String size;
 
 	@Nullable
 	private final Map<String, FieldSizeUsage> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CompletionStats(Builder builder) {
+	public CompletionStats(Builder builder) {
 
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
 		this.size = builder.size;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 
+	public CompletionStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -71,7 +78,7 @@ public final class CompletionStats implements ToJsonp {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public String size() {
 		return this.size;
 	}
 
@@ -86,16 +93,16 @@ public final class CompletionStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 		if (this.size != null) {
 
@@ -109,7 +116,7 @@ public final class CompletionStats implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldSizeUsage> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -124,18 +131,18 @@ public final class CompletionStats implements ToJsonp {
 	 * Builder for {@link CompletionStats}.
 	 */
 	public static class Builder implements ObjectBuilder<CompletionStats> {
-		private Number sizeInBytes;
+		private Long sizeInBytes;
 
 		@Nullable
-		private JsonValue size;
+		private String size;
 
 		@Nullable
 		private Map<String, FieldSizeUsage> fields;
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -143,7 +150,7 @@ public final class CompletionStats implements ToJsonp {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -196,16 +203,16 @@ public final class CompletionStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CompletionStats
+	 * Json deserializer for {@link CompletionStats}
 	 */
-	public static final JsonpDeserializer<CompletionStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CompletionStats::setupCompletionStatsDeserializer);
+	public static final JsonpDeserializer<CompletionStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CompletionStats::setupCompletionStatsDeserializer, Builder::build);
 
 	protected static void setupCompletionStatsDeserializer(DelegatingDeserializer<CompletionStats.Builder> op) {
 
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
-		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldSizeUsage.DESERIALIZER), "fields");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldSizeUsage._DESERIALIZER), "fields");
 
 	}
 

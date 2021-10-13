@@ -25,14 +25,16 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.elasticsearch._types.PluginStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +46,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodes
-public final class ClusterNodes implements ToJsonp {
+@JsonpDeserializable
+public final class ClusterNodes implements JsonpSerializable {
 	private final ClusterNodeCount count;
 
-	private final Map<String, Number> discoveryTypes;
+	private final Map<String, Integer> discoveryTypes;
 
 	private final ClusterFileSystem fs;
 
@@ -69,25 +72,29 @@ public final class ClusterNodes implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterNodes(Builder builder) {
+	public ClusterNodes(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.discoveryTypes = Objects.requireNonNull(builder.discoveryTypes, "discovery_types");
+		this.discoveryTypes = ModelTypeHelper.unmodifiableNonNull(builder.discoveryTypes, "discovery_types");
 		this.fs = Objects.requireNonNull(builder.fs, "fs");
 		this.ingest = Objects.requireNonNull(builder.ingest, "ingest");
 		this.jvm = Objects.requireNonNull(builder.jvm, "jvm");
 		this.networkTypes = Objects.requireNonNull(builder.networkTypes, "network_types");
 		this.os = Objects.requireNonNull(builder.os, "os");
-		this.packagingTypes = Objects.requireNonNull(builder.packagingTypes, "packaging_types");
-		this.plugins = Objects.requireNonNull(builder.plugins, "plugins");
+		this.packagingTypes = ModelTypeHelper.unmodifiableNonNull(builder.packagingTypes, "packaging_types");
+		this.plugins = ModelTypeHelper.unmodifiableNonNull(builder.plugins, "plugins");
 		this.process = Objects.requireNonNull(builder.process, "process");
-		this.versions = Objects.requireNonNull(builder.versions, "versions");
+		this.versions = ModelTypeHelper.unmodifiableNonNull(builder.versions, "versions");
 
 	}
 
+	public ClusterNodes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Contains counts for nodes selected by the request’s node filters.
-	 *
+	 * Required - Contains counts for nodes selected by the request’s node filters.
+	 * <p>
 	 * API name: {@code count}
 	 */
 	public ClusterNodeCount count() {
@@ -95,17 +102,18 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about the discovery types used by selected nodes.
-	 *
+	 * Required - Contains statistics about the discovery types used by selected
+	 * nodes.
+	 * <p>
 	 * API name: {@code discovery_types}
 	 */
-	public Map<String, Number> discoveryTypes() {
+	public Map<String, Integer> discoveryTypes() {
 		return this.discoveryTypes;
 	}
 
 	/**
-	 * Contains statistics about file stores by selected nodes.
-	 *
+	 * Required - Contains statistics about file stores by selected nodes.
+	 * <p>
 	 * API name: {@code fs}
 	 */
 	public ClusterFileSystem fs() {
@@ -113,16 +121,16 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code ingest}
+	 * Required - API name: {@code ingest}
 	 */
 	public ClusterIngest ingest() {
 		return this.ingest;
 	}
 
 	/**
-	 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
-	 * nodes.
-	 *
+	 * Required - Contains statistics about the Java Virtual Machines (JVMs) used by
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code jvm}
 	 */
 	public ClusterJvm jvm() {
@@ -130,9 +138,9 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about the transport and HTTP networks used by selected
-	 * nodes.
-	 *
+	 * Required - Contains statistics about the transport and HTTP networks used by
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code network_types}
 	 */
 	public ClusterNetworkTypes networkTypes() {
@@ -140,8 +148,9 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about the operating systems used by selected nodes.
-	 *
+	 * Required - Contains statistics about the operating systems used by selected
+	 * nodes.
+	 * <p>
 	 * API name: {@code os}
 	 */
 	public ClusterOperatingSystem os() {
@@ -149,9 +158,9 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about Elasticsearch distributions installed on selected
-	 * nodes.
-	 *
+	 * Required - Contains statistics about Elasticsearch distributions installed on
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code packaging_types}
 	 */
 	public List<NodePackagingType> packagingTypes() {
@@ -159,8 +168,9 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about installed plugins and modules by selected nodes.
-	 *
+	 * Required - Contains statistics about installed plugins and modules by
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code plugins}
 	 */
 	public List<PluginStats> plugins() {
@@ -168,8 +178,8 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains statistics about processes used by selected nodes.
-	 *
+	 * Required - Contains statistics about processes used by selected nodes.
+	 * <p>
 	 * API name: {@code process}
 	 */
 	public ClusterProcess process() {
@@ -177,8 +187,8 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Array of Elasticsearch versions used on selected nodes.
-	 *
+	 * Required - Array of Elasticsearch versions used on selected nodes.
+	 * <p>
 	 * API name: {@code versions}
 	 */
 	public List<String> versions() {
@@ -188,45 +198,45 @@ public final class ClusterNodes implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		this.count.toJsonp(generator, mapper);
+		this.count.serialize(generator, mapper);
 
 		generator.writeKey("discovery_types");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.discoveryTypes.entrySet()) {
+		for (Map.Entry<String, Integer> item0 : this.discoveryTypes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("fs");
-		this.fs.toJsonp(generator, mapper);
+		this.fs.serialize(generator, mapper);
 
 		generator.writeKey("ingest");
-		this.ingest.toJsonp(generator, mapper);
+		this.ingest.serialize(generator, mapper);
 
 		generator.writeKey("jvm");
-		this.jvm.toJsonp(generator, mapper);
+		this.jvm.serialize(generator, mapper);
 
 		generator.writeKey("network_types");
-		this.networkTypes.toJsonp(generator, mapper);
+		this.networkTypes.serialize(generator, mapper);
 
 		generator.writeKey("os");
-		this.os.toJsonp(generator, mapper);
+		this.os.serialize(generator, mapper);
 
 		generator.writeKey("packaging_types");
 		generator.writeStartArray();
 		for (NodePackagingType item0 : this.packagingTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -234,13 +244,13 @@ public final class ClusterNodes implements ToJsonp {
 		generator.writeKey("plugins");
 		generator.writeStartArray();
 		for (PluginStats item0 : this.plugins) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("process");
-		this.process.toJsonp(generator, mapper);
+		this.process.serialize(generator, mapper);
 
 		generator.writeKey("versions");
 		generator.writeStartArray();
@@ -260,7 +270,7 @@ public final class ClusterNodes implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ClusterNodes> {
 		private ClusterNodeCount count;
 
-		private Map<String, Number> discoveryTypes;
+		private Map<String, Integer> discoveryTypes;
 
 		private ClusterFileSystem fs;
 
@@ -281,8 +291,8 @@ public final class ClusterNodes implements ToJsonp {
 		private List<String> versions;
 
 		/**
-		 * Contains counts for nodes selected by the request’s node filters.
-		 *
+		 * Required - Contains counts for nodes selected by the request’s node filters.
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(ClusterNodeCount value) {
@@ -291,8 +301,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains counts for nodes selected by the request’s node filters.
-		 *
+		 * Required - Contains counts for nodes selected by the request’s node filters.
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
@@ -300,11 +310,12 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the discovery types used by selected nodes.
-		 *
+		 * Required - Contains statistics about the discovery types used by selected
+		 * nodes.
+		 * <p>
 		 * API name: {@code discovery_types}
 		 */
-		public Builder discoveryTypes(Map<String, Number> value) {
+		public Builder discoveryTypes(Map<String, Integer> value) {
 			this.discoveryTypes = value;
 			return this;
 		}
@@ -312,7 +323,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #discoveryTypes(Map)}, creating the map if needed.
 		 */
-		public Builder putDiscoveryTypes(String key, Number value) {
+		public Builder putDiscoveryTypes(String key, Integer value) {
 			if (this.discoveryTypes == null) {
 				this.discoveryTypes = new HashMap<>();
 			}
@@ -321,8 +332,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about file stores by selected nodes.
-		 *
+		 * Required - Contains statistics about file stores by selected nodes.
+		 * <p>
 		 * API name: {@code fs}
 		 */
 		public Builder fs(ClusterFileSystem value) {
@@ -331,8 +342,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about file stores by selected nodes.
-		 *
+		 * Required - Contains statistics about file stores by selected nodes.
+		 * <p>
 		 * API name: {@code fs}
 		 */
 		public Builder fs(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {
@@ -340,7 +351,7 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(ClusterIngest value) {
 			this.ingest = value;
@@ -348,16 +359,16 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(Function<ClusterIngest.Builder, ObjectBuilder<ClusterIngest>> fn) {
 			return this.ingest(fn.apply(new ClusterIngest.Builder()).build());
 		}
 
 		/**
-		 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about the Java Virtual Machines (JVMs) used by
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code jvm}
 		 */
 		public Builder jvm(ClusterJvm value) {
@@ -366,9 +377,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about the Java Virtual Machines (JVMs) used by
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code jvm}
 		 */
 		public Builder jvm(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
@@ -376,9 +387,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the transport and HTTP networks used by selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about the transport and HTTP networks used by
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code network_types}
 		 */
 		public Builder networkTypes(ClusterNetworkTypes value) {
@@ -387,9 +398,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the transport and HTTP networks used by selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about the transport and HTTP networks used by
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code network_types}
 		 */
 		public Builder networkTypes(Function<ClusterNetworkTypes.Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
@@ -397,8 +408,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the operating systems used by selected nodes.
-		 *
+		 * Required - Contains statistics about the operating systems used by selected
+		 * nodes.
+		 * <p>
 		 * API name: {@code os}
 		 */
 		public Builder os(ClusterOperatingSystem value) {
@@ -407,8 +419,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about the operating systems used by selected nodes.
-		 *
+		 * Required - Contains statistics about the operating systems used by selected
+		 * nodes.
+		 * <p>
 		 * API name: {@code os}
 		 */
 		public Builder os(Function<ClusterOperatingSystem.Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
@@ -416,9 +429,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about Elasticsearch distributions installed on selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about Elasticsearch distributions installed on
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code packaging_types}
 		 */
 		public Builder packagingTypes(List<NodePackagingType> value) {
@@ -427,9 +440,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about Elasticsearch distributions installed on selected
-		 * nodes.
-		 *
+		 * Required - Contains statistics about Elasticsearch distributions installed on
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code packaging_types}
 		 */
 		public Builder packagingTypes(NodePackagingType... value) {
@@ -463,8 +476,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about installed plugins and modules by selected nodes.
-		 *
+		 * Required - Contains statistics about installed plugins and modules by
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code plugins}
 		 */
 		public Builder plugins(List<PluginStats> value) {
@@ -473,8 +487,9 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about installed plugins and modules by selected nodes.
-		 *
+		 * Required - Contains statistics about installed plugins and modules by
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code plugins}
 		 */
 		public Builder plugins(PluginStats... value) {
@@ -508,8 +523,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about processes used by selected nodes.
-		 *
+		 * Required - Contains statistics about processes used by selected nodes.
+		 * <p>
 		 * API name: {@code process}
 		 */
 		public Builder process(ClusterProcess value) {
@@ -518,8 +533,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains statistics about processes used by selected nodes.
-		 *
+		 * Required - Contains statistics about processes used by selected nodes.
+		 * <p>
 		 * API name: {@code process}
 		 */
 		public Builder process(Function<ClusterProcess.Builder, ObjectBuilder<ClusterProcess>> fn) {
@@ -527,8 +542,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Array of Elasticsearch versions used on selected nodes.
-		 *
+		 * Required - Array of Elasticsearch versions used on selected nodes.
+		 * <p>
 		 * API name: {@code versions}
 		 */
 		public Builder versions(List<String> value) {
@@ -537,8 +552,8 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Array of Elasticsearch versions used on selected nodes.
-		 *
+		 * Required - Array of Elasticsearch versions used on selected nodes.
+		 * <p>
 		 * API name: {@code versions}
 		 */
 		public Builder versions(String... value) {
@@ -572,25 +587,25 @@ public final class ClusterNodes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterNodes
+	 * Json deserializer for {@link ClusterNodes}
 	 */
-	public static final JsonpDeserializer<ClusterNodes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterNodes::setupClusterNodesDeserializer);
+	public static final JsonpDeserializer<ClusterNodes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterNodes::setupClusterNodesDeserializer, Builder::build);
 
 	protected static void setupClusterNodesDeserializer(DelegatingDeserializer<ClusterNodes.Builder> op) {
 
-		op.add(Builder::count, ClusterNodeCount.DESERIALIZER, "count");
-		op.add(Builder::discoveryTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
-				"discovery_types");
-		op.add(Builder::fs, ClusterFileSystem.DESERIALIZER, "fs");
-		op.add(Builder::ingest, ClusterIngest.DESERIALIZER, "ingest");
-		op.add(Builder::jvm, ClusterJvm.DESERIALIZER, "jvm");
-		op.add(Builder::networkTypes, ClusterNetworkTypes.DESERIALIZER, "network_types");
-		op.add(Builder::os, ClusterOperatingSystem.DESERIALIZER, "os");
-		op.add(Builder::packagingTypes, JsonpDeserializer.arrayDeserializer(NodePackagingType.DESERIALIZER),
+		op.add(Builder::count, ClusterNodeCount._DESERIALIZER, "count");
+		op.add(Builder::discoveryTypes,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "discovery_types");
+		op.add(Builder::fs, ClusterFileSystem._DESERIALIZER, "fs");
+		op.add(Builder::ingest, ClusterIngest._DESERIALIZER, "ingest");
+		op.add(Builder::jvm, ClusterJvm._DESERIALIZER, "jvm");
+		op.add(Builder::networkTypes, ClusterNetworkTypes._DESERIALIZER, "network_types");
+		op.add(Builder::os, ClusterOperatingSystem._DESERIALIZER, "os");
+		op.add(Builder::packagingTypes, JsonpDeserializer.arrayDeserializer(NodePackagingType._DESERIALIZER),
 				"packaging_types");
-		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
-		op.add(Builder::process, ClusterProcess.DESERIALIZER, "process");
+		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "plugins");
+		op.add(Builder::process, ClusterProcess._DESERIALIZER, "process");
 		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"versions");
 

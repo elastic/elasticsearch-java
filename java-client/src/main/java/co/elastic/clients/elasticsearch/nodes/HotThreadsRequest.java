@@ -25,48 +25,58 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.ThreadType;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Request
+
 public final class HotThreadsRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final Boolean ignoreIdleThreads;
 
 	@Nullable
-	private final JsonValue interval;
+	private final String interval;
 
 	@Nullable
-	private final Number snapshots;
+	private final Long snapshots;
 
 	@Nullable
-	private final Number threads;
+	private final Long threads;
 
 	@Nullable
-	private final JsonValue threadType;
+	private final ThreadType threadType;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HotThreadsRequest(Builder builder) {
+	public HotThreadsRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
 		this.snapshots = builder.snapshots;
@@ -76,15 +86,26 @@ public final class HotThreadsRequest extends RequestBase {
 
 	}
 
+	public HotThreadsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of node IDs or names to limit the returned
+	 * information; use <code>_local</code> to return information from the node
+	 * you're connecting to, leave empty to get information from all nodes
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Don't show threads that are in known-idle places, such as waiting on a socket
+	 * select or pulling from an empty task queue (default: true)
+	 * <p>
 	 * API name: {@code ignore_idle_threads}
 	 */
 	@Nullable
@@ -93,26 +114,32 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * The interval for the second sampling of threads
+	 * <p>
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public JsonValue interval() {
+	public String interval() {
 		return this.interval;
 	}
 
 	/**
+	 * Number of samples of thread stacktrace (default: 10)
+	 * <p>
 	 * API name: {@code snapshots}
 	 */
 	@Nullable
-	public Number snapshots() {
+	public Long snapshots() {
 		return this.snapshots;
 	}
 
 	/**
+	 * Specify the number of threads to provide information for (default: 3)
+	 * <p>
 	 * API name: {@code threads}
 	 */
 	@Nullable
-	public Number threads() {
+	public Long threads() {
 		return this.threads;
 	}
 
@@ -120,15 +147,17 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code thread_type}
 	 */
 	@Nullable
-	public JsonValue threadType() {
+	public ThreadType threadType() {
 		return this.threadType;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -139,35 +168,65 @@ public final class HotThreadsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<HotThreadsRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private Boolean ignoreIdleThreads;
 
 		@Nullable
-		private JsonValue interval;
+		private String interval;
 
 		@Nullable
-		private Number snapshots;
+		private Long snapshots;
 
 		@Nullable
-		private Number threads;
+		private Long threads;
 
 		@Nullable
-		private JsonValue threadType;
+		private ThreadType threadType;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned
+		 * information; use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned
+		 * information; use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Don't show threads that are in known-idle places, such as waiting on a socket
+		 * select or pulling from an empty task queue (default: true)
+		 * <p>
 		 * API name: {@code ignore_idle_threads}
 		 */
 		public Builder ignoreIdleThreads(@Nullable Boolean value) {
@@ -176,25 +235,31 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
+		 * The interval for the second sampling of threads
+		 * <p>
 		 * API name: {@code interval}
 		 */
-		public Builder interval(@Nullable JsonValue value) {
+		public Builder interval(@Nullable String value) {
 			this.interval = value;
 			return this;
 		}
 
 		/**
+		 * Number of samples of thread stacktrace (default: 10)
+		 * <p>
 		 * API name: {@code snapshots}
 		 */
-		public Builder snapshots(@Nullable Number value) {
+		public Builder snapshots(@Nullable Long value) {
 			this.snapshots = value;
 			return this;
 		}
 
 		/**
+		 * Specify the number of threads to provide information for (default: 3)
+		 * <p>
 		 * API name: {@code threads}
 		 */
-		public Builder threads(@Nullable Number value) {
+		public Builder threads(@Nullable Long value) {
 			this.threads = value;
 			return this;
 		}
@@ -202,15 +267,17 @@ public final class HotThreadsRequest extends RequestBase {
 		/**
 		 * API name: {@code thread_type}
 		 */
-		public Builder threadType(@Nullable JsonValue value) {
+		public Builder threadType(@Nullable ThreadType value) {
 			this.threadType = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -232,7 +299,7 @@ public final class HotThreadsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.hot_threads}".
 	 */
-	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -258,57 +325,12 @@ public final class HotThreadsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/hot_threads");
 					return buf.toString();
 				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/");
-					buf.append(request.nodeId);
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					buf.append(request.nodeId);
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/hot_threads");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/");
-					buf.append(request.nodeId);
-					buf.append("/hot_threads");
-					return buf.toString();
-				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -319,21 +341,21 @@ public final class HotThreadsRequest extends RequestBase {
 					params.put("ignore_idle_threads", String.valueOf(request.ignoreIdleThreads));
 				}
 				if (request.interval != null) {
-					params.put("interval", request.interval.toString());
+					params.put("interval", request.interval);
 				}
 				if (request.snapshots != null) {
-					params.put("snapshots", request.snapshots.toString());
+					params.put("snapshots", String.valueOf(request.snapshots));
 				}
 				if (request.threads != null) {
-					params.put("threads", request.threads.toString());
+					params.put("threads", String.valueOf(request.threads));
 				}
 				if (request.threadType != null) {
 					params.put("thread_type", request.threadType.toString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, HotThreadsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HotThreadsResponse._DESERIALIZER);
 }

@@ -24,27 +24,30 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ElasticsearchVersionInfo
-public final class ElasticsearchVersionInfo implements ToJsonp {
+@JsonpDeserializable
+public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
 
 	private final String buildFlavor;
 
 	private final String buildHash;
 
-	private final Boolean buildSnapshot;
+	private final boolean buildSnapshot;
 
 	private final String buildType;
 
@@ -58,7 +61,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ElasticsearchVersionInfo(Builder builder) {
+	public ElasticsearchVersionInfo(Builder builder) {
 
 		this.buildDate = Objects.requireNonNull(builder.buildDate, "build_date");
 		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
@@ -74,64 +77,68 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 
 	}
 
+	public ElasticsearchVersionInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code build_date}
+	 * Required - API name: {@code build_date}
 	 */
 	public String buildDate() {
 		return this.buildDate;
 	}
 
 	/**
-	 * API name: {@code build_flavor}
+	 * Required - API name: {@code build_flavor}
 	 */
 	public String buildFlavor() {
 		return this.buildFlavor;
 	}
 
 	/**
-	 * API name: {@code build_hash}
+	 * Required - API name: {@code build_hash}
 	 */
 	public String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
-	 * API name: {@code build_snapshot}
+	 * Required - API name: {@code build_snapshot}
 	 */
-	public Boolean buildSnapshot() {
+	public boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
 	/**
-	 * API name: {@code build_type}
+	 * Required - API name: {@code build_type}
 	 */
 	public String buildType() {
 		return this.buildType;
 	}
 
 	/**
-	 * API name: {@code lucene_version}
+	 * Required - API name: {@code lucene_version}
 	 */
 	public String luceneVersion() {
 		return this.luceneVersion;
 	}
 
 	/**
-	 * API name: {@code minimum_index_compatibility_version}
+	 * Required - API name: {@code minimum_index_compatibility_version}
 	 */
 	public String minimumIndexCompatibilityVersion() {
 		return this.minimumIndexCompatibilityVersion;
 	}
 
 	/**
-	 * API name: {@code minimum_wire_compatibility_version}
+	 * Required - API name: {@code minimum_wire_compatibility_version}
 	 */
 	public String minimumWireCompatibilityVersion() {
 		return this.minimumWireCompatibilityVersion;
 	}
 
 	/**
-	 * API name: {@code number}
+	 * Required - API name: {@code number}
 	 */
 	public String number() {
 		return this.number;
@@ -140,13 +147,13 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("build_date");
 		generator.write(this.buildDate);
@@ -202,7 +209,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		private String number;
 
 		/**
-		 * API name: {@code build_date}
+		 * Required - API name: {@code build_date}
 		 */
 		public Builder buildDate(String value) {
 			this.buildDate = value;
@@ -210,7 +217,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code build_flavor}
+		 * Required - API name: {@code build_flavor}
 		 */
 		public Builder buildFlavor(String value) {
 			this.buildFlavor = value;
@@ -218,7 +225,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code build_hash}
+		 * Required - API name: {@code build_hash}
 		 */
 		public Builder buildHash(String value) {
 			this.buildHash = value;
@@ -226,15 +233,15 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code build_snapshot}
+		 * Required - API name: {@code build_snapshot}
 		 */
-		public Builder buildSnapshot(Boolean value) {
+		public Builder buildSnapshot(boolean value) {
 			this.buildSnapshot = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code build_type}
+		 * Required - API name: {@code build_type}
 		 */
 		public Builder buildType(String value) {
 			this.buildType = value;
@@ -242,7 +249,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code lucene_version}
+		 * Required - API name: {@code lucene_version}
 		 */
 		public Builder luceneVersion(String value) {
 			this.luceneVersion = value;
@@ -250,7 +257,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code minimum_index_compatibility_version}
+		 * Required - API name: {@code minimum_index_compatibility_version}
 		 */
 		public Builder minimumIndexCompatibilityVersion(String value) {
 			this.minimumIndexCompatibilityVersion = value;
@@ -258,7 +265,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code minimum_wire_compatibility_version}
+		 * Required - API name: {@code minimum_wire_compatibility_version}
 		 */
 		public Builder minimumWireCompatibilityVersion(String value) {
 			this.minimumWireCompatibilityVersion = value;
@@ -266,7 +273,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code number}
+		 * Required - API name: {@code number}
 		 */
 		public Builder number(String value) {
 			this.number = value;
@@ -288,10 +295,10 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ElasticsearchVersionInfo
+	 * Json deserializer for {@link ElasticsearchVersionInfo}
 	 */
-	public static final JsonpDeserializer<ElasticsearchVersionInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
+	public static final JsonpDeserializer<ElasticsearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer, Builder::build);
 
 	protected static void setupElasticsearchVersionInfoDeserializer(
 			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {

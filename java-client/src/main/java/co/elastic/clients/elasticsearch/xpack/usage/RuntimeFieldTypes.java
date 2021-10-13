@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -38,31 +40,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldTypes
+@JsonpDeserializable
 public final class RuntimeFieldTypes extends Base {
 	private final List<RuntimeFieldsType> fieldTypes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RuntimeFieldTypes(Builder builder) {
+	public RuntimeFieldTypes(Builder builder) {
 		super(builder);
-		this.fieldTypes = Objects.requireNonNull(builder.fieldTypes, "field_types");
+
+		this.fieldTypes = ModelTypeHelper.unmodifiableNonNull(builder.fieldTypes, "field_types");
 
 	}
 
+	public RuntimeFieldTypes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field_types}
+	 * Required - API name: {@code field_types}
 	 */
 	public List<RuntimeFieldsType> fieldTypes() {
 		return this.fieldTypes;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field_types");
 		generator.writeStartArray();
 		for (RuntimeFieldsType item0 : this.fieldTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -78,7 +87,7 @@ public final class RuntimeFieldTypes extends Base {
 		private List<RuntimeFieldsType> fieldTypes;
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(List<RuntimeFieldsType> value) {
 			this.fieldTypes = value;
@@ -86,7 +95,7 @@ public final class RuntimeFieldTypes extends Base {
 		}
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(RuntimeFieldsType... value) {
 			this.fieldTypes = Arrays.asList(value);
@@ -138,14 +147,15 @@ public final class RuntimeFieldTypes extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RuntimeFieldTypes
+	 * Json deserializer for {@link RuntimeFieldTypes}
 	 */
-	public static final JsonpDeserializer<RuntimeFieldTypes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer);
+	public static final JsonpDeserializer<RuntimeFieldTypes> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer, Builder::build);
 
 	protected static void setupRuntimeFieldTypesDeserializer(DelegatingDeserializer<RuntimeFieldTypes.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldsType.DESERIALIZER), "field_types");
+		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldsType._DESERIALIZER),
+				"field_types");
 
 	}
 

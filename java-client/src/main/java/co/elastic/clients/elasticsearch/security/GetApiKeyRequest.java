@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,9 +37,12 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Request
+
 public final class GetApiKeyRequest extends RequestBase {
 	@Nullable
 	private final String id;
@@ -56,7 +61,7 @@ public final class GetApiKeyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetApiKeyRequest(Builder builder) {
+	public GetApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.name = builder.name;
@@ -66,7 +71,13 @@ public final class GetApiKeyRequest extends RequestBase {
 
 	}
 
+	public GetApiKeyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * API key id of the API key to be retrieved
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -75,6 +86,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * API key name of the API key to be retrieved
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -83,6 +96,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * flag to query API keys owned by the currently authenticated user
+	 * <p>
 	 * API name: {@code owner}
 	 */
 	@Nullable
@@ -91,6 +106,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * realm name of the user who created this API key to be retrieved
+	 * <p>
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
@@ -99,6 +116,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * user name of the user who created this API key to be retrieved
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -128,6 +147,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		private String username;
 
 		/**
+		 * API key id of the API key to be retrieved
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -136,6 +157,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * API key name of the API key to be retrieved
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -144,6 +167,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * flag to query API keys owned by the currently authenticated user
+		 * <p>
 		 * API name: {@code owner}
 		 */
 		public Builder owner(@Nullable Boolean value) {
@@ -152,6 +177,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * realm name of the user who created this API key to be retrieved
+		 * <p>
 		 * API name: {@code realm_name}
 		 */
 		public Builder realmName(@Nullable String value) {
@@ -160,6 +187,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * user name of the user who created this API key to be retrieved
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(@Nullable String value) {
@@ -184,7 +213,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_api_key}".
 	 */
-	public static final Endpoint<GetApiKeyRequest, GetApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetApiKeyRequest, GetApiKeyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -217,5 +246,5 @@ public final class GetApiKeyRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetApiKeyResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetApiKeyResponse._DESERIALIZER);
 }

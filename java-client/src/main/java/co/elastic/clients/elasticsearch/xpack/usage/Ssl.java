@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,29 +37,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ssl
-public final class Ssl implements ToJsonp {
+@JsonpDeserializable
+public final class Ssl implements JsonpSerializable {
 	private final FeatureToggle http;
 
 	private final FeatureToggle transport;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Ssl(Builder builder) {
+	public Ssl(Builder builder) {
 
 		this.http = Objects.requireNonNull(builder.http, "http");
 		this.transport = Objects.requireNonNull(builder.transport, "transport");
 
 	}
 
+	public Ssl(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public FeatureToggle http() {
 		return this.http;
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public FeatureToggle transport() {
 		return this.transport;
@@ -67,19 +73,19 @@ public final class Ssl implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("http");
-		this.http.toJsonp(generator, mapper);
+		this.http.serialize(generator, mapper);
 
 		generator.writeKey("transport");
-		this.transport.toJsonp(generator, mapper);
+		this.transport.serialize(generator, mapper);
 
 	}
 
@@ -94,7 +100,7 @@ public final class Ssl implements ToJsonp {
 		private FeatureToggle transport;
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(FeatureToggle value) {
 			this.http = value;
@@ -102,14 +108,14 @@ public final class Ssl implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.http(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(FeatureToggle value) {
 			this.transport = value;
@@ -117,7 +123,7 @@ public final class Ssl implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.transport(fn.apply(new FeatureToggle.Builder()).build());
@@ -138,15 +144,15 @@ public final class Ssl implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Ssl
+	 * Json deserializer for {@link Ssl}
 	 */
-	public static final JsonpDeserializer<Ssl> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Ssl::setupSslDeserializer);
+	public static final JsonpDeserializer<Ssl> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ssl::setupSslDeserializer, Builder::build);
 
 	protected static void setupSslDeserializer(DelegatingDeserializer<Ssl.Builder> op) {
 
-		op.add(Builder::http, FeatureToggle.DESERIALIZER, "http");
-		op.add(Builder::transport, FeatureToggle.DESERIALIZER, "transport");
+		op.add(Builder::http, FeatureToggle._DESERIALIZER, "http");
+		op.add(Builder::transport, FeatureToggle._DESERIALIZER, "transport");
 
 	}
 

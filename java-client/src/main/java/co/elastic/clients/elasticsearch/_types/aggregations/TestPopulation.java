@@ -23,13 +23,14 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,18 +40,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TestPopulation
-public final class TestPopulation implements ToJsonp {
+@JsonpDeserializable
+public final class TestPopulation implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TestPopulation(Builder builder) {
+	public TestPopulation(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.script = builder.script;
@@ -58,8 +60,12 @@ public final class TestPopulation implements ToJsonp {
 
 	}
 
+	public TestPopulation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -69,7 +75,7 @@ public final class TestPopulation implements ToJsonp {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -77,20 +83,20 @@ public final class TestPopulation implements ToJsonp {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -104,7 +110,7 @@ public final class TestPopulation implements ToJsonp {
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 
@@ -119,13 +125,13 @@ public final class TestPopulation implements ToJsonp {
 		private String field;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -135,7 +141,7 @@ public final class TestPopulation implements ToJsonp {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -143,7 +149,7 @@ public final class TestPopulation implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -151,8 +157,8 @@ public final class TestPopulation implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -170,16 +176,16 @@ public final class TestPopulation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TestPopulation
+	 * Json deserializer for {@link TestPopulation}
 	 */
-	public static final JsonpDeserializer<TestPopulation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TestPopulation::setupTestPopulationDeserializer);
+	public static final JsonpDeserializer<TestPopulation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TestPopulation::setupTestPopulationDeserializer, Builder::build);
 
 	protected static void setupTestPopulationDeserializer(DelegatingDeserializer<TestPopulation.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
 	}
 

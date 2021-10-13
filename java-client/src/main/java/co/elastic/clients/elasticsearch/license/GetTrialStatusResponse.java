@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: license.get_trial_status.Response
-public final class GetTrialStatusResponse implements ToJsonp {
-	private final Boolean eligibleToStartTrial;
+@JsonpDeserializable
+public final class GetTrialStatusResponse implements JsonpSerializable {
+	private final boolean eligibleToStartTrial;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTrialStatusResponse(Builder builder) {
+	public GetTrialStatusResponse(Builder builder) {
 
 		this.eligibleToStartTrial = Objects.requireNonNull(builder.eligibleToStartTrial, "eligible_to_start_trial");
 
 	}
 
+	public GetTrialStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code eligible_to_start_trial}
+	 * Required - API name: {@code eligible_to_start_trial}
 	 */
-	public Boolean eligibleToStartTrial() {
+	public boolean eligibleToStartTrial() {
 		return this.eligibleToStartTrial;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("eligible_to_start_trial");
 		generator.write(this.eligibleToStartTrial);
@@ -79,9 +85,9 @@ public final class GetTrialStatusResponse implements ToJsonp {
 		private Boolean eligibleToStartTrial;
 
 		/**
-		 * API name: {@code eligible_to_start_trial}
+		 * Required - API name: {@code eligible_to_start_trial}
 		 */
-		public Builder eligibleToStartTrial(Boolean value) {
+		public Builder eligibleToStartTrial(boolean value) {
 			this.eligibleToStartTrial = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class GetTrialStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetTrialStatusResponse
+	 * Json deserializer for {@link GetTrialStatusResponse}
 	 */
-	public static final JsonpDeserializer<GetTrialStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTrialStatusResponse::setupGetTrialStatusResponseDeserializer);
+	public static final JsonpDeserializer<GetTrialStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetTrialStatusResponse::setupGetTrialStatusResponseDeserializer, Builder::build);
 
 	protected static void setupGetTrialStatusResponseDeserializer(
 			DelegatingDeserializer<GetTrialStatusResponse.Builder> op) {

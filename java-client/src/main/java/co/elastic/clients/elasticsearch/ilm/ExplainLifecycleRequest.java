@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,9 +38,11 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Request
+
 public final class ExplainLifecycleRequest extends RequestBase {
 	private final String index;
 
@@ -50,7 +54,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainLifecycleRequest(Builder builder) {
+	public ExplainLifecycleRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.onlyErrors = builder.onlyErrors;
@@ -58,7 +62,13 @@ public final class ExplainLifecycleRequest extends RequestBase {
 
 	}
 
+	public ExplainLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the index to explain
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -66,6 +76,9 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * filters the indices included in the response to ones in an ILM error state,
+	 * implies only_managed
+	 * <p>
 	 * API name: {@code only_errors}
 	 */
 	@Nullable
@@ -74,6 +87,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * filters the indices included in the response to ones managed by ILM
+	 * <p>
 	 * API name: {@code only_managed}
 	 */
 	@Nullable
@@ -96,6 +111,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		private Boolean onlyManaged;
 
 		/**
+		 * Required - The name of the index to explain
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -104,6 +121,9 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
+		 * filters the indices included in the response to ones in an ILM error state,
+		 * implies only_managed
+		 * <p>
 		 * API name: {@code only_errors}
 		 */
 		public Builder onlyErrors(@Nullable Boolean value) {
@@ -112,6 +132,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
+		 * filters the indices included in the response to ones managed by ILM
+		 * <p>
 		 * API name: {@code only_managed}
 		 */
 		public Builder onlyManaged(@Nullable Boolean value) {
@@ -136,7 +158,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.explain_lifecycle}".
 	 */
-	public static final Endpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -149,18 +171,17 @@ public final class ExplainLifecycleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_ilm");
 					buf.append("/explain");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -175,5 +196,5 @@ public final class ExplainLifecycleRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ExplainLifecycleResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ExplainLifecycleResponse._DESERIALIZER);
 }

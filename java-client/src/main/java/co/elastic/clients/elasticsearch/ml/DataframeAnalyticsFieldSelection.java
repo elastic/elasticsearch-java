@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,13 +39,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
-public final class DataframeAnalyticsFieldSelection implements ToJsonp {
-	private final Boolean isIncluded;
+@JsonpDeserializable
+public final class DataframeAnalyticsFieldSelection implements JsonpSerializable {
+	private final boolean isIncluded;
 
-	private final Boolean isRequired;
+	private final boolean isRequired;
 
 	@Nullable
 	private final String featureType;
@@ -57,39 +61,43 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsFieldSelection(Builder builder) {
+	public DataframeAnalyticsFieldSelection(Builder builder) {
 
 		this.isIncluded = Objects.requireNonNull(builder.isIncluded, "is_included");
 		this.isRequired = Objects.requireNonNull(builder.isRequired, "is_required");
 		this.featureType = builder.featureType;
-		this.mappingTypes = Objects.requireNonNull(builder.mappingTypes, "mapping_types");
+		this.mappingTypes = ModelTypeHelper.unmodifiableNonNull(builder.mappingTypes, "mapping_types");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.reason = builder.reason;
 
 	}
 
+	public DataframeAnalyticsFieldSelection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Whether the field is selected to be included in the analysis.
-	 *
+	 * Required - Whether the field is selected to be included in the analysis.
+	 * <p>
 	 * API name: {@code is_included}
 	 */
-	public Boolean isIncluded() {
+	public boolean isIncluded() {
 		return this.isIncluded;
 	}
 
 	/**
-	 * Whether the field is required.
-	 *
+	 * Required - Whether the field is required.
+	 * <p>
 	 * API name: {@code is_required}
 	 */
-	public Boolean isRequired() {
+	public boolean isRequired() {
 		return this.isRequired;
 	}
 
 	/**
 	 * The feature type of this field for the analysis. May be categorical or
 	 * numerical.
-	 *
+	 * <p>
 	 * API name: {@code feature_type}
 	 */
 	@Nullable
@@ -98,8 +106,8 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 	}
 
 	/**
-	 * The mapping types of the field.
-	 *
+	 * Required - The mapping types of the field.
+	 * <p>
 	 * API name: {@code mapping_types}
 	 */
 	public List<String> mappingTypes() {
@@ -107,8 +115,8 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 	}
 
 	/**
-	 * The field name.
-	 *
+	 * Required - The field name.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -117,7 +125,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	/**
 	 * The reason a field is not selected to be included in the analysis.
-	 *
+	 * <p>
 	 * API name: {@code reason}
 	 */
 	@Nullable
@@ -128,13 +136,13 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("is_included");
 		generator.write(this.isIncluded);
@@ -190,21 +198,21 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 		private String reason;
 
 		/**
-		 * Whether the field is selected to be included in the analysis.
-		 *
+		 * Required - Whether the field is selected to be included in the analysis.
+		 * <p>
 		 * API name: {@code is_included}
 		 */
-		public Builder isIncluded(Boolean value) {
+		public Builder isIncluded(boolean value) {
 			this.isIncluded = value;
 			return this;
 		}
 
 		/**
-		 * Whether the field is required.
-		 *
+		 * Required - Whether the field is required.
+		 * <p>
 		 * API name: {@code is_required}
 		 */
-		public Builder isRequired(Boolean value) {
+		public Builder isRequired(boolean value) {
 			this.isRequired = value;
 			return this;
 		}
@@ -212,7 +220,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 		/**
 		 * The feature type of this field for the analysis. May be categorical or
 		 * numerical.
-		 *
+		 * <p>
 		 * API name: {@code feature_type}
 		 */
 		public Builder featureType(@Nullable String value) {
@@ -221,8 +229,8 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 		}
 
 		/**
-		 * The mapping types of the field.
-		 *
+		 * Required - The mapping types of the field.
+		 * <p>
 		 * API name: {@code mapping_types}
 		 */
 		public Builder mappingTypes(List<String> value) {
@@ -231,8 +239,8 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 		}
 
 		/**
-		 * The mapping types of the field.
-		 *
+		 * Required - The mapping types of the field.
+		 * <p>
 		 * API name: {@code mapping_types}
 		 */
 		public Builder mappingTypes(String... value) {
@@ -252,8 +260,8 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 		}
 
 		/**
-		 * The field name.
-		 *
+		 * Required - The field name.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -263,7 +271,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * The reason a field is not selected to be included in the analysis.
-		 *
+		 * <p>
 		 * API name: {@code reason}
 		 */
 		public Builder reason(@Nullable String value) {
@@ -286,11 +294,11 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsFieldSelection
+	 * Json deserializer for {@link DataframeAnalyticsFieldSelection}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsFieldSelection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsFieldSelection::setupDataframeAnalyticsFieldSelectionDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsFieldSelection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsFieldSelection::setupDataframeAnalyticsFieldSelectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsFieldSelectionDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsFieldSelection.Builder> op) {

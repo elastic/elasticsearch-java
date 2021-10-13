@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,9 +36,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar_job.Request
+
 public final class PutCalendarJobRequest extends RequestBase {
 	private final String calendarId;
 
@@ -44,16 +48,20 @@ public final class PutCalendarJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutCalendarJobRequest(Builder builder) {
+	public PutCalendarJobRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 
 	}
 
+	public PutCalendarJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * A string that uniquely identifies a calendar.
-	 *
+	 * Required - A string that uniquely identifies a calendar.
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -61,9 +69,9 @@ public final class PutCalendarJobRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the anomaly detection jobs. It can be a job identifier, a
-	 * group name, or a comma-separated list of jobs or groups.
-	 *
+	 * Required - An identifier for the anomaly detection jobs. It can be a job
+	 * identifier, a group name, or a comma-separated list of jobs or groups.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -81,8 +89,8 @@ public final class PutCalendarJobRequest extends RequestBase {
 		private String jobId;
 
 		/**
-		 * A string that uniquely identifies a calendar.
-		 *
+		 * Required - A string that uniquely identifies a calendar.
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
@@ -91,9 +99,9 @@ public final class PutCalendarJobRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the anomaly detection jobs. It can be a job identifier, a
-		 * group name, or a comma-separated list of jobs or groups.
-		 *
+		 * Required - An identifier for the anomaly detection jobs. It can be a job
+		 * identifier, a group name, or a comma-separated list of jobs or groups.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -118,7 +126,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.put_calendar_job}".
 	 */
-	public static final Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -132,23 +140,21 @@ public final class PutCalendarJobRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.calendarId() != null)
-					propsSet |= _calendarId;
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _calendarId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_calendarId | _jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/jobs");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -156,5 +162,5 @@ public final class PutCalendarJobRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, PutCalendarJobResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PutCalendarJobResponse._DESERIALIZER);
 }

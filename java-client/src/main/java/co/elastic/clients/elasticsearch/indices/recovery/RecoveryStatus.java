@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,19 +41,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStatus
-public final class RecoveryStatus implements ToJsonp {
+@JsonpDeserializable
+public final class RecoveryStatus implements JsonpSerializable {
 	private final List<ShardRecovery> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryStatus(Builder builder) {
+	public RecoveryStatus(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
 
 	}
 
+	public RecoveryStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<ShardRecovery> shards() {
 		return this.shards;
@@ -60,18 +67,18 @@ public final class RecoveryStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("shards");
 		generator.writeStartArray();
 		for (ShardRecovery item0 : this.shards) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -87,7 +94,7 @@ public final class RecoveryStatus implements ToJsonp {
 		private List<ShardRecovery> shards;
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<ShardRecovery> value) {
 			this.shards = value;
@@ -95,7 +102,7 @@ public final class RecoveryStatus implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardRecovery... value) {
 			this.shards = Arrays.asList(value);
@@ -142,14 +149,14 @@ public final class RecoveryStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryStatus
+	 * Json deserializer for {@link RecoveryStatus}
 	 */
-	public static final JsonpDeserializer<RecoveryStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryStatus::setupRecoveryStatusDeserializer);
+	public static final JsonpDeserializer<RecoveryStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryStatus::setupRecoveryStatusDeserializer, Builder::build);
 
 	protected static void setupRecoveryStatusDeserializer(DelegatingDeserializer<RecoveryStatus.Builder> op) {
 
-		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery.DESERIALIZER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery._DESERIALIZER), "shards");
 
 	}
 

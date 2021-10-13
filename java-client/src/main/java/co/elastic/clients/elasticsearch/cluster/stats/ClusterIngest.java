@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,29 +42,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIngest
-public final class ClusterIngest implements ToJsonp {
-	private final Number numberOfPipelines;
+@JsonpDeserializable
+public final class ClusterIngest implements JsonpSerializable {
+	private final int numberOfPipelines;
 
 	private final Map<String, ClusterProcessor> processorStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterIngest(Builder builder) {
+	public ClusterIngest(Builder builder) {
 
 		this.numberOfPipelines = Objects.requireNonNull(builder.numberOfPipelines, "number_of_pipelines");
-		this.processorStats = Objects.requireNonNull(builder.processorStats, "processor_stats");
+		this.processorStats = ModelTypeHelper.unmodifiableNonNull(builder.processorStats, "processor_stats");
 
 	}
 
+	public ClusterIngest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code number_of_pipelines}
+	 * Required - API name: {@code number_of_pipelines}
 	 */
-	public Number numberOfPipelines() {
+	public int numberOfPipelines() {
 		return this.numberOfPipelines;
 	}
 
 	/**
-	 * API name: {@code processor_stats}
+	 * Required - API name: {@code processor_stats}
 	 */
 	public Map<String, ClusterProcessor> processorStats() {
 		return this.processorStats;
@@ -71,22 +78,22 @@ public final class ClusterIngest implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("number_of_pipelines");
-		generator.write(this.numberOfPipelines.doubleValue());
+		generator.write(this.numberOfPipelines);
 
 		generator.writeKey("processor_stats");
 		generator.writeStartObject();
 		for (Map.Entry<String, ClusterProcessor> item0 : this.processorStats.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -99,20 +106,20 @@ public final class ClusterIngest implements ToJsonp {
 	 * Builder for {@link ClusterIngest}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterIngest> {
-		private Number numberOfPipelines;
+		private Integer numberOfPipelines;
 
 		private Map<String, ClusterProcessor> processorStats;
 
 		/**
-		 * API name: {@code number_of_pipelines}
+		 * Required - API name: {@code number_of_pipelines}
 		 */
-		public Builder numberOfPipelines(Number value) {
+		public Builder numberOfPipelines(int value) {
 			this.numberOfPipelines = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code processor_stats}
+		 * Required - API name: {@code processor_stats}
 		 */
 		public Builder processorStats(Map<String, ClusterProcessor> value) {
 			this.processorStats = value;
@@ -161,15 +168,15 @@ public final class ClusterIngest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterIngest
+	 * Json deserializer for {@link ClusterIngest}
 	 */
-	public static final JsonpDeserializer<ClusterIngest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIngest::setupClusterIngestDeserializer);
+	public static final JsonpDeserializer<ClusterIngest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterIngest::setupClusterIngestDeserializer, Builder::build);
 
 	protected static void setupClusterIngestDeserializer(DelegatingDeserializer<ClusterIngest.Builder> op) {
 
-		op.add(Builder::numberOfPipelines, JsonpDeserializer.numberDeserializer(), "number_of_pipelines");
-		op.add(Builder::processorStats, JsonpDeserializer.stringMapDeserializer(ClusterProcessor.DESERIALIZER),
+		op.add(Builder::numberOfPipelines, JsonpDeserializer.integerDeserializer(), "number_of_pipelines");
+		op.add(Builder::processorStats, JsonpDeserializer.stringMapDeserializer(ClusterProcessor._DESERIALIZER),
 				"processor_stats");
 
 	}

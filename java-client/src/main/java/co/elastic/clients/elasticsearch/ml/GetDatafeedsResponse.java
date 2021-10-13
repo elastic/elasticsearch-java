@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,29 +42,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Response
-public final class GetDatafeedsResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetDatafeedsResponse implements JsonpSerializable {
+	private final long count;
 
 	private final List<Datafeed> datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDatafeedsResponse(Builder builder) {
+	public GetDatafeedsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
+		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
 
 	}
 
+	public GetDatafeedsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public List<Datafeed> datafeeds() {
 		return this.datafeeds;
@@ -71,21 +78,21 @@ public final class GetDatafeedsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("datafeeds");
 		generator.writeStartArray();
 		for (Datafeed item0 : this.datafeeds) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -98,20 +105,20 @@ public final class GetDatafeedsResponse implements ToJsonp {
 	 * Builder for {@link GetDatafeedsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetDatafeedsResponse> {
-		private Number count;
+		private Long count;
 
 		private List<Datafeed> datafeeds;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(List<Datafeed> value) {
 			this.datafeeds = value;
@@ -119,7 +126,7 @@ public final class GetDatafeedsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Datafeed... value) {
 			this.datafeeds = Arrays.asList(value);
@@ -166,16 +173,16 @@ public final class GetDatafeedsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetDatafeedsResponse
+	 * Json deserializer for {@link GetDatafeedsResponse}
 	 */
-	public static final JsonpDeserializer<GetDatafeedsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetDatafeedsResponse::setupGetDatafeedsResponseDeserializer);
+	public static final JsonpDeserializer<GetDatafeedsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetDatafeedsResponse::setupGetDatafeedsResponseDeserializer, Builder::build);
 
 	protected static void setupGetDatafeedsResponseDeserializer(
 			DelegatingDeserializer<GetDatafeedsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::datafeeds, JsonpDeserializer.arrayDeserializer(Datafeed.DESERIALIZER), "datafeeds");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::datafeeds, JsonpDeserializer.arrayDeserializer(Datafeed._DESERIALIZER), "datafeeds");
 
 	}
 

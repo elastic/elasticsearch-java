@@ -25,13 +25,15 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.authenticate.Token;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,7 +47,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.authenticate.Response
-public final class AuthenticateResponse implements ToJsonp {
+@JsonpDeserializable
+public final class AuthenticateResponse implements JsonpSerializable {
 	private final RealmInfo authenticationRealm;
 
 	@Nullable
@@ -56,13 +59,13 @@ public final class AuthenticateResponse implements ToJsonp {
 
 	private final RealmInfo lookupRealm;
 
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	private final List<String> roles;
 
 	private final String username;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	private final String authenticationType;
 
@@ -71,14 +74,14 @@ public final class AuthenticateResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AuthenticateResponse(Builder builder) {
+	public AuthenticateResponse(Builder builder) {
 
 		this.authenticationRealm = Objects.requireNonNull(builder.authenticationRealm, "authentication_realm");
 		this.email = builder.email;
 		this.fullName = builder.fullName;
 		this.lookupRealm = Objects.requireNonNull(builder.lookupRealm, "lookup_realm");
-		this.metadata = Objects.requireNonNull(builder.metadata, "metadata");
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 		this.authenticationType = Objects.requireNonNull(builder.authenticationType, "authentication_type");
@@ -86,8 +89,12 @@ public final class AuthenticateResponse implements ToJsonp {
 
 	}
 
+	public AuthenticateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code authentication_realm}
+	 * Required - API name: {@code authentication_realm}
 	 */
 	public RealmInfo authenticationRealm() {
 		return this.authenticationRealm;
@@ -110,42 +117,42 @@ public final class AuthenticateResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code lookup_realm}
+	 * Required - API name: {@code lookup_realm}
 	 */
 	public RealmInfo lookupRealm() {
 		return this.lookupRealm;
 	}
 
 	/**
-	 * API name: {@code metadata}
+	 * Required - API name: {@code metadata}
 	 */
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public List<String> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * API name: {@code authentication_type}
+	 * Required - API name: {@code authentication_type}
 	 */
 	public String authenticationType() {
 		return this.authenticationType;
@@ -162,16 +169,16 @@ public final class AuthenticateResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("authentication_realm");
-		this.authenticationRealm.toJsonp(generator, mapper);
+		this.authenticationRealm.serialize(generator, mapper);
 
 		if (this.email != null) {
 
@@ -187,13 +194,13 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		generator.writeKey("lookup_realm");
-		this.lookupRealm.toJsonp(generator, mapper);
+		this.lookupRealm.serialize(generator, mapper);
 
 		generator.writeKey("metadata");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -218,7 +225,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		if (this.token != null) {
 
 			generator.writeKey("token");
-			this.token.toJsonp(generator, mapper);
+			this.token.serialize(generator, mapper);
 
 		}
 
@@ -240,7 +247,7 @@ public final class AuthenticateResponse implements ToJsonp {
 
 		private RealmInfo lookupRealm;
 
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		private List<String> roles;
 
@@ -254,7 +261,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		private Token token;
 
 		/**
-		 * API name: {@code authentication_realm}
+		 * Required - API name: {@code authentication_realm}
 		 */
 		public Builder authenticationRealm(RealmInfo value) {
 			this.authenticationRealm = value;
@@ -262,7 +269,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code authentication_realm}
+		 * Required - API name: {@code authentication_realm}
 		 */
 		public Builder authenticationRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
 			return this.authenticationRealm(fn.apply(new RealmInfo.Builder()).build());
@@ -285,7 +292,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code lookup_realm}
+		 * Required - API name: {@code lookup_realm}
 		 */
 		public Builder lookupRealm(RealmInfo value) {
 			this.lookupRealm = value;
@@ -293,16 +300,16 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code lookup_realm}
+		 * Required - API name: {@code lookup_realm}
 		 */
 		public Builder lookupRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
 			return this.lookupRealm(fn.apply(new RealmInfo.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code metadata}
+		 * Required - API name: {@code metadata}
 		 */
-		public Builder metadata(Map<String, JsonValue> value) {
+		public Builder metadata(Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -310,7 +317,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -319,7 +326,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(List<String> value) {
 			this.roles = value;
@@ -327,7 +334,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(String... value) {
 			this.roles = Arrays.asList(value);
@@ -346,7 +353,7 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;
@@ -354,15 +361,15 @@ public final class AuthenticateResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code authentication_type}
+		 * Required - API name: {@code authentication_type}
 		 */
 		public Builder authenticationType(String value) {
 			this.authenticationType = value;
@@ -399,25 +406,24 @@ public final class AuthenticateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AuthenticateResponse
+	 * Json deserializer for {@link AuthenticateResponse}
 	 */
-	public static final JsonpDeserializer<AuthenticateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer);
+	public static final JsonpDeserializer<AuthenticateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer, Builder::build);
 
 	protected static void setupAuthenticateResponseDeserializer(
 			DelegatingDeserializer<AuthenticateResponse.Builder> op) {
 
-		op.add(Builder::authenticationRealm, RealmInfo.DESERIALIZER, "authentication_realm");
+		op.add(Builder::authenticationRealm, RealmInfo._DESERIALIZER, "authentication_realm");
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
-		op.add(Builder::lookupRealm, RealmInfo.DESERIALIZER, "lookup_realm");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::lookupRealm, RealmInfo._DESERIALIZER, "lookup_realm");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::authenticationType, JsonpDeserializer.stringDeserializer(), "authentication_type");
-		op.add(Builder::token, Token.DESERIALIZER, "token");
+		op.add(Builder::token, Token._DESERIALIZER, "token");
 
 	}
 

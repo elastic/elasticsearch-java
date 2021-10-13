@@ -23,50 +23,49 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Response
-public final class PutTrainedModelResponse implements ToJsonp {
-	private final Boolean stub;
+@JsonpDeserializable
+public final class PutTrainedModelResponse implements JsonpSerializable {
+	private final TrainedModelConfig valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTrainedModelResponse(Builder builder) {
+	public PutTrainedModelResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public PutTrainedModelResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Required - Response value.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public Boolean stub() {
-		return this.stub;
+	public TrainedModelConfig valueBody() {
+		return this.valueBody;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -76,14 +75,25 @@ public final class PutTrainedModelResponse implements ToJsonp {
 	 * Builder for {@link PutTrainedModelResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PutTrainedModelResponse> {
-		private Boolean stub;
+		private TrainedModelConfig valueBody;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder stub(Boolean value) {
-			this.stub = value;
+		public Builder valueBody(TrainedModelConfig value) {
+			this.valueBody = value;
 			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 */
+		public Builder valueBody(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+			return this.valueBody(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
 		/**
@@ -98,19 +108,13 @@ public final class PutTrainedModelResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutTrainedModelResponse> _DESERIALIZER = createPutTrainedModelResponseDeserializer();
+	protected static JsonpDeserializer<PutTrainedModelResponse> createPutTrainedModelResponseDeserializer() {
 
-	/**
-	 * Json deserializer for PutTrainedModelResponse
-	 */
-	public static final JsonpDeserializer<PutTrainedModelResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTrainedModelResponse::setupPutTrainedModelResponseDeserializer);
+		JsonpDeserializer<TrainedModelConfig> valueDeserializer = TrainedModelConfig._DESERIALIZER;
 
-	protected static void setupPutTrainedModelResponseDeserializer(
-			DelegatingDeserializer<PutTrainedModelResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.booleanDeserializer(), "stub");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

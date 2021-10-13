@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.mapping.IndexField
-public final class IndexField implements ToJsonp {
-	private final Boolean enabled;
+@JsonpDeserializable
+public final class IndexField implements JsonpSerializable {
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexField(Builder builder) {
+	public IndexField(Builder builder) {
 
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 
 	}
 
+	public IndexField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
@@ -79,9 +85,9 @@ public final class IndexField implements ToJsonp {
 		private Boolean enabled;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class IndexField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexField
+	 * Json deserializer for {@link IndexField}
 	 */
-	public static final JsonpDeserializer<IndexField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexField::setupIndexFieldDeserializer);
+	public static final JsonpDeserializer<IndexField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexField::setupIndexFieldDeserializer, Builder::build);
 
 	protected static void setupIndexFieldDeserializer(DelegatingDeserializer<IndexField.Builder> op) {
 

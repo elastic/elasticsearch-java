@@ -24,49 +24,55 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml.info.Datafeeds
-public final class Datafeeds implements ToJsonp {
-	private final Number scrollSize;
+@JsonpDeserializable
+public final class Datafeeds implements JsonpSerializable {
+	private final int scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Datafeeds(Builder builder) {
+	public Datafeeds(Builder builder) {
 
 		this.scrollSize = Objects.requireNonNull(builder.scrollSize, "scroll_size");
 
 	}
 
+	public Datafeeds(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code scroll_size}
+	 * Required - API name: {@code scroll_size}
 	 */
-	public Number scrollSize() {
+	public int scrollSize() {
 		return this.scrollSize;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("scroll_size");
-		generator.write(this.scrollSize.doubleValue());
+		generator.write(this.scrollSize);
 
 	}
 
@@ -76,12 +82,12 @@ public final class Datafeeds implements ToJsonp {
 	 * Builder for {@link Datafeeds}.
 	 */
 	public static class Builder implements ObjectBuilder<Datafeeds> {
-		private Number scrollSize;
+		private Integer scrollSize;
 
 		/**
-		 * API name: {@code scroll_size}
+		 * Required - API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(Number value) {
+		public Builder scrollSize(int value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -101,14 +107,14 @@ public final class Datafeeds implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Datafeeds
+	 * Json deserializer for {@link Datafeeds}
 	 */
-	public static final JsonpDeserializer<Datafeeds> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Datafeeds::setupDatafeedsDeserializer);
+	public static final JsonpDeserializer<Datafeeds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Datafeeds::setupDatafeedsDeserializer, Builder::build);
 
 	protected static void setupDatafeedsDeserializer(DelegatingDeserializer<Datafeeds.Builder> op) {
 
-		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
+		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
 
 	}
 

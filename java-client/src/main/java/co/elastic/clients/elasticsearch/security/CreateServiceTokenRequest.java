@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,9 +36,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Request
+
 public final class CreateServiceTokenRequest extends RequestBase {
 	private final String namespace;
 
@@ -46,7 +50,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateServiceTokenRequest(Builder builder) {
+	public CreateServiceTokenRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
@@ -54,7 +58,13 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 	}
 
+	public CreateServiceTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -62,6 +72,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -69,6 +81,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - An identifier for the token name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -88,6 +102,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * Required - An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -96,6 +112,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {
@@ -104,6 +122,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - An identifier for the token name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -128,7 +148,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.create_service_token}".
 	 */
-	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				final int _namespace = 1 << 0;
@@ -137,18 +157,15 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
-				if (request.service() != null)
-					propsSet |= _service;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _namespace;
+				propsSet |= _service;
+				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name))
 					return "PUT";
 				if (propsSet == (_namespace | _service))
 					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				throw SimpleEndpoint.noPathTemplateFound("method");
 
 			},
 
@@ -160,25 +177,22 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
-				if (request.service() != null)
-					propsSet |= _service;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _namespace;
+				propsSet |= _service;
+				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_namespace | _service)) {
@@ -186,14 +200,14 @@ public final class CreateServiceTokenRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -201,5 +215,5 @@ public final class CreateServiceTokenRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, CreateServiceTokenResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CreateServiceTokenResponse._DESERIALIZER);
 }

@@ -23,41 +23,43 @@
 
 package co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics;
 
-import co.elastic.clients.elasticsearch.ml.DataframeAnalysisContainer;
+import co.elastic.clients.elasticsearch.ml.DataframeAnalysis;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalyticsSource;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.DataframePreviewConfig
-public final class DataframePreviewConfig implements ToJsonp {
+@JsonpDeserializable
+public final class DataframePreviewConfig implements JsonpSerializable {
 	private final DataframeAnalyticsSource source;
 
-	private final DataframeAnalysisContainer analysis;
+	private final DataframeAnalysis analysis;
 
 	@Nullable
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue analyzedFields;
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframePreviewConfig(Builder builder) {
+	public DataframePreviewConfig(Builder builder) {
 
 		this.source = Objects.requireNonNull(builder.source, "source");
 		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
@@ -67,17 +69,21 @@ public final class DataframePreviewConfig implements ToJsonp {
 
 	}
 
+	public DataframePreviewConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public DataframeAnalyticsSource source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code analysis}
+	 * Required - API name: {@code analysis}
 	 */
-	public DataframeAnalysisContainer analysis() {
+	public DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -93,7 +99,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -101,26 +107,26 @@ public final class DataframePreviewConfig implements ToJsonp {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("source");
-		this.source.toJsonp(generator, mapper);
+		this.source.serialize(generator, mapper);
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.modelMemoryLimit != null) {
 
@@ -131,7 +137,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.analyzedFields != null) {
@@ -151,19 +157,19 @@ public final class DataframePreviewConfig implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataframePreviewConfig> {
 		private DataframeAnalyticsSource source;
 
-		private DataframeAnalysisContainer analysis;
+		private DataframeAnalysis analysis;
 
 		@Nullable
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue analyzedFields;
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(DataframeAnalyticsSource value) {
 			this.source = value;
@@ -171,26 +177,25 @@ public final class DataframePreviewConfig implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code analysis}
+		 * Required - API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysisContainer value) {
+		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code analysis}
+		 * Required - API name: {@code analysis}
 		 */
-		public Builder analysis(
-				Function<DataframeAnalysisContainer.Builder, ObjectBuilder<DataframeAnalysisContainer>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysisContainer.Builder()).build());
+		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -204,7 +209,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 		/**
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -212,7 +217,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -232,18 +237,18 @@ public final class DataframePreviewConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframePreviewConfig
+	 * Json deserializer for {@link DataframePreviewConfig}
 	 */
-	public static final JsonpDeserializer<DataframePreviewConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigDeserializer);
+	public static final JsonpDeserializer<DataframePreviewConfig> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigDeserializer, Builder::build);
 
 	protected static void setupDataframePreviewConfigDeserializer(
 			DelegatingDeserializer<DataframePreviewConfig.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 
 	}

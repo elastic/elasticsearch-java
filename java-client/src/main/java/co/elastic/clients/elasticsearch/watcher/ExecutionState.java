@@ -24,42 +24,49 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionState
-public final class ExecutionState implements ToJsonp {
-	private final Boolean successful;
+@JsonpDeserializable
+public final class ExecutionState implements JsonpSerializable {
+	private final boolean successful;
 
 	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutionState(Builder builder) {
+	public ExecutionState(Builder builder) {
 
 		this.successful = Objects.requireNonNull(builder.successful, "successful");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
 	}
 
+	public ExecutionState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code successful}
+	 * Required - API name: {@code successful}
 	 */
-	public Boolean successful() {
+	public boolean successful() {
 		return this.successful;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -68,13 +75,13 @@ public final class ExecutionState implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("successful");
 		generator.write(this.successful);
@@ -95,15 +102,15 @@ public final class ExecutionState implements ToJsonp {
 		private String timestamp;
 
 		/**
-		 * API name: {@code successful}
+		 * Required - API name: {@code successful}
 		 */
-		public Builder successful(Boolean value) {
+		public Builder successful(boolean value) {
 			this.successful = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;
@@ -125,10 +132,10 @@ public final class ExecutionState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutionState
+	 * Json deserializer for {@link ExecutionState}
 	 */
-	public static final JsonpDeserializer<ExecutionState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionState::setupExecutionStateDeserializer);
+	public static final JsonpDeserializer<ExecutionState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExecutionState::setupExecutionStateDeserializer, Builder::build);
 
 	protected static void setupExecutionStateDeserializer(DelegatingDeserializer<ExecutionState.Builder> op) {
 

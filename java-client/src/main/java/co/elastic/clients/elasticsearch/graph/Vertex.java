@@ -24,31 +24,35 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
-public final class Vertex implements ToJsonp {
-	private final Number depth;
+@JsonpDeserializable
+public final class Vertex implements JsonpSerializable {
+	private final long depth;
 
 	private final String field;
 
 	private final String term;
 
-	private final Number weight;
+	private final double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Vertex(Builder builder) {
+	public Vertex(Builder builder) {
 
 		this.depth = Objects.requireNonNull(builder.depth, "depth");
 		this.field = Objects.requireNonNull(builder.field, "field");
@@ -57,47 +61,51 @@ public final class Vertex implements ToJsonp {
 
 	}
 
+	public Vertex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code depth}
+	 * Required - API name: {@code depth}
 	 */
-	public Number depth() {
+	public long depth() {
 		return this.depth;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code term}
+	 * Required - API name: {@code term}
 	 */
 	public String term() {
 		return this.term;
 	}
 
 	/**
-	 * API name: {@code weight}
+	 * Required - API name: {@code weight}
 	 */
-	public Number weight() {
+	public double weight() {
 		return this.weight;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("depth");
-		generator.write(this.depth.doubleValue());
+		generator.write(this.depth);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -106,7 +114,7 @@ public final class Vertex implements ToJsonp {
 		generator.write(this.term);
 
 		generator.writeKey("weight");
-		generator.write(this.weight.doubleValue());
+		generator.write(this.weight);
 
 	}
 
@@ -116,24 +124,24 @@ public final class Vertex implements ToJsonp {
 	 * Builder for {@link Vertex}.
 	 */
 	public static class Builder implements ObjectBuilder<Vertex> {
-		private Number depth;
+		private Long depth;
 
 		private String field;
 
 		private String term;
 
-		private Number weight;
+		private Double weight;
 
 		/**
-		 * API name: {@code depth}
+		 * Required - API name: {@code depth}
 		 */
-		public Builder depth(Number value) {
+		public Builder depth(long value) {
 			this.depth = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -141,7 +149,7 @@ public final class Vertex implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code term}
+		 * Required - API name: {@code term}
 		 */
 		public Builder term(String value) {
 			this.term = value;
@@ -149,9 +157,9 @@ public final class Vertex implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code weight}
+		 * Required - API name: {@code weight}
 		 */
-		public Builder weight(Number value) {
+		public Builder weight(double value) {
 			this.weight = value;
 			return this;
 		}
@@ -171,17 +179,17 @@ public final class Vertex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Vertex
+	 * Json deserializer for {@link Vertex}
 	 */
-	public static final JsonpDeserializer<Vertex> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Vertex::setupVertexDeserializer);
+	public static final JsonpDeserializer<Vertex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Vertex::setupVertexDeserializer, Builder::build);
 
 	protected static void setupVertexDeserializer(DelegatingDeserializer<Vertex.Builder> op) {
 
-		op.add(Builder::depth, JsonpDeserializer.numberDeserializer(), "depth");
+		op.add(Builder::depth, JsonpDeserializer.longDeserializer(), "depth");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
-		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
+		op.add(Builder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
 	}
 

@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -35,10 +37,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateProcessor
-public final class DateProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final List<String> formats;
@@ -54,25 +58,38 @@ public final class DateProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DateProcessor(Builder builder) {
+	public DateProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.formats = Objects.requireNonNull(builder.formats, "formats");
+		this.formats = ModelTypeHelper.unmodifiableNonNull(builder.formats, "formats");
 		this.locale = builder.locale;
 		this.targetField = builder.targetField;
 		this.timezone = builder.timezone;
 
 	}
 
+	public DateProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "date";
+	}
+
+	/**
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code formats}
+	 * Required - API name: {@code formats}
 	 */
 	public List<String> formats() {
 		return this.formats;
@@ -102,8 +119,9 @@ public final class DateProcessor extends ProcessorBase {
 		return this.timezone;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -157,7 +175,7 @@ public final class DateProcessor extends ProcessorBase {
 		private String timezone;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -165,7 +183,7 @@ public final class DateProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code formats}
+		 * Required - API name: {@code formats}
 		 */
 		public Builder formats(List<String> value) {
 			this.formats = value;
@@ -173,7 +191,7 @@ public final class DateProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code formats}
+		 * Required - API name: {@code formats}
 		 */
 		public Builder formats(String... value) {
 			this.formats = Arrays.asList(value);
@@ -235,10 +253,10 @@ public final class DateProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DateProcessor
+	 * Json deserializer for {@link DateProcessor}
 	 */
-	public static final JsonpDeserializer<DateProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DateProcessor::setupDateProcessorDeserializer);
+	public static final JsonpDeserializer<DateProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DateProcessor::setupDateProcessorDeserializer, Builder::build);
 
 	protected static void setupDateProcessorDeserializer(DelegatingDeserializer<DateProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

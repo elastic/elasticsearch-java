@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportance
-public final class TotalFeatureImportance implements ToJsonp {
+@JsonpDeserializable
+public final class TotalFeatureImportance implements JsonpSerializable {
 	private final String featureName;
 
 	private final List<TotalFeatureImportanceStatistics> importance;
@@ -49,17 +52,21 @@ public final class TotalFeatureImportance implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TotalFeatureImportance(Builder builder) {
+	public TotalFeatureImportance(Builder builder) {
 
 		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.importance = Objects.requireNonNull(builder.importance, "importance");
-		this.classes = Objects.requireNonNull(builder.classes, "classes");
+		this.importance = ModelTypeHelper.unmodifiableNonNull(builder.importance, "importance");
+		this.classes = ModelTypeHelper.unmodifiableNonNull(builder.classes, "classes");
 
 	}
 
+	public TotalFeatureImportance(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The feature for which this importance was calculated.
-	 *
+	 * Required - The feature for which this importance was calculated.
+	 * <p>
 	 * API name: {@code feature_name}
 	 */
 	public String featureName() {
@@ -67,9 +74,9 @@ public final class TotalFeatureImportance implements ToJsonp {
 	}
 
 	/**
-	 * A collection of feature importance statistics related to the training data
-	 * set for this particular feature.
-	 *
+	 * Required - A collection of feature importance statistics related to the
+	 * training data set for this particular feature.
+	 * <p>
 	 * API name: {@code importance}
 	 */
 	public List<TotalFeatureImportanceStatistics> importance() {
@@ -77,9 +84,9 @@ public final class TotalFeatureImportance implements ToJsonp {
 	}
 
 	/**
-	 * If the trained model is a classification model, feature importance statistics
-	 * are gathered per target class value.
-	 *
+	 * Required - If the trained model is a classification model, feature importance
+	 * statistics are gathered per target class value.
+	 * <p>
 	 * API name: {@code classes}
 	 */
 	public List<TotalFeatureImportanceClass> classes() {
@@ -89,13 +96,13 @@ public final class TotalFeatureImportance implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
@@ -103,7 +110,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		generator.writeKey("importance");
 		generator.writeStartArray();
 		for (TotalFeatureImportanceStatistics item0 : this.importance) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -111,7 +118,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		generator.writeKey("classes");
 		generator.writeStartArray();
 		for (TotalFeatureImportanceClass item0 : this.classes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -131,8 +138,8 @@ public final class TotalFeatureImportance implements ToJsonp {
 		private List<TotalFeatureImportanceClass> classes;
 
 		/**
-		 * The feature for which this importance was calculated.
-		 *
+		 * Required - The feature for which this importance was calculated.
+		 * <p>
 		 * API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
@@ -141,9 +148,9 @@ public final class TotalFeatureImportance implements ToJsonp {
 		}
 
 		/**
-		 * A collection of feature importance statistics related to the training data
-		 * set for this particular feature.
-		 *
+		 * Required - A collection of feature importance statistics related to the
+		 * training data set for this particular feature.
+		 * <p>
 		 * API name: {@code importance}
 		 */
 		public Builder importance(List<TotalFeatureImportanceStatistics> value) {
@@ -152,9 +159,9 @@ public final class TotalFeatureImportance implements ToJsonp {
 		}
 
 		/**
-		 * A collection of feature importance statistics related to the training data
-		 * set for this particular feature.
-		 *
+		 * Required - A collection of feature importance statistics related to the
+		 * training data set for this particular feature.
+		 * <p>
 		 * API name: {@code importance}
 		 */
 		public Builder importance(TotalFeatureImportanceStatistics... value) {
@@ -190,9 +197,9 @@ public final class TotalFeatureImportance implements ToJsonp {
 		}
 
 		/**
-		 * If the trained model is a classification model, feature importance statistics
-		 * are gathered per target class value.
-		 *
+		 * Required - If the trained model is a classification model, feature importance
+		 * statistics are gathered per target class value.
+		 * <p>
 		 * API name: {@code classes}
 		 */
 		public Builder classes(List<TotalFeatureImportanceClass> value) {
@@ -201,9 +208,9 @@ public final class TotalFeatureImportance implements ToJsonp {
 		}
 
 		/**
-		 * If the trained model is a classification model, feature importance statistics
-		 * are gathered per target class value.
-		 *
+		 * Required - If the trained model is a classification model, feature importance
+		 * statistics are gathered per target class value.
+		 * <p>
 		 * API name: {@code classes}
 		 */
 		public Builder classes(TotalFeatureImportanceClass... value) {
@@ -253,18 +260,18 @@ public final class TotalFeatureImportance implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TotalFeatureImportance
+	 * Json deserializer for {@link TotalFeatureImportance}
 	 */
-	public static final JsonpDeserializer<TotalFeatureImportance> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceDeserializer);
+	public static final JsonpDeserializer<TotalFeatureImportance> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceDeserializer, Builder::build);
 
 	protected static void setupTotalFeatureImportanceDeserializer(
 			DelegatingDeserializer<TotalFeatureImportance.Builder> op) {
 
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
-		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics.DESERIALIZER),
+		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics._DESERIALIZER),
 				"importance");
-		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceClass.DESERIALIZER),
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceClass._DESERIALIZER),
 				"classes");
 
 	}

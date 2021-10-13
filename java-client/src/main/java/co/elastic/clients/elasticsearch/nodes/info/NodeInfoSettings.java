@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettings
-public final class NodeInfoSettings implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoSettings implements JsonpSerializable {
 	private final NodeInfoSettingsCluster cluster;
 
 	private final NodeInfoSettingsNode node;
@@ -73,9 +75,12 @@ public final class NodeInfoSettings implements ToJsonp {
 	@Nullable
 	private final NodeInfoSearch search;
 
+	@Nullable
+	private final NodeInfoSettingsIngest ingest;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettings(Builder builder) {
+	public NodeInfoSettings(Builder builder) {
 
 		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
 		this.node = Objects.requireNonNull(builder.node, "node");
@@ -91,25 +96,30 @@ public final class NodeInfoSettings implements ToJsonp {
 		this.xpack = builder.xpack;
 		this.script = builder.script;
 		this.search = builder.search;
+		this.ingest = builder.ingest;
 
 	}
 
+	public NodeInfoSettings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cluster}
+	 * Required - API name: {@code cluster}
 	 */
 	public NodeInfoSettingsCluster cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public NodeInfoSettingsNode node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public NodeInfoPath path() {
 		return this.path;
@@ -140,14 +150,14 @@ public final class NodeInfoSettings implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code client}
+	 * Required - API name: {@code client}
 	 */
 	public NodeInfoClient client() {
 		return this.client;
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public NodeInfoSettingsHttp http() {
 		return this.http;
@@ -162,7 +172,7 @@ public final class NodeInfoSettings implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public NodeInfoSettingsTransport transport() {
 		return this.transport;
@@ -201,82 +211,96 @@ public final class NodeInfoSettings implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code ingest}
+	 */
+	@Nullable
+	public NodeInfoSettingsIngest ingest() {
+		return this.ingest;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster");
-		this.cluster.toJsonp(generator, mapper);
+		this.cluster.serialize(generator, mapper);
 
 		generator.writeKey("node");
-		this.node.toJsonp(generator, mapper);
+		this.node.serialize(generator, mapper);
 
 		generator.writeKey("path");
-		this.path.toJsonp(generator, mapper);
+		this.path.serialize(generator, mapper);
 
 		if (this.repositories != null) {
 
 			generator.writeKey("repositories");
-			this.repositories.toJsonp(generator, mapper);
+			this.repositories.serialize(generator, mapper);
 
 		}
 		if (this.discovery != null) {
 
 			generator.writeKey("discovery");
-			this.discovery.toJsonp(generator, mapper);
+			this.discovery.serialize(generator, mapper);
 
 		}
 		if (this.action != null) {
 
 			generator.writeKey("action");
-			this.action.toJsonp(generator, mapper);
+			this.action.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("client");
-		this.client.toJsonp(generator, mapper);
+		this.client.serialize(generator, mapper);
 
 		generator.writeKey("http");
-		this.http.toJsonp(generator, mapper);
+		this.http.serialize(generator, mapper);
 
 		if (this.bootstrap != null) {
 
 			generator.writeKey("bootstrap");
-			this.bootstrap.toJsonp(generator, mapper);
+			this.bootstrap.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("transport");
-		this.transport.toJsonp(generator, mapper);
+		this.transport.serialize(generator, mapper);
 
 		if (this.network != null) {
 
 			generator.writeKey("network");
-			this.network.toJsonp(generator, mapper);
+			this.network.serialize(generator, mapper);
 
 		}
 		if (this.xpack != null) {
 
 			generator.writeKey("xpack");
-			this.xpack.toJsonp(generator, mapper);
+			this.xpack.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
 
 			generator.writeKey("script");
-			this.script.toJsonp(generator, mapper);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.search != null) {
 
 			generator.writeKey("search");
-			this.search.toJsonp(generator, mapper);
+			this.search.serialize(generator, mapper);
+
+		}
+		if (this.ingest != null) {
+
+			generator.writeKey("ingest");
+			this.ingest.serialize(generator, mapper);
 
 		}
 
@@ -324,8 +348,11 @@ public final class NodeInfoSettings implements ToJsonp {
 		@Nullable
 		private NodeInfoSearch search;
 
+		@Nullable
+		private NodeInfoSettingsIngest ingest;
+
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(NodeInfoSettingsCluster value) {
 			this.cluster = value;
@@ -333,14 +360,14 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(Function<NodeInfoSettingsCluster.Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
 			return this.cluster(fn.apply(new NodeInfoSettingsCluster.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(NodeInfoSettingsNode value) {
 			this.node = value;
@@ -348,14 +375,14 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(Function<NodeInfoSettingsNode.Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
 			return this.node(fn.apply(new NodeInfoSettingsNode.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(NodeInfoPath value) {
 			this.path = value;
@@ -363,7 +390,7 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(Function<NodeInfoPath.Builder, ObjectBuilder<NodeInfoPath>> fn) {
 			return this.path(fn.apply(new NodeInfoPath.Builder()).build());
@@ -415,7 +442,7 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code client}
+		 * Required - API name: {@code client}
 		 */
 		public Builder client(NodeInfoClient value) {
 			this.client = value;
@@ -423,14 +450,14 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code client}
+		 * Required - API name: {@code client}
 		 */
 		public Builder client(Function<NodeInfoClient.Builder, ObjectBuilder<NodeInfoClient>> fn) {
 			return this.client(fn.apply(new NodeInfoClient.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(NodeInfoSettingsHttp value) {
 			this.http = value;
@@ -438,7 +465,7 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<NodeInfoSettingsHttp.Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
 			return this.http(fn.apply(new NodeInfoSettingsHttp.Builder()).build());
@@ -460,7 +487,7 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(NodeInfoSettingsTransport value) {
 			this.transport = value;
@@ -468,7 +495,7 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(
 				Function<NodeInfoSettingsTransport.Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
@@ -536,6 +563,21 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code ingest}
+		 */
+		public Builder ingest(@Nullable NodeInfoSettingsIngest value) {
+			this.ingest = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ingest}
+		 */
+		public Builder ingest(Function<NodeInfoSettingsIngest.Builder, ObjectBuilder<NodeInfoSettingsIngest>> fn) {
+			return this.ingest(fn.apply(new NodeInfoSettingsIngest.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link NodeInfoSettings}.
 		 *
 		 * @throws NullPointerException
@@ -550,27 +592,28 @@ public final class NodeInfoSettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettings
+	 * Json deserializer for {@link NodeInfoSettings}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSettings::setupNodeInfoSettingsDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoSettings::setupNodeInfoSettingsDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSettingsDeserializer(DelegatingDeserializer<NodeInfoSettings.Builder> op) {
 
-		op.add(Builder::cluster, NodeInfoSettingsCluster.DESERIALIZER, "cluster");
-		op.add(Builder::node, NodeInfoSettingsNode.DESERIALIZER, "node");
-		op.add(Builder::path, NodeInfoPath.DESERIALIZER, "path");
-		op.add(Builder::repositories, NodeInfoRepositories.DESERIALIZER, "repositories");
-		op.add(Builder::discovery, NodeInfoDiscover.DESERIALIZER, "discovery");
-		op.add(Builder::action, NodeInfoAction.DESERIALIZER, "action");
-		op.add(Builder::client, NodeInfoClient.DESERIALIZER, "client");
-		op.add(Builder::http, NodeInfoSettingsHttp.DESERIALIZER, "http");
-		op.add(Builder::bootstrap, NodeInfoBootstrap.DESERIALIZER, "bootstrap");
-		op.add(Builder::transport, NodeInfoSettingsTransport.DESERIALIZER, "transport");
-		op.add(Builder::network, NodeInfoSettingsNetwork.DESERIALIZER, "network");
-		op.add(Builder::xpack, NodeInfoXpack.DESERIALIZER, "xpack");
-		op.add(Builder::script, NodeInfoScript.DESERIALIZER, "script");
-		op.add(Builder::search, NodeInfoSearch.DESERIALIZER, "search");
+		op.add(Builder::cluster, NodeInfoSettingsCluster._DESERIALIZER, "cluster");
+		op.add(Builder::node, NodeInfoSettingsNode._DESERIALIZER, "node");
+		op.add(Builder::path, NodeInfoPath._DESERIALIZER, "path");
+		op.add(Builder::repositories, NodeInfoRepositories._DESERIALIZER, "repositories");
+		op.add(Builder::discovery, NodeInfoDiscover._DESERIALIZER, "discovery");
+		op.add(Builder::action, NodeInfoAction._DESERIALIZER, "action");
+		op.add(Builder::client, NodeInfoClient._DESERIALIZER, "client");
+		op.add(Builder::http, NodeInfoSettingsHttp._DESERIALIZER, "http");
+		op.add(Builder::bootstrap, NodeInfoBootstrap._DESERIALIZER, "bootstrap");
+		op.add(Builder::transport, NodeInfoSettingsTransport._DESERIALIZER, "transport");
+		op.add(Builder::network, NodeInfoSettingsNetwork._DESERIALIZER, "network");
+		op.add(Builder::xpack, NodeInfoXpack._DESERIALIZER, "xpack");
+		op.add(Builder::script, NodeInfoScript._DESERIALIZER, "script");
+		op.add(Builder::search, NodeInfoSearch._DESERIALIZER, "search");
+		op.add(Builder::ingest, NodeInfoSettingsIngest._DESERIALIZER, "ingest");
 
 	}
 

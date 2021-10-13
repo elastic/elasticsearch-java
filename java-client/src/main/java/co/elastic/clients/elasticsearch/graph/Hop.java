@@ -23,13 +23,15 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,41 +42,46 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Hop
-public final class Hop implements ToJsonp {
+@JsonpDeserializable
+public final class Hop implements JsonpSerializable {
 	@Nullable
-	private final co.elastic.clients.elasticsearch.graph.Hop connections;
+	private final Hop connections;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	private final List<VertexDefinition> vertices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Hop(Builder builder) {
+	public Hop(Builder builder) {
 
 		this.connections = builder.connections;
 		this.query = Objects.requireNonNull(builder.query, "query");
-		this.vertices = Objects.requireNonNull(builder.vertices, "vertices");
+		this.vertices = ModelTypeHelper.unmodifiableNonNull(builder.vertices, "vertices");
 
+	}
+
+	public Hop(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code connections}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch.graph.Hop connections() {
+	public Hop connections() {
 		return this.connections;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
 	/**
-	 * API name: {@code vertices}
+	 * Required - API name: {@code vertices}
 	 */
 	public List<VertexDefinition> vertices() {
 		return this.vertices;
@@ -83,28 +90,28 @@ public final class Hop implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.connections != null) {
 
 			generator.writeKey("connections");
-			this.connections.toJsonp(generator, mapper);
+			this.connections.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		generator.writeKey("vertices");
 		generator.writeStartArray();
 		for (VertexDefinition item0 : this.vertices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -118,16 +125,16 @@ public final class Hop implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Hop> {
 		@Nullable
-		private co.elastic.clients.elasticsearch.graph.Hop connections;
+		private Hop connections;
 
-		private QueryContainer query;
+		private Query query;
 
 		private List<VertexDefinition> vertices;
 
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(@Nullable co.elastic.clients.elasticsearch.graph.Hop value) {
+		public Builder connections(@Nullable Hop value) {
 			this.connections = value;
 			return this;
 		}
@@ -135,28 +142,27 @@ public final class Hop implements ToJsonp {
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(
-				Function<co.elastic.clients.elasticsearch.graph.Hop.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.graph.Hop>> fn) {
-			return this.connections(fn.apply(new co.elastic.clients.elasticsearch.graph.Hop.Builder()).build());
+		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+			return this.connections(fn.apply(new Hop.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(List<VertexDefinition> value) {
 			this.vertices = value;
@@ -164,7 +170,7 @@ public final class Hop implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(VertexDefinition... value) {
 			this.vertices = Arrays.asList(value);
@@ -211,16 +217,16 @@ public final class Hop implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Hop
+	 * Json deserializer for {@link Hop}
 	 */
-	public static final JsonpDeserializer<Hop> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Hop::setupHopDeserializer);
+	public static final JsonpDeserializer<Hop> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Hop::setupHopDeserializer, Builder::build);
 
 	protected static void setupHopDeserializer(DelegatingDeserializer<Hop.Builder> op) {
 
-		op.add(Builder::connections, co.elastic.clients.elasticsearch.graph.Hop.DESERIALIZER, "connections");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition.DESERIALIZER), "vertices");
+		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition._DESERIALIZER), "vertices");
 
 	}
 

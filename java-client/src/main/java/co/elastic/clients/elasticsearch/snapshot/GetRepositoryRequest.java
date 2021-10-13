@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +41,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get_repository.Request
+
 public final class GetRepositoryRequest extends RequestBase {
 	@Nullable
 	private final List<String> repository;
@@ -51,19 +56,25 @@ public final class GetRepositoryRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRepositoryRequest(Builder builder) {
+	public GetRepositoryRequest(Builder builder) {
 
-		this.repository = builder.repository;
+		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
 	}
 
+	public GetRepositoryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of repository names
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -72,6 +83,9 @@ public final class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -80,10 +94,12 @@ public final class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -100,9 +116,11 @@ public final class GetRepositoryRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
+		 * A comma-separated list of repository names
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable List<String> value) {
@@ -111,6 +129,8 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of repository names
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String... value) {
@@ -130,6 +150,9 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -138,9 +161,11 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -162,7 +187,7 @@ public final class GetRepositoryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.get_repository}".
 	 */
-	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -187,10 +212,11 @@ public final class GetRepositoryRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.repository.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -201,9 +227,9 @@ public final class GetRepositoryRequest extends RequestBase {
 					params.put("local", String.valueOf(request.local));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetRepositoryResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetRepositoryResponse._DESERIALIZER);
 }

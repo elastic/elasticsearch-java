@@ -27,15 +27,17 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,12 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateSummary
-public final class ComponentTemplateSummary implements ToJsonp {
+@JsonpDeserializable
+public final class ComponentTemplateSummary implements JsonpSerializable {
 	@Nullable
-	private final Map<String, JsonValue> meta;
+	private final Map<String, JsonData> meta;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	private final Map<String, IndexSettings> settings;
 
@@ -61,21 +64,25 @@ public final class ComponentTemplateSummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ComponentTemplateSummary(Builder builder) {
+	public ComponentTemplateSummary(Builder builder) {
 
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.version = builder.version;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = ModelTypeHelper.unmodifiableNonNull(builder.settings, "settings");
 		this.mappings = builder.mappings;
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 
+	}
+
+	public ComponentTemplateSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> meta() {
+	public Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -83,12 +90,12 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public Map<String, IndexSettings> settings() {
 		return this.settings;
@@ -113,21 +120,21 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.meta != null) {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -136,7 +143,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -144,7 +151,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, IndexSettings> item0 : this.settings.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -152,7 +159,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		if (this.mappings != null) {
 
 			generator.writeKey("mappings");
-			this.mappings.toJsonp(generator, mapper);
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.aliases != null) {
@@ -161,7 +168,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -177,10 +184,10 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<ComponentTemplateSummary> {
 		@Nullable
-		private Map<String, JsonValue> meta;
+		private Map<String, JsonData> meta;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		private Map<String, IndexSettings> settings;
 
@@ -193,7 +200,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonValue> value) {
+		public Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
 			return this;
 		}
@@ -201,7 +208,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder putMeta(String key, JsonValue value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -212,13 +219,13 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Map<String, IndexSettings> value) {
 			this.settings = value;
@@ -313,20 +320,19 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ComponentTemplateSummary
+	 * Json deserializer for {@link ComponentTemplateSummary}
 	 */
-	public static final JsonpDeserializer<ComponentTemplateSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer);
+	public static final JsonpDeserializer<ComponentTemplateSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer, Builder::build);
 
 	protected static void setupComponentTemplateSummaryDeserializer(
 			DelegatingDeserializer<ComponentTemplateSummary.Builder> op) {
 
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"_meta");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings.DESERIALIZER), "settings");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings._DESERIALIZER), "settings");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 
 	}
 

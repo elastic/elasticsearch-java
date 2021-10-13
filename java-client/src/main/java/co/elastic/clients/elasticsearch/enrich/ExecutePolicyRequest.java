@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,9 +38,11 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Request
+
 public final class ExecutePolicyRequest extends RequestBase {
 	private final String name;
 
@@ -47,14 +51,20 @@ public final class ExecutePolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutePolicyRequest(Builder builder) {
+	public ExecutePolicyRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
+	public ExecutePolicyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the enrich policy
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -62,6 +72,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 	}
 
 	/**
+	 * Should the request should block until the execution is complete.
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -81,6 +93,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
+		 * Required - The name of the enrich policy
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -89,6 +103,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 		}
 
 		/**
+		 * Should the request should block until the execution is complete.
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -113,7 +129,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.execute_policy}".
 	 */
-	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -126,19 +142,18 @@ public final class ExecutePolicyRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_enrich");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					buf.append("/_execute");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -150,5 +165,5 @@ public final class ExecutePolicyRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ExecutePolicyResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ExecutePolicyResponse._DESERIALIZER);
 }

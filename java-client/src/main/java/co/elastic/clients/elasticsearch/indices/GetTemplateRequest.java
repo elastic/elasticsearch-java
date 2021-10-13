@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +41,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_template.Request
+
 public final class GetTemplateRequest extends RequestBase {
 	@Nullable
 	private final List<String> name;
@@ -57,13 +62,13 @@ public final class GetTemplateRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTemplateRequest(Builder builder) {
+	public GetTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
 		this.local = builder.local;
@@ -71,7 +76,13 @@ public final class GetTemplateRequest extends RequestBase {
 
 	}
 
+	public GetTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The comma separated names of the index templates
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -80,6 +91,8 @@ public final class GetTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -96,6 +109,9 @@ public final class GetTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -104,10 +120,12 @@ public final class GetTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -130,9 +148,11 @@ public final class GetTemplateRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
+		 * The comma separated names of the index templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable List<String> value) {
@@ -141,6 +161,8 @@ public final class GetTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * The comma separated names of the index templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -160,6 +182,8 @@ public final class GetTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -176,6 +200,9 @@ public final class GetTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -184,9 +211,11 @@ public final class GetTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -208,7 +237,7 @@ public final class GetTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_template}".
 	 */
-	public static final Endpoint<GetTemplateRequest, GetTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTemplateRequest, GetTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -233,10 +262,10 @@ public final class GetTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_template");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -253,9 +282,9 @@ public final class GetTemplateRequest extends RequestBase {
 					params.put("local", String.valueOf(request.local));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTemplateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTemplateResponse._DESERIALIZER);
 }

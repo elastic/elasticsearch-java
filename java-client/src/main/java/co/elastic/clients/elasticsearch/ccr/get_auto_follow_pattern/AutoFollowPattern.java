@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,29 +38,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
-public final class AutoFollowPattern implements ToJsonp {
+@JsonpDeserializable
+public final class AutoFollowPattern implements JsonpSerializable {
 	private final String name;
 
 	private final AutoFollowPatternSummary pattern;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoFollowPattern(Builder builder) {
+	public AutoFollowPattern(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
 
 	}
 
+	public AutoFollowPattern(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public AutoFollowPatternSummary pattern() {
 		return this.pattern;
@@ -68,19 +74,19 @@ public final class AutoFollowPattern implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("pattern");
-		this.pattern.toJsonp(generator, mapper);
+		this.pattern.serialize(generator, mapper);
 
 	}
 
@@ -95,7 +101,7 @@ public final class AutoFollowPattern implements ToJsonp {
 		private AutoFollowPatternSummary pattern;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -103,7 +109,7 @@ public final class AutoFollowPattern implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(AutoFollowPatternSummary value) {
 			this.pattern = value;
@@ -111,7 +117,7 @@ public final class AutoFollowPattern implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
 			return this.pattern(fn.apply(new AutoFollowPatternSummary.Builder()).build());
@@ -132,15 +138,15 @@ public final class AutoFollowPattern implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoFollowPattern
+	 * Json deserializer for {@link AutoFollowPattern}
 	 */
-	public static final JsonpDeserializer<AutoFollowPattern> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoFollowPattern::setupAutoFollowPatternDeserializer);
+	public static final JsonpDeserializer<AutoFollowPattern> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoFollowPattern::setupAutoFollowPatternDeserializer, Builder::build);
 
 	protected static void setupAutoFollowPatternDeserializer(DelegatingDeserializer<AutoFollowPattern.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::pattern, AutoFollowPatternSummary.DESERIALIZER, "pattern");
+		op.add(Builder::pattern, AutoFollowPatternSummary._DESERIALIZER, "pattern");
 
 	}
 

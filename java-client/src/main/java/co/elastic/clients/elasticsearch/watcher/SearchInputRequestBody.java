@@ -23,13 +23,14 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,37 +38,42 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestBody
-public final class SearchInputRequestBody implements ToJsonp {
-	private final QueryContainer query;
+@JsonpDeserializable
+public final class SearchInputRequestBody implements JsonpSerializable {
+	private final Query query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchInputRequestBody(Builder builder) {
+	public SearchInputRequestBody(Builder builder) {
 
 		this.query = Objects.requireNonNull(builder.query, "query");
 
 	}
 
+	public SearchInputRequestBody(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 	}
 
@@ -77,21 +83,21 @@ public final class SearchInputRequestBody implements ToJsonp {
 	 * Builder for {@link SearchInputRequestBody}.
 	 */
 	public static class Builder implements ObjectBuilder<SearchInputRequestBody> {
-		private QueryContainer query;
+		private Query query;
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -109,15 +115,15 @@ public final class SearchInputRequestBody implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SearchInputRequestBody
+	 * Json deserializer for {@link SearchInputRequestBody}
 	 */
-	public static final JsonpDeserializer<SearchInputRequestBody> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer);
+	public static final JsonpDeserializer<SearchInputRequestBody> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer, Builder::build);
 
 	protected static void setupSearchInputRequestBodyDeserializer(
 			DelegatingDeserializer<SearchInputRequestBody.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 
 	}
 

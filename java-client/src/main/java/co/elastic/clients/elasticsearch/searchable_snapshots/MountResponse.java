@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.elasticsearch.searchable_snapshots.mount.MountedSnapshot;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,19 +38,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Response
-public final class MountResponse implements ToJsonp {
+@JsonpDeserializable
+public final class MountResponse implements JsonpSerializable {
 	private final MountedSnapshot snapshot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MountResponse(Builder builder) {
+	public MountResponse(Builder builder) {
 
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 
 	}
 
+	public MountResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public MountedSnapshot snapshot() {
 		return this.snapshot;
@@ -58,16 +64,16 @@ public final class MountResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("snapshot");
-		this.snapshot.toJsonp(generator, mapper);
+		this.snapshot.serialize(generator, mapper);
 
 	}
 
@@ -80,7 +86,7 @@ public final class MountResponse implements ToJsonp {
 		private MountedSnapshot snapshot;
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(MountedSnapshot value) {
 			this.snapshot = value;
@@ -88,7 +94,7 @@ public final class MountResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(Function<MountedSnapshot.Builder, ObjectBuilder<MountedSnapshot>> fn) {
 			return this.snapshot(fn.apply(new MountedSnapshot.Builder()).build());
@@ -109,14 +115,14 @@ public final class MountResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MountResponse
+	 * Json deserializer for {@link MountResponse}
 	 */
-	public static final JsonpDeserializer<MountResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MountResponse::setupMountResponseDeserializer);
+	public static final JsonpDeserializer<MountResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MountResponse::setupMountResponseDeserializer, Builder::build);
 
 	protected static void setupMountResponseDeserializer(DelegatingDeserializer<MountResponse.Builder> op) {
 
-		op.add(Builder::snapshot, MountedSnapshot.DESERIALIZER, "snapshot");
+		op.add(Builder::snapshot, MountedSnapshot._DESERIALIZER, "snapshot");
 
 	}
 

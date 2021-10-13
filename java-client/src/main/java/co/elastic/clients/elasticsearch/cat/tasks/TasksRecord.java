@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.TasksRecord
-public final class TasksRecord implements ToJsonp {
+@JsonpDeserializable
+public final class TasksRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -86,7 +90,7 @@ public final class TasksRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TasksRecord(Builder builder) {
+	public TasksRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.action = builder.action;
@@ -107,9 +111,13 @@ public final class TasksRecord implements ToJsonp {
 
 	}
 
+	public TasksRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * id of the task with the node
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -119,7 +127,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * task action
-	 *
+	 * <p>
 	 * API name: {@code action}
 	 */
 	@Nullable
@@ -129,7 +137,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * unique task id
-	 *
+	 * <p>
 	 * API name: {@code task_id}
 	 */
 	@Nullable
@@ -139,7 +147,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * parent task id
-	 *
+	 * <p>
 	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
@@ -149,7 +157,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * task type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -159,7 +167,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * start time in ms
-	 *
+	 * <p>
 	 * API name: {@code start_time}
 	 */
 	@Nullable
@@ -169,7 +177,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * start time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -179,7 +187,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * running time ns
-	 *
+	 * <p>
 	 * API name: {@code running_time_ns}
 	 */
 	@Nullable
@@ -189,7 +197,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * running time
-	 *
+	 * <p>
 	 * API name: {@code running_time}
 	 */
 	@Nullable
@@ -199,7 +207,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * unique node id
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
@@ -209,7 +217,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -219,7 +227,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * bound transport port
-	 *
+	 * <p>
 	 * API name: {@code port}
 	 */
 	@Nullable
@@ -229,7 +237,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -239,7 +247,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * es version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -249,7 +257,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * X-Opaque-ID header
-	 *
+	 * <p>
 	 * API name: {@code x_opaque_id}
 	 */
 	@Nullable
@@ -259,7 +267,7 @@ public final class TasksRecord implements ToJsonp {
 
 	/**
 	 * task action
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -270,13 +278,13 @@ public final class TasksRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -433,7 +441,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * id of the task with the node
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -443,7 +451,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * task action
-		 *
+		 * <p>
 		 * API name: {@code action}
 		 */
 		public Builder action(@Nullable String value) {
@@ -453,7 +461,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * unique task id
-		 *
+		 * <p>
 		 * API name: {@code task_id}
 		 */
 		public Builder taskId(@Nullable String value) {
@@ -463,7 +471,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * parent task id
-		 *
+		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
 		public Builder parentTaskId(@Nullable String value) {
@@ -473,7 +481,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * task type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -483,7 +491,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * start time in ms
-		 *
+		 * <p>
 		 * API name: {@code start_time}
 		 */
 		public Builder startTime(@Nullable String value) {
@@ -493,7 +501,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * start time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(@Nullable String value) {
@@ -503,7 +511,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * running time ns
-		 *
+		 * <p>
 		 * API name: {@code running_time_ns}
 		 */
 		public Builder runningTimeNs(@Nullable String value) {
@@ -513,7 +521,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * running time
-		 *
+		 * <p>
 		 * API name: {@code running_time}
 		 */
 		public Builder runningTime(@Nullable String value) {
@@ -523,7 +531,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * unique node id
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
 		public Builder nodeId(@Nullable String value) {
@@ -533,7 +541,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -543,7 +551,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * bound transport port
-		 *
+		 * <p>
 		 * API name: {@code port}
 		 */
 		public Builder port(@Nullable String value) {
@@ -553,7 +561,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {
@@ -563,7 +571,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * es version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -573,7 +581,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * X-Opaque-ID header
-		 *
+		 * <p>
 		 * API name: {@code x_opaque_id}
 		 */
 		public Builder xOpaqueId(@Nullable String value) {
@@ -583,7 +591,7 @@ public final class TasksRecord implements ToJsonp {
 
 		/**
 		 * task action
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -606,10 +614,10 @@ public final class TasksRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TasksRecord
+	 * Json deserializer for {@link TasksRecord}
 	 */
-	public static final JsonpDeserializer<TasksRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TasksRecord::setupTasksRecordDeserializer);
+	public static final JsonpDeserializer<TasksRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TasksRecord::setupTasksRecordDeserializer, Builder::build);
 
 	protected static void setupTasksRecordDeserializer(DelegatingDeserializer<TasksRecord.Builder> op) {
 

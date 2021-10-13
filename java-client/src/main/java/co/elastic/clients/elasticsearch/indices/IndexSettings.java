@@ -24,102 +24,104 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettings
-public class IndexSettings implements ToJsonp {
+@JsonpDeserializable
+public final class IndexSettings implements JsonpSerializable {
 	@Nullable
-	private final JsonValue numberOfShards;
+	private final String numberOfShards;
 
 	@Nullable
-	private final JsonValue numberOfReplicas;
+	private final String numberOfReplicas;
 
 	@Nullable
-	private final Number numberOfRoutingShards;
+	private final Integer numberOfRoutingShards;
 
 	@Nullable
-	private final JsonValue checkOnStartup;
+	private final IndexCheckOnStartup checkOnStartup;
 
 	@Nullable
 	private final String codec;
 
 	@Nullable
-	private final JsonValue routingPartitionSize;
+	private final String routingPartitionSize;
 
 	@Nullable
-	private final JsonValue softDeletes_retentionLease_period;
+	private final String softDeletesRetentionLeasePeriod;
 
 	@Nullable
 	private final Boolean loadFixedBitsetFiltersEagerly;
 
 	@Nullable
-	private final JsonValue hidden;
+	private final Boolean hidden;
 
 	@Nullable
 	private final String autoExpandReplicas;
 
 	@Nullable
-	private final JsonValue search_idle_after;
+	private final String searchIdleAfter;
 
 	@Nullable
-	private final JsonValue refreshInterval;
+	private final String refreshInterval;
 
 	@Nullable
-	private final Number maxResultWindow;
+	private final Integer maxResultWindow;
 
 	@Nullable
-	private final Number maxInnerResultWindow;
+	private final Integer maxInnerResultWindow;
 
 	@Nullable
-	private final Number maxRescoreWindow;
+	private final Integer maxRescoreWindow;
 
 	@Nullable
-	private final Number maxDocvalueFieldsSearch;
+	private final Integer maxDocvalueFieldsSearch;
 
 	@Nullable
-	private final Number maxScriptFields;
+	private final Integer maxScriptFields;
 
 	@Nullable
-	private final Number maxNgramDiff;
+	private final Integer maxNgramDiff;
 
 	@Nullable
-	private final Number maxShingleDiff;
+	private final Integer maxShingleDiff;
 
 	@Nullable
 	private final IndexSettingBlocks blocks;
 
 	@Nullable
-	private final Number maxRefreshListeners;
+	private final Integer maxRefreshListeners;
 
 	@Nullable
-	private final Number analyze_maxTokenCount;
+	private final Integer analyzeMaxTokenCount;
 
 	@Nullable
-	private final Number highlight_maxAnalyzedOffset;
+	private final Integer highlightMaxAnalyzedOffset;
 
 	@Nullable
-	private final Number maxTermsCount;
+	private final Integer maxTermsCount;
 
 	@Nullable
-	private final Number maxRegexLength;
+	private final Integer maxRegexLength;
 
 	@Nullable
 	private final IndexRouting routing;
 
 	@Nullable
-	private final JsonValue gcDeletes;
+	private final String gcDeletes;
 
 	@Nullable
 	private final String defaultPipeline;
@@ -143,32 +145,32 @@ public class IndexSettings implements ToJsonp {
 	private final IndexVersioning version;
 
 	@Nullable
-	private final JsonValue verifiedBeforeClose;
+	private final Boolean verifiedBeforeClose;
 
 	@Nullable
-	private final JsonValue format;
+	private final String format;
 
 	@Nullable
-	private final Number maxSlicesPerScroll;
+	private final Integer maxSlicesPerScroll;
 
 	@Nullable
-	private final String translog_durability;
+	private final String translogDurability;
 
 	@Nullable
-	private final JsonValue queryString_lenient;
+	private final Boolean queryStringLenient;
 
 	@Nullable
-	private final JsonValue priority;
+	private final String priority;
 
 	@Nullable
-	private final Number topMetricsMaxSize;
+	private final Integer topMetricsMaxSize;
 
 	@Nullable
 	private final IndexSettingsAnalysis analysis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexSettings(AbstractBuilder<?> builder) {
+	public IndexSettings(Builder builder) {
 
 		this.numberOfShards = builder.numberOfShards;
 		this.numberOfReplicas = builder.numberOfReplicas;
@@ -176,11 +178,11 @@ public class IndexSettings implements ToJsonp {
 		this.checkOnStartup = builder.checkOnStartup;
 		this.codec = builder.codec;
 		this.routingPartitionSize = builder.routingPartitionSize;
-		this.softDeletes_retentionLease_period = builder.softDeletes_retentionLease_period;
+		this.softDeletesRetentionLeasePeriod = builder.softDeletesRetentionLeasePeriod;
 		this.loadFixedBitsetFiltersEagerly = builder.loadFixedBitsetFiltersEagerly;
 		this.hidden = builder.hidden;
 		this.autoExpandReplicas = builder.autoExpandReplicas;
-		this.search_idle_after = builder.search_idle_after;
+		this.searchIdleAfter = builder.searchIdleAfter;
 		this.refreshInterval = builder.refreshInterval;
 		this.maxResultWindow = builder.maxResultWindow;
 		this.maxInnerResultWindow = builder.maxInnerResultWindow;
@@ -191,8 +193,8 @@ public class IndexSettings implements ToJsonp {
 		this.maxShingleDiff = builder.maxShingleDiff;
 		this.blocks = builder.blocks;
 		this.maxRefreshListeners = builder.maxRefreshListeners;
-		this.analyze_maxTokenCount = builder.analyze_maxTokenCount;
-		this.highlight_maxAnalyzedOffset = builder.highlight_maxAnalyzedOffset;
+		this.analyzeMaxTokenCount = builder.analyzeMaxTokenCount;
+		this.highlightMaxAnalyzedOffset = builder.highlightMaxAnalyzedOffset;
 		this.maxTermsCount = builder.maxTermsCount;
 		this.maxRegexLength = builder.maxRegexLength;
 		this.routing = builder.routing;
@@ -207,31 +209,31 @@ public class IndexSettings implements ToJsonp {
 		this.verifiedBeforeClose = builder.verifiedBeforeClose;
 		this.format = builder.format;
 		this.maxSlicesPerScroll = builder.maxSlicesPerScroll;
-		this.translog_durability = builder.translog_durability;
-		this.queryString_lenient = builder.queryString_lenient;
+		this.translogDurability = builder.translogDurability;
+		this.queryStringLenient = builder.queryStringLenient;
 		this.priority = builder.priority;
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
 
 	}
 
+	public IndexSettings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * server_default 1
-	 *
 	 * API name: {@code number_of_shards}
 	 */
 	@Nullable
-	public JsonValue numberOfShards() {
+	public String numberOfShards() {
 		return this.numberOfShards;
 	}
 
 	/**
-	 * server_default 0
-	 *
 	 * API name: {@code number_of_replicas}
 	 */
 	@Nullable
-	public JsonValue numberOfReplicas() {
+	public String numberOfReplicas() {
 		return this.numberOfReplicas;
 	}
 
@@ -239,7 +241,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code number_of_routing_shards}
 	 */
 	@Nullable
-	public Number numberOfRoutingShards() {
+	public Integer numberOfRoutingShards() {
 		return this.numberOfRoutingShards;
 	}
 
@@ -247,7 +249,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code check_on_startup}
 	 */
 	@Nullable
-	public JsonValue checkOnStartup() {
+	public IndexCheckOnStartup checkOnStartup() {
 		return this.checkOnStartup;
 	}
 
@@ -260,12 +262,10 @@ public class IndexSettings implements ToJsonp {
 	}
 
 	/**
-	 * server_default 1
-	 *
 	 * API name: {@code routing_partition_size}
 	 */
 	@Nullable
-	public JsonValue routingPartitionSize() {
+	public String routingPartitionSize() {
 		return this.routingPartitionSize;
 	}
 
@@ -273,8 +273,8 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code soft_deletes.retention_lease.period}
 	 */
 	@Nullable
-	public JsonValue softDeletes_retentionLease_period() {
-		return this.softDeletes_retentionLease_period;
+	public String softDeletesRetentionLeasePeriod() {
+		return this.softDeletesRetentionLeasePeriod;
 	}
 
 	/**
@@ -286,12 +286,10 @@ public class IndexSettings implements ToJsonp {
 	}
 
 	/**
-	 * server_default false
-	 *
 	 * API name: {@code hidden}
 	 */
 	@Nullable
-	public JsonValue hidden() {
+	public Boolean hidden() {
 		return this.hidden;
 	}
 
@@ -307,15 +305,15 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code search.idle.after}
 	 */
 	@Nullable
-	public JsonValue search_idle_after() {
-		return this.search_idle_after;
+	public String searchIdleAfter() {
+		return this.searchIdleAfter;
 	}
 
 	/**
 	 * API name: {@code refresh_interval}
 	 */
 	@Nullable
-	public JsonValue refreshInterval() {
+	public String refreshInterval() {
 		return this.refreshInterval;
 	}
 
@@ -323,7 +321,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_result_window}
 	 */
 	@Nullable
-	public Number maxResultWindow() {
+	public Integer maxResultWindow() {
 		return this.maxResultWindow;
 	}
 
@@ -331,7 +329,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_inner_result_window}
 	 */
 	@Nullable
-	public Number maxInnerResultWindow() {
+	public Integer maxInnerResultWindow() {
 		return this.maxInnerResultWindow;
 	}
 
@@ -339,7 +337,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_rescore_window}
 	 */
 	@Nullable
-	public Number maxRescoreWindow() {
+	public Integer maxRescoreWindow() {
 		return this.maxRescoreWindow;
 	}
 
@@ -347,7 +345,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_docvalue_fields_search}
 	 */
 	@Nullable
-	public Number maxDocvalueFieldsSearch() {
+	public Integer maxDocvalueFieldsSearch() {
 		return this.maxDocvalueFieldsSearch;
 	}
 
@@ -355,7 +353,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_script_fields}
 	 */
 	@Nullable
-	public Number maxScriptFields() {
+	public Integer maxScriptFields() {
 		return this.maxScriptFields;
 	}
 
@@ -363,7 +361,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_ngram_diff}
 	 */
 	@Nullable
-	public Number maxNgramDiff() {
+	public Integer maxNgramDiff() {
 		return this.maxNgramDiff;
 	}
 
@@ -371,7 +369,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_shingle_diff}
 	 */
 	@Nullable
-	public Number maxShingleDiff() {
+	public Integer maxShingleDiff() {
 		return this.maxShingleDiff;
 	}
 
@@ -387,7 +385,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_refresh_listeners}
 	 */
 	@Nullable
-	public Number maxRefreshListeners() {
+	public Integer maxRefreshListeners() {
 		return this.maxRefreshListeners;
 	}
 
@@ -395,23 +393,23 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code analyze.max_token_count}
 	 */
 	@Nullable
-	public Number analyze_maxTokenCount() {
-		return this.analyze_maxTokenCount;
+	public Integer analyzeMaxTokenCount() {
+		return this.analyzeMaxTokenCount;
 	}
 
 	/**
 	 * API name: {@code highlight.max_analyzed_offset}
 	 */
 	@Nullable
-	public Number highlight_maxAnalyzedOffset() {
-		return this.highlight_maxAnalyzedOffset;
+	public Integer highlightMaxAnalyzedOffset() {
+		return this.highlightMaxAnalyzedOffset;
 	}
 
 	/**
 	 * API name: {@code max_terms_count}
 	 */
 	@Nullable
-	public Number maxTermsCount() {
+	public Integer maxTermsCount() {
 		return this.maxTermsCount;
 	}
 
@@ -419,7 +417,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_regex_length}
 	 */
 	@Nullable
-	public Number maxRegexLength() {
+	public Integer maxRegexLength() {
 		return this.maxRegexLength;
 	}
 
@@ -435,7 +433,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code gc_deletes}
 	 */
 	@Nullable
-	public JsonValue gcDeletes() {
+	public String gcDeletes() {
 		return this.gcDeletes;
 	}
 
@@ -499,7 +497,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code verified_before_close}
 	 */
 	@Nullable
-	public JsonValue verifiedBeforeClose() {
+	public Boolean verifiedBeforeClose() {
 		return this.verifiedBeforeClose;
 	}
 
@@ -507,7 +505,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public JsonValue format() {
+	public String format() {
 		return this.format;
 	}
 
@@ -515,7 +513,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code max_slices_per_scroll}
 	 */
 	@Nullable
-	public Number maxSlicesPerScroll() {
+	public Integer maxSlicesPerScroll() {
 		return this.maxSlicesPerScroll;
 	}
 
@@ -523,23 +521,23 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code translog.durability}
 	 */
 	@Nullable
-	public String translog_durability() {
-		return this.translog_durability;
+	public String translogDurability() {
+		return this.translogDurability;
 	}
 
 	/**
 	 * API name: {@code query_string.lenient}
 	 */
 	@Nullable
-	public JsonValue queryString_lenient() {
-		return this.queryString_lenient;
+	public Boolean queryStringLenient() {
+		return this.queryStringLenient;
 	}
 
 	/**
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public JsonValue priority() {
+	public String priority() {
 		return this.priority;
 	}
 
@@ -547,7 +545,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code top_metrics_max_size}
 	 */
 	@Nullable
-	public Number topMetricsMaxSize() {
+	public Integer topMetricsMaxSize() {
 		return this.topMetricsMaxSize;
 	}
 
@@ -562,13 +560,13 @@ public class IndexSettings implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.numberOfShards != null) {
 
@@ -585,14 +583,13 @@ public class IndexSettings implements ToJsonp {
 		if (this.numberOfRoutingShards != null) {
 
 			generator.writeKey("number_of_routing_shards");
-			generator.write(this.numberOfRoutingShards.doubleValue());
+			generator.write(this.numberOfRoutingShards);
 
 		}
 		if (this.checkOnStartup != null) {
 
 			generator.writeKey("check_on_startup");
-			generator.write(this.checkOnStartup);
-
+			this.checkOnStartup.serialize(generator, mapper);
 		}
 		if (this.codec != null) {
 
@@ -606,10 +603,10 @@ public class IndexSettings implements ToJsonp {
 			generator.write(this.routingPartitionSize);
 
 		}
-		if (this.softDeletes_retentionLease_period != null) {
+		if (this.softDeletesRetentionLeasePeriod != null) {
 
 			generator.writeKey("soft_deletes.retention_lease.period");
-			generator.write(this.softDeletes_retentionLease_period);
+			generator.write(this.softDeletesRetentionLeasePeriod);
 
 		}
 		if (this.loadFixedBitsetFiltersEagerly != null) {
@@ -630,10 +627,10 @@ public class IndexSettings implements ToJsonp {
 			generator.write(this.autoExpandReplicas);
 
 		}
-		if (this.search_idle_after != null) {
+		if (this.searchIdleAfter != null) {
 
 			generator.writeKey("search.idle.after");
-			generator.write(this.search_idle_after);
+			generator.write(this.searchIdleAfter);
 
 		}
 		if (this.refreshInterval != null) {
@@ -645,85 +642,85 @@ public class IndexSettings implements ToJsonp {
 		if (this.maxResultWindow != null) {
 
 			generator.writeKey("max_result_window");
-			generator.write(this.maxResultWindow.doubleValue());
+			generator.write(this.maxResultWindow);
 
 		}
 		if (this.maxInnerResultWindow != null) {
 
 			generator.writeKey("max_inner_result_window");
-			generator.write(this.maxInnerResultWindow.doubleValue());
+			generator.write(this.maxInnerResultWindow);
 
 		}
 		if (this.maxRescoreWindow != null) {
 
 			generator.writeKey("max_rescore_window");
-			generator.write(this.maxRescoreWindow.doubleValue());
+			generator.write(this.maxRescoreWindow);
 
 		}
 		if (this.maxDocvalueFieldsSearch != null) {
 
 			generator.writeKey("max_docvalue_fields_search");
-			generator.write(this.maxDocvalueFieldsSearch.doubleValue());
+			generator.write(this.maxDocvalueFieldsSearch);
 
 		}
 		if (this.maxScriptFields != null) {
 
 			generator.writeKey("max_script_fields");
-			generator.write(this.maxScriptFields.doubleValue());
+			generator.write(this.maxScriptFields);
 
 		}
 		if (this.maxNgramDiff != null) {
 
 			generator.writeKey("max_ngram_diff");
-			generator.write(this.maxNgramDiff.doubleValue());
+			generator.write(this.maxNgramDiff);
 
 		}
 		if (this.maxShingleDiff != null) {
 
 			generator.writeKey("max_shingle_diff");
-			generator.write(this.maxShingleDiff.doubleValue());
+			generator.write(this.maxShingleDiff);
 
 		}
 		if (this.blocks != null) {
 
 			generator.writeKey("blocks");
-			this.blocks.toJsonp(generator, mapper);
+			this.blocks.serialize(generator, mapper);
 
 		}
 		if (this.maxRefreshListeners != null) {
 
 			generator.writeKey("max_refresh_listeners");
-			generator.write(this.maxRefreshListeners.doubleValue());
+			generator.write(this.maxRefreshListeners);
 
 		}
-		if (this.analyze_maxTokenCount != null) {
+		if (this.analyzeMaxTokenCount != null) {
 
 			generator.writeKey("analyze.max_token_count");
-			generator.write(this.analyze_maxTokenCount.doubleValue());
+			generator.write(this.analyzeMaxTokenCount);
 
 		}
-		if (this.highlight_maxAnalyzedOffset != null) {
+		if (this.highlightMaxAnalyzedOffset != null) {
 
 			generator.writeKey("highlight.max_analyzed_offset");
-			generator.write(this.highlight_maxAnalyzedOffset.doubleValue());
+			generator.write(this.highlightMaxAnalyzedOffset);
 
 		}
 		if (this.maxTermsCount != null) {
 
 			generator.writeKey("max_terms_count");
-			generator.write(this.maxTermsCount.doubleValue());
+			generator.write(this.maxTermsCount);
 
 		}
 		if (this.maxRegexLength != null) {
 
 			generator.writeKey("max_regex_length");
-			generator.write(this.maxRegexLength.doubleValue());
+			generator.write(this.maxRegexLength);
 
 		}
 		if (this.routing != null) {
 
 			generator.writeKey("routing");
-			this.routing.toJsonp(generator, mapper);
+			this.routing.serialize(generator, mapper);
 
 		}
 		if (this.gcDeletes != null) {
@@ -747,7 +744,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.lifecycle != null) {
 
 			generator.writeKey("lifecycle");
-			this.lifecycle.toJsonp(generator, mapper);
+			this.lifecycle.serialize(generator, mapper);
 
 		}
 		if (this.providedName != null) {
@@ -771,7 +768,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			this.version.toJsonp(generator, mapper);
+			this.version.serialize(generator, mapper);
 
 		}
 		if (this.verifiedBeforeClose != null) {
@@ -789,19 +786,19 @@ public class IndexSettings implements ToJsonp {
 		if (this.maxSlicesPerScroll != null) {
 
 			generator.writeKey("max_slices_per_scroll");
-			generator.write(this.maxSlicesPerScroll.doubleValue());
+			generator.write(this.maxSlicesPerScroll);
 
 		}
-		if (this.translog_durability != null) {
+		if (this.translogDurability != null) {
 
 			generator.writeKey("translog.durability");
-			generator.write(this.translog_durability);
+			generator.write(this.translogDurability);
 
 		}
-		if (this.queryString_lenient != null) {
+		if (this.queryStringLenient != null) {
 
 			generator.writeKey("query_string.lenient");
-			generator.write(this.queryString_lenient);
+			generator.write(this.queryStringLenient);
 
 		}
 		if (this.priority != null) {
@@ -813,13 +810,13 @@ public class IndexSettings implements ToJsonp {
 		if (this.topMetricsMaxSize != null) {
 
 			generator.writeKey("top_metrics_max_size");
-			generator.write(this.topMetricsMaxSize.doubleValue());
+			generator.write(this.topMetricsMaxSize);
 
 		}
 		if (this.analysis != null) {
 
 			generator.writeKey("analysis");
-			this.analysis.toJsonp(generator, mapper);
+			this.analysis.serialize(generator, mapper);
 
 		}
 
@@ -830,105 +827,87 @@ public class IndexSettings implements ToJsonp {
 	/**
 	 * Builder for {@link IndexSettings}.
 	 */
-	public static class Builder extends IndexSettings.AbstractBuilder<Builder> implements ObjectBuilder<IndexSettings> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link IndexSettings}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexSettings build() {
-
-			return new IndexSettings(this);
-		}
-	}
-
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	public static class Builder implements ObjectBuilder<IndexSettings> {
 		@Nullable
-		private JsonValue numberOfShards;
+		private String numberOfShards;
 
 		@Nullable
-		private JsonValue numberOfReplicas;
+		private String numberOfReplicas;
 
 		@Nullable
-		private Number numberOfRoutingShards;
+		private Integer numberOfRoutingShards;
 
 		@Nullable
-		private JsonValue checkOnStartup;
+		private IndexCheckOnStartup checkOnStartup;
 
 		@Nullable
 		private String codec;
 
 		@Nullable
-		private JsonValue routingPartitionSize;
+		private String routingPartitionSize;
 
 		@Nullable
-		private JsonValue softDeletes_retentionLease_period;
+		private String softDeletesRetentionLeasePeriod;
 
 		@Nullable
 		private Boolean loadFixedBitsetFiltersEagerly;
 
 		@Nullable
-		private JsonValue hidden;
+		private Boolean hidden;
 
 		@Nullable
 		private String autoExpandReplicas;
 
 		@Nullable
-		private JsonValue search_idle_after;
+		private String searchIdleAfter;
 
 		@Nullable
-		private JsonValue refreshInterval;
+		private String refreshInterval;
 
 		@Nullable
-		private Number maxResultWindow;
+		private Integer maxResultWindow;
 
 		@Nullable
-		private Number maxInnerResultWindow;
+		private Integer maxInnerResultWindow;
 
 		@Nullable
-		private Number maxRescoreWindow;
+		private Integer maxRescoreWindow;
 
 		@Nullable
-		private Number maxDocvalueFieldsSearch;
+		private Integer maxDocvalueFieldsSearch;
 
 		@Nullable
-		private Number maxScriptFields;
+		private Integer maxScriptFields;
 
 		@Nullable
-		private Number maxNgramDiff;
+		private Integer maxNgramDiff;
 
 		@Nullable
-		private Number maxShingleDiff;
+		private Integer maxShingleDiff;
 
 		@Nullable
 		private IndexSettingBlocks blocks;
 
 		@Nullable
-		private Number maxRefreshListeners;
+		private Integer maxRefreshListeners;
 
 		@Nullable
-		private Number analyze_maxTokenCount;
+		private Integer analyzeMaxTokenCount;
 
 		@Nullable
-		private Number highlight_maxAnalyzedOffset;
+		private Integer highlightMaxAnalyzedOffset;
 
 		@Nullable
-		private Number maxTermsCount;
+		private Integer maxTermsCount;
 
 		@Nullable
-		private Number maxRegexLength;
+		private Integer maxRegexLength;
 
 		@Nullable
 		private IndexRouting routing;
 
 		@Nullable
-		private JsonValue gcDeletes;
+		private String gcDeletes;
 
 		@Nullable
 		private String defaultPipeline;
@@ -952,495 +931,492 @@ public class IndexSettings implements ToJsonp {
 		private IndexVersioning version;
 
 		@Nullable
-		private JsonValue verifiedBeforeClose;
+		private Boolean verifiedBeforeClose;
 
 		@Nullable
-		private JsonValue format;
+		private String format;
 
 		@Nullable
-		private Number maxSlicesPerScroll;
+		private Integer maxSlicesPerScroll;
 
 		@Nullable
-		private String translog_durability;
+		private String translogDurability;
 
 		@Nullable
-		private JsonValue queryString_lenient;
+		private Boolean queryStringLenient;
 
 		@Nullable
-		private JsonValue priority;
+		private String priority;
 
 		@Nullable
-		private Number topMetricsMaxSize;
+		private Integer topMetricsMaxSize;
 
 		@Nullable
 		private IndexSettingsAnalysis analysis;
 
 		/**
-		 * server_default 1
-		 *
 		 * API name: {@code number_of_shards}
 		 */
-		public BuilderT numberOfShards(@Nullable JsonValue value) {
+		public Builder numberOfShards(@Nullable String value) {
 			this.numberOfShards = value;
-			return self();
+			return this;
 		}
 
 		/**
-		 * server_default 0
-		 *
 		 * API name: {@code number_of_replicas}
 		 */
-		public BuilderT numberOfReplicas(@Nullable JsonValue value) {
+		public Builder numberOfReplicas(@Nullable String value) {
 			this.numberOfReplicas = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code number_of_routing_shards}
 		 */
-		public BuilderT numberOfRoutingShards(@Nullable Number value) {
+		public Builder numberOfRoutingShards(@Nullable Integer value) {
 			this.numberOfRoutingShards = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code check_on_startup}
 		 */
-		public BuilderT checkOnStartup(@Nullable JsonValue value) {
+		public Builder checkOnStartup(@Nullable IndexCheckOnStartup value) {
 			this.checkOnStartup = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code codec}
 		 */
-		public BuilderT codec(@Nullable String value) {
+		public Builder codec(@Nullable String value) {
 			this.codec = value;
-			return self();
+			return this;
 		}
 
 		/**
-		 * server_default 1
-		 *
 		 * API name: {@code routing_partition_size}
 		 */
-		public BuilderT routingPartitionSize(@Nullable JsonValue value) {
+		public Builder routingPartitionSize(@Nullable String value) {
 			this.routingPartitionSize = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code soft_deletes.retention_lease.period}
 		 */
-		public BuilderT softDeletes_retentionLease_period(@Nullable JsonValue value) {
-			this.softDeletes_retentionLease_period = value;
-			return self();
+		public Builder softDeletesRetentionLeasePeriod(@Nullable String value) {
+			this.softDeletesRetentionLeasePeriod = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code load_fixed_bitset_filters_eagerly}
 		 */
-		public BuilderT loadFixedBitsetFiltersEagerly(@Nullable Boolean value) {
+		public Builder loadFixedBitsetFiltersEagerly(@Nullable Boolean value) {
 			this.loadFixedBitsetFiltersEagerly = value;
-			return self();
+			return this;
 		}
 
 		/**
-		 * server_default false
-		 *
 		 * API name: {@code hidden}
 		 */
-		public BuilderT hidden(@Nullable JsonValue value) {
+		public Builder hidden(@Nullable Boolean value) {
 			this.hidden = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code auto_expand_replicas}
 		 */
-		public BuilderT autoExpandReplicas(@Nullable String value) {
+		public Builder autoExpandReplicas(@Nullable String value) {
 			this.autoExpandReplicas = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code search.idle.after}
 		 */
-		public BuilderT search_idle_after(@Nullable JsonValue value) {
-			this.search_idle_after = value;
-			return self();
+		public Builder searchIdleAfter(@Nullable String value) {
+			this.searchIdleAfter = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code refresh_interval}
 		 */
-		public BuilderT refreshInterval(@Nullable JsonValue value) {
+		public Builder refreshInterval(@Nullable String value) {
 			this.refreshInterval = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_result_window}
 		 */
-		public BuilderT maxResultWindow(@Nullable Number value) {
+		public Builder maxResultWindow(@Nullable Integer value) {
 			this.maxResultWindow = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_inner_result_window}
 		 */
-		public BuilderT maxInnerResultWindow(@Nullable Number value) {
+		public Builder maxInnerResultWindow(@Nullable Integer value) {
 			this.maxInnerResultWindow = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_rescore_window}
 		 */
-		public BuilderT maxRescoreWindow(@Nullable Number value) {
+		public Builder maxRescoreWindow(@Nullable Integer value) {
 			this.maxRescoreWindow = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_docvalue_fields_search}
 		 */
-		public BuilderT maxDocvalueFieldsSearch(@Nullable Number value) {
+		public Builder maxDocvalueFieldsSearch(@Nullable Integer value) {
 			this.maxDocvalueFieldsSearch = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_script_fields}
 		 */
-		public BuilderT maxScriptFields(@Nullable Number value) {
+		public Builder maxScriptFields(@Nullable Integer value) {
 			this.maxScriptFields = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_ngram_diff}
 		 */
-		public BuilderT maxNgramDiff(@Nullable Number value) {
+		public Builder maxNgramDiff(@Nullable Integer value) {
 			this.maxNgramDiff = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_shingle_diff}
 		 */
-		public BuilderT maxShingleDiff(@Nullable Number value) {
+		public Builder maxShingleDiff(@Nullable Integer value) {
 			this.maxShingleDiff = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code blocks}
 		 */
-		public BuilderT blocks(@Nullable IndexSettingBlocks value) {
+		public Builder blocks(@Nullable IndexSettingBlocks value) {
 			this.blocks = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code blocks}
 		 */
-		public BuilderT blocks(Function<IndexSettingBlocks.Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
+		public Builder blocks(Function<IndexSettingBlocks.Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
 			return this.blocks(fn.apply(new IndexSettingBlocks.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_refresh_listeners}
 		 */
-		public BuilderT maxRefreshListeners(@Nullable Number value) {
+		public Builder maxRefreshListeners(@Nullable Integer value) {
 			this.maxRefreshListeners = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code analyze.max_token_count}
 		 */
-		public BuilderT analyze_maxTokenCount(@Nullable Number value) {
-			this.analyze_maxTokenCount = value;
-			return self();
+		public Builder analyzeMaxTokenCount(@Nullable Integer value) {
+			this.analyzeMaxTokenCount = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code highlight.max_analyzed_offset}
 		 */
-		public BuilderT highlight_maxAnalyzedOffset(@Nullable Number value) {
-			this.highlight_maxAnalyzedOffset = value;
-			return self();
+		public Builder highlightMaxAnalyzedOffset(@Nullable Integer value) {
+			this.highlightMaxAnalyzedOffset = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_terms_count}
 		 */
-		public BuilderT maxTermsCount(@Nullable Number value) {
+		public Builder maxTermsCount(@Nullable Integer value) {
 			this.maxTermsCount = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_regex_length}
 		 */
-		public BuilderT maxRegexLength(@Nullable Number value) {
+		public Builder maxRegexLength(@Nullable Integer value) {
 			this.maxRegexLength = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code routing}
 		 */
-		public BuilderT routing(@Nullable IndexRouting value) {
+		public Builder routing(@Nullable IndexRouting value) {
 			this.routing = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code routing}
 		 */
-		public BuilderT routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
+		public Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
 			return this.routing(fn.apply(new IndexRouting.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code gc_deletes}
 		 */
-		public BuilderT gcDeletes(@Nullable JsonValue value) {
+		public Builder gcDeletes(@Nullable String value) {
 			this.gcDeletes = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code default_pipeline}
 		 */
-		public BuilderT defaultPipeline(@Nullable String value) {
+		public Builder defaultPipeline(@Nullable String value) {
 			this.defaultPipeline = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code final_pipeline}
 		 */
-		public BuilderT finalPipeline(@Nullable String value) {
+		public Builder finalPipeline(@Nullable String value) {
 			this.finalPipeline = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public BuilderT lifecycle(@Nullable IndexSettingsLifecycle value) {
+		public Builder lifecycle(@Nullable IndexSettingsLifecycle value) {
 			this.lifecycle = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public BuilderT lifecycle(Function<IndexSettingsLifecycle.Builder, ObjectBuilder<IndexSettingsLifecycle>> fn) {
+		public Builder lifecycle(Function<IndexSettingsLifecycle.Builder, ObjectBuilder<IndexSettingsLifecycle>> fn) {
 			return this.lifecycle(fn.apply(new IndexSettingsLifecycle.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code provided_name}
 		 */
-		public BuilderT providedName(@Nullable String value) {
+		public Builder providedName(@Nullable String value) {
 			this.providedName = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code creation_date}
 		 */
-		public BuilderT creationDate(@Nullable String value) {
+		public Builder creationDate(@Nullable String value) {
 			this.creationDate = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code uuid}
 		 */
-		public BuilderT uuid(@Nullable String value) {
+		public Builder uuid(@Nullable String value) {
 			this.uuid = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code version}
 		 */
-		public BuilderT version(@Nullable IndexVersioning value) {
+		public Builder version(@Nullable IndexVersioning value) {
 			this.version = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code version}
 		 */
-		public BuilderT version(Function<IndexVersioning.Builder, ObjectBuilder<IndexVersioning>> fn) {
+		public Builder version(Function<IndexVersioning.Builder, ObjectBuilder<IndexVersioning>> fn) {
 			return this.version(fn.apply(new IndexVersioning.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code verified_before_close}
 		 */
-		public BuilderT verifiedBeforeClose(@Nullable JsonValue value) {
+		public Builder verifiedBeforeClose(@Nullable Boolean value) {
 			this.verifiedBeforeClose = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code format}
 		 */
-		public BuilderT format(@Nullable JsonValue value) {
+		public Builder format(@Nullable String value) {
 			this.format = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code max_slices_per_scroll}
 		 */
-		public BuilderT maxSlicesPerScroll(@Nullable Number value) {
+		public Builder maxSlicesPerScroll(@Nullable Integer value) {
 			this.maxSlicesPerScroll = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code translog.durability}
 		 */
-		public BuilderT translog_durability(@Nullable String value) {
-			this.translog_durability = value;
-			return self();
+		public Builder translogDurability(@Nullable String value) {
+			this.translogDurability = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code query_string.lenient}
 		 */
-		public BuilderT queryString_lenient(@Nullable JsonValue value) {
-			this.queryString_lenient = value;
-			return self();
+		public Builder queryStringLenient(@Nullable Boolean value) {
+			this.queryStringLenient = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code priority}
 		 */
-		public BuilderT priority(@Nullable JsonValue value) {
+		public Builder priority(@Nullable String value) {
 			this.priority = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code top_metrics_max_size}
 		 */
-		public BuilderT topMetricsMaxSize(@Nullable Number value) {
+		public Builder topMetricsMaxSize(@Nullable Integer value) {
 			this.topMetricsMaxSize = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code analysis}
 		 */
-		public BuilderT analysis(@Nullable IndexSettingsAnalysis value) {
+		public Builder analysis(@Nullable IndexSettingsAnalysis value) {
 			this.analysis = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code analysis}
 		 */
-		public BuilderT analysis(Function<IndexSettingsAnalysis.Builder, ObjectBuilder<IndexSettingsAnalysis>> fn) {
+		public Builder analysis(Function<IndexSettingsAnalysis.Builder, ObjectBuilder<IndexSettingsAnalysis>> fn) {
 			return this.analysis(fn.apply(new IndexSettingsAnalysis.Builder()).build());
 		}
 
-		protected abstract BuilderT self();
+		/**
+		 * Builds a {@link IndexSettings}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public IndexSettings build() {
 
+			return new IndexSettings(this);
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexSettings
+	 * Json deserializer for {@link IndexSettings}
 	 */
-	public static final JsonpDeserializer<IndexSettings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexSettings::setupIndexSettingsDeserializer);
+	public static final JsonpDeserializer<IndexSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexSettings::setupIndexSettingsDeserializer, Builder::build);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndexSettingsDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+	protected static void setupIndexSettingsDeserializer(DelegatingDeserializer<IndexSettings.Builder> op) {
 
-		op.add(AbstractBuilder::numberOfShards, JsonpDeserializer.jsonValueDeserializer(), "number_of_shards",
+		op.add(Builder::numberOfShards, JsonpDeserializer.stringDeserializer(), "number_of_shards",
 				"index.number_of_shards");
-		op.add(AbstractBuilder::numberOfReplicas, JsonpDeserializer.jsonValueDeserializer(), "number_of_replicas",
+		op.add(Builder::numberOfReplicas, JsonpDeserializer.stringDeserializer(), "number_of_replicas",
 				"index.number_of_replicas");
-		op.add(AbstractBuilder::numberOfRoutingShards, JsonpDeserializer.numberDeserializer(),
-				"number_of_routing_shards", "index.number_of_routing_shards");
-		op.add(AbstractBuilder::checkOnStartup, JsonpDeserializer.jsonValueDeserializer(), "check_on_startup",
+		op.add(Builder::numberOfRoutingShards, JsonpDeserializer.integerDeserializer(), "number_of_routing_shards",
+				"index.number_of_routing_shards");
+		op.add(Builder::checkOnStartup, IndexCheckOnStartup._DESERIALIZER, "check_on_startup",
 				"index.check_on_startup");
-		op.add(AbstractBuilder::codec, JsonpDeserializer.stringDeserializer(), "codec", "index.codec");
-		op.add(AbstractBuilder::routingPartitionSize, JsonpDeserializer.jsonValueDeserializer(),
-				"routing_partition_size", "index.routing_partition_size");
-		op.add(AbstractBuilder::softDeletes_retentionLease_period, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::codec, JsonpDeserializer.stringDeserializer(), "codec", "index.codec");
+		op.add(Builder::routingPartitionSize, JsonpDeserializer.stringDeserializer(), "routing_partition_size",
+				"index.routing_partition_size");
+		op.add(Builder::softDeletesRetentionLeasePeriod, JsonpDeserializer.stringDeserializer(),
 				"soft_deletes.retention_lease.period", "index.soft_deletes.retention_lease.period");
-		op.add(AbstractBuilder::loadFixedBitsetFiltersEagerly, JsonpDeserializer.booleanDeserializer(),
+		op.add(Builder::loadFixedBitsetFiltersEagerly, JsonpDeserializer.booleanDeserializer(),
 				"load_fixed_bitset_filters_eagerly", "index.load_fixed_bitset_filters_eagerly");
-		op.add(AbstractBuilder::hidden, JsonpDeserializer.jsonValueDeserializer(), "hidden", "index.hidden");
-		op.add(AbstractBuilder::autoExpandReplicas, JsonpDeserializer.stringDeserializer(), "auto_expand_replicas",
+		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden", "index.hidden");
+		op.add(Builder::autoExpandReplicas, JsonpDeserializer.stringDeserializer(), "auto_expand_replicas",
 				"index.auto_expand_replicas");
-		op.add(AbstractBuilder::search_idle_after, JsonpDeserializer.jsonValueDeserializer(), "search.idle.after",
+		op.add(Builder::searchIdleAfter, JsonpDeserializer.stringDeserializer(), "search.idle.after",
 				"index.search.idle.after");
-		op.add(AbstractBuilder::refreshInterval, JsonpDeserializer.jsonValueDeserializer(), "refresh_interval",
+		op.add(Builder::refreshInterval, JsonpDeserializer.stringDeserializer(), "refresh_interval",
 				"index.refresh_interval");
-		op.add(AbstractBuilder::maxResultWindow, JsonpDeserializer.numberDeserializer(), "max_result_window",
+		op.add(Builder::maxResultWindow, JsonpDeserializer.integerDeserializer(), "max_result_window",
 				"index.max_result_window");
-		op.add(AbstractBuilder::maxInnerResultWindow, JsonpDeserializer.numberDeserializer(), "max_inner_result_window",
+		op.add(Builder::maxInnerResultWindow, JsonpDeserializer.integerDeserializer(), "max_inner_result_window",
 				"index.max_inner_result_window");
-		op.add(AbstractBuilder::maxRescoreWindow, JsonpDeserializer.numberDeserializer(), "max_rescore_window",
+		op.add(Builder::maxRescoreWindow, JsonpDeserializer.integerDeserializer(), "max_rescore_window",
 				"index.max_rescore_window");
-		op.add(AbstractBuilder::maxDocvalueFieldsSearch, JsonpDeserializer.numberDeserializer(),
-				"max_docvalue_fields_search", "index.max_docvalue_fields_search");
-		op.add(AbstractBuilder::maxScriptFields, JsonpDeserializer.numberDeserializer(), "max_script_fields",
+		op.add(Builder::maxDocvalueFieldsSearch, JsonpDeserializer.integerDeserializer(), "max_docvalue_fields_search",
+				"index.max_docvalue_fields_search");
+		op.add(Builder::maxScriptFields, JsonpDeserializer.integerDeserializer(), "max_script_fields",
 				"index.max_script_fields");
-		op.add(AbstractBuilder::maxNgramDiff, JsonpDeserializer.numberDeserializer(), "max_ngram_diff",
+		op.add(Builder::maxNgramDiff, JsonpDeserializer.integerDeserializer(), "max_ngram_diff",
 				"index.max_ngram_diff");
-		op.add(AbstractBuilder::maxShingleDiff, JsonpDeserializer.numberDeserializer(), "max_shingle_diff",
+		op.add(Builder::maxShingleDiff, JsonpDeserializer.integerDeserializer(), "max_shingle_diff",
 				"index.max_shingle_diff");
-		op.add(AbstractBuilder::blocks, IndexSettingBlocks.DESERIALIZER, "blocks", "index.blocks");
-		op.add(AbstractBuilder::maxRefreshListeners, JsonpDeserializer.numberDeserializer(), "max_refresh_listeners",
+		op.add(Builder::blocks, IndexSettingBlocks._DESERIALIZER, "blocks", "index.blocks");
+		op.add(Builder::maxRefreshListeners, JsonpDeserializer.integerDeserializer(), "max_refresh_listeners",
 				"index.max_refresh_listeners");
-		op.add(AbstractBuilder::analyze_maxTokenCount, JsonpDeserializer.numberDeserializer(),
-				"analyze.max_token_count", "index.analyze.max_token_count");
-		op.add(AbstractBuilder::highlight_maxAnalyzedOffset, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::analyzeMaxTokenCount, JsonpDeserializer.integerDeserializer(), "analyze.max_token_count",
+				"index.analyze.max_token_count");
+		op.add(Builder::highlightMaxAnalyzedOffset, JsonpDeserializer.integerDeserializer(),
 				"highlight.max_analyzed_offset", "index.highlight.max_analyzed_offset");
-		op.add(AbstractBuilder::maxTermsCount, JsonpDeserializer.numberDeserializer(), "max_terms_count",
+		op.add(Builder::maxTermsCount, JsonpDeserializer.integerDeserializer(), "max_terms_count",
 				"index.max_terms_count");
-		op.add(AbstractBuilder::maxRegexLength, JsonpDeserializer.numberDeserializer(), "max_regex_length",
+		op.add(Builder::maxRegexLength, JsonpDeserializer.integerDeserializer(), "max_regex_length",
 				"index.max_regex_length");
-		op.add(AbstractBuilder::routing, IndexRouting.DESERIALIZER, "routing", "index.routing");
-		op.add(AbstractBuilder::gcDeletes, JsonpDeserializer.jsonValueDeserializer(), "gc_deletes", "index.gc_deletes");
-		op.add(AbstractBuilder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline",
+		op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing", "index.routing");
+		op.add(Builder::gcDeletes, JsonpDeserializer.stringDeserializer(), "gc_deletes", "index.gc_deletes");
+		op.add(Builder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline",
 				"index.default_pipeline");
-		op.add(AbstractBuilder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",
+		op.add(Builder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",
 				"index.final_pipeline");
-		op.add(AbstractBuilder::lifecycle, IndexSettingsLifecycle.DESERIALIZER, "lifecycle", "index.lifecycle");
-		op.add(AbstractBuilder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name",
-				"index.provided_name");
-		op.add(AbstractBuilder::creationDate, JsonpDeserializer.stringDeserializer(), "creation_date",
-				"index.creation_date");
-		op.add(AbstractBuilder::uuid, JsonpDeserializer.stringDeserializer(), "uuid", "index.uuid");
-		op.add(AbstractBuilder::version, IndexVersioning.DESERIALIZER, "version", "index.version");
-		op.add(AbstractBuilder::verifiedBeforeClose, JsonpDeserializer.jsonValueDeserializer(), "verified_before_close",
+		op.add(Builder::lifecycle, IndexSettingsLifecycle._DESERIALIZER, "lifecycle", "index.lifecycle");
+		op.add(Builder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name", "index.provided_name");
+		op.add(Builder::creationDate, JsonpDeserializer.stringDeserializer(), "creation_date", "index.creation_date");
+		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid", "index.uuid");
+		op.add(Builder::version, IndexVersioning._DESERIALIZER, "version", "index.version");
+		op.add(Builder::verifiedBeforeClose, JsonpDeserializer.booleanDeserializer(), "verified_before_close",
 				"index.verified_before_close");
-		op.add(AbstractBuilder::format, JsonpDeserializer.jsonValueDeserializer(), "format", "index.format");
-		op.add(AbstractBuilder::maxSlicesPerScroll, JsonpDeserializer.numberDeserializer(), "max_slices_per_scroll",
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format", "index.format");
+		op.add(Builder::maxSlicesPerScroll, JsonpDeserializer.integerDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
-		op.add(AbstractBuilder::translog_durability, JsonpDeserializer.stringDeserializer(), "translog.durability",
+		op.add(Builder::translogDurability, JsonpDeserializer.stringDeserializer(), "translog.durability",
 				"index.translog.durability");
-		op.add(AbstractBuilder::queryString_lenient, JsonpDeserializer.jsonValueDeserializer(), "query_string.lenient",
+		op.add(Builder::queryStringLenient, JsonpDeserializer.booleanDeserializer(), "query_string.lenient",
 				"index.query_string.lenient");
-		op.add(AbstractBuilder::priority, JsonpDeserializer.jsonValueDeserializer(), "priority", "index.priority");
-		op.add(AbstractBuilder::topMetricsMaxSize, JsonpDeserializer.numberDeserializer(), "top_metrics_max_size");
-		op.add(AbstractBuilder::analysis, IndexSettingsAnalysis.DESERIALIZER, "analysis");
+		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "index.priority");
+		op.add(Builder::topMetricsMaxSize, JsonpDeserializer.integerDeserializer(), "top_metrics_max_size");
+		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis");
 
 	}
 

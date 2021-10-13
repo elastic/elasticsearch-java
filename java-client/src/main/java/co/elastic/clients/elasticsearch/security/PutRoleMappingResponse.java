@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Response
-public final class PutRoleMappingResponse implements ToJsonp {
+@JsonpDeserializable
+public final class PutRoleMappingResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean created;
 
@@ -45,11 +47,15 @@ public final class PutRoleMappingResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutRoleMappingResponse(Builder builder) {
+	public PutRoleMappingResponse(Builder builder) {
 
 		this.created = builder.created;
 		this.roleMapping = Objects.requireNonNull(builder.roleMapping, "role_mapping");
 
+	}
+
+	public PutRoleMappingResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,7 +67,7 @@ public final class PutRoleMappingResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code role_mapping}
+	 * Required - API name: {@code role_mapping}
 	 */
 	public CreatedStatus roleMapping() {
 		return this.roleMapping;
@@ -70,13 +76,13 @@ public final class PutRoleMappingResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.created != null) {
 
@@ -86,7 +92,7 @@ public final class PutRoleMappingResponse implements ToJsonp {
 		}
 
 		generator.writeKey("role_mapping");
-		this.roleMapping.toJsonp(generator, mapper);
+		this.roleMapping.serialize(generator, mapper);
 
 	}
 
@@ -110,7 +116,7 @@ public final class PutRoleMappingResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code role_mapping}
+		 * Required - API name: {@code role_mapping}
 		 */
 		public Builder roleMapping(CreatedStatus value) {
 			this.roleMapping = value;
@@ -118,7 +124,7 @@ public final class PutRoleMappingResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code role_mapping}
+		 * Required - API name: {@code role_mapping}
 		 */
 		public Builder roleMapping(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
 			return this.roleMapping(fn.apply(new CreatedStatus.Builder()).build());
@@ -139,16 +145,16 @@ public final class PutRoleMappingResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutRoleMappingResponse
+	 * Json deserializer for {@link PutRoleMappingResponse}
 	 */
-	public static final JsonpDeserializer<PutRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutRoleMappingResponse::setupPutRoleMappingResponseDeserializer);
+	public static final JsonpDeserializer<PutRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutRoleMappingResponse::setupPutRoleMappingResponseDeserializer, Builder::build);
 
 	protected static void setupPutRoleMappingResponseDeserializer(
 			DelegatingDeserializer<PutRoleMappingResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
-		op.add(Builder::roleMapping, CreatedStatus.DESERIALIZER, "role_mapping");
+		op.add(Builder::roleMapping, CreatedStatus._DESERIALIZER, "role_mapping");
 
 	}
 

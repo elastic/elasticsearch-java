@@ -25,21 +25,26 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Request
-public final class InvalidateTokenRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String token;
 
@@ -54,13 +59,17 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InvalidateTokenRequest(Builder builder) {
+	public InvalidateTokenRequest(Builder builder) {
 
 		this.token = builder.token;
 		this.refreshToken = builder.refreshToken;
 		this.realmName = builder.realmName;
 		this.username = builder.username;
 
+	}
+
+	public InvalidateTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -98,13 +107,13 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.token != null) {
 
@@ -198,10 +207,10 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InvalidateTokenRequest
+	 * Json deserializer for {@link InvalidateTokenRequest}
 	 */
-	public static final JsonpDeserializer<InvalidateTokenRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer);
+	public static final JsonpDeserializer<InvalidateTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer, Builder::build);
 
 	protected static void setupInvalidateTokenRequestDeserializer(
 			DelegatingDeserializer<InvalidateTokenRequest.Builder> op) {
@@ -218,7 +227,7 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 	/**
 	 * Endpoint "{@code security.invalidate_token}".
 	 */
-	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -235,5 +244,5 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, InvalidateTokenResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, InvalidateTokenResponse._DESERIALIZER);
 }

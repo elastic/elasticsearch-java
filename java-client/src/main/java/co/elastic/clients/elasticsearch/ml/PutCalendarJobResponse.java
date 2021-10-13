@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar_job.Response
-public final class PutCalendarJobResponse implements ToJsonp {
+@JsonpDeserializable
+public final class PutCalendarJobResponse implements JsonpSerializable {
 	private final String calendarId;
 
 	@Nullable
@@ -49,16 +53,20 @@ public final class PutCalendarJobResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutCalendarJobResponse(Builder builder) {
+	public PutCalendarJobResponse(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.description = builder.description;
-		this.jobIds = Objects.requireNonNull(builder.jobIds, "job_ids");
+		this.jobIds = ModelTypeHelper.unmodifiableNonNull(builder.jobIds, "job_ids");
 
 	}
 
+	public PutCalendarJobResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code calendar_id}
+	 * Required - API name: {@code calendar_id}
 	 */
 	public String calendarId() {
 		return this.calendarId;
@@ -73,7 +81,7 @@ public final class PutCalendarJobResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code job_ids}
+	 * Required - API name: {@code job_ids}
 	 */
 	public List<String> jobIds() {
 		return this.jobIds;
@@ -82,13 +90,13 @@ public final class PutCalendarJobResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("calendar_id");
 		generator.write(this.calendarId);
@@ -124,7 +132,7 @@ public final class PutCalendarJobResponse implements ToJsonp {
 		private List<String> jobIds;
 
 		/**
-		 * API name: {@code calendar_id}
+		 * Required - API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
 			this.calendarId = value;
@@ -140,7 +148,7 @@ public final class PutCalendarJobResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code job_ids}
+		 * Required - API name: {@code job_ids}
 		 */
 		public Builder jobIds(List<String> value) {
 			this.jobIds = value;
@@ -148,7 +156,7 @@ public final class PutCalendarJobResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code job_ids}
+		 * Required - API name: {@code job_ids}
 		 */
 		public Builder jobIds(String... value) {
 			this.jobIds = Arrays.asList(value);
@@ -181,10 +189,10 @@ public final class PutCalendarJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutCalendarJobResponse
+	 * Json deserializer for {@link PutCalendarJobResponse}
 	 */
-	public static final JsonpDeserializer<PutCalendarJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutCalendarJobResponse::setupPutCalendarJobResponseDeserializer);
+	public static final JsonpDeserializer<PutCalendarJobResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutCalendarJobResponse::setupPutCalendarJobResponseDeserializer, Builder::build);
 
 	protected static void setupPutCalendarJobResponseDeserializer(
 			DelegatingDeserializer<PutCalendarJobResponse.Builder> op) {

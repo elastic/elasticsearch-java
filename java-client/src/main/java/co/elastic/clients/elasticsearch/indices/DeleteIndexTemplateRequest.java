@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,21 +36,29 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_index_template.Request
+
 public final class DeleteIndexTemplateRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteIndexTemplateRequest(Builder builder) {
+	public DeleteIndexTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
+	public DeleteIndexTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the template
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -64,6 +74,8 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * Required - The name of the template
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -88,7 +100,7 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_index_template}".
 	 */
-	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -101,17 +113,16 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -119,5 +130,5 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteIndexTemplateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteIndexTemplateResponse._DESERIALIZER);
 }

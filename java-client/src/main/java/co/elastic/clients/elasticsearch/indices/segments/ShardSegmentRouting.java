@@ -24,29 +24,32 @@
 package co.elastic.clients.elasticsearch.indices.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardSegmentRouting
-public final class ShardSegmentRouting implements ToJsonp {
+@JsonpDeserializable
+public final class ShardSegmentRouting implements JsonpSerializable {
 	private final String node;
 
-	private final Boolean primary;
+	private final boolean primary;
 
 	private final String state;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardSegmentRouting(Builder builder) {
+	public ShardSegmentRouting(Builder builder) {
 
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.primary = Objects.requireNonNull(builder.primary, "primary");
@@ -54,22 +57,26 @@ public final class ShardSegmentRouting implements ToJsonp {
 
 	}
 
+	public ShardSegmentRouting(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
-	public Boolean primary() {
+	public boolean primary() {
 		return this.primary;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public String state() {
 		return this.state;
@@ -78,13 +85,13 @@ public final class ShardSegmentRouting implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -110,7 +117,7 @@ public final class ShardSegmentRouting implements ToJsonp {
 		private String state;
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -118,15 +125,15 @@ public final class ShardSegmentRouting implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
-		public Builder primary(Boolean value) {
+		public Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(String value) {
 			this.state = value;
@@ -148,10 +155,10 @@ public final class ShardSegmentRouting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardSegmentRouting
+	 * Json deserializer for {@link ShardSegmentRouting}
 	 */
-	public static final JsonpDeserializer<ShardSegmentRouting> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingDeserializer);
+	public static final JsonpDeserializer<ShardSegmentRouting> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingDeserializer, Builder::build);
 
 	protected static void setupShardSegmentRoutingDeserializer(DelegatingDeserializer<ShardSegmentRouting.Builder> op) {
 

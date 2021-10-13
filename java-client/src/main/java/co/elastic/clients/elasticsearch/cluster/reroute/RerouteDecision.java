@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteDecision
-public final class RerouteDecision implements ToJsonp {
+@JsonpDeserializable
+public final class RerouteDecision implements JsonpSerializable {
 	private final String decider;
 
 	private final String decision;
@@ -45,7 +48,7 @@ public final class RerouteDecision implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteDecision(Builder builder) {
+	public RerouteDecision(Builder builder) {
 
 		this.decider = Objects.requireNonNull(builder.decider, "decider");
 		this.decision = Objects.requireNonNull(builder.decision, "decision");
@@ -53,22 +56,26 @@ public final class RerouteDecision implements ToJsonp {
 
 	}
 
+	public RerouteDecision(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code decider}
+	 * Required - API name: {@code decider}
 	 */
 	public String decider() {
 		return this.decider;
 	}
 
 	/**
-	 * API name: {@code decision}
+	 * Required - API name: {@code decision}
 	 */
 	public String decision() {
 		return this.decision;
 	}
 
 	/**
-	 * API name: {@code explanation}
+	 * Required - API name: {@code explanation}
 	 */
 	public String explanation() {
 		return this.explanation;
@@ -77,13 +84,13 @@ public final class RerouteDecision implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("decider");
 		generator.write(this.decider);
@@ -109,7 +116,7 @@ public final class RerouteDecision implements ToJsonp {
 		private String explanation;
 
 		/**
-		 * API name: {@code decider}
+		 * Required - API name: {@code decider}
 		 */
 		public Builder decider(String value) {
 			this.decider = value;
@@ -117,7 +124,7 @@ public final class RerouteDecision implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code decision}
+		 * Required - API name: {@code decision}
 		 */
 		public Builder decision(String value) {
 			this.decision = value;
@@ -125,7 +132,7 @@ public final class RerouteDecision implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code explanation}
+		 * Required - API name: {@code explanation}
 		 */
 		public Builder explanation(String value) {
 			this.explanation = value;
@@ -147,10 +154,10 @@ public final class RerouteDecision implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteDecision
+	 * Json deserializer for {@link RerouteDecision}
 	 */
-	public static final JsonpDeserializer<RerouteDecision> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteDecision::setupRerouteDecisionDeserializer);
+	public static final JsonpDeserializer<RerouteDecision> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RerouteDecision::setupRerouteDecisionDeserializer, Builder::build);
 
 	protected static void setupRerouteDecisionDeserializer(DelegatingDeserializer<RerouteDecision.Builder> op) {
 

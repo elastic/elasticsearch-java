@@ -25,103 +25,35 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: cluster.remote_info.Request
-public final class RemoteInfoRequest extends RequestBase implements ToJsonp {
-	private final String stub;
 
-	// ---------------------------------------------------------------------------------------------
-
-	protected RemoteInfoRequest(Builder builder) {
-
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
-
+public final class RemoteInfoRequest extends RequestBase {
+	public RemoteInfoRequest() {
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Singleton instance for {@link RemoteInfoRequest}.
 	 */
-	public String stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link RemoteInfoRequest}.
-	 */
-	public static class Builder implements ObjectBuilder<RemoteInfoRequest> {
-		private String stub;
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(String value) {
-			this.stub = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link RemoteInfoRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RemoteInfoRequest build() {
-
-			return new RemoteInfoRequest(this);
-		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for RemoteInfoRequest
-	 */
-	public static final JsonpDeserializer<RemoteInfoRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RemoteInfoRequest::setupRemoteInfoRequestDeserializer);
-
-	protected static void setupRemoteInfoRequestDeserializer(DelegatingDeserializer<RemoteInfoRequest.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
-
-	}
+	public static final RemoteInfoRequest _INSTANCE = new RemoteInfoRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code cluster.remote_info}".
 	 */
-	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -138,5 +70,5 @@ public final class RemoteInfoRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RemoteInfoResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RemoteInfoResponse._DESERIALIZER);
 }

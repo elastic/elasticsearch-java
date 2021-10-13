@@ -24,60 +24,67 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfWeek
-public final class TimeOfWeek implements ToJsonp {
+@JsonpDeserializable
+public final class TimeOfWeek implements JsonpSerializable {
 	private final List<String> at;
 
-	private final List<JsonValue> on;
+	private final List<Day> on;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TimeOfWeek(Builder builder) {
+	public TimeOfWeek(Builder builder) {
 
-		this.at = Objects.requireNonNull(builder.at, "at");
-		this.on = Objects.requireNonNull(builder.on, "on");
+		this.at = ModelTypeHelper.unmodifiableNonNull(builder.at, "at");
+		this.on = ModelTypeHelper.unmodifiableNonNull(builder.on, "on");
 
 	}
 
+	public TimeOfWeek(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code at}
+	 * Required - API name: {@code at}
 	 */
 	public List<String> at() {
 		return this.at;
 	}
 
 	/**
-	 * API name: {@code on}
+	 * Required - API name: {@code on}
 	 */
-	public List<JsonValue> on() {
+	public List<Day> on() {
 		return this.on;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("at");
 		generator.writeStartArray();
@@ -89,9 +96,8 @@ public final class TimeOfWeek implements ToJsonp {
 
 		generator.writeKey("on");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.on) {
-			generator.write(item0);
-
+		for (Day item0 : this.on) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
@@ -105,10 +111,10 @@ public final class TimeOfWeek implements ToJsonp {
 	public static class Builder implements ObjectBuilder<TimeOfWeek> {
 		private List<String> at;
 
-		private List<JsonValue> on;
+		private List<Day> on;
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(List<String> value) {
 			this.at = value;
@@ -116,7 +122,7 @@ public final class TimeOfWeek implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(String... value) {
 			this.at = Arrays.asList(value);
@@ -135,17 +141,17 @@ public final class TimeOfWeek implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code on}
+		 * Required - API name: {@code on}
 		 */
-		public Builder on(List<JsonValue> value) {
+		public Builder on(List<Day> value) {
 			this.on = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code on}
+		 * Required - API name: {@code on}
 		 */
-		public Builder on(JsonValue... value) {
+		public Builder on(Day... value) {
 			this.on = Arrays.asList(value);
 			return this;
 		}
@@ -153,7 +159,7 @@ public final class TimeOfWeek implements ToJsonp {
 		/**
 		 * Add a value to {@link #on(List)}, creating the list if needed.
 		 */
-		public Builder addOn(JsonValue value) {
+		public Builder addOn(Day value) {
 			if (this.on == null) {
 				this.on = new ArrayList<>();
 			}
@@ -176,15 +182,15 @@ public final class TimeOfWeek implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TimeOfWeek
+	 * Json deserializer for {@link TimeOfWeek}
 	 */
-	public static final JsonpDeserializer<TimeOfWeek> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TimeOfWeek::setupTimeOfWeekDeserializer);
+	public static final JsonpDeserializer<TimeOfWeek> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TimeOfWeek::setupTimeOfWeekDeserializer, Builder::build);
 
 	protected static void setupTimeOfWeekDeserializer(DelegatingDeserializer<TimeOfWeek.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
-		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "on");
+		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(Day._DESERIALIZER), "on");
 
 	}
 

@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,40 +42,41 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchStats
-public final class SearchStats implements ToJsonp {
-	private final Number fetchCurrent;
+@JsonpDeserializable
+public final class SearchStats implements JsonpSerializable {
+	private final long fetchCurrent;
 
-	private final Number fetchTimeInMillis;
+	private final long fetchTimeInMillis;
 
-	private final Number fetchTotal;
-
-	@Nullable
-	private final Number openContexts;
-
-	private final Number queryCurrent;
-
-	private final Number queryTimeInMillis;
-
-	private final Number queryTotal;
-
-	private final Number scrollCurrent;
-
-	private final Number scrollTimeInMillis;
-
-	private final Number scrollTotal;
-
-	private final Number suggestCurrent;
-
-	private final Number suggestTimeInMillis;
-
-	private final Number suggestTotal;
+	private final long fetchTotal;
 
 	@Nullable
-	private final Map<String, co.elastic.clients.elasticsearch._types.SearchStats> groups;
+	private final Long openContexts;
+
+	private final long queryCurrent;
+
+	private final long queryTimeInMillis;
+
+	private final long queryTotal;
+
+	private final long scrollCurrent;
+
+	private final long scrollTimeInMillis;
+
+	private final long scrollTotal;
+
+	private final long suggestCurrent;
+
+	private final long suggestTimeInMillis;
+
+	private final long suggestTotal;
+
+	@Nullable
+	private final Map<String, SearchStats> groups;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchStats(Builder builder) {
+	public SearchStats(Builder builder) {
 
 		this.fetchCurrent = Objects.requireNonNull(builder.fetchCurrent, "fetch_current");
 		this.fetchTimeInMillis = Objects.requireNonNull(builder.fetchTimeInMillis, "fetch_time_in_millis");
@@ -88,28 +91,32 @@ public final class SearchStats implements ToJsonp {
 		this.suggestCurrent = Objects.requireNonNull(builder.suggestCurrent, "suggest_current");
 		this.suggestTimeInMillis = Objects.requireNonNull(builder.suggestTimeInMillis, "suggest_time_in_millis");
 		this.suggestTotal = Objects.requireNonNull(builder.suggestTotal, "suggest_total");
-		this.groups = builder.groups;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 
 	}
 
+	public SearchStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code fetch_current}
+	 * Required - API name: {@code fetch_current}
 	 */
-	public Number fetchCurrent() {
+	public long fetchCurrent() {
 		return this.fetchCurrent;
 	}
 
 	/**
-	 * API name: {@code fetch_time_in_millis}
+	 * Required - API name: {@code fetch_time_in_millis}
 	 */
-	public Number fetchTimeInMillis() {
+	public long fetchTimeInMillis() {
 		return this.fetchTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code fetch_total}
+	 * Required - API name: {@code fetch_total}
 	 */
-	public Number fetchTotal() {
+	public long fetchTotal() {
 		return this.fetchTotal;
 	}
 
@@ -117,70 +124,70 @@ public final class SearchStats implements ToJsonp {
 	 * API name: {@code open_contexts}
 	 */
 	@Nullable
-	public Number openContexts() {
+	public Long openContexts() {
 		return this.openContexts;
 	}
 
 	/**
-	 * API name: {@code query_current}
+	 * Required - API name: {@code query_current}
 	 */
-	public Number queryCurrent() {
+	public long queryCurrent() {
 		return this.queryCurrent;
 	}
 
 	/**
-	 * API name: {@code query_time_in_millis}
+	 * Required - API name: {@code query_time_in_millis}
 	 */
-	public Number queryTimeInMillis() {
+	public long queryTimeInMillis() {
 		return this.queryTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code query_total}
+	 * Required - API name: {@code query_total}
 	 */
-	public Number queryTotal() {
+	public long queryTotal() {
 		return this.queryTotal;
 	}
 
 	/**
-	 * API name: {@code scroll_current}
+	 * Required - API name: {@code scroll_current}
 	 */
-	public Number scrollCurrent() {
+	public long scrollCurrent() {
 		return this.scrollCurrent;
 	}
 
 	/**
-	 * API name: {@code scroll_time_in_millis}
+	 * Required - API name: {@code scroll_time_in_millis}
 	 */
-	public Number scrollTimeInMillis() {
+	public long scrollTimeInMillis() {
 		return this.scrollTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code scroll_total}
+	 * Required - API name: {@code scroll_total}
 	 */
-	public Number scrollTotal() {
+	public long scrollTotal() {
 		return this.scrollTotal;
 	}
 
 	/**
-	 * API name: {@code suggest_current}
+	 * Required - API name: {@code suggest_current}
 	 */
-	public Number suggestCurrent() {
+	public long suggestCurrent() {
 		return this.suggestCurrent;
 	}
 
 	/**
-	 * API name: {@code suggest_time_in_millis}
+	 * Required - API name: {@code suggest_time_in_millis}
 	 */
-	public Number suggestTimeInMillis() {
+	public long suggestTimeInMillis() {
 		return this.suggestTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code suggest_total}
+	 * Required - API name: {@code suggest_total}
 	 */
-	public Number suggestTotal() {
+	public long suggestTotal() {
 		return this.suggestTotal;
 	}
 
@@ -188,72 +195,71 @@ public final class SearchStats implements ToJsonp {
 	 * API name: {@code groups}
 	 */
 	@Nullable
-	public Map<String, co.elastic.clients.elasticsearch._types.SearchStats> groups() {
+	public Map<String, SearchStats> groups() {
 		return this.groups;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fetch_current");
-		generator.write(this.fetchCurrent.doubleValue());
+		generator.write(this.fetchCurrent);
 
 		generator.writeKey("fetch_time_in_millis");
-		generator.write(this.fetchTimeInMillis.doubleValue());
+		generator.write(this.fetchTimeInMillis);
 
 		generator.writeKey("fetch_total");
-		generator.write(this.fetchTotal.doubleValue());
+		generator.write(this.fetchTotal);
 
 		if (this.openContexts != null) {
 
 			generator.writeKey("open_contexts");
-			generator.write(this.openContexts.doubleValue());
+			generator.write(this.openContexts);
 
 		}
 
 		generator.writeKey("query_current");
-		generator.write(this.queryCurrent.doubleValue());
+		generator.write(this.queryCurrent);
 
 		generator.writeKey("query_time_in_millis");
-		generator.write(this.queryTimeInMillis.doubleValue());
+		generator.write(this.queryTimeInMillis);
 
 		generator.writeKey("query_total");
-		generator.write(this.queryTotal.doubleValue());
+		generator.write(this.queryTotal);
 
 		generator.writeKey("scroll_current");
-		generator.write(this.scrollCurrent.doubleValue());
+		generator.write(this.scrollCurrent);
 
 		generator.writeKey("scroll_time_in_millis");
-		generator.write(this.scrollTimeInMillis.doubleValue());
+		generator.write(this.scrollTimeInMillis);
 
 		generator.writeKey("scroll_total");
-		generator.write(this.scrollTotal.doubleValue());
+		generator.write(this.scrollTotal);
 
 		generator.writeKey("suggest_current");
-		generator.write(this.suggestCurrent.doubleValue());
+		generator.write(this.suggestCurrent);
 
 		generator.writeKey("suggest_time_in_millis");
-		generator.write(this.suggestTimeInMillis.doubleValue());
+		generator.write(this.suggestTimeInMillis);
 
 		generator.writeKey("suggest_total");
-		generator.write(this.suggestTotal.doubleValue());
+		generator.write(this.suggestTotal);
 
 		if (this.groups != null) {
 
 			generator.writeKey("groups");
 			generator.writeStartObject();
-			for (Map.Entry<String, co.elastic.clients.elasticsearch._types.SearchStats> item0 : this.groups
-					.entrySet()) {
+			for (Map.Entry<String, SearchStats> item0 : this.groups.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -268,56 +274,56 @@ public final class SearchStats implements ToJsonp {
 	 * Builder for {@link SearchStats}.
 	 */
 	public static class Builder implements ObjectBuilder<SearchStats> {
-		private Number fetchCurrent;
+		private Long fetchCurrent;
 
-		private Number fetchTimeInMillis;
+		private Long fetchTimeInMillis;
 
-		private Number fetchTotal;
-
-		@Nullable
-		private Number openContexts;
-
-		private Number queryCurrent;
-
-		private Number queryTimeInMillis;
-
-		private Number queryTotal;
-
-		private Number scrollCurrent;
-
-		private Number scrollTimeInMillis;
-
-		private Number scrollTotal;
-
-		private Number suggestCurrent;
-
-		private Number suggestTimeInMillis;
-
-		private Number suggestTotal;
+		private Long fetchTotal;
 
 		@Nullable
-		private Map<String, co.elastic.clients.elasticsearch._types.SearchStats> groups;
+		private Long openContexts;
+
+		private Long queryCurrent;
+
+		private Long queryTimeInMillis;
+
+		private Long queryTotal;
+
+		private Long scrollCurrent;
+
+		private Long scrollTimeInMillis;
+
+		private Long scrollTotal;
+
+		private Long suggestCurrent;
+
+		private Long suggestTimeInMillis;
+
+		private Long suggestTotal;
+
+		@Nullable
+		private Map<String, SearchStats> groups;
 
 		/**
-		 * API name: {@code fetch_current}
+		 * Required - API name: {@code fetch_current}
 		 */
-		public Builder fetchCurrent(Number value) {
+		public Builder fetchCurrent(long value) {
 			this.fetchCurrent = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code fetch_time_in_millis}
+		 * Required - API name: {@code fetch_time_in_millis}
 		 */
-		public Builder fetchTimeInMillis(Number value) {
+		public Builder fetchTimeInMillis(long value) {
 			this.fetchTimeInMillis = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code fetch_total}
+		 * Required - API name: {@code fetch_total}
 		 */
-		public Builder fetchTotal(Number value) {
+		public Builder fetchTotal(long value) {
 			this.fetchTotal = value;
 			return this;
 		}
@@ -325,79 +331,79 @@ public final class SearchStats implements ToJsonp {
 		/**
 		 * API name: {@code open_contexts}
 		 */
-		public Builder openContexts(@Nullable Number value) {
+		public Builder openContexts(@Nullable Long value) {
 			this.openContexts = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query_current}
+		 * Required - API name: {@code query_current}
 		 */
-		public Builder queryCurrent(Number value) {
+		public Builder queryCurrent(long value) {
 			this.queryCurrent = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query_time_in_millis}
+		 * Required - API name: {@code query_time_in_millis}
 		 */
-		public Builder queryTimeInMillis(Number value) {
+		public Builder queryTimeInMillis(long value) {
 			this.queryTimeInMillis = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query_total}
+		 * Required - API name: {@code query_total}
 		 */
-		public Builder queryTotal(Number value) {
+		public Builder queryTotal(long value) {
 			this.queryTotal = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code scroll_current}
+		 * Required - API name: {@code scroll_current}
 		 */
-		public Builder scrollCurrent(Number value) {
+		public Builder scrollCurrent(long value) {
 			this.scrollCurrent = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code scroll_time_in_millis}
+		 * Required - API name: {@code scroll_time_in_millis}
 		 */
-		public Builder scrollTimeInMillis(Number value) {
+		public Builder scrollTimeInMillis(long value) {
 			this.scrollTimeInMillis = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code scroll_total}
+		 * Required - API name: {@code scroll_total}
 		 */
-		public Builder scrollTotal(Number value) {
+		public Builder scrollTotal(long value) {
 			this.scrollTotal = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code suggest_current}
+		 * Required - API name: {@code suggest_current}
 		 */
-		public Builder suggestCurrent(Number value) {
+		public Builder suggestCurrent(long value) {
 			this.suggestCurrent = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code suggest_time_in_millis}
+		 * Required - API name: {@code suggest_time_in_millis}
 		 */
-		public Builder suggestTimeInMillis(Number value) {
+		public Builder suggestTimeInMillis(long value) {
 			this.suggestTimeInMillis = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code suggest_total}
+		 * Required - API name: {@code suggest_total}
 		 */
-		public Builder suggestTotal(Number value) {
+		public Builder suggestTotal(long value) {
 			this.suggestTotal = value;
 			return this;
 		}
@@ -405,7 +411,7 @@ public final class SearchStats implements ToJsonp {
 		/**
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable Map<String, co.elastic.clients.elasticsearch._types.SearchStats> value) {
+		public Builder groups(@Nullable Map<String, SearchStats> value) {
 			this.groups = value;
 			return this;
 		}
@@ -413,7 +419,7 @@ public final class SearchStats implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #groups(Map)}, creating the map if needed.
 		 */
-		public Builder putGroups(String key, co.elastic.clients.elasticsearch._types.SearchStats value) {
+		public Builder putGroups(String key, SearchStats value) {
 			if (this.groups == null) {
 				this.groups = new HashMap<>();
 			}
@@ -424,19 +430,15 @@ public final class SearchStats implements ToJsonp {
 		/**
 		 * Set {@link #groups(Map)} to a singleton map.
 		 */
-		public Builder groups(String key,
-				Function<co.elastic.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.SearchStats>> fn) {
-			return this.groups(Collections.singletonMap(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.SearchStats.Builder()).build()));
+		public Builder groups(String key, Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
+			return this.groups(Collections.singletonMap(key, fn.apply(new SearchStats.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #groups(Map)}, creating the map if needed.
 		 */
-		public Builder putGroups(String key,
-				Function<co.elastic.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.SearchStats>> fn) {
-			return this.putGroups(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.SearchStats.Builder()).build());
+		public Builder putGroups(String key, Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
+			return this.putGroups(key, fn.apply(new SearchStats.Builder()).build());
 		}
 
 		/**
@@ -454,28 +456,27 @@ public final class SearchStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SearchStats
+	 * Json deserializer for {@link SearchStats}
 	 */
-	public static final JsonpDeserializer<SearchStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchStats::setupSearchStatsDeserializer);
+	public static final JsonpDeserializer<SearchStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchStats::setupSearchStatsDeserializer, Builder::build);
 
 	protected static void setupSearchStatsDeserializer(DelegatingDeserializer<SearchStats.Builder> op) {
 
-		op.add(Builder::fetchCurrent, JsonpDeserializer.numberDeserializer(), "fetch_current");
-		op.add(Builder::fetchTimeInMillis, JsonpDeserializer.numberDeserializer(), "fetch_time_in_millis");
-		op.add(Builder::fetchTotal, JsonpDeserializer.numberDeserializer(), "fetch_total");
-		op.add(Builder::openContexts, JsonpDeserializer.numberDeserializer(), "open_contexts");
-		op.add(Builder::queryCurrent, JsonpDeserializer.numberDeserializer(), "query_current");
-		op.add(Builder::queryTimeInMillis, JsonpDeserializer.numberDeserializer(), "query_time_in_millis");
-		op.add(Builder::queryTotal, JsonpDeserializer.numberDeserializer(), "query_total");
-		op.add(Builder::scrollCurrent, JsonpDeserializer.numberDeserializer(), "scroll_current");
-		op.add(Builder::scrollTimeInMillis, JsonpDeserializer.numberDeserializer(), "scroll_time_in_millis");
-		op.add(Builder::scrollTotal, JsonpDeserializer.numberDeserializer(), "scroll_total");
-		op.add(Builder::suggestCurrent, JsonpDeserializer.numberDeserializer(), "suggest_current");
-		op.add(Builder::suggestTimeInMillis, JsonpDeserializer.numberDeserializer(), "suggest_time_in_millis");
-		op.add(Builder::suggestTotal, JsonpDeserializer.numberDeserializer(), "suggest_total");
-		op.add(Builder::groups, JsonpDeserializer
-				.stringMapDeserializer(co.elastic.clients.elasticsearch._types.SearchStats.DESERIALIZER), "groups");
+		op.add(Builder::fetchCurrent, JsonpDeserializer.longDeserializer(), "fetch_current");
+		op.add(Builder::fetchTimeInMillis, JsonpDeserializer.longDeserializer(), "fetch_time_in_millis");
+		op.add(Builder::fetchTotal, JsonpDeserializer.longDeserializer(), "fetch_total");
+		op.add(Builder::openContexts, JsonpDeserializer.longDeserializer(), "open_contexts");
+		op.add(Builder::queryCurrent, JsonpDeserializer.longDeserializer(), "query_current");
+		op.add(Builder::queryTimeInMillis, JsonpDeserializer.longDeserializer(), "query_time_in_millis");
+		op.add(Builder::queryTotal, JsonpDeserializer.longDeserializer(), "query_total");
+		op.add(Builder::scrollCurrent, JsonpDeserializer.longDeserializer(), "scroll_current");
+		op.add(Builder::scrollTimeInMillis, JsonpDeserializer.longDeserializer(), "scroll_time_in_millis");
+		op.add(Builder::scrollTotal, JsonpDeserializer.longDeserializer(), "scroll_total");
+		op.add(Builder::suggestCurrent, JsonpDeserializer.longDeserializer(), "suggest_current");
+		op.add(Builder::suggestTimeInMillis, JsonpDeserializer.longDeserializer(), "suggest_time_in_millis");
+		op.add(Builder::suggestTotal, JsonpDeserializer.longDeserializer(), "suggest_total");
+		op.add(Builder::groups, JsonpDeserializer.stringMapDeserializer(SearchStats._DESERIALIZER), "groups");
 
 	}
 

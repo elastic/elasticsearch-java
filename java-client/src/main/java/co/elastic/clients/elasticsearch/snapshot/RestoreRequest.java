@@ -25,15 +25,18 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.indices.PutSettingsRequest;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,16 +46,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Request
-public final class RestoreRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -70,7 +75,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	private final Boolean includeGlobalState;
 
 	@Nullable
-	private final JsonValue indexSettings;
+	private final PutSettingsRequest indexSettings;
 
 	@Nullable
 	private final List<String> indices;
@@ -86,25 +91,31 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RestoreRequest(Builder builder) {
+	public RestoreRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.masterTimeout = builder.masterTimeout;
 		this.waitForCompletion = builder.waitForCompletion;
-		this.ignoreIndexSettings = builder.ignoreIndexSettings;
+		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeAliases = builder.includeAliases;
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indexSettings = builder.indexSettings;
-		this.indices = builder.indices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
 
 	}
 
+	public RestoreRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -112,6 +123,8 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Required - A snapshot name
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public String snapshot() {
@@ -119,14 +132,18 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Should this request wait until the operation has completed before returning
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -170,7 +187,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code index_settings}
 	 */
 	@Nullable
-	public JsonValue indexSettings() {
+	public PutSettingsRequest indexSettings() {
 		return this.indexSettings;
 	}
 
@@ -209,13 +226,13 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.ignoreIndexSettings != null) {
 
@@ -249,7 +266,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		if (this.indexSettings != null) {
 
 			generator.writeKey("index_settings");
-			generator.write(this.indexSettings);
+			this.indexSettings.serialize(generator, mapper);
 
 		}
 		if (this.indices != null) {
@@ -295,7 +312,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		private String snapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -313,7 +330,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		private Boolean includeGlobalState;
 
 		@Nullable
-		private JsonValue indexSettings;
+		private PutSettingsRequest indexSettings;
 
 		@Nullable
 		private List<String> indices;
@@ -328,6 +345,8 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		private String renameReplacement;
 
 		/**
+		 * Required - A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -336,6 +355,8 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Required - A snapshot name
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
@@ -344,14 +365,18 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Should this request wait until the operation has completed before returning
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -414,9 +439,16 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public Builder indexSettings(@Nullable JsonValue value) {
+		public Builder indexSettings(@Nullable PutSettingsRequest value) {
 			this.indexSettings = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code index_settings}
+		 */
+		public Builder indexSettings(Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn) {
+			return this.indexSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 		}
 
 		/**
@@ -485,10 +517,10 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RestoreRequest
+	 * Json deserializer for {@link RestoreRequest}
 	 */
-	public static final JsonpDeserializer<RestoreRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RestoreRequest::setupRestoreRequestDeserializer);
+	public static final JsonpDeserializer<RestoreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RestoreRequest::setupRestoreRequestDeserializer, Builder::build);
 
 	protected static void setupRestoreRequestDeserializer(DelegatingDeserializer<RestoreRequest.Builder> op) {
 
@@ -497,7 +529,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::includeAliases, JsonpDeserializer.booleanDeserializer(), "include_aliases");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
-		op.add(Builder::indexSettings, JsonpDeserializer.jsonValueDeserializer(), "index_settings");
+		op.add(Builder::indexSettings, PutSettingsRequest._DESERIALIZER, "index_settings");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
@@ -511,7 +543,7 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code snapshot.restore}".
 	 */
-	public static final Endpoint<RestoreRequest, RestoreResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RestoreRequest, RestoreResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -525,22 +557,20 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
 
 				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					buf.append("/_restore");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -548,12 +578,12 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RestoreResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RestoreResponse._DESERIALIZER);
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -33,11 +34,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JsonProcessor
-public final class JsonProcessor extends ProcessorBase {
-	private final Boolean addToRoot;
+@JsonpDeserializable
+public final class JsonProcessor extends ProcessorBase implements ProcessorVariant {
+	private final boolean addToRoot;
 
 	private final String field;
 
@@ -45,37 +48,51 @@ public final class JsonProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JsonProcessor(Builder builder) {
+	public JsonProcessor(Builder builder) {
 		super(builder);
+
 		this.addToRoot = Objects.requireNonNull(builder.addToRoot, "add_to_root");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
 	}
 
+	public JsonProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code add_to_root}
+	 * {@link Processor} variant type
 	 */
-	public Boolean addToRoot() {
+	@Override
+	public String _variantType() {
+		return "json";
+	}
+
+	/**
+	 * Required - API name: {@code add_to_root}
+	 */
+	public boolean addToRoot() {
 		return this.addToRoot;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("add_to_root");
 		generator.write(this.addToRoot);
@@ -101,15 +118,15 @@ public final class JsonProcessor extends ProcessorBase {
 		private String targetField;
 
 		/**
-		 * API name: {@code add_to_root}
+		 * Required - API name: {@code add_to_root}
 		 */
-		public Builder addToRoot(Boolean value) {
+		public Builder addToRoot(boolean value) {
 			this.addToRoot = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -117,7 +134,7 @@ public final class JsonProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;
@@ -144,10 +161,10 @@ public final class JsonProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JsonProcessor
+	 * Json deserializer for {@link JsonProcessor}
 	 */
-	public static final JsonpDeserializer<JsonProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JsonProcessor::setupJsonProcessorDeserializer);
+	public static final JsonpDeserializer<JsonProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JsonProcessor::setupJsonProcessorDeserializer, Builder::build);
 
 	protected static void setupJsonProcessorDeserializer(DelegatingDeserializer<JsonProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

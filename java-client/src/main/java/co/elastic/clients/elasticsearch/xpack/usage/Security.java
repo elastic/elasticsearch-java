@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -38,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Security
+@JsonpDeserializable
 public final class Security extends Base {
 	private final FeatureToggle apiKeyService;
 
@@ -66,15 +69,16 @@ public final class Security extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Security(Builder builder) {
+	public Security(Builder builder) {
 		super(builder);
+
 		this.apiKeyService = Objects.requireNonNull(builder.apiKeyService, "api_key_service");
 		this.anonymous = Objects.requireNonNull(builder.anonymous, "anonymous");
 		this.audit = Objects.requireNonNull(builder.audit, "audit");
 		this.fips140 = Objects.requireNonNull(builder.fips140, "fips_140");
 		this.ipfilter = Objects.requireNonNull(builder.ipfilter, "ipfilter");
-		this.realms = Objects.requireNonNull(builder.realms, "realms");
-		this.roleMapping = Objects.requireNonNull(builder.roleMapping, "role_mapping");
+		this.realms = ModelTypeHelper.unmodifiableNonNull(builder.realms, "realms");
+		this.roleMapping = ModelTypeHelper.unmodifiableNonNull(builder.roleMapping, "role_mapping");
 		this.roles = Objects.requireNonNull(builder.roles, "roles");
 		this.ssl = Objects.requireNonNull(builder.ssl, "ssl");
 		this.systemKey = builder.systemKey;
@@ -83,64 +87,68 @@ public final class Security extends Base {
 
 	}
 
+	public Security(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code api_key_service}
+	 * Required - API name: {@code api_key_service}
 	 */
 	public FeatureToggle apiKeyService() {
 		return this.apiKeyService;
 	}
 
 	/**
-	 * API name: {@code anonymous}
+	 * Required - API name: {@code anonymous}
 	 */
 	public FeatureToggle anonymous() {
 		return this.anonymous;
 	}
 
 	/**
-	 * API name: {@code audit}
+	 * Required - API name: {@code audit}
 	 */
 	public Audit audit() {
 		return this.audit;
 	}
 
 	/**
-	 * API name: {@code fips_140}
+	 * Required - API name: {@code fips_140}
 	 */
 	public FeatureToggle fips140() {
 		return this.fips140;
 	}
 
 	/**
-	 * API name: {@code ipfilter}
+	 * Required - API name: {@code ipfilter}
 	 */
 	public IpFilter ipfilter() {
 		return this.ipfilter;
 	}
 
 	/**
-	 * API name: {@code realms}
+	 * Required - API name: {@code realms}
 	 */
 	public Map<String, Realm> realms() {
 		return this.realms;
 	}
 
 	/**
-	 * API name: {@code role_mapping}
+	 * Required - API name: {@code role_mapping}
 	 */
 	public Map<String, RoleMapping> roleMapping() {
 		return this.roleMapping;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public SecurityRoles roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code ssl}
+	 * Required - API name: {@code ssl}
 	 */
 	public Ssl ssl() {
 		return this.ssl;
@@ -155,42 +163,43 @@ public final class Security extends Base {
 	}
 
 	/**
-	 * API name: {@code token_service}
+	 * Required - API name: {@code token_service}
 	 */
 	public FeatureToggle tokenService() {
 		return this.tokenService;
 	}
 
 	/**
-	 * API name: {@code operator_privileges}
+	 * Required - API name: {@code operator_privileges}
 	 */
 	public Base operatorPrivileges() {
 		return this.operatorPrivileges;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("api_key_service");
-		this.apiKeyService.toJsonp(generator, mapper);
+		this.apiKeyService.serialize(generator, mapper);
 
 		generator.writeKey("anonymous");
-		this.anonymous.toJsonp(generator, mapper);
+		this.anonymous.serialize(generator, mapper);
 
 		generator.writeKey("audit");
-		this.audit.toJsonp(generator, mapper);
+		this.audit.serialize(generator, mapper);
 
 		generator.writeKey("fips_140");
-		this.fips140.toJsonp(generator, mapper);
+		this.fips140.serialize(generator, mapper);
 
 		generator.writeKey("ipfilter");
-		this.ipfilter.toJsonp(generator, mapper);
+		this.ipfilter.serialize(generator, mapper);
 
 		generator.writeKey("realms");
 		generator.writeStartObject();
 		for (Map.Entry<String, Realm> item0 : this.realms.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -199,29 +208,29 @@ public final class Security extends Base {
 		generator.writeStartObject();
 		for (Map.Entry<String, RoleMapping> item0 : this.roleMapping.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("roles");
-		this.roles.toJsonp(generator, mapper);
+		this.roles.serialize(generator, mapper);
 
 		generator.writeKey("ssl");
-		this.ssl.toJsonp(generator, mapper);
+		this.ssl.serialize(generator, mapper);
 
 		if (this.systemKey != null) {
 
 			generator.writeKey("system_key");
-			this.systemKey.toJsonp(generator, mapper);
+			this.systemKey.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("token_service");
-		this.tokenService.toJsonp(generator, mapper);
+		this.tokenService.serialize(generator, mapper);
 
 		generator.writeKey("operator_privileges");
-		this.operatorPrivileges.toJsonp(generator, mapper);
+		this.operatorPrivileges.serialize(generator, mapper);
 
 	}
 
@@ -257,7 +266,7 @@ public final class Security extends Base {
 		private Base operatorPrivileges;
 
 		/**
-		 * API name: {@code api_key_service}
+		 * Required - API name: {@code api_key_service}
 		 */
 		public Builder apiKeyService(FeatureToggle value) {
 			this.apiKeyService = value;
@@ -265,14 +274,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code api_key_service}
+		 * Required - API name: {@code api_key_service}
 		 */
 		public Builder apiKeyService(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.apiKeyService(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code anonymous}
+		 * Required - API name: {@code anonymous}
 		 */
 		public Builder anonymous(FeatureToggle value) {
 			this.anonymous = value;
@@ -280,14 +289,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code anonymous}
+		 * Required - API name: {@code anonymous}
 		 */
 		public Builder anonymous(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.anonymous(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code audit}
+		 * Required - API name: {@code audit}
 		 */
 		public Builder audit(Audit value) {
 			this.audit = value;
@@ -295,14 +304,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code audit}
+		 * Required - API name: {@code audit}
 		 */
 		public Builder audit(Function<Audit.Builder, ObjectBuilder<Audit>> fn) {
 			return this.audit(fn.apply(new Audit.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code fips_140}
+		 * Required - API name: {@code fips_140}
 		 */
 		public Builder fips140(FeatureToggle value) {
 			this.fips140 = value;
@@ -310,14 +319,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code fips_140}
+		 * Required - API name: {@code fips_140}
 		 */
 		public Builder fips140(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.fips140(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ipfilter}
+		 * Required - API name: {@code ipfilter}
 		 */
 		public Builder ipfilter(IpFilter value) {
 			this.ipfilter = value;
@@ -325,14 +334,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code ipfilter}
+		 * Required - API name: {@code ipfilter}
 		 */
 		public Builder ipfilter(Function<IpFilter.Builder, ObjectBuilder<IpFilter>> fn) {
 			return this.ipfilter(fn.apply(new IpFilter.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code realms}
+		 * Required - API name: {@code realms}
 		 */
 		public Builder realms(Map<String, Realm> value) {
 			this.realms = value;
@@ -365,7 +374,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code role_mapping}
+		 * Required - API name: {@code role_mapping}
 		 */
 		public Builder roleMapping(Map<String, RoleMapping> value) {
 			this.roleMapping = value;
@@ -398,7 +407,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(SecurityRoles value) {
 			this.roles = value;
@@ -406,14 +415,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(Function<SecurityRoles.Builder, ObjectBuilder<SecurityRoles>> fn) {
 			return this.roles(fn.apply(new SecurityRoles.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ssl}
+		 * Required - API name: {@code ssl}
 		 */
 		public Builder ssl(Ssl value) {
 			this.ssl = value;
@@ -421,7 +430,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code ssl}
+		 * Required - API name: {@code ssl}
 		 */
 		public Builder ssl(Function<Ssl.Builder, ObjectBuilder<Ssl>> fn) {
 			return this.ssl(fn.apply(new Ssl.Builder()).build());
@@ -443,7 +452,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code token_service}
+		 * Required - API name: {@code token_service}
 		 */
 		public Builder tokenService(FeatureToggle value) {
 			this.tokenService = value;
@@ -451,14 +460,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code token_service}
+		 * Required - API name: {@code token_service}
 		 */
 		public Builder tokenService(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.tokenService(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code operator_privileges}
+		 * Required - API name: {@code operator_privileges}
 		 */
 		public Builder operatorPrivileges(Base value) {
 			this.operatorPrivileges = value;
@@ -466,7 +475,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code operator_privileges}
+		 * Required - API name: {@code operator_privileges}
 		 */
 		public Builder operatorPrivileges(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.operatorPrivileges(fn.apply(new Base.Builder()).build());
@@ -492,25 +501,26 @@ public final class Security extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Security
+	 * Json deserializer for {@link Security}
 	 */
-	public static final JsonpDeserializer<Security> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Security::setupSecurityDeserializer);
+	public static final JsonpDeserializer<Security> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Security::setupSecurityDeserializer, Builder::build);
 
 	protected static void setupSecurityDeserializer(DelegatingDeserializer<Security.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::apiKeyService, FeatureToggle.DESERIALIZER, "api_key_service");
-		op.add(Builder::anonymous, FeatureToggle.DESERIALIZER, "anonymous");
-		op.add(Builder::audit, Audit.DESERIALIZER, "audit");
-		op.add(Builder::fips140, FeatureToggle.DESERIALIZER, "fips_140");
-		op.add(Builder::ipfilter, IpFilter.DESERIALIZER, "ipfilter");
-		op.add(Builder::realms, JsonpDeserializer.stringMapDeserializer(Realm.DESERIALIZER), "realms");
-		op.add(Builder::roleMapping, JsonpDeserializer.stringMapDeserializer(RoleMapping.DESERIALIZER), "role_mapping");
-		op.add(Builder::roles, SecurityRoles.DESERIALIZER, "roles");
-		op.add(Builder::ssl, Ssl.DESERIALIZER, "ssl");
-		op.add(Builder::systemKey, FeatureToggle.DESERIALIZER, "system_key");
-		op.add(Builder::tokenService, FeatureToggle.DESERIALIZER, "token_service");
-		op.add(Builder::operatorPrivileges, Base.DESERIALIZER, "operator_privileges");
+		op.add(Builder::apiKeyService, FeatureToggle._DESERIALIZER, "api_key_service");
+		op.add(Builder::anonymous, FeatureToggle._DESERIALIZER, "anonymous");
+		op.add(Builder::audit, Audit._DESERIALIZER, "audit");
+		op.add(Builder::fips140, FeatureToggle._DESERIALIZER, "fips_140");
+		op.add(Builder::ipfilter, IpFilter._DESERIALIZER, "ipfilter");
+		op.add(Builder::realms, JsonpDeserializer.stringMapDeserializer(Realm._DESERIALIZER), "realms");
+		op.add(Builder::roleMapping, JsonpDeserializer.stringMapDeserializer(RoleMapping._DESERIALIZER),
+				"role_mapping");
+		op.add(Builder::roles, SecurityRoles._DESERIALIZER, "roles");
+		op.add(Builder::ssl, Ssl._DESERIALIZER, "ssl");
+		op.add(Builder::systemKey, FeatureToggle._DESERIALIZER, "system_key");
+		op.add(Builder::tokenService, FeatureToggle._DESERIALIZER, "token_service");
+		op.add(Builder::operatorPrivileges, Base._DESERIALIZER, "operator_privileges");
 
 	}
 

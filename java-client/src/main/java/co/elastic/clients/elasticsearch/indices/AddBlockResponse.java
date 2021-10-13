@@ -26,10 +26,12 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.indices.add_block.IndicesBlockStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,36 +43,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.add_block.Response
+@JsonpDeserializable
 public final class AddBlockResponse extends AcknowledgedResponseBase {
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	private final List<IndicesBlockStatus> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AddBlockResponse(Builder builder) {
+	public AddBlockResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 
 	}
 
+	public AddBlockResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<IndicesBlockStatus> indices() {
 		return this.indices;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -78,7 +87,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		generator.writeKey("indices");
 		generator.writeStartArray();
 		for (IndicesBlockStatus item0 : this.indices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -98,15 +107,15 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		private List<IndicesBlockStatus> indices;
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<IndicesBlockStatus> value) {
 			this.indices = value;
@@ -114,7 +123,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(IndicesBlockStatus... value) {
 			this.indices = Arrays.asList(value);
@@ -166,15 +175,15 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AddBlockResponse
+	 * Json deserializer for {@link AddBlockResponse}
 	 */
-	public static final JsonpDeserializer<AddBlockResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AddBlockResponse::setupAddBlockResponseDeserializer);
+	public static final JsonpDeserializer<AddBlockResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AddBlockResponse::setupAddBlockResponseDeserializer, Builder::build);
 
 	protected static void setupAddBlockResponseDeserializer(DelegatingDeserializer<AddBlockResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesBlockStatus.DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesBlockStatus._DESERIALIZER), "indices");
 
 	}
 

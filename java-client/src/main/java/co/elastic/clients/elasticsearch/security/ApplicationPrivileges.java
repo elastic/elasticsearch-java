@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ApplicationPrivileges
-public final class ApplicationPrivileges implements ToJsonp {
+@JsonpDeserializable
+public final class ApplicationPrivileges implements JsonpSerializable {
 	private final String application;
 
 	private final List<String> privileges;
@@ -48,15 +52,21 @@ public final class ApplicationPrivileges implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ApplicationPrivileges(Builder builder) {
+	public ApplicationPrivileges(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
-		this.privileges = Objects.requireNonNull(builder.privileges, "privileges");
-		this.resources = Objects.requireNonNull(builder.resources, "resources");
+		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
+		this.resources = ModelTypeHelper.unmodifiableNonNull(builder.resources, "resources");
 
 	}
 
+	public ApplicationPrivileges(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The name of the application to which this entry applies.
+	 * <p>
 	 * API name: {@code application}
 	 */
 	public String application() {
@@ -64,6 +74,9 @@ public final class ApplicationPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * Required - A list of strings, where each element is the name of an
+	 * application privilege or action.
+	 * <p>
 	 * API name: {@code privileges}
 	 */
 	public List<String> privileges() {
@@ -71,6 +84,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * Required - A list resources to which the privileges are applied.
+	 * <p>
 	 * API name: {@code resources}
 	 */
 	public List<String> resources() {
@@ -80,13 +95,13 @@ public final class ApplicationPrivileges implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("application");
 		generator.write(this.application);
@@ -122,6 +137,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 		private List<String> resources;
 
 		/**
+		 * Required - The name of the application to which this entry applies.
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(String value) {
@@ -130,6 +147,9 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Required - A list of strings, where each element is the name of an
+		 * application privilege or action.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
 		public Builder privileges(List<String> value) {
@@ -138,6 +158,9 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Required - A list of strings, where each element is the name of an
+		 * application privilege or action.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
 		public Builder privileges(String... value) {
@@ -157,6 +180,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Required - A list resources to which the privileges are applied.
+		 * <p>
 		 * API name: {@code resources}
 		 */
 		public Builder resources(List<String> value) {
@@ -165,6 +190,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Required - A list resources to which the privileges are applied.
+		 * <p>
 		 * API name: {@code resources}
 		 */
 		public Builder resources(String... value) {
@@ -198,10 +225,10 @@ public final class ApplicationPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ApplicationPrivileges
+	 * Json deserializer for {@link ApplicationPrivileges}
 	 */
-	public static final JsonpDeserializer<ApplicationPrivileges> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ApplicationPrivileges::setupApplicationPrivilegesDeserializer);
+	public static final JsonpDeserializer<ApplicationPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ApplicationPrivileges::setupApplicationPrivilegesDeserializer, Builder::build);
 
 	protected static void setupApplicationPrivilegesDeserializer(
 			DelegatingDeserializer<ApplicationPrivileges.Builder> op) {

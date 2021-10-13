@@ -25,13 +25,16 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,10 +43,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Request
-public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class UpdateFilterRequest extends RequestBase implements JsonpSerializable {
 	private final String filterId;
 
 	@Nullable
@@ -57,16 +62,22 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateFilterRequest(Builder builder) {
+	public UpdateFilterRequest(Builder builder) {
 
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.addItems = builder.addItems;
+		this.addItems = ModelTypeHelper.unmodifiable(builder.addItems);
 		this.description = builder.description;
-		this.removeItems = builder.removeItems;
+		this.removeItems = ModelTypeHelper.unmodifiable(builder.removeItems);
 
 	}
 
+	public UpdateFilterRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The ID of the filter to update
+	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	public String filterId() {
@@ -100,13 +111,13 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.addItems != null) {
 
@@ -157,6 +168,8 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 		private List<String> removeItems;
 
 		/**
+		 * Required - The ID of the filter to update
+		 * <p>
 		 * API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {
@@ -241,10 +254,10 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateFilterRequest
+	 * Json deserializer for {@link UpdateFilterRequest}
 	 */
-	public static final JsonpDeserializer<UpdateFilterRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateFilterRequest::setupUpdateFilterRequestDeserializer);
+	public static final JsonpDeserializer<UpdateFilterRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateFilterRequest::setupUpdateFilterRequestDeserializer, Builder::build);
 
 	protected static void setupUpdateFilterRequestDeserializer(DelegatingDeserializer<UpdateFilterRequest.Builder> op) {
 
@@ -261,7 +274,7 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.update_filter}".
 	 */
-	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -274,19 +287,18 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.filterId() != null)
-					propsSet |= _filterId;
+				propsSet |= _filterId;
 
 				if (propsSet == (_filterId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/filters");
 					buf.append("/");
-					buf.append(request.filterId);
+					SimpleEndpoint.pathEncode(request.filterId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -294,5 +306,5 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateFilterResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateFilterResponse._DESERIALIZER);
 }

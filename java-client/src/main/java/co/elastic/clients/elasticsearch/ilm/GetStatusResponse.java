@@ -23,50 +23,57 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
+import co.elastic.clients.elasticsearch._types.LifecycleOperationMode;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_status.Response
-public final class GetStatusResponse implements ToJsonp {
-	private final JsonValue operationMode;
+@JsonpDeserializable
+public final class GetStatusResponse implements JsonpSerializable {
+	private final LifecycleOperationMode operationMode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetStatusResponse(Builder builder) {
+	public GetStatusResponse(Builder builder) {
 
 		this.operationMode = Objects.requireNonNull(builder.operationMode, "operation_mode");
 
 	}
 
+	public GetStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code operation_mode}
+	 * Required - API name: {@code operation_mode}
 	 */
-	public JsonValue operationMode() {
+	public LifecycleOperationMode operationMode() {
 		return this.operationMode;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("operation_mode");
-		generator.write(this.operationMode);
+		this.operationMode.serialize(generator, mapper);
 
 	}
 
@@ -76,12 +83,12 @@ public final class GetStatusResponse implements ToJsonp {
 	 * Builder for {@link GetStatusResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetStatusResponse> {
-		private JsonValue operationMode;
+		private LifecycleOperationMode operationMode;
 
 		/**
-		 * API name: {@code operation_mode}
+		 * Required - API name: {@code operation_mode}
 		 */
-		public Builder operationMode(JsonValue value) {
+		public Builder operationMode(LifecycleOperationMode value) {
 			this.operationMode = value;
 			return this;
 		}
@@ -101,14 +108,14 @@ public final class GetStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetStatusResponse
+	 * Json deserializer for {@link GetStatusResponse}
 	 */
-	public static final JsonpDeserializer<GetStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer);
+	public static final JsonpDeserializer<GetStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer, Builder::build);
 
 	protected static void setupGetStatusResponseDeserializer(DelegatingDeserializer<GetStatusResponse.Builder> op) {
 
-		op.add(Builder::operationMode, JsonpDeserializer.jsonValueDeserializer(), "operation_mode");
+		op.add(Builder::operationMode, LifecycleOperationMode._DESERIALIZER, "operation_mode");
 
 	}
 

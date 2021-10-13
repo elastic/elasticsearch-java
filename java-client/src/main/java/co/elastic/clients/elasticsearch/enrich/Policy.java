@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Policy
-public final class Policy implements ToJsonp {
+@JsonpDeserializable
+public final class Policy implements JsonpSerializable {
 	private final List<String> enrichFields;
 
 	private final List<String> indices;
@@ -54,32 +58,36 @@ public final class Policy implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Policy(Builder builder) {
+	public Policy(Builder builder) {
 
-		this.enrichFields = Objects.requireNonNull(builder.enrichFields, "enrich_fields");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.enrichFields = ModelTypeHelper.unmodifiableNonNull(builder.enrichFields, "enrich_fields");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.matchField = Objects.requireNonNull(builder.matchField, "match_field");
 		this.query = builder.query;
 		this.name = builder.name;
 
 	}
 
+	public Policy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code enrich_fields}
+	 * Required - API name: {@code enrich_fields}
 	 */
 	public List<String> enrichFields() {
 		return this.enrichFields;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code match_field}
+	 * Required - API name: {@code match_field}
 	 */
 	public String matchField() {
 		return this.matchField;
@@ -104,13 +112,13 @@ public final class Policy implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("enrich_fields");
 		generator.writeStartArray();
@@ -165,7 +173,7 @@ public final class Policy implements ToJsonp {
 		private String name;
 
 		/**
-		 * API name: {@code enrich_fields}
+		 * Required - API name: {@code enrich_fields}
 		 */
 		public Builder enrichFields(List<String> value) {
 			this.enrichFields = value;
@@ -173,7 +181,7 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code enrich_fields}
+		 * Required - API name: {@code enrich_fields}
 		 */
 		public Builder enrichFields(String... value) {
 			this.enrichFields = Arrays.asList(value);
@@ -192,7 +200,7 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -200,7 +208,7 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -219,7 +227,7 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code match_field}
+		 * Required - API name: {@code match_field}
 		 */
 		public Builder matchField(String value) {
 			this.matchField = value;
@@ -257,10 +265,10 @@ public final class Policy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Policy
+	 * Json deserializer for {@link Policy}
 	 */
-	public static final JsonpDeserializer<Policy> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Policy::setupPolicyDeserializer);
+	public static final JsonpDeserializer<Policy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Policy::setupPolicyDeserializer, Builder::build);
 
 	protected static void setupPolicyDeserializer(DelegatingDeserializer<Policy.Builder> op) {
 

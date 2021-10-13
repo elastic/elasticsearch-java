@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get_settings.Response
-public final class GetSettingsResponse extends AdditionalProperties<String, IndexState> {
+@JsonpDeserializable
+public final class GetSettingsResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetSettingsResponse(Builder builder) {
+	public GetSettingsResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetSettingsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -46,7 +54,7 @@ public final class GetSettingsResponse extends AdditionalProperties<String, Inde
 	/**
 	 * Builder for {@link GetSettingsResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexState, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetSettingsResponse> {
 		@Override
@@ -71,14 +79,14 @@ public final class GetSettingsResponse extends AdditionalProperties<String, Inde
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetSettingsResponse
+	 * Json deserializer for {@link GetSettingsResponse}
 	 */
-	public static final JsonpDeserializer<GetSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
+	public static final JsonpDeserializer<GetSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer, Builder::build);
 
 	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexState.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				IndexState._DESERIALIZER);
 
 	}
 

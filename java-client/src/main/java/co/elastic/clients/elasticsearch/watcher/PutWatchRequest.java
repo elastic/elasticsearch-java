@@ -25,19 +25,22 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.TransformContainer;
+import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,62 +50,69 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Request
-public final class PutWatchRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
 	private final Boolean active;
 
 	@Nullable
-	private final Number ifPrimaryTerm;
+	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Number ifSequenceNumber;
+	private final Long ifSequenceNumber;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final Map<String, Action> actions;
 
 	@Nullable
-	private final ConditionContainer condition;
+	private final Condition condition;
 
 	@Nullable
-	private final InputContainer input;
+	private final Input input;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final String throttlePeriod;
 
 	@Nullable
-	private final TransformContainer transform;
+	private final Transform transform;
 
 	@Nullable
-	private final TriggerContainer trigger;
+	private final Trigger trigger;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutWatchRequest(Builder builder) {
+	public PutWatchRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.active = builder.active;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSequenceNumber = builder.ifSequenceNumber;
 		this.version = builder.version;
-		this.actions = builder.actions;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.condition = builder.condition;
 		this.input = builder.input;
-		this.metadata = builder.metadata;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.throttlePeriod = builder.throttlePeriod;
 		this.transform = builder.transform;
 		this.trigger = builder.trigger;
 
 	}
 
+	public PutWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - Watch ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -110,6 +120,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether the watch is in/active by default
+	 * <p>
 	 * API name: {@code active}
 	 */
 	@Nullable
@@ -118,10 +130,13 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * only update the watch if the last operation that has changed the watch has
+	 * the specified primary term
+	 * <p>
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Number ifPrimaryTerm() {
+	public Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -129,15 +144,17 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code if_sequence_number}
 	 */
 	@Nullable
-	public Number ifSequenceNumber() {
+	public Long ifSequenceNumber() {
 		return this.ifSequenceNumber;
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -153,7 +170,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code condition}
 	 */
 	@Nullable
-	public ConditionContainer condition() {
+	public Condition condition() {
 		return this.condition;
 	}
 
@@ -161,7 +178,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code input}
 	 */
 	@Nullable
-	public InputContainer input() {
+	public Input input() {
 		return this.input;
 	}
 
@@ -169,7 +186,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -185,7 +202,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code transform}
 	 */
 	@Nullable
-	public TransformContainer transform() {
+	public Transform transform() {
 		return this.transform;
 	}
 
@@ -193,20 +210,20 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code trigger}
 	 */
 	@Nullable
-	public TriggerContainer trigger() {
+	public Trigger trigger() {
 		return this.trigger;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actions != null) {
 
@@ -214,7 +231,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -223,22 +240,22 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		if (this.condition != null) {
 
 			generator.writeKey("condition");
-			this.condition.toJsonp(generator, mapper);
+			this.condition.serialize(generator, mapper);
 
 		}
 		if (this.input != null) {
 
 			generator.writeKey("input");
-			this.input.toJsonp(generator, mapper);
+			this.input.serialize(generator, mapper);
 
 		}
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -253,13 +270,13 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		if (this.transform != null) {
 
 			generator.writeKey("transform");
-			this.transform.toJsonp(generator, mapper);
+			this.transform.serialize(generator, mapper);
 
 		}
 		if (this.trigger != null) {
 
 			generator.writeKey("trigger");
-			this.trigger.toJsonp(generator, mapper);
+			this.trigger.serialize(generator, mapper);
 
 		}
 
@@ -277,36 +294,38 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		private Boolean active;
 
 		@Nullable
-		private Number ifPrimaryTerm;
+		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Number ifSequenceNumber;
+		private Long ifSequenceNumber;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private Map<String, Action> actions;
 
 		@Nullable
-		private ConditionContainer condition;
+		private Condition condition;
 
 		@Nullable
-		private InputContainer input;
+		private Input input;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private String throttlePeriod;
 
 		@Nullable
-		private TransformContainer transform;
+		private Transform transform;
 
 		@Nullable
-		private TriggerContainer trigger;
+		private Trigger trigger;
 
 		/**
+		 * Required - Watch ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -315,6 +334,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether the watch is in/active by default
+		 * <p>
 		 * API name: {@code active}
 		 */
 		public Builder active(@Nullable Boolean value) {
@@ -323,9 +344,12 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * only update the watch if the last operation that has changed the watch has
+		 * the specified primary term
+		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder ifPrimaryTerm(@Nullable Number value) {
+		public Builder ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -333,15 +357,17 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code if_sequence_number}
 		 */
-		public Builder ifSequenceNumber(@Nullable Number value) {
+		public Builder ifSequenceNumber(@Nullable Long value) {
 			this.ifSequenceNumber = value;
 			return this;
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -382,7 +408,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(@Nullable ConditionContainer value) {
+		public Builder condition(@Nullable Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -390,14 +416,14 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(Function<ConditionContainer.Builder, ObjectBuilder<ConditionContainer>> fn) {
-			return this.condition(fn.apply(new ConditionContainer.Builder()).build());
+		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(@Nullable InputContainer value) {
+		public Builder input(@Nullable Input value) {
 			this.input = value;
 			return this;
 		}
@@ -405,14 +431,14 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(Function<InputContainer.Builder, ObjectBuilder<InputContainer>> fn) {
-			return this.input(fn.apply(new InputContainer.Builder()).build());
+		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -420,7 +446,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -439,7 +465,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(@Nullable TransformContainer value) {
+		public Builder transform(@Nullable Transform value) {
 			this.transform = value;
 			return this;
 		}
@@ -447,14 +473,14 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Function<TransformContainer.Builder, ObjectBuilder<TransformContainer>> fn) {
-			return this.transform(fn.apply(new TransformContainer.Builder()).build());
+		public Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code trigger}
 		 */
-		public Builder trigger(@Nullable TriggerContainer value) {
+		public Builder trigger(@Nullable Trigger value) {
 			this.trigger = value;
 			return this;
 		}
@@ -462,8 +488,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code trigger}
 		 */
-		public Builder trigger(Function<TriggerContainer.Builder, ObjectBuilder<TriggerContainer>> fn) {
-			return this.trigger(fn.apply(new TriggerContainer.Builder()).build());
+		public Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
+			return this.trigger(fn.apply(new Trigger.Builder()).build());
 		}
 
 		/**
@@ -481,21 +507,20 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutWatchRequest
+	 * Json deserializer for {@link PutWatchRequest}
 	 */
-	public static final JsonpDeserializer<PutWatchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutWatchRequest::setupPutWatchRequestDeserializer);
+	public static final JsonpDeserializer<PutWatchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutWatchRequest::setupPutWatchRequestDeserializer, Builder::build);
 
 	protected static void setupPutWatchRequestDeserializer(DelegatingDeserializer<PutWatchRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action.DESERIALIZER), "actions");
-		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
-		op.add(Builder::input, InputContainer.DESERIALIZER, "input");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action._DESERIALIZER), "actions");
+		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
+		op.add(Builder::input, Input._DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
-		op.add(Builder::transform, TransformContainer.DESERIALIZER, "transform");
-		op.add(Builder::trigger, TriggerContainer.DESERIALIZER, "trigger");
+		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
+		op.add(Builder::trigger, Trigger._DESERIALIZER, "trigger");
 
 	}
 
@@ -504,7 +529,7 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code watcher.put_watch}".
 	 */
-	public static final Endpoint<PutWatchRequest, PutWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutWatchRequest, PutWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -517,18 +542,17 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -539,15 +563,15 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 					params.put("active", String.valueOf(request.active));
 				}
 				if (request.ifPrimaryTerm != null) {
-					params.put("if_primary_term", request.ifPrimaryTerm.toString());
+					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
 				if (request.ifSequenceNumber != null) {
-					params.put("if_sequence_number", request.ifSequenceNumber.toString());
+					params.put("if_sequence_number", String.valueOf(request.ifSequenceNumber));
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutWatchResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutWatchResponse._DESERIALIZER);
 }

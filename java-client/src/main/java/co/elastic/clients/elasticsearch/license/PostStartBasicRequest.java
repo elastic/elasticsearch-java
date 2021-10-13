@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,22 +36,31 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Request
+
 public final class PostStartBasicRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartBasicRequest(Builder builder) {
+	public PostStartBasicRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 
 	}
 
+	public PostStartBasicRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * <p>
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
@@ -67,6 +78,8 @@ public final class PostStartBasicRequest extends RequestBase {
 		private Boolean acknowledge;
 
 		/**
+		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * <p>
 		 * API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(@Nullable Boolean value) {
@@ -91,7 +104,7 @@ public final class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.post_start_basic}".
 	 */
-	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -112,5 +125,5 @@ public final class PostStartBasicRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, PostStartBasicResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PostStartBasicResponse._DESERIALIZER);
 }

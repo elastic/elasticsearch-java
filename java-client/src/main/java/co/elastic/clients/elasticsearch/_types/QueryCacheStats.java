@@ -24,40 +24,43 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.QueryCacheStats
-public final class QueryCacheStats implements ToJsonp {
-	private final Number cacheCount;
+@JsonpDeserializable
+public final class QueryCacheStats implements JsonpSerializable {
+	private final int cacheCount;
 
-	private final Number cacheSize;
+	private final int cacheSize;
 
-	private final Number evictions;
+	private final int evictions;
 
-	private final Number hitCount;
+	private final int hitCount;
 
 	@Nullable
-	private final JsonValue memorySize;
+	private final String memorySize;
 
-	private final Number memorySizeInBytes;
+	private final int memorySizeInBytes;
 
-	private final Number missCount;
+	private final int missCount;
 
-	private final Number totalCount;
+	private final int totalCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryCacheStats(Builder builder) {
+	public QueryCacheStats(Builder builder) {
 
 		this.cacheCount = Objects.requireNonNull(builder.cacheCount, "cache_count");
 		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
@@ -70,31 +73,35 @@ public final class QueryCacheStats implements ToJsonp {
 
 	}
 
+	public QueryCacheStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cache_count}
+	 * Required - API name: {@code cache_count}
 	 */
-	public Number cacheCount() {
+	public int cacheCount() {
 		return this.cacheCount;
 	}
 
 	/**
-	 * API name: {@code cache_size}
+	 * Required - API name: {@code cache_size}
 	 */
-	public Number cacheSize() {
+	public int cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
-	 * API name: {@code evictions}
+	 * Required - API name: {@code evictions}
 	 */
-	public Number evictions() {
+	public int evictions() {
 		return this.evictions;
 	}
 
 	/**
-	 * API name: {@code hit_count}
+	 * Required - API name: {@code hit_count}
 	 */
-	public Number hitCount() {
+	public int hitCount() {
 		return this.hitCount;
 	}
 
@@ -102,53 +109,53 @@ public final class QueryCacheStats implements ToJsonp {
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public JsonValue memorySize() {
+	public String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
-	 * API name: {@code memory_size_in_bytes}
+	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public Number memorySizeInBytes() {
+	public int memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
-	 * API name: {@code miss_count}
+	 * Required - API name: {@code miss_count}
 	 */
-	public Number missCount() {
+	public int missCount() {
 		return this.missCount;
 	}
 
 	/**
-	 * API name: {@code total_count}
+	 * Required - API name: {@code total_count}
 	 */
-	public Number totalCount() {
+	public int totalCount() {
 		return this.totalCount;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cache_count");
-		generator.write(this.cacheCount.doubleValue());
+		generator.write(this.cacheCount);
 
 		generator.writeKey("cache_size");
-		generator.write(this.cacheSize.doubleValue());
+		generator.write(this.cacheSize);
 
 		generator.writeKey("evictions");
-		generator.write(this.evictions.doubleValue());
+		generator.write(this.evictions);
 
 		generator.writeKey("hit_count");
-		generator.write(this.hitCount.doubleValue());
+		generator.write(this.hitCount);
 
 		if (this.memorySize != null) {
 
@@ -158,13 +165,13 @@ public final class QueryCacheStats implements ToJsonp {
 		}
 
 		generator.writeKey("memory_size_in_bytes");
-		generator.write(this.memorySizeInBytes.doubleValue());
+		generator.write(this.memorySizeInBytes);
 
 		generator.writeKey("miss_count");
-		generator.write(this.missCount.doubleValue());
+		generator.write(this.missCount);
 
 		generator.writeKey("total_count");
-		generator.write(this.totalCount.doubleValue());
+		generator.write(this.totalCount);
 
 	}
 
@@ -174,51 +181,51 @@ public final class QueryCacheStats implements ToJsonp {
 	 * Builder for {@link QueryCacheStats}.
 	 */
 	public static class Builder implements ObjectBuilder<QueryCacheStats> {
-		private Number cacheCount;
+		private Integer cacheCount;
 
-		private Number cacheSize;
+		private Integer cacheSize;
 
-		private Number evictions;
+		private Integer evictions;
 
-		private Number hitCount;
+		private Integer hitCount;
 
 		@Nullable
-		private JsonValue memorySize;
+		private String memorySize;
 
-		private Number memorySizeInBytes;
+		private Integer memorySizeInBytes;
 
-		private Number missCount;
+		private Integer missCount;
 
-		private Number totalCount;
+		private Integer totalCount;
 
 		/**
-		 * API name: {@code cache_count}
+		 * Required - API name: {@code cache_count}
 		 */
-		public Builder cacheCount(Number value) {
+		public Builder cacheCount(int value) {
 			this.cacheCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code cache_size}
+		 * Required - API name: {@code cache_size}
 		 */
-		public Builder cacheSize(Number value) {
+		public Builder cacheSize(int value) {
 			this.cacheSize = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code evictions}
+		 * Required - API name: {@code evictions}
 		 */
-		public Builder evictions(Number value) {
+		public Builder evictions(int value) {
 			this.evictions = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code hit_count}
+		 * Required - API name: {@code hit_count}
 		 */
-		public Builder hitCount(Number value) {
+		public Builder hitCount(int value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -226,31 +233,31 @@ public final class QueryCacheStats implements ToJsonp {
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable JsonValue value) {
+		public Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code memory_size_in_bytes}
+		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Number value) {
+		public Builder memorySizeInBytes(int value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code miss_count}
+		 * Required - API name: {@code miss_count}
 		 */
-		public Builder missCount(Number value) {
+		public Builder missCount(int value) {
 			this.missCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total_count}
+		 * Required - API name: {@code total_count}
 		 */
-		public Builder totalCount(Number value) {
+		public Builder totalCount(int value) {
 			this.totalCount = value;
 			return this;
 		}
@@ -270,21 +277,21 @@ public final class QueryCacheStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryCacheStats
+	 * Json deserializer for {@link QueryCacheStats}
 	 */
-	public static final JsonpDeserializer<QueryCacheStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryCacheStats::setupQueryCacheStatsDeserializer);
+	public static final JsonpDeserializer<QueryCacheStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			QueryCacheStats::setupQueryCacheStatsDeserializer, Builder::build);
 
 	protected static void setupQueryCacheStatsDeserializer(DelegatingDeserializer<QueryCacheStats.Builder> op) {
 
-		op.add(Builder::cacheCount, JsonpDeserializer.numberDeserializer(), "cache_count");
-		op.add(Builder::cacheSize, JsonpDeserializer.numberDeserializer(), "cache_size");
-		op.add(Builder::evictions, JsonpDeserializer.numberDeserializer(), "evictions");
-		op.add(Builder::hitCount, JsonpDeserializer.numberDeserializer(), "hit_count");
-		op.add(Builder::memorySize, JsonpDeserializer.jsonValueDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
-		op.add(Builder::missCount, JsonpDeserializer.numberDeserializer(), "miss_count");
-		op.add(Builder::totalCount, JsonpDeserializer.numberDeserializer(), "total_count");
+		op.add(Builder::cacheCount, JsonpDeserializer.integerDeserializer(), "cache_count");
+		op.add(Builder::cacheSize, JsonpDeserializer.integerDeserializer(), "cache_size");
+		op.add(Builder::evictions, JsonpDeserializer.integerDeserializer(), "evictions");
+		op.add(Builder::hitCount, JsonpDeserializer.integerDeserializer(), "hit_count");
+		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.integerDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::missCount, JsonpDeserializer.integerDeserializer(), "miss_count");
+		op.add(Builder::totalCount, JsonpDeserializer.integerDeserializer(), "total_count");
 
 	}
 

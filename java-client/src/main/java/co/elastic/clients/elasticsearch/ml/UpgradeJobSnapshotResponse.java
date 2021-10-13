@@ -24,36 +24,44 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Response
-public final class UpgradeJobSnapshotResponse implements ToJsonp {
+@JsonpDeserializable
+public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private final String node;
 
-	private final Boolean completed;
+	private final boolean completed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpgradeJobSnapshotResponse(Builder builder) {
+	public UpgradeJobSnapshotResponse(Builder builder) {
 
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.completed = Objects.requireNonNull(builder.completed, "completed");
 
 	}
 
+	public UpgradeJobSnapshotResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The ID of the assigned node for the upgrade task if it is still running.
-	 *
+	 * Required - The ID of the assigned node for the upgrade task if it is still
+	 * running.
+	 * <p>
 	 * API name: {@code node}
 	 */
 	public String node() {
@@ -61,24 +69,25 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 	}
 
 	/**
-	 * When true, this means the task is complete. When false, it is still running.
-	 *
+	 * Required - When true, this means the task is complete. When false, it is
+	 * still running.
+	 * <p>
 	 * API name: {@code completed}
 	 */
-	public Boolean completed() {
+	public boolean completed() {
 		return this.completed;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -99,8 +108,9 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 		private Boolean completed;
 
 		/**
-		 * The ID of the assigned node for the upgrade task if it is still running.
-		 *
+		 * Required - The ID of the assigned node for the upgrade task if it is still
+		 * running.
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(String value) {
@@ -109,11 +119,12 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 		}
 
 		/**
-		 * When true, this means the task is complete. When false, it is still running.
-		 *
+		 * Required - When true, this means the task is complete. When false, it is
+		 * still running.
+		 * <p>
 		 * API name: {@code completed}
 		 */
-		public Builder completed(Boolean value) {
+		public Builder completed(boolean value) {
 			this.completed = value;
 			return this;
 		}
@@ -133,10 +144,10 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpgradeJobSnapshotResponse
+	 * Json deserializer for {@link UpgradeJobSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<UpgradeJobSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpgradeJobSnapshotResponse::setupUpgradeJobSnapshotResponseDeserializer);
+	public static final JsonpDeserializer<UpgradeJobSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, UpgradeJobSnapshotResponse::setupUpgradeJobSnapshotResponseDeserializer, Builder::build);
 
 	protected static void setupUpgradeJobSnapshotResponseDeserializer(
 			DelegatingDeserializer<UpgradeJobSnapshotResponse.Builder> op) {

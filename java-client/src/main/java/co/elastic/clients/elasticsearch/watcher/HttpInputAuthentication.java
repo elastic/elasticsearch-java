@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,19 +37,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputAuthentication
-public final class HttpInputAuthentication implements ToJsonp {
+@JsonpDeserializable
+public final class HttpInputAuthentication implements JsonpSerializable {
 	private final HttpInputBasicAuthentication basic;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInputAuthentication(Builder builder) {
+	public HttpInputAuthentication(Builder builder) {
 
 		this.basic = Objects.requireNonNull(builder.basic, "basic");
 
 	}
 
+	public HttpInputAuthentication(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code basic}
+	 * Required - API name: {@code basic}
 	 */
 	public HttpInputBasicAuthentication basic() {
 		return this.basic;
@@ -57,16 +63,16 @@ public final class HttpInputAuthentication implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("basic");
-		this.basic.toJsonp(generator, mapper);
+		this.basic.serialize(generator, mapper);
 
 	}
 
@@ -79,7 +85,7 @@ public final class HttpInputAuthentication implements ToJsonp {
 		private HttpInputBasicAuthentication basic;
 
 		/**
-		 * API name: {@code basic}
+		 * Required - API name: {@code basic}
 		 */
 		public Builder basic(HttpInputBasicAuthentication value) {
 			this.basic = value;
@@ -87,7 +93,7 @@ public final class HttpInputAuthentication implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code basic}
+		 * Required - API name: {@code basic}
 		 */
 		public Builder basic(
 				Function<HttpInputBasicAuthentication.Builder, ObjectBuilder<HttpInputBasicAuthentication>> fn) {
@@ -109,15 +115,15 @@ public final class HttpInputAuthentication implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInputAuthentication
+	 * Json deserializer for {@link HttpInputAuthentication}
 	 */
-	public static final JsonpDeserializer<HttpInputAuthentication> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputAuthentication::setupHttpInputAuthenticationDeserializer);
+	public static final JsonpDeserializer<HttpInputAuthentication> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpInputAuthentication::setupHttpInputAuthenticationDeserializer, Builder::build);
 
 	protected static void setupHttpInputAuthenticationDeserializer(
 			DelegatingDeserializer<HttpInputAuthentication.Builder> op) {
 
-		op.add(Builder::basic, HttpInputBasicAuthentication.DESERIALIZER, "basic");
+		op.add(Builder::basic, HttpInputBasicAuthentication._DESERIALIZER, "basic");
 
 	}
 

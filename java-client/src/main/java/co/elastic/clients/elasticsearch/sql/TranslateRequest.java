@@ -25,17 +25,19 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -43,12 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.translate.Request
-public final class TranslateRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class TranslateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final Number fetchSize;
+	private final Integer fetchSize;
 
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	private final String query;
 
@@ -57,7 +60,7 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TranslateRequest(Builder builder) {
+	public TranslateRequest(Builder builder) {
 
 		this.fetchSize = builder.fetchSize;
 		this.filter = builder.filter;
@@ -66,11 +69,15 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public TranslateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Number fetchSize() {
+	public Integer fetchSize() {
 		return this.fetchSize;
 	}
 
@@ -78,12 +85,12 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public String query() {
 		return this.query;
@@ -100,24 +107,24 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.fetchSize != null) {
 
 			generator.writeKey("fetch_size");
-			generator.write(this.fetchSize.doubleValue());
+			generator.write(this.fetchSize);
 
 		}
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 
@@ -140,10 +147,10 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<TranslateRequest> {
 		@Nullable
-		private Number fetchSize;
+		private Integer fetchSize;
 
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		private String query;
 
@@ -153,7 +160,7 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Number value) {
+		public Builder fetchSize(@Nullable Integer value) {
 			this.fetchSize = value;
 			return this;
 		}
@@ -161,7 +168,7 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -169,12 +176,12 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(String value) {
 			this.query = value;
@@ -204,15 +211,15 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TranslateRequest
+	 * Json deserializer for {@link TranslateRequest}
 	 */
-	public static final JsonpDeserializer<TranslateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TranslateRequest::setupTranslateRequestDeserializer);
+	public static final JsonpDeserializer<TranslateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TranslateRequest::setupTranslateRequestDeserializer, Builder::build);
 
 	protected static void setupTranslateRequestDeserializer(DelegatingDeserializer<TranslateRequest.Builder> op) {
 
-		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
@@ -223,7 +230,7 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code sql.translate}".
 	 */
-	public static final Endpoint<TranslateRequest, TranslateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TranslateRequest, TranslateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -240,5 +247,5 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, TranslateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TranslateResponse._DESERIALIZER);
 }

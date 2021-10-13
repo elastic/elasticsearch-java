@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeatures
-public final class EqlFeatures implements ToJsonp {
+@JsonpDeserializable
+public final class EqlFeatures implements JsonpSerializable {
 	private final Number join;
 
 	private final EqlFeaturesJoin joins;
@@ -54,7 +56,7 @@ public final class EqlFeatures implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlFeatures(Builder builder) {
+	public EqlFeatures(Builder builder) {
 
 		this.join = Objects.requireNonNull(builder.join, "join");
 		this.joins = Objects.requireNonNull(builder.joins, "joins");
@@ -66,50 +68,54 @@ public final class EqlFeatures implements ToJsonp {
 
 	}
 
+	public EqlFeatures(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code join}
+	 * Required - API name: {@code join}
 	 */
 	public Number join() {
 		return this.join;
 	}
 
 	/**
-	 * API name: {@code joins}
+	 * Required - API name: {@code joins}
 	 */
 	public EqlFeaturesJoin joins() {
 		return this.joins;
 	}
 
 	/**
-	 * API name: {@code keys}
+	 * Required - API name: {@code keys}
 	 */
 	public EqlFeaturesKeys keys() {
 		return this.keys;
 	}
 
 	/**
-	 * API name: {@code event}
+	 * Required - API name: {@code event}
 	 */
 	public Number event() {
 		return this.event;
 	}
 
 	/**
-	 * API name: {@code pipes}
+	 * Required - API name: {@code pipes}
 	 */
 	public EqlFeaturesPipes pipes() {
 		return this.pipes;
 	}
 
 	/**
-	 * API name: {@code sequence}
+	 * Required - API name: {@code sequence}
 	 */
 	public Number sequence() {
 		return this.sequence;
 	}
 
 	/**
-	 * API name: {@code sequences}
+	 * Required - API name: {@code sequences}
 	 */
 	public EqlFeaturesSequences sequences() {
 		return this.sequences;
@@ -118,34 +124,34 @@ public final class EqlFeatures implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("join");
 		generator.write(this.join.doubleValue());
 
 		generator.writeKey("joins");
-		this.joins.toJsonp(generator, mapper);
+		this.joins.serialize(generator, mapper);
 
 		generator.writeKey("keys");
-		this.keys.toJsonp(generator, mapper);
+		this.keys.serialize(generator, mapper);
 
 		generator.writeKey("event");
 		generator.write(this.event.doubleValue());
 
 		generator.writeKey("pipes");
-		this.pipes.toJsonp(generator, mapper);
+		this.pipes.serialize(generator, mapper);
 
 		generator.writeKey("sequence");
 		generator.write(this.sequence.doubleValue());
 
 		generator.writeKey("sequences");
-		this.sequences.toJsonp(generator, mapper);
+		this.sequences.serialize(generator, mapper);
 
 	}
 
@@ -170,7 +176,7 @@ public final class EqlFeatures implements ToJsonp {
 		private EqlFeaturesSequences sequences;
 
 		/**
-		 * API name: {@code join}
+		 * Required - API name: {@code join}
 		 */
 		public Builder join(Number value) {
 			this.join = value;
@@ -178,7 +184,7 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code joins}
+		 * Required - API name: {@code joins}
 		 */
 		public Builder joins(EqlFeaturesJoin value) {
 			this.joins = value;
@@ -186,14 +192,14 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code joins}
+		 * Required - API name: {@code joins}
 		 */
 		public Builder joins(Function<EqlFeaturesJoin.Builder, ObjectBuilder<EqlFeaturesJoin>> fn) {
 			return this.joins(fn.apply(new EqlFeaturesJoin.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code keys}
+		 * Required - API name: {@code keys}
 		 */
 		public Builder keys(EqlFeaturesKeys value) {
 			this.keys = value;
@@ -201,14 +207,14 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code keys}
+		 * Required - API name: {@code keys}
 		 */
 		public Builder keys(Function<EqlFeaturesKeys.Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
 			return this.keys(fn.apply(new EqlFeaturesKeys.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code event}
+		 * Required - API name: {@code event}
 		 */
 		public Builder event(Number value) {
 			this.event = value;
@@ -216,7 +222,7 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code pipes}
+		 * Required - API name: {@code pipes}
 		 */
 		public Builder pipes(EqlFeaturesPipes value) {
 			this.pipes = value;
@@ -224,14 +230,14 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code pipes}
+		 * Required - API name: {@code pipes}
 		 */
 		public Builder pipes(Function<EqlFeaturesPipes.Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
 			return this.pipes(fn.apply(new EqlFeaturesPipes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code sequence}
+		 * Required - API name: {@code sequence}
 		 */
 		public Builder sequence(Number value) {
 			this.sequence = value;
@@ -239,7 +245,7 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequences}
+		 * Required - API name: {@code sequences}
 		 */
 		public Builder sequences(EqlFeaturesSequences value) {
 			this.sequences = value;
@@ -247,7 +253,7 @@ public final class EqlFeatures implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequences}
+		 * Required - API name: {@code sequences}
 		 */
 		public Builder sequences(Function<EqlFeaturesSequences.Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
 			return this.sequences(fn.apply(new EqlFeaturesSequences.Builder()).build());
@@ -268,20 +274,20 @@ public final class EqlFeatures implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EqlFeatures
+	 * Json deserializer for {@link EqlFeatures}
 	 */
-	public static final JsonpDeserializer<EqlFeatures> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeatures::setupEqlFeaturesDeserializer);
+	public static final JsonpDeserializer<EqlFeatures> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeatures::setupEqlFeaturesDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesDeserializer(DelegatingDeserializer<EqlFeatures.Builder> op) {
 
 		op.add(Builder::join, JsonpDeserializer.numberDeserializer(), "join");
-		op.add(Builder::joins, EqlFeaturesJoin.DESERIALIZER, "joins");
-		op.add(Builder::keys, EqlFeaturesKeys.DESERIALIZER, "keys");
+		op.add(Builder::joins, EqlFeaturesJoin._DESERIALIZER, "joins");
+		op.add(Builder::keys, EqlFeaturesKeys._DESERIALIZER, "keys");
 		op.add(Builder::event, JsonpDeserializer.numberDeserializer(), "event");
-		op.add(Builder::pipes, EqlFeaturesPipes.DESERIALIZER, "pipes");
+		op.add(Builder::pipes, EqlFeaturesPipes._DESERIALIZER, "pipes");
 		op.add(Builder::sequence, JsonpDeserializer.numberDeserializer(), "sequence");
-		op.add(Builder::sequences, EqlFeaturesSequences.DESERIALIZER, "sequences");
+		op.add(Builder::sequences, EqlFeaturesSequences._DESERIALIZER, "sequences");
 
 	}
 

@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.CharFilterTypes
-public final class CharFilterTypes implements ToJsonp {
+@JsonpDeserializable
+public final class CharFilterTypes implements JsonpSerializable {
 	private final List<FieldTypes> charFilterTypes;
 
 	private final List<FieldTypes> tokenizerTypes;
@@ -58,70 +61,75 @@ public final class CharFilterTypes implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CharFilterTypes(Builder builder) {
+	public CharFilterTypes(Builder builder) {
 
-		this.charFilterTypes = Objects.requireNonNull(builder.charFilterTypes, "char_filter_types");
-		this.tokenizerTypes = Objects.requireNonNull(builder.tokenizerTypes, "tokenizer_types");
-		this.filterTypes = Objects.requireNonNull(builder.filterTypes, "filter_types");
-		this.analyzerTypes = Objects.requireNonNull(builder.analyzerTypes, "analyzer_types");
-		this.builtInCharFilters = Objects.requireNonNull(builder.builtInCharFilters, "built_in_char_filters");
-		this.builtInTokenizers = Objects.requireNonNull(builder.builtInTokenizers, "built_in_tokenizers");
-		this.builtInFilters = Objects.requireNonNull(builder.builtInFilters, "built_in_filters");
-		this.builtInAnalyzers = Objects.requireNonNull(builder.builtInAnalyzers, "built_in_analyzers");
+		this.charFilterTypes = ModelTypeHelper.unmodifiableNonNull(builder.charFilterTypes, "char_filter_types");
+		this.tokenizerTypes = ModelTypeHelper.unmodifiableNonNull(builder.tokenizerTypes, "tokenizer_types");
+		this.filterTypes = ModelTypeHelper.unmodifiableNonNull(builder.filterTypes, "filter_types");
+		this.analyzerTypes = ModelTypeHelper.unmodifiableNonNull(builder.analyzerTypes, "analyzer_types");
+		this.builtInCharFilters = ModelTypeHelper.unmodifiableNonNull(builder.builtInCharFilters,
+				"built_in_char_filters");
+		this.builtInTokenizers = ModelTypeHelper.unmodifiableNonNull(builder.builtInTokenizers, "built_in_tokenizers");
+		this.builtInFilters = ModelTypeHelper.unmodifiableNonNull(builder.builtInFilters, "built_in_filters");
+		this.builtInAnalyzers = ModelTypeHelper.unmodifiableNonNull(builder.builtInAnalyzers, "built_in_analyzers");
 
 	}
 
+	public CharFilterTypes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code char_filter_types}
+	 * Required - API name: {@code char_filter_types}
 	 */
 	public List<FieldTypes> charFilterTypes() {
 		return this.charFilterTypes;
 	}
 
 	/**
-	 * API name: {@code tokenizer_types}
+	 * Required - API name: {@code tokenizer_types}
 	 */
 	public List<FieldTypes> tokenizerTypes() {
 		return this.tokenizerTypes;
 	}
 
 	/**
-	 * API name: {@code filter_types}
+	 * Required - API name: {@code filter_types}
 	 */
 	public List<FieldTypes> filterTypes() {
 		return this.filterTypes;
 	}
 
 	/**
-	 * API name: {@code analyzer_types}
+	 * Required - API name: {@code analyzer_types}
 	 */
 	public List<FieldTypes> analyzerTypes() {
 		return this.analyzerTypes;
 	}
 
 	/**
-	 * API name: {@code built_in_char_filters}
+	 * Required - API name: {@code built_in_char_filters}
 	 */
 	public List<FieldTypes> builtInCharFilters() {
 		return this.builtInCharFilters;
 	}
 
 	/**
-	 * API name: {@code built_in_tokenizers}
+	 * Required - API name: {@code built_in_tokenizers}
 	 */
 	public List<FieldTypes> builtInTokenizers() {
 		return this.builtInTokenizers;
 	}
 
 	/**
-	 * API name: {@code built_in_filters}
+	 * Required - API name: {@code built_in_filters}
 	 */
 	public List<FieldTypes> builtInFilters() {
 		return this.builtInFilters;
 	}
 
 	/**
-	 * API name: {@code built_in_analyzers}
+	 * Required - API name: {@code built_in_analyzers}
 	 */
 	public List<FieldTypes> builtInAnalyzers() {
 		return this.builtInAnalyzers;
@@ -130,18 +138,18 @@ public final class CharFilterTypes implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("char_filter_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.charFilterTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -149,7 +157,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("tokenizer_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.tokenizerTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -157,7 +165,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("filter_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.filterTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -165,7 +173,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("analyzer_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.analyzerTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -173,7 +181,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_char_filters");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInCharFilters) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -181,7 +189,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_tokenizers");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInTokenizers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -189,7 +197,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_filters");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInFilters) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -197,7 +205,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_analyzers");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInAnalyzers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -227,7 +235,7 @@ public final class CharFilterTypes implements ToJsonp {
 		private List<FieldTypes> builtInAnalyzers;
 
 		/**
-		 * API name: {@code char_filter_types}
+		 * Required - API name: {@code char_filter_types}
 		 */
 		public Builder charFilterTypes(List<FieldTypes> value) {
 			this.charFilterTypes = value;
@@ -235,7 +243,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code char_filter_types}
+		 * Required - API name: {@code char_filter_types}
 		 */
 		public Builder charFilterTypes(FieldTypes... value) {
 			this.charFilterTypes = Arrays.asList(value);
@@ -268,7 +276,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code tokenizer_types}
+		 * Required - API name: {@code tokenizer_types}
 		 */
 		public Builder tokenizerTypes(List<FieldTypes> value) {
 			this.tokenizerTypes = value;
@@ -276,7 +284,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code tokenizer_types}
+		 * Required - API name: {@code tokenizer_types}
 		 */
 		public Builder tokenizerTypes(FieldTypes... value) {
 			this.tokenizerTypes = Arrays.asList(value);
@@ -309,7 +317,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code filter_types}
+		 * Required - API name: {@code filter_types}
 		 */
 		public Builder filterTypes(List<FieldTypes> value) {
 			this.filterTypes = value;
@@ -317,7 +325,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code filter_types}
+		 * Required - API name: {@code filter_types}
 		 */
 		public Builder filterTypes(FieldTypes... value) {
 			this.filterTypes = Arrays.asList(value);
@@ -350,7 +358,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code analyzer_types}
+		 * Required - API name: {@code analyzer_types}
 		 */
 		public Builder analyzerTypes(List<FieldTypes> value) {
 			this.analyzerTypes = value;
@@ -358,7 +366,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code analyzer_types}
+		 * Required - API name: {@code analyzer_types}
 		 */
 		public Builder analyzerTypes(FieldTypes... value) {
 			this.analyzerTypes = Arrays.asList(value);
@@ -391,7 +399,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_char_filters}
+		 * Required - API name: {@code built_in_char_filters}
 		 */
 		public Builder builtInCharFilters(List<FieldTypes> value) {
 			this.builtInCharFilters = value;
@@ -399,7 +407,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_char_filters}
+		 * Required - API name: {@code built_in_char_filters}
 		 */
 		public Builder builtInCharFilters(FieldTypes... value) {
 			this.builtInCharFilters = Arrays.asList(value);
@@ -434,7 +442,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_tokenizers}
+		 * Required - API name: {@code built_in_tokenizers}
 		 */
 		public Builder builtInTokenizers(List<FieldTypes> value) {
 			this.builtInTokenizers = value;
@@ -442,7 +450,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_tokenizers}
+		 * Required - API name: {@code built_in_tokenizers}
 		 */
 		public Builder builtInTokenizers(FieldTypes... value) {
 			this.builtInTokenizers = Arrays.asList(value);
@@ -475,7 +483,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_filters}
+		 * Required - API name: {@code built_in_filters}
 		 */
 		public Builder builtInFilters(List<FieldTypes> value) {
 			this.builtInFilters = value;
@@ -483,7 +491,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_filters}
+		 * Required - API name: {@code built_in_filters}
 		 */
 		public Builder builtInFilters(FieldTypes... value) {
 			this.builtInFilters = Arrays.asList(value);
@@ -516,7 +524,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_analyzers}
+		 * Required - API name: {@code built_in_analyzers}
 		 */
 		public Builder builtInAnalyzers(List<FieldTypes> value) {
 			this.builtInAnalyzers = value;
@@ -524,7 +532,7 @@ public final class CharFilterTypes implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code built_in_analyzers}
+		 * Required - API name: {@code built_in_analyzers}
 		 */
 		public Builder builtInAnalyzers(FieldTypes... value) {
 			this.builtInAnalyzers = Arrays.asList(value);
@@ -571,26 +579,26 @@ public final class CharFilterTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CharFilterTypes
+	 * Json deserializer for {@link CharFilterTypes}
 	 */
-	public static final JsonpDeserializer<CharFilterTypes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CharFilterTypes::setupCharFilterTypesDeserializer);
+	public static final JsonpDeserializer<CharFilterTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CharFilterTypes::setupCharFilterTypesDeserializer, Builder::build);
 
 	protected static void setupCharFilterTypesDeserializer(DelegatingDeserializer<CharFilterTypes.Builder> op) {
 
-		op.add(Builder::charFilterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::charFilterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"char_filter_types");
-		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"tokenizer_types");
-		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "filter_types");
-		op.add(Builder::analyzerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "analyzer_types");
-		op.add(Builder::builtInCharFilters, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "filter_types");
+		op.add(Builder::analyzerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "analyzer_types");
+		op.add(Builder::builtInCharFilters, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_char_filters");
-		op.add(Builder::builtInTokenizers, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::builtInTokenizers, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_tokenizers");
-		op.add(Builder::builtInFilters, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::builtInFilters, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_filters");
-		op.add(Builder::builtInAnalyzers, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::builtInAnalyzers, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_analyzers");
 
 	}

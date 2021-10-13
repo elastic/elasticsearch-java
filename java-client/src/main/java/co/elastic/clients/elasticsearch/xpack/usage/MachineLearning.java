@@ -25,13 +25,15 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.Job;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MachineLearning
+@JsonpDeserializable
 public final class MachineLearning extends Base {
 	private final Map<String, Datafeed> datafeeds;
 
 	private final Map<String, Job> jobs;
 
-	private final Number nodeCount;
+	private final int nodeCount;
 
 	private final MlDataFrameAnalyticsJobs dataFrameAnalyticsJobs;
 
@@ -53,10 +56,11 @@ public final class MachineLearning extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MachineLearning(Builder builder) {
+	public MachineLearning(Builder builder) {
 		super(builder);
-		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
-		this.jobs = Objects.requireNonNull(builder.jobs, "jobs");
+
+		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
+		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
 		this.nodeCount = Objects.requireNonNull(builder.nodeCount, "node_count");
 		this.dataFrameAnalyticsJobs = Objects.requireNonNull(builder.dataFrameAnalyticsJobs,
 				"data_frame_analytics_jobs");
@@ -64,49 +68,54 @@ public final class MachineLearning extends Base {
 
 	}
 
+	public MachineLearning(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public Map<String, Datafeed> datafeeds() {
 		return this.datafeeds;
 	}
 
 	/**
-	 * API name: {@code jobs}
+	 * Required - API name: {@code jobs}
 	 */
 	public Map<String, Job> jobs() {
 		return this.jobs;
 	}
 
 	/**
-	 * API name: {@code node_count}
+	 * Required - API name: {@code node_count}
 	 */
-	public Number nodeCount() {
+	public int nodeCount() {
 		return this.nodeCount;
 	}
 
 	/**
-	 * API name: {@code data_frame_analytics_jobs}
+	 * Required - API name: {@code data_frame_analytics_jobs}
 	 */
 	public MlDataFrameAnalyticsJobs dataFrameAnalyticsJobs() {
 		return this.dataFrameAnalyticsJobs;
 	}
 
 	/**
-	 * API name: {@code inference}
+	 * Required - API name: {@code inference}
 	 */
 	public MlInference inference() {
 		return this.inference;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("datafeeds");
 		generator.writeStartObject();
 		for (Map.Entry<String, Datafeed> item0 : this.datafeeds.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -115,19 +124,19 @@ public final class MachineLearning extends Base {
 		generator.writeStartObject();
 		for (Map.Entry<String, Job> item0 : this.jobs.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("node_count");
-		generator.write(this.nodeCount.doubleValue());
+		generator.write(this.nodeCount);
 
 		generator.writeKey("data_frame_analytics_jobs");
-		this.dataFrameAnalyticsJobs.toJsonp(generator, mapper);
+		this.dataFrameAnalyticsJobs.serialize(generator, mapper);
 
 		generator.writeKey("inference");
-		this.inference.toJsonp(generator, mapper);
+		this.inference.serialize(generator, mapper);
 
 	}
 
@@ -141,14 +150,14 @@ public final class MachineLearning extends Base {
 
 		private Map<String, Job> jobs;
 
-		private Number nodeCount;
+		private Integer nodeCount;
 
 		private MlDataFrameAnalyticsJobs dataFrameAnalyticsJobs;
 
 		private MlInference inference;
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Map<String, Datafeed> value) {
 			this.datafeeds = value;
@@ -181,7 +190,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code jobs}
+		 * Required - API name: {@code jobs}
 		 */
 		public Builder jobs(Map<String, Job> value) {
 			this.jobs = value;
@@ -214,15 +223,15 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code node_count}
+		 * Required - API name: {@code node_count}
 		 */
-		public Builder nodeCount(Number value) {
+		public Builder nodeCount(int value) {
 			this.nodeCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code data_frame_analytics_jobs}
+		 * Required - API name: {@code data_frame_analytics_jobs}
 		 */
 		public Builder dataFrameAnalyticsJobs(MlDataFrameAnalyticsJobs value) {
 			this.dataFrameAnalyticsJobs = value;
@@ -230,7 +239,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code data_frame_analytics_jobs}
+		 * Required - API name: {@code data_frame_analytics_jobs}
 		 */
 		public Builder dataFrameAnalyticsJobs(
 				Function<MlDataFrameAnalyticsJobs.Builder, ObjectBuilder<MlDataFrameAnalyticsJobs>> fn) {
@@ -238,7 +247,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code inference}
+		 * Required - API name: {@code inference}
 		 */
 		public Builder inference(MlInference value) {
 			this.inference = value;
@@ -246,7 +255,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code inference}
+		 * Required - API name: {@code inference}
 		 */
 		public Builder inference(Function<MlInference.Builder, ObjectBuilder<MlInference>> fn) {
 			return this.inference(fn.apply(new MlInference.Builder()).build());
@@ -272,18 +281,18 @@ public final class MachineLearning extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MachineLearning
+	 * Json deserializer for {@link MachineLearning}
 	 */
-	public static final JsonpDeserializer<MachineLearning> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MachineLearning::setupMachineLearningDeserializer);
+	public static final JsonpDeserializer<MachineLearning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MachineLearning::setupMachineLearningDeserializer, Builder::build);
 
 	protected static void setupMachineLearningDeserializer(DelegatingDeserializer<MachineLearning.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::datafeeds, JsonpDeserializer.stringMapDeserializer(Datafeed.DESERIALIZER), "datafeeds");
-		op.add(Builder::jobs, JsonpDeserializer.stringMapDeserializer(Job.DESERIALIZER), "jobs");
-		op.add(Builder::nodeCount, JsonpDeserializer.numberDeserializer(), "node_count");
-		op.add(Builder::dataFrameAnalyticsJobs, MlDataFrameAnalyticsJobs.DESERIALIZER, "data_frame_analytics_jobs");
-		op.add(Builder::inference, MlInference.DESERIALIZER, "inference");
+		op.add(Builder::datafeeds, JsonpDeserializer.stringMapDeserializer(Datafeed._DESERIALIZER), "datafeeds");
+		op.add(Builder::jobs, JsonpDeserializer.stringMapDeserializer(Job._DESERIALIZER), "jobs");
+		op.add(Builder::nodeCount, JsonpDeserializer.integerDeserializer(), "node_count");
+		op.add(Builder::dataFrameAnalyticsJobs, MlDataFrameAnalyticsJobs._DESERIALIZER, "data_frame_analytics_jobs");
+		op.add(Builder::inference, MlInference._DESERIALIZER, "inference");
 
 	}
 

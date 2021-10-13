@@ -24,63 +24,70 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixPrediction
-public final class ConfusionMatrixPrediction implements ToJsonp {
+@JsonpDeserializable
+public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	private final String predictedClass;
 
-	private final Number count;
+	private final int count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ConfusionMatrixPrediction(Builder builder) {
+	public ConfusionMatrixPrediction(Builder builder) {
 
 		this.predictedClass = Objects.requireNonNull(builder.predictedClass, "predicted_class");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
 	}
 
+	public ConfusionMatrixPrediction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code predicted_class}
+	 * Required - API name: {@code predicted_class}
 	 */
 	public String predictedClass() {
 		return this.predictedClass;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("predicted_class");
 		generator.write(this.predictedClass);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -92,10 +99,10 @@ public final class ConfusionMatrixPrediction implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ConfusionMatrixPrediction> {
 		private String predictedClass;
 
-		private Number count;
+		private Integer count;
 
 		/**
-		 * API name: {@code predicted_class}
+		 * Required - API name: {@code predicted_class}
 		 */
 		public Builder predictedClass(String value) {
 			this.predictedClass = value;
@@ -103,9 +110,9 @@ public final class ConfusionMatrixPrediction implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -125,16 +132,16 @@ public final class ConfusionMatrixPrediction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ConfusionMatrixPrediction
+	 * Json deserializer for {@link ConfusionMatrixPrediction}
 	 */
-	public static final JsonpDeserializer<ConfusionMatrixPrediction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ConfusionMatrixPrediction::setupConfusionMatrixPredictionDeserializer);
+	public static final JsonpDeserializer<ConfusionMatrixPrediction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ConfusionMatrixPrediction::setupConfusionMatrixPredictionDeserializer, Builder::build);
 
 	protected static void setupConfusionMatrixPredictionDeserializer(
 			DelegatingDeserializer<ConfusionMatrixPrediction.Builder> op) {
 
 		op.add(Builder::predictedClass, JsonpDeserializer.stringDeserializer(), "predicted_class");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 
 	}
 

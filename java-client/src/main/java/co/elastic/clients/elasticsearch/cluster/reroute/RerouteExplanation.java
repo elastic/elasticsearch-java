@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteExplanation
-public final class RerouteExplanation implements ToJsonp {
+@JsonpDeserializable
+public final class RerouteExplanation implements JsonpSerializable {
 	private final String command;
 
 	private final List<RerouteDecision> decisions;
@@ -49,30 +52,34 @@ public final class RerouteExplanation implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteExplanation(Builder builder) {
+	public RerouteExplanation(Builder builder) {
 
 		this.command = Objects.requireNonNull(builder.command, "command");
-		this.decisions = Objects.requireNonNull(builder.decisions, "decisions");
+		this.decisions = ModelTypeHelper.unmodifiableNonNull(builder.decisions, "decisions");
 		this.parameters = Objects.requireNonNull(builder.parameters, "parameters");
 
 	}
 
+	public RerouteExplanation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code command}
+	 * Required - API name: {@code command}
 	 */
 	public String command() {
 		return this.command;
 	}
 
 	/**
-	 * API name: {@code decisions}
+	 * Required - API name: {@code decisions}
 	 */
 	public List<RerouteDecision> decisions() {
 		return this.decisions;
 	}
 
 	/**
-	 * API name: {@code parameters}
+	 * Required - API name: {@code parameters}
 	 */
 	public RerouteParameters parameters() {
 		return this.parameters;
@@ -81,13 +88,13 @@ public final class RerouteExplanation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("command");
 		generator.write(this.command);
@@ -95,13 +102,13 @@ public final class RerouteExplanation implements ToJsonp {
 		generator.writeKey("decisions");
 		generator.writeStartArray();
 		for (RerouteDecision item0 : this.decisions) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("parameters");
-		this.parameters.toJsonp(generator, mapper);
+		this.parameters.serialize(generator, mapper);
 
 	}
 
@@ -118,7 +125,7 @@ public final class RerouteExplanation implements ToJsonp {
 		private RerouteParameters parameters;
 
 		/**
-		 * API name: {@code command}
+		 * Required - API name: {@code command}
 		 */
 		public Builder command(String value) {
 			this.command = value;
@@ -126,7 +133,7 @@ public final class RerouteExplanation implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code decisions}
+		 * Required - API name: {@code decisions}
 		 */
 		public Builder decisions(List<RerouteDecision> value) {
 			this.decisions = value;
@@ -134,7 +141,7 @@ public final class RerouteExplanation implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code decisions}
+		 * Required - API name: {@code decisions}
 		 */
 		public Builder decisions(RerouteDecision... value) {
 			this.decisions = Arrays.asList(value);
@@ -167,7 +174,7 @@ public final class RerouteExplanation implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code parameters}
+		 * Required - API name: {@code parameters}
 		 */
 		public Builder parameters(RerouteParameters value) {
 			this.parameters = value;
@@ -175,7 +182,7 @@ public final class RerouteExplanation implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code parameters}
+		 * Required - API name: {@code parameters}
 		 */
 		public Builder parameters(Function<RerouteParameters.Builder, ObjectBuilder<RerouteParameters>> fn) {
 			return this.parameters(fn.apply(new RerouteParameters.Builder()).build());
@@ -196,16 +203,16 @@ public final class RerouteExplanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteExplanation
+	 * Json deserializer for {@link RerouteExplanation}
 	 */
-	public static final JsonpDeserializer<RerouteExplanation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer);
+	public static final JsonpDeserializer<RerouteExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer, Builder::build);
 
 	protected static void setupRerouteExplanationDeserializer(DelegatingDeserializer<RerouteExplanation.Builder> op) {
 
 		op.add(Builder::command, JsonpDeserializer.stringDeserializer(), "command");
-		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision.DESERIALIZER), "decisions");
-		op.add(Builder::parameters, RerouteParameters.DESERIALIZER, "parameters");
+		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision._DESERIALIZER), "decisions");
+		op.add(Builder::parameters, RerouteParameters._DESERIALIZER, "parameters");
 
 	}
 

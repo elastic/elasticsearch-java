@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.LatLon;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,29 +38,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBounds
-public final class GeoBounds implements ToJsonp {
+@JsonpDeserializable
+public final class GeoBounds implements JsonpSerializable {
 	private final LatLon bottomRight;
 
 	private final LatLon topLeft;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoBounds(Builder builder) {
+	public GeoBounds(Builder builder) {
 
 		this.bottomRight = Objects.requireNonNull(builder.bottomRight, "bottom_right");
 		this.topLeft = Objects.requireNonNull(builder.topLeft, "top_left");
 
 	}
 
+	public GeoBounds(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code bottom_right}
+	 * Required - API name: {@code bottom_right}
 	 */
 	public LatLon bottomRight() {
 		return this.bottomRight;
 	}
 
 	/**
-	 * API name: {@code top_left}
+	 * Required - API name: {@code top_left}
 	 */
 	public LatLon topLeft() {
 		return this.topLeft;
@@ -68,19 +74,19 @@ public final class GeoBounds implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bottom_right");
-		this.bottomRight.toJsonp(generator, mapper);
+		this.bottomRight.serialize(generator, mapper);
 
 		generator.writeKey("top_left");
-		this.topLeft.toJsonp(generator, mapper);
+		this.topLeft.serialize(generator, mapper);
 
 	}
 
@@ -95,7 +101,7 @@ public final class GeoBounds implements ToJsonp {
 		private LatLon topLeft;
 
 		/**
-		 * API name: {@code bottom_right}
+		 * Required - API name: {@code bottom_right}
 		 */
 		public Builder bottomRight(LatLon value) {
 			this.bottomRight = value;
@@ -103,14 +109,14 @@ public final class GeoBounds implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code bottom_right}
+		 * Required - API name: {@code bottom_right}
 		 */
 		public Builder bottomRight(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
 			return this.bottomRight(fn.apply(new LatLon.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code top_left}
+		 * Required - API name: {@code top_left}
 		 */
 		public Builder topLeft(LatLon value) {
 			this.topLeft = value;
@@ -118,7 +124,7 @@ public final class GeoBounds implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code top_left}
+		 * Required - API name: {@code top_left}
 		 */
 		public Builder topLeft(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
 			return this.topLeft(fn.apply(new LatLon.Builder()).build());
@@ -139,15 +145,15 @@ public final class GeoBounds implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoBounds
+	 * Json deserializer for {@link GeoBounds}
 	 */
-	public static final JsonpDeserializer<GeoBounds> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoBounds::setupGeoBoundsDeserializer);
+	public static final JsonpDeserializer<GeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoBounds::setupGeoBoundsDeserializer, Builder::build);
 
 	protected static void setupGeoBoundsDeserializer(DelegatingDeserializer<GeoBounds.Builder> op) {
 
-		op.add(Builder::bottomRight, LatLon.DESERIALIZER, "bottom_right");
-		op.add(Builder::topLeft, LatLon.DESERIALIZER, "top_left");
+		op.add(Builder::bottomRight, LatLon._DESERIALIZER, "bottom_right");
+		op.add(Builder::topLeft, LatLon._DESERIALIZER, "top_left");
 
 	}
 

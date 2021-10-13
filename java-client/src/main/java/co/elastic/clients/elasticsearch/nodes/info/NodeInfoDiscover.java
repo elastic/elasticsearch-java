@@ -24,31 +24,38 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoDiscover
-public final class NodeInfoDiscover implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoDiscover implements JsonpSerializable {
 	private final String seedHosts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoDiscover(Builder builder) {
+	public NodeInfoDiscover(Builder builder) {
 
 		this.seedHosts = Objects.requireNonNull(builder.seedHosts, "seed_hosts");
 
 	}
 
+	public NodeInfoDiscover(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code seed_hosts}
+	 * Required - API name: {@code seed_hosts}
 	 */
 	public String seedHosts() {
 		return this.seedHosts;
@@ -57,13 +64,13 @@ public final class NodeInfoDiscover implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("seed_hosts");
 		generator.write(this.seedHosts);
@@ -79,7 +86,7 @@ public final class NodeInfoDiscover implements ToJsonp {
 		private String seedHosts;
 
 		/**
-		 * API name: {@code seed_hosts}
+		 * Required - API name: {@code seed_hosts}
 		 */
 		public Builder seedHosts(String value) {
 			this.seedHosts = value;
@@ -101,10 +108,10 @@ public final class NodeInfoDiscover implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoDiscover
+	 * Json deserializer for {@link NodeInfoDiscover}
 	 */
-	public static final JsonpDeserializer<NodeInfoDiscover> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoDiscover::setupNodeInfoDiscoverDeserializer);
+	public static final JsonpDeserializer<NodeInfoDiscover> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoDiscover::setupNodeInfoDiscoverDeserializer, Builder::build);
 
 	protected static void setupNodeInfoDiscoverDeserializer(DelegatingDeserializer<NodeInfoDiscover.Builder> op) {
 

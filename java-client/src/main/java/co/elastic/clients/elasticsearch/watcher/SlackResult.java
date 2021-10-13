@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackResult
-public final class SlackResult implements ToJsonp {
+@JsonpDeserializable
+public final class SlackResult implements JsonpSerializable {
 	@Nullable
 	private final String account;
 
@@ -45,11 +47,15 @@ public final class SlackResult implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SlackResult(Builder builder) {
+	public SlackResult(Builder builder) {
 
 		this.account = builder.account;
 		this.message = Objects.requireNonNull(builder.message, "message");
 
+	}
+
+	public SlackResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,7 +67,7 @@ public final class SlackResult implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public SlackMessage message() {
 		return this.message;
@@ -70,13 +76,13 @@ public final class SlackResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.account != null) {
 
@@ -86,7 +92,7 @@ public final class SlackResult implements ToJsonp {
 		}
 
 		generator.writeKey("message");
-		this.message.toJsonp(generator, mapper);
+		this.message.serialize(generator, mapper);
 
 	}
 
@@ -110,7 +116,7 @@ public final class SlackResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(SlackMessage value) {
 			this.message = value;
@@ -118,7 +124,7 @@ public final class SlackResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(Function<SlackMessage.Builder, ObjectBuilder<SlackMessage>> fn) {
 			return this.message(fn.apply(new SlackMessage.Builder()).build());
@@ -139,15 +145,15 @@ public final class SlackResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SlackResult
+	 * Json deserializer for {@link SlackResult}
 	 */
-	public static final JsonpDeserializer<SlackResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlackResult::setupSlackResultDeserializer);
+	public static final JsonpDeserializer<SlackResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SlackResult::setupSlackResultDeserializer, Builder::build);
 
 	protected static void setupSlackResultDeserializer(DelegatingDeserializer<SlackResult.Builder> op) {
 
 		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
-		op.add(Builder::message, SlackMessage.DESERIALIZER, "message");
+		op.add(Builder::message, SlackMessage._DESERIALIZER, "message");
 
 	}
 

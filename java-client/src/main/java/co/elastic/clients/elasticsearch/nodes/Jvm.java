@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Jvm
-public final class Jvm implements ToJsonp {
+@JsonpDeserializable
+public final class Jvm implements JsonpSerializable {
 	private final Map<String, NodeBufferPool> bufferPools;
 
 	private final JvmClasses classes;
@@ -52,17 +55,17 @@ public final class Jvm implements ToJsonp {
 
 	private final JvmThreads threads;
 
-	private final Number timestamp;
+	private final long timestamp;
 
 	private final String uptime;
 
-	private final Number uptimeInMillis;
+	private final long uptimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Jvm(Builder builder) {
+	public Jvm(Builder builder) {
 
-		this.bufferPools = Objects.requireNonNull(builder.bufferPools, "buffer_pools");
+		this.bufferPools = ModelTypeHelper.unmodifiableNonNull(builder.bufferPools, "buffer_pools");
 		this.classes = Objects.requireNonNull(builder.classes, "classes");
 		this.gc = Objects.requireNonNull(builder.gc, "gc");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
@@ -73,102 +76,106 @@ public final class Jvm implements ToJsonp {
 
 	}
 
+	public Jvm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code buffer_pools}
+	 * Required - API name: {@code buffer_pools}
 	 */
 	public Map<String, NodeBufferPool> bufferPools() {
 		return this.bufferPools;
 	}
 
 	/**
-	 * API name: {@code classes}
+	 * Required - API name: {@code classes}
 	 */
 	public JvmClasses classes() {
 		return this.classes;
 	}
 
 	/**
-	 * API name: {@code gc}
+	 * Required - API name: {@code gc}
 	 */
 	public GarbageCollector gc() {
 		return this.gc;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public MemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code threads}
+	 * Required - API name: {@code threads}
 	 */
 	public JvmThreads threads() {
 		return this.threads;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code uptime}
+	 * Required - API name: {@code uptime}
 	 */
 	public String uptime() {
 		return this.uptime;
 	}
 
 	/**
-	 * API name: {@code uptime_in_millis}
+	 * Required - API name: {@code uptime_in_millis}
 	 */
-	public Number uptimeInMillis() {
+	public long uptimeInMillis() {
 		return this.uptimeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("buffer_pools");
 		generator.writeStartObject();
 		for (Map.Entry<String, NodeBufferPool> item0 : this.bufferPools.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("classes");
-		this.classes.toJsonp(generator, mapper);
+		this.classes.serialize(generator, mapper);
 
 		generator.writeKey("gc");
-		this.gc.toJsonp(generator, mapper);
+		this.gc.serialize(generator, mapper);
 
 		generator.writeKey("mem");
-		this.mem.toJsonp(generator, mapper);
+		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("threads");
-		this.threads.toJsonp(generator, mapper);
+		this.threads.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 		generator.writeKey("uptime");
 		generator.write(this.uptime);
 
 		generator.writeKey("uptime_in_millis");
-		generator.write(this.uptimeInMillis.doubleValue());
+		generator.write(this.uptimeInMillis);
 
 	}
 
@@ -188,14 +195,14 @@ public final class Jvm implements ToJsonp {
 
 		private JvmThreads threads;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		private String uptime;
 
-		private Number uptimeInMillis;
+		private Long uptimeInMillis;
 
 		/**
-		 * API name: {@code buffer_pools}
+		 * Required - API name: {@code buffer_pools}
 		 */
 		public Builder bufferPools(Map<String, NodeBufferPool> value) {
 			this.bufferPools = value;
@@ -228,7 +235,7 @@ public final class Jvm implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(JvmClasses value) {
 			this.classes = value;
@@ -236,14 +243,14 @@ public final class Jvm implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(Function<JvmClasses.Builder, ObjectBuilder<JvmClasses>> fn) {
 			return this.classes(fn.apply(new JvmClasses.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code gc}
+		 * Required - API name: {@code gc}
 		 */
 		public Builder gc(GarbageCollector value) {
 			this.gc = value;
@@ -251,14 +258,14 @@ public final class Jvm implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code gc}
+		 * Required - API name: {@code gc}
 		 */
 		public Builder gc(Function<GarbageCollector.Builder, ObjectBuilder<GarbageCollector>> fn) {
 			return this.gc(fn.apply(new GarbageCollector.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(MemoryStats value) {
 			this.mem = value;
@@ -266,14 +273,14 @@ public final class Jvm implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(JvmThreads value) {
 			this.threads = value;
@@ -281,22 +288,22 @@ public final class Jvm implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(Function<JvmThreads.Builder, ObjectBuilder<JvmThreads>> fn) {
 			return this.threads(fn.apply(new JvmThreads.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code uptime}
+		 * Required - API name: {@code uptime}
 		 */
 		public Builder uptime(String value) {
 			this.uptime = value;
@@ -304,9 +311,9 @@ public final class Jvm implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code uptime_in_millis}
+		 * Required - API name: {@code uptime_in_millis}
 		 */
-		public Builder uptimeInMillis(Number value) {
+		public Builder uptimeInMillis(long value) {
 			this.uptimeInMillis = value;
 			return this;
 		}
@@ -326,22 +333,22 @@ public final class Jvm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Jvm
+	 * Json deserializer for {@link Jvm}
 	 */
-	public static final JsonpDeserializer<Jvm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Jvm::setupJvmDeserializer);
+	public static final JsonpDeserializer<Jvm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Jvm::setupJvmDeserializer, Builder::build);
 
 	protected static void setupJvmDeserializer(DelegatingDeserializer<Jvm.Builder> op) {
 
-		op.add(Builder::bufferPools, JsonpDeserializer.stringMapDeserializer(NodeBufferPool.DESERIALIZER),
+		op.add(Builder::bufferPools, JsonpDeserializer.stringMapDeserializer(NodeBufferPool._DESERIALIZER),
 				"buffer_pools");
-		op.add(Builder::classes, JvmClasses.DESERIALIZER, "classes");
-		op.add(Builder::gc, GarbageCollector.DESERIALIZER, "gc");
-		op.add(Builder::mem, MemoryStats.DESERIALIZER, "mem");
-		op.add(Builder::threads, JvmThreads.DESERIALIZER, "threads");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::classes, JvmClasses._DESERIALIZER, "classes");
+		op.add(Builder::gc, GarbageCollector._DESERIALIZER, "gc");
+		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");
+		op.add(Builder::threads, JvmThreads._DESERIALIZER, "threads");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime");
-		op.add(Builder::uptimeInMillis, JsonpDeserializer.numberDeserializer(), "uptime_in_millis");
+		op.add(Builder::uptimeInMillis, JsonpDeserializer.longDeserializer(), "uptime_in_millis");
 
 	}
 

@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: sql.clear_cursor.Response
-public final class ClearCursorResponse implements ToJsonp {
-	private final Boolean succeeded;
+@JsonpDeserializable
+public final class ClearCursorResponse implements JsonpSerializable {
+	private final boolean succeeded;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCursorResponse(Builder builder) {
+	public ClearCursorResponse(Builder builder) {
 
 		this.succeeded = Objects.requireNonNull(builder.succeeded, "succeeded");
 
 	}
 
+	public ClearCursorResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code succeeded}
+	 * Required - API name: {@code succeeded}
 	 */
-	public Boolean succeeded() {
+	public boolean succeeded() {
 		return this.succeeded;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("succeeded");
 		generator.write(this.succeeded);
@@ -79,9 +85,9 @@ public final class ClearCursorResponse implements ToJsonp {
 		private Boolean succeeded;
 
 		/**
-		 * API name: {@code succeeded}
+		 * Required - API name: {@code succeeded}
 		 */
-		public Builder succeeded(Boolean value) {
+		public Builder succeeded(boolean value) {
 			this.succeeded = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class ClearCursorResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClearCursorResponse
+	 * Json deserializer for {@link ClearCursorResponse}
 	 */
-	public static final JsonpDeserializer<ClearCursorResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCursorResponse::setupClearCursorResponseDeserializer);
+	public static final JsonpDeserializer<ClearCursorResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCursorResponse::setupClearCursorResponseDeserializer, Builder::build);
 
 	protected static void setupClearCursorResponseDeserializer(DelegatingDeserializer<ClearCursorResponse.Builder> op) {
 

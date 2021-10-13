@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.fielddata;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
-public final class FielddataRecord implements ToJsonp {
+@JsonpDeserializable
+public final class FielddataRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -56,7 +60,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FielddataRecord(Builder builder) {
+	public FielddataRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.host = builder.host;
@@ -67,9 +71,13 @@ public final class FielddataRecord implements ToJsonp {
 
 	}
 
+	public FielddataRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -79,7 +87,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	/**
 	 * host name
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -89,7 +97,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -99,7 +107,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -109,7 +117,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	/**
 	 * field name
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -119,7 +127,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	/**
 	 * field data usage
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -130,13 +138,13 @@ public final class FielddataRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -203,7 +211,7 @@ public final class FielddataRecord implements ToJsonp {
 
 		/**
 		 * node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -213,7 +221,7 @@ public final class FielddataRecord implements ToJsonp {
 
 		/**
 		 * host name
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(@Nullable String value) {
@@ -223,7 +231,7 @@ public final class FielddataRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -233,7 +241,7 @@ public final class FielddataRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {
@@ -243,7 +251,7 @@ public final class FielddataRecord implements ToJsonp {
 
 		/**
 		 * field name
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(@Nullable String value) {
@@ -253,7 +261,7 @@ public final class FielddataRecord implements ToJsonp {
 
 		/**
 		 * field data usage
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable String value) {
@@ -276,10 +284,10 @@ public final class FielddataRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FielddataRecord
+	 * Json deserializer for {@link FielddataRecord}
 	 */
-	public static final JsonpDeserializer<FielddataRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FielddataRecord::setupFielddataRecordDeserializer);
+	public static final JsonpDeserializer<FielddataRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FielddataRecord::setupFielddataRecordDeserializer, Builder::build);
 
 	protected static void setupFielddataRecordDeserializer(DelegatingDeserializer<FielddataRecord.Builder> op) {
 

@@ -24,57 +24,64 @@
 package co.elastic.clients.elasticsearch.indices.add_block;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.add_block.IndicesBlockStatus
-public final class IndicesBlockStatus implements ToJsonp {
+@JsonpDeserializable
+public final class IndicesBlockStatus implements JsonpSerializable {
 	private final String name;
 
-	private final Boolean blocked;
+	private final boolean blocked;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesBlockStatus(Builder builder) {
+	public IndicesBlockStatus(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.blocked = Objects.requireNonNull(builder.blocked, "blocked");
 
 	}
 
+	public IndicesBlockStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code blocked}
+	 * Required - API name: {@code blocked}
 	 */
-	public Boolean blocked() {
+	public boolean blocked() {
 		return this.blocked;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -95,7 +102,7 @@ public final class IndicesBlockStatus implements ToJsonp {
 		private Boolean blocked;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -103,9 +110,9 @@ public final class IndicesBlockStatus implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code blocked}
+		 * Required - API name: {@code blocked}
 		 */
-		public Builder blocked(Boolean value) {
+		public Builder blocked(boolean value) {
 			this.blocked = value;
 			return this;
 		}
@@ -125,10 +132,10 @@ public final class IndicesBlockStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesBlockStatus
+	 * Json deserializer for {@link IndicesBlockStatus}
 	 */
-	public static final JsonpDeserializer<IndicesBlockStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer);
+	public static final JsonpDeserializer<IndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer, Builder::build);
 
 	protected static void setupIndicesBlockStatusDeserializer(DelegatingDeserializer<IndicesBlockStatus.Builder> op) {
 

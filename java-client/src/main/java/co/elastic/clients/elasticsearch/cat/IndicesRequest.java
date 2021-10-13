@@ -25,11 +25,16 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.Health;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -38,22 +43,25 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.Request
+
 public final class IndicesRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> index;
 
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final JsonValue health;
+	private final Health health;
 
 	@Nullable
 	private final Boolean includeUnloadedSegments;
@@ -63,18 +71,24 @@ public final class IndicesRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesRequest(Builder builder) {
+	public IndicesRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.bytes = builder.bytes;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.health = builder.health;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.pri = builder.pri;
 
 	}
 
+	public IndicesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -83,30 +97,41 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * A health status (&quot;green&quot;, &quot;yellow&quot;, or &quot;red&quot; to
+	 * filter only indices matching the specified health status
+	 * <p>
 	 * API name: {@code health}
 	 */
 	@Nullable
-	public JsonValue health() {
+	public Health health() {
 		return this.health;
 	}
 
 	/**
+	 * If set to true segment stats will include stats for segments that are not
+	 * currently loaded into memory
+	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
@@ -115,6 +140,8 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Set to true to return stats only for primary shards
+	 * <p>
 	 * API name: {@code pri}
 	 */
 	@Nullable
@@ -132,13 +159,13 @@ public final class IndicesRequest extends CatRequestBase {
 		private List<String> index;
 
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
-		private JsonValue health;
+		private Health health;
 
 		@Nullable
 		private Boolean includeUnloadedSegments;
@@ -147,6 +174,8 @@ public final class IndicesRequest extends CatRequestBase {
 		private Boolean pri;
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -155,6 +184,8 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -174,30 +205,63 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * A health status (&quot;green&quot;, &quot;yellow&quot;, or &quot;red&quot; to
+		 * filter only indices matching the specified health status
+		 * <p>
 		 * API name: {@code health}
 		 */
-		public Builder health(@Nullable JsonValue value) {
+		public Builder health(@Nullable Health value) {
 			this.health = value;
 			return this;
 		}
 
 		/**
+		 * If set to true segment stats will include stats for segments that are not
+		 * currently loaded into memory
+		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
 		public Builder includeUnloadedSegments(@Nullable Boolean value) {
@@ -206,6 +270,8 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Set to true to return stats only for primary shards
+		 * <p>
 		 * API name: {@code pri}
 		 */
 		public Builder pri(@Nullable Boolean value) {
@@ -230,7 +296,7 @@ public final class IndicesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.indices}".
 	 */
-	public static final Endpoint<IndicesRequest, IndicesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<IndicesRequest, IndicesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -257,10 +323,10 @@ public final class IndicesRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/indices");
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -271,7 +337,8 @@ public final class IndicesRequest extends CatRequestBase {
 					params.put("bytes", request.bytes.toString());
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.health != null) {
 					params.put("health", request.health.toString());
@@ -284,5 +351,5 @@ public final class IndicesRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, IndicesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, IndicesResponse._DESERIALIZER);
 }

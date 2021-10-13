@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml.close_job.Response
-public final class CloseJobResponse implements ToJsonp {
-	private final Boolean closed;
+@JsonpDeserializable
+public final class CloseJobResponse implements JsonpSerializable {
+	private final boolean closed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseJobResponse(Builder builder) {
+	public CloseJobResponse(Builder builder) {
 
 		this.closed = Objects.requireNonNull(builder.closed, "closed");
 
 	}
 
+	public CloseJobResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code closed}
+	 * Required - API name: {@code closed}
 	 */
-	public Boolean closed() {
+	public boolean closed() {
 		return this.closed;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("closed");
 		generator.write(this.closed);
@@ -79,9 +85,9 @@ public final class CloseJobResponse implements ToJsonp {
 		private Boolean closed;
 
 		/**
-		 * API name: {@code closed}
+		 * Required - API name: {@code closed}
 		 */
-		public Builder closed(Boolean value) {
+		public Builder closed(boolean value) {
 			this.closed = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class CloseJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloseJobResponse
+	 * Json deserializer for {@link CloseJobResponse}
 	 */
-	public static final JsonpDeserializer<CloseJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloseJobResponse::setupCloseJobResponseDeserializer);
+	public static final JsonpDeserializer<CloseJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseJobResponse::setupCloseJobResponseDeserializer, Builder::build);
 
 	protected static void setupCloseJobResponseDeserializer(DelegatingDeserializer<CloseJobResponse.Builder> op) {
 

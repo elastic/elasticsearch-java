@@ -24,49 +24,55 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingRebalance
-public final class IndexRoutingRebalance implements ToJsonp {
-	private final JsonValue enable;
+@JsonpDeserializable
+public final class IndexRoutingRebalance implements JsonpSerializable {
+	private final IndexRoutingRebalanceOptions enable;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexRoutingRebalance(Builder builder) {
+	public IndexRoutingRebalance(Builder builder) {
 
 		this.enable = Objects.requireNonNull(builder.enable, "enable");
 
 	}
 
+	public IndexRoutingRebalance(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code enable}
+	 * Required - API name: {@code enable}
 	 */
-	public JsonValue enable() {
+	public IndexRoutingRebalanceOptions enable() {
 		return this.enable;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("enable");
-		generator.write(this.enable);
+		this.enable.serialize(generator, mapper);
 
 	}
 
@@ -76,12 +82,12 @@ public final class IndexRoutingRebalance implements ToJsonp {
 	 * Builder for {@link IndexRoutingRebalance}.
 	 */
 	public static class Builder implements ObjectBuilder<IndexRoutingRebalance> {
-		private JsonValue enable;
+		private IndexRoutingRebalanceOptions enable;
 
 		/**
-		 * API name: {@code enable}
+		 * Required - API name: {@code enable}
 		 */
-		public Builder enable(JsonValue value) {
+		public Builder enable(IndexRoutingRebalanceOptions value) {
 			this.enable = value;
 			return this;
 		}
@@ -101,15 +107,15 @@ public final class IndexRoutingRebalance implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexRoutingRebalance
+	 * Json deserializer for {@link IndexRoutingRebalance}
 	 */
-	public static final JsonpDeserializer<IndexRoutingRebalance> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexRoutingRebalance::setupIndexRoutingRebalanceDeserializer);
+	public static final JsonpDeserializer<IndexRoutingRebalance> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexRoutingRebalance::setupIndexRoutingRebalanceDeserializer, Builder::build);
 
 	protected static void setupIndexRoutingRebalanceDeserializer(
 			DelegatingDeserializer<IndexRoutingRebalance.Builder> op) {
 
-		op.add(Builder::enable, JsonpDeserializer.jsonValueDeserializer(), "enable");
+		op.add(Builder::enable, IndexRoutingRebalanceOptions._DESERIALIZER, "enable");
 
 	}
 

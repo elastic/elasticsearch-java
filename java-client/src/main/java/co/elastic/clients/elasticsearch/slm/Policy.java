@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Policy
-public final class Policy implements ToJsonp {
+@JsonpDeserializable
+public final class Policy implements JsonpSerializable {
 	private final Configuration config;
 
 	private final String name;
@@ -47,11 +48,11 @@ public final class Policy implements ToJsonp {
 
 	private final Retention retention;
 
-	private final JsonValue schedule;
+	private final String schedule;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Policy(Builder builder) {
+	public Policy(Builder builder) {
 
 		this.config = Objects.requireNonNull(builder.config, "config");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -61,54 +62,58 @@ public final class Policy implements ToJsonp {
 
 	}
 
+	public Policy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code config}
+	 * Required - API name: {@code config}
 	 */
 	public Configuration config() {
 		return this.config;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code repository}
+	 * Required - API name: {@code repository}
 	 */
 	public String repository() {
 		return this.repository;
 	}
 
 	/**
-	 * API name: {@code retention}
+	 * Required - API name: {@code retention}
 	 */
 	public Retention retention() {
 		return this.retention;
 	}
 
 	/**
-	 * API name: {@code schedule}
+	 * Required - API name: {@code schedule}
 	 */
-	public JsonValue schedule() {
+	public String schedule() {
 		return this.schedule;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("config");
-		this.config.toJsonp(generator, mapper);
+		this.config.serialize(generator, mapper);
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -117,7 +122,7 @@ public final class Policy implements ToJsonp {
 		generator.write(this.repository);
 
 		generator.writeKey("retention");
-		this.retention.toJsonp(generator, mapper);
+		this.retention.serialize(generator, mapper);
 
 		generator.writeKey("schedule");
 		generator.write(this.schedule);
@@ -138,10 +143,10 @@ public final class Policy implements ToJsonp {
 
 		private Retention retention;
 
-		private JsonValue schedule;
+		private String schedule;
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Configuration value) {
 			this.config = value;
@@ -149,14 +154,14 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
 			return this.config(fn.apply(new Configuration.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -164,7 +169,7 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code repository}
+		 * Required - API name: {@code repository}
 		 */
 		public Builder repository(String value) {
 			this.repository = value;
@@ -172,7 +177,7 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code retention}
+		 * Required - API name: {@code retention}
 		 */
 		public Builder retention(Retention value) {
 			this.retention = value;
@@ -180,16 +185,16 @@ public final class Policy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code retention}
+		 * Required - API name: {@code retention}
 		 */
 		public Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
 			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code schedule}
+		 * Required - API name: {@code schedule}
 		 */
-		public Builder schedule(JsonValue value) {
+		public Builder schedule(String value) {
 			this.schedule = value;
 			return this;
 		}
@@ -209,18 +214,18 @@ public final class Policy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Policy
+	 * Json deserializer for {@link Policy}
 	 */
-	public static final JsonpDeserializer<Policy> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Policy::setupPolicyDeserializer);
+	public static final JsonpDeserializer<Policy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Policy::setupPolicyDeserializer, Builder::build);
 
 	protected static void setupPolicyDeserializer(DelegatingDeserializer<Policy.Builder> op) {
 
-		op.add(Builder::config, Configuration.DESERIALIZER, "config");
+		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-		op.add(Builder::retention, Retention.DESERIALIZER, "retention");
-		op.add(Builder::schedule, JsonpDeserializer.jsonValueDeserializer(), "schedule");
+		op.add(Builder::retention, Retention._DESERIALIZER, "retention");
+		op.add(Builder::schedule, JsonpDeserializer.stringDeserializer(), "schedule");
 
 	}
 

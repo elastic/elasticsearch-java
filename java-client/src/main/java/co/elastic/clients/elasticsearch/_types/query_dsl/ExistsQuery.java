@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,37 +32,49 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ExistsQuery
-public final class ExistsQuery extends QueryBase {
-	@Nullable
+@JsonpDeserializable
+public final class ExistsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsQuery(Builder builder) {
+	public ExistsQuery(Builder builder) {
 		super(builder);
-		this.field = builder.field;
+
+		this.field = Objects.requireNonNull(builder.field, "field");
 
 	}
 
+	public ExistsQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Query} variant type
 	 */
-	@Nullable
+	@Override
+	public String _variantType() {
+		return "exists";
+	}
+
+	/**
+	 * Required - API name: {@code field}
+	 */
 	public String field() {
 		return this.field;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.field != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("field");
-			generator.write(this.field);
+		super.serializeInternal(generator, mapper);
 
-		}
+		generator.writeKey("field");
+		generator.write(this.field);
 
 	}
 
@@ -71,13 +84,12 @@ public final class ExistsQuery extends QueryBase {
 	 * Builder for {@link ExistsQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ExistsQuery> {
-		@Nullable
 		private String field;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -102,10 +114,10 @@ public final class ExistsQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExistsQuery
+	 * Json deserializer for {@link ExistsQuery}
 	 */
-	public static final JsonpDeserializer<ExistsQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExistsQuery::setupExistsQueryDeserializer);
+	public static final JsonpDeserializer<ExistsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExistsQuery::setupExistsQueryDeserializer, Builder::build);
 
 	protected static void setupExistsQueryDeserializer(DelegatingDeserializer<ExistsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

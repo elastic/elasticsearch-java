@@ -19,17 +19,17 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
-
-import javax.annotation.Nullable;
+import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-public class Bar implements ToJsonp {
+import javax.annotation.Nullable;
+
+public class Bar implements JsonpSerializable {
 
   private final String name;
 
@@ -43,7 +43,7 @@ public class Bar implements ToJsonp {
   }
 
   @Override
-  public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
+  public void serialize(JsonGenerator builder, JsonpMapper mapper) {
     builder.writeStartObject();
     if (this.name != null) builder.write("name", this.name);
     builder.writeEnd();

@@ -24,46 +24,49 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSnapshot
-public final class ModelSnapshot implements ToJsonp {
+@JsonpDeserializable
+public final class ModelSnapshot implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	private final String jobId;
 
-	private final Number latestRecordTimeStamp;
+	private final int latestRecordTimeStamp;
 
-	private final Number latestResultTimeStamp;
+	private final int latestResultTimeStamp;
 
 	private final String minVersion;
 
 	private final ModelSizeStats modelSizeStats;
 
-	private final Boolean retain;
+	private final boolean retain;
 
-	private final Number snapshotDocCount;
+	private final long snapshotDocCount;
 
 	private final String snapshotId;
 
-	private final Number timestamp;
+	private final int timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelSnapshot(Builder builder) {
+	public ModelSnapshot(Builder builder) {
 
 		this.description = builder.description;
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
@@ -78,9 +81,13 @@ public final class ModelSnapshot implements ToJsonp {
 
 	}
 
+	public ModelSnapshot(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * An optional description of the job.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -89,9 +96,9 @@ public final class ModelSnapshot implements ToJsonp {
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the job that the
-	 * snapshot was created for.
-	 *
+	 * Required - A numerical character string that uniquely identifies the job that
+	 * the snapshot was created for.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -99,26 +106,27 @@ public final class ModelSnapshot implements ToJsonp {
 	}
 
 	/**
-	 * The timestamp of the latest processed record.
-	 *
+	 * Required - The timestamp of the latest processed record.
+	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
-	public Number latestRecordTimeStamp() {
+	public int latestRecordTimeStamp() {
 		return this.latestRecordTimeStamp;
 	}
 
 	/**
-	 * The timestamp of the latest bucket result.
-	 *
+	 * Required - The timestamp of the latest bucket result.
+	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
-	public Number latestResultTimeStamp() {
+	public int latestResultTimeStamp() {
 		return this.latestResultTimeStamp;
 	}
 
 	/**
-	 * The minimum version required to be able to restore the model snapshot.
-	 *
+	 * Required - The minimum version required to be able to restore the model
+	 * snapshot.
+	 * <p>
 	 * API name: {@code min_version}
 	 */
 	public String minVersion() {
@@ -126,8 +134,8 @@ public final class ModelSnapshot implements ToJsonp {
 	}
 
 	/**
-	 * Summary information describing the model.
-	 *
+	 * Required - Summary information describing the model.
+	 * <p>
 	 * API name: {@code model_size_stats}
 	 */
 	public ModelSizeStats modelSizeStats() {
@@ -135,28 +143,29 @@ public final class ModelSnapshot implements ToJsonp {
 	}
 
 	/**
-	 * If true, this snapshot will not be deleted during automatic cleanup of
-	 * snapshots older than model_snapshot_retention_days. However, this snapshot
-	 * will be deleted when the job is deleted. The default value is false.
-	 *
+	 * Required - If true, this snapshot will not be deleted during automatic
+	 * cleanup of snapshots older than model_snapshot_retention_days. However, this
+	 * snapshot will be deleted when the job is deleted. The default value is false.
+	 * <p>
 	 * API name: {@code retain}
 	 */
-	public Boolean retain() {
+	public boolean retain() {
 		return this.retain;
 	}
 
 	/**
-	 * For internal use only.
-	 *
+	 * Required - For internal use only.
+	 * <p>
 	 * API name: {@code snapshot_doc_count}
 	 */
-	public Number snapshotDocCount() {
+	public long snapshotDocCount() {
 		return this.snapshotDocCount;
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the model snapshot.
-	 *
+	 * Required - A numerical character string that uniquely identifies the model
+	 * snapshot.
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -164,24 +173,24 @@ public final class ModelSnapshot implements ToJsonp {
 	}
 
 	/**
-	 * The creation timestamp for the snapshot.
-	 *
+	 * Required - The creation timestamp for the snapshot.
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public int timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -194,28 +203,28 @@ public final class ModelSnapshot implements ToJsonp {
 		generator.write(this.jobId);
 
 		generator.writeKey("latest_record_time_stamp");
-		generator.write(this.latestRecordTimeStamp.doubleValue());
+		generator.write(this.latestRecordTimeStamp);
 
 		generator.writeKey("latest_result_time_stamp");
-		generator.write(this.latestResultTimeStamp.doubleValue());
+		generator.write(this.latestResultTimeStamp);
 
 		generator.writeKey("min_version");
 		generator.write(this.minVersion);
 
 		generator.writeKey("model_size_stats");
-		this.modelSizeStats.toJsonp(generator, mapper);
+		this.modelSizeStats.serialize(generator, mapper);
 
 		generator.writeKey("retain");
 		generator.write(this.retain);
 
 		generator.writeKey("snapshot_doc_count");
-		generator.write(this.snapshotDocCount.doubleValue());
+		generator.write(this.snapshotDocCount);
 
 		generator.writeKey("snapshot_id");
 		generator.write(this.snapshotId);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -230,9 +239,9 @@ public final class ModelSnapshot implements ToJsonp {
 
 		private String jobId;
 
-		private Number latestRecordTimeStamp;
+		private Integer latestRecordTimeStamp;
 
-		private Number latestResultTimeStamp;
+		private Integer latestResultTimeStamp;
 
 		private String minVersion;
 
@@ -240,15 +249,15 @@ public final class ModelSnapshot implements ToJsonp {
 
 		private Boolean retain;
 
-		private Number snapshotDocCount;
+		private Long snapshotDocCount;
 
 		private String snapshotId;
 
-		private Number timestamp;
+		private Integer timestamp;
 
 		/**
 		 * An optional description of the job.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -257,9 +266,9 @@ public final class ModelSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the job that the
-		 * snapshot was created for.
-		 *
+		 * Required - A numerical character string that uniquely identifies the job that
+		 * the snapshot was created for.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -268,28 +277,29 @@ public final class ModelSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * The timestamp of the latest processed record.
-		 *
+		 * Required - The timestamp of the latest processed record.
+		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
-		public Builder latestRecordTimeStamp(Number value) {
+		public Builder latestRecordTimeStamp(int value) {
 			this.latestRecordTimeStamp = value;
 			return this;
 		}
 
 		/**
-		 * The timestamp of the latest bucket result.
-		 *
+		 * Required - The timestamp of the latest bucket result.
+		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
-		public Builder latestResultTimeStamp(Number value) {
+		public Builder latestResultTimeStamp(int value) {
 			this.latestResultTimeStamp = value;
 			return this;
 		}
 
 		/**
-		 * The minimum version required to be able to restore the model snapshot.
-		 *
+		 * Required - The minimum version required to be able to restore the model
+		 * snapshot.
+		 * <p>
 		 * API name: {@code min_version}
 		 */
 		public Builder minVersion(String value) {
@@ -298,8 +308,8 @@ public final class ModelSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * Summary information describing the model.
-		 *
+		 * Required - Summary information describing the model.
+		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
 		public Builder modelSizeStats(ModelSizeStats value) {
@@ -308,8 +318,8 @@ public final class ModelSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * Summary information describing the model.
-		 *
+		 * Required - Summary information describing the model.
+		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
 		public Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
@@ -317,30 +327,31 @@ public final class ModelSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * If true, this snapshot will not be deleted during automatic cleanup of
-		 * snapshots older than model_snapshot_retention_days. However, this snapshot
-		 * will be deleted when the job is deleted. The default value is false.
-		 *
+		 * Required - If true, this snapshot will not be deleted during automatic
+		 * cleanup of snapshots older than model_snapshot_retention_days. However, this
+		 * snapshot will be deleted when the job is deleted. The default value is false.
+		 * <p>
 		 * API name: {@code retain}
 		 */
-		public Builder retain(Boolean value) {
+		public Builder retain(boolean value) {
 			this.retain = value;
 			return this;
 		}
 
 		/**
-		 * For internal use only.
-		 *
+		 * Required - For internal use only.
+		 * <p>
 		 * API name: {@code snapshot_doc_count}
 		 */
-		public Builder snapshotDocCount(Number value) {
+		public Builder snapshotDocCount(long value) {
 			this.snapshotDocCount = value;
 			return this;
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the model snapshot.
-		 *
+		 * Required - A numerical character string that uniquely identifies the model
+		 * snapshot.
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {
@@ -349,11 +360,11 @@ public final class ModelSnapshot implements ToJsonp {
 		}
 
 		/**
-		 * The creation timestamp for the snapshot.
-		 *
+		 * Required - The creation timestamp for the snapshot.
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(int value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -373,23 +384,23 @@ public final class ModelSnapshot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ModelSnapshot
+	 * Json deserializer for {@link ModelSnapshot}
 	 */
-	public static final JsonpDeserializer<ModelSnapshot> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ModelSnapshot::setupModelSnapshotDeserializer);
+	public static final JsonpDeserializer<ModelSnapshot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ModelSnapshot::setupModelSnapshotDeserializer, Builder::build);
 
 	protected static void setupModelSnapshotDeserializer(DelegatingDeserializer<ModelSnapshot.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.numberDeserializer(), "latest_record_time_stamp");
-		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.numberDeserializer(), "latest_result_time_stamp");
+		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.integerDeserializer(), "latest_record_time_stamp");
+		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.integerDeserializer(), "latest_result_time_stamp");
 		op.add(Builder::minVersion, JsonpDeserializer.stringDeserializer(), "min_version");
-		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
+		op.add(Builder::modelSizeStats, ModelSizeStats._DESERIALIZER, "model_size_stats");
 		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
-		op.add(Builder::snapshotDocCount, JsonpDeserializer.numberDeserializer(), "snapshot_doc_count");
+		op.add(Builder::snapshotDocCount, JsonpDeserializer.longDeserializer(), "snapshot_doc_count");
 		op.add(Builder::snapshotId, JsonpDeserializer.stringDeserializer(), "snapshot_id");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.integerDeserializer(), "timestamp");
 
 	}
 

@@ -1,0 +1,9 @@
+= Elasticsearch Java API Client
+
+:branch: master
+include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
+
+include::introduction.asciidoc[]
+include::installation.asciidoc[]
+include::connecting.asciidoc[]
+include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[]

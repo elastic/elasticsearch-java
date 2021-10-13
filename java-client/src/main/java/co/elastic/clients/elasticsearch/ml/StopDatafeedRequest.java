@@ -25,25 +25,28 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
-public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
@@ -53,11 +56,11 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	private final Boolean force;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopDatafeedRequest(Builder builder) {
+	public StopDatafeedRequest(Builder builder) {
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.allowNoMatch = builder.allowNoMatch;
@@ -66,7 +69,13 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public StopDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The ID of the datafeed to stop
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -74,6 +83,9 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -93,20 +105,20 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.force != null) {
 
@@ -138,9 +150,11 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 		private Boolean force;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * Required - The ID of the datafeed to stop
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -149,6 +163,9 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -167,7 +184,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -187,15 +204,15 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StopDatafeedRequest
+	 * Json deserializer for {@link StopDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<StopDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<StopDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupStopDatafeedRequestDeserializer(DelegatingDeserializer<StopDatafeedRequest.Builder> op) {
 
 		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 
@@ -204,7 +221,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.stop_datafeed}".
 	 */
-	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -217,19 +234,18 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
-					propsSet |= _datafeedId;
+				propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					buf.append("/_stop");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -241,5 +257,5 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StopDatafeedResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StopDatafeedResponse._DESERIALIZER);
 }

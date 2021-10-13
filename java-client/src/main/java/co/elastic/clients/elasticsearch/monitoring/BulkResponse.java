@@ -23,50 +23,108 @@
 
 package co.elastic.clients.elasticsearch.monitoring;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Boolean;
+import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Response
-public final class BulkResponse implements ToJsonp {
-	private final Number stub;
+@JsonpDeserializable
+public final class BulkResponse implements JsonpSerializable {
+	@Nullable
+	private final ErrorCause error;
+
+	private final boolean errors;
+
+	private final boolean ignored;
+
+	private final long took;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BulkResponse(Builder builder) {
+	public BulkResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.error = builder.error;
+		this.errors = Objects.requireNonNull(builder.errors, "errors");
+		this.ignored = Objects.requireNonNull(builder.ignored, "ignored");
+		this.took = Objects.requireNonNull(builder.took, "took");
 
 	}
 
+	public BulkResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code stub}
+	 * API name: {@code error}
 	 */
-	public Number stub() {
-		return this.stub;
+	@Nullable
+	public ErrorCause error() {
+		return this.error;
+	}
+
+	/**
+	 * Required - True if there is was an error
+	 * <p>
+	 * API name: {@code errors}
+	 */
+	public boolean errors() {
+		return this.errors;
+	}
+
+	/**
+	 * Required - Was collection disabled?
+	 * <p>
+	 * API name: {@code ignored}
+	 */
+	public boolean ignored() {
+		return this.ignored;
+	}
+
+	/**
+	 * Required - API name: {@code took}
+	 */
+	public long took() {
+		return this.took;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		if (this.error != null) {
+
+			generator.writeKey("error");
+			this.error.serialize(generator, mapper);
+
+		}
+
+		generator.writeKey("errors");
+		generator.write(this.errors);
+
+		generator.writeKey("ignored");
+		generator.write(this.ignored);
+
+		generator.writeKey("took");
+		generator.write(this.took);
 
 	}
 
@@ -76,13 +134,55 @@ public final class BulkResponse implements ToJsonp {
 	 * Builder for {@link BulkResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<BulkResponse> {
-		private Number stub;
+		@Nullable
+		private ErrorCause error;
+
+		private Boolean errors;
+
+		private Boolean ignored;
+
+		private Long took;
 
 		/**
-		 * API name: {@code stub}
+		 * API name: {@code error}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder error(@Nullable ErrorCause value) {
+			this.error = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code error}
+		 */
+		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
+		 * Required - True if there is was an error
+		 * <p>
+		 * API name: {@code errors}
+		 */
+		public Builder errors(boolean value) {
+			this.errors = value;
+			return this;
+		}
+
+		/**
+		 * Required - Was collection disabled?
+		 * <p>
+		 * API name: {@code ignored}
+		 */
+		public Builder ignored(boolean value) {
+			this.ignored = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code took}
+		 */
+		public Builder took(long value) {
+			this.took = value;
 			return this;
 		}
 
@@ -101,14 +201,17 @@ public final class BulkResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BulkResponse
+	 * Json deserializer for {@link BulkResponse}
 	 */
-	public static final JsonpDeserializer<BulkResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BulkResponse::setupBulkResponseDeserializer);
+	public static final JsonpDeserializer<BulkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BulkResponse::setupBulkResponseDeserializer, Builder::build);
 
 	protected static void setupBulkResponseDeserializer(DelegatingDeserializer<BulkResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
+		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
+		op.add(Builder::ignored, JsonpDeserializer.booleanDeserializer(), "ignored");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 
 	}
 

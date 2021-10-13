@@ -25,15 +25,16 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -44,14 +45,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create_repository.Request
-public final class CreateRepositoryRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class CreateRepositoryRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean verify;
@@ -62,7 +64,7 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateRepositoryRequest(Builder builder) {
+	public CreateRepositoryRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;
@@ -73,7 +75,13 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 
 	}
 
+	public CreateRepositoryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -81,22 +89,28 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
+	 * Whether to verify the repository after creation
+	 * <p>
 	 * API name: {@code verify}
 	 */
 	@Nullable
@@ -105,14 +119,14 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public RepositorySettings settings() {
 		return this.settings;
@@ -121,19 +135,19 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
 
 		generator.writeKey("settings");
-		this.settings.toJsonp(generator, mapper);
+		this.settings.serialize(generator, mapper);
 
 	}
 
@@ -146,10 +160,10 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		private String repository;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean verify;
@@ -159,6 +173,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		private RepositorySettings settings;
 
 		/**
+		 * Required - A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -167,22 +183,28 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
+		 * Whether to verify the repository after creation
+		 * <p>
 		 * API name: {@code verify}
 		 */
 		public Builder verify(@Nullable Boolean value) {
@@ -191,7 +213,7 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -199,7 +221,7 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(RepositorySettings value) {
 			this.settings = value;
@@ -207,7 +229,7 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
 			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
@@ -228,16 +250,16 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateRepositoryRequest
+	 * Json deserializer for {@link CreateRepositoryRequest}
 	 */
-	public static final JsonpDeserializer<CreateRepositoryRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer);
+	public static final JsonpDeserializer<CreateRepositoryRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer, Builder::build);
 
 	protected static void setupCreateRepositoryRequestDeserializer(
 			DelegatingDeserializer<CreateRepositoryRequest.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::settings, RepositorySettings.DESERIALIZER, "settings");
+		op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
 
 	}
 
@@ -246,7 +268,7 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	/**
 	 * Endpoint "{@code snapshot.create_repository}".
 	 */
-	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -259,17 +281,16 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
+				propsSet |= _repository;
 
 				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -277,15 +298,15 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.verify != null) {
 					params.put("verify", String.valueOf(request.verify));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateRepositoryResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateRepositoryResponse._DESERIALIZER);
 }

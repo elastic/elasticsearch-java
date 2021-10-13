@@ -24,49 +24,64 @@
 package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features.reset_features.Response
-public final class ResetFeaturesResponse implements ToJsonp {
-	private final Number stub;
+@JsonpDeserializable
+public final class ResetFeaturesResponse implements JsonpSerializable {
+	private final List<Feature> features;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResetFeaturesResponse(Builder builder) {
+	public ResetFeaturesResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.features = ModelTypeHelper.unmodifiableNonNull(builder.features, "features");
 
 	}
 
+	public ResetFeaturesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code stub}
+	 * Required - API name: {@code features}
 	 */
-	public Number stub() {
-		return this.stub;
+	public List<Feature> features() {
+		return this.features;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.writeKey("features");
+		generator.writeStartArray();
+		for (Feature item0 : this.features) {
+			item0.serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
 
 	}
 
@@ -76,14 +91,47 @@ public final class ResetFeaturesResponse implements ToJsonp {
 	 * Builder for {@link ResetFeaturesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ResetFeaturesResponse> {
-		private Number stub;
+		private List<Feature> features;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - API name: {@code features}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder features(List<Feature> value) {
+			this.features = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code features}
+		 */
+		public Builder features(Feature... value) {
+			this.features = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 */
+		public Builder addFeatures(Feature value) {
+			if (this.features == null) {
+				this.features = new ArrayList<>();
+			}
+			this.features.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #features(List)} to a singleton list.
+		 */
+		public Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.features(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 */
+		public Builder addFeatures(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.addFeatures(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -101,15 +149,15 @@ public final class ResetFeaturesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResetFeaturesResponse
+	 * Json deserializer for {@link ResetFeaturesResponse}
 	 */
-	public static final JsonpDeserializer<ResetFeaturesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResetFeaturesResponse::setupResetFeaturesResponseDeserializer);
+	public static final JsonpDeserializer<ResetFeaturesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResetFeaturesResponse::setupResetFeaturesResponseDeserializer, Builder::build);
 
 	protected static void setupResetFeaturesResponseDeserializer(
 			DelegatingDeserializer<ResetFeaturesResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature._DESERIALIZER), "features");
 
 	}
 

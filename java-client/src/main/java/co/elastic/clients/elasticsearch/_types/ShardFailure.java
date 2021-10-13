@@ -24,21 +24,23 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardFailure
-public final class ShardFailure implements ToJsonp {
+@JsonpDeserializable
+public final class ShardFailure implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -47,14 +49,14 @@ public final class ShardFailure implements ToJsonp {
 
 	private final ErrorCause reason;
 
-	private final Number shard;
+	private final int shard;
 
 	@Nullable
 	private final String status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardFailure(Builder builder) {
+	public ShardFailure(Builder builder) {
 
 		this.index = builder.index;
 		this.node = builder.node;
@@ -62,6 +64,10 @@ public final class ShardFailure implements ToJsonp {
 		this.shard = Objects.requireNonNull(builder.shard, "shard");
 		this.status = builder.status;
 
+	}
+
+	public ShardFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -81,16 +87,16 @@ public final class ShardFailure implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public ErrorCause reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
-	public Number shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -105,13 +111,13 @@ public final class ShardFailure implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
 
@@ -127,10 +133,10 @@ public final class ShardFailure implements ToJsonp {
 		}
 
 		generator.writeKey("reason");
-		this.reason.toJsonp(generator, mapper);
+		this.reason.serialize(generator, mapper);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		if (this.status != null) {
 
@@ -155,7 +161,7 @@ public final class ShardFailure implements ToJsonp {
 
 		private ErrorCause reason;
 
-		private Number shard;
+		private Integer shard;
 
 		@Nullable
 		private String status;
@@ -177,7 +183,7 @@ public final class ShardFailure implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(ErrorCause value) {
 			this.reason = value;
@@ -185,16 +191,16 @@ public final class ShardFailure implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.reason(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -222,17 +228,17 @@ public final class ShardFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardFailure
+	 * Json deserializer for {@link ShardFailure}
 	 */
-	public static final JsonpDeserializer<ShardFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardFailure::setupShardFailureDeserializer);
+	public static final JsonpDeserializer<ShardFailure> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardFailure::setupShardFailureDeserializer, Builder::build);
 
 	protected static void setupShardFailureDeserializer(DelegatingDeserializer<ShardFailure.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::reason, ErrorCause.DESERIALIZER, "reason");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::reason, ErrorCause._DESERIALIZER, "reason");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
 
 	}

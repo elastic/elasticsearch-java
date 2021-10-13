@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Filter
-public final class Filter implements ToJsonp {
+@JsonpDeserializable
+public final class Filter implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -49,12 +53,16 @@ public final class Filter implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Filter(Builder builder) {
+	public Filter(Builder builder) {
 
 		this.description = builder.description;
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.items = Objects.requireNonNull(builder.items, "items");
+		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
 
+	}
+
+	public Filter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -66,14 +74,14 @@ public final class Filter implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code filter_id}
+	 * Required - API name: {@code filter_id}
 	 */
 	public String filterId() {
 		return this.filterId;
 	}
 
 	/**
-	 * API name: {@code items}
+	 * Required - API name: {@code items}
 	 */
 	public List<String> items() {
 		return this.items;
@@ -82,13 +90,13 @@ public final class Filter implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -132,7 +140,7 @@ public final class Filter implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code filter_id}
+		 * Required - API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {
 			this.filterId = value;
@@ -140,7 +148,7 @@ public final class Filter implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(List<String> value) {
 			this.items = value;
@@ -148,7 +156,7 @@ public final class Filter implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(String... value) {
 			this.items = Arrays.asList(value);
@@ -181,10 +189,10 @@ public final class Filter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Filter
+	 * Json deserializer for {@link Filter}
 	 */
-	public static final JsonpDeserializer<Filter> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Filter::setupFilterDeserializer);
+	public static final JsonpDeserializer<Filter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Filter::setupFilterDeserializer, Builder::build);
 
 	protected static void setupFilterDeserializer(DelegatingDeserializer<Filter.Builder> op) {
 

@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,23 +42,28 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabases
-public final class GeoIpNodeDatabases implements ToJsonp {
+@JsonpDeserializable
+public final class GeoIpNodeDatabases implements JsonpSerializable {
 	private final List<GeoIpNodeDatabaseName> databases;
 
 	private final List<String> filesInTemp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoIpNodeDatabases(Builder builder) {
+	public GeoIpNodeDatabases(Builder builder) {
 
-		this.databases = Objects.requireNonNull(builder.databases, "databases");
-		this.filesInTemp = Objects.requireNonNull(builder.filesInTemp, "files_in_temp");
+		this.databases = ModelTypeHelper.unmodifiableNonNull(builder.databases, "databases");
+		this.filesInTemp = ModelTypeHelper.unmodifiableNonNull(builder.filesInTemp, "files_in_temp");
 
 	}
 
+	public GeoIpNodeDatabases(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Downloaded databases for the node.
-	 *
+	 * Required - Downloaded databases for the node.
+	 * <p>
 	 * API name: {@code databases}
 	 */
 	public List<GeoIpNodeDatabaseName> databases() {
@@ -64,10 +71,10 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 	}
 
 	/**
-	 * Downloaded database files, including related license files. Elasticsearch
-	 * stores these files in the node’s temporary directory:
+	 * Required - Downloaded database files, including related license files.
+	 * Elasticsearch stores these files in the node’s temporary directory:
 	 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
-	 *
+	 * <p>
 	 * API name: {@code files_in_temp}
 	 */
 	public List<String> filesInTemp() {
@@ -77,18 +84,18 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("databases");
 		generator.writeStartArray();
 		for (GeoIpNodeDatabaseName item0 : this.databases) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -114,8 +121,8 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 		private List<String> filesInTemp;
 
 		/**
-		 * Downloaded databases for the node.
-		 *
+		 * Required - Downloaded databases for the node.
+		 * <p>
 		 * API name: {@code databases}
 		 */
 		public Builder databases(List<GeoIpNodeDatabaseName> value) {
@@ -124,8 +131,8 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 		}
 
 		/**
-		 * Downloaded databases for the node.
-		 *
+		 * Required - Downloaded databases for the node.
+		 * <p>
 		 * API name: {@code databases}
 		 */
 		public Builder databases(GeoIpNodeDatabaseName... value) {
@@ -159,10 +166,10 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 		}
 
 		/**
-		 * Downloaded database files, including related license files. Elasticsearch
-		 * stores these files in the node’s temporary directory:
+		 * Required - Downloaded database files, including related license files.
+		 * Elasticsearch stores these files in the node’s temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
-		 *
+		 * <p>
 		 * API name: {@code files_in_temp}
 		 */
 		public Builder filesInTemp(List<String> value) {
@@ -171,10 +178,10 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 		}
 
 		/**
-		 * Downloaded database files, including related license files. Elasticsearch
-		 * stores these files in the node’s temporary directory:
+		 * Required - Downloaded database files, including related license files.
+		 * Elasticsearch stores these files in the node’s temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
-		 *
+		 * <p>
 		 * API name: {@code files_in_temp}
 		 */
 		public Builder filesInTemp(String... value) {
@@ -208,14 +215,14 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoIpNodeDatabases
+	 * Json deserializer for {@link GeoIpNodeDatabases}
 	 */
-	public static final JsonpDeserializer<GeoIpNodeDatabases> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer);
+	public static final JsonpDeserializer<GeoIpNodeDatabases> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer, Builder::build);
 
 	protected static void setupGeoIpNodeDatabasesDeserializer(DelegatingDeserializer<GeoIpNodeDatabases.Builder> op) {
 
-		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(GeoIpNodeDatabaseName.DESERIALIZER),
+		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(GeoIpNodeDatabaseName._DESERIALIZER),
 				"databases");
 		op.add(Builder::filesInTemp, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"files_in_temp");

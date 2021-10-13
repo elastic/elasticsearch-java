@@ -24,48 +24,54 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Cpu
-public final class Cpu implements ToJsonp {
-	private final Number percent;
+@JsonpDeserializable
+public final class Cpu implements JsonpSerializable {
+	private final int percent;
 
 	@Nullable
 	private final String sys;
 
 	@Nullable
-	private final Number sysInMillis;
+	private final Long sysInMillis;
 
 	@Nullable
 	private final String total;
 
 	@Nullable
-	private final Number totalInMillis;
+	private final Long totalInMillis;
 
 	@Nullable
 	private final String user;
 
 	@Nullable
-	private final Number userInMillis;
+	private final Long userInMillis;
 
 	@Nullable
-	private final Map<String, Number> loadAverage;
+	private final Map<String, Double> loadAverage;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Cpu(Builder builder) {
+	public Cpu(Builder builder) {
 
 		this.percent = Objects.requireNonNull(builder.percent, "percent");
 		this.sys = builder.sys;
@@ -74,14 +80,18 @@ public final class Cpu implements ToJsonp {
 		this.totalInMillis = builder.totalInMillis;
 		this.user = builder.user;
 		this.userInMillis = builder.userInMillis;
-		this.loadAverage = builder.loadAverage;
+		this.loadAverage = ModelTypeHelper.unmodifiable(builder.loadAverage);
 
 	}
 
+	public Cpu(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code percent}
+	 * Required - API name: {@code percent}
 	 */
-	public Number percent() {
+	public int percent() {
 		return this.percent;
 	}
 
@@ -97,7 +107,7 @@ public final class Cpu implements ToJsonp {
 	 * API name: {@code sys_in_millis}
 	 */
 	@Nullable
-	public Number sysInMillis() {
+	public Long sysInMillis() {
 		return this.sysInMillis;
 	}
 
@@ -113,7 +123,7 @@ public final class Cpu implements ToJsonp {
 	 * API name: {@code total_in_millis}
 	 */
 	@Nullable
-	public Number totalInMillis() {
+	public Long totalInMillis() {
 		return this.totalInMillis;
 	}
 
@@ -129,7 +139,7 @@ public final class Cpu implements ToJsonp {
 	 * API name: {@code user_in_millis}
 	 */
 	@Nullable
-	public Number userInMillis() {
+	public Long userInMillis() {
 		return this.userInMillis;
 	}
 
@@ -137,23 +147,23 @@ public final class Cpu implements ToJsonp {
 	 * API name: {@code load_average}
 	 */
 	@Nullable
-	public Map<String, Number> loadAverage() {
+	public Map<String, Double> loadAverage() {
 		return this.loadAverage;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("percent");
-		generator.write(this.percent.doubleValue());
+		generator.write(this.percent);
 
 		if (this.sys != null) {
 
@@ -164,7 +174,7 @@ public final class Cpu implements ToJsonp {
 		if (this.sysInMillis != null) {
 
 			generator.writeKey("sys_in_millis");
-			generator.write(this.sysInMillis.doubleValue());
+			generator.write(this.sysInMillis);
 
 		}
 		if (this.total != null) {
@@ -176,7 +186,7 @@ public final class Cpu implements ToJsonp {
 		if (this.totalInMillis != null) {
 
 			generator.writeKey("total_in_millis");
-			generator.write(this.totalInMillis.doubleValue());
+			generator.write(this.totalInMillis);
 
 		}
 		if (this.user != null) {
@@ -188,16 +198,16 @@ public final class Cpu implements ToJsonp {
 		if (this.userInMillis != null) {
 
 			generator.writeKey("user_in_millis");
-			generator.write(this.userInMillis.doubleValue());
+			generator.write(this.userInMillis);
 
 		}
 		if (this.loadAverage != null) {
 
 			generator.writeKey("load_average");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.loadAverage.entrySet()) {
+			for (Map.Entry<String, Double> item0 : this.loadAverage.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -212,33 +222,33 @@ public final class Cpu implements ToJsonp {
 	 * Builder for {@link Cpu}.
 	 */
 	public static class Builder implements ObjectBuilder<Cpu> {
-		private Number percent;
+		private Integer percent;
 
 		@Nullable
 		private String sys;
 
 		@Nullable
-		private Number sysInMillis;
+		private Long sysInMillis;
 
 		@Nullable
 		private String total;
 
 		@Nullable
-		private Number totalInMillis;
+		private Long totalInMillis;
 
 		@Nullable
 		private String user;
 
 		@Nullable
-		private Number userInMillis;
+		private Long userInMillis;
 
 		@Nullable
-		private Map<String, Number> loadAverage;
+		private Map<String, Double> loadAverage;
 
 		/**
-		 * API name: {@code percent}
+		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(Number value) {
+		public Builder percent(int value) {
 			this.percent = value;
 			return this;
 		}
@@ -254,7 +264,7 @@ public final class Cpu implements ToJsonp {
 		/**
 		 * API name: {@code sys_in_millis}
 		 */
-		public Builder sysInMillis(@Nullable Number value) {
+		public Builder sysInMillis(@Nullable Long value) {
 			this.sysInMillis = value;
 			return this;
 		}
@@ -270,7 +280,7 @@ public final class Cpu implements ToJsonp {
 		/**
 		 * API name: {@code total_in_millis}
 		 */
-		public Builder totalInMillis(@Nullable Number value) {
+		public Builder totalInMillis(@Nullable Long value) {
 			this.totalInMillis = value;
 			return this;
 		}
@@ -286,7 +296,7 @@ public final class Cpu implements ToJsonp {
 		/**
 		 * API name: {@code user_in_millis}
 		 */
-		public Builder userInMillis(@Nullable Number value) {
+		public Builder userInMillis(@Nullable Long value) {
 			this.userInMillis = value;
 			return this;
 		}
@@ -294,7 +304,7 @@ public final class Cpu implements ToJsonp {
 		/**
 		 * API name: {@code load_average}
 		 */
-		public Builder loadAverage(@Nullable Map<String, Number> value) {
+		public Builder loadAverage(@Nullable Map<String, Double> value) {
 			this.loadAverage = value;
 			return this;
 		}
@@ -302,7 +312,7 @@ public final class Cpu implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #loadAverage(Map)}, creating the map if needed.
 		 */
-		public Builder putLoadAverage(String key, Number value) {
+		public Builder putLoadAverage(String key, Double value) {
 			if (this.loadAverage == null) {
 				this.loadAverage = new HashMap<>();
 			}
@@ -325,21 +335,21 @@ public final class Cpu implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Cpu
+	 * Json deserializer for {@link Cpu}
 	 */
-	public static final JsonpDeserializer<Cpu> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Cpu::setupCpuDeserializer);
+	public static final JsonpDeserializer<Cpu> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Cpu::setupCpuDeserializer, Builder::build);
 
 	protected static void setupCpuDeserializer(DelegatingDeserializer<Cpu.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.numberDeserializer(), "percent");
+		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
 		op.add(Builder::sys, JsonpDeserializer.stringDeserializer(), "sys");
-		op.add(Builder::sysInMillis, JsonpDeserializer.numberDeserializer(), "sys_in_millis");
+		op.add(Builder::sysInMillis, JsonpDeserializer.longDeserializer(), "sys_in_millis");
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInMillis, JsonpDeserializer.numberDeserializer(), "total_in_millis");
+		op.add(Builder::totalInMillis, JsonpDeserializer.longDeserializer(), "total_in_millis");
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
-		op.add(Builder::userInMillis, JsonpDeserializer.numberDeserializer(), "user_in_millis");
-		op.add(Builder::loadAverage, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::userInMillis, JsonpDeserializer.longDeserializer(), "user_in_millis");
+		op.add(Builder::loadAverage, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"load_average");
 
 	}

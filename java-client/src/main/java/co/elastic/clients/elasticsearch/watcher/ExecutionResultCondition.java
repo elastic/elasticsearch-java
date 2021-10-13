@@ -24,29 +24,31 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultCondition
-public final class ExecutionResultCondition implements ToJsonp {
-	private final Boolean met;
+@JsonpDeserializable
+public final class ExecutionResultCondition implements JsonpSerializable {
+	private final boolean met;
 
-	private final JsonValue status;
+	private final ActionStatusOptions status;
 
-	private final JsonValue type;
+	private final ConditionType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutionResultCondition(Builder builder) {
+	public ExecutionResultCondition(Builder builder) {
 
 		this.met = Objects.requireNonNull(builder.met, "met");
 		this.status = Objects.requireNonNull(builder.status, "status");
@@ -54,46 +56,50 @@ public final class ExecutionResultCondition implements ToJsonp {
 
 	}
 
+	public ExecutionResultCondition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code met}
+	 * Required - API name: {@code met}
 	 */
-	public Boolean met() {
+	public boolean met() {
 		return this.met;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
-	public JsonValue type() {
+	public ConditionType type() {
 		return this.type;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("met");
 		generator.write(this.met);
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 	}
 
@@ -105,30 +111,30 @@ public final class ExecutionResultCondition implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ExecutionResultCondition> {
 		private Boolean met;
 
-		private JsonValue status;
+		private ActionStatusOptions status;
 
-		private JsonValue type;
+		private ConditionType type;
 
 		/**
-		 * API name: {@code met}
+		 * Required - API name: {@code met}
 		 */
-		public Builder met(Boolean value) {
+		public Builder met(boolean value) {
 			this.met = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(ConditionType value) {
 			this.type = value;
 			return this;
 		}
@@ -148,17 +154,17 @@ public final class ExecutionResultCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutionResultCondition
+	 * Json deserializer for {@link ExecutionResultCondition}
 	 */
-	public static final JsonpDeserializer<ExecutionResultCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionResultCondition::setupExecutionResultConditionDeserializer);
+	public static final JsonpDeserializer<ExecutionResultCondition> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecutionResultCondition::setupExecutionResultConditionDeserializer, Builder::build);
 
 	protected static void setupExecutionResultConditionDeserializer(
 			DelegatingDeserializer<ExecutionResultCondition.Builder> op) {
 
 		op.add(Builder::met, JsonpDeserializer.booleanDeserializer(), "met");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::type, ConditionType._DESERIALIZER, "type");
 
 	}
 

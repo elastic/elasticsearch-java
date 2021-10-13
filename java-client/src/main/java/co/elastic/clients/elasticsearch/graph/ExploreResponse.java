@@ -25,15 +25,17 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.ShardFailure;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,59 +44,64 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Response
-public final class ExploreResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ExploreResponse implements JsonpSerializable {
 	private final List<Connection> connections;
 
 	private final List<ShardFailure> failures;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
-	private final Number took;
+	private final long took;
 
 	private final List<Vertex> vertices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExploreResponse(Builder builder) {
+	public ExploreResponse(Builder builder) {
 
-		this.connections = Objects.requireNonNull(builder.connections, "connections");
-		this.failures = Objects.requireNonNull(builder.failures, "failures");
+		this.connections = ModelTypeHelper.unmodifiableNonNull(builder.connections, "connections");
+		this.failures = ModelTypeHelper.unmodifiableNonNull(builder.failures, "failures");
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.took = Objects.requireNonNull(builder.took, "took");
-		this.vertices = Objects.requireNonNull(builder.vertices, "vertices");
+		this.vertices = ModelTypeHelper.unmodifiableNonNull(builder.vertices, "vertices");
 
 	}
 
+	public ExploreResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code connections}
+	 * Required - API name: {@code connections}
 	 */
 	public List<Connection> connections() {
 		return this.connections;
 	}
 
 	/**
-	 * API name: {@code failures}
+	 * Required - API name: {@code failures}
 	 */
 	public List<ShardFailure> failures() {
 		return this.failures;
 	}
 
 	/**
-	 * API name: {@code timed_out}
+	 * Required - API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
-	public Number took() {
+	public long took() {
 		return this.took;
 	}
 
 	/**
-	 * API name: {@code vertices}
+	 * Required - API name: {@code vertices}
 	 */
 	public List<Vertex> vertices() {
 		return this.vertices;
@@ -103,18 +110,18 @@ public final class ExploreResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("connections");
 		generator.writeStartArray();
 		for (Connection item0 : this.connections) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -122,7 +129,7 @@ public final class ExploreResponse implements ToJsonp {
 		generator.writeKey("failures");
 		generator.writeStartArray();
 		for (ShardFailure item0 : this.failures) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -131,12 +138,12 @@ public final class ExploreResponse implements ToJsonp {
 		generator.write(this.timedOut);
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 		generator.writeKey("vertices");
 		generator.writeStartArray();
 		for (Vertex item0 : this.vertices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -155,12 +162,12 @@ public final class ExploreResponse implements ToJsonp {
 
 		private Boolean timedOut;
 
-		private Number took;
+		private Long took;
 
 		private List<Vertex> vertices;
 
 		/**
-		 * API name: {@code connections}
+		 * Required - API name: {@code connections}
 		 */
 		public Builder connections(List<Connection> value) {
 			this.connections = value;
@@ -168,7 +175,7 @@ public final class ExploreResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code connections}
+		 * Required - API name: {@code connections}
 		 */
 		public Builder connections(Connection... value) {
 			this.connections = Arrays.asList(value);
@@ -201,7 +208,7 @@ public final class ExploreResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(List<ShardFailure> value) {
 			this.failures = value;
@@ -209,7 +216,7 @@ public final class ExploreResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(ShardFailure... value) {
 			this.failures = Arrays.asList(value);
@@ -242,23 +249,23 @@ public final class ExploreResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code timed_out}
+		 * Required - API name: {@code timed_out}
 		 */
-		public Builder timedOut(Boolean value) {
+		public Builder timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
-		public Builder took(Number value) {
+		public Builder took(long value) {
 			this.took = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(List<Vertex> value) {
 			this.vertices = value;
@@ -266,7 +273,7 @@ public final class ExploreResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(Vertex... value) {
 			this.vertices = Arrays.asList(value);
@@ -313,18 +320,18 @@ public final class ExploreResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExploreResponse
+	 * Json deserializer for {@link ExploreResponse}
 	 */
-	public static final JsonpDeserializer<ExploreResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExploreResponse::setupExploreResponseDeserializer);
+	public static final JsonpDeserializer<ExploreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExploreResponse::setupExploreResponseDeserializer, Builder::build);
 
 	protected static void setupExploreResponseDeserializer(DelegatingDeserializer<ExploreResponse.Builder> op) {
 
-		op.add(Builder::connections, JsonpDeserializer.arrayDeserializer(Connection.DESERIALIZER), "connections");
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::connections, JsonpDeserializer.arrayDeserializer(Connection._DESERIALIZER), "connections");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
-		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(Vertex.DESERIALIZER), "vertices");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(Vertex._DESERIALIZER), "vertices");
 
 	}
 

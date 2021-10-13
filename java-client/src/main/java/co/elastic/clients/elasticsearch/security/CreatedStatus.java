@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: security._types.CreatedStatus
-public final class CreatedStatus implements ToJsonp {
-	private final Boolean created;
+@JsonpDeserializable
+public final class CreatedStatus implements JsonpSerializable {
+	private final boolean created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreatedStatus(Builder builder) {
+	public CreatedStatus(Builder builder) {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 
 	}
 
+	public CreatedStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("created");
 		generator.write(this.created);
@@ -79,9 +85,9 @@ public final class CreatedStatus implements ToJsonp {
 		private Boolean created;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class CreatedStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreatedStatus
+	 * Json deserializer for {@link CreatedStatus}
 	 */
-	public static final JsonpDeserializer<CreatedStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreatedStatus::setupCreatedStatusDeserializer);
+	public static final JsonpDeserializer<CreatedStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreatedStatus::setupCreatedStatusDeserializer, Builder::build);
 
 	protected static void setupCreatedStatusDeserializer(DelegatingDeserializer<CreatedStatus.Builder> op) {
 

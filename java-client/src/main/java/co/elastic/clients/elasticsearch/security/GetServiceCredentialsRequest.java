@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,9 +36,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Request
+
 public final class GetServiceCredentialsRequest extends RequestBase {
 	private final String namespace;
 
@@ -44,14 +48,20 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetServiceCredentialsRequest(Builder builder) {
+	public GetServiceCredentialsRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
 
 	}
 
+	public GetServiceCredentialsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - Name of the namespace.
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -59,6 +69,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - Name of the service name.
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -76,6 +88,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		private String service;
 
 		/**
+		 * Required - Name of the namespace.
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -84,6 +98,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - Name of the service name.
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {
@@ -108,7 +124,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_service_credentials}".
 	 */
-	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -122,23 +138,21 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
-				if (request.service() != null)
-					propsSet |= _service;
+				propsSet |= _namespace;
+				propsSet |= _service;
 
 				if (propsSet == (_namespace | _service)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -146,5 +160,5 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetServiceCredentialsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetServiceCredentialsResponse._DESERIALIZER);
 }

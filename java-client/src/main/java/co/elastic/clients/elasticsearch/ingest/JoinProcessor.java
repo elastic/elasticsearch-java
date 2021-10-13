@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,10 +33,12 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JoinProcessor
-public final class JoinProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final String separator;
@@ -45,23 +48,36 @@ public final class JoinProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JoinProcessor(Builder builder) {
+	public JoinProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.separator = Objects.requireNonNull(builder.separator, "separator");
 		this.targetField = builder.targetField;
 
 	}
 
+	public JoinProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "join";
+	}
+
+	/**
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code separator}
+	 * Required - API name: {@code separator}
 	 */
 	public String separator() {
 		return this.separator;
@@ -75,8 +91,9 @@ public final class JoinProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -107,7 +124,7 @@ public final class JoinProcessor extends ProcessorBase {
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -115,7 +132,7 @@ public final class JoinProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * API name: {@code separator}
+		 * Required - API name: {@code separator}
 		 */
 		public Builder separator(String value) {
 			this.separator = value;
@@ -150,10 +167,10 @@ public final class JoinProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JoinProcessor
+	 * Json deserializer for {@link JoinProcessor}
 	 */
-	public static final JsonpDeserializer<JoinProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JoinProcessor::setupJoinProcessorDeserializer);
+	public static final JsonpDeserializer<JoinProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JoinProcessor::setupJoinProcessorDeserializer, Builder::build);
 
 	protected static void setupJoinProcessorDeserializer(DelegatingDeserializer<JoinProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

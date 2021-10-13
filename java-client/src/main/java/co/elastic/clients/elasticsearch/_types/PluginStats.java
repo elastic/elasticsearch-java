@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,10 +39,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
-public final class PluginStats implements ToJsonp {
+@JsonpDeserializable
+public final class PluginStats implements JsonpSerializable {
 	private final String classname;
 
 	private final String description;
@@ -49,7 +53,7 @@ public final class PluginStats implements ToJsonp {
 
 	private final List<String> extendedPlugins;
 
-	private final Boolean hasNativeController;
+	private final boolean hasNativeController;
 
 	private final String javaVersion;
 
@@ -57,18 +61,18 @@ public final class PluginStats implements ToJsonp {
 
 	private final String version;
 
-	private final Boolean licensed;
+	private final boolean licensed;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PluginStats(Builder builder) {
+	public PluginStats(Builder builder) {
 
 		this.classname = Objects.requireNonNull(builder.classname, "classname");
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.elasticsearchVersion = Objects.requireNonNull(builder.elasticsearchVersion, "elasticsearch_version");
-		this.extendedPlugins = Objects.requireNonNull(builder.extendedPlugins, "extended_plugins");
+		this.extendedPlugins = ModelTypeHelper.unmodifiableNonNull(builder.extendedPlugins, "extended_plugins");
 		this.hasNativeController = Objects.requireNonNull(builder.hasNativeController, "has_native_controller");
 		this.javaVersion = Objects.requireNonNull(builder.javaVersion, "java_version");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -78,71 +82,75 @@ public final class PluginStats implements ToJsonp {
 
 	}
 
+	public PluginStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code classname}
+	 * Required - API name: {@code classname}
 	 */
 	public String classname() {
 		return this.classname;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code elasticsearch_version}
+	 * Required - API name: {@code elasticsearch_version}
 	 */
 	public String elasticsearchVersion() {
 		return this.elasticsearchVersion;
 	}
 
 	/**
-	 * API name: {@code extended_plugins}
+	 * Required - API name: {@code extended_plugins}
 	 */
 	public List<String> extendedPlugins() {
 		return this.extendedPlugins;
 	}
 
 	/**
-	 * API name: {@code has_native_controller}
+	 * Required - API name: {@code has_native_controller}
 	 */
-	public Boolean hasNativeController() {
+	public boolean hasNativeController() {
 		return this.hasNativeController;
 	}
 
 	/**
-	 * API name: {@code java_version}
+	 * Required - API name: {@code java_version}
 	 */
 	public String javaVersion() {
 		return this.javaVersion;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code licensed}
+	 * Required - API name: {@code licensed}
 	 */
-	public Boolean licensed() {
+	public boolean licensed() {
 		return this.licensed;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -151,13 +159,13 @@ public final class PluginStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("classname");
 		generator.write(this.classname);
@@ -223,7 +231,7 @@ public final class PluginStats implements ToJsonp {
 		private String type;
 
 		/**
-		 * API name: {@code classname}
+		 * Required - API name: {@code classname}
 		 */
 		public Builder classname(String value) {
 			this.classname = value;
@@ -231,7 +239,7 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -239,7 +247,7 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code elasticsearch_version}
+		 * Required - API name: {@code elasticsearch_version}
 		 */
 		public Builder elasticsearchVersion(String value) {
 			this.elasticsearchVersion = value;
@@ -247,7 +255,7 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code extended_plugins}
+		 * Required - API name: {@code extended_plugins}
 		 */
 		public Builder extendedPlugins(List<String> value) {
 			this.extendedPlugins = value;
@@ -255,7 +263,7 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code extended_plugins}
+		 * Required - API name: {@code extended_plugins}
 		 */
 		public Builder extendedPlugins(String... value) {
 			this.extendedPlugins = Arrays.asList(value);
@@ -274,15 +282,15 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code has_native_controller}
+		 * Required - API name: {@code has_native_controller}
 		 */
-		public Builder hasNativeController(Boolean value) {
+		public Builder hasNativeController(boolean value) {
 			this.hasNativeController = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code java_version}
+		 * Required - API name: {@code java_version}
 		 */
 		public Builder javaVersion(String value) {
 			this.javaVersion = value;
@@ -290,7 +298,7 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -298,7 +306,7 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -306,15 +314,15 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code licensed}
+		 * Required - API name: {@code licensed}
 		 */
-		public Builder licensed(Boolean value) {
+		public Builder licensed(boolean value) {
 			this.licensed = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -336,10 +344,10 @@ public final class PluginStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PluginStats
+	 * Json deserializer for {@link PluginStats}
 	 */
-	public static final JsonpDeserializer<PluginStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PluginStats::setupPluginStatsDeserializer);
+	public static final JsonpDeserializer<PluginStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PluginStats::setupPluginStatsDeserializer, Builder::build);
 
 	protected static void setupPluginStatsDeserializer(DelegatingDeserializer<PluginStats.Builder> op) {
 

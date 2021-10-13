@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTriggerSchedule
+@JsonpDeserializable
 public final class WatcherWatchTriggerSchedule extends Counter {
 	private final Counter cron;
 
@@ -42,35 +44,41 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatcherWatchTriggerSchedule(Builder builder) {
+	public WatcherWatchTriggerSchedule(Builder builder) {
 		super(builder);
+
 		this.cron = Objects.requireNonNull(builder.cron, "cron");
 		this.all = Objects.requireNonNull(builder.all, "_all");
 
 	}
 
+	public WatcherWatchTriggerSchedule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code cron}
+	 * Required - API name: {@code cron}
 	 */
 	public Counter cron() {
 		return this.cron;
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public Counter all() {
 		return this.all;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("cron");
-		this.cron.toJsonp(generator, mapper);
+		this.cron.serialize(generator, mapper);
 
 		generator.writeKey("_all");
-		this.all.toJsonp(generator, mapper);
+		this.all.serialize(generator, mapper);
 
 	}
 
@@ -87,7 +95,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		private Counter all;
 
 		/**
-		 * API name: {@code cron}
+		 * Required - API name: {@code cron}
 		 */
 		public Builder cron(Counter value) {
 			this.cron = value;
@@ -95,14 +103,14 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		}
 
 		/**
-		 * API name: {@code cron}
+		 * Required - API name: {@code cron}
 		 */
 		public Builder cron(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.cron(fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Counter value) {
 			this.all = value;
@@ -110,7 +118,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.all(fn.apply(new Counter.Builder()).build());
@@ -136,16 +144,16 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatcherWatchTriggerSchedule
+	 * Json deserializer for {@link WatcherWatchTriggerSchedule}
 	 */
-	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer);
+	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer, Builder::build);
 
 	protected static void setupWatcherWatchTriggerScheduleDeserializer(
 			DelegatingDeserializer<WatcherWatchTriggerSchedule.Builder> op) {
 		Counter.setupCounterDeserializer(op);
-		op.add(Builder::cron, Counter.DESERIALIZER, "cron");
-		op.add(Builder::all, Counter.DESERIALIZER, "_all");
+		op.add(Builder::cron, Counter._DESERIALIZER, "cron");
+		op.add(Builder::all, Counter._DESERIALIZER, "_all");
 
 	}
 

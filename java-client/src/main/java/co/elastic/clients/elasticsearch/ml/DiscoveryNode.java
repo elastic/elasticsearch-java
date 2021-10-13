@@ -24,21 +24,25 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DiscoveryNode
-public final class DiscoveryNode implements ToJsonp {
+@JsonpDeserializable
+public final class DiscoveryNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String ephemeralId;
@@ -51,9 +55,9 @@ public final class DiscoveryNode implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DiscoveryNode(Builder builder) {
+	public DiscoveryNode(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -61,36 +65,40 @@ public final class DiscoveryNode implements ToJsonp {
 
 	}
 
+	public DiscoveryNode(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code ephemeral_id}
+	 * Required - API name: {@code ephemeral_id}
 	 */
 	public String ephemeralId() {
 		return this.ephemeralId;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
@@ -99,13 +107,13 @@ public final class DiscoveryNode implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -147,7 +155,7 @@ public final class DiscoveryNode implements ToJsonp {
 		private String transportAddress;
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -166,7 +174,7 @@ public final class DiscoveryNode implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ephemeral_id}
+		 * Required - API name: {@code ephemeral_id}
 		 */
 		public Builder ephemeralId(String value) {
 			this.ephemeralId = value;
@@ -174,7 +182,7 @@ public final class DiscoveryNode implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -182,7 +190,7 @@ public final class DiscoveryNode implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -190,7 +198,7 @@ public final class DiscoveryNode implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
 			this.transportAddress = value;
@@ -212,10 +220,10 @@ public final class DiscoveryNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DiscoveryNode
+	 * Json deserializer for {@link DiscoveryNode}
 	 */
-	public static final JsonpDeserializer<DiscoveryNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DiscoveryNode::setupDiscoveryNodeDeserializer);
+	public static final JsonpDeserializer<DiscoveryNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DiscoveryNode::setupDiscoveryNodeDeserializer, Builder::build);
 
 	protected static void setupDiscoveryNodeDeserializer(DelegatingDeserializer<DiscoveryNode.Builder> op) {
 

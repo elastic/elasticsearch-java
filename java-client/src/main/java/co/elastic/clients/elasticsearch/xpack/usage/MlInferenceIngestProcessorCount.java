@@ -24,28 +24,30 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.MlInferenceIngestProcessorCount
-public final class MlInferenceIngestProcessorCount implements ToJsonp {
-	private final Number max;
+@JsonpDeserializable
+public final class MlInferenceIngestProcessorCount implements JsonpSerializable {
+	private final long max;
 
-	private final Number sum;
+	private final long sum;
 
-	private final Number min;
+	private final long min;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInferenceIngestProcessorCount(Builder builder) {
+	public MlInferenceIngestProcessorCount(Builder builder) {
 
 		this.max = Objects.requireNonNull(builder.max, "max");
 		this.sum = Objects.requireNonNull(builder.sum, "sum");
@@ -53,46 +55,50 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 
 	}
 
+	public MlInferenceIngestProcessorCount(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
-	public Number max() {
+	public long max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code sum}
+	 * Required - API name: {@code sum}
 	 */
-	public Number sum() {
+	public long sum() {
 		return this.sum;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
-	public Number min() {
+	public long min() {
 		return this.min;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("sum");
-		generator.write(this.sum.doubleValue());
+		generator.write(this.sum);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 	}
 
@@ -102,32 +108,32 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 	 * Builder for {@link MlInferenceIngestProcessorCount}.
 	 */
 	public static class Builder implements ObjectBuilder<MlInferenceIngestProcessorCount> {
-		private Number max;
+		private Long max;
 
-		private Number sum;
+		private Long sum;
 
-		private Number min;
+		private Long min;
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(long value) {
 			this.max = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code sum}
+		 * Required - API name: {@code sum}
 		 */
-		public Builder sum(Number value) {
+		public Builder sum(long value) {
 			this.sum = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(long value) {
 			this.min = value;
 			return this;
 		}
@@ -147,18 +153,18 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInferenceIngestProcessorCount
+	 * Json deserializer for {@link MlInferenceIngestProcessorCount}
 	 */
-	public static final JsonpDeserializer<MlInferenceIngestProcessorCount> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					MlInferenceIngestProcessorCount::setupMlInferenceIngestProcessorCountDeserializer);
+	public static final JsonpDeserializer<MlInferenceIngestProcessorCount> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlInferenceIngestProcessorCount::setupMlInferenceIngestProcessorCountDeserializer,
+					Builder::build);
 
 	protected static void setupMlInferenceIngestProcessorCountDeserializer(
 			DelegatingDeserializer<MlInferenceIngestProcessorCount.Builder> op) {
 
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::sum, JsonpDeserializer.numberDeserializer(), "sum");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::max, JsonpDeserializer.longDeserializer(), "max");
+		op.add(Builder::sum, JsonpDeserializer.longDeserializer(), "sum");
+		op.add(Builder::min, JsonpDeserializer.longDeserializer(), "min");
 
 	}
 

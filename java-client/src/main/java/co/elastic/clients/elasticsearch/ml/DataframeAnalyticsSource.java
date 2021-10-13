@@ -24,13 +24,15 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,33 +48,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSource
-public final class DataframeAnalyticsSource implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalyticsSource implements JsonpSerializable {
 	private final List<String> index;
 
 	@Nullable
-	private final QueryContainer query;
-
-	@Nullable
-	private final JsonValue source;
+	private final Query query;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
 
+	@Nullable
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsSource(Builder builder) {
+	public DataframeAnalyticsSource(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.query = builder.query;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.source = builder.source;
-		this.runtimeMappings = builder.runtimeMappings;
 
 	}
 
+	public DataframeAnalyticsSource(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Index or indices on which to perform the analysis. It can be a single index
-	 * or index pattern as well as an array of indices or patterns.
-	 *
+	 * Required - Index or indices on which to perform the analysis. It can be a
+	 * single index or index pattern as well as an array of indices or patterns.
+	 * NOTE: If your source indices contain documents with the same IDs, only the
+	 * document that is indexed last appears in the destination index.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -84,28 +93,19 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	 * corresponds to the query object in an Elasticsearch search POST body. All the
 	 * options that are supported by Elasticsearch can be used, as this object is
 	 * passed verbatim to Elasticsearch. By default, this property has the following
-	 * value: {"match_all": {}}.
-	 *
+	 * value: {&quot;match_all&quot;: {}}.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
 	/**
-	 * Specify includes and/or excludes patterns to select which fields will be
-	 * present in the destination. Fields that are excluded cannot be included in
-	 * the analysis.
-	 *
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public JsonValue source() {
-		return this.source;
-	}
-
-	/**
+	 * Definitions of runtime fields that will become part of the mapping of the
+	 * destination index.
+	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
 	@Nullable
@@ -114,15 +114,27 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	}
 
 	/**
+	 * Specify <code>includes</code> and/or `excludes patterns to select which
+	 * fields will be present in the destination. Fields that are excluded cannot be
+	 * included in the analysis.
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source() {
+		return this.source;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.writeStartArray();
@@ -135,13 +147,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
-
-		}
-		if (this.source != null) {
-
-			generator.writeKey("_source");
-			generator.write(this.source);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.runtimeMappings != null) {
@@ -150,10 +156,16 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.source != null) {
+
+			generator.writeKey("_source");
+			generator.write(this.source);
 
 		}
 
@@ -168,18 +180,20 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		private List<String> index;
 
 		@Nullable
-		private QueryContainer query;
-
-		@Nullable
-		private JsonValue source;
+		private Query query;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
 
+		@Nullable
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source;
+
 		/**
-		 * Index or indices on which to perform the analysis. It can be a single index
-		 * or index pattern as well as an array of indices or patterns.
-		 *
+		 * Required - Index or indices on which to perform the analysis. It can be a
+		 * single index or index pattern as well as an array of indices or patterns.
+		 * NOTE: If your source indices contain documents with the same IDs, only the
+		 * document that is indexed last appears in the destination index.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -188,9 +202,11 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		}
 
 		/**
-		 * Index or indices on which to perform the analysis. It can be a single index
-		 * or index pattern as well as an array of indices or patterns.
-		 *
+		 * Required - Index or indices on which to perform the analysis. It can be a
+		 * single index or index pattern as well as an array of indices or patterns.
+		 * NOTE: If your source indices contain documents with the same IDs, only the
+		 * document that is indexed last appears in the destination index.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -214,11 +230,11 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch. By default, this property has the following
-		 * value: {"match_all": {}}.
-		 *
+		 * value: {&quot;match_all&quot;: {}}.
+		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -228,27 +244,18 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch. By default, this property has the following
-		 * value: {"match_all": {}}.
-		 *
+		 * value: {&quot;match_all&quot;: {}}.
+		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * Specify includes and/or excludes patterns to select which fields will be
-		 * present in the destination. Fields that are excluded cannot be included in
-		 * the analysis.
-		 *
-		 * API name: {@code _source}
-		 */
-		public Builder source(@Nullable JsonValue value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
+		 * Definitions of runtime fields that will become part of the mapping of the
+		 * destination index.
+		 * <p>
 		 * API name: {@code runtime_mappings}
 		 */
 		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
@@ -282,6 +289,18 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		}
 
 		/**
+		 * Specify <code>includes</code> and/or `excludes patterns to select which
+		 * fields will be present in the destination. Fields that are excluded cannot be
+		 * included in the analysis.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public Builder source(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link DataframeAnalyticsSource}.
 		 *
 		 * @throws NullPointerException
@@ -296,19 +315,19 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsSource
+	 * Json deserializer for {@link DataframeAnalyticsSource}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsSource> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeAnalyticsSource::setupDataframeAnalyticsSourceDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsSource> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsSource::setupDataframeAnalyticsSourceDeserializer, Builder::build);
 
 	protected static void setupDataframeAnalyticsSourceDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsSource.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 
 	}
 

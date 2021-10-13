@@ -23,12 +23,15 @@
 
 package co.elastic.clients.elasticsearch.security.create_api_key;
 
+import co.elastic.clients.elasticsearch.security.IndexPrivilege;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,47 +39,53 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.IndexPrivileges
-public final class IndexPrivileges implements ToJsonp {
+@JsonpDeserializable
+public final class IndexPrivileges implements JsonpSerializable {
 	private final List<String> names;
 
-	private final List<String> privileges;
+	private final List<IndexPrivilege> privileges;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexPrivileges(Builder builder) {
+	public IndexPrivileges(Builder builder) {
 
-		this.names = Objects.requireNonNull(builder.names, "names");
-		this.privileges = Objects.requireNonNull(builder.privileges, "privileges");
+		this.names = ModelTypeHelper.unmodifiableNonNull(builder.names, "names");
+		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
 
 	}
 
+	public IndexPrivileges(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code names}
+	 * Required - API name: {@code names}
 	 */
 	public List<String> names() {
 		return this.names;
 	}
 
 	/**
-	 * API name: {@code privileges}
+	 * Required - API name: {@code privileges}
 	 */
-	public List<String> privileges() {
+	public List<IndexPrivilege> privileges() {
 		return this.privileges;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("names");
 		generator.writeStartArray();
@@ -88,9 +97,8 @@ public final class IndexPrivileges implements ToJsonp {
 
 		generator.writeKey("privileges");
 		generator.writeStartArray();
-		for (String item0 : this.privileges) {
-			generator.write(item0);
-
+		for (IndexPrivilege item0 : this.privileges) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
@@ -104,10 +112,10 @@ public final class IndexPrivileges implements ToJsonp {
 	public static class Builder implements ObjectBuilder<IndexPrivileges> {
 		private List<String> names;
 
-		private List<String> privileges;
+		private List<IndexPrivilege> privileges;
 
 		/**
-		 * API name: {@code names}
+		 * Required - API name: {@code names}
 		 */
 		public Builder names(List<String> value) {
 			this.names = value;
@@ -115,7 +123,7 @@ public final class IndexPrivileges implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code names}
+		 * Required - API name: {@code names}
 		 */
 		public Builder names(String... value) {
 			this.names = Arrays.asList(value);
@@ -134,17 +142,17 @@ public final class IndexPrivileges implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
-		public Builder privileges(List<String> value) {
+		public Builder privileges(List<IndexPrivilege> value) {
 			this.privileges = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
-		public Builder privileges(String... value) {
+		public Builder privileges(IndexPrivilege... value) {
 			this.privileges = Arrays.asList(value);
 			return this;
 		}
@@ -152,7 +160,7 @@ public final class IndexPrivileges implements ToJsonp {
 		/**
 		 * Add a value to {@link #privileges(List)}, creating the list if needed.
 		 */
-		public Builder addPrivileges(String value) {
+		public Builder addPrivileges(IndexPrivilege value) {
 			if (this.privileges == null) {
 				this.privileges = new ArrayList<>();
 			}
@@ -175,16 +183,15 @@ public final class IndexPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexPrivileges
+	 * Json deserializer for {@link IndexPrivileges}
 	 */
-	public static final JsonpDeserializer<IndexPrivileges> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexPrivileges::setupIndexPrivilegesDeserializer);
+	public static final JsonpDeserializer<IndexPrivileges> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexPrivileges::setupIndexPrivilegesDeserializer, Builder::build);
 
 	protected static void setupIndexPrivilegesDeserializer(DelegatingDeserializer<IndexPrivileges.Builder> op) {
 
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"privileges");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
 
 	}
 

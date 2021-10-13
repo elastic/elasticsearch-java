@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.fielddata.FielddataRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,33 +41,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Response
-public final class FielddataResponse implements ToJsonp {
-	private final List<FielddataRecord> value;
+@JsonpDeserializable
+public final class FielddataResponse implements JsonpSerializable {
+	private final List<FielddataRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FielddataResponse(Builder builder) {
+	public FielddataResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
 	}
 
+	public FielddataResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Response value.
-	 *
-	 * API name: {@code value}
+	 * Required - Response value.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<FielddataRecord> value() {
-		return this.value;
+	public List<FielddataRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (FielddataRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+		for (FielddataRecord item0 : this.valueBody) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -79,51 +85,51 @@ public final class FielddataResponse implements ToJsonp {
 	 * Builder for {@link FielddataResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<FielddataResponse> {
-		private List<FielddataRecord> value;
+		private List<FielddataRecord> valueBody;
 
 		/**
-		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<FielddataRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<FielddataRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
-		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(FielddataRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(FielddataRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
 		 */
-		public Builder addValue(FielddataRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(FielddataRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
-			return this.value(fn.apply(new FielddataRecord.Builder()).build());
+		public Builder valueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
+			return this.valueBody(fn.apply(new FielddataRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
 		 */
-		public Builder addValue(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
-			return this.addValue(fn.apply(new FielddataRecord.Builder()).build());
+		public Builder addValueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
+			return this.addValueBody(fn.apply(new FielddataRecord.Builder()).build());
 		}
 
 		/**
@@ -138,18 +144,14 @@ public final class FielddataResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<FielddataResponse> _DESERIALIZER = createFielddataResponseDeserializer();
+	protected static JsonpDeserializer<FielddataResponse> createFielddataResponseDeserializer() {
 
-	/**
-	 * Json deserializer for FielddataResponse
-	 */
-	public static final JsonpDeserializer<FielddataResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FielddataResponse::setupFielddataResponseDeserializer);
+		JsonpDeserializer<List<FielddataRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(FielddataRecord._DESERIALIZER);
 
-	protected static void setupFielddataResponseDeserializer(DelegatingDeserializer<FielddataResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(FielddataRecord.DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

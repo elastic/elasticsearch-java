@@ -24,37 +24,53 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregation
-public final class RateAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue unit;
+	private final DateInterval unit;
 
 	@Nullable
-	private final JsonValue mode;
+	private final RateMode mode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RateAggregation(Builder builder) {
+	public RateAggregation(Builder builder) {
 		super(builder);
+
 		this.unit = builder.unit;
 		this.mode = builder.mode;
 
+	}
+
+	public RateAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "rate";
 	}
 
 	/**
 	 * API name: {@code unit}
 	 */
 	@Nullable
-	public JsonValue unit() {
+	public DateInterval unit() {
 		return this.unit;
 	}
 
@@ -62,23 +78,22 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 	 * API name: {@code mode}
 	 */
 	@Nullable
-	public JsonValue mode() {
+	public RateMode mode() {
 		return this.mode;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.unit != null) {
 
 			generator.writeKey("unit");
-			generator.write(this.unit);
-
+			this.unit.serialize(generator, mapper);
 		}
 		if (this.mode != null) {
 
 			generator.writeKey("mode");
-			generator.write(this.mode);
-
+			this.mode.serialize(generator, mapper);
 		}
 
 	}
@@ -92,15 +107,15 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 			implements
 				ObjectBuilder<RateAggregation> {
 		@Nullable
-		private JsonValue unit;
+		private DateInterval unit;
 
 		@Nullable
-		private JsonValue mode;
+		private RateMode mode;
 
 		/**
 		 * API name: {@code unit}
 		 */
-		public Builder unit(@Nullable JsonValue value) {
+		public Builder unit(@Nullable DateInterval value) {
 			this.unit = value;
 			return this;
 		}
@@ -108,7 +123,7 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 		/**
 		 * API name: {@code mode}
 		 */
-		public Builder mode(@Nullable JsonValue value) {
+		public Builder mode(@Nullable RateMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -133,15 +148,15 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RateAggregation
+	 * Json deserializer for {@link RateAggregation}
 	 */
-	public static final JsonpDeserializer<RateAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RateAggregation::setupRateAggregationDeserializer);
+	public static final JsonpDeserializer<RateAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RateAggregation::setupRateAggregationDeserializer, Builder::build);
 
 	protected static void setupRateAggregationDeserializer(DelegatingDeserializer<RateAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::unit, JsonpDeserializer.jsonValueDeserializer(), "unit");
-		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
+		op.add(Builder::unit, DateInterval._DESERIALIZER, "unit");
+		op.add(Builder::mode, RateMode._DESERIALIZER, "mode");
 
 	}
 

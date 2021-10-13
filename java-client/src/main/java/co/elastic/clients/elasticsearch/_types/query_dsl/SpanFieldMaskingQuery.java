@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,56 +32,62 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
-public final class SpanFieldMaskingQuery extends QueryBase {
-	@Nullable
+@JsonpDeserializable
+public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final String field;
 
-	@Nullable
 	private final SpanQuery query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanFieldMaskingQuery(Builder builder) {
+	public SpanFieldMaskingQuery(Builder builder) {
 		super(builder);
-		this.field = builder.field;
-		this.query = builder.query;
+
+		this.field = Objects.requireNonNull(builder.field, "field");
+		this.query = Objects.requireNonNull(builder.query, "query");
 
 	}
 
+	public SpanFieldMaskingQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link SpanQuery}, {@link Query} variant type
 	 */
-	@Nullable
+	@Override
+	public String _variantType() {
+		return "field_masking_span";
+	}
+
+	/**
+	 * Required - API name: {@code field}
+	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
-	@Nullable
 	public SpanQuery query() {
 		return this.query;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.field != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("field");
-			generator.write(this.field);
+		super.serializeInternal(generator, mapper);
 
-		}
-		if (this.query != null) {
+		generator.writeKey("field");
+		generator.write(this.field);
 
-			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("query");
+		this.query.serialize(generator, mapper);
 
 	}
 
@@ -92,30 +99,28 @@ public final class SpanFieldMaskingQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanFieldMaskingQuery> {
-		@Nullable
 		private String field;
 
-		@Nullable
 		private SpanQuery query;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public Builder field(String value) {
 			this.field = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
-		public Builder query(@Nullable SpanQuery value) {
+		public Builder query(SpanQuery value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.query(fn.apply(new SpanQuery.Builder()).build());
@@ -141,16 +146,16 @@ public final class SpanFieldMaskingQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SpanFieldMaskingQuery
+	 * Json deserializer for {@link SpanFieldMaskingQuery}
 	 */
-	public static final JsonpDeserializer<SpanFieldMaskingQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryDeserializer);
+	public static final JsonpDeserializer<SpanFieldMaskingQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryDeserializer, Builder::build);
 
 	protected static void setupSpanFieldMaskingQueryDeserializer(
 			DelegatingDeserializer<SpanFieldMaskingQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::query, SpanQuery.DESERIALIZER, "query");
+		op.add(Builder::query, SpanQuery._DESERIALIZER, "query");
 
 	}
 

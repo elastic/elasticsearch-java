@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Features
-public final class Features implements ToJsonp {
+@JsonpDeserializable
+public final class Features implements JsonpSerializable {
 	private final Feature aggregateMetric;
 
 	private final Feature analytics;
@@ -97,7 +99,7 @@ public final class Features implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Features(Builder builder) {
+	public Features(Builder builder) {
 
 		this.aggregateMetric = Objects.requireNonNull(builder.aggregateMetric, "aggregate_metric");
 		this.analytics = Objects.requireNonNull(builder.analytics, "analytics");
@@ -129,22 +131,26 @@ public final class Features implements ToJsonp {
 
 	}
 
+	public Features(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code aggregate_metric}
+	 * Required - API name: {@code aggregate_metric}
 	 */
 	public Feature aggregateMetric() {
 		return this.aggregateMetric;
 	}
 
 	/**
-	 * API name: {@code analytics}
+	 * Required - API name: {@code analytics}
 	 */
 	public Feature analytics() {
 		return this.analytics;
 	}
 
 	/**
-	 * API name: {@code ccr}
+	 * Required - API name: {@code ccr}
 	 */
 	public Feature ccr() {
 		return this.ccr;
@@ -167,28 +173,28 @@ public final class Features implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public Feature dataStreams() {
 		return this.dataStreams;
 	}
 
 	/**
-	 * API name: {@code data_tiers}
+	 * Required - API name: {@code data_tiers}
 	 */
 	public Feature dataTiers() {
 		return this.dataTiers;
 	}
 
 	/**
-	 * API name: {@code enrich}
+	 * Required - API name: {@code enrich}
 	 */
 	public Feature enrich() {
 		return this.enrich;
 	}
 
 	/**
-	 * API name: {@code eql}
+	 * Required - API name: {@code eql}
 	 */
 	public Feature eql() {
 		return this.eql;
@@ -203,49 +209,49 @@ public final class Features implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code frozen_indices}
+	 * Required - API name: {@code frozen_indices}
 	 */
 	public Feature frozenIndices() {
 		return this.frozenIndices;
 	}
 
 	/**
-	 * API name: {@code graph}
+	 * Required - API name: {@code graph}
 	 */
 	public Feature graph() {
 		return this.graph;
 	}
 
 	/**
-	 * API name: {@code ilm}
+	 * Required - API name: {@code ilm}
 	 */
 	public Feature ilm() {
 		return this.ilm;
 	}
 
 	/**
-	 * API name: {@code logstash}
+	 * Required - API name: {@code logstash}
 	 */
 	public Feature logstash() {
 		return this.logstash;
 	}
 
 	/**
-	 * API name: {@code ml}
+	 * Required - API name: {@code ml}
 	 */
 	public Feature ml() {
 		return this.ml;
 	}
 
 	/**
-	 * API name: {@code monitoring}
+	 * Required - API name: {@code monitoring}
 	 */
 	public Feature monitoring() {
 		return this.monitoring;
 	}
 
 	/**
-	 * API name: {@code rollup}
+	 * Required - API name: {@code rollup}
 	 */
 	public Feature rollup() {
 		return this.rollup;
@@ -260,63 +266,63 @@ public final class Features implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code searchable_snapshots}
+	 * Required - API name: {@code searchable_snapshots}
 	 */
 	public Feature searchableSnapshots() {
 		return this.searchableSnapshots;
 	}
 
 	/**
-	 * API name: {@code security}
+	 * Required - API name: {@code security}
 	 */
 	public Feature security() {
 		return this.security;
 	}
 
 	/**
-	 * API name: {@code slm}
+	 * Required - API name: {@code slm}
 	 */
 	public Feature slm() {
 		return this.slm;
 	}
 
 	/**
-	 * API name: {@code spatial}
+	 * Required - API name: {@code spatial}
 	 */
 	public Feature spatial() {
 		return this.spatial;
 	}
 
 	/**
-	 * API name: {@code sql}
+	 * Required - API name: {@code sql}
 	 */
 	public Feature sql() {
 		return this.sql;
 	}
 
 	/**
-	 * API name: {@code transform}
+	 * Required - API name: {@code transform}
 	 */
 	public Feature transform() {
 		return this.transform;
 	}
 
 	/**
-	 * API name: {@code vectors}
+	 * Required - API name: {@code vectors}
 	 */
 	public Feature vectors() {
 		return this.vectors;
 	}
 
 	/**
-	 * API name: {@code voting_only}
+	 * Required - API name: {@code voting_only}
 	 */
 	public Feature votingOnly() {
 		return this.votingOnly;
 	}
 
 	/**
-	 * API name: {@code watcher}
+	 * Required - API name: {@code watcher}
 	 */
 	public Feature watcher() {
 		return this.watcher;
@@ -325,109 +331,109 @@ public final class Features implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("aggregate_metric");
-		this.aggregateMetric.toJsonp(generator, mapper);
+		this.aggregateMetric.serialize(generator, mapper);
 
 		generator.writeKey("analytics");
-		this.analytics.toJsonp(generator, mapper);
+		this.analytics.serialize(generator, mapper);
 
 		generator.writeKey("ccr");
-		this.ccr.toJsonp(generator, mapper);
+		this.ccr.serialize(generator, mapper);
 
 		if (this.dataFrame != null) {
 
 			generator.writeKey("data_frame");
-			this.dataFrame.toJsonp(generator, mapper);
+			this.dataFrame.serialize(generator, mapper);
 
 		}
 		if (this.dataScience != null) {
 
 			generator.writeKey("data_science");
-			this.dataScience.toJsonp(generator, mapper);
+			this.dataScience.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("data_streams");
-		this.dataStreams.toJsonp(generator, mapper);
+		this.dataStreams.serialize(generator, mapper);
 
 		generator.writeKey("data_tiers");
-		this.dataTiers.toJsonp(generator, mapper);
+		this.dataTiers.serialize(generator, mapper);
 
 		generator.writeKey("enrich");
-		this.enrich.toJsonp(generator, mapper);
+		this.enrich.serialize(generator, mapper);
 
 		generator.writeKey("eql");
-		this.eql.toJsonp(generator, mapper);
+		this.eql.serialize(generator, mapper);
 
 		if (this.flattened != null) {
 
 			generator.writeKey("flattened");
-			this.flattened.toJsonp(generator, mapper);
+			this.flattened.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("frozen_indices");
-		this.frozenIndices.toJsonp(generator, mapper);
+		this.frozenIndices.serialize(generator, mapper);
 
 		generator.writeKey("graph");
-		this.graph.toJsonp(generator, mapper);
+		this.graph.serialize(generator, mapper);
 
 		generator.writeKey("ilm");
-		this.ilm.toJsonp(generator, mapper);
+		this.ilm.serialize(generator, mapper);
 
 		generator.writeKey("logstash");
-		this.logstash.toJsonp(generator, mapper);
+		this.logstash.serialize(generator, mapper);
 
 		generator.writeKey("ml");
-		this.ml.toJsonp(generator, mapper);
+		this.ml.serialize(generator, mapper);
 
 		generator.writeKey("monitoring");
-		this.monitoring.toJsonp(generator, mapper);
+		this.monitoring.serialize(generator, mapper);
 
 		generator.writeKey("rollup");
-		this.rollup.toJsonp(generator, mapper);
+		this.rollup.serialize(generator, mapper);
 
 		if (this.runtimeFields != null) {
 
 			generator.writeKey("runtime_fields");
-			this.runtimeFields.toJsonp(generator, mapper);
+			this.runtimeFields.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("searchable_snapshots");
-		this.searchableSnapshots.toJsonp(generator, mapper);
+		this.searchableSnapshots.serialize(generator, mapper);
 
 		generator.writeKey("security");
-		this.security.toJsonp(generator, mapper);
+		this.security.serialize(generator, mapper);
 
 		generator.writeKey("slm");
-		this.slm.toJsonp(generator, mapper);
+		this.slm.serialize(generator, mapper);
 
 		generator.writeKey("spatial");
-		this.spatial.toJsonp(generator, mapper);
+		this.spatial.serialize(generator, mapper);
 
 		generator.writeKey("sql");
-		this.sql.toJsonp(generator, mapper);
+		this.sql.serialize(generator, mapper);
 
 		generator.writeKey("transform");
-		this.transform.toJsonp(generator, mapper);
+		this.transform.serialize(generator, mapper);
 
 		generator.writeKey("vectors");
-		this.vectors.toJsonp(generator, mapper);
+		this.vectors.serialize(generator, mapper);
 
 		generator.writeKey("voting_only");
-		this.votingOnly.toJsonp(generator, mapper);
+		this.votingOnly.serialize(generator, mapper);
 
 		generator.writeKey("watcher");
-		this.watcher.toJsonp(generator, mapper);
+		this.watcher.serialize(generator, mapper);
 
 	}
 
@@ -496,7 +502,7 @@ public final class Features implements ToJsonp {
 		private Feature watcher;
 
 		/**
-		 * API name: {@code aggregate_metric}
+		 * Required - API name: {@code aggregate_metric}
 		 */
 		public Builder aggregateMetric(Feature value) {
 			this.aggregateMetric = value;
@@ -504,14 +510,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code aggregate_metric}
+		 * Required - API name: {@code aggregate_metric}
 		 */
 		public Builder aggregateMetric(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.aggregateMetric(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code analytics}
+		 * Required - API name: {@code analytics}
 		 */
 		public Builder analytics(Feature value) {
 			this.analytics = value;
@@ -519,14 +525,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code analytics}
+		 * Required - API name: {@code analytics}
 		 */
 		public Builder analytics(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.analytics(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ccr}
+		 * Required - API name: {@code ccr}
 		 */
 		public Builder ccr(Feature value) {
 			this.ccr = value;
@@ -534,7 +540,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ccr}
+		 * Required - API name: {@code ccr}
 		 */
 		public Builder ccr(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.ccr(fn.apply(new Feature.Builder()).build());
@@ -571,7 +577,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(Feature value) {
 			this.dataStreams = value;
@@ -579,14 +585,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.dataStreams(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code data_tiers}
+		 * Required - API name: {@code data_tiers}
 		 */
 		public Builder dataTiers(Feature value) {
 			this.dataTiers = value;
@@ -594,14 +600,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code data_tiers}
+		 * Required - API name: {@code data_tiers}
 		 */
 		public Builder dataTiers(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.dataTiers(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code enrich}
+		 * Required - API name: {@code enrich}
 		 */
 		public Builder enrich(Feature value) {
 			this.enrich = value;
@@ -609,14 +615,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code enrich}
+		 * Required - API name: {@code enrich}
 		 */
 		public Builder enrich(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.enrich(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code eql}
+		 * Required - API name: {@code eql}
 		 */
 		public Builder eql(Feature value) {
 			this.eql = value;
@@ -624,7 +630,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code eql}
+		 * Required - API name: {@code eql}
 		 */
 		public Builder eql(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.eql(fn.apply(new Feature.Builder()).build());
@@ -646,7 +652,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code frozen_indices}
+		 * Required - API name: {@code frozen_indices}
 		 */
 		public Builder frozenIndices(Feature value) {
 			this.frozenIndices = value;
@@ -654,14 +660,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code frozen_indices}
+		 * Required - API name: {@code frozen_indices}
 		 */
 		public Builder frozenIndices(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.frozenIndices(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code graph}
+		 * Required - API name: {@code graph}
 		 */
 		public Builder graph(Feature value) {
 			this.graph = value;
@@ -669,14 +675,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code graph}
+		 * Required - API name: {@code graph}
 		 */
 		public Builder graph(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.graph(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ilm}
+		 * Required - API name: {@code ilm}
 		 */
 		public Builder ilm(Feature value) {
 			this.ilm = value;
@@ -684,14 +690,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ilm}
+		 * Required - API name: {@code ilm}
 		 */
 		public Builder ilm(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.ilm(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code logstash}
+		 * Required - API name: {@code logstash}
 		 */
 		public Builder logstash(Feature value) {
 			this.logstash = value;
@@ -699,14 +705,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code logstash}
+		 * Required - API name: {@code logstash}
 		 */
 		public Builder logstash(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.logstash(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ml}
+		 * Required - API name: {@code ml}
 		 */
 		public Builder ml(Feature value) {
 			this.ml = value;
@@ -714,14 +720,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code ml}
+		 * Required - API name: {@code ml}
 		 */
 		public Builder ml(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.ml(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code monitoring}
+		 * Required - API name: {@code monitoring}
 		 */
 		public Builder monitoring(Feature value) {
 			this.monitoring = value;
@@ -729,14 +735,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code monitoring}
+		 * Required - API name: {@code monitoring}
 		 */
 		public Builder monitoring(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.monitoring(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code rollup}
+		 * Required - API name: {@code rollup}
 		 */
 		public Builder rollup(Feature value) {
 			this.rollup = value;
@@ -744,7 +750,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code rollup}
+		 * Required - API name: {@code rollup}
 		 */
 		public Builder rollup(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.rollup(fn.apply(new Feature.Builder()).build());
@@ -766,7 +772,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code searchable_snapshots}
+		 * Required - API name: {@code searchable_snapshots}
 		 */
 		public Builder searchableSnapshots(Feature value) {
 			this.searchableSnapshots = value;
@@ -774,14 +780,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code searchable_snapshots}
+		 * Required - API name: {@code searchable_snapshots}
 		 */
 		public Builder searchableSnapshots(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.searchableSnapshots(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code security}
+		 * Required - API name: {@code security}
 		 */
 		public Builder security(Feature value) {
 			this.security = value;
@@ -789,14 +795,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code security}
+		 * Required - API name: {@code security}
 		 */
 		public Builder security(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.security(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code slm}
+		 * Required - API name: {@code slm}
 		 */
 		public Builder slm(Feature value) {
 			this.slm = value;
@@ -804,14 +810,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code slm}
+		 * Required - API name: {@code slm}
 		 */
 		public Builder slm(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.slm(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code spatial}
+		 * Required - API name: {@code spatial}
 		 */
 		public Builder spatial(Feature value) {
 			this.spatial = value;
@@ -819,14 +825,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code spatial}
+		 * Required - API name: {@code spatial}
 		 */
 		public Builder spatial(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.spatial(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code sql}
+		 * Required - API name: {@code sql}
 		 */
 		public Builder sql(Feature value) {
 			this.sql = value;
@@ -834,14 +840,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sql}
+		 * Required - API name: {@code sql}
 		 */
 		public Builder sql(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.sql(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code transform}
+		 * Required - API name: {@code transform}
 		 */
 		public Builder transform(Feature value) {
 			this.transform = value;
@@ -849,14 +855,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code transform}
+		 * Required - API name: {@code transform}
 		 */
 		public Builder transform(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.transform(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code vectors}
+		 * Required - API name: {@code vectors}
 		 */
 		public Builder vectors(Feature value) {
 			this.vectors = value;
@@ -864,14 +870,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code vectors}
+		 * Required - API name: {@code vectors}
 		 */
 		public Builder vectors(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.vectors(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code voting_only}
+		 * Required - API name: {@code voting_only}
 		 */
 		public Builder votingOnly(Feature value) {
 			this.votingOnly = value;
@@ -879,14 +885,14 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code voting_only}
+		 * Required - API name: {@code voting_only}
 		 */
 		public Builder votingOnly(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.votingOnly(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code watcher}
+		 * Required - API name: {@code watcher}
 		 */
 		public Builder watcher(Feature value) {
 			this.watcher = value;
@@ -894,7 +900,7 @@ public final class Features implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code watcher}
+		 * Required - API name: {@code watcher}
 		 */
 		public Builder watcher(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.watcher(fn.apply(new Feature.Builder()).build());
@@ -915,40 +921,40 @@ public final class Features implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Features
+	 * Json deserializer for {@link Features}
 	 */
-	public static final JsonpDeserializer<Features> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Features::setupFeaturesDeserializer);
+	public static final JsonpDeserializer<Features> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Features::setupFeaturesDeserializer, Builder::build);
 
 	protected static void setupFeaturesDeserializer(DelegatingDeserializer<Features.Builder> op) {
 
-		op.add(Builder::aggregateMetric, Feature.DESERIALIZER, "aggregate_metric");
-		op.add(Builder::analytics, Feature.DESERIALIZER, "analytics");
-		op.add(Builder::ccr, Feature.DESERIALIZER, "ccr");
-		op.add(Builder::dataFrame, Feature.DESERIALIZER, "data_frame");
-		op.add(Builder::dataScience, Feature.DESERIALIZER, "data_science");
-		op.add(Builder::dataStreams, Feature.DESERIALIZER, "data_streams");
-		op.add(Builder::dataTiers, Feature.DESERIALIZER, "data_tiers");
-		op.add(Builder::enrich, Feature.DESERIALIZER, "enrich");
-		op.add(Builder::eql, Feature.DESERIALIZER, "eql");
-		op.add(Builder::flattened, Feature.DESERIALIZER, "flattened");
-		op.add(Builder::frozenIndices, Feature.DESERIALIZER, "frozen_indices");
-		op.add(Builder::graph, Feature.DESERIALIZER, "graph");
-		op.add(Builder::ilm, Feature.DESERIALIZER, "ilm");
-		op.add(Builder::logstash, Feature.DESERIALIZER, "logstash");
-		op.add(Builder::ml, Feature.DESERIALIZER, "ml");
-		op.add(Builder::monitoring, Feature.DESERIALIZER, "monitoring");
-		op.add(Builder::rollup, Feature.DESERIALIZER, "rollup");
-		op.add(Builder::runtimeFields, Feature.DESERIALIZER, "runtime_fields");
-		op.add(Builder::searchableSnapshots, Feature.DESERIALIZER, "searchable_snapshots");
-		op.add(Builder::security, Feature.DESERIALIZER, "security");
-		op.add(Builder::slm, Feature.DESERIALIZER, "slm");
-		op.add(Builder::spatial, Feature.DESERIALIZER, "spatial");
-		op.add(Builder::sql, Feature.DESERIALIZER, "sql");
-		op.add(Builder::transform, Feature.DESERIALIZER, "transform");
-		op.add(Builder::vectors, Feature.DESERIALIZER, "vectors");
-		op.add(Builder::votingOnly, Feature.DESERIALIZER, "voting_only");
-		op.add(Builder::watcher, Feature.DESERIALIZER, "watcher");
+		op.add(Builder::aggregateMetric, Feature._DESERIALIZER, "aggregate_metric");
+		op.add(Builder::analytics, Feature._DESERIALIZER, "analytics");
+		op.add(Builder::ccr, Feature._DESERIALIZER, "ccr");
+		op.add(Builder::dataFrame, Feature._DESERIALIZER, "data_frame");
+		op.add(Builder::dataScience, Feature._DESERIALIZER, "data_science");
+		op.add(Builder::dataStreams, Feature._DESERIALIZER, "data_streams");
+		op.add(Builder::dataTiers, Feature._DESERIALIZER, "data_tiers");
+		op.add(Builder::enrich, Feature._DESERIALIZER, "enrich");
+		op.add(Builder::eql, Feature._DESERIALIZER, "eql");
+		op.add(Builder::flattened, Feature._DESERIALIZER, "flattened");
+		op.add(Builder::frozenIndices, Feature._DESERIALIZER, "frozen_indices");
+		op.add(Builder::graph, Feature._DESERIALIZER, "graph");
+		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
+		op.add(Builder::logstash, Feature._DESERIALIZER, "logstash");
+		op.add(Builder::ml, Feature._DESERIALIZER, "ml");
+		op.add(Builder::monitoring, Feature._DESERIALIZER, "monitoring");
+		op.add(Builder::rollup, Feature._DESERIALIZER, "rollup");
+		op.add(Builder::runtimeFields, Feature._DESERIALIZER, "runtime_fields");
+		op.add(Builder::searchableSnapshots, Feature._DESERIALIZER, "searchable_snapshots");
+		op.add(Builder::security, Feature._DESERIALIZER, "security");
+		op.add(Builder::slm, Feature._DESERIALIZER, "slm");
+		op.add(Builder::spatial, Feature._DESERIALIZER, "spatial");
+		op.add(Builder::sql, Feature._DESERIALIZER, "sql");
+		op.add(Builder::transform, Feature._DESERIALIZER, "transform");
+		op.add(Builder::vectors, Feature._DESERIALIZER, "vectors");
+		op.add(Builder::votingOnly, Feature._DESERIALIZER, "voting_only");
+		op.add(Builder::watcher, Feature._DESERIALIZER, "watcher");
 
 	}
 

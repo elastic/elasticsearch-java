@@ -24,70 +24,78 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
-public final class HttpInputResponseResult implements ToJsonp {
+@JsonpDeserializable
+public final class HttpInputResponseResult implements JsonpSerializable {
 	private final String body;
 
 	private final Map<String, List<String>> headers;
 
-	private final Number status;
+	private final int status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInputResponseResult(Builder builder) {
+	public HttpInputResponseResult(Builder builder) {
 
 		this.body = Objects.requireNonNull(builder.body, "body");
-		this.headers = Objects.requireNonNull(builder.headers, "headers");
+		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
 		this.status = Objects.requireNonNull(builder.status, "status");
 
 	}
 
+	public HttpInputResponseResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code body}
+	 * Required - API name: {@code body}
 	 */
 	public String body() {
 		return this.body;
 	}
 
 	/**
-	 * API name: {@code headers}
+	 * Required - API name: {@code headers}
 	 */
 	public Map<String, List<String>> headers() {
 		return this.headers;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
-	public Number status() {
+	public int status() {
 		return this.status;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("body");
 		generator.write(this.body);
@@ -107,7 +115,7 @@ public final class HttpInputResponseResult implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("status");
-		generator.write(this.status.doubleValue());
+		generator.write(this.status);
 
 	}
 
@@ -121,10 +129,10 @@ public final class HttpInputResponseResult implements ToJsonp {
 
 		private Map<String, List<String>> headers;
 
-		private Number status;
+		private Integer status;
 
 		/**
-		 * API name: {@code body}
+		 * Required - API name: {@code body}
 		 */
 		public Builder body(String value) {
 			this.body = value;
@@ -132,7 +140,7 @@ public final class HttpInputResponseResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code headers}
+		 * Required - API name: {@code headers}
 		 */
 		public Builder headers(Map<String, List<String>> value) {
 			this.headers = value;
@@ -151,9 +159,9 @@ public final class HttpInputResponseResult implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
-		public Builder status(Number value) {
+		public Builder status(int value) {
 			this.status = value;
 			return this;
 		}
@@ -173,10 +181,10 @@ public final class HttpInputResponseResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInputResponseResult
+	 * Json deserializer for {@link HttpInputResponseResult}
 	 */
-	public static final JsonpDeserializer<HttpInputResponseResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer);
+	public static final JsonpDeserializer<HttpInputResponseResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer, Builder::build);
 
 	protected static void setupHttpInputResponseResultDeserializer(
 			DelegatingDeserializer<HttpInputResponseResult.Builder> op) {
@@ -184,7 +192,7 @@ public final class HttpInputResponseResult implements ToJsonp {
 		op.add(Builder::body, JsonpDeserializer.stringDeserializer(), "body");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
-		op.add(Builder::status, JsonpDeserializer.numberDeserializer(), "status");
+		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 
 	}
 

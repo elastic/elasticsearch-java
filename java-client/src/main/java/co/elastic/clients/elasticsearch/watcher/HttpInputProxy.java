@@ -24,42 +24,49 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputProxy
-public final class HttpInputProxy implements ToJsonp {
+@JsonpDeserializable
+public final class HttpInputProxy implements JsonpSerializable {
 	private final String host;
 
 	private final Number port;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInputProxy(Builder builder) {
+	public HttpInputProxy(Builder builder) {
 
 		this.host = Objects.requireNonNull(builder.host, "host");
 		this.port = Objects.requireNonNull(builder.port, "port");
 
 	}
 
+	public HttpInputProxy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
 	}
 
 	/**
-	 * API name: {@code port}
+	 * Required - API name: {@code port}
 	 */
 	public Number port() {
 		return this.port;
@@ -68,13 +75,13 @@ public final class HttpInputProxy implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("host");
 		generator.write(this.host);
@@ -95,7 +102,7 @@ public final class HttpInputProxy implements ToJsonp {
 		private Number port;
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public Builder host(String value) {
 			this.host = value;
@@ -103,7 +110,7 @@ public final class HttpInputProxy implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code port}
+		 * Required - API name: {@code port}
 		 */
 		public Builder port(Number value) {
 			this.port = value;
@@ -125,10 +132,10 @@ public final class HttpInputProxy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInputProxy
+	 * Json deserializer for {@link HttpInputProxy}
 	 */
-	public static final JsonpDeserializer<HttpInputProxy> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputProxy::setupHttpInputProxyDeserializer);
+	public static final JsonpDeserializer<HttpInputProxy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HttpInputProxy::setupHttpInputProxyDeserializer, Builder::build);
 
 	protected static void setupHttpInputProxyDeserializer(DelegatingDeserializer<HttpInputProxy.Builder> op) {
 

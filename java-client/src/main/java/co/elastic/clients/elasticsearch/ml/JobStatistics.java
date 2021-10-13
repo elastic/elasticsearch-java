@@ -24,30 +24,32 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml._types.JobStatistics
-public final class JobStatistics implements ToJsonp {
-	private final Number avg;
+@JsonpDeserializable
+public final class JobStatistics implements JsonpSerializable {
+	private final double avg;
 
-	private final Number max;
+	private final double max;
 
-	private final Number min;
+	private final double min;
 
-	private final Number total;
+	private final double total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JobStatistics(Builder builder) {
+	public JobStatistics(Builder builder) {
 
 		this.avg = Objects.requireNonNull(builder.avg, "avg");
 		this.max = Objects.requireNonNull(builder.max, "max");
@@ -56,56 +58,60 @@ public final class JobStatistics implements ToJsonp {
 
 	}
 
+	public JobStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code avg}
+	 * Required - API name: {@code avg}
 	 */
-	public Number avg() {
+	public double avg() {
 		return this.avg;
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
-	public Number max() {
+	public double max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
-	public Number min() {
+	public double min() {
 		return this.min;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
-	public Number total() {
+	public double total() {
 		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("avg");
-		generator.write(this.avg.doubleValue());
+		generator.write(this.avg);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -115,42 +121,42 @@ public final class JobStatistics implements ToJsonp {
 	 * Builder for {@link JobStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<JobStatistics> {
-		private Number avg;
+		private Double avg;
 
-		private Number max;
+		private Double max;
 
-		private Number min;
+		private Double min;
 
-		private Number total;
+		private Double total;
 
 		/**
-		 * API name: {@code avg}
+		 * Required - API name: {@code avg}
 		 */
-		public Builder avg(Number value) {
+		public Builder avg(double value) {
 			this.avg = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(double value) {
 			this.max = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(double value) {
 			this.min = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(double value) {
 			this.total = value;
 			return this;
 		}
@@ -170,17 +176,17 @@ public final class JobStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JobStatistics
+	 * Json deserializer for {@link JobStatistics}
 	 */
-	public static final JsonpDeserializer<JobStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobStatistics::setupJobStatisticsDeserializer);
+	public static final JsonpDeserializer<JobStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JobStatistics::setupJobStatisticsDeserializer, Builder::build);
 
 	protected static void setupJobStatisticsDeserializer(DelegatingDeserializer<JobStatistics.Builder> op) {
 
-		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.doubleDeserializer(), "min");
+		op.add(Builder::total, JsonpDeserializer.doubleDeserializer(), "total");
 
 	}
 

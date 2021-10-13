@@ -24,31 +24,36 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Float;
+import java.lang.Integer;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
-public final class Settings implements ToJsonp {
+@JsonpDeserializable
+public final class Settings implements JsonpSerializable {
 	@Nullable
 	private final Boolean datesAsEpochMillis;
 
 	@Nullable
-	private final Number docsPerSecond;
+	private final Float docsPerSecond;
 
 	@Nullable
-	private final Number maxPageSearchSize;
+	private final Integer maxPageSearchSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Settings(Builder builder) {
+	public Settings(Builder builder) {
 
 		this.datesAsEpochMillis = builder.datesAsEpochMillis;
 		this.docsPerSecond = builder.docsPerSecond;
@@ -56,12 +61,16 @@ public final class Settings implements ToJsonp {
 
 	}
 
+	public Settings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Defines if dates in the ouput should be written as ISO formatted string
 	 * (default) or as millis since epoch. epoch_millis has been the default for
 	 * transforms created before version 7.11. For compatible output set this to
 	 * true.
-	 *
+	 * <p>
 	 * API name: {@code dates_as_epoch_millis}
 	 */
 	@Nullable
@@ -73,11 +82,11 @@ public final class Settings implements ToJsonp {
 	 * Specifies a limit on the number of input documents per second. This setting
 	 * throttles the transform by adding a wait time between search requests. The
 	 * default value is null, which disables throttling.
-	 *
+	 * <p>
 	 * API name: {@code docs_per_second}
 	 */
 	@Nullable
-	public Number docsPerSecond() {
+	public Float docsPerSecond() {
 		return this.docsPerSecond;
 	}
 
@@ -85,24 +94,24 @@ public final class Settings implements ToJsonp {
 	 * Defines the initial page size to use for the composite aggregation for each
 	 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 	 * adjusted to a lower value. The minimum value is 10 and the maximum is 10,000.
-	 *
+	 * <p>
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public Number maxPageSearchSize() {
+	public Integer maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.datesAsEpochMillis != null) {
 
@@ -113,13 +122,13 @@ public final class Settings implements ToJsonp {
 		if (this.docsPerSecond != null) {
 
 			generator.writeKey("docs_per_second");
-			generator.write(this.docsPerSecond.doubleValue());
+			generator.write(this.docsPerSecond);
 
 		}
 		if (this.maxPageSearchSize != null) {
 
 			generator.writeKey("max_page_search_size");
-			generator.write(this.maxPageSearchSize.doubleValue());
+			generator.write(this.maxPageSearchSize);
 
 		}
 
@@ -135,17 +144,17 @@ public final class Settings implements ToJsonp {
 		private Boolean datesAsEpochMillis;
 
 		@Nullable
-		private Number docsPerSecond;
+		private Float docsPerSecond;
 
 		@Nullable
-		private Number maxPageSearchSize;
+		private Integer maxPageSearchSize;
 
 		/**
 		 * Defines if dates in the ouput should be written as ISO formatted string
 		 * (default) or as millis since epoch. epoch_millis has been the default for
 		 * transforms created before version 7.11. For compatible output set this to
 		 * true.
-		 *
+		 * <p>
 		 * API name: {@code dates_as_epoch_millis}
 		 */
 		public Builder datesAsEpochMillis(@Nullable Boolean value) {
@@ -157,10 +166,10 @@ public final class Settings implements ToJsonp {
 		 * Specifies a limit on the number of input documents per second. This setting
 		 * throttles the transform by adding a wait time between search requests. The
 		 * default value is null, which disables throttling.
-		 *
+		 * <p>
 		 * API name: {@code docs_per_second}
 		 */
-		public Builder docsPerSecond(@Nullable Number value) {
+		public Builder docsPerSecond(@Nullable Float value) {
 			this.docsPerSecond = value;
 			return this;
 		}
@@ -169,10 +178,10 @@ public final class Settings implements ToJsonp {
 		 * Defines the initial page size to use for the composite aggregation for each
 		 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 		 * adjusted to a lower value. The minimum value is 10 and the maximum is 10,000.
-		 *
+		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable Number value) {
+		public Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -192,16 +201,16 @@ public final class Settings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Settings
+	 * Json deserializer for {@link Settings}
 	 */
-	public static final JsonpDeserializer<Settings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Settings::setupSettingsDeserializer);
+	public static final JsonpDeserializer<Settings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Settings::setupSettingsDeserializer, Builder::build);
 
 	protected static void setupSettingsDeserializer(DelegatingDeserializer<Settings.Builder> op) {
 
 		op.add(Builder::datesAsEpochMillis, JsonpDeserializer.booleanDeserializer(), "dates_as_epoch_millis");
-		op.add(Builder::docsPerSecond, JsonpDeserializer.numberDeserializer(), "docs_per_second");
-		op.add(Builder::maxPageSearchSize, JsonpDeserializer.numberDeserializer(), "max_page_search_size");
+		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
 
 	}
 

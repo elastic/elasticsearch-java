@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesSequences
-public final class EqlFeaturesSequences implements ToJsonp {
+@JsonpDeserializable
+public final class EqlFeaturesSequences implements JsonpSerializable {
 	private final Number sequenceQueriesThree;
 
 	private final Number sequenceQueriesFour;
@@ -51,7 +54,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlFeaturesSequences(Builder builder) {
+	public EqlFeaturesSequences(Builder builder) {
 
 		this.sequenceQueriesThree = Objects.requireNonNull(builder.sequenceQueriesThree, "sequence_queries_three");
 		this.sequenceQueriesFour = Objects.requireNonNull(builder.sequenceQueriesFour, "sequence_queries_four");
@@ -63,43 +66,47 @@ public final class EqlFeaturesSequences implements ToJsonp {
 
 	}
 
+	public EqlFeaturesSequences(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code sequence_queries_three}
+	 * Required - API name: {@code sequence_queries_three}
 	 */
 	public Number sequenceQueriesThree() {
 		return this.sequenceQueriesThree;
 	}
 
 	/**
-	 * API name: {@code sequence_queries_four}
+	 * Required - API name: {@code sequence_queries_four}
 	 */
 	public Number sequenceQueriesFour() {
 		return this.sequenceQueriesFour;
 	}
 
 	/**
-	 * API name: {@code sequence_queries_two}
+	 * Required - API name: {@code sequence_queries_two}
 	 */
 	public Number sequenceQueriesTwo() {
 		return this.sequenceQueriesTwo;
 	}
 
 	/**
-	 * API name: {@code sequence_until}
+	 * Required - API name: {@code sequence_until}
 	 */
 	public Number sequenceUntil() {
 		return this.sequenceUntil;
 	}
 
 	/**
-	 * API name: {@code sequence_queries_five_or_more}
+	 * Required - API name: {@code sequence_queries_five_or_more}
 	 */
 	public Number sequenceQueriesFiveOrMore() {
 		return this.sequenceQueriesFiveOrMore;
 	}
 
 	/**
-	 * API name: {@code sequence_maxspan}
+	 * Required - API name: {@code sequence_maxspan}
 	 */
 	public Number sequenceMaxspan() {
 		return this.sequenceMaxspan;
@@ -108,13 +115,13 @@ public final class EqlFeaturesSequences implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("sequence_queries_three");
 		generator.write(this.sequenceQueriesThree.doubleValue());
@@ -155,7 +162,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 		private Number sequenceMaxspan;
 
 		/**
-		 * API name: {@code sequence_queries_three}
+		 * Required - API name: {@code sequence_queries_three}
 		 */
 		public Builder sequenceQueriesThree(Number value) {
 			this.sequenceQueriesThree = value;
@@ -163,7 +170,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequence_queries_four}
+		 * Required - API name: {@code sequence_queries_four}
 		 */
 		public Builder sequenceQueriesFour(Number value) {
 			this.sequenceQueriesFour = value;
@@ -171,7 +178,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequence_queries_two}
+		 * Required - API name: {@code sequence_queries_two}
 		 */
 		public Builder sequenceQueriesTwo(Number value) {
 			this.sequenceQueriesTwo = value;
@@ -179,7 +186,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequence_until}
+		 * Required - API name: {@code sequence_until}
 		 */
 		public Builder sequenceUntil(Number value) {
 			this.sequenceUntil = value;
@@ -187,7 +194,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequence_queries_five_or_more}
+		 * Required - API name: {@code sequence_queries_five_or_more}
 		 */
 		public Builder sequenceQueriesFiveOrMore(Number value) {
 			this.sequenceQueriesFiveOrMore = value;
@@ -195,7 +202,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code sequence_maxspan}
+		 * Required - API name: {@code sequence_maxspan}
 		 */
 		public Builder sequenceMaxspan(Number value) {
 			this.sequenceMaxspan = value;
@@ -217,10 +224,10 @@ public final class EqlFeaturesSequences implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EqlFeaturesSequences
+	 * Json deserializer for {@link EqlFeaturesSequences}
 	 */
-	public static final JsonpDeserializer<EqlFeaturesSequences> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeaturesSequences::setupEqlFeaturesSequencesDeserializer);
+	public static final JsonpDeserializer<EqlFeaturesSequences> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EqlFeaturesSequences::setupEqlFeaturesSequencesDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesSequencesDeserializer(
 			DelegatingDeserializer<EqlFeaturesSequences.Builder> op) {

@@ -25,14 +25,16 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch.ml.get_calendars.Calendar;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,55 +43,60 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Response
-public final class GetCalendarsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetCalendarsResponse implements JsonpSerializable {
 	private final List<Calendar> calendars;
 
-	private final Number count;
+	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetCalendarsResponse(Builder builder) {
+	public GetCalendarsResponse(Builder builder) {
 
-		this.calendars = Objects.requireNonNull(builder.calendars, "calendars");
+		this.calendars = ModelTypeHelper.unmodifiableNonNull(builder.calendars, "calendars");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
 	}
 
+	public GetCalendarsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code calendars}
+	 * Required - API name: {@code calendars}
 	 */
 	public List<Calendar> calendars() {
 		return this.calendars;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("calendars");
 		generator.writeStartArray();
 		for (Calendar item0 : this.calendars) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -101,10 +108,10 @@ public final class GetCalendarsResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<GetCalendarsResponse> {
 		private List<Calendar> calendars;
 
-		private Number count;
+		private Long count;
 
 		/**
-		 * API name: {@code calendars}
+		 * Required - API name: {@code calendars}
 		 */
 		public Builder calendars(List<Calendar> value) {
 			this.calendars = value;
@@ -112,7 +119,7 @@ public final class GetCalendarsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code calendars}
+		 * Required - API name: {@code calendars}
 		 */
 		public Builder calendars(Calendar... value) {
 			this.calendars = Arrays.asList(value);
@@ -145,9 +152,9 @@ public final class GetCalendarsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -167,16 +174,16 @@ public final class GetCalendarsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetCalendarsResponse
+	 * Json deserializer for {@link GetCalendarsResponse}
 	 */
-	public static final JsonpDeserializer<GetCalendarsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseDeserializer);
+	public static final JsonpDeserializer<GetCalendarsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseDeserializer, Builder::build);
 
 	protected static void setupGetCalendarsResponseDeserializer(
 			DelegatingDeserializer<GetCalendarsResponse.Builder> op) {
 
-		op.add(Builder::calendars, JsonpDeserializer.arrayDeserializer(Calendar.DESERIALIZER), "calendars");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::calendars, JsonpDeserializer.arrayDeserializer(Calendar._DESERIALIZER), "calendars");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

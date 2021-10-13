@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,10 +40,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_service_tokens.Request
+
 public final class ClearCachedServiceTokensRequest extends RequestBase {
 	private final String namespace;
 
@@ -50,15 +55,21 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedServiceTokensRequest(Builder builder) {
+	public ClearCachedServiceTokensRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
+	public ClearCachedServiceTokensRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -66,6 +77,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -73,6 +86,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - A comma-separated list of service token names
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -92,6 +107,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		private List<String> name;
 
 		/**
+		 * Required - An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -100,6 +117,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {
@@ -108,6 +127,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - A comma-separated list of service token names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -116,6 +137,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - A comma-separated list of service token names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -151,7 +174,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_service_tokens}".
 	 */
-	public static final Endpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -166,29 +189,26 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
-				if (request.service() != null)
-					propsSet |= _service;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _namespace;
+				propsSet |= _service;
+				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -196,5 +216,5 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedServiceTokensResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedServiceTokensResponse._DESERIALIZER);
 }

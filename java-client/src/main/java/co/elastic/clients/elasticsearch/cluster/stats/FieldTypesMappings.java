@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypesMappings
-public final class FieldTypesMappings implements ToJsonp {
+@JsonpDeserializable
+public final class FieldTypesMappings implements JsonpSerializable {
 	private final List<FieldTypes> fieldTypes;
 
 	@Nullable
@@ -47,15 +50,19 @@ public final class FieldTypesMappings implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldTypesMappings(Builder builder) {
+	public FieldTypesMappings(Builder builder) {
 
-		this.fieldTypes = Objects.requireNonNull(builder.fieldTypes, "field_types");
-		this.runtimeFieldTypes = builder.runtimeFieldTypes;
+		this.fieldTypes = ModelTypeHelper.unmodifiableNonNull(builder.fieldTypes, "field_types");
+		this.runtimeFieldTypes = ModelTypeHelper.unmodifiable(builder.runtimeFieldTypes);
 
 	}
 
+	public FieldTypesMappings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field_types}
+	 * Required - API name: {@code field_types}
 	 */
 	public List<FieldTypes> fieldTypes() {
 		return this.fieldTypes;
@@ -72,18 +79,18 @@ public final class FieldTypesMappings implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.fieldTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -93,7 +100,7 @@ public final class FieldTypesMappings implements ToJsonp {
 			generator.writeKey("runtime_field_types");
 			generator.writeStartArray();
 			for (RuntimeFieldTypes item0 : this.runtimeFieldTypes) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -114,7 +121,7 @@ public final class FieldTypesMappings implements ToJsonp {
 		private List<RuntimeFieldTypes> runtimeFieldTypes;
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(List<FieldTypes> value) {
 			this.fieldTypes = value;
@@ -122,7 +129,7 @@ public final class FieldTypesMappings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(FieldTypes... value) {
 			this.fieldTypes = Arrays.asList(value);
@@ -210,15 +217,15 @@ public final class FieldTypesMappings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldTypesMappings
+	 * Json deserializer for {@link FieldTypesMappings}
 	 */
-	public static final JsonpDeserializer<FieldTypesMappings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer);
+	public static final JsonpDeserializer<FieldTypesMappings> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer, Builder::build);
 
 	protected static void setupFieldTypesMappingsDeserializer(DelegatingDeserializer<FieldTypesMappings.Builder> op) {
 
-		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "field_types");
-		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes.DESERIALIZER),
+		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "field_types");
+		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes._DESERIALIZER),
 				"runtime_field_types");
 
 	}

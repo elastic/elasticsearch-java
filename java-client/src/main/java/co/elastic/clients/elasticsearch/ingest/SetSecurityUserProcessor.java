@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -35,10 +37,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
-public final class SetSecurityUserProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -46,15 +50,28 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SetSecurityUserProcessor(Builder builder) {
+	public SetSecurityUserProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 
 	}
 
+	public SetSecurityUserProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code field}
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "set_security_user";
+	}
+
+	/**
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -68,8 +85,9 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 		return this.properties;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -102,7 +120,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 		private List<String> properties;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -156,10 +174,10 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SetSecurityUserProcessor
+	 * Json deserializer for {@link SetSecurityUserProcessor}
 	 */
-	public static final JsonpDeserializer<SetSecurityUserProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer);
+	public static final JsonpDeserializer<SetSecurityUserProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer, Builder::build);
 
 	protected static void setupSetSecurityUserProcessorDeserializer(
 			DelegatingDeserializer<SetSecurityUserProcessor.Builder> op) {

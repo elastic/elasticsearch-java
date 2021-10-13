@@ -24,26 +24,28 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Base
-public class Base implements ToJsonp {
-	private final Boolean available;
+@JsonpDeserializable
+public class Base implements JsonpSerializable {
+	private final boolean available;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Base(AbstractBuilder<?> builder) {
+	public Base(AbstractBuilder<?> builder) {
 
 		this.available = Objects.requireNonNull(builder.available, "available");
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
@@ -51,29 +53,29 @@ public class Base implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code available}
+	 * Required - API name: {@code available}
 	 */
-	public Boolean available() {
+	public boolean available() {
 		return this.available;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available");
 		generator.write(this.available);
@@ -112,17 +114,17 @@ public class Base implements ToJsonp {
 		private Boolean enabled;
 
 		/**
-		 * API name: {@code available}
+		 * Required - API name: {@code available}
 		 */
-		public BuilderT available(Boolean value) {
+		public BuilderT available(boolean value) {
 			this.available = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(Boolean value) {
+		public BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}
@@ -134,10 +136,10 @@ public class Base implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Base
+	 * Json deserializer for {@link Base}
 	 */
-	public static final JsonpDeserializer<Base> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Base::setupBaseDeserializer);
+	public static final JsonpDeserializer<Base> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Base::setupBaseDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {

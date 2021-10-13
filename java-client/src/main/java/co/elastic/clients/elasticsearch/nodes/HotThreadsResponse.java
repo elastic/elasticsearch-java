@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.nodes.hot_threads.HotThread;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,19 +42,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Response
-public final class HotThreadsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class HotThreadsResponse implements JsonpSerializable {
 	private final List<HotThread> hotThreads;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HotThreadsResponse(Builder builder) {
+	public HotThreadsResponse(Builder builder) {
 
-		this.hotThreads = Objects.requireNonNull(builder.hotThreads, "hot_threads");
+		this.hotThreads = ModelTypeHelper.unmodifiableNonNull(builder.hotThreads, "hot_threads");
 
 	}
 
+	public HotThreadsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code hot_threads}
+	 * Required - API name: {@code hot_threads}
 	 */
 	public List<HotThread> hotThreads() {
 		return this.hotThreads;
@@ -61,18 +68,18 @@ public final class HotThreadsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("hot_threads");
 		generator.writeStartArray();
 		for (HotThread item0 : this.hotThreads) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -88,7 +95,7 @@ public final class HotThreadsResponse implements ToJsonp {
 		private List<HotThread> hotThreads;
 
 		/**
-		 * API name: {@code hot_threads}
+		 * Required - API name: {@code hot_threads}
 		 */
 		public Builder hotThreads(List<HotThread> value) {
 			this.hotThreads = value;
@@ -96,7 +103,7 @@ public final class HotThreadsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code hot_threads}
+		 * Required - API name: {@code hot_threads}
 		 */
 		public Builder hotThreads(HotThread... value) {
 			this.hotThreads = Arrays.asList(value);
@@ -143,14 +150,14 @@ public final class HotThreadsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HotThreadsResponse
+	 * Json deserializer for {@link HotThreadsResponse}
 	 */
-	public static final JsonpDeserializer<HotThreadsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer);
+	public static final JsonpDeserializer<HotThreadsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer, Builder::build);
 
 	protected static void setupHotThreadsResponseDeserializer(DelegatingDeserializer<HotThreadsResponse.Builder> op) {
 
-		op.add(Builder::hotThreads, JsonpDeserializer.arrayDeserializer(HotThread.DESERIALIZER), "hot_threads");
+		op.add(Builder::hotThreads, JsonpDeserializer.arrayDeserializer(HotThread._DESERIALIZER), "hot_threads");
 
 	}
 

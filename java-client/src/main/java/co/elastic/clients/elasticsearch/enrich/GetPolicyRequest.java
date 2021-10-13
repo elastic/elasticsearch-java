@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,23 +39,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Request
+
 public final class GetPolicyRequest extends RequestBase {
 	@Nullable
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPolicyRequest(Builder builder) {
+	public GetPolicyRequest(Builder builder) {
 
-		this.name = builder.name;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
+	public GetPolicyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of enrich policy names
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -70,6 +82,8 @@ public final class GetPolicyRequest extends RequestBase {
 		private List<String> name;
 
 		/**
+		 * A comma-separated list of enrich policy names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable List<String> value) {
@@ -78,6 +92,8 @@ public final class GetPolicyRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of enrich policy names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -113,7 +129,7 @@ public final class GetPolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.get_policy}".
 	 */
-	public static final Endpoint<GetPolicyRequest, GetPolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetPolicyRequest, GetPolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -134,7 +150,7 @@ public final class GetPolicyRequest extends RequestBase {
 					buf.append("/_enrich");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -143,7 +159,7 @@ public final class GetPolicyRequest extends RequestBase {
 					buf.append("/policy");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -151,5 +167,5 @@ public final class GetPolicyRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetPolicyResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetPolicyResponse._DESERIALIZER);
 }

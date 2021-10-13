@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,9 +38,11 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_job.Request
+
 public final class DeleteJobRequest extends RequestBase {
 	private final String jobId;
 
@@ -50,7 +54,7 @@ public final class DeleteJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteJobRequest(Builder builder) {
+	public DeleteJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.force = builder.force;
@@ -58,7 +62,13 @@ public final class DeleteJobRequest extends RequestBase {
 
 	}
 
+	public DeleteJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Required - The ID of the job to delete
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -66,6 +76,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
+	 * True if the job should be forcefully deleted
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -74,6 +86,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
+	 * Should this request wait until the operation has completed before returning
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -96,6 +110,8 @@ public final class DeleteJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
+		 * Required - The ID of the job to delete
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -104,6 +120,8 @@ public final class DeleteJobRequest extends RequestBase {
 		}
 
 		/**
+		 * True if the job should be forcefully deleted
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -112,6 +130,8 @@ public final class DeleteJobRequest extends RequestBase {
 		}
 
 		/**
+		 * Should this request wait until the operation has completed before returning
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -136,7 +156,7 @@ public final class DeleteJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_job}".
 	 */
-	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -149,18 +169,17 @@ public final class DeleteJobRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -175,5 +194,5 @@ public final class DeleteJobRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteJobResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteJobResponse._DESERIALIZER);
 }

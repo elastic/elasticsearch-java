@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,15 +38,17 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
-public final class HasPrivilegesResponse implements ToJsonp {
+@JsonpDeserializable
+public final class HasPrivilegesResponse implements JsonpSerializable {
 	private final Map<String, Map<String, Map<String, Boolean>>> application;
 
 	private final Map<String, Boolean> cluster;
 
-	private final Boolean hasAllRequested;
+	private final boolean hasAllRequested;
 
 	private final Map<String, Map<String, Boolean>> index;
 
@@ -52,46 +56,50 @@ public final class HasPrivilegesResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HasPrivilegesResponse(Builder builder) {
+	public HasPrivilegesResponse(Builder builder) {
 
-		this.application = Objects.requireNonNull(builder.application, "application");
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
+		this.application = ModelTypeHelper.unmodifiableNonNull(builder.application, "application");
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
 		this.hasAllRequested = Objects.requireNonNull(builder.hasAllRequested, "has_all_requested");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.username = Objects.requireNonNull(builder.username, "username");
 
 	}
 
+	public HasPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code application}
+	 * Required - API name: {@code application}
 	 */
 	public Map<String, Map<String, Map<String, Boolean>>> application() {
 		return this.application;
 	}
 
 	/**
-	 * API name: {@code cluster}
+	 * Required - API name: {@code cluster}
 	 */
 	public Map<String, Boolean> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * API name: {@code has_all_requested}
+	 * Required - API name: {@code has_all_requested}
 	 */
-	public Boolean hasAllRequested() {
+	public boolean hasAllRequested() {
 		return this.hasAllRequested;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public Map<String, Map<String, Boolean>> index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
@@ -100,13 +108,13 @@ public final class HasPrivilegesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("application");
 		generator.writeStartObject();
@@ -178,7 +186,7 @@ public final class HasPrivilegesResponse implements ToJsonp {
 		private String username;
 
 		/**
-		 * API name: {@code application}
+		 * Required - API name: {@code application}
 		 */
 		public Builder application(Map<String, Map<String, Map<String, Boolean>>> value) {
 			this.application = value;
@@ -197,7 +205,7 @@ public final class HasPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(Map<String, Boolean> value) {
 			this.cluster = value;
@@ -216,15 +224,15 @@ public final class HasPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code has_all_requested}
+		 * Required - API name: {@code has_all_requested}
 		 */
-		public Builder hasAllRequested(Boolean value) {
+		public Builder hasAllRequested(boolean value) {
 			this.hasAllRequested = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(Map<String, Map<String, Boolean>> value) {
 			this.index = value;
@@ -243,7 +251,7 @@ public final class HasPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;
@@ -265,10 +273,10 @@ public final class HasPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HasPrivilegesResponse
+	 * Json deserializer for {@link HasPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<HasPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HasPrivilegesResponse::setupHasPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<HasPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HasPrivilegesResponse::setupHasPrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupHasPrivilegesResponseDeserializer(
 			DelegatingDeserializer<HasPrivilegesResponse.Builder> op) {

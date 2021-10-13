@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfigContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +46,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfig
-public final class TrainedModelConfig implements ToJsonp {
+@JsonpDeserializable
+public final class TrainedModelConfig implements JsonpSerializable {
 	private final String modelId;
 
 	private final List<String> tags;
@@ -60,20 +62,21 @@ public final class TrainedModelConfig implements ToJsonp {
 	private final String createdBy;
 
 	@Nullable
-	private final JsonValue createTime;
+	private final String createTime;
 
 	@Nullable
 	private final Map<String, String> defaultFieldMap;
 
+	@Nullable
 	private final String description;
 
 	@Nullable
-	private final Number estimatedHeapMemoryUsageBytes;
+	private final Integer estimatedHeapMemoryUsageBytes;
 
 	@Nullable
-	private final Number estimatedOperations;
+	private final Integer estimatedOperations;
 
-	private final InferenceConfigContainer inferenceConfig;
+	private final InferenceConfig inferenceConfig;
 
 	private final TrainedModelConfigInput input;
 
@@ -85,16 +88,16 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelConfig(Builder builder) {
+	public TrainedModelConfig(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
-		this.tags = Objects.requireNonNull(builder.tags, "tags");
+		this.tags = ModelTypeHelper.unmodifiableNonNull(builder.tags, "tags");
 		this.version = builder.version;
 		this.compressedDefinition = builder.compressedDefinition;
 		this.createdBy = builder.createdBy;
 		this.createTime = builder.createTime;
-		this.defaultFieldMap = builder.defaultFieldMap;
-		this.description = Objects.requireNonNull(builder.description, "description");
+		this.defaultFieldMap = ModelTypeHelper.unmodifiable(builder.defaultFieldMap);
+		this.description = builder.description;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
 		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
@@ -104,9 +107,13 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	}
 
+	public TrainedModelConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * Idetifier for the trained model.
-	 *
+	 * Required - Idetifier for the trained model.
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public String modelId() {
@@ -114,9 +121,9 @@ public final class TrainedModelConfig implements ToJsonp {
 	}
 
 	/**
-	 * A comma delimited string of tags. A trained model can have many tags, or
-	 * none.
-	 *
+	 * Required - A comma delimited string of tags. A trained model can have many
+	 * tags, or none.
+	 * <p>
 	 * API name: {@code tags}
 	 */
 	public List<String> tags() {
@@ -125,7 +132,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The Elasticsearch version number in which the trained model was created.
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -143,7 +150,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * Information on the creator of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code created_by}
 	 */
 	@Nullable
@@ -153,17 +160,17 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The time when the trained model was created.
-	 *
+	 * <p>
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public JsonValue createTime() {
+	public String createTime() {
 		return this.createTime;
 	}
 
 	/**
 	 * Any field map described in the inference configuration takes precedence.
-	 *
+	 * <p>
 	 * API name: {@code default_field_map}
 	 */
 	@Nullable
@@ -173,47 +180,48 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The free-text description of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
+	@Nullable
 	public String description() {
 		return this.description;
 	}
 
 	/**
 	 * The estimated heap usage in bytes to keep the trained model in memory.
-	 *
+	 * <p>
 	 * API name: {@code estimated_heap_memory_usage_bytes}
 	 */
 	@Nullable
-	public Number estimatedHeapMemoryUsageBytes() {
+	public Integer estimatedHeapMemoryUsageBytes() {
 		return this.estimatedHeapMemoryUsageBytes;
 	}
 
 	/**
 	 * The estimated number of operations to use the trained model.
-	 *
+	 * <p>
 	 * API name: {@code estimated_operations}
 	 */
 	@Nullable
-	public Number estimatedOperations() {
+	public Integer estimatedOperations() {
 		return this.estimatedOperations;
 	}
 
 	/**
-	 * The default configuration for inference. This can be either a regression or
-	 * classification configuration. It must match the underlying
+	 * Required - The default configuration for inference. This can be either a
+	 * regression or classification configuration. It must match the underlying
 	 * definition.trained_model's target_type.
-	 *
+	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public InferenceConfigContainer inferenceConfig() {
+	public InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
 	/**
-	 * The input field names for the model definition.
-	 *
+	 * Required - The input field names for the model definition.
+	 * <p>
 	 * API name: {@code input}
 	 */
 	public TrainedModelConfigInput input() {
@@ -222,7 +230,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The license level of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code license_level}
 	 */
 	@Nullable
@@ -233,7 +241,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	/**
 	 * An object containing metadata about the trained model. For example, models
 	 * created by data frame analytics contain analysis_config and input objects.
-	 *
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	@Nullable
@@ -244,13 +252,13 @@ public final class TrainedModelConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
@@ -299,28 +307,30 @@ public final class TrainedModelConfig implements ToJsonp {
 			generator.writeEnd();
 
 		}
+		if (this.description != null) {
 
-		generator.writeKey("description");
-		generator.write(this.description);
+			generator.writeKey("description");
+			generator.write(this.description);
 
+		}
 		if (this.estimatedHeapMemoryUsageBytes != null) {
 
 			generator.writeKey("estimated_heap_memory_usage_bytes");
-			generator.write(this.estimatedHeapMemoryUsageBytes.doubleValue());
+			generator.write(this.estimatedHeapMemoryUsageBytes);
 
 		}
 		if (this.estimatedOperations != null) {
 
 			generator.writeKey("estimated_operations");
-			generator.write(this.estimatedOperations.doubleValue());
+			generator.write(this.estimatedOperations);
 
 		}
 
 		generator.writeKey("inference_config");
-		this.inferenceConfig.toJsonp(generator, mapper);
+		this.inferenceConfig.serialize(generator, mapper);
 
 		generator.writeKey("input");
-		this.input.toJsonp(generator, mapper);
+		this.input.serialize(generator, mapper);
 
 		if (this.licenseLevel != null) {
 
@@ -331,7 +341,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
-			this.metadata.toJsonp(generator, mapper);
+			this.metadata.serialize(generator, mapper);
 
 		}
 
@@ -357,20 +367,21 @@ public final class TrainedModelConfig implements ToJsonp {
 		private String createdBy;
 
 		@Nullable
-		private JsonValue createTime;
+		private String createTime;
 
 		@Nullable
 		private Map<String, String> defaultFieldMap;
 
+		@Nullable
 		private String description;
 
 		@Nullable
-		private Number estimatedHeapMemoryUsageBytes;
+		private Integer estimatedHeapMemoryUsageBytes;
 
 		@Nullable
-		private Number estimatedOperations;
+		private Integer estimatedOperations;
 
-		private InferenceConfigContainer inferenceConfig;
+		private InferenceConfig inferenceConfig;
 
 		private TrainedModelConfigInput input;
 
@@ -381,8 +392,8 @@ public final class TrainedModelConfig implements ToJsonp {
 		private TrainedModelConfigMetadata metadata;
 
 		/**
-		 * Idetifier for the trained model.
-		 *
+		 * Required - Idetifier for the trained model.
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
@@ -391,9 +402,9 @@ public final class TrainedModelConfig implements ToJsonp {
 		}
 
 		/**
-		 * A comma delimited string of tags. A trained model can have many tags, or
-		 * none.
-		 *
+		 * Required - A comma delimited string of tags. A trained model can have many
+		 * tags, or none.
+		 * <p>
 		 * API name: {@code tags}
 		 */
 		public Builder tags(List<String> value) {
@@ -402,9 +413,9 @@ public final class TrainedModelConfig implements ToJsonp {
 		}
 
 		/**
-		 * A comma delimited string of tags. A trained model can have many tags, or
-		 * none.
-		 *
+		 * Required - A comma delimited string of tags. A trained model can have many
+		 * tags, or none.
+		 * <p>
 		 * API name: {@code tags}
 		 */
 		public Builder tags(String... value) {
@@ -425,7 +436,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The Elasticsearch version number in which the trained model was created.
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -443,7 +454,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * Information on the creator of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code created_by}
 		 */
 		public Builder createdBy(@Nullable String value) {
@@ -453,17 +464,17 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The time when the trained model was created.
-		 *
+		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable JsonValue value) {
+		public Builder createTime(@Nullable String value) {
 			this.createTime = value;
 			return this;
 		}
 
 		/**
 		 * Any field map described in the inference configuration takes precedence.
-		 *
+		 * <p>
 		 * API name: {@code default_field_map}
 		 */
 		public Builder defaultFieldMap(@Nullable Map<String, String> value) {
@@ -484,61 +495,60 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The free-text description of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
 		 * The estimated heap usage in bytes to keep the trained model in memory.
-		 *
+		 * <p>
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
-		public Builder estimatedHeapMemoryUsageBytes(@Nullable Number value) {
+		public Builder estimatedHeapMemoryUsageBytes(@Nullable Integer value) {
 			this.estimatedHeapMemoryUsageBytes = value;
 			return this;
 		}
 
 		/**
 		 * The estimated number of operations to use the trained model.
-		 *
+		 * <p>
 		 * API name: {@code estimated_operations}
 		 */
-		public Builder estimatedOperations(@Nullable Number value) {
+		public Builder estimatedOperations(@Nullable Integer value) {
 			this.estimatedOperations = value;
 			return this;
 		}
 
 		/**
-		 * The default configuration for inference. This can be either a regression or
-		 * classification configuration. It must match the underlying
+		 * Required - The default configuration for inference. This can be either a
+		 * regression or classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
-		 *
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(InferenceConfigContainer value) {
+		public Builder inferenceConfig(InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
 
 		/**
-		 * The default configuration for inference. This can be either a regression or
-		 * classification configuration. It must match the underlying
+		 * Required - The default configuration for inference. This can be either a
+		 * regression or classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
-		 *
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(
-				Function<InferenceConfigContainer.Builder, ObjectBuilder<InferenceConfigContainer>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfigContainer.Builder()).build());
+		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		/**
-		 * The input field names for the model definition.
-		 *
+		 * Required - The input field names for the model definition.
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public Builder input(TrainedModelConfigInput value) {
@@ -547,8 +557,8 @@ public final class TrainedModelConfig implements ToJsonp {
 		}
 
 		/**
-		 * The input field names for the model definition.
-		 *
+		 * Required - The input field names for the model definition.
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public Builder input(Function<TrainedModelConfigInput.Builder, ObjectBuilder<TrainedModelConfigInput>> fn) {
@@ -557,7 +567,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The license level of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code license_level}
 		 */
 		public Builder licenseLevel(@Nullable String value) {
@@ -568,7 +578,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		/**
 		 * An object containing metadata about the trained model. For example, models
 		 * created by data frame analytics contain analysis_config and input objects.
-		 *
+		 * <p>
 		 * API name: {@code metadata}
 		 */
 		public Builder metadata(@Nullable TrainedModelConfigMetadata value) {
@@ -579,7 +589,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		/**
 		 * An object containing metadata about the trained model. For example, models
 		 * created by data frame analytics contain analysis_config and input objects.
-		 *
+		 * <p>
 		 * API name: {@code metadata}
 		 */
 		public Builder metadata(
@@ -602,10 +612,10 @@ public final class TrainedModelConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelConfig
+	 * Json deserializer for {@link TrainedModelConfig}
 	 */
-	public static final JsonpDeserializer<TrainedModelConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer);
+	public static final JsonpDeserializer<TrainedModelConfig> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer, Builder::build);
 
 	protected static void setupTrainedModelConfigDeserializer(DelegatingDeserializer<TrainedModelConfig.Builder> op) {
 
@@ -614,17 +624,17 @@ public final class TrainedModelConfig implements ToJsonp {
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
-		op.add(Builder::createTime, JsonpDeserializer.jsonValueDeserializer(), "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
 		op.add(Builder::defaultFieldMap,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "default_field_map");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.integerDeserializer(),
 				"estimated_heap_memory_usage_bytes");
-		op.add(Builder::estimatedOperations, JsonpDeserializer.numberDeserializer(), "estimated_operations");
-		op.add(Builder::inferenceConfig, InferenceConfigContainer.DESERIALIZER, "inference_config");
-		op.add(Builder::input, TrainedModelConfigInput.DESERIALIZER, "input");
+		op.add(Builder::estimatedOperations, JsonpDeserializer.integerDeserializer(), "estimated_operations");
+		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(Builder::input, TrainedModelConfigInput._DESERIALIZER, "input");
 		op.add(Builder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
-		op.add(Builder::metadata, TrainedModelConfigMetadata.DESERIALIZER, "metadata");
+		op.add(Builder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
 
 	}
 
