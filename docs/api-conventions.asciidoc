@@ -1,0 +1,249 @@
+[[api-conventions]]
+== API conventions
+
+The Java client uses a very consistent code structure, using modern code 
+patterns that make complex requests easier to write and complex responses easier 
+to process. This page explains these so that you quickly feel at home.
+
+[discrete]
+=== Package structure and namespace clients
+
+The {es} API is large and is organized into feature groups, as can be seen in 
+the {ref}/rest-apis.html[{es} API documentation].
+
+The Java client follows this structure: feature groups are called “namespaces”, 
+and each namespace is located in a subpackage of 
+`co.elastic.clients.elasticsearch`. The only exceptions are the “search” and 
+“document” APIs which are located in the `_core` subpackage.
+
+Each of the namespace clients can be accessed from the top level {es} client. 
+The snippet below shows how to use the indices namespace client to create an 
+index:
+
+["source","java"]
+--------------------------------------------------
+ElasticsearchClient esClient = ...
+esClient.indices().create(c -> c.index("my-index"));
+--------------------------------------------------
+
+Namespace clients are very lightweight objects that can be created on the fly.
+
+
+[discrete]
+=== Method naming conventions
+
+Classes in the Java API Client contain two kinds of methods and properties:
+
+* Methods and properties that are part of the API, such as 
+`ElasticsearchClient.search()` or `SearchResponse.maxScore()`. They are derived 
+from their respective names in the {es} JSON API using the standard Java 
+`camelCaseName` convention.
+
+* Methods and properties that are part of the framework on which the Java API 
+Client is built, such as `Query._type()`. These methods and properties are 
+prefixed with an underscore to both avoid any naming conflicts with API names 
+and ease distinguishing what identifiers belong to the API or to the framework.
+
+
+[discrete]
+=== Immutable objects, builders and builder lambdas
+
+All data types in the Java client are immutable. Object creation uses the 
+https://www.informit.com/articles/article.aspx?p=1216151&seqNum=2[builder pattern] 
+that was popularized in *Effective Java* in 2008.
+
+["source","java"]
+--------------------------------------------------
+CreateResponse createResponse = client.indices().create(
+    new CreateRequest.Builder()
+        .index("my-index")
+        .putAliases("foo",
+            new Alias.Builder().isWriteIndex(true).build()
+        )
+        .build()
+);
+--------------------------------------------------
+
+Note that a builder should not be reused after its `build()` method has been 
+called.
+
+Although this works nicely, having to instantiate builder classes and call the 
+build() method is a bit verbose. So every builder setter in the Java client also 
+accepts a lambda expression that takes a newly created builder as a parameter 
+and returns a populated builder. The snippet above can be written also as:
+
+["source","java"]
+--------------------------------------------------
+CreateResponse createResponse = client.indices()
+    .create(createBuilder -> createBuilder
+        .index("my-index")
+        .putAliases("foo", aliasBuilder -> aliasBuilder
+    		.isWriteIndex(true)
+        )
+    );
+--------------------------------------------------
+
+This approach allows for much more concise code, and also avoids importing 
+classes (and even remembering their names) since types are inferred from the 
+method parameter signature.
+
+It becomes particularly useful with complex nested queries like the one below, 
+taken from the 
+{ref}/query-dsl-intervals-query.html[intervals query API documentation].
+
+This example also shows a useful naming convention for builder parameters in 
+deeply nested structures: since we have to give them a name to comply with the 
+Java syntax (Kotlin would accept `it` and Scala a simple `_`), we name them with 
+an underscore followed by the depth of the item, i.e. `_0`, `_1`, and so on. 
+This removes the need for finding names and makes reading the code easier to 
+read by reducing the number of identifiers.
+
+["source","java"]
+--------------------------------------------------
+client.search(_0 -> _0
+    .query(_1 -> _1
+        .intervals(_2 -> _2
+            .field("my_text")
+            .allOf(_3 -> _3
+                .ordered(true)
+                .addIntervals(_4 -> _4
+                    .match(_5 -> _5
+                        .query("my favorite food")
+                        .maxGaps(0)
+                        .ordered(true)
+                    )
+                )
+                .addIntervals(_4 -> _4
+                    .anyOf(_5 -> _5
+                        .addIntervals(_6 -> _6
+                            .match(_7 -> _7
+                                .query("hot water")
+                            )
+                        )
+                        .addIntervals(_6 -> _6
+                            .match(_7 -> _7
+                                .query("cold porridge")
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    ),
+    RequestTest.AppData.class
+);
+--------------------------------------------------
+
+[discrete]
+=== Variant types
+
+The {es} API has a lot of variant types: queries, aggregations, field mappings, 
+analyzers, and so on. Finding the correct class name in such large collections 
+can be challenging.
+
+The Java client builders make this easy: the builders for variant types, such as 
+Query, have methods for each of the available implementations. We’ve seen this 
+in action above with `intervals` (a kind of query) and `allOf`, `match` and 
+`anyOf` (various kinds of intervals).
+
+This is because variant objects in the Java client are implementations of a 
+“tagged union”: they contain the identifier (or tag) of the variant they hold 
+and the value for that variant. For example, a `Query` object can contain an 
+`IntervalsQuery` with tag `intervals`, a `TermQuery` with tag `term`, and so on. 
+This approach allows writing fluent code where you can let the IDE completion 
+features guide you to build and navigate complex nested structures:
+
+* Variant builders have setter methods for every available implementation. They 
+  use the same conventions as regular properties and accept both a builder lambda 
+  expression and a ready-made object of the actual type of the variant. Here’s an 
+  example to build a term query:
+
+  ["source","java"]
+  --------------------------------------------------
+  Query query = new Query.Builder()
+      .term(                                // <1>
+          t -> t.field("name").value("foo") // <2>
+      )
+      .build();                             // <3>
+  --------------------------------------------------
+  <1> Choose the `term` variant to build a term query.
+  <2> Build the terms query with a builder lambda expression.
+  <3> Build the `Query` that now holds a `TermQuery` object with tag `term`.
+
+* Variant objects have getter methods for every available implementation. These 
+methods check that the object actually holds a variant of that type and return 
+the value downcasted to the correct type. They throw an `IllegalStateException` 
+otherwise. This approach allows writing fluent code to traverse variants.
+
+[discrete]
+=== Blocking and asynchronous clients
+
+API clients come in two flavors: blocking and asynchronous. All methods on 
+asynchronous clients return a standard `CompletableFuture`.
+
+Both flavors can be used at the same time depending on your needs, sharing the 
+same transport object:
+
+["source","java"]
+--------------------------------------------------
+Transport transport = ...
+
+ElasticsearchClient client = new ElasticsearchClient(transport);
+if (client.exists(b -> b.index("products").id("foo")).value()) {
+    logger.info("product exists");
+}
+
+ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(transport);
+asyncClient.exists(b -> b.index("products").id("foo")).thenAccept(response -> {
+    if (response.value()) {
+        logger.info("product exists");
+    }
+});
+--------------------------------------------------
+
+[discrete]
+=== Exceptions
+
+Client methods can throw two kinds of exceptions:
+* Requests that were received by the {es} server but that were rejected 
+(validation error, server internal timeout exceeded, etc) will produce an 
+`ApiException`. This exception contains details about the error provided by 
+{es}.
+
+* Requests that fail to reach the server (network error, server unavailable, 
+etc) will produce a subclass `IOException`. That subclass is specific to the 
+transport used. In the case of the `RestClientTransport` it will be a 
+`ResponseException` that contains the low level HTTP response.
+
+
+[discrete]
+=== Object life cycles
+
+There are five kinds of objects in the Java client with different life cycles:
+
+
+**Object mapper**:: 
+Stateless and thread-safe, but can be costly to create. 
+It’s usually a singleton that is created at application startup and used to 
+create the transport.
+
+**Transport**:: 
+Thread-safe, holds network resources through the underlying HTTP client. A 
+transport object is associated with an {es} cluster and has to be explicitly 
+closed to release the underlying resources such as network connections.
+
+**Clients**:: 
+Immutable, stateless and thread-safe.
+These are very lightweight objects that just wrap a transport and provide API 
+endpoints as methods.
+
+**Builders**:: 
+Mutable, non thread-safe. 
+Builders are transient objects that should not be reused after calling 
+`build()`.
+
+**Requests & other API objects**::
+Immutable, thread-safe. 
+If your application uses the same request or same parts of a request over and 
+over, these objects can be prepared in advance and reused across multiple calls 
+over multiple clients with different transports.
