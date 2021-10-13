@@ -10,7 +10,7 @@ Migrating from the HLRC therefore requires some code rewrite in your
 application. This transition can however happen progressively as the two client 
 libraries can coexist in a single application with no operational overhead.
 
-[duscrete]
+[discrete]
 === Transition strategies
 
 There are different ways you can start transitioning away from the HLRC in your 

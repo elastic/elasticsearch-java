@@ -171,6 +171,7 @@ Query query = new Query.Builder()
 <2> Build the terms query with a builder lambda expression.
 <3> Build the `Query` that now holds a `TermQuery` object with tag `term`.
 
+
 * Variant objects have getter methods for every available implementation. These 
 methods check that the object actually holds a variant of that type and return 
 the value downcasted to the correct type. They throw an `IllegalStateException` 
