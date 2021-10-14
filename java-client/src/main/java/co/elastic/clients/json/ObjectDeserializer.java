@@ -27,6 +27,7 @@ import jakarta.json.stream.JsonParsingException;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.Supplier;
@@ -70,7 +71,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         }
     }
 
-    private static final FieldDeserializer<Object> IGNORED_FIELD = new FieldDeserializer<Object>("-", null) {
+    private static final FieldDeserializer<?> IGNORED_FIELD = new FieldDeserializer<Object>("-", null) {
         @Override
         public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, Object object) {
             JsonpUtils.skipValue(parser);
@@ -80,9 +81,10 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
     //---------------------------------------------------------------------------------------------
 
     private final Supplier<ObjectType> constructor;
-    protected final Map<String, FieldDeserializer<?>> fieldDeserializers;
+    protected final Map<String, FieldDeserializer<ObjectType>> fieldDeserializers;
     private BiConsumer<ObjectType, String> keySetter;
     private String typeProperty;
+    private FieldDeserializer<ObjectType> shortcutProperty;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public ObjectDeserializer(Supplier<ObjectType> constructor) {
@@ -101,6 +103,10 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
             return null;
         }
 
+        if (event != Event.START_OBJECT && shortcutProperty != null) {
+            shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value);
+        }
+
         if (keySetter != null) {
             String key = JsonpUtils.expectKeyName(parser, parser.next());
             keySetter.accept(value, key);
@@ -114,8 +120,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
                 JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
                 String fieldName = parser.getString();
 
-                @SuppressWarnings("unchecked")
-                FieldDeserializer<ObjectType> fieldDeserializer = (FieldDeserializer<ObjectType>) fieldDeserializers.get(fieldName);
+                FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(fieldName);
                 if (fieldDeserializer == null) {
                     parseUnknownField(parser, mapper, fieldName, value);
                 } else {
@@ -129,8 +134,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
             String variant = unionInfo.getKey();
             JsonParser innerParser = unionInfo.getValue();
 
-            @SuppressWarnings("unchecked")
-            FieldDeserializer<ObjectType> fieldDeserializer = (FieldDeserializer<ObjectType>) fieldDeserializers.get(variant);
+            FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(variant);
             if (fieldDeserializer == null) {
                 parseUnknownField(parser, mapper, variant, value);
             } else {
@@ -164,8 +168,17 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         this.unknownFieldHandler = unknownFieldHandler;
     }
 
+    @SuppressWarnings("unchecked")
     public void ignore(String name) {
-        this.fieldDeserializers.put(name, IGNORED_FIELD);
+        this.fieldDeserializers.put(name, (FieldDeserializer<ObjectType>) IGNORED_FIELD);
+    }
+
+    @Override
+    public void shortcutProperty(String name) {
+        this.shortcutProperty = this.fieldDeserializers.get(name);
+        if (this.shortcutProperty == null) {
+            throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
+        }
     }
 
     //----- Object types

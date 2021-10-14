@@ -61,6 +61,11 @@ public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializ
         throw new UnsupportedOperationException();
     }
 
+    /** Used for structures that can also be serialized as a single string when all others properties are undefined */
+    public void shortcutProperty(String name) {
+        throw new UnsupportedOperationException();
+    }
+
     public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler) {
         throw new UnsupportedOperationException();
     }
