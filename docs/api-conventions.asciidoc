@@ -157,7 +157,8 @@ features guide you to build and navigate complex nested structures:
   use the same conventions as regular properties and accept both a builder lambda 
   expression and a ready-made object of the actual type of the variant. Here’s an 
   example to build a term query:
-
+  +
+  --
 ["source","java"]
 --------------------------------------------------
 Query query = new Query.Builder()
@@ -170,7 +171,7 @@ Query query = new Query.Builder()
 <1> Choose the `term` variant to build a term query.
 <2> Build the terms query with a builder lambda expression.
 <3> Build the `Query` that now holds a `TermQuery` object with tag `term`.
-
+  --
 
 * Variant objects have getter methods for every available implementation. These 
   methods check that the object actually holds a variant of that type and return 
