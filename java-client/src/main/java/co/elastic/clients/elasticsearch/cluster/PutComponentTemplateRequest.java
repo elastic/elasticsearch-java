@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
@@ -440,7 +440,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	/**
 	 * Endpoint "{@code cluster.put_component_template}".
 	 */
-	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

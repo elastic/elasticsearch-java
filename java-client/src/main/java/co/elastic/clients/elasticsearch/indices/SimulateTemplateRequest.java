@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -224,7 +224,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code indices.simulate_template}".
 	 */
-	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

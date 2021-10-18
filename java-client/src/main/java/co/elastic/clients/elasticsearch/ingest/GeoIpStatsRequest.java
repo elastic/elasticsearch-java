@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -53,7 +53,7 @@ public final class GeoIpStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.geo_ip_stats}".
 	 */
-	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

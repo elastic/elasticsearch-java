@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -226,7 +226,7 @@ public final class TasksRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.tasks}".
 	 */
-	public static final Endpoint<TasksRequest, TasksResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TasksRequest, TasksResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

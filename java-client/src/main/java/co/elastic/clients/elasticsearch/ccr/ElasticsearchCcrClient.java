@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -425,7 +426,7 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CcrStatsResponse stats() throws IOException {
+	public CcrStatsResponse stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT);
 	}
 

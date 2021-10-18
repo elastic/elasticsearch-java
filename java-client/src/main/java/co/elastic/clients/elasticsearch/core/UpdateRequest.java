@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -927,7 +927,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	/**
 	 * Create an "{@code update}" endpoint.
 	 */
-	public static <TDocument> Endpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ElasticsearchError> createUpdateEndpoint(
+	public static <TDocument> Endpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> createUpdateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(UpdateResponse.createUpdateResponseDeserializer(tDocumentDeserializer));

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
@@ -781,7 +781,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code search_mvt}".
 	 */
-	public static final Endpoint<SearchMvtRequest, SearchMvtResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SearchMvtRequest, SearchMvtResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -123,7 +123,7 @@ public final class StopIlmRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.stop}".
 	 */
-	public static final Endpoint<StopIlmRequest, StopIlmResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StopIlmRequest, StopIlmResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -510,7 +511,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException {
+	public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest.ENDPOINT);
 	}
 

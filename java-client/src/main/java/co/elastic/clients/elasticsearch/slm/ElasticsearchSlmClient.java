@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -113,7 +114,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public ExecuteRetentionResponse executeRetention() throws IOException {
+	public ExecuteRetentionResponse executeRetention() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT);
 	}
 
@@ -173,7 +174,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetStatsResponse getStats() throws IOException {
+	public GetStatsResponse getStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT);
 	}
 
@@ -186,7 +187,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetStatusResponse getStatus() throws IOException {
+	public GetStatusResponse getStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT);
 	}
 
@@ -230,7 +231,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StartSlmResponse start() throws IOException {
+	public StartSlmResponse start() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT);
 	}
 
@@ -243,7 +244,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StopSlmResponse stop() throws IOException {
+	public StopSlmResponse stop() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT);
 	}
 

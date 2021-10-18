@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.dangling_indices;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -180,7 +180,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code dangling_indices.import_dangling_index}".
 	 */
-	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -216,7 +216,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.update_model_snapshot}".
 	 */
-	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

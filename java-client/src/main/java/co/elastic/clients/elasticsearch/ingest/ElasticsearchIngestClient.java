@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -79,7 +80,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GeoIpStatsResponse geoIpStats() throws IOException {
+	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest.ENDPOINT);
 	}
 
@@ -135,7 +136,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
 	 *      on elastic.co</a>
 	 */
-	public ProcessorGrokResponse processorGrok() throws IOException {
+	public ProcessorGrokResponse processorGrok() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest.ENDPOINT);
 	}
 

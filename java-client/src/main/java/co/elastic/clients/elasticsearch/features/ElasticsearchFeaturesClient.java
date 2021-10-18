@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -49,7 +50,7 @@ public class ElasticsearchFeaturesClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetFeaturesResponse getFeatures() throws IOException {
+	public GetFeaturesResponse getFeatures() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT);
 	}
 
@@ -62,7 +63,7 @@ public class ElasticsearchFeaturesClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public ResetFeaturesResponse resetFeatures() throws IOException {
+	public ResetFeaturesResponse resetFeatures() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT);
 	}
 

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.scripts_painless_execute.PainlessContextSetup;
@@ -236,7 +236,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
-	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ElasticsearchError> createScriptsPainlessExecuteEndpoint(
+	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> createScriptsPainlessExecuteEndpoint(
 			JsonpDeserializer<TResult> tResultDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));

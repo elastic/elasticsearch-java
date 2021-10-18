@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -286,7 +286,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.estimate_model_memory}".
 	 */
-	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

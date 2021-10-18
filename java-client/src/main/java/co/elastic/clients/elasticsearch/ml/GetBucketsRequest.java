@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -462,7 +462,7 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code ml.get_buckets}".
 	 */
-	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -160,7 +161,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetStatusResponse getStatus() throws IOException {
+	public GetStatusResponse getStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT);
 	}
 

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ThreadType;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -299,7 +299,7 @@ public final class HotThreadsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.hot_threads}".
 	 */
-	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

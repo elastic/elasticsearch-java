@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
@@ -332,7 +332,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code security.has_privileges}".
 	 */
-	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

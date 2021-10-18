@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -253,7 +253,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Create an "{@code ml.preview_datafeed}" endpoint.
 	 */
-	public static <TDocument> Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ElasticsearchError> createPreviewDatafeedEndpoint(
+	public static <TDocument> Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> createPreviewDatafeedEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				PreviewDatafeedResponse.createPreviewDatafeedResponseDeserializer(tDocumentDeserializer));

@@ -25,9 +25,9 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -55,7 +55,7 @@ public final class PingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ping}".
 	 */
-	public static final Endpoint<PingRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<PingRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";

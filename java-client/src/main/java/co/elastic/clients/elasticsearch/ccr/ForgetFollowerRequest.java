@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -253,7 +253,7 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code ccr.forget_follower}".
 	 */
-	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

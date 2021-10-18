@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -300,7 +300,7 @@ public final class UnfreezeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.unfreeze}".
 	 */
-	public static final Endpoint<UnfreezeRequest, UnfreezeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UnfreezeRequest, UnfreezeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

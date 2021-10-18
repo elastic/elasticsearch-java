@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -49,7 +50,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public AuthenticateResponse authenticate() throws IOException {
+	public AuthenticateResponse authenticate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT);
 	}
 
@@ -606,7 +607,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-builtin-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetBuiltinPrivilegesResponse getBuiltinPrivileges() throws IOException {
+	public GetBuiltinPrivilegesResponse getBuiltinPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetBuiltinPrivilegesRequest._INSTANCE,
 				GetBuiltinPrivilegesRequest.ENDPOINT);
 	}

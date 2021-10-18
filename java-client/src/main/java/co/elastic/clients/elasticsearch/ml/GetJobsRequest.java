@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -216,7 +216,7 @@ public final class GetJobsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_jobs}".
 	 */
-	public static final Endpoint<GetJobsRequest, GetJobsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

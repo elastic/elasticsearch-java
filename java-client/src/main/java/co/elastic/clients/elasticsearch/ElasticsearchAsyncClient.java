@@ -826,7 +826,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException {
+	public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
 	}
 
@@ -839,7 +839,8 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException {
+	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetScriptLanguagesRequest._INSTANCE,
 				GetScriptLanguagesRequest.ENDPOINT);
 	}
@@ -918,7 +919,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<InfoResponse> info() throws IOException {
+	public CompletableFuture<InfoResponse> info() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
 	}
 
@@ -1109,7 +1110,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<BooleanResponse> ping() throws IOException {
+	public CompletableFuture<BooleanResponse> ping() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(PingRequest._INSTANCE, PingRequest.ENDPOINT);
 	}
 
