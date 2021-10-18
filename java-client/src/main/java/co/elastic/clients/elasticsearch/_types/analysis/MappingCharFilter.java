@@ -45,6 +45,7 @@ import javax.annotation.Nullable;
 public final class MappingCharFilter extends CharFilterBase implements CharFilterVariant {
 	private final List<String> mappings;
 
+	@Nullable
 	private final String mappingsPath;
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,7 +54,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		super(builder);
 
 		this.mappings = ModelTypeHelper.unmodifiableNonNull(builder.mappings, "mappings");
-		this.mappingsPath = Objects.requireNonNull(builder.mappingsPath, "mappings_path");
+		this.mappingsPath = builder.mappingsPath;
 
 	}
 
@@ -77,8 +78,9 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	}
 
 	/**
-	 * Required - API name: {@code mappings_path}
+	 * API name: {@code mappings_path}
 	 */
+	@Nullable
 	public String mappingsPath() {
 		return this.mappingsPath;
 	}
@@ -96,8 +98,12 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		}
 		generator.writeEnd();
 
-		generator.writeKey("mappings_path");
-		generator.write(this.mappingsPath);
+		if (this.mappingsPath != null) {
+
+			generator.writeKey("mappings_path");
+			generator.write(this.mappingsPath);
+
+		}
 
 	}
 
@@ -111,6 +117,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 				ObjectBuilder<MappingCharFilter> {
 		private List<String> mappings;
 
+		@Nullable
 		private String mappingsPath;
 
 		/**
@@ -141,9 +148,9 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		}
 
 		/**
-		 * Required - API name: {@code mappings_path}
+		 * API name: {@code mappings_path}
 		 */
-		public Builder mappingsPath(String value) {
+		public Builder mappingsPath(@Nullable String value) {
 			this.mappingsPath = value;
 			return this;
 		}

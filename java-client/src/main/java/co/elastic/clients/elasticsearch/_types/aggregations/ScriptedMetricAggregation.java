@@ -34,6 +34,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

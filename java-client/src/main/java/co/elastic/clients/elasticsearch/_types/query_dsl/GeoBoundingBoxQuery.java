@@ -57,7 +57,6 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 
 	public GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
-
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.boundingBox = Objects.requireNonNull(builder.boundingBox, "bounding_box");
 
@@ -118,12 +117,8 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		// >> AdditionalProperty start
 		generator.writeKey(this.field);
 		this.boundingBox.serialize(generator, mapper);
-
-		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 		if (this.type != null) {

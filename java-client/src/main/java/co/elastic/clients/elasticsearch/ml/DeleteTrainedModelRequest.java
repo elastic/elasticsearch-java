@@ -57,7 +57,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the trained model to delete
+	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 		private String modelId;
 
 		/**
-		 * Required - The ID of the trained model to delete
+		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */

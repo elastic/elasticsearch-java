@@ -73,6 +73,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		return _value;
 	}
 
+	// Single key dictionary
 	private final String field;
 
 	private IntervalsQuery(Builder builder) {
@@ -90,8 +91,6 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -171,6 +170,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		}
 
 		generator.writeEnd();
+
 		generator.writeEnd();
 	}
 
@@ -182,8 +182,6 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -269,7 +267,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
 		op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 

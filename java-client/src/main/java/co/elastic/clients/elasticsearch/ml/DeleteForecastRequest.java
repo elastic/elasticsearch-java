@@ -71,7 +71,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job from which to delete forecasts
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -80,8 +80,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
-	 * implies <code>_all</code>
+	 * A comma-separated list of forecast identifiers. If you do not specify this
+	 * optional parameter or if you specify <code>_all</code> or <code>*</code> the
+	 * API deletes all forecasts from the job.
 	 * <p>
 	 * API name: {@code forecast_id}
 	 */
@@ -91,7 +92,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if <code>_all</code> matches no forecasts
+	 * Specifies whether an error occurs when there are no forecasts. In particular,
+	 * if this parameter is set to <code>false</code> and there are no forecasts
+	 * associated with the job, attempts to delete all forecasts return an error.
 	 * <p>
 	 * API name: {@code allow_no_forecasts}
 	 */
@@ -101,8 +104,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * Controls the time to wait until the forecast(s) are deleted. Default to 30
-	 * seconds
+	 * Specifies the period of time to wait for the completion of the delete
+	 * operation. When this period of time elapses, the API fails and returns an
+	 * error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -129,7 +133,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Required - The ID of the job from which to delete forecasts
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -139,8 +143,9 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
-		 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
-		 * implies <code>_all</code>
+		 * A comma-separated list of forecast identifiers. If you do not specify this
+		 * optional parameter or if you specify <code>_all</code> or <code>*</code> the
+		 * API deletes all forecasts from the job.
 		 * <p>
 		 * API name: {@code forecast_id}
 		 */
@@ -150,7 +155,9 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to ignore if <code>_all</code> matches no forecasts
+		 * Specifies whether an error occurs when there are no forecasts. In particular,
+		 * if this parameter is set to <code>false</code> and there are no forecasts
+		 * associated with the job, attempts to delete all forecasts return an error.
 		 * <p>
 		 * API name: {@code allow_no_forecasts}
 		 */
@@ -160,8 +167,9 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
-		 * Controls the time to wait until the forecast(s) are deleted. Default to 30
-		 * seconds
+		 * Specifies the period of time to wait for the completion of the delete
+		 * operation. When this period of time elapses, the API fails and returns an
+		 * error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

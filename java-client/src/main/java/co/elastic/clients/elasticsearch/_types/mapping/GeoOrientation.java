@@ -29,7 +29,7 @@ import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
 public enum GeoOrientation implements StringEnum {
-	Right("right"), Counterclockwise("counterclockwise"), Ccw("ccw"), Left("left"), Clockwise("clockwise"), Cw("cw");
+	Right("right"), Left("left");
 
 	private final String jsonValue;
 

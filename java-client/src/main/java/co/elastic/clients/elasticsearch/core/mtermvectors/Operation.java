@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.core.mtermvectors;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch.core.termvectors.Filter;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +35,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: _global.mtermvectors.Operation
 @JsonpDeserializable
 public final class Operation implements JsonpSerializable {
-	private final JsonValue doc;
+	private final JsonData doc;
 
 	private final List<String> fields;
 
@@ -102,7 +102,7 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code doc}
 	 */
-	public JsonValue doc() {
+	public JsonData doc() {
 		return this.doc;
 	}
 
@@ -202,7 +202,7 @@ public final class Operation implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("doc");
-		generator.write(this.doc);
+		this.doc.serialize(generator, mapper);
 
 		generator.writeKey("fields");
 		generator.writeStartArray();
@@ -253,7 +253,7 @@ public final class Operation implements JsonpSerializable {
 	 * Builder for {@link Operation}.
 	 */
 	public static class Builder implements ObjectBuilder<Operation> {
-		private JsonValue doc;
+		private JsonData doc;
 
 		private List<String> fields;
 
@@ -282,7 +282,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code doc}
 		 */
-		public Builder doc(JsonValue value) {
+		public Builder doc(JsonData value) {
 			this.doc = value;
 			return this;
 		}
@@ -431,7 +431,7 @@ public final class Operation implements JsonpSerializable {
 
 	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
 
-		op.add(Builder::doc, JsonpDeserializer.jsonValueDeserializer(), "doc");
+		op.add(Builder::doc, JsonData._DESERIALIZER, "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::fieldStatistics, JsonpDeserializer.booleanDeserializer(), "field_statistics");
 		op.add(Builder::filter, Filter._DESERIALIZER, "filter");

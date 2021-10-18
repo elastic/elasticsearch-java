@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
 public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final KuromojiTokenizationMode mode;
 
+	@Nullable
 	private final String userDictionary;
 
 	// ---------------------------------------------------------------------------------------------
@@ -49,7 +50,7 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	public KuromojiAnalyzer(Builder builder) {
 
 		this.mode = Objects.requireNonNull(builder.mode, "mode");
-		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
+		this.userDictionary = builder.userDictionary;
 
 	}
 
@@ -73,8 +74,9 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	}
 
 	/**
-	 * Required - API name: {@code user_dictionary}
+	 * API name: {@code user_dictionary}
 	 */
+	@Nullable
 	public String userDictionary() {
 		return this.userDictionary;
 	}
@@ -94,9 +96,12 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 
 		generator.writeKey("mode");
 		this.mode.serialize(generator, mapper);
+		if (this.userDictionary != null) {
 
-		generator.writeKey("user_dictionary");
-		generator.write(this.userDictionary);
+			generator.writeKey("user_dictionary");
+			generator.write(this.userDictionary);
+
+		}
 
 	}
 
@@ -108,6 +113,7 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	public static class Builder implements ObjectBuilder<KuromojiAnalyzer> {
 		private KuromojiTokenizationMode mode;
 
+		@Nullable
 		private String userDictionary;
 
 		/**
@@ -119,9 +125,9 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary}
+		 * API name: {@code user_dictionary}
 		 */
-		public Builder userDictionary(String value) {
+		public Builder userDictionary(@Nullable String value) {
 			this.userDictionary = value;
 			return this;
 		}

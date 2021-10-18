@@ -179,6 +179,8 @@ public final class FieldAndFormat implements JsonpSerializable {
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::includeUnmapped, JsonpDeserializer.booleanDeserializer(), "include_unmapped");
 
+		op.shortcutProperty("field");
+
 	}
 
 }

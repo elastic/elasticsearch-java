@@ -64,7 +64,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - The ID of the calendar to create
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -73,6 +73,8 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * A description of the calendar.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -112,7 +114,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		private String description;
 
 		/**
-		 * Required - The ID of the calendar to create
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -122,6 +124,8 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * A description of the calendar.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {

@@ -60,7 +60,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the calendar to modify
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -69,7 +69,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to remove from the calendar
+	 * Required - An identifier for the anomaly detection jobs. It can be a job
+	 * identifier, a group name, or a comma-separated list of jobs or groups.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -88,7 +89,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		private String jobId;
 
 		/**
-		 * Required - The ID of the calendar to modify
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -98,7 +99,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The ID of the job to remove from the calendar
+		 * Required - An identifier for the anomaly detection jobs. It can be a job
+		 * identifier, a group name, or a comma-separated list of jobs or groups.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

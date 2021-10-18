@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +43,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 
 	private final long localCheckpoint;
 
-	private final int maxSeqNo;
+	private final long maxSeqNo;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +76,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code max_seq_no}
 	 */
-	public int maxSeqNo() {
+	public long maxSeqNo() {
 		return this.maxSeqNo;
 	}
 
@@ -113,7 +112,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 
 		private Long localCheckpoint;
 
-		private Integer maxSeqNo;
+		private Long maxSeqNo;
 
 		/**
 		 * Required - API name: {@code global_checkpoint}
@@ -134,7 +133,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_seq_no}
 		 */
-		public Builder maxSeqNo(int value) {
+		public Builder maxSeqNo(long value) {
 			this.maxSeqNo = value;
 			return this;
 		}
@@ -163,7 +162,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 
 		op.add(Builder::globalCheckpoint, JsonpDeserializer.longDeserializer(), "global_checkpoint");
 		op.add(Builder::localCheckpoint, JsonpDeserializer.longDeserializer(), "local_checkpoint");
-		op.add(Builder::maxSeqNo, JsonpDeserializer.integerDeserializer(), "max_seq_no");
+		op.add(Builder::maxSeqNo, JsonpDeserializer.longDeserializer(), "max_seq_no");
 
 	}
 

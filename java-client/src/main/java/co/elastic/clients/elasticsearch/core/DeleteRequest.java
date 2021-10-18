@@ -36,7 +36,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -59,7 +58,7 @@ public final class DeleteRequest extends RequestBase {
 	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Integer ifSeqNo;
+	private final Long ifSeqNo;
 
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
@@ -147,7 +146,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Integer ifSeqNo() {
+	public Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -235,7 +234,7 @@ public final class DeleteRequest extends RequestBase {
 		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Integer ifSeqNo;
+		private Long ifSeqNo;
 
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
@@ -302,7 +301,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder ifSeqNo(@Nullable Integer value) {
+		public Builder ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return this;
 		}

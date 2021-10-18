@@ -50,6 +50,9 @@ public final class ShardProfile implements JsonpSerializable {
 
 	private final List<SearchProfile> searches;
 
+	@Nullable
+	private final FetchProfile fetch;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public ShardProfile(Builder builder) {
@@ -57,6 +60,7 @@ public final class ShardProfile implements JsonpSerializable {
 		this.aggregations = ModelTypeHelper.unmodifiableNonNull(builder.aggregations, "aggregations");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.searches = ModelTypeHelper.unmodifiableNonNull(builder.searches, "searches");
+		this.fetch = builder.fetch;
 
 	}
 
@@ -83,6 +87,14 @@ public final class ShardProfile implements JsonpSerializable {
 	 */
 	public List<SearchProfile> searches() {
 		return this.searches;
+	}
+
+	/**
+	 * API name: {@code fetch}
+	 */
+	@Nullable
+	public FetchProfile fetch() {
+		return this.fetch;
 	}
 
 	/**
@@ -115,6 +127,13 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 		generator.writeEnd();
 
+		if (this.fetch != null) {
+
+			generator.writeKey("fetch");
+			this.fetch.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -128,6 +147,9 @@ public final class ShardProfile implements JsonpSerializable {
 		private String id;
 
 		private List<SearchProfile> searches;
+
+		@Nullable
+		private FetchProfile fetch;
 
 		/**
 		 * Required - API name: {@code aggregations}
@@ -220,6 +242,21 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code fetch}
+		 */
+		public Builder fetch(@Nullable FetchProfile value) {
+			this.fetch = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fetch}
+		 */
+		public Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
+			return this.fetch(fn.apply(new FetchProfile.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link ShardProfile}.
 		 *
 		 * @throws NullPointerException
@@ -245,6 +282,7 @@ public final class ShardProfile implements JsonpSerializable {
 				"aggregations");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
+		op.add(Builder::fetch, FetchProfile._DESERIALIZER, "fetch");
 
 	}
 

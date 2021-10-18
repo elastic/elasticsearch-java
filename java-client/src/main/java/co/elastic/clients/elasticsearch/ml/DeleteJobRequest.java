@@ -67,7 +67,7 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to delete
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -76,7 +76,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
-	 * True if the job should be forcefully deleted
+	 * Use to forcefully delete an opened job; this method is quicker than closing
+	 * and deleting the job.
 	 * <p>
 	 * API name: {@code force}
 	 */
@@ -86,7 +87,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Should this request wait until the operation has completed before returning
+	 * Specifies whether the request should return immediately or wait until the job
+	 * deletion completes.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -110,7 +112,7 @@ public final class DeleteJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Required - The ID of the job to delete
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -120,7 +122,8 @@ public final class DeleteJobRequest extends RequestBase {
 		}
 
 		/**
-		 * True if the job should be forcefully deleted
+		 * Use to forcefully delete an opened job; this method is quicker than closing
+		 * and deleting the job.
 		 * <p>
 		 * API name: {@code force}
 		 */
@@ -130,7 +133,8 @@ public final class DeleteJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Should this request wait until the operation has completed before returning
+		 * Specifies whether the request should return immediately or wait until the job
+		 * deletion completes.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

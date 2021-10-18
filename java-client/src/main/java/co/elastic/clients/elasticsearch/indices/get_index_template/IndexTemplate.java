@@ -53,6 +53,7 @@ public final class IndexTemplate implements JsonpSerializable {
 
 	private final List<String> composedOf;
 
+	@Nullable
 	private final IndexTemplateSummary template;
 
 	@Nullable
@@ -76,7 +77,7 @@ public final class IndexTemplate implements JsonpSerializable {
 
 		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
 		this.composedOf = ModelTypeHelper.unmodifiableNonNull(builder.composedOf, "composed_of");
-		this.template = Objects.requireNonNull(builder.template, "template");
+		this.template = builder.template;
 		this.version = builder.version;
 		this.priority = builder.priority;
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
@@ -104,8 +105,9 @@ public final class IndexTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code template}
+	 * API name: {@code template}
 	 */
+	@Nullable
 	public IndexTemplateSummary template() {
 		return this.template;
 	}
@@ -177,9 +179,12 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 		generator.writeEnd();
 
-		generator.writeKey("template");
-		this.template.serialize(generator, mapper);
+		if (this.template != null) {
 
+			generator.writeKey("template");
+			this.template.serialize(generator, mapper);
+
+		}
 		if (this.version != null) {
 
 			generator.writeKey("version");
@@ -235,6 +240,7 @@ public final class IndexTemplate implements JsonpSerializable {
 
 		private List<String> composedOf;
 
+		@Nullable
 		private IndexTemplateSummary template;
 
 		@Nullable
@@ -307,15 +313,15 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code template}
+		 * API name: {@code template}
 		 */
-		public Builder template(IndexTemplateSummary value) {
+		public Builder template(@Nullable IndexTemplateSummary value) {
 			this.template = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code template}
+		 * API name: {@code template}
 		 */
 		public Builder template(Function<IndexTemplateSummary.Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
 			return this.template(fn.apply(new IndexTemplateSummary.Builder()).build());

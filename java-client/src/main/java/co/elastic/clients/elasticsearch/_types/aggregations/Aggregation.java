@@ -37,6 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

@@ -39,6 +39,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.SpanTermQuery
 @JsonpDeserializable
 public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	private final String value;
@@ -67,8 +68,6 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -90,6 +89,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		generator.write(this.value);
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -102,8 +102,6 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -149,7 +147,8 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("value");
 
 	}
 

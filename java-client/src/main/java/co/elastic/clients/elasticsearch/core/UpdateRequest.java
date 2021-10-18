@@ -69,7 +69,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Integer ifSeqNo;
+	private final Long ifSeqNo;
 
 	@Nullable
 	private final String lang;
@@ -81,7 +81,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final Boolean requireAlias;
 
 	@Nullable
-	private final Long retryOnConflict;
+	private final Integer retryOnConflict;
 
 	@Nullable
 	private final String routing;
@@ -203,7 +203,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Integer ifSeqNo() {
+	public Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -246,7 +246,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code retry_on_conflict}
 	 */
 	@Nullable
-	public Long retryOnConflict() {
+	public Integer retryOnConflict() {
 		return this.retryOnConflict;
 	}
 
@@ -453,7 +453,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Integer ifSeqNo;
+		private Long ifSeqNo;
 
 		@Nullable
 		private String lang;
@@ -465,7 +465,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private Boolean requireAlias;
 
 		@Nullable
-		private Long retryOnConflict;
+		private Integer retryOnConflict;
 
 		@Nullable
 		private String routing;
@@ -554,7 +554,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Integer value) {
+		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return this;
 		}
@@ -597,7 +597,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code retry_on_conflict}
 		 */
-		public Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Long value) {
+		public Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Integer value) {
 			this.retryOnConflict = value;
 			return this;
 		}

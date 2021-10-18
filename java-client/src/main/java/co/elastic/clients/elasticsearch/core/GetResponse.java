@@ -37,7 +37,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -66,7 +65,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	@Nullable
 	private final TDocument source;
@@ -151,7 +150,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -273,7 +272,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		@Nullable
 		private TDocument source;
@@ -349,7 +348,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(@Nullable Integer value) {
+		public Builder<TDocument> seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -420,7 +419,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");

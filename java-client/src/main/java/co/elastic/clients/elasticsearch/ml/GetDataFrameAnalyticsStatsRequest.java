@@ -89,9 +89,19 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no data frame analytics.
-	 * (This includes <code>_all</code> string or when no data frame analytics have
-	 * been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+	 * that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * The default value returns an empty data_frame_analytics array when there are
+	 * no matches and the subset of results when there are partial matches. If this
+	 * parameter is <code>false</code>, the request returns a 404 status code when
+	 * there are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -164,9 +174,19 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no data frame analytics.
-		 * (This includes <code>_all</code> string or when no data frame analytics have
-		 * been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+		 * that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * The default value returns an empty data_frame_analytics array when there are
+		 * no matches and the subset of results when there are partial matches. If this
+		 * parameter is <code>false</code>, the request returns a 404 status code when
+		 * there are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */

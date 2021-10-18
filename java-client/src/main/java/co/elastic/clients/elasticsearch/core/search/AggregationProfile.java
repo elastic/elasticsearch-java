@@ -57,7 +57,7 @@ public final class AggregationProfile implements JsonpSerializable {
 	private final AggregationProfileDebug debug;
 
 	@Nullable
-	private final List<AggregationProfileDebug> children;
+	private final List<AggregationProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ public final class AggregationProfile implements JsonpSerializable {
 	 * API name: {@code children}
 	 */
 	@Nullable
-	public List<AggregationProfileDebug> children() {
+	public List<AggregationProfile> children() {
 		return this.children;
 	}
 
@@ -153,7 +153,7 @@ public final class AggregationProfile implements JsonpSerializable {
 
 			generator.writeKey("children");
 			generator.writeStartArray();
-			for (AggregationProfileDebug item0 : this.children) {
+			for (AggregationProfile item0 : this.children) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -181,7 +181,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		private AggregationProfileDebug debug;
 
 		@Nullable
-		private List<AggregationProfileDebug> children;
+		private List<AggregationProfile> children;
 
 		/**
 		 * Required - API name: {@code breakdown}
@@ -240,7 +240,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<AggregationProfileDebug> value) {
+		public Builder children(@Nullable List<AggregationProfile> value) {
 			this.children = value;
 			return this;
 		}
@@ -248,7 +248,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(AggregationProfileDebug... value) {
+		public Builder children(AggregationProfile... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
@@ -256,7 +256,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(AggregationProfileDebug value) {
+		public Builder addChildren(AggregationProfile value) {
 			if (this.children == null) {
 				this.children = new ArrayList<>();
 			}
@@ -267,16 +267,15 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Set {@link #children(List)} to a singleton list.
 		 */
-		public Builder children(Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
-			return this.children(fn.apply(new AggregationProfileDebug.Builder()).build());
+		public Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
+			return this.children(fn.apply(new AggregationProfile.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(
-				Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
-			return this.addChildren(fn.apply(new AggregationProfileDebug.Builder()).build());
+		public Builder addChildren(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
+			return this.addChildren(fn.apply(new AggregationProfile.Builder()).build());
 		}
 
 		/**
@@ -306,8 +305,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::debug, AggregationProfileDebug._DESERIALIZER, "debug");
-		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(AggregationProfileDebug._DESERIALIZER),
-				"children");
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(AggregationProfile._DESERIALIZER), "children");
 
 	}
 

@@ -35,20 +35,23 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MutualInformationHeuristic
 @JsonpDeserializable
 public final class MutualInformationHeuristic implements JsonpSerializable {
-	private final boolean backgroundIsSuperset;
+	@Nullable
+	private final Boolean backgroundIsSuperset;
 
-	private final boolean includeNegatives;
+	@Nullable
+	private final Boolean includeNegatives;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MutualInformationHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
-		this.includeNegatives = Objects.requireNonNull(builder.includeNegatives, "include_negatives");
+		this.backgroundIsSuperset = builder.backgroundIsSuperset;
+		this.includeNegatives = builder.includeNegatives;
 
 	}
 
@@ -57,16 +60,18 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code background_is_superset}
+	 * API name: {@code background_is_superset}
 	 */
-	public boolean backgroundIsSuperset() {
+	@Nullable
+	public Boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
-	 * Required - API name: {@code include_negatives}
+	 * API name: {@code include_negatives}
 	 */
-	public boolean includeNegatives() {
+	@Nullable
+	public Boolean includeNegatives() {
 		return this.includeNegatives;
 	}
 
@@ -81,11 +86,18 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("background_is_superset");
-		generator.write(this.backgroundIsSuperset);
+		if (this.backgroundIsSuperset != null) {
 
-		generator.writeKey("include_negatives");
-		generator.write(this.includeNegatives);
+			generator.writeKey("background_is_superset");
+			generator.write(this.backgroundIsSuperset);
+
+		}
+		if (this.includeNegatives != null) {
+
+			generator.writeKey("include_negatives");
+			generator.write(this.includeNegatives);
+
+		}
 
 	}
 
@@ -95,22 +107,24 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 	 * Builder for {@link MutualInformationHeuristic}.
 	 */
 	public static class Builder implements ObjectBuilder<MutualInformationHeuristic> {
+		@Nullable
 		private Boolean backgroundIsSuperset;
 
+		@Nullable
 		private Boolean includeNegatives;
 
 		/**
-		 * Required - API name: {@code background_is_superset}
+		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(boolean value) {
+		public Builder backgroundIsSuperset(@Nullable Boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code include_negatives}
+		 * API name: {@code include_negatives}
 		 */
-		public Builder includeNegatives(boolean value) {
+		public Builder includeNegatives(@Nullable Boolean value) {
 			this.includeNegatives = value;
 			return this;
 		}

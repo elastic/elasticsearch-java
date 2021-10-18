@@ -60,7 +60,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to fetch
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -69,7 +69,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the snapshot to delete
+	 * Required - Identifier for the model snapshot.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -88,7 +88,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		private String snapshotId;
 
 		/**
-		 * Required - The ID of the job to fetch
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -98,7 +98,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The ID of the snapshot to delete
+		 * Required - Identifier for the model snapshot.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */

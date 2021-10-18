@@ -103,6 +103,21 @@ public final class IndexSettings implements JsonpSerializable {
 	private final IndexSettingBlocks blocks;
 
 	@Nullable
+	private final Boolean blocksReadOnly;
+
+	@Nullable
+	private final Boolean blocksReadOnlyAllowDelete;
+
+	@Nullable
+	private final Boolean blocksRead;
+
+	@Nullable
+	private final Boolean blocksWrite;
+
+	@Nullable
+	private final Boolean blocksMetadata;
+
+	@Nullable
 	private final Integer maxRefreshListeners;
 
 	@Nullable
@@ -131,6 +146,9 @@ public final class IndexSettings implements JsonpSerializable {
 
 	@Nullable
 	private final IndexSettingsLifecycle lifecycle;
+
+	@Nullable
+	private final String lifecycleName;
 
 	@Nullable
 	private final String providedName;
@@ -168,6 +186,9 @@ public final class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final IndexSettingsAnalysis analysis;
 
+	@Nullable
+	private final IndexSettings settings;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public IndexSettings(Builder builder) {
@@ -192,6 +213,11 @@ public final class IndexSettings implements JsonpSerializable {
 		this.maxNgramDiff = builder.maxNgramDiff;
 		this.maxShingleDiff = builder.maxShingleDiff;
 		this.blocks = builder.blocks;
+		this.blocksReadOnly = builder.blocksReadOnly;
+		this.blocksReadOnlyAllowDelete = builder.blocksReadOnlyAllowDelete;
+		this.blocksRead = builder.blocksRead;
+		this.blocksWrite = builder.blocksWrite;
+		this.blocksMetadata = builder.blocksMetadata;
 		this.maxRefreshListeners = builder.maxRefreshListeners;
 		this.analyzeMaxTokenCount = builder.analyzeMaxTokenCount;
 		this.highlightMaxAnalyzedOffset = builder.highlightMaxAnalyzedOffset;
@@ -202,6 +228,7 @@ public final class IndexSettings implements JsonpSerializable {
 		this.defaultPipeline = builder.defaultPipeline;
 		this.finalPipeline = builder.finalPipeline;
 		this.lifecycle = builder.lifecycle;
+		this.lifecycleName = builder.lifecycleName;
 		this.providedName = builder.providedName;
 		this.creationDate = builder.creationDate;
 		this.uuid = builder.uuid;
@@ -214,6 +241,7 @@ public final class IndexSettings implements JsonpSerializable {
 		this.priority = builder.priority;
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
+		this.settings = builder.settings;
 
 	}
 
@@ -382,6 +410,46 @@ public final class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code blocks.read_only}
+	 */
+	@Nullable
+	public Boolean blocksReadOnly() {
+		return this.blocksReadOnly;
+	}
+
+	/**
+	 * API name: {@code blocks.read_only_allow_delete}
+	 */
+	@Nullable
+	public Boolean blocksReadOnlyAllowDelete() {
+		return this.blocksReadOnlyAllowDelete;
+	}
+
+	/**
+	 * API name: {@code blocks.read}
+	 */
+	@Nullable
+	public Boolean blocksRead() {
+		return this.blocksRead;
+	}
+
+	/**
+	 * API name: {@code blocks.write}
+	 */
+	@Nullable
+	public Boolean blocksWrite() {
+		return this.blocksWrite;
+	}
+
+	/**
+	 * API name: {@code blocks.metadata}
+	 */
+	@Nullable
+	public Boolean blocksMetadata() {
+		return this.blocksMetadata;
+	}
+
+	/**
 	 * API name: {@code max_refresh_listeners}
 	 */
 	@Nullable
@@ -459,6 +527,14 @@ public final class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public IndexSettingsLifecycle lifecycle() {
 		return this.lifecycle;
+	}
+
+	/**
+	 * API name: {@code lifecycle.name}
+	 */
+	@Nullable
+	public String lifecycleName() {
+		return this.lifecycleName;
 	}
 
 	/**
@@ -555,6 +631,14 @@ public final class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public IndexSettingsAnalysis analysis() {
 		return this.analysis;
+	}
+
+	/**
+	 * API name: {@code settings}
+	 */
+	@Nullable
+	public IndexSettings settings() {
+		return this.settings;
 	}
 
 	/**
@@ -687,6 +771,36 @@ public final class IndexSettings implements JsonpSerializable {
 			this.blocks.serialize(generator, mapper);
 
 		}
+		if (this.blocksReadOnly != null) {
+
+			generator.writeKey("blocks.read_only");
+			generator.write(this.blocksReadOnly);
+
+		}
+		if (this.blocksReadOnlyAllowDelete != null) {
+
+			generator.writeKey("blocks.read_only_allow_delete");
+			generator.write(this.blocksReadOnlyAllowDelete);
+
+		}
+		if (this.blocksRead != null) {
+
+			generator.writeKey("blocks.read");
+			generator.write(this.blocksRead);
+
+		}
+		if (this.blocksWrite != null) {
+
+			generator.writeKey("blocks.write");
+			generator.write(this.blocksWrite);
+
+		}
+		if (this.blocksMetadata != null) {
+
+			generator.writeKey("blocks.metadata");
+			generator.write(this.blocksMetadata);
+
+		}
 		if (this.maxRefreshListeners != null) {
 
 			generator.writeKey("max_refresh_listeners");
@@ -745,6 +859,12 @@ public final class IndexSettings implements JsonpSerializable {
 
 			generator.writeKey("lifecycle");
 			this.lifecycle.serialize(generator, mapper);
+
+		}
+		if (this.lifecycleName != null) {
+
+			generator.writeKey("lifecycle.name");
+			generator.write(this.lifecycleName);
 
 		}
 		if (this.providedName != null) {
@@ -819,6 +939,12 @@ public final class IndexSettings implements JsonpSerializable {
 			this.analysis.serialize(generator, mapper);
 
 		}
+		if (this.settings != null) {
+
+			generator.writeKey("settings");
+			this.settings.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -889,6 +1015,21 @@ public final class IndexSettings implements JsonpSerializable {
 		private IndexSettingBlocks blocks;
 
 		@Nullable
+		private Boolean blocksReadOnly;
+
+		@Nullable
+		private Boolean blocksReadOnlyAllowDelete;
+
+		@Nullable
+		private Boolean blocksRead;
+
+		@Nullable
+		private Boolean blocksWrite;
+
+		@Nullable
+		private Boolean blocksMetadata;
+
+		@Nullable
 		private Integer maxRefreshListeners;
 
 		@Nullable
@@ -917,6 +1058,9 @@ public final class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettingsLifecycle lifecycle;
+
+		@Nullable
+		private String lifecycleName;
 
 		@Nullable
 		private String providedName;
@@ -953,6 +1097,9 @@ public final class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettingsAnalysis analysis;
+
+		@Nullable
+		private IndexSettings settings;
 
 		/**
 		 * API name: {@code number_of_shards}
@@ -1122,6 +1269,46 @@ public final class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code blocks.read_only}
+		 */
+		public Builder blocksReadOnly(@Nullable Boolean value) {
+			this.blocksReadOnly = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code blocks.read_only_allow_delete}
+		 */
+		public Builder blocksReadOnlyAllowDelete(@Nullable Boolean value) {
+			this.blocksReadOnlyAllowDelete = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code blocks.read}
+		 */
+		public Builder blocksRead(@Nullable Boolean value) {
+			this.blocksRead = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code blocks.write}
+		 */
+		public Builder blocksWrite(@Nullable Boolean value) {
+			this.blocksWrite = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code blocks.metadata}
+		 */
+		public Builder blocksMetadata(@Nullable Boolean value) {
+			this.blocksMetadata = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code max_refresh_listeners}
 		 */
 		public Builder maxRefreshListeners(@Nullable Integer value) {
@@ -1213,6 +1400,14 @@ public final class IndexSettings implements JsonpSerializable {
 		 */
 		public Builder lifecycle(Function<IndexSettingsLifecycle.Builder, ObjectBuilder<IndexSettingsLifecycle>> fn) {
 			return this.lifecycle(fn.apply(new IndexSettingsLifecycle.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code lifecycle.name}
+		 */
+		public Builder lifecycleName(@Nullable String value) {
+			this.lifecycleName = value;
+			return this;
 		}
 
 		/**
@@ -1326,6 +1521,21 @@ public final class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code settings}
+		 */
+		public Builder settings(@Nullable IndexSettings value) {
+			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code settings}
+		 */
+		public Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link IndexSettings}.
 		 *
 		 * @throws NullPointerException
@@ -1384,6 +1594,14 @@ public final class IndexSettings implements JsonpSerializable {
 		op.add(Builder::maxShingleDiff, JsonpDeserializer.integerDeserializer(), "max_shingle_diff",
 				"index.max_shingle_diff");
 		op.add(Builder::blocks, IndexSettingBlocks._DESERIALIZER, "blocks", "index.blocks");
+		op.add(Builder::blocksReadOnly, JsonpDeserializer.booleanDeserializer(), "blocks.read_only",
+				"index.blocks.read_only");
+		op.add(Builder::blocksReadOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(),
+				"blocks.read_only_allow_delete", "index.blocks.read_only_allow_delete");
+		op.add(Builder::blocksRead, JsonpDeserializer.booleanDeserializer(), "blocks.read", "index.blocks.read");
+		op.add(Builder::blocksWrite, JsonpDeserializer.booleanDeserializer(), "blocks.write", "index.blocks.write");
+		op.add(Builder::blocksMetadata, JsonpDeserializer.booleanDeserializer(), "blocks.metadata",
+				"index.blocks.metadata");
 		op.add(Builder::maxRefreshListeners, JsonpDeserializer.integerDeserializer(), "max_refresh_listeners",
 				"index.max_refresh_listeners");
 		op.add(Builder::analyzeMaxTokenCount, JsonpDeserializer.integerDeserializer(), "analyze.max_token_count",
@@ -1401,6 +1619,8 @@ public final class IndexSettings implements JsonpSerializable {
 		op.add(Builder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",
 				"index.final_pipeline");
 		op.add(Builder::lifecycle, IndexSettingsLifecycle._DESERIALIZER, "lifecycle", "index.lifecycle");
+		op.add(Builder::lifecycleName, JsonpDeserializer.stringDeserializer(), "lifecycle.name",
+				"index.lifecycle.name");
 		op.add(Builder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name", "index.provided_name");
 		op.add(Builder::creationDate, JsonpDeserializer.stringDeserializer(), "creation_date", "index.creation_date");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid", "index.uuid");
@@ -1417,6 +1637,7 @@ public final class IndexSettings implements JsonpSerializable {
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "index.priority");
 		op.add(Builder::topMetricsMaxSize, JsonpDeserializer.integerDeserializer(), "top_metrics_max_size");
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 
 	}
 

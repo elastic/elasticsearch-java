@@ -38,6 +38,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -72,6 +73,9 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	}
 
 	/**
+	 * For a list of the properties that you can specify in the
+	 * <code>analysis_config</code> component of the body of this API.
+	 * <p>
 	 * API name: {@code analysis_config}
 	 */
 	@Nullable
@@ -80,6 +84,12 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	}
 
 	/**
+	 * Estimates of the highest cardinality in a single bucket that is observed for
+	 * influencer fields over the time period that the job analyzes data. To produce
+	 * a good answer, values must be provided for all influencer fields. Providing
+	 * values for fields that are not listed as <code>influencers</code> has no
+	 * effect on the estimation.
+	 * <p>
 	 * API name: {@code max_bucket_cardinality}
 	 */
 	@Nullable
@@ -88,6 +98,15 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	}
 
 	/**
+	 * Estimates of the cardinality that is observed for fields over the whole time
+	 * period that the job analyzes data. To produce a good answer, values must be
+	 * provided for fields referenced in the <code>by_field_name</code>,
+	 * <code>over_field_name</code> and <code>partition_field_name</code> of any
+	 * detectors. Providing values for other fields has no effect on the estimation.
+	 * It can be omitted from the request if no detectors have a
+	 * <code>by_field_name</code>, <code>over_field_name</code> or
+	 * <code>partition_field_name</code>.
+	 * <p>
 	 * API name: {@code overall_cardinality}
 	 */
 	@Nullable
@@ -155,6 +174,9 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		private Map<String, Long> overallCardinality;
 
 		/**
+		 * For a list of the properties that you can specify in the
+		 * <code>analysis_config</code> component of the body of this API.
+		 * <p>
 		 * API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(@Nullable AnalysisConfig value) {
@@ -163,6 +185,9 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		}
 
 		/**
+		 * For a list of the properties that you can specify in the
+		 * <code>analysis_config</code> component of the body of this API.
+		 * <p>
 		 * API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
@@ -170,6 +195,12 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		}
 
 		/**
+		 * Estimates of the highest cardinality in a single bucket that is observed for
+		 * influencer fields over the time period that the job analyzes data. To produce
+		 * a good answer, values must be provided for all influencer fields. Providing
+		 * values for fields that are not listed as <code>influencers</code> has no
+		 * effect on the estimation.
+		 * <p>
 		 * API name: {@code max_bucket_cardinality}
 		 */
 		public Builder maxBucketCardinality(@Nullable Map<String, Long> value) {
@@ -190,6 +221,15 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		}
 
 		/**
+		 * Estimates of the cardinality that is observed for fields over the whole time
+		 * period that the job analyzes data. To produce a good answer, values must be
+		 * provided for fields referenced in the <code>by_field_name</code>,
+		 * <code>over_field_name</code> and <code>partition_field_name</code> of any
+		 * detectors. Providing values for other fields has no effect on the estimation.
+		 * It can be omitted from the request if no detectors have a
+		 * <code>by_field_name</code>, <code>over_field_name</code> or
+		 * <code>partition_field_name</code>.
+		 * <p>
 		 * API name: {@code overall_cardinality}
 		 */
 		public Builder overallCardinality(@Nullable Map<String, Long> value) {

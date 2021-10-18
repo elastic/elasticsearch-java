@@ -40,6 +40,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.CommonTermsQuery
 @JsonpDeserializable
 public final class CommonTermsQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -88,8 +89,6 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -179,6 +178,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		generator.write(this.query);
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -191,8 +191,6 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -298,7 +296,8 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("query");
 
 	}
 

@@ -49,7 +49,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	private final Boolean ignoreZValue;
 
 	@Nullable
-	private final ShapeOrientation orientation;
+	private final GeoOrientation orientation;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code orientation}
 	 */
 	@Nullable
-	public ShapeOrientation orientation() {
+	public GeoOrientation orientation() {
 		return this.orientation;
 	}
 
@@ -155,7 +155,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		private Boolean ignoreZValue;
 
 		@Nullable
-		private ShapeOrientation orientation;
+		private GeoOrientation orientation;
 
 		/**
 		 * API name: {@code coerce}
@@ -184,7 +184,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code orientation}
 		 */
-		public Builder orientation(@Nullable ShapeOrientation value) {
+		public Builder orientation(@Nullable GeoOrientation value) {
 			this.orientation = value;
 			return this;
 		}
@@ -219,7 +219,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
-		op.add(Builder::orientation, ShapeOrientation._DESERIALIZER, "orientation");
+		op.add(Builder::orientation, GeoOrientation._DESERIALIZER, "orientation");
 
 		op.ignore("type");
 	}

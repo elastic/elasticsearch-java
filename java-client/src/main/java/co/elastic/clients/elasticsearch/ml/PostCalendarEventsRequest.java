@@ -77,7 +77,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 
 	/**
 	 * Required - A list of one of more scheduled events. The event’s start and end
-	 * times may be specified as integer milliseconds since the epoch or as a string
+	 * times can be specified as integer milliseconds since the epoch or as a string
 	 * in ISO 8601 format.
 	 * <p>
 	 * API name: {@code events}
@@ -129,7 +129,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 
 		/**
 		 * Required - A list of one of more scheduled events. The event’s start and end
-		 * times may be specified as integer milliseconds since the epoch or as a string
+		 * times can be specified as integer milliseconds since the epoch or as a string
 		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}
@@ -141,7 +141,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 
 		/**
 		 * Required - A list of one of more scheduled events. The event’s start and end
-		 * times may be specified as integer milliseconds since the epoch or as a string
+		 * times can be specified as integer milliseconds since the epoch or as a string
 		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}

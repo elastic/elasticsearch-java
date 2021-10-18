@@ -40,6 +40,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.PrefixQuery
 @JsonpDeserializable
 public final class PrefixQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -76,8 +77,6 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -128,6 +127,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -140,8 +140,6 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -211,7 +209,8 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("value");
 
 	}
 
