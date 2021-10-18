@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
@@ -601,7 +601,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Create an "{@code msearch}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MsearchRequest, MsearchResponse<TDocument>, ElasticsearchError> createMsearchEndpoint(
+	public static <TDocument> Endpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> createMsearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(MsearchResponse.createMsearchResponseDeserializer(tDocumentDeserializer));

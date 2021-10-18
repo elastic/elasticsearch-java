@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -529,7 +529,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code watcher.put_watch}".
 	 */
-	public static final Endpoint<PutWatchRequest, PutWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

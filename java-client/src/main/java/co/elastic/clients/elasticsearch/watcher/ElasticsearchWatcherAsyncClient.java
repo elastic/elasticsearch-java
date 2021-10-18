@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -326,7 +327,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StartWatcherResponse> start() throws IOException {
+	public CompletableFuture<StartWatcherResponse> start() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT);
 	}
 
@@ -383,7 +384,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StopWatcherResponse> stop() throws IOException {
+	public CompletableFuture<StopWatcherResponse> stop() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT);
 	}
 

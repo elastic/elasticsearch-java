@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -136,7 +136,7 @@ public final class StatusRequest extends RequestBase {
 	/**
 	 * Create an "{@code async_search.status}" endpoint.
 	 */
-	public static <TDocument> Endpoint<StatusRequest, StatusResponse<TDocument>, ElasticsearchError> createStatusEndpoint(
+	public static <TDocument> Endpoint<StatusRequest, StatusResponse<TDocument>, ErrorResponse> createStatusEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(StatusResponse.createStatusResponseDeserializer(tDocumentDeserializer));

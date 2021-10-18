@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -104,7 +104,7 @@ public final class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.post_start_basic}".
 	 */
-	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

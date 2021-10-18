@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -404,7 +404,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code searchable_snapshots.mount}".
 	 */
-	public static final Endpoint<MountRequest, MountResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MountRequest, MountResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

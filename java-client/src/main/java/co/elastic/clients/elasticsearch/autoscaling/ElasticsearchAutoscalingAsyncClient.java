@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -86,7 +87,8 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity() throws IOException {
+	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetAutoscalingCapacityRequest._INSTANCE,
 				GetAutoscalingCapacityRequest.ENDPOINT);
 	}

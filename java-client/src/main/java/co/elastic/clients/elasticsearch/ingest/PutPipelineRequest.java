@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -486,7 +486,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ingest.put_pipeline}".
 	 */
-	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +52,7 @@ public final class MasterRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.master}".
 	 */
-	public static final Endpoint<MasterRequest, MasterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MasterRequest, MasterResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

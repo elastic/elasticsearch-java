@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -400,7 +400,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code indices.put_alias}".
 	 */
-	public static final Endpoint<PutAliasRequest, PutAliasResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

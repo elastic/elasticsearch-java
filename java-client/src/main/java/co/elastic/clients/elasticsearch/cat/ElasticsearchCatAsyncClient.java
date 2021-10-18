@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -276,7 +277,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<HelpResponse> help() throws IOException {
+	public CompletableFuture<HelpResponse> help() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest.ENDPOINT);
 	}
 
@@ -335,7 +336,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<MasterResponse> master() throws IOException {
+	public CompletableFuture<MasterResponse> master() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(MasterRequest._INSTANCE, MasterRequest.ENDPOINT);
 	}
 
@@ -526,7 +527,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException {
+	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest.ENDPOINT);
 	}
 
@@ -582,7 +583,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException {
+	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(PendingTasksRequest._INSTANCE, PendingTasksRequest.ENDPOINT);
 	}
 
@@ -595,7 +596,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<PluginsResponse> plugins() throws IOException {
+	public CompletableFuture<PluginsResponse> plugins() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(PluginsRequest._INSTANCE, PluginsRequest.ENDPOINT);
 	}
 
@@ -651,7 +652,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<RepositoriesResponse> repositories() throws IOException {
+	public CompletableFuture<RepositoriesResponse> repositories() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(RepositoriesRequest._INSTANCE, RepositoriesRequest.ENDPOINT);
 	}
 

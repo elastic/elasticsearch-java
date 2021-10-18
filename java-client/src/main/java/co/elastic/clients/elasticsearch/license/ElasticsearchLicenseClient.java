@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -48,7 +49,7 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public DeleteLicenseResponse delete() throws IOException {
+	public DeleteLicenseResponse delete() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT);
 	}
 
@@ -104,7 +105,7 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetBasicStatusResponse getBasicStatus() throws IOException {
+	public GetBasicStatusResponse getBasicStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest.ENDPOINT);
 	}
 
@@ -117,7 +118,7 @@ public class ElasticsearchLicenseClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetTrialStatusResponse getTrialStatus() throws IOException {
+	public GetTrialStatusResponse getTrialStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest.ENDPOINT);
 	}
 

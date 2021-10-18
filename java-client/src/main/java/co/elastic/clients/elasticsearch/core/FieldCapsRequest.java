@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
@@ -453,7 +453,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code field_caps}".
 	 */
-	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

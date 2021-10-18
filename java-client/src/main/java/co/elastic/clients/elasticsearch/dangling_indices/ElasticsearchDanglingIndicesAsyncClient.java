@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -115,7 +116,8 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() throws IOException {
+	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(ListDanglingIndicesRequest._INSTANCE,
 				ListDanglingIndicesRequest.ENDPOINT);
 	}

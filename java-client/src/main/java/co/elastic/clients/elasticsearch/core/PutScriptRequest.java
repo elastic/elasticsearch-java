@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.StoredScript;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -250,7 +250,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code put_script}".
 	 */
-	public static final Endpoint<PutScriptRequest, PutScriptResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

@@ -25,9 +25,9 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -453,7 +453,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code exists_source}".
 	 */
-	public static final Endpoint<ExistsSourceRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";

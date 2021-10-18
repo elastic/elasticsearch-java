@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -202,7 +202,7 @@ public final class EqlGetRequest extends RequestBase {
 	/**
 	 * Create an "{@code eql.get}" endpoint.
 	 */
-	public static <TEvent> Endpoint<EqlGetRequest, EqlGetResponse<TEvent>, ElasticsearchError> createGetEndpoint(
+	public static <TEvent> Endpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse> createGetEndpoint(
 			JsonpDeserializer<TEvent> tEventDeserializer) {
 		return ENDPOINT.withResponseDeserializer(EqlGetResponse.createEqlGetResponseDeserializer(tEventDeserializer));
 	}

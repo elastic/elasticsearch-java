@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpUtils;
@@ -158,7 +158,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.thread_pool}".
 	 */
-	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -100,7 +100,7 @@ public final class DeletePolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.delete_policy}".
 	 */
-	public static final Endpoint<DeletePolicyRequest, DeletePolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -176,7 +176,7 @@ public final class GetSourceRequest extends GetRequest {
 	/**
 	 * Create an "{@code get_source}" endpoint.
 	 */
-	public static <TDocument> Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ElasticsearchError> createGetSourceEndpoint(
+	public static <TDocument> Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> createGetSourceEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(GetSourceResponse.createGetSourceResponseDeserializer(tDocumentDeserializer));

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -1279,7 +1280,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<MlInfoResponse> info() throws IOException {
+	public CompletableFuture<MlInfoResponse> info() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(MlInfoRequest._INSTANCE, MlInfoRequest.ENDPOINT);
 	}
 

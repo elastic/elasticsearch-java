@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -168,7 +168,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code rollup.rollup}".
 	 */
-	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RollupRequest, RollupResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

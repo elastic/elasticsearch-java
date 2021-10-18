@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -773,7 +773,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Create an "{@code eql.search}" endpoint.
 	 */
-	public static <TEvent> Endpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ElasticsearchError> createSearchEndpoint(
+	public static <TEvent> Endpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse> createSearchEndpoint(
 			JsonpDeserializer<TEvent> tEventDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(EqlSearchResponse.createEqlSearchResponseDeserializer(tEventDeserializer));

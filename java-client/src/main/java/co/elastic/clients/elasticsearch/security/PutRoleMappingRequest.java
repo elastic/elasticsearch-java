@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -395,7 +395,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code security.put_role_mapping}".
 	 */
-	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

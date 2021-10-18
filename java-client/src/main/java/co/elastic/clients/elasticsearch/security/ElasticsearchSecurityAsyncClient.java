@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -50,7 +51,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<AuthenticateResponse> authenticate() throws IOException {
+	public CompletableFuture<AuthenticateResponse> authenticate() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT);
 	}
 
@@ -615,7 +616,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-builtin-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges() throws IOException {
+	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetBuiltinPrivilegesRequest._INSTANCE,
 				GetBuiltinPrivilegesRequest.ENDPOINT);
 	}

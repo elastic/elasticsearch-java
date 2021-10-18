@@ -820,7 +820,7 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetScriptContextResponse getScriptContext() throws IOException {
+	public GetScriptContextResponse getScriptContext() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
 	}
 
@@ -833,7 +833,7 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetScriptLanguagesResponse getScriptLanguages() throws IOException {
+	public GetScriptLanguagesResponse getScriptLanguages() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest.ENDPOINT);
 	}
 
@@ -911,7 +911,7 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public InfoResponse info() throws IOException {
+	public InfoResponse info() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
 	}
 
@@ -1098,7 +1098,7 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public BooleanResponse ping() throws IOException {
+	public BooleanResponse ping() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest.ENDPOINT);
 	}
 

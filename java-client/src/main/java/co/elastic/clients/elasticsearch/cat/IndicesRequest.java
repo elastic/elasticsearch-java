@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.Health;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -296,7 +296,7 @@ public final class IndicesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.indices}".
 	 */
-	public static final Endpoint<IndicesRequest, IndicesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<IndicesRequest, IndicesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
