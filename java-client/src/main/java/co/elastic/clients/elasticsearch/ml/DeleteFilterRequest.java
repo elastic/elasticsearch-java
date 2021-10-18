@@ -57,7 +57,7 @@ public final class DeleteFilterRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the filter to delete
+	 * Required - A string that uniquely identifies a filter.
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteFilterRequest extends RequestBase {
 		private String filterId;
 
 		/**
-		 * Required - The ID of the filter to delete
+		 * Required - A string that uniquely identifies a filter.
 		 * <p>
 		 * API name: {@code filter_id}
 		 */

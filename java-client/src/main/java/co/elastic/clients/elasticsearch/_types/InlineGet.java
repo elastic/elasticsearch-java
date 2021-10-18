@@ -37,7 +37,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -50,14 +49,18 @@ import javax.annotation.Nullable;
 // typedef: _types.InlineGet
 
 public final class InlineGet<TDocument> implements JsonpSerializable {
+	private final Map<String, JsonData> metadata;
+
 	@Nullable
 	private final Map<String, JsonData> fields;
 
 	private final boolean found;
 
-	private final int seqNo;
+	@Nullable
+	private final Long seqNo;
 
-	private final long primaryTerm;
+	@Nullable
+	private final Long primaryTerm;
 
 	@Nullable
 	private final String routing;
@@ -71,10 +74,12 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 
 	public InlineGet(Builder<TDocument> builder) {
 
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.found = Objects.requireNonNull(builder.found, "found");
-		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
-		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
+		this.seqNo = builder.seqNo;
+		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
 		this.source = Objects.requireNonNull(builder.source, "_source");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -83,6 +88,13 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 
 	public InlineGet(Function<Builder<TDocument>, Builder<TDocument>> fn) {
 		this(fn.apply(new Builder<>()));
+	}
+
+	/**
+	 * Required - Document metadata
+	 */
+	public Map<String, JsonData> metadata() {
+		return this.metadata;
 	}
 
 	/**
@@ -101,16 +113,18 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _seq_no}
+	 * API name: {@code _seq_no}
 	 */
-	public int seqNo() {
+	@Nullable
+	public Long seqNo() {
 		return this.seqNo;
 	}
 
 	/**
-	 * Required - API name: {@code _primary_term}
+	 * API name: {@code _primary_term}
 	 */
-	public long primaryTerm() {
+	@Nullable
+	public Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -140,6 +154,12 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+
 		if (this.fields != null) {
 
 			generator.writeKey("fields");
@@ -156,12 +176,18 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		generator.writeKey("found");
 		generator.write(this.found);
 
-		generator.writeKey("_seq_no");
-		generator.write(this.seqNo);
+		if (this.seqNo != null) {
 
-		generator.writeKey("_primary_term");
-		generator.write(this.primaryTerm);
+			generator.writeKey("_seq_no");
+			generator.write(this.seqNo);
 
+		}
+		if (this.primaryTerm != null) {
+
+			generator.writeKey("_primary_term");
+			generator.write(this.primaryTerm);
+
+		}
 		if (this.routing != null) {
 
 			generator.writeKey("_routing");
@@ -180,13 +206,36 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 	 * Builder for {@link InlineGet}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<InlineGet<TDocument>> {
+		private Map<String, JsonData> metadata = new HashMap<>();
+
+		/**
+		 * Required - Document metadata
+		 */
+		public Builder<TDocument> metadata(Map<String, JsonData> value) {
+			this.metadata = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 */
+		public Builder<TDocument> putMetadata(String key, JsonData value) {
+			if (this.metadata == null) {
+				this.metadata = new HashMap<>();
+			}
+			this.metadata.put(key, value);
+			return this;
+		}
+
 		@Nullable
 		private Map<String, JsonData> fields;
 
 		private Boolean found;
 
-		private Integer seqNo;
+		@Nullable
+		private Long seqNo;
 
+		@Nullable
 		private Long primaryTerm;
 
 		@Nullable
@@ -225,17 +274,17 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _seq_no}
+		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(int value) {
+		public Builder<TDocument> seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code _primary_term}
+		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> primaryTerm(long value) {
+		public Builder<TDocument> primaryTerm(@Nullable Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -294,10 +343,14 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.putMetadata(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

@@ -27,7 +27,6 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.core.bulk.Operation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,6 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
 
-public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSerializable<Object>, JsonpSerializable {
+public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
 	private final String type;
 
@@ -62,7 +62,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 
 	private final String interval;
 
-	private final List<Object> operations;
+	private final List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> operations;
 
 	@Nullable
 	private final JsonpSerializer<TSource> tSourceSerializer;
@@ -84,6 +84,10 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		this(fn.apply(new Builder<>()));
 	}
 
+	@Override
+	public Iterator<?> _serializables() {
+		return this.operations.iterator();
+	}
 	/**
 	 * Default document type for items which don't provide one
 	 * <p>
@@ -126,13 +130,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<Object> operations() {
+	public List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> operations() {
 		return this.operations;
-	}
-
-	@Override
-	public Iterator<Object> iterator() {
-		return this.operations.iterator();
 	}
 
 	/**
@@ -140,8 +139,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (Object item0 : this.operations) {
-			mapper.serialize(item0, generator);
+		for (JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */ item0 : this.operations) {
+			generator.write(item0);
+
 		}
 		generator.writeEnd();
 
@@ -162,7 +162,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 
 		private String interval;
 
-		private List<Object> operations;
+		private List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> operations;
 
 		@Nullable
 		private JsonpSerializer<TSource> tSourceSerializer;
@@ -212,7 +212,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> operations(List<Object> value) {
+		public Builder<TSource> operations(
+				List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> value) {
 			this.operations = value;
 			return this;
 		}
@@ -222,41 +223,22 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> operations(Object... value) {
+		public Builder<TSource> operations(
+				JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */... value) {
 			this.operations = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
-		 * <p>
-		 * 
-		 * @deprecated
+		 * Add a value to {@link #operations(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addOperation(Operation value) {
+		public Builder<TSource> addOperations(
+				JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */ value) {
 			if (this.operations == null) {
 				this.operations = new ArrayList<>();
 			}
 			this.operations.add(value);
 			return this;
-		}
-
-		/**
-		 * Add a document to {@link #operations(List)}, creating the list if needed.
-		 */
-		public Builder<TSource> addDocument(TSource value) {
-			if (this.operations == null) {
-				this.operations = new ArrayList<>();
-			}
-			this.operations.add(value);
-			return this;
-		}
-
-		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
-		 */
-		public Builder<TSource> addOperation(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.addOperation(fn.apply(new Operation.Builder()).build());
 		}
 
 		/**

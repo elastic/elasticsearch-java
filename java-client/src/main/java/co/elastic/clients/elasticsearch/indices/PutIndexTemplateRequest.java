@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -68,7 +67,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	private final IndexTemplateMapping template;
 
 	@Nullable
-	private final EmptyObject dataStream;
+	private final DataStream dataStream;
 
 	@Nullable
 	private final Integer priority;
@@ -135,7 +134,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code data_stream}
 	 */
 	@Nullable
-	public EmptyObject dataStream() {
+	public DataStream dataStream() {
 		return this.dataStream;
 	}
 
@@ -253,7 +252,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		private IndexTemplateMapping template;
 
 		@Nullable
-		private EmptyObject dataStream;
+		private DataStream dataStream;
 
 		@Nullable
 		private Integer priority;
@@ -346,7 +345,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public Builder dataStream(@Nullable EmptyObject value) {
+		public Builder dataStream(@Nullable DataStream value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -354,8 +353,8 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public Builder dataStream(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.dataStream(fn.apply(new EmptyObject.Builder()).build());
+		public Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
+			return this.dataStream(fn.apply(new DataStream.Builder()).build());
 		}
 
 		/**
@@ -421,7 +420,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
 		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
-		op.add(Builder::dataStream, EmptyObject._DESERIALIZER, "data_stream");
+		op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
 		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");

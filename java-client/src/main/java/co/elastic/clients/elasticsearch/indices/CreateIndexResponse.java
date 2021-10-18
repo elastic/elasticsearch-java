@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,18 +40,21 @@ import javax.annotation.Nullable;
 
 // typedef: indices.create.Response
 @JsonpDeserializable
-public final class CreateIndexResponse extends AcknowledgedResponseBase {
+public final class CreateIndexResponse implements JsonpSerializable {
 	private final String index;
 
 	private final boolean shardsAcknowledged;
 
+	@Nullable
+	private final Boolean acknowledged;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public CreateIndexResponse(Builder builder) {
-		super(builder);
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
+		this.acknowledged = builder.acknowledged;
 
 	}
 
@@ -73,15 +76,37 @@ public final class CreateIndexResponse extends AcknowledgedResponseBase {
 		return this.shardsAcknowledged;
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+	/**
+	 * API name: {@code acknowledged}
+	 */
+	@Nullable
+	public Boolean acknowledged() {
+		return this.acknowledged;
+	}
 
-		super.serializeInternal(generator, mapper);
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
+
+		if (this.acknowledged != null) {
+
+			generator.writeKey("acknowledged");
+			generator.write(this.acknowledged);
+
+		}
 
 	}
 
@@ -90,12 +115,13 @@ public final class CreateIndexResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link CreateIndexResponse}.
 	 */
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CreateIndexResponse> {
+	public static class Builder implements ObjectBuilder<CreateIndexResponse> {
 		private String index;
 
 		private Boolean shardsAcknowledged;
+
+		@Nullable
+		private Boolean acknowledged;
 
 		/**
 		 * Required - API name: {@code index}
@@ -113,8 +139,11 @@ public final class CreateIndexResponse extends AcknowledgedResponseBase {
 			return this;
 		}
 
-		@Override
-		protected Builder self() {
+		/**
+		 * API name: {@code acknowledged}
+		 */
+		public Builder acknowledged(@Nullable Boolean value) {
+			this.acknowledged = value;
 			return this;
 		}
 
@@ -139,9 +168,10 @@ public final class CreateIndexResponse extends AcknowledgedResponseBase {
 			.lazy(Builder::new, CreateIndexResponse::setupCreateIndexResponseDeserializer, Builder::build);
 
 	protected static void setupCreateIndexResponseDeserializer(DelegatingDeserializer<CreateIndexResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 
 	}
 

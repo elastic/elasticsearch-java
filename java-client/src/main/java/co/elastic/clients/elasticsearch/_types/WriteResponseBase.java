@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -51,7 +50,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final Result result;
 
-	private final int seqNo;
+	private final long seqNo;
 
 	private final ShardStatistics shards;
 
@@ -110,7 +109,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code _seq_no}
 	 */
-	public int seqNo() {
+	public long seqNo() {
 		return this.seqNo;
 	}
 
@@ -201,7 +200,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		private Result result;
 
-		private Integer seqNo;
+		private Long seqNo;
 
 		private ShardStatistics shards;
 
@@ -248,7 +247,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _seq_no}
 		 */
-		public BuilderT seqNo(int value) {
+		public BuilderT seqNo(long value) {
 			this.seqNo = value;
 			return self();
 		}
@@ -304,7 +303,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(AbstractBuilder::result, Result._DESERIALIZER, "result");
-		op.add(AbstractBuilder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");

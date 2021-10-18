@@ -290,7 +290,7 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
+	public BulkResponse bulk(BulkRequest request) throws IOException {
 		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
 	}
 
@@ -307,9 +307,21 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TSource> BulkResponse bulk(
-			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
+	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn) throws IOException {
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows to perform multiple index/update/delete operations in a single
+	 * request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BulkResponse bulk() throws IOException {
+		return this.transport.performRequest(new BulkRequest.Builder().build(), BulkRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: clear_scroll

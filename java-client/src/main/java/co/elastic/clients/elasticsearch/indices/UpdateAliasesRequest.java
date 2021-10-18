@@ -27,7 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.indices.update_aliases.IndicesUpdateAliasBulk;
+import co.elastic.clients.elasticsearch.indices.update_aliases.Action;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -58,7 +58,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	private final String timeout;
 
 	@Nullable
-	private final List<IndicesUpdateAliasBulk> actions;
+	private final List<Action> actions;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code actions}
 	 */
 	@Nullable
-	public List<IndicesUpdateAliasBulk> actions() {
+	public List<Action> actions() {
 		return this.actions;
 	}
 
@@ -117,7 +117,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 
 			generator.writeKey("actions");
 			generator.writeStartArray();
-			for (IndicesUpdateAliasBulk item0 : this.actions) {
+			for (Action item0 : this.actions) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -140,7 +140,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		private String timeout;
 
 		@Nullable
-		private List<IndicesUpdateAliasBulk> actions;
+		private List<Action> actions;
 
 		/**
 		 * Specify timeout for connection to master
@@ -165,7 +165,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<IndicesUpdateAliasBulk> value) {
+		public Builder actions(@Nullable List<Action> value) {
 			this.actions = value;
 			return this;
 		}
@@ -173,7 +173,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(IndicesUpdateAliasBulk... value) {
+		public Builder actions(Action... value) {
 			this.actions = Arrays.asList(value);
 			return this;
 		}
@@ -181,7 +181,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
-		public Builder addActions(IndicesUpdateAliasBulk value) {
+		public Builder addActions(Action value) {
 			if (this.actions == null) {
 				this.actions = new ArrayList<>();
 			}
@@ -192,15 +192,15 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * Set {@link #actions(List)} to a singleton list.
 		 */
-		public Builder actions(Function<IndicesUpdateAliasBulk.Builder, ObjectBuilder<IndicesUpdateAliasBulk>> fn) {
-			return this.actions(fn.apply(new IndicesUpdateAliasBulk.Builder()).build());
+		public Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
+			return this.actions(fn.apply(new Action.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
-		public Builder addActions(Function<IndicesUpdateAliasBulk.Builder, ObjectBuilder<IndicesUpdateAliasBulk>> fn) {
-			return this.addActions(fn.apply(new IndicesUpdateAliasBulk.Builder()).build());
+		public Builder addActions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
+			return this.addActions(fn.apply(new Action.Builder()).build());
 		}
 
 		/**
@@ -226,7 +226,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	protected static void setupUpdateAliasesRequestDeserializer(
 			DelegatingDeserializer<UpdateAliasesRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(IndicesUpdateAliasBulk._DESERIALIZER), "actions");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(Action._DESERIALIZER), "actions");
 
 	}
 

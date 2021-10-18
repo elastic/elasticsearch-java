@@ -23,28 +23,40 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _global.bulk.IndexOperation
-@JsonpDeserializable
-public final class IndexOperation extends OperationBase implements OperationVariant {
+
+public final class IndexOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, OperationVariant {
+	private final TDocument document;
+
+	@Nullable
+	private final JsonpSerializer<TDocument> tDocumentSerializer;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexOperation(Builder builder) {
+	public IndexOperation(Builder<TDocument> builder) {
 		super(builder);
+		this.document = Objects.requireNonNull(builder.document, "document");
+
+		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public IndexOperation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public IndexOperation(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -55,16 +67,50 @@ public final class IndexOperation extends OperationBase implements OperationVari
 		return "index";
 	}
 
+	/**
+	 * Required - API name: {@code document}
+	 */
+	public TDocument document() {
+		return this.document;
+	}
+
+	@Override
+	public Iterator<?> _serializables() {
+		return Arrays.asList(this, this.document).iterator();
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link IndexOperation}.
 	 */
-	public static class Builder extends OperationBase.AbstractBuilder<Builder>
+	public static class Builder<TDocument> extends WriteOperation.AbstractBuilder<Builder<TDocument>>
 			implements
-				ObjectBuilder<IndexOperation> {
+				ObjectBuilder<IndexOperation<TDocument>> {
+		private TDocument document;
+
+		/**
+		 * Required - API name: {@code document}
+		 */
+		public Builder<TDocument> document(TDocument value) {
+			this.document = value;
+			return this;
+		}
+
+		@Nullable
+		private JsonpSerializer<TDocument> tDocumentSerializer;
+
+		/**
+		 * Serializer for TDocument. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+			this.tDocumentSerializer = value;
+			return this;
+		}
+
 		@Override
-		protected Builder self() {
+		protected Builder<TDocument> self() {
 			return this;
 		}
 
@@ -74,23 +120,10 @@ public final class IndexOperation extends OperationBase implements OperationVari
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndexOperation build() {
+		public IndexOperation<TDocument> build() {
 
-			return new IndexOperation(this);
+			return new IndexOperation<TDocument>(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link IndexOperation}
-	 */
-	public static final JsonpDeserializer<IndexOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexOperation::setupIndexOperationDeserializer, Builder::build);
-
-	protected static void setupIndexOperationDeserializer(DelegatingDeserializer<IndexOperation.Builder> op) {
-		OperationBase.setupOperationBaseDeserializer(op);
-
 	}
 
 }

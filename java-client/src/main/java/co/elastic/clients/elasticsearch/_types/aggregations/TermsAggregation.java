@@ -47,11 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
 @JsonpDeserializable
-public final class TermsAggregation extends BucketAggregationBase
-		implements
-			AggregationVariant,
-			PivotGroupByVariant,
-			CompositeAggregationSourceVariant {
+public final class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
@@ -72,6 +68,9 @@ public final class TermsAggregation extends BucketAggregationBase
 
 	@Nullable
 	private final String missing;
+
+	@Nullable
+	private final MissingOrder missingOrder;
 
 	@Nullable
 	private final Boolean missingBucket;
@@ -106,6 +105,7 @@ public final class TermsAggregation extends BucketAggregationBase
 		this.include = builder.include;
 		this.minDocCount = builder.minDocCount;
 		this.missing = builder.missing;
+		this.missingOrder = builder.missingOrder;
 		this.missingBucket = builder.missingBucket;
 		this.valueType = builder.valueType;
 		this.order = builder.order;
@@ -121,8 +121,7 @@ public final class TermsAggregation extends BucketAggregationBase
 	}
 
 	/**
-	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
-	 * variant type
+	 * {@link Aggregation}, {@link PivotGroupBy} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -183,6 +182,14 @@ public final class TermsAggregation extends BucketAggregationBase
 	@Nullable
 	public String missing() {
 		return this.missing;
+	}
+
+	/**
+	 * API name: {@code missing_order}
+	 */
+	@Nullable
+	public MissingOrder missingOrder() {
+		return this.missingOrder;
 	}
 
 	/**
@@ -289,6 +296,11 @@ public final class TermsAggregation extends BucketAggregationBase
 			generator.write(this.missing);
 
 		}
+		if (this.missingOrder != null) {
+
+			generator.writeKey("missing_order");
+			this.missingOrder.serialize(generator, mapper);
+		}
 		if (this.missingBucket != null) {
 
 			generator.writeKey("missing_bucket");
@@ -362,6 +374,9 @@ public final class TermsAggregation extends BucketAggregationBase
 
 		@Nullable
 		private String missing;
+
+		@Nullable
+		private MissingOrder missingOrder;
 
 		@Nullable
 		private Boolean missingBucket;
@@ -461,6 +476,14 @@ public final class TermsAggregation extends BucketAggregationBase
 		}
 
 		/**
+		 * API name: {@code missing_order}
+		 */
+		public Builder missingOrder(@Nullable MissingOrder value) {
+			this.missingOrder = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code missing_bucket}
 		 */
 		public Builder missingBucket(@Nullable Boolean value) {
@@ -551,6 +574,7 @@ public final class TermsAggregation extends BucketAggregationBase
 		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missingOrder, MissingOrder._DESERIALIZER, "missing_order");
 		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
 		op.add(Builder::order, JsonpDeserializer.jsonValueDeserializer(), "order");

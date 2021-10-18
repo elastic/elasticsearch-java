@@ -29,7 +29,7 @@ import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
 public enum GridType implements StringEnum {
-	Grid("grid"), Point("point");
+	Grid("grid"), Point("point"), Centroid("centroid");
 
 	private final String jsonValue;
 

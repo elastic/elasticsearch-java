@@ -41,7 +41,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -62,7 +61,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Integer ifSeqNo;
+	private final Long ifSeqNo;
 
 	@Nullable
 	private final OpType opType;
@@ -159,7 +158,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Integer ifSeqNo() {
+	public Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -294,7 +293,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Integer ifSeqNo;
+		private Long ifSeqNo;
 
 		@Nullable
 		private OpType opType;
@@ -365,7 +364,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder<TDocument> ifSeqNo(@Nullable Integer value) {
+		public Builder<TDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return this;
 		}

@@ -38,7 +38,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
@@ -99,7 +98,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	private final TDocument source;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	@Nullable
 	private final Long primaryTerm;
@@ -266,7 +265,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -504,7 +503,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		private TDocument source;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		@Nullable
 		private Long primaryTerm;
@@ -742,7 +741,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(@Nullable Integer value) {
+		public Builder<TDocument> seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -844,7 +843,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sort");

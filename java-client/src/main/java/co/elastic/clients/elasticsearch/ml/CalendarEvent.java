@@ -69,6 +69,8 @@ public final class CalendarEvent implements JsonpSerializable {
 	}
 
 	/**
+	 * A string that uniquely identifies a calendar.
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	@Nullable
@@ -167,6 +169,8 @@ public final class CalendarEvent implements JsonpSerializable {
 		private String startTime;
 
 		/**
+		 * A string that uniquely identifies a calendar.
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(@Nullable String value) {

@@ -51,7 +51,6 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 
 	public TermsQuery(Builder builder) {
 		super(builder);
-
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -87,12 +86,8 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		// >> AdditionalProperty start
 		generator.writeKey(this.field);
 		generator.write(this.value);
-
-		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 

@@ -238,12 +238,11 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 
 	protected static void setupIndexSettingBlocksDeserializer(DelegatingDeserializer<IndexSettingBlocks.Builder> op) {
 
-		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only", "index.blocks.read_only");
-		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete",
-				"index.blocks.read_only_allow_delete");
-		op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read", "index.blocks.read");
-		op.add(Builder::write, JsonpDeserializer.booleanDeserializer(), "write", "index.blocks.write");
-		op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata", "index.blocks.metadata");
+		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only");
+		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete");
+		op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read");
+		op.add(Builder::write, JsonpDeserializer.booleanDeserializer(), "write");
+		op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata");
 
 	}
 

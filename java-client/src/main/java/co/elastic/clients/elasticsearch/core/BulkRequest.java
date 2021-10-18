@@ -32,7 +32,6 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -56,7 +55,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Request
 
-public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSerializable<Object>, JsonpSerializable {
+public final class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -90,14 +89,11 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	@Nullable
 	private final Boolean requireAlias;
 
-	private final List<Object> operations;
-
-	@Nullable
-	private final JsonpSerializer<TSource> tSourceSerializer;
+	private final List<Operation> operations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BulkRequest(Builder<TSource> builder) {
+	public BulkRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.type = builder.type;
@@ -111,14 +107,17 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.requireAlias = builder.requireAlias;
 		this.operations = ModelTypeHelper.unmodifiableNonNull(builder.operations, "_value_body");
-		this.tSourceSerializer = builder.tSourceSerializer;
 
 	}
 
-	public BulkRequest(Function<Builder<TSource>, Builder<TSource>> fn) {
-		this(fn.apply(new Builder<>()));
+	public BulkRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
+	@Override
+	public Iterator<?> _serializables() {
+		return this.operations.iterator();
+	}
 	/**
 	 * Default index for items which don't provide one
 	 * <p>
@@ -244,13 +243,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<Object> operations() {
+	public List<Operation> operations() {
 		return this.operations;
-	}
-
-	@Override
-	public Iterator<Object> iterator() {
-		return this.operations.iterator();
 	}
 
 	/**
@@ -258,8 +252,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (Object item0 : this.operations) {
-			mapper.serialize(item0, generator);
+		for (Operation item0 : this.operations) {
+			item0.serialize(generator, mapper);
+
 		}
 		generator.writeEnd();
 
@@ -270,7 +265,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	/**
 	 * Builder for {@link BulkRequest}.
 	 */
-	public static class Builder<TSource> implements ObjectBuilder<BulkRequest<TSource>> {
+	public static class Builder implements ObjectBuilder<BulkRequest> {
 		@Nullable
 		private String index;
 
@@ -304,17 +299,14 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		@Nullable
 		private Boolean requireAlias;
 
-		private List<Object> operations;
-
-		@Nullable
-		private JsonpSerializer<TSource> tSourceSerializer;
+		private List<Operation> operations;
 
 		/**
 		 * Default index for items which don't provide one
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder<TSource> index(@Nullable String value) {
+		public Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -324,7 +316,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder<TSource> type(@Nullable String value) {
+		public Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -334,7 +326,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
-		public Builder<TSource> pipeline(@Nullable String value) {
+		public Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -347,7 +339,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder<TSource> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -357,7 +349,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TSource> routing(@Nullable String value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -368,7 +360,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder<TSource> source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -379,7 +371,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder<TSource> sourceExcludes(@Nullable List<String> value) {
+		public Builder sourceExcludes(@Nullable List<String> value) {
 			this.sourceExcludes = value;
 			return this;
 		}
@@ -390,7 +382,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder<TSource> sourceExcludes(String... value) {
+		public Builder sourceExcludes(String... value) {
 			this.sourceExcludes = Arrays.asList(value);
 			return this;
 		}
@@ -398,7 +390,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		/**
 		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addSourceExcludes(String value) {
+		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -412,7 +404,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder<TSource> sourceIncludes(@Nullable List<String> value) {
+		public Builder sourceIncludes(@Nullable List<String> value) {
 			this.sourceIncludes = value;
 			return this;
 		}
@@ -423,7 +415,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder<TSource> sourceIncludes(String... value) {
+		public Builder sourceIncludes(String... value) {
 			this.sourceIncludes = Arrays.asList(value);
 			return this;
 		}
@@ -431,7 +423,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		/**
 		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addSourceIncludes(String value) {
+		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -444,7 +436,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TSource> timeout(@Nullable String value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -458,7 +450,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder<TSource> waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -468,7 +460,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
-		public Builder<TSource> requireAlias(@Nullable Boolean value) {
+		public Builder requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
 			return this;
 		}
@@ -478,7 +470,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> operations(List<Object> value) {
+		public Builder operations(List<Operation> value) {
 			this.operations = value;
 			return this;
 		}
@@ -488,18 +480,15 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> operations(Object... value) {
+		public Builder operations(Operation... value) {
 			this.operations = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
-		 * <p>
-		 * 
-		 * @deprecated
+		 * Add a value to {@link #operations(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addOperation(Operation value) {
+		public Builder addOperations(Operation value) {
 			if (this.operations == null) {
 				this.operations = new ArrayList<>();
 			}
@@ -508,30 +497,17 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add a document to {@link #operations(List)}, creating the list if needed.
+		 * Set {@link #operations(List)} to a singleton list.
 		 */
-		public Builder<TSource> addDocument(TSource value) {
-			if (this.operations == null) {
-				this.operations = new ArrayList<>();
-			}
-			this.operations.add(value);
-			return this;
+		public Builder operations(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.operations(fn.apply(new Operation.Builder()).build());
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
+		 * Add a value to {@link #operations(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addOperation(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.addOperation(fn.apply(new Operation.Builder()).build());
-		}
-
-		/**
-		 * Serializer for TSource. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public Builder<TSource> tSourceSerializer(@Nullable JsonpSerializer<TSource> value) {
-			this.tSourceSerializer = value;
-			return this;
+		public Builder addOperations(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.addOperations(fn.apply(new Operation.Builder()).build());
 		}
 
 		/**
@@ -540,9 +516,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public BulkRequest<TSource> build() {
+		public BulkRequest build() {
 
-			return new BulkRequest<TSource>(this);
+			return new BulkRequest(this);
 		}
 	}
 
@@ -551,7 +527,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	/**
 	 * Endpoint "{@code bulk}".
 	 */
-	public static final Endpoint<BulkRequest<?>, BulkResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<BulkRequest, BulkResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

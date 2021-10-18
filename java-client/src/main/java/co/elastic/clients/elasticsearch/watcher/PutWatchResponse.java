@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -49,7 +48,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 
 	private final long primaryTerm;
 
-	private final int seqNo;
+	private final long seqNo;
 
 	private final long version;
 
@@ -93,7 +92,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code _seq_no}
 	 */
-	public int seqNo() {
+	public long seqNo() {
 		return this.seqNo;
 	}
 
@@ -144,7 +143,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 
 		private Long primaryTerm;
 
-		private Integer seqNo;
+		private Long seqNo;
 
 		private Long version;
 
@@ -175,7 +174,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _seq_no}
 		 */
-		public Builder seqNo(int value) {
+		public Builder seqNo(long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -213,7 +212,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}

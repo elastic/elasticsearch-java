@@ -113,6 +113,7 @@ public final class UsageResponse implements JsonpSerializable {
 
 	private final Base transform;
 
+	@Nullable
 	private final Vector vectors;
 
 	private final Base votingOnly;
@@ -146,7 +147,7 @@ public final class UsageResponse implements JsonpSerializable {
 		this.slm = Objects.requireNonNull(builder.slm, "slm");
 		this.sql = Objects.requireNonNull(builder.sql, "sql");
 		this.transform = Objects.requireNonNull(builder.transform, "transform");
-		this.vectors = Objects.requireNonNull(builder.vectors, "vectors");
+		this.vectors = builder.vectors;
 		this.votingOnly = Objects.requireNonNull(builder.votingOnly, "voting_only");
 
 	}
@@ -337,8 +338,9 @@ public final class UsageResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code vectors}
+	 * API name: {@code vectors}
 	 */
+	@Nullable
 	public Vector vectors() {
 		return this.vectors;
 	}
@@ -458,8 +460,12 @@ public final class UsageResponse implements JsonpSerializable {
 		generator.writeKey("transform");
 		this.transform.serialize(generator, mapper);
 
-		generator.writeKey("vectors");
-		this.vectors.serialize(generator, mapper);
+		if (this.vectors != null) {
+
+			generator.writeKey("vectors");
+			this.vectors.serialize(generator, mapper);
+
+		}
 
 		generator.writeKey("voting_only");
 		this.votingOnly.serialize(generator, mapper);
@@ -528,6 +534,7 @@ public final class UsageResponse implements JsonpSerializable {
 
 		private Base transform;
 
+		@Nullable
 		private Vector vectors;
 
 		private Base votingOnly;
@@ -909,15 +916,15 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vectors}
+		 * API name: {@code vectors}
 		 */
-		public Builder vectors(Vector value) {
+		public Builder vectors(@Nullable Vector value) {
 			this.vectors = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code vectors}
+		 * API name: {@code vectors}
 		 */
 		public Builder vectors(Function<Vector.Builder, ObjectBuilder<Vector>> fn) {
 			return this.vectors(fn.apply(new Vector.Builder()).build());

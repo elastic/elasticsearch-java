@@ -57,7 +57,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	private final Integer primaryTerm;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	@Nullable
 	private final Long version;
@@ -122,7 +122,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -204,7 +204,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		private Integer primaryTerm;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		@Nullable
 		private Long version;
@@ -266,7 +266,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder seqNo(@Nullable Integer value) {
+		public Builder seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -306,7 +306,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 		op.add(Builder::watch, Watch._DESERIALIZER, "watch");
 		op.add(Builder::primaryTerm, JsonpDeserializer.integerDeserializer(), "_primary_term");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}

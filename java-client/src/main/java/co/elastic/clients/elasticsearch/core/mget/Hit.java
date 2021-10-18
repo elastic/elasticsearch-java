@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.mget;
 
-import co.elastic.clients.elasticsearch._types.MainError;
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,7 +38,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -52,7 +51,7 @@ import javax.annotation.Nullable;
 
 public final class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
-	private final MainError error;
+	private final ErrorCause error;
 
 	@Nullable
 	private final Map<String, JsonData> fields;
@@ -71,7 +70,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	@Nullable
 	private final TDocument source;
@@ -112,7 +111,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code error}
 	 */
 	@Nullable
-	public MainError error() {
+	public ErrorCause error() {
 		return this.error;
 	}
 
@@ -166,7 +165,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -282,7 +281,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<Hit<TDocument>> {
 		@Nullable
-		private MainError error;
+		private ErrorCause error;
 
 		@Nullable
 		private Map<String, JsonData> fields;
@@ -301,7 +300,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		@Nullable
 		private TDocument source;
@@ -318,7 +317,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder<TDocument> error(@Nullable MainError value) {
+		public Builder<TDocument> error(@Nullable ErrorCause value) {
 			this.error = value;
 			return this;
 		}
@@ -326,8 +325,8 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder<TDocument> error(Function<MainError.Builder, ObjectBuilder<MainError>> fn) {
-			return this.error(fn.apply(new MainError.Builder()).build());
+		public Builder<TDocument> error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -392,7 +391,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(@Nullable Integer value) {
+		public Builder<TDocument> seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -456,14 +455,14 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	protected static <TDocument> void setupHitDeserializer(DelegatingDeserializer<Hit.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::error, MainError._DESERIALIZER, "error");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");

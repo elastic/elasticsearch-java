@@ -63,7 +63,10 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the datafeed to delete
+	 * Required - A numerical character string that uniquely identifies the
+	 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+	 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+	 * characters.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
@@ -72,7 +75,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	}
 
 	/**
-	 * True if the datafeed should be forcefully deleted
+	 * Use to forcefully delete a started datafeed; this method is quicker than
+	 * stopping and deleting the datafeed.
 	 * <p>
 	 * API name: {@code force}
 	 */
@@ -93,7 +97,10 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		private Boolean force;
 
 		/**
-		 * Required - The ID of the datafeed to delete
+		 * Required - A numerical character string that uniquely identifies the
+		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+		 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+		 * characters.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
@@ -103,7 +110,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		}
 
 		/**
-		 * True if the datafeed should be forcefully deleted
+		 * Use to forcefully delete a started datafeed; this method is quicker than
+		 * stopping and deleting the datafeed.
 		 * <p>
 		 * API name: {@code force}
 		 */

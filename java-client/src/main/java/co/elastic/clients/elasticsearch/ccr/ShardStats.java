@@ -64,17 +64,17 @@ public final class ShardStats implements JsonpSerializable {
 
 	private final long followerMappingVersion;
 
-	private final int followerMaxSeqNo;
+	private final long followerMaxSeqNo;
 
 	private final long followerSettingsVersion;
 
-	private final int lastRequestedSeqNo;
+	private final long lastRequestedSeqNo;
 
 	private final long leaderGlobalCheckpoint;
 
 	private final String leaderIndex;
 
-	private final int leaderMaxSeqNo;
+	private final long leaderMaxSeqNo;
 
 	private final long operationsRead;
 
@@ -219,7 +219,7 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code follower_max_seq_no}
 	 */
-	public int followerMaxSeqNo() {
+	public long followerMaxSeqNo() {
 		return this.followerMaxSeqNo;
 	}
 
@@ -233,7 +233,7 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code last_requested_seq_no}
 	 */
-	public int lastRequestedSeqNo() {
+	public long lastRequestedSeqNo() {
 		return this.lastRequestedSeqNo;
 	}
 
@@ -254,7 +254,7 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code leader_max_seq_no}
 	 */
-	public int leaderMaxSeqNo() {
+	public long leaderMaxSeqNo() {
 		return this.leaderMaxSeqNo;
 	}
 
@@ -495,17 +495,17 @@ public final class ShardStats implements JsonpSerializable {
 
 		private Long followerMappingVersion;
 
-		private Integer followerMaxSeqNo;
+		private Long followerMaxSeqNo;
 
 		private Long followerSettingsVersion;
 
-		private Integer lastRequestedSeqNo;
+		private Long lastRequestedSeqNo;
 
 		private Long leaderGlobalCheckpoint;
 
 		private String leaderIndex;
 
-		private Integer leaderMaxSeqNo;
+		private Long leaderMaxSeqNo;
 
 		private Long operationsRead;
 
@@ -611,7 +611,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code follower_max_seq_no}
 		 */
-		public Builder followerMaxSeqNo(int value) {
+		public Builder followerMaxSeqNo(long value) {
 			this.followerMaxSeqNo = value;
 			return this;
 		}
@@ -627,7 +627,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code last_requested_seq_no}
 		 */
-		public Builder lastRequestedSeqNo(int value) {
+		public Builder lastRequestedSeqNo(long value) {
 			this.lastRequestedSeqNo = value;
 			return this;
 		}
@@ -651,7 +651,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code leader_max_seq_no}
 		 */
-		public Builder leaderMaxSeqNo(int value) {
+		public Builder leaderMaxSeqNo(long value) {
 			this.leaderMaxSeqNo = value;
 			return this;
 		}
@@ -839,12 +839,12 @@ public final class ShardStats implements JsonpSerializable {
 		op.add(Builder::followerGlobalCheckpoint, JsonpDeserializer.longDeserializer(), "follower_global_checkpoint");
 		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
 		op.add(Builder::followerMappingVersion, JsonpDeserializer.longDeserializer(), "follower_mapping_version");
-		op.add(Builder::followerMaxSeqNo, JsonpDeserializer.integerDeserializer(), "follower_max_seq_no");
+		op.add(Builder::followerMaxSeqNo, JsonpDeserializer.longDeserializer(), "follower_max_seq_no");
 		op.add(Builder::followerSettingsVersion, JsonpDeserializer.longDeserializer(), "follower_settings_version");
-		op.add(Builder::lastRequestedSeqNo, JsonpDeserializer.integerDeserializer(), "last_requested_seq_no");
+		op.add(Builder::lastRequestedSeqNo, JsonpDeserializer.longDeserializer(), "last_requested_seq_no");
 		op.add(Builder::leaderGlobalCheckpoint, JsonpDeserializer.longDeserializer(), "leader_global_checkpoint");
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
-		op.add(Builder::leaderMaxSeqNo, JsonpDeserializer.integerDeserializer(), "leader_max_seq_no");
+		op.add(Builder::leaderMaxSeqNo, JsonpDeserializer.longDeserializer(), "leader_max_seq_no");
 		op.add(Builder::operationsRead, JsonpDeserializer.longDeserializer(), "operations_read");
 		op.add(Builder::operationsWritten, JsonpDeserializer.longDeserializer(), "operations_written");
 		op.add(Builder::outstandingReadRequests, JsonpDeserializer.integerDeserializer(), "outstanding_read_requests");

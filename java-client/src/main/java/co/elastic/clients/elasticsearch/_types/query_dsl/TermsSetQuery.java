@@ -44,6 +44,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.TermsSetQuery
 @JsonpDeserializable
 public final class TermsSetQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -80,8 +81,6 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -136,6 +135,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		generator.writeEnd();
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -148,8 +148,6 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -239,7 +237,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 				"minimum_should_match_script");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 

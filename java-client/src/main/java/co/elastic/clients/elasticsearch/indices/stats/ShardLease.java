@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 public final class ShardLease implements JsonpSerializable {
 	private final String id;
 
-	private final int retainingSeqNo;
+	private final long retainingSeqNo;
 
 	private final long timestamp;
 
@@ -75,7 +74,7 @@ public final class ShardLease implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code retaining_seq_no}
 	 */
-	public int retainingSeqNo() {
+	public long retainingSeqNo() {
 		return this.retainingSeqNo;
 	}
 
@@ -126,7 +125,7 @@ public final class ShardLease implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ShardLease> {
 		private String id;
 
-		private Integer retainingSeqNo;
+		private Long retainingSeqNo;
 
 		private Long timestamp;
 
@@ -143,7 +142,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retaining_seq_no}
 		 */
-		public Builder retainingSeqNo(int value) {
+		public Builder retainingSeqNo(long value) {
 			this.retainingSeqNo = value;
 			return this;
 		}
@@ -187,7 +186,7 @@ public final class ShardLease implements JsonpSerializable {
 	protected static void setupShardLeaseDeserializer(DelegatingDeserializer<ShardLease.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::retainingSeqNo, JsonpDeserializer.integerDeserializer(), "retaining_seq_no");
+		op.add(Builder::retainingSeqNo, JsonpDeserializer.longDeserializer(), "retaining_seq_no");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 

@@ -66,13 +66,17 @@ public final class DeleteCalendarJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code calendar_id}
+	 * Required - A string that uniquely identifies a calendar.
+	 * <p>
+	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
 		return this.calendarId;
 	}
 
 	/**
+	 * A description of the calendar.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -81,7 +85,9 @@ public final class DeleteCalendarJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code job_ids}
+	 * Required - A list of anomaly detection job identifiers or group names.
+	 * <p>
+	 * API name: {@code job_ids}
 	 */
 	public List<String> jobIds() {
 		return this.jobIds;
@@ -132,7 +138,9 @@ public final class DeleteCalendarJobResponse implements JsonpSerializable {
 		private List<String> jobIds;
 
 		/**
-		 * Required - API name: {@code calendar_id}
+		 * Required - A string that uniquely identifies a calendar.
+		 * <p>
+		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
 			this.calendarId = value;
@@ -140,6 +148,8 @@ public final class DeleteCalendarJobResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * A description of the calendar.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -148,7 +158,9 @@ public final class DeleteCalendarJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_ids}
+		 * Required - A list of anomaly detection job identifiers or group names.
+		 * <p>
+		 * API name: {@code job_ids}
 		 */
 		public Builder jobIds(List<String> value) {
 			this.jobIds = value;
@@ -156,7 +168,9 @@ public final class DeleteCalendarJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_ids}
+		 * Required - A list of anomaly detection job identifiers or group names.
+		 * <p>
+		 * API name: {@code job_ids}
 		 */
 		public Builder jobIds(String... value) {
 			this.jobIds = Arrays.asList(value);

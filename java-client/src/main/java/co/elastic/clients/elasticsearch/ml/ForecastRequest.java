@@ -53,6 +53,9 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final String expiresIn;
 
+	@Nullable
+	private final String maxModelMemory;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public ForecastRequest(Builder builder) {
@@ -60,6 +63,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
+		this.maxModelMemory = builder.maxModelMemory;
 
 	}
 
@@ -68,7 +72,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - The ID of the job to forecast for
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -77,6 +81,10 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * A period of time that indicates how far into the future to forecast. For
+	 * example, <code>30d</code> corresponds to 30 days. The forecast starts at the
+	 * last record that was processed.
+	 * <p>
 	 * API name: {@code duration}
 	 */
 	@Nullable
@@ -85,11 +93,28 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * The period of time that forecast results are retained. After a forecast
+	 * expires, the results are deleted. If set to a value of 0, the forecast is
+	 * never automatically deleted.
+	 * <p>
 	 * API name: {@code expires_in}
 	 */
 	@Nullable
 	public String expiresIn() {
 		return this.expiresIn;
+	}
+
+	/**
+	 * The maximum memory the forecast can use. If the forecast needs to use more
+	 * than the provided amount, it will spool to disk. Default is 20mb, maximum is
+	 * 500mb and minimum is 1mb. If set to 40% or more of the job’s configured
+	 * memory limit, it is automatically reduced to below that amount.
+	 * <p>
+	 * API name: {@code max_model_memory}
+	 */
+	@Nullable
+	public String maxModelMemory() {
+		return this.maxModelMemory;
 	}
 
 	/**
@@ -115,6 +140,12 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.expiresIn);
 
 		}
+		if (this.maxModelMemory != null) {
+
+			generator.writeKey("max_model_memory");
+			generator.write(this.maxModelMemory);
+
+		}
 
 	}
 
@@ -132,8 +163,11 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private String expiresIn;
 
+		@Nullable
+		private String maxModelMemory;
+
 		/**
-		 * Required - The ID of the job to forecast for
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -143,6 +177,10 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * A period of time that indicates how far into the future to forecast. For
+		 * example, <code>30d</code> corresponds to 30 days. The forecast starts at the
+		 * last record that was processed.
+		 * <p>
 		 * API name: {@code duration}
 		 */
 		public Builder duration(@Nullable String value) {
@@ -151,10 +189,27 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * The period of time that forecast results are retained. After a forecast
+		 * expires, the results are deleted. If set to a value of 0, the forecast is
+		 * never automatically deleted.
+		 * <p>
 		 * API name: {@code expires_in}
 		 */
 		public Builder expiresIn(@Nullable String value) {
 			this.expiresIn = value;
+			return this;
+		}
+
+		/**
+		 * The maximum memory the forecast can use. If the forecast needs to use more
+		 * than the provided amount, it will spool to disk. Default is 20mb, maximum is
+		 * 500mb and minimum is 1mb. If set to 40% or more of the job’s configured
+		 * memory limit, it is automatically reduced to below that amount.
+		 * <p>
+		 * API name: {@code max_model_memory}
+		 */
+		public Builder maxModelMemory(@Nullable String value) {
+			this.maxModelMemory = value;
 			return this;
 		}
 
@@ -182,6 +237,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 
 		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
 		op.add(Builder::expiresIn, JsonpDeserializer.stringDeserializer(), "expires_in");
+		op.add(Builder::maxModelMemory, JsonpDeserializer.stringDeserializer(), "max_model_memory");
 
 	}
 

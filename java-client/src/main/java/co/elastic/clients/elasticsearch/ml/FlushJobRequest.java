@@ -82,7 +82,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - The name of the job to flush
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -91,8 +91,8 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Skips time to the given value without generating results or updating the
-	 * model for the skipped interval
+	 * Specifies to skip to a particular time value. Results are not generated and
+	 * the model is not updated for data from the specified time interval.
 	 * <p>
 	 * API name: {@code skip_time}
 	 */
@@ -102,6 +102,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * Specifies to advance to a particular time value. Results are generated and
+	 * the model is updated for data from the specified time interval.
+	 * <p>
 	 * API name: {@code advance_time}
 	 */
 	@Nullable
@@ -110,6 +113,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * If true, calculates the interim results for the most recent bucket or all
+	 * buckets within the latency period.
+	 * <p>
 	 * API name: {@code calc_interim}
 	 */
 	@Nullable
@@ -118,6 +124,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * When used in conjunction with <code>calc_interim</code>, specifies the range
+	 * of buckets on which to calculate interim results.
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
@@ -126,6 +135,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * When used in conjunction with calc_interim, specifies the range of buckets on
+	 * which to calculate interim results.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -195,7 +207,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		private String start;
 
 		/**
-		 * Required - The name of the job to flush
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -205,8 +217,8 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Skips time to the given value without generating results or updating the
-		 * model for the skipped interval
+		 * Specifies to skip to a particular time value. Results are not generated and
+		 * the model is not updated for data from the specified time interval.
 		 * <p>
 		 * API name: {@code skip_time}
 		 */
@@ -216,6 +228,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * Specifies to advance to a particular time value. Results are generated and
+		 * the model is updated for data from the specified time interval.
+		 * <p>
 		 * API name: {@code advance_time}
 		 */
 		public Builder advanceTime(@Nullable String value) {
@@ -224,6 +239,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * If true, calculates the interim results for the most recent bucket or all
+		 * buckets within the latency period.
+		 * <p>
 		 * API name: {@code calc_interim}
 		 */
 		public Builder calcInterim(@Nullable Boolean value) {
@@ -232,6 +250,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * When used in conjunction with <code>calc_interim</code>, specifies the range
+		 * of buckets on which to calculate interim results.
+		 * <p>
 		 * API name: {@code end}
 		 */
 		public Builder end(@Nullable String value) {
@@ -240,6 +261,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * When used in conjunction with calc_interim, specifies the range of buckets on
+		 * which to calculate interim results.
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public Builder start(@Nullable String value) {

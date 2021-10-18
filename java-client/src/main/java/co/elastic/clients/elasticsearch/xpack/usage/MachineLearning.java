@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.elasticsearch.ml.Job;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,8 +31,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +47,10 @@ import javax.annotation.Nullable;
 public final class MachineLearning extends Base {
 	private final Map<String, Datafeed> datafeeds;
 
-	private final Map<String, Job> jobs;
+	private final JsonValue /*
+							 * Union(Dictionary<internal.string, ml._types.Job> (singleKey = false) |
+							 * xpack.usage.AllJobs)
+							 */ jobs;
 
 	private final int nodeCount;
 
@@ -60,7 +64,7 @@ public final class MachineLearning extends Base {
 		super(builder);
 
 		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
-		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
+		this.jobs = Objects.requireNonNull(builder.jobs, "jobs");
 		this.nodeCount = Objects.requireNonNull(builder.nodeCount, "node_count");
 		this.dataFrameAnalyticsJobs = Objects.requireNonNull(builder.dataFrameAnalyticsJobs,
 				"data_frame_analytics_jobs");
@@ -82,7 +86,10 @@ public final class MachineLearning extends Base {
 	/**
 	 * Required - API name: {@code jobs}
 	 */
-	public Map<String, Job> jobs() {
+	public JsonValue /*
+						 * Union(Dictionary<internal.string, ml._types.Job> (singleKey = false) |
+						 * xpack.usage.AllJobs)
+						 */ jobs() {
 		return this.jobs;
 	}
 
@@ -121,13 +128,7 @@ public final class MachineLearning extends Base {
 		generator.writeEnd();
 
 		generator.writeKey("jobs");
-		generator.writeStartObject();
-		for (Map.Entry<String, Job> item0 : this.jobs.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
+		generator.write(this.jobs);
 
 		generator.writeKey("node_count");
 		generator.write(this.nodeCount);
@@ -148,7 +149,10 @@ public final class MachineLearning extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<MachineLearning> {
 		private Map<String, Datafeed> datafeeds;
 
-		private Map<String, Job> jobs;
+		private JsonValue /*
+							 * Union(Dictionary<internal.string, ml._types.Job> (singleKey = false) |
+							 * xpack.usage.AllJobs)
+							 */ jobs;
 
 		private Integer nodeCount;
 
@@ -192,34 +196,12 @@ public final class MachineLearning extends Base {
 		/**
 		 * Required - API name: {@code jobs}
 		 */
-		public Builder jobs(Map<String, Job> value) {
+		public Builder jobs(JsonValue /*
+										 * Union(Dictionary<internal.string, ml._types.Job> (singleKey = false) |
+										 * xpack.usage.AllJobs)
+										 */ value) {
 			this.jobs = value;
 			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #jobs(Map)}, creating the map if needed.
-		 */
-		public Builder putJobs(String key, Job value) {
-			if (this.jobs == null) {
-				this.jobs = new HashMap<>();
-			}
-			this.jobs.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #jobs(Map)} to a singleton map.
-		 */
-		public Builder jobs(String key, Function<Job.Builder, ObjectBuilder<Job>> fn) {
-			return this.jobs(Collections.singletonMap(key, fn.apply(new Job.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #jobs(Map)}, creating the map if needed.
-		 */
-		public Builder putJobs(String key, Function<Job.Builder, ObjectBuilder<Job>> fn) {
-			return this.putJobs(key, fn.apply(new Job.Builder()).build());
 		}
 
 		/**
@@ -289,7 +271,7 @@ public final class MachineLearning extends Base {
 	protected static void setupMachineLearningDeserializer(DelegatingDeserializer<MachineLearning.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::datafeeds, JsonpDeserializer.stringMapDeserializer(Datafeed._DESERIALIZER), "datafeeds");
-		op.add(Builder::jobs, JsonpDeserializer.stringMapDeserializer(Job._DESERIALIZER), "jobs");
+		op.add(Builder::jobs, JsonpDeserializer.jsonValueDeserializer(), "jobs");
 		op.add(Builder::nodeCount, JsonpDeserializer.integerDeserializer(), "node_count");
 		op.add(Builder::dataFrameAnalyticsJobs, MlDataFrameAnalyticsJobs._DESERIALIZER, "data_frame_analytics_jobs");
 		op.add(Builder::inference, MlInference._DESERIALIZER, "inference");

@@ -58,7 +58,6 @@ public final class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	public GeoDistanceQuery(Builder builder) {
 		super(builder);
-
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.location = Objects.requireNonNull(builder.location, "location");
 
@@ -119,12 +118,8 @@ public final class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		// >> AdditionalProperty start
 		generator.writeKey(this.field);
 		generator.write(this.location);
-
-		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 		if (this.distance != null) {
