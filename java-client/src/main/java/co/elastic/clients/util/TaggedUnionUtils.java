@@ -19,6 +19,11 @@
 
 package co.elastic.clients.util;
 
+import co.elastic.clients.json.NdJsonpSerializable;
+
+import java.util.Collections;
+import java.util.Iterator;
+
 public class TaggedUnionUtils {
     public static <V, U extends TaggedUnion<?>> V get(U union, String type) {
         if (union._is(type)) {
@@ -27,6 +32,37 @@ public class TaggedUnionUtils {
             return result;
         } else {
             throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + union._type() + "'.");
+        }
+    }
+
+    public static <T> Iterator<?> ndJsonIterator(TaggedUnion<T> union) {
+
+        T value = union._get();
+
+        if (value instanceof NdJsonpSerializable) {
+            // Iterate on value's items, replacing value, if it appears, by the union. This allows JSON wrapping
+            // done by the container to happen.
+            Iterator<?> valueIterator = ((NdJsonpSerializable) value)._serializables();
+
+            return new Iterator<Object>() {
+                @Override
+                public boolean hasNext() {
+                    return valueIterator.hasNext();
+                }
+
+                @Override
+                public Object next() {
+                    Object next = valueIterator.next();
+                    if (next == value) {
+                        return union;
+                    } else {
+                        return next;
+                    }
+                }
+            };
+        } else {
+            // Nothing to flatten
+            return Collections.singletonList(union).iterator();
         }
     }
 }

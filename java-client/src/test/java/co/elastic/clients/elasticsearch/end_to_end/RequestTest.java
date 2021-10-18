@@ -30,7 +30,7 @@ import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.bulk.ResponseItem;
+import co.elastic.clients.elasticsearch.core.bulk.OperationType;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
@@ -208,20 +208,20 @@ public class RequestTest extends Assert {
         appData.setMsg("Some message");
 
         BulkResponse bulk = client.bulk(_0 -> _0
-            .addOperation(_1 -> _1
+            .addOperations(_1 -> _1
                 .create(_2 -> _2
                     .index("foo")
                     .id("abc")
+                    .document(appData)
                 )
             )
-            .addDocument(appData)
         );
 
         assertFalse(bulk.errors());
         assertEquals(1, bulk.items().size());
-        assertEquals(ResponseItem.CREATE, bulk.items().get(0)._type());
-        assertEquals("foo", bulk.items().get(0).create().index());
-        assertEquals(1L, bulk.items().get(0).create().version().longValue());
+        assertEquals(OperationType.Create, bulk.items().get(0).operationType());
+        assertEquals("foo", bulk.items().get(0).index());
+        assertEquals(1L, bulk.items().get(0).version().longValue());
     }
 
     @Test
