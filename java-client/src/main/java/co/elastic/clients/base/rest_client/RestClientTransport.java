@@ -19,12 +19,13 @@
 
 package co.elastic.clients.base.rest_client;
 
-import co.elastic.clients.base.ApiException;
 import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchCatRequest;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
@@ -222,7 +223,8 @@ public class RestClientTransport implements Transport {
                 error = errorParser.deserialize(parser, mapper);
             }
 
-            throw new ApiException(error);
+            // TODO: have the endpoint provide the exception contructor
+            throw new ElasticsearchException((ErrorResponse) error);
 
         } else if (endpoint instanceof BooleanEndpoint) {
             BooleanEndpoint<?> bep = (BooleanEndpoint<?>)endpoint;

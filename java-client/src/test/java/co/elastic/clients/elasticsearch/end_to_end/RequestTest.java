@@ -19,9 +19,8 @@
 
 package co.elastic.clients.elasticsearch.end_to_end;
 
-import co.elastic.clients.base.ApiException;
 import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.base.rest_client.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
@@ -257,10 +256,10 @@ public class RequestTest extends Assert {
             GetResponse<String> response = client.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
-        } catch(ApiException apie) {
-            ElasticsearchError error = (ElasticsearchError) apie.error();
-            assertEquals(404, error.status());
-            assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
+        } catch(ElasticsearchException ex) {
+            assertEquals(404, ex.status());
+            assertEquals("index_not_found_exception", ex.error().type());
+            assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
         }
 
         try {
@@ -269,10 +268,9 @@ public class RequestTest extends Assert {
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
         } catch(ExecutionException ee) {
-            ApiException apie = ((ApiException) ee.getCause());
-            ElasticsearchError error = (ElasticsearchError) apie.error();
-            assertEquals(404, error.status());
-            assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
+            ElasticsearchException ex = ((ElasticsearchException) ee.getCause());
+            assertEquals(404, ex.status());
+            assertEquals("index_not_found_exception", ex.error().type());
         }
     }
 
