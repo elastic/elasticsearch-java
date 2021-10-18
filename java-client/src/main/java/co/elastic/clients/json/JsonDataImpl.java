@@ -36,6 +36,11 @@ class JsonDataImpl implements JsonData {
     }
 
     @Override
+    public String toString() {
+        return value.toString();
+    }
+
+    @Override
     public JsonValue toJson() {
         return toJson(null);
     }

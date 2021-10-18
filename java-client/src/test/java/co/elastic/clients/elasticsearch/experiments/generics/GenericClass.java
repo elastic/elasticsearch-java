@@ -19,9 +19,9 @@
 
 package co.elastic.clients.elasticsearch.experiments.generics;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -100,7 +100,7 @@ public class GenericClass<GenParam> implements JsonpSerializable {
     }
 
 
-    public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, ElasticsearchError> endpoint(
+    public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, ErrorResponse> endpoint(
         JsonpDeserializer<GenParam> genParamDeserializer
     ) {
         return new SimpleEndpoint<>(

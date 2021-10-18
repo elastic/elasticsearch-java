@@ -19,6 +19,7 @@
 
 package co.elastic.clients.base;
 
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import org.apache.http.client.utils.URLEncodedUtils;
 
@@ -26,7 +27,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 
-public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ElasticsearchError> {
+public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ErrorResponse> {
 
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
 
@@ -99,8 +100,8 @@ public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, R
     }
 
     @Override
-    public JsonpDeserializer<ElasticsearchError> errorParser(int statusCode) {
-        return ElasticsearchError._DESERIALIZER;
+    public JsonpDeserializer<ErrorResponse> errorParser(int statusCode) {
+        return ErrorResponse._DESERIALIZER;
     }
 
     public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT> withResponseDeserializer(
