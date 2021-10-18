@@ -41,11 +41,12 @@ public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializ
      * This structure is flattened in the corresponding Java classes, and this method should be used to register
      * its setter.
      *
-     * @param keySetter the key setter
+     * @param setter the key setter
+     * @param deserializer the key deserializer (from a KEY_NAME event)
      */
-    public abstract void setKey(
-        BiConsumer<ObjectType, String> keySetter
-    );
+    public <FieldType> void setKey(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer) {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Used for internally tagged variants containers to indicate the object's property that defines the variant type

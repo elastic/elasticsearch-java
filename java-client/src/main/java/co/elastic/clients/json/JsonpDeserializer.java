@@ -20,6 +20,7 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.StringEnum;
 import co.elastic.clients.util.TriFunction;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonValue;
@@ -161,7 +162,8 @@ public abstract class JsonpDeserializer<V> {
     //----- Lazily created parser
 
     public static <T> JsonpDeserializer<T> lazy(Supplier<JsonpDeserializer<T>> builder) {
-        return new LazyDeserializer<>(builder, EnumSet.of(Event.START_OBJECT));
+        //return new LazyDeserializer<>(builder, EnumSet.of(Event.START_OBJECT));
+        return new LazyDeserializer<>(builder, EnumSet.allOf(Event.class));
     }
 
     public static <T> JsonpDeserializer<T> lazy(Supplier<JsonpDeserializer<T>> builder, EnumSet<Event> acceptedEvents) {
@@ -278,7 +280,9 @@ public abstract class JsonpDeserializer<V> {
 
     private static final JsonpDeserializer<String> STRING =
         // String parsing is lenient and accepts any other primitive type
-        new JsonpDeserializer<String>(EnumSet.of(Event.VALUE_STRING, Event.VALUE_NUMBER, Event.VALUE_FALSE, Event.VALUE_TRUE)) {
+        new JsonpDeserializer<String>(
+            EnumSet.of(Event.KEY_NAME, Event.VALUE_STRING, Event.VALUE_NUMBER, Event.VALUE_FALSE, Event.VALUE_TRUE)
+        ) {
             @Override
             public String deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
                 if (event == Event.VALUE_TRUE) {
@@ -467,5 +471,34 @@ public abstract class JsonpDeserializer<V> {
 
     public static <T> JsonpDeserializer<Map<String, T>> stringMapDeserializer(JsonpDeserializer<T> itemDeserializer) {
         return new StringMapDeserializer<T>(itemDeserializer);
+    }
+
+    private static class EnumMapDeserializer<K, V> extends JsonpDeserializer<Map<K, V>> {
+        private final JsonpDeserializer<K> keyDeserializer;
+        private final JsonpDeserializer<V> valueDeserializer;
+
+        protected EnumMapDeserializer(JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer) {
+            super(EnumSet.of(Event.START_OBJECT));
+            this.keyDeserializer = keyDeserializer;
+            this.valueDeserializer = valueDeserializer;
+        }
+
+        @Override
+        public Map<K, V> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            Map<K, V> result = new HashMap<>();
+            while ((event = parser.next()) != Event.END_OBJECT) {
+                JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
+                K key = keyDeserializer.deserialize(parser, mapper, event);
+                V value = valueDeserializer.deserialize(parser, mapper);
+                result.put(key, value);
+            }
+            return result;
+        }
+    }
+
+    public static <K extends StringEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
+        JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
+    ) {
+        return new EnumMapDeserializer<K, V>(keyDeserializer, valueDeserializer);
     }
 }
