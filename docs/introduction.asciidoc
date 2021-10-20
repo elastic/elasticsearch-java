@@ -15,9 +15,9 @@ provides strongly typed requests and responses for all {es} APIs.
   readable code when creating complex nested structures.
 * Seamless integration of application classes by using an object mapper such as 
   Jackson or any JSON-B implementation.
-* Delegates protocol handling to an http client such as the Java Low Level REST 
-  Client that takes care of all transport-level concerns: HTTP connection 
-  pooling, retries, node discovery, and so on.
+* Delegates protocol handling to an http client such as the <<java-rest-low>> 
+  that takes care of all transport-level concerns: HTTP connection pooling, 
+  retries, node discovery, and so on.
 
 [discrete]
 === Beta status
