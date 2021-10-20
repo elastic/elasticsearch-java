@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -428,7 +429,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<CcrStatsResponse> stats() throws IOException {
+	public CompletableFuture<CcrStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT);
 	}
 

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ilm.move_to_step.StepKey;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -205,7 +205,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code ilm.move_to_step}".
 	 */
-	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -64,7 +64,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - The ID of the calendar to create
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -73,6 +73,8 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * A description of the calendar.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -112,7 +114,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		private String description;
 
 		/**
-		 * Required - The ID of the calendar to create
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -122,6 +124,8 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * A description of the calendar.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -160,7 +164,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.put_calendar}".
 	 */
-	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

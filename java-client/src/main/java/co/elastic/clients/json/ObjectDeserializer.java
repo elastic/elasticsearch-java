@@ -27,6 +27,7 @@ import jakarta.json.stream.JsonParsingException;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.Supplier;
@@ -43,7 +44,10 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
             this.name = name;
             this.deprecatedNames = deprecatedNames;
         }
+
         public abstract void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object);
+
+        public abstract void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object, Event event);
     }
 
     /** Field deserializer for objects (and boxed primitives) */
@@ -68,25 +72,39 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
             FieldType fieldValue = deserializer.deserialize(parser, mapper);
             setter.accept(object, fieldValue);
         }
+
+        public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object, Event event) {
+            deserializer.ensureAccepts(parser, event);
+            FieldType fieldValue = deserializer.deserialize(parser, mapper, event);
+            setter.accept(object, fieldValue);
+        }
     }
 
-    private static final FieldDeserializer<Object> IGNORED_FIELD = new FieldDeserializer<Object>("-", null) {
+    private static final FieldDeserializer<?> IGNORED_FIELD = new FieldDeserializer<Object>("-", null) {
+
         @Override
         public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, Object object) {
             JsonpUtils.skipValue(parser);
+        }
+
+        @Override
+        public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, Object object, Event event) {
+            JsonpUtils.skipValue(parser, event);
         }
     };
 
     //---------------------------------------------------------------------------------------------
 
     private final Supplier<ObjectType> constructor;
-    protected final Map<String, FieldDeserializer<?>> fieldDeserializers;
-    private BiConsumer<ObjectType, String> keySetter;
+    protected final Map<String, FieldDeserializer<ObjectType>> fieldDeserializers;
+    private FieldDeserializer<ObjectType> singleKey;
     private String typeProperty;
+    private FieldDeserializer<ObjectType> shortcutProperty;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public ObjectDeserializer(Supplier<ObjectType> constructor) {
-        super(EnumSet.of(Event.START_OBJECT));
+        //super(EnumSet.of(Event.START_OBJECT));
+        super(EnumSet.allOf(Event.class));
         this.constructor = constructor;
         this.fieldDeserializers = new HashMap<>();
     }
@@ -96,49 +114,54 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
     }
 
     public ObjectType deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
-        ensureAccepts(parser, event);
         if (event == Event.VALUE_NULL) {
             return null;
         }
 
-        if (keySetter != null) {
-            String key = JsonpUtils.expectKeyName(parser, parser.next());
-            keySetter.accept(value, key);
-            JsonpUtils.expectNextEvent(parser, Event.START_OBJECT);
+        if (singleKey != null) {
+            // There's a wrapping property whose name is the key value
+            event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
+            singleKey.deserialize(parser, mapper, null, value, event);
+            event = parser.next();
         }
 
-        if (typeProperty == null) {
-            // Regular object: read all properties until we reach the end of the object
-            while ((event = parser.next()) != Event.END_OBJECT) {
-
-                JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
-                String fieldName = parser.getString();
-
-                @SuppressWarnings("unchecked")
-                FieldDeserializer<ObjectType> fieldDeserializer = (FieldDeserializer<ObjectType>) fieldDeserializers.get(fieldName);
-                if (fieldDeserializer == null) {
-                    parseUnknownField(parser, mapper, fieldName, value);
-                } else {
-                    fieldDeserializer.deserialize(parser, mapper, fieldName, value);
-                }
-            }
+        if (shortcutProperty != null && event != Event.START_OBJECT) {
+            // This is the shortcut property (should be a value event, this will be checked by its deserializer)
+            shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
 
         } else {
-            // Union variant: find the property to find the proper deserializer
-            Map.Entry<String, JsonParser> unionInfo = JsonpUtils.lookAheadFieldValue(typeProperty, parser, mapper);
-            String variant = unionInfo.getKey();
-            JsonParser innerParser = unionInfo.getValue();
+            JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
+            if (typeProperty == null) {
+                // Regular object: read all properties until we reach the end of the object
+                while ((event = parser.next()) != Event.END_OBJECT) {
 
-            @SuppressWarnings("unchecked")
-            FieldDeserializer<ObjectType> fieldDeserializer = (FieldDeserializer<ObjectType>) fieldDeserializers.get(variant);
-            if (fieldDeserializer == null) {
-                parseUnknownField(parser, mapper, variant, value);
+                    JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
+                    String fieldName = parser.getString();
+
+                    FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(fieldName);
+                    if (fieldDeserializer == null) {
+                        parseUnknownField(parser, mapper, fieldName, value);
+                    } else {
+                        fieldDeserializer.deserialize(parser, mapper, fieldName, value);
+                    }
+                }
+
             } else {
-                fieldDeserializer.deserialize(innerParser, mapper, variant, value);
+                // Union variant: find the property to find the proper deserializer
+                Map.Entry<String, JsonParser> unionInfo = JsonpUtils.lookAheadFieldValue(typeProperty, parser, mapper);
+                String variant = unionInfo.getKey();
+                JsonParser innerParser = unionInfo.getValue();
+
+                FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(variant);
+                if (fieldDeserializer == null) {
+                    parseUnknownField(parser, mapper, variant, value);
+                } else {
+                    fieldDeserializer.deserialize(innerParser, mapper, variant, value);
+                }
             }
         }
 
-        if (keySetter != null) {
+        if (singleKey != null) {
             JsonpUtils.expectNextEvent(parser, Event.END_OBJECT);
         }
 
@@ -164,8 +187,17 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         this.unknownFieldHandler = unknownFieldHandler;
     }
 
+    @SuppressWarnings("unchecked")
     public void ignore(String name) {
-        this.fieldDeserializers.put(name, IGNORED_FIELD);
+        this.fieldDeserializers.put(name, (FieldDeserializer<ObjectType>) IGNORED_FIELD);
+    }
+
+    @Override
+    public void shortcutProperty(String name) {
+        this.shortcutProperty = this.fieldDeserializers.get(name);
+        if (this.shortcutProperty == null) {
+            throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
+        }
     }
 
     //----- Object types
@@ -185,8 +217,8 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
     }
 
     @Override
-    public void setKey(BiConsumer<ObjectType, String> setter) {
-        this.keySetter = setter;
+    public <FieldType> void setKey(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer) {
+        this.singleKey = new FieldObjectDeserializer<>(setter, deserializer, null, null);
     }
 
     @Override

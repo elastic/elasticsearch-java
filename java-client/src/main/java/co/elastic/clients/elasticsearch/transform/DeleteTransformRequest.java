@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -133,7 +133,7 @@ public final class DeleteTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.delete_transform}".
 	 */
-	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

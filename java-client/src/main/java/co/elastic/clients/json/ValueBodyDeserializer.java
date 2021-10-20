@@ -76,15 +76,6 @@ public class ValueBodyDeserializer<ObjectType> extends DelegatingDeserializer<Ob
      * @throws UnsupportedOperationException not implemented.
      */
     @Override
-    public void setKey(BiConsumer<ObjectType, String> setter) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Not supported in this implementation
-     * @throws UnsupportedOperationException not implemented.
-     */
-    @Override
     public void setTypeProperty(String name) {
         throw new UnsupportedOperationException();
     };

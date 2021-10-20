@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 public final class ReadException implements JsonpSerializable {
 	private final ErrorCause exception;
 
-	private final int fromSeqNo;
+	private final long fromSeqNo;
 
 	private final int retries;
 
@@ -71,7 +72,7 @@ public final class ReadException implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code from_seq_no}
 	 */
-	public int fromSeqNo() {
+	public long fromSeqNo() {
 		return this.fromSeqNo;
 	}
 
@@ -112,7 +113,7 @@ public final class ReadException implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ReadException> {
 		private ErrorCause exception;
 
-		private Integer fromSeqNo;
+		private Long fromSeqNo;
 
 		private Integer retries;
 
@@ -134,7 +135,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code from_seq_no}
 		 */
-		public Builder fromSeqNo(int value) {
+		public Builder fromSeqNo(long value) {
 			this.fromSeqNo = value;
 			return this;
 		}
@@ -170,7 +171,7 @@ public final class ReadException implements JsonpSerializable {
 	protected static void setupReadExceptionDeserializer(DelegatingDeserializer<ReadException.Builder> op) {
 
 		op.add(Builder::exception, ErrorCause._DESERIALIZER, "exception");
-		op.add(Builder::fromSeqNo, JsonpDeserializer.integerDeserializer(), "from_seq_no");
+		op.add(Builder::fromSeqNo, JsonpDeserializer.longDeserializer(), "from_seq_no");
 		op.add(Builder::retries, JsonpDeserializer.integerDeserializer(), "retries");
 
 	}

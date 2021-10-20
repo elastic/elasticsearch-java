@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -186,7 +187,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<EnrichStatsResponse> stats() throws IOException {
+	public CompletableFuture<EnrichStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT);
 	}
 

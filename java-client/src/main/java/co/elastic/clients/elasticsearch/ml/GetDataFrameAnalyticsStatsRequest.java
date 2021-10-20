@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -89,9 +89,19 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no data frame analytics.
-	 * (This includes <code>_all</code> string or when no data frame analytics have
-	 * been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+	 * that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * The default value returns an empty data_frame_analytics array when there are
+	 * no matches and the subset of results when there are partial matches. If this
+	 * parameter is <code>false</code>, the request returns a 404 status code when
+	 * there are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -164,9 +174,19 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no data frame analytics.
-		 * (This includes <code>_all</code> string or when no data frame analytics have
-		 * been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+		 * that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * The default value returns an empty data_frame_analytics array when there are
+		 * no matches and the subset of results when there are partial matches. If this
+		 * parameter is <code>false</code>, the request returns a 404 status code when
+		 * there are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -222,7 +242,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_data_frame_analytics_stats}".
 	 */
-	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

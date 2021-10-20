@@ -19,8 +19,15 @@
 
 package co.elastic.clients.json;
 
+import java.util.Iterator;
+
 /**
  * Marks a class a being serialized as nd-json (e.g. bulk requests).
+ * <p>
+ * If an item returned by the iterator implements {@link NdJsonpSerializable}, it should also be output as nd-json.
+ * This allows flattening nested structures (e.g. a bulk index operation and its document). However, if this object returns itself
+ * as part of the iterator values, it then has to be serialized and not flattened again (which would lead to an infinite loop).
  */
-public interface NdJsonpSerializable<T> extends Iterable<T> {
+public interface NdJsonpSerializable {
+    Iterator<?> _serializables();
 }

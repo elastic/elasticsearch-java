@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.mget.Operation;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -617,7 +617,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Create an "{@code mget}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MgetRequest, MgetResponse<TDocument>, ElasticsearchError> createMgetEndpoint(
+	public static <TDocument> Endpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> createMgetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(MgetResponse.createMgetResponseDeserializer(tDocumentDeserializer));
 	}

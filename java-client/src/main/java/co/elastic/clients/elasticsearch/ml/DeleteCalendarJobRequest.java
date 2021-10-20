@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -60,7 +60,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the calendar to modify
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -69,7 +69,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to remove from the calendar
+	 * Required - An identifier for the anomaly detection jobs. It can be a job
+	 * identifier, a group name, or a comma-separated list of jobs or groups.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -88,7 +89,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		private String jobId;
 
 		/**
-		 * Required - The ID of the calendar to modify
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -98,7 +99,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The ID of the job to remove from the calendar
+		 * Required - An identifier for the anomaly detection jobs. It can be a job
+		 * identifier, a group name, or a comma-separated list of jobs or groups.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -124,7 +126,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_calendar_job}".
 	 */
-	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

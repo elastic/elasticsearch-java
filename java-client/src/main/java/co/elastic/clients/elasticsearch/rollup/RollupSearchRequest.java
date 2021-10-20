@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -400,7 +400,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Create an "{@code rollup.rollup_search}" endpoint.
 	 */
-	public static <TDocument> Endpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ElasticsearchError> createRollupSearchEndpoint(
+	public static <TDocument> Endpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> createRollupSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				RollupSearchResponse.createRollupSearchResponseDeserializer(tDocumentDeserializer));

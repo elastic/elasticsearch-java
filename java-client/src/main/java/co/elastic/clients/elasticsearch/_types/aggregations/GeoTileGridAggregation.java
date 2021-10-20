@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 public final class GeoTileGridAggregation extends BucketAggregationBase
 		implements
 			AggregationVariant,
-			PivotGroupByVariant,
-			CompositeAggregationSourceVariant {
+			PivotGroupByVariant {
 	@Nullable
 	private final String field;
 
@@ -80,8 +79,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	}
 
 	/**
-	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
-	 * variant type
+	 * {@link Aggregation}, {@link PivotGroupBy} variant type
 	 */
 	@Override
 	public String _variantType() {

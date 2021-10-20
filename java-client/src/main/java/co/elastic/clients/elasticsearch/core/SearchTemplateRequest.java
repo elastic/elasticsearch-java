@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
@@ -734,7 +734,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Create an "{@code search_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ElasticsearchError> createSearchTemplateEndpoint(
+	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> createSearchTemplateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				SearchTemplateResponse.createSearchTemplateResponseDeserializer(tDocumentDeserializer));

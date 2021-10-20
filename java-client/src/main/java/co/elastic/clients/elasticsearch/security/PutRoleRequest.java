@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -610,7 +610,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code security.put_role}".
 	 */
-	public static final Endpoint<PutRoleRequest, PutRoleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutRoleRequest, PutRoleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

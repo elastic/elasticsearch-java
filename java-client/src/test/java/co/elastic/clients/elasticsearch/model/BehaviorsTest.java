@@ -21,11 +21,15 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.base.ElasticsearchCatRequest;
 import co.elastic.clients.base.ElasticsearchCommonRequest;
+import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch._types.ShapeRelation;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.cat.ShardsRequest;
+import co.elastic.clients.json.JsonData;
 import org.junit.Test;
 
 public class BehaviorsTest extends ModelTestCase {
@@ -64,6 +68,43 @@ public class BehaviorsTest extends ModelTestCase {
         assertTrue(q.shape().ignoreUnmapped());
         assertEquals(ShapeRelation.Disjoint, q.shape().relation());
         System.out.println(toJson(q));
+    }
+
+    @Test
+    public void testAdditionalProperties() {
+        // Check that additional property map is initialized even if not set explicitly
+        ErrorCause err = new ErrorCause.Builder()
+            .reason("Foo")
+            .build();
+        assertEquals(0, err.metadata().size());
+
+        err = new ErrorCause.Builder()
+            .reason("Some failure")
+            .type("Some type")
+            .putMetadata("index", JsonData.of("test"))
+            .putMetadata("retries", JsonData.of(1))
+            .build();
+
+        err = checkJsonRoundtrip(err, "{\"retries\":1,\"index\":\"test\",\"type\":\"Some type\",\"reason\":\"Some failure\"}");
+
+        assertEquals("Some failure", err.reason());
+        assertEquals(1, err.metadata().get("retries").to(int.class).intValue());
+        assertEquals("test", err.metadata().get("index").to(String.class));
+    }
+
+    @Test
+    public void testShortcutProperty() {
+
+        String json = "{\"error\":\"Some error\",\"status\":400}";
+        ErrorResponse e = fromJson(json, ErrorResponse.class);
+        assertEquals("Some error", e.error().reason());
+
+        // All-in-one: a variant, wrapping a single-key dictionary with a shortcut property
+        json = "{\"term\":{\"some-field\":\"some-value\"}}";
+        Query q = fromJson(json, Query.class);
+
+        assertEquals("some-field", q.term().field());
+        assertEquals("some-value", q.term().value());
     }
 
     @Test

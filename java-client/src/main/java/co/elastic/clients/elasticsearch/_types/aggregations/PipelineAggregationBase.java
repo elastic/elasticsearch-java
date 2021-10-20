@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,7 +41,10 @@ import javax.annotation.Nullable;
 
 public abstract class PipelineAggregationBase extends AggregationBase {
 	@Nullable
-	private final String bucketsPath;
+	private final JsonValue /*
+							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>
+							 * (singleKey = false))
+							 */ bucketsPath;
 
 	@Nullable
 	private final String format;
@@ -63,7 +67,10 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code buckets_path}
 	 */
 	@Nullable
-	public String bucketsPath() {
+	public JsonValue /*
+						 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>
+						 * (singleKey = false))
+						 */ bucketsPath() {
 		return this.bucketsPath;
 	}
 
@@ -110,7 +117,10 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 			extends
 				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private String bucketsPath;
+		private JsonValue /*
+							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>
+							 * (singleKey = false))
+							 */ bucketsPath;
 
 		@Nullable
 		private String format;
@@ -121,7 +131,10 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code buckets_path}
 		 */
-		public BuilderT bucketsPath(@Nullable String value) {
+		public BuilderT bucketsPath(@Nullable JsonValue /*
+														 * Union(Array<internal.string> | Dictionary<internal.string,
+														 * internal.string> (singleKey = false))
+														 */ value) {
 			this.bucketsPath = value;
 			return self();
 		}
@@ -148,7 +161,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
-		op.add(AbstractBuilder::bucketsPath, JsonpDeserializer.stringDeserializer(), "buckets_path");
+		op.add(AbstractBuilder::bucketsPath, JsonpDeserializer.jsonValueDeserializer(), "buckets_path");
 		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(AbstractBuilder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
 

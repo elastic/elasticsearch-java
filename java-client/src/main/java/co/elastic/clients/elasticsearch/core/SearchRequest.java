@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
@@ -2659,7 +2659,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Create an "{@code search}" endpoint.
 	 */
-	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ElasticsearchError> createSearchEndpoint(
+	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> createSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer));

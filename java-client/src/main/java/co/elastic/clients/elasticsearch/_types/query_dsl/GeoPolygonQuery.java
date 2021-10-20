@@ -54,7 +54,6 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 
 	public GeoPolygonQuery(Builder builder) {
 		super(builder);
-
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.polygon = Objects.requireNonNull(builder.polygon, "polygon");
 
@@ -106,12 +105,8 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		// >> AdditionalProperty start
 		generator.writeKey(this.field);
 		this.polygon.serialize(generator, mapper);
-
-		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 		if (this.validationMethod != null) {

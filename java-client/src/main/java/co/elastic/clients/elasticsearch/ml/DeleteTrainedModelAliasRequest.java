@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -60,7 +60,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The trained model alias to delete
+	 * Required - The model alias to delete.
 	 * <p>
 	 * API name: {@code model_alias}
 	 */
@@ -69,7 +69,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The trained model where the model alias is assigned
+	 * Required - The trained model ID to which the model alias refers.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -88,7 +88,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		private String modelId;
 
 		/**
-		 * Required - The trained model alias to delete
+		 * Required - The model alias to delete.
 		 * <p>
 		 * API name: {@code model_alias}
 		 */
@@ -98,7 +98,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The trained model where the model alias is assigned
+		 * Required - The trained model ID to which the model alias refers.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -124,7 +124,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_trained_model_alias}".
 	 */
-	public static final Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

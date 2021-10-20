@@ -19,12 +19,13 @@
 
 package co.elastic.clients.base.rest_client;
 
-import co.elastic.clients.base.ApiException;
 import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchCatRequest;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
@@ -43,6 +44,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -168,8 +170,8 @@ public class RestClientTransport implements Transport {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-            if (request instanceof NdJsonpSerializable<?>) {
-                writeNdJson((NdJsonpSerializable<?>) request, baos);
+            if (request instanceof NdJsonpSerializable) {
+                writeNdJson((NdJsonpSerializable) request, baos);
             } else {
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(request, generator);
@@ -184,15 +186,15 @@ public class RestClientTransport implements Transport {
     }
 
     /**
-     * Write an nd-json value by serializing each of its items on a separate line.
-     * <p>
-     * If an item itself implements {@link NdJsonpSerializable}, it is output as nd-json. This allows flattening
-     * nested structures.
+     * Write an nd-json value by serializing each of its items on a separate line, recursing if its items themselves implement
+     * {@link NdJsonpSerializable} to flattening nested structures.
      */
-    private void writeNdJson(NdJsonpSerializable<?> value, ByteArrayOutputStream baos) {
-        for (Object item: value) {
-            if (item instanceof NdJsonpSerializable<?>) {
-                writeNdJson((NdJsonpSerializable<?>) item, baos);
+    private void writeNdJson(NdJsonpSerializable value, ByteArrayOutputStream baos) {
+        Iterator<?> values = value._serializables();
+        while(values.hasNext()) {
+            Object item = values.next();
+            if (item instanceof NdJsonpSerializable && item != value) { // do not recurse on the item itself
+                writeNdJson((NdJsonpSerializable) item, baos);
             } else {
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(item, generator);
@@ -221,7 +223,8 @@ public class RestClientTransport implements Transport {
                 error = errorParser.deserialize(parser, mapper);
             }
 
-            throw new ApiException(error);
+            // TODO: have the endpoint provide the exception contructor
+            throw new ElasticsearchException((ErrorResponse) error);
 
         } else if (endpoint instanceof BooleanEndpoint) {
             BooleanEndpoint<?> bep = (BooleanEndpoint<?>)endpoint;

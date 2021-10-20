@@ -291,7 +291,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TSource> CompletableFuture<BulkResponse> bulk(BulkRequest<TSource> request) throws IOException {
+	public CompletableFuture<BulkResponse> bulk(BulkRequest request) throws IOException {
 		return this.transport.performRequestAsync(request, BulkRequest.ENDPOINT);
 	}
 
@@ -308,9 +308,22 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public final <TSource> CompletableFuture<BulkResponse> bulk(
-			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
+	public final CompletableFuture<BulkResponse> bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
+			throws IOException {
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows to perform multiple index/update/delete operations in a single
+	 * request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<BulkResponse> bulk() throws IOException {
+		return this.transport.performRequestAsync(new BulkRequest.Builder().build(), BulkRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: clear_scroll
@@ -813,7 +826,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException {
+	public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
 	}
 
@@ -826,7 +839,8 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException {
+	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetScriptLanguagesRequest._INSTANCE,
 				GetScriptLanguagesRequest.ENDPOINT);
 	}
@@ -905,7 +919,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<InfoResponse> info() throws IOException {
+	public CompletableFuture<InfoResponse> info() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
 	}
 
@@ -1096,7 +1110,7 @@ public class ElasticsearchAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<BooleanResponse> ping() throws IOException {
+	public CompletableFuture<BooleanResponse> ping() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(PingRequest._INSTANCE, PingRequest.ENDPOINT);
 	}
 

@@ -23,24 +23,25 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.OperationContainer
-@JsonpDeserializable
-public class Operation implements TaggedUnion<Object>, JsonpSerializable {
+
+public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, JsonpSerializable {
 
 	public static final String INDEX = "index";
 	public static final String CREATE = "create";
@@ -84,13 +85,17 @@ public class Operation implements TaggedUnion<Object>, JsonpSerializable {
 		this(fn.apply(new Builder()));
 	}
 
+	@Override
+	public Iterator<?> _serializables() {
+		return TaggedUnionUtils.ndJsonIterator(this);
+	}
 	/**
 	 * Get the {@code index} variant value.
 	 *
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code index} kind.
 	 */
-	public IndexOperation index() {
+	public <TDocument> IndexOperation<TDocument> index() {
 		return TaggedUnionUtils.get(this, INDEX);
 	}
 
@@ -100,7 +105,7 @@ public class Operation implements TaggedUnion<Object>, JsonpSerializable {
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code create} kind.
 	 */
-	public CreateOperation create() {
+	public <TDocument> CreateOperation<TDocument> create() {
 		return TaggedUnionUtils.get(this, CREATE);
 	}
 
@@ -110,7 +115,7 @@ public class Operation implements TaggedUnion<Object>, JsonpSerializable {
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code update} kind.
 	 */
-	public UpdateOperation update() {
+	public <TDocument> UpdateOperation<TDocument> update() {
 		return TaggedUnionUtils.get(this, UPDATE);
 	}
 
@@ -141,34 +146,37 @@ public class Operation implements TaggedUnion<Object>, JsonpSerializable {
 		private String _type;
 		private Object _value;
 
-		public Builder index(IndexOperation v) {
+		public <TDocument> Builder index(IndexOperation<TDocument> v) {
 			this._type = INDEX;
 			this._value = v;
 			return this;
 		}
 
-		public Builder index(Function<IndexOperation.Builder, ObjectBuilder<IndexOperation>> f) {
-			return this.index(f.apply(new IndexOperation.Builder()).build());
+		public <TDocument> Builder index(
+				Function<IndexOperation.Builder<TDocument>, ObjectBuilder<IndexOperation<TDocument>>> f) {
+			return this.index(f.apply(new IndexOperation.Builder<TDocument>()).build());
 		}
 
-		public Builder create(CreateOperation v) {
+		public <TDocument> Builder create(CreateOperation<TDocument> v) {
 			this._type = CREATE;
 			this._value = v;
 			return this;
 		}
 
-		public Builder create(Function<CreateOperation.Builder, ObjectBuilder<CreateOperation>> f) {
-			return this.create(f.apply(new CreateOperation.Builder()).build());
+		public <TDocument> Builder create(
+				Function<CreateOperation.Builder<TDocument>, ObjectBuilder<CreateOperation<TDocument>>> f) {
+			return this.create(f.apply(new CreateOperation.Builder<TDocument>()).build());
 		}
 
-		public Builder update(UpdateOperation v) {
+		public <TDocument> Builder update(UpdateOperation<TDocument> v) {
 			this._type = UPDATE;
 			this._value = v;
 			return this;
 		}
 
-		public Builder update(Function<UpdateOperation.Builder, ObjectBuilder<UpdateOperation>> f) {
-			return this.update(f.apply(new UpdateOperation.Builder()).build());
+		public <TDocument> Builder update(
+				Function<UpdateOperation.Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> f) {
+			return this.update(f.apply(new UpdateOperation.Builder<TDocument>()).build());
 		}
 
 		public Builder delete(DeleteOperation v) {
@@ -187,15 +195,4 @@ public class Operation implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupOperationDeserializer(DelegatingDeserializer<Builder> op) {
-
-		op.add(Builder::index, IndexOperation._DESERIALIZER, "index");
-		op.add(Builder::create, CreateOperation._DESERIALIZER, "create");
-		op.add(Builder::update, UpdateOperation._DESERIALIZER, "update");
-		op.add(Builder::delete, DeleteOperation._DESERIALIZER, "delete");
-
-	}
-
-	public static final JsonpDeserializer<Operation> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
-			Operation::setupOperationDeserializer, Builder::build);
 }

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +48,9 @@ import javax.annotation.Nullable;
 public final class RangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
+
+	@Nullable
+	private final Integer missing;
 
 	@Nullable
 	private final List<AggregationRange> ranges;
@@ -63,6 +67,7 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		super(builder);
 
 		this.field = builder.field;
+		this.missing = builder.missing;
 		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
 		this.script = builder.script;
 		this.keyed = builder.keyed;
@@ -87,6 +92,14 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 	@Nullable
 	public String field() {
 		return this.field;
+	}
+
+	/**
+	 * API name: {@code missing}
+	 */
+	@Nullable
+	public Integer missing() {
+		return this.missing;
 	}
 
 	/**
@@ -120,6 +133,12 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 
 			generator.writeKey("field");
 			generator.write(this.field);
+
+		}
+		if (this.missing != null) {
+
+			generator.writeKey("missing");
+			generator.write(this.missing);
 
 		}
 		if (this.ranges != null) {
@@ -160,6 +179,9 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		private String field;
 
 		@Nullable
+		private Integer missing;
+
+		@Nullable
 		private List<AggregationRange> ranges;
 
 		@Nullable
@@ -173,6 +195,14 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		 */
 		public Builder field(@Nullable String value) {
 			this.field = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public Builder missing(@Nullable Integer value) {
+			this.missing = value;
 			return this;
 		}
 
@@ -261,6 +291,7 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 	protected static void setupRangeAggregationDeserializer(DelegatingDeserializer<RangeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::missing, JsonpDeserializer.integerDeserializer(), "missing");
 		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");

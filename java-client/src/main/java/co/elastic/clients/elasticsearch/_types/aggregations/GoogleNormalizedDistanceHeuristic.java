@@ -35,17 +35,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
 @JsonpDeserializable
 public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
-	private final boolean backgroundIsSuperset;
+	@Nullable
+	private final Boolean backgroundIsSuperset;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GoogleNormalizedDistanceHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
+		this.backgroundIsSuperset = builder.backgroundIsSuperset;
 
 	}
 
@@ -54,9 +56,10 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - API name: {@code background_is_superset}
+	 * API name: {@code background_is_superset}
 	 */
-	public boolean backgroundIsSuperset() {
+	@Nullable
+	public Boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
@@ -71,8 +74,12 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("background_is_superset");
-		generator.write(this.backgroundIsSuperset);
+		if (this.backgroundIsSuperset != null) {
+
+			generator.writeKey("background_is_superset");
+			generator.write(this.backgroundIsSuperset);
+
+		}
 
 	}
 
@@ -82,12 +89,13 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 	 * Builder for {@link GoogleNormalizedDistanceHeuristic}.
 	 */
 	public static class Builder implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
+		@Nullable
 		private Boolean backgroundIsSuperset;
 
 		/**
-		 * Required - API name: {@code background_is_superset}
+		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(boolean value) {
+		public Builder backgroundIsSuperset(@Nullable Boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}

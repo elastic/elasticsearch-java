@@ -50,6 +50,9 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 	@Nullable
 	private final String nullValue;
 
+	@Nullable
+	private final Boolean ignoreMalformed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public IpProperty(Builder builder) {
@@ -58,6 +61,7 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		this.boost = builder.boost;
 		this.index = builder.index;
 		this.nullValue = builder.nullValue;
+		this.ignoreMalformed = builder.ignoreMalformed;
 
 	}
 
@@ -97,6 +101,14 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		return this.nullValue;
 	}
 
+	/**
+	 * API name: {@code ignore_malformed}
+	 */
+	@Nullable
+	public Boolean ignoreMalformed() {
+		return this.ignoreMalformed;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "ip");
@@ -119,6 +131,12 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 			generator.write(this.nullValue);
 
 		}
+		if (this.ignoreMalformed != null) {
+
+			generator.writeKey("ignore_malformed");
+			generator.write(this.ignoreMalformed);
+
+		}
 
 	}
 
@@ -138,6 +156,9 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 
 		@Nullable
 		private String nullValue;
+
+		@Nullable
+		private Boolean ignoreMalformed;
 
 		/**
 		 * API name: {@code boost}
@@ -160,6 +181,14 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		 */
 		public Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_malformed}
+		 */
+		public Builder ignoreMalformed(@Nullable Boolean value) {
+			this.ignoreMalformed = value;
 			return this;
 		}
 
@@ -193,6 +222,7 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 
 		op.ignore("type");
 	}

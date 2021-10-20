@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -322,7 +323,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StartWatcherResponse start() throws IOException {
+	public StartWatcherResponse start() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT);
 	}
 
@@ -378,7 +379,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public StopWatcherResponse stop() throws IOException {
+	public StopWatcherResponse stop() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT);
 	}
 

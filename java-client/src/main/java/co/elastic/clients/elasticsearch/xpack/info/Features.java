@@ -91,6 +91,7 @@ public final class Features implements JsonpSerializable {
 
 	private final Feature transform;
 
+	@Nullable
 	private final Feature vectors;
 
 	private final Feature votingOnly;
@@ -125,7 +126,7 @@ public final class Features implements JsonpSerializable {
 		this.spatial = Objects.requireNonNull(builder.spatial, "spatial");
 		this.sql = Objects.requireNonNull(builder.sql, "sql");
 		this.transform = Objects.requireNonNull(builder.transform, "transform");
-		this.vectors = Objects.requireNonNull(builder.vectors, "vectors");
+		this.vectors = builder.vectors;
 		this.votingOnly = Objects.requireNonNull(builder.votingOnly, "voting_only");
 		this.watcher = Objects.requireNonNull(builder.watcher, "watcher");
 
@@ -308,8 +309,9 @@ public final class Features implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code vectors}
+	 * API name: {@code vectors}
 	 */
+	@Nullable
 	public Feature vectors() {
 		return this.vectors;
 	}
@@ -426,8 +428,12 @@ public final class Features implements JsonpSerializable {
 		generator.writeKey("transform");
 		this.transform.serialize(generator, mapper);
 
-		generator.writeKey("vectors");
-		this.vectors.serialize(generator, mapper);
+		if (this.vectors != null) {
+
+			generator.writeKey("vectors");
+			this.vectors.serialize(generator, mapper);
+
+		}
 
 		generator.writeKey("voting_only");
 		this.votingOnly.serialize(generator, mapper);
@@ -495,6 +501,7 @@ public final class Features implements JsonpSerializable {
 
 		private Feature transform;
 
+		@Nullable
 		private Feature vectors;
 
 		private Feature votingOnly;
@@ -862,15 +869,15 @@ public final class Features implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vectors}
+		 * API name: {@code vectors}
 		 */
-		public Builder vectors(Feature value) {
+		public Builder vectors(@Nullable Feature value) {
 			this.vectors = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code vectors}
+		 * API name: {@code vectors}
 		 */
 		public Builder vectors(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.vectors(fn.apply(new Feature.Builder()).build());

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -49,7 +50,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<DeleteLicenseResponse> delete() throws IOException {
+	public CompletableFuture<DeleteLicenseResponse> delete() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT);
 	}
 
@@ -105,7 +106,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetBasicStatusResponse> getBasicStatus() throws IOException {
+	public CompletableFuture<GetBasicStatusResponse> getBasicStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest.ENDPOINT);
 	}
 
@@ -118,7 +119,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetTrialStatusResponse> getTrialStatus() throws IOException {
+	public CompletableFuture<GetTrialStatusResponse> getTrialStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest.ENDPOINT);
 	}
 

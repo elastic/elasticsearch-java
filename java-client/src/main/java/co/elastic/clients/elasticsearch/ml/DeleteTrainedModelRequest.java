@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -57,7 +57,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the trained model to delete
+	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 		private String modelId;
 
 		/**
-		 * Required - The ID of the trained model to delete
+		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -100,7 +100,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_trained_model}".
 	 */
-	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

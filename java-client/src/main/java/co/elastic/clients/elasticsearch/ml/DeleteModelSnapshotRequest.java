@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -60,7 +60,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to fetch
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -69,7 +69,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the snapshot to delete
+	 * Required - Identifier for the model snapshot.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -88,7 +88,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		private String snapshotId;
 
 		/**
-		 * Required - The ID of the job to fetch
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -98,7 +98,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The ID of the snapshot to delete
+		 * Required - Identifier for the model snapshot.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
@@ -124,7 +124,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_model_snapshot}".
 	 */
-	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

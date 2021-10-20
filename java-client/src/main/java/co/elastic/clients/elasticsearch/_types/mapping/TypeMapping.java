@@ -92,6 +92,9 @@ public final class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final Map<String, RuntimeField> runtime;
 
+	@Nullable
+	private final Boolean enabled;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public TypeMapping(Builder builder) {
@@ -110,6 +113,7 @@ public final class TypeMapping implements JsonpSerializable {
 		this.size = builder.size;
 		this.source = builder.source;
 		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
+		this.enabled = builder.enabled;
 
 	}
 
@@ -227,6 +231,14 @@ public final class TypeMapping implements JsonpSerializable {
 	@Nullable
 	public Map<String, RuntimeField> runtime() {
 		return this.runtime;
+	}
+
+	/**
+	 * API name: {@code enabled}
+	 */
+	@Nullable
+	public Boolean enabled() {
+		return this.enabled;
 	}
 
 	/**
@@ -358,6 +370,12 @@ public final class TypeMapping implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.enabled != null) {
+
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
+
+		}
 
 	}
 
@@ -408,6 +426,9 @@ public final class TypeMapping implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, RuntimeField> runtime;
+
+		@Nullable
+		private Boolean enabled;
 
 		/**
 		 * API name: {@code all_field}
@@ -665,6 +686,14 @@ public final class TypeMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code enabled}
+		 */
+		public Builder enabled(@Nullable Boolean value) {
+			this.enabled = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link TypeMapping}.
 		 *
 		 * @throws NullPointerException
@@ -702,6 +731,7 @@ public final class TypeMapping implements JsonpSerializable {
 		op.add(Builder::size, SizeField._DESERIALIZER, "_size");
 		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

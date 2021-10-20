@@ -33,14 +33,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _global.bulk.Operation
+// typedef: _global.bulk.OperationBase
 
 public abstract class OperationBase implements JsonpSerializable {
 	@Nullable
@@ -50,10 +49,13 @@ public abstract class OperationBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
-	private final Integer retryOnConflict;
+	private final String routing;
 
 	@Nullable
-	private final String routing;
+	private final Long ifPrimaryTerm;
+
+	@Nullable
+	private final Long ifSeqNo;
 
 	@Nullable
 	private final Long version;
@@ -67,8 +69,9 @@ public abstract class OperationBase implements JsonpSerializable {
 
 		this.id = builder.id;
 		this.index = builder.index;
-		this.retryOnConflict = builder.retryOnConflict;
 		this.routing = builder.routing;
+		this.ifPrimaryTerm = builder.ifPrimaryTerm;
+		this.ifSeqNo = builder.ifSeqNo;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -91,19 +94,27 @@ public abstract class OperationBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code retry_on_conflict}
-	 */
-	@Nullable
-	public Integer retryOnConflict() {
-		return this.retryOnConflict;
-	}
-
-	/**
 	 * API name: {@code routing}
 	 */
 	@Nullable
 	public String routing() {
 		return this.routing;
+	}
+
+	/**
+	 * API name: {@code if_primary_term}
+	 */
+	@Nullable
+	public Long ifPrimaryTerm() {
+		return this.ifPrimaryTerm;
+	}
+
+	/**
+	 * API name: {@code if_seq_no}
+	 */
+	@Nullable
+	public Long ifSeqNo() {
+		return this.ifSeqNo;
 	}
 
 	/**
@@ -145,16 +156,22 @@ public abstract class OperationBase implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (this.retryOnConflict != null) {
-
-			generator.writeKey("retry_on_conflict");
-			generator.write(this.retryOnConflict);
-
-		}
 		if (this.routing != null) {
 
 			generator.writeKey("routing");
 			generator.write(this.routing);
+
+		}
+		if (this.ifPrimaryTerm != null) {
+
+			generator.writeKey("if_primary_term");
+			generator.write(this.ifPrimaryTerm);
+
+		}
+		if (this.ifSeqNo != null) {
+
+			generator.writeKey("if_seq_no");
+			generator.write(this.ifSeqNo);
 
 		}
 		if (this.version != null) {
@@ -179,10 +196,13 @@ public abstract class OperationBase implements JsonpSerializable {
 		private String index;
 
 		@Nullable
-		private Integer retryOnConflict;
+		private String routing;
 
 		@Nullable
-		private String routing;
+		private Long ifPrimaryTerm;
+
+		@Nullable
+		private Long ifSeqNo;
 
 		@Nullable
 		private Long version;
@@ -207,18 +227,26 @@ public abstract class OperationBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retry_on_conflict}
-		 */
-		public BuilderT retryOnConflict(@Nullable Integer value) {
-			this.retryOnConflict = value;
-			return self();
-		}
-
-		/**
 		 * API name: {@code routing}
 		 */
 		public BuilderT routing(@Nullable String value) {
 			this.routing = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code if_primary_term}
+		 */
+		public BuilderT ifPrimaryTerm(@Nullable Long value) {
+			this.ifPrimaryTerm = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code if_seq_no}
+		 */
+		public BuilderT ifSeqNo(@Nullable Long value) {
+			this.ifSeqNo = value;
 			return self();
 		}
 
@@ -248,8 +276,9 @@ public abstract class OperationBase implements JsonpSerializable {
 
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(AbstractBuilder::retryOnConflict, JsonpDeserializer.integerDeserializer(), "retry_on_conflict");
 		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(AbstractBuilder::ifPrimaryTerm, JsonpDeserializer.longDeserializer(), "if_primary_term");
+		op.add(AbstractBuilder::ifSeqNo, JsonpDeserializer.longDeserializer(), "if_seq_no");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(AbstractBuilder::versionType, VersionType._DESERIALIZER, "version_type");
 

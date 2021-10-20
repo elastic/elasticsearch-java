@@ -41,6 +41,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.MatchBoolPrefixQuery
 @JsonpDeserializable
 public final class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -101,8 +102,6 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -235,6 +234,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		generator.write(this.query);
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -249,8 +249,6 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -393,7 +391,8 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		op.add(Builder::prefixLength, JsonpDeserializer.integerDeserializer(), "prefix_length");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("query");
 
 	}
 

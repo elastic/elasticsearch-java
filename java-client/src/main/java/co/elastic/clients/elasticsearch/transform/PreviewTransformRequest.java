@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
@@ -571,7 +571,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Create an "{@code transform.preview_transform}" endpoint.
 	 */
-	public static <TTransform> Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ElasticsearchError> createPreviewTransformEndpoint(
+	public static <TTransform> Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> createPreviewTransformEndpoint(
 			JsonpDeserializer<TTransform> tTransformDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				PreviewTransformResponse.createPreviewTransformResponseDeserializer(tTransformDeserializer));

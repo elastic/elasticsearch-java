@@ -19,9 +19,9 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.experiments.api.query.Query;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -297,7 +297,7 @@ public class FooRequest implements JsonpSerializable {
   // Endpoint
   //===========================================
 
-  public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOINT =
+  public static final Endpoint<FooRequest, FooResponse, ErrorResponse> ENDPOINT =
     new SimpleEndpoint<>(
       r -> "POST",
       r -> "/foo",

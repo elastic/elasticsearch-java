@@ -19,9 +19,8 @@
 
 package co.elastic.clients.elasticsearch.end_to_end;
 
-import co.elastic.clients.base.ApiException;
 import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.base.rest_client.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
@@ -30,7 +29,7 @@ import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.bulk.ResponseItem;
+import co.elastic.clients.elasticsearch.core.bulk.OperationType;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
@@ -208,20 +207,20 @@ public class RequestTest extends Assert {
         appData.setMsg("Some message");
 
         BulkResponse bulk = client.bulk(_0 -> _0
-            .addOperation(_1 -> _1
+            .addOperations(_1 -> _1
                 .create(_2 -> _2
                     .index("foo")
                     .id("abc")
+                    .document(appData)
                 )
             )
-            .addDocument(appData)
         );
 
         assertFalse(bulk.errors());
         assertEquals(1, bulk.items().size());
-        assertEquals(ResponseItem.CREATE, bulk.items().get(0)._type());
-        assertEquals("foo", bulk.items().get(0).create().index());
-        assertEquals(1L, bulk.items().get(0).create().version().longValue());
+        assertEquals(OperationType.Create, bulk.items().get(0).operationType());
+        assertEquals("foo", bulk.items().get(0).index());
+        assertEquals(1L, bulk.items().get(0).version().longValue());
     }
 
     @Test
@@ -257,10 +256,10 @@ public class RequestTest extends Assert {
             GetResponse<String> response = client.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
-        } catch(ApiException apie) {
-            ElasticsearchError error = (ElasticsearchError) apie.error();
-            assertEquals(404, error.status());
-            assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
+        } catch(ElasticsearchException ex) {
+            assertEquals(404, ex.status());
+            assertEquals("index_not_found_exception", ex.error().type());
+            assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
         }
 
         try {
@@ -269,10 +268,9 @@ public class RequestTest extends Assert {
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
         } catch(ExecutionException ee) {
-            ApiException apie = ((ApiException) ee.getCause());
-            ElasticsearchError error = (ElasticsearchError) apie.error();
-            assertEquals(404, error.status());
-            assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
+            ElasticsearchException ex = ((ElasticsearchException) ee.getCause());
+            assertEquals(404, ex.status());
+            assertEquals("index_not_found_exception", ex.error().type());
         }
     }
 

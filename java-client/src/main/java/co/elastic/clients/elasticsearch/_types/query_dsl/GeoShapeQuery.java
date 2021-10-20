@@ -51,7 +51,6 @@ public final class GeoShapeQuery extends QueryBase implements QueryVariant {
 
 	public GeoShapeQuery(Builder builder) {
 		super(builder);
-
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.shape = Objects.requireNonNull(builder.shape, "shape");
 
@@ -94,12 +93,8 @@ public final class GeoShapeQuery extends QueryBase implements QueryVariant {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		// >> AdditionalProperty start
 		generator.writeKey(this.field);
 		this.shape.serialize(generator, mapper);
-
-		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {

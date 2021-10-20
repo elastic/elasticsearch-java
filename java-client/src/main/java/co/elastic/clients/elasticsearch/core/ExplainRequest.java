@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -676,7 +676,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Create an "{@code explain}" endpoint.
 	 */
-	public static <TDocument> Endpoint<ExplainRequest, ExplainResponse<TDocument>, ElasticsearchError> createExplainEndpoint(
+	public static <TDocument> Endpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> createExplainEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(ExplainResponse.createExplainResponseDeserializer(tDocumentDeserializer));

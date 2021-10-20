@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -116,7 +117,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<ExecuteRetentionResponse> executeRetention() throws IOException {
+	public CompletableFuture<ExecuteRetentionResponse> executeRetention() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT);
 	}
 
@@ -177,7 +178,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetStatsResponse> getStats() throws IOException {
+	public CompletableFuture<GetStatsResponse> getStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT);
 	}
 
@@ -190,7 +191,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetStatusResponse> getStatus() throws IOException {
+	public CompletableFuture<GetStatusResponse> getStatus() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT);
 	}
 
@@ -234,7 +235,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StartSlmResponse> start() throws IOException {
+	public CompletableFuture<StartSlmResponse> start() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT);
 	}
 
@@ -247,7 +248,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StopSlmResponse> stop() throws IOException {
+	public CompletableFuture<StopSlmResponse> stop() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT);
 	}
 
