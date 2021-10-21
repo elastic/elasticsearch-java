@@ -54,10 +54,16 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class RerouteRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final List<Command> commands;
+
+	@Nullable
 	private final Boolean dryRun;
 
 	@Nullable
 	private final Boolean explain;
+
+	@Nullable
+	private final String masterTimeout;
 
 	@Nullable
 	private final List<String> metric;
@@ -66,30 +72,34 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	private final Boolean retryFailed;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
 	private final String timeout;
-
-	@Nullable
-	private final List<Command> commands;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public RerouteRequest(Builder builder) {
 
+		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
 		this.dryRun = builder.dryRun;
 		this.explain = builder.explain;
+		this.masterTimeout = builder.masterTimeout;
 		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.retryFailed = builder.retryFailed;
-		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
 
 	}
 
 	public RerouteRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Defines the commands to perform.
+	 * <p>
+	 * API name: {@code commands}
+	 */
+	@Nullable
+	public List<Command> commands() {
+		return this.commands;
 	}
 
 	/**
@@ -115,6 +125,17 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Limits the information returned to the specified metrics.
 	 * <p>
 	 * API name: {@code metric}
@@ -136,17 +157,6 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
 	 * <p>
@@ -155,16 +165,6 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public String timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * Defines the commands to perform.
-	 * <p>
-	 * API name: {@code commands}
-	 */
-	@Nullable
-	public List<Command> commands() {
-		return this.commands;
 	}
 
 	/**
@@ -199,10 +199,16 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder implements ObjectBuilder<RerouteRequest> {
 		@Nullable
+		private List<Command> commands;
+
+		@Nullable
 		private Boolean dryRun;
 
 		@Nullable
 		private Boolean explain;
+
+		@Nullable
+		private String masterTimeout;
 
 		@Nullable
 		private List<String> metric;
@@ -211,13 +217,52 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		private Boolean retryFailed;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
 		private String timeout;
 
-		@Nullable
-		private List<Command> commands;
+		/**
+		 * Defines the commands to perform.
+		 * <p>
+		 * API name: {@code commands}
+		 */
+		public Builder commands(@Nullable List<Command> value) {
+			this.commands = value;
+			return this;
+		}
+
+		/**
+		 * Defines the commands to perform.
+		 * <p>
+		 * API name: {@code commands}
+		 */
+		public Builder commands(Command... value) {
+			this.commands = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #commands(List)}, creating the list if needed.
+		 */
+		public Builder addCommands(Command value) {
+			if (this.commands == null) {
+				this.commands = new ArrayList<>();
+			}
+			this.commands.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #commands(List)} to a singleton list.
+		 */
+		public Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
+			return this.commands(fn.apply(new Command.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #commands(List)}, creating the list if needed.
+		 */
+		public Builder addCommands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
+			return this.addCommands(fn.apply(new Command.Builder()).build());
+		}
 
 		/**
 		 * If true, then the request simulates the operation only and returns the
@@ -238,6 +283,17 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 */
 		public Builder explain(@Nullable Boolean value) {
 			this.explain = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -284,17 +340,6 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
 		 * <p>
@@ -303,51 +348,6 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
-		}
-
-		/**
-		 * Defines the commands to perform.
-		 * <p>
-		 * API name: {@code commands}
-		 */
-		public Builder commands(@Nullable List<Command> value) {
-			this.commands = value;
-			return this;
-		}
-
-		/**
-		 * Defines the commands to perform.
-		 * <p>
-		 * API name: {@code commands}
-		 */
-		public Builder commands(Command... value) {
-			this.commands = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
-		 */
-		public Builder addCommands(Command value) {
-			if (this.commands == null) {
-				this.commands = new ArrayList<>();
-			}
-			this.commands.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #commands(List)} to a singleton list.
-		 */
-		public Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
-			return this.commands(fn.apply(new Command.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
-		 */
-		public Builder addCommands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
-			return this.addCommands(fn.apply(new Command.Builder()).build());
 		}
 
 		/**
@@ -397,23 +397,23 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.dryRun != null) {
-					params.put("dry_run", String.valueOf(request.dryRun));
-				}
 				if (request.explain != null) {
 					params.put("explain", String.valueOf(request.explain));
-				}
-				if (request.metric != null) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.retryFailed != null) {
-					params.put("retry_failed", String.valueOf(request.retryFailed));
 				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
+				if (request.metric != null) {
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.dryRun != null) {
+					params.put("dry_run", String.valueOf(request.dryRun));
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);
+				}
+				if (request.retryFailed != null) {
+					params.put("retry_failed", String.valueOf(request.retryFailed));
 				}
 				return params;
 

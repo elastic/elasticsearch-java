@@ -49,16 +49,13 @@ import javax.annotation.Nullable;
 public final class DeleteRequest extends RequestBase {
 	private final String id;
 
-	private final String index;
-
-	@Nullable
-	private final String type;
-
 	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
 	private final Long ifSeqNo;
+
+	private final String index;
 
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
@@ -68,6 +65,9 @@ public final class DeleteRequest extends RequestBase {
 
 	@Nullable
 	private final String timeout;
+
+	@Nullable
+	private final String type;
 
 	@Nullable
 	private final Long version;
@@ -83,13 +83,13 @@ public final class DeleteRequest extends RequestBase {
 	public DeleteRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
+		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -107,25 +107,6 @@ public final class DeleteRequest extends RequestBase {
 	 */
 	public String id() {
 		return this.id;
-	}
-
-	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
 	}
 
 	/**
@@ -148,6 +129,15 @@ public final class DeleteRequest extends RequestBase {
 	@Nullable
 	public Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * Required - The name of the index
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -181,6 +171,16 @@ public final class DeleteRequest extends RequestBase {
 	@Nullable
 	public String timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -225,16 +225,13 @@ public final class DeleteRequest extends RequestBase {
 	public static class Builder implements ObjectBuilder<DeleteRequest> {
 		private String id;
 
-		private String index;
-
-		@Nullable
-		private String type;
-
 		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
 		private Long ifSeqNo;
+
+		private String index;
 
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
@@ -244,6 +241,9 @@ public final class DeleteRequest extends RequestBase {
 
 		@Nullable
 		private String timeout;
+
+		@Nullable
+		private String type;
 
 		@Nullable
 		private Long version;
@@ -261,26 +261,6 @@ public final class DeleteRequest extends RequestBase {
 		 */
 		public Builder id(String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -303,6 +283,16 @@ public final class DeleteRequest extends RequestBase {
 		 */
 		public Builder ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -336,6 +326,16 @@ public final class DeleteRequest extends RequestBase {
 		 */
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -399,14 +399,14 @@ public final class DeleteRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 				if (request.type() != null)
 					propsSet |= _type;
 
@@ -436,6 +436,12 @@ public final class DeleteRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.toString());
+				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
@@ -445,20 +451,14 @@ public final class DeleteRequest extends RequestBase {
 				if (request.refresh != null) {
 					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
 				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

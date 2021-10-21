@@ -229,14 +229,14 @@ public final class GetApiKeyRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.id != null) {
-					params.put("id", request.id);
+				if (request.owner != null) {
+					params.put("owner", String.valueOf(request.owner));
 				}
 				if (request.name != null) {
 					params.put("name", request.name);
 				}
-				if (request.owner != null) {
-					params.put("owner", String.valueOf(request.owner));
+				if (request.id != null) {
+					params.put("id", request.id);
 				}
 				if (request.realmName != null) {
 					params.put("realm_name", request.realmName);

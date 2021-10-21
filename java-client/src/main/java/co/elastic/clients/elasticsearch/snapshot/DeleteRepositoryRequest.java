@@ -48,10 +48,10 @@ import javax.annotation.Nullable;
 // typedef: snapshot.delete_repository.Request
 
 public final class DeleteRepositoryRequest extends RequestBase {
-	private final List<String> repository;
-
 	@Nullable
 	private final String masterTimeout;
+
+	private final List<String> name;
 
 	@Nullable
 	private final String timeout;
@@ -60,24 +60,14 @@ public final class DeleteRepositoryRequest extends RequestBase {
 
 	public DeleteRepositoryRequest(Builder builder) {
 
-		this.repository = ModelTypeHelper.unmodifiableNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "repository");
 		this.timeout = builder.timeout;
 
 	}
 
 	public DeleteRepositoryRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Name of the snapshot repository to unregister. Wildcard
-	 * (<code>*</code>) patterns are supported.
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public List<String> repository() {
-		return this.repository;
 	}
 
 	/**
@@ -88,6 +78,16 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Name of the snapshot repository to unregister. Wildcard
+	 * (<code>*</code>) patterns are supported.
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public List<String> name() {
+		return this.name;
 	}
 
 	/**
@@ -106,46 +106,13 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	 * Builder for {@link DeleteRepositoryRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteRepositoryRequest> {
-		private List<String> repository;
-
 		@Nullable
 		private String masterTimeout;
 
+		private List<String> name;
+
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - Name of the snapshot repository to unregister. Wildcard
-		 * (<code>*</code>) patterns are supported.
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(List<String> value) {
-			this.repository = value;
-			return this;
-		}
-
-		/**
-		 * Required - Name of the snapshot repository to unregister. Wildcard
-		 * (<code>*</code>) patterns are supported.
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String... value) {
-			this.repository = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
-		 */
-		public Builder addRepository(String value) {
-			if (this.repository == null) {
-				this.repository = new ArrayList<>();
-			}
-			this.repository.add(value);
-			return this;
-		}
 
 		/**
 		 * Explicit operation timeout for connection to master node
@@ -154,6 +121,39 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the snapshot repository to unregister. Wildcard
+		 * (<code>*</code>) patterns are supported.
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder name(List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the snapshot repository to unregister. Wildcard
+		 * (<code>*</code>) patterns are supported.
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 
@@ -193,18 +193,17 @@ public final class DeleteRepositoryRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _repository;
+				propsSet |= _name;
 
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

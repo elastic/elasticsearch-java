@@ -50,9 +50,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String format;
-
-	@Nullable
 	private final Boolean columnar;
 
 	@Nullable
@@ -62,7 +59,16 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	private final Integer fetchSize;
 
 	@Nullable
+	private final Boolean fieldMultiValueLeniency;
+
+	@Nullable
 	private final Query filter;
+
+	@Nullable
+	private final String format;
+
+	@Nullable
+	private final String pageTimeout;
 
 	@Nullable
 	private final String query;
@@ -71,43 +77,27 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	private final String requestTimeout;
 
 	@Nullable
-	private final String pageTimeout;
-
-	@Nullable
 	private final String timeZone;
-
-	@Nullable
-	private final Boolean fieldMultiValueLeniency;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public QueryRequest(Builder builder) {
 
-		this.format = builder.format;
 		this.columnar = builder.columnar;
 		this.cursor = builder.cursor;
 		this.fetchSize = builder.fetchSize;
+		this.fieldMultiValueLeniency = builder.fieldMultiValueLeniency;
 		this.filter = builder.filter;
+		this.format = builder.format;
+		this.pageTimeout = builder.pageTimeout;
 		this.query = builder.query;
 		this.requestTimeout = builder.requestTimeout;
-		this.pageTimeout = builder.pageTimeout;
 		this.timeZone = builder.timeZone;
-		this.fieldMultiValueLeniency = builder.fieldMultiValueLeniency;
 
 	}
 
 	public QueryRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * a short version of the Accept header, e.g. json, yaml
-	 * <p>
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public String format() {
-		return this.format;
 	}
 
 	/**
@@ -137,6 +127,18 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Throw an exception when encountering multiple values for a field (default) or
+	 * be lenient and return the first value from the list (without any guarantees
+	 * of what that will be - typically the first in natural ascending order).
+	 * <p>
+	 * API name: {@code field_multi_value_leniency}
+	 */
+	@Nullable
+	public Boolean fieldMultiValueLeniency() {
+		return this.fieldMultiValueLeniency;
+	}
+
+	/**
 	 * Optional Elasticsearch query DSL for additional filtering.
 	 * <p>
 	 * API name: {@code filter}
@@ -144,6 +146,26 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public Query filter() {
 		return this.filter;
+	}
+
+	/**
+	 * a short version of the Accept header, e.g. json, yaml
+	 * <p>
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public String format() {
+		return this.format;
+	}
+
+	/**
+	 * The timeout before a pagination request fails.
+	 * <p>
+	 * API name: {@code page_timeout}
+	 */
+	@Nullable
+	public String pageTimeout() {
+		return this.pageTimeout;
 	}
 
 	/**
@@ -167,16 +189,6 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The timeout before a pagination request fails.
-	 * <p>
-	 * API name: {@code page_timeout}
-	 */
-	@Nullable
-	public String pageTimeout() {
-		return this.pageTimeout;
-	}
-
-	/**
 	 * Time-zone in ISO 8601 used for executing the query on the server. More
 	 * information available here.
 	 * <p>
@@ -185,18 +197,6 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public String timeZone() {
 		return this.timeZone;
-	}
-
-	/**
-	 * Throw an exception when encountering multiple values for a field (default) or
-	 * be lenient and return the first value from the list (without any guarantees
-	 * of what that will be - typically the first in natural ascending order).
-	 * <p>
-	 * API name: {@code field_multi_value_leniency}
-	 */
-	@Nullable
-	public Boolean fieldMultiValueLeniency() {
-		return this.fieldMultiValueLeniency;
 	}
 
 	/**
@@ -228,10 +228,22 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.fetchSize);
 
 		}
+		if (this.fieldMultiValueLeniency != null) {
+
+			generator.writeKey("field_multi_value_leniency");
+			generator.write(this.fieldMultiValueLeniency);
+
+		}
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
+
+		}
+		if (this.pageTimeout != null) {
+
+			generator.writeKey("page_timeout");
+			generator.write(this.pageTimeout);
 
 		}
 		if (this.query != null) {
@@ -246,22 +258,10 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.requestTimeout);
 
 		}
-		if (this.pageTimeout != null) {
-
-			generator.writeKey("page_timeout");
-			generator.write(this.pageTimeout);
-
-		}
 		if (this.timeZone != null) {
 
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
-
-		}
-		if (this.fieldMultiValueLeniency != null) {
-
-			generator.writeKey("field_multi_value_leniency");
-			generator.write(this.fieldMultiValueLeniency);
 
 		}
 
@@ -274,9 +274,6 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 */
 	public static class Builder implements ObjectBuilder<QueryRequest> {
 		@Nullable
-		private String format;
-
-		@Nullable
 		private Boolean columnar;
 
 		@Nullable
@@ -286,7 +283,16 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		private Integer fetchSize;
 
 		@Nullable
+		private Boolean fieldMultiValueLeniency;
+
+		@Nullable
 		private Query filter;
+
+		@Nullable
+		private String format;
+
+		@Nullable
+		private String pageTimeout;
 
 		@Nullable
 		private String query;
@@ -295,23 +301,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		private String requestTimeout;
 
 		@Nullable
-		private String pageTimeout;
-
-		@Nullable
 		private String timeZone;
-
-		@Nullable
-		private Boolean fieldMultiValueLeniency;
-
-		/**
-		 * a short version of the Accept header, e.g. json, yaml
-		 * <p>
-		 * API name: {@code format}
-		 */
-		public Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code columnar}
@@ -340,6 +330,18 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Throw an exception when encountering multiple values for a field (default) or
+		 * be lenient and return the first value from the list (without any guarantees
+		 * of what that will be - typically the first in natural ascending order).
+		 * <p>
+		 * API name: {@code field_multi_value_leniency}
+		 */
+		public Builder fieldMultiValueLeniency(@Nullable Boolean value) {
+			this.fieldMultiValueLeniency = value;
+			return this;
+		}
+
+		/**
 		 * Optional Elasticsearch query DSL for additional filtering.
 		 * <p>
 		 * API name: {@code filter}
@@ -356,6 +358,26 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 */
 		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * a short version of the Accept header, e.g. json, yaml
+		 * <p>
+		 * API name: {@code format}
+		 */
+		public Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
+		/**
+		 * The timeout before a pagination request fails.
+		 * <p>
+		 * API name: {@code page_timeout}
+		 */
+		public Builder pageTimeout(@Nullable String value) {
+			this.pageTimeout = value;
+			return this;
 		}
 
 		/**
@@ -379,16 +401,6 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The timeout before a pagination request fails.
-		 * <p>
-		 * API name: {@code page_timeout}
-		 */
-		public Builder pageTimeout(@Nullable String value) {
-			this.pageTimeout = value;
-			return this;
-		}
-
-		/**
 		 * Time-zone in ISO 8601 used for executing the query on the server. More
 		 * information available here.
 		 * <p>
@@ -396,18 +408,6 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 */
 		public Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
-			return this;
-		}
-
-		/**
-		 * Throw an exception when encountering multiple values for a field (default) or
-		 * be lenient and return the first value from the list (without any guarantees
-		 * of what that will be - typically the first in natural ascending order).
-		 * <p>
-		 * API name: {@code field_multi_value_leniency}
-		 */
-		public Builder fieldMultiValueLeniency(@Nullable Boolean value) {
-			this.fieldMultiValueLeniency = value;
 			return this;
 		}
 
@@ -436,12 +436,12 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
+		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::pageTimeout, JsonpDeserializer.stringDeserializer(), "page_timeout");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::requestTimeout, JsonpDeserializer.stringDeserializer(), "request_timeout");
-		op.add(Builder::pageTimeout, JsonpDeserializer.stringDeserializer(), "page_timeout");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 
 	}
 

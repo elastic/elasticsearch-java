@@ -56,13 +56,19 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String index;
+	private final List<Operation> docs;
+
+	@Nullable
+	private final Boolean fieldStatistics;
 
 	@Nullable
 	private final List<String> fields;
 
 	@Nullable
-	private final Boolean fieldStatistics;
+	private final List<String> ids;
+
+	@Nullable
+	private final String index;
 
 	@Nullable
 	private final Boolean offsets;
@@ -91,19 +97,15 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final VersionType versionType;
 
-	@Nullable
-	private final List<Operation> docs;
-
-	@Nullable
-	private final List<String> ids;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public MtermvectorsRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
 		this.fieldStatistics = builder.fieldStatistics;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
+		this.index = builder.index;
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
 		this.positions = builder.positions;
@@ -113,8 +115,6 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
 
 	}
 
@@ -123,13 +123,23 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The index in which the document resides.
-	 * <p>
-	 * API name: {@code index}
+	 * API name: {@code docs}
 	 */
 	@Nullable
-	public String index() {
-		return this.index;
+	public List<Operation> docs() {
+		return this.docs;
+	}
+
+	/**
+	 * Specifies if document count, sum of document frequencies and sum of total
+	 * term frequencies should be returned. Applies to all returned documents unless
+	 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
+	 * API name: {@code field_statistics}
+	 */
+	@Nullable
+	public Boolean fieldStatistics() {
+		return this.fieldStatistics;
 	}
 
 	/**
@@ -144,15 +154,21 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Specifies if document count, sum of document frequencies and sum of total
-	 * term frequencies should be returned. Applies to all returned documents unless
-	 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
-	 * <p>
-	 * API name: {@code field_statistics}
+	 * API name: {@code ids}
 	 */
 	@Nullable
-	public Boolean fieldStatistics() {
-		return this.fieldStatistics;
+	public List<String> ids() {
+		return this.ids;
+	}
+
+	/**
+	 * The index in which the document resides.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -258,22 +274,6 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * API name: {@code docs}
-	 */
-	@Nullable
-	public List<Operation> docs() {
-		return this.docs;
-	}
-
-	/**
-	 * API name: {@code ids}
-	 */
-	@Nullable
-	public List<String> ids() {
-		return this.ids;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -316,13 +316,19 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 */
 	public static class Builder implements ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
-		private String index;
+		private List<Operation> docs;
+
+		@Nullable
+		private Boolean fieldStatistics;
 
 		@Nullable
 		private List<String> fields;
 
 		@Nullable
-		private Boolean fieldStatistics;
+		private List<String> ids;
+
+		@Nullable
+		private String index;
 
 		@Nullable
 		private Boolean offsets;
@@ -351,19 +357,56 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private VersionType versionType;
 
-		@Nullable
-		private List<Operation> docs;
-
-		@Nullable
-		private List<String> ids;
+		/**
+		 * API name: {@code docs}
+		 */
+		public Builder docs(@Nullable List<Operation> value) {
+			this.docs = value;
+			return this;
+		}
 
 		/**
-		 * The index in which the document resides.
-		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code docs}
 		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
+		public Builder docs(Operation... value) {
+			this.docs = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 */
+		public Builder addDocs(Operation value) {
+			if (this.docs == null) {
+				this.docs = new ArrayList<>();
+			}
+			this.docs.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #docs(List)} to a singleton list.
+		 */
+		public Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.docs(fn.apply(new Operation.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 */
+		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.addDocs(fn.apply(new Operation.Builder()).build());
+		}
+
+		/**
+		 * Specifies if document count, sum of document frequencies and sum of total
+		 * term frequencies should be returned. Applies to all returned documents unless
+		 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
+		 * API name: {@code field_statistics}
+		 */
+		public Builder fieldStatistics(@Nullable Boolean value) {
+			this.fieldStatistics = value;
 			return this;
 		}
 
@@ -401,14 +444,39 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Specifies if document count, sum of document frequencies and sum of total
-		 * term frequencies should be returned. Applies to all returned documents unless
-		 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
-		 * <p>
-		 * API name: {@code field_statistics}
+		 * API name: {@code ids}
 		 */
-		public Builder fieldStatistics(@Nullable Boolean value) {
-			this.fieldStatistics = value;
+		public Builder ids(@Nullable List<String> value) {
+			this.ids = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ids}
+		 */
+		public Builder ids(String... value) {
+			this.ids = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #ids(List)}, creating the list if needed.
+		 */
+		public Builder addIds(String value) {
+			if (this.ids == null) {
+				this.ids = new ArrayList<>();
+			}
+			this.ids.add(value);
+			return this;
+		}
+
+		/**
+		 * The index in which the document resides.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -515,74 +583,6 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * API name: {@code docs}
-		 */
-		public Builder docs(@Nullable List<Operation> value) {
-			this.docs = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code docs}
-		 */
-		public Builder docs(Operation... value) {
-			this.docs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Operation value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
-			}
-			this.docs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.docs(fn.apply(new Operation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.addDocs(fn.apply(new Operation.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code ids}
-		 */
-		public Builder ids(@Nullable List<String> value) {
-			this.ids = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code ids}
-		 */
-		public Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
-		 */
-		public Builder addIds(String value) {
-			if (this.ids == null) {
-				this.ids = new ArrayList<>();
-			}
-			this.ids.add(value);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link MtermvectorsRequest}.
 		 *
 		 * @throws NullPointerException
@@ -649,11 +649,14 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.fields != null) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
-				if (request.fieldStatistics != null) {
-					params.put("field_statistics", String.valueOf(request.fieldStatistics));
+				if (request.realtime != null) {
+					params.put("realtime", String.valueOf(request.realtime));
+				}
+				if (request.termStatistics != null) {
+					params.put("term_statistics", String.valueOf(request.termStatistics));
 				}
 				if (request.offsets != null) {
 					params.put("offsets", String.valueOf(request.offsets));
@@ -661,26 +664,23 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 				if (request.payloads != null) {
 					params.put("payloads", String.valueOf(request.payloads));
 				}
-				if (request.positions != null) {
-					params.put("positions", String.valueOf(request.positions));
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.toString());
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.realtime != null) {
-					params.put("realtime", String.valueOf(request.realtime));
+				if (request.positions != null) {
+					params.put("positions", String.valueOf(request.positions));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (request.fieldStatistics != null) {
+					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (request.termStatistics != null) {
-					params.put("term_statistics", String.valueOf(request.termStatistics));
+				if (request.fields != null) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 

@@ -50,10 +50,10 @@ import javax.annotation.Nullable;
 public final class DeleteAliasRequest extends RequestBase {
 	private final List<String> index;
 
-	private final List<String> name;
-
 	@Nullable
 	private final String masterTimeout;
+
+	private final List<String> name;
 
 	@Nullable
 	private final String timeout;
@@ -63,8 +63,8 @@ public final class DeleteAliasRequest extends RequestBase {
 	public DeleteAliasRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -84,16 +84,6 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of aliases to delete (supports wildcards);
-	 * use <code>_all</code> to delete all aliases for the specified indices.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
-	}
-
-	/**
 	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -101,6 +91,16 @@ public final class DeleteAliasRequest extends RequestBase {
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - A comma-separated list of aliases to delete (supports wildcards);
+	 * use <code>_all</code> to delete all aliases for the specified indices.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public List<String> name() {
+		return this.name;
 	}
 
 	/**
@@ -121,10 +121,10 @@ public final class DeleteAliasRequest extends RequestBase {
 	public static class Builder implements ObjectBuilder<DeleteAliasRequest> {
 		private List<String> index;
 
-		private List<String> name;
-
 		@Nullable
 		private String masterTimeout;
+
+		private List<String> name;
 
 		@Nullable
 		private String timeout;
@@ -163,6 +163,16 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
 		 * Required - A comma-separated list of aliases to delete (supports wildcards);
 		 * use <code>_all</code> to delete all aliases for the specified indices.
 		 * <p>
@@ -192,16 +202,6 @@ public final class DeleteAliasRequest extends RequestBase {
 				this.name = new ArrayList<>();
 			}
 			this.name.add(value);
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
 			return this;
 		}
 
@@ -241,13 +241,13 @@ public final class DeleteAliasRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _index = 1 << 0;
-				final int _name = 1 << 1;
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _index;
 				propsSet |= _name;
+				propsSet |= _index;
 
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();

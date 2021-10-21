@@ -47,47 +47,38 @@ import javax.annotation.Nullable;
 // typedef: ml.get_categories.Request
 @JsonpDeserializable
 public final class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
 	@Nullable
 	private final String categoryId;
 
 	@Nullable
 	private final Integer from;
 
+	private final String jobId;
+
 	@Nullable
-	private final Integer size;
+	private final Page page;
 
 	@Nullable
 	private final String partitionFieldValue;
 
 	@Nullable
-	private final Page page;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetCategoriesRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.categoryId = builder.categoryId;
 		this.from = builder.from;
-		this.size = builder.size;
-		this.partitionFieldValue = builder.partitionFieldValue;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.page = builder.page;
+		this.partitionFieldValue = builder.partitionFieldValue;
+		this.size = builder.size;
 
 	}
 
 	public GetCategoriesRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -115,13 +106,20 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * specifies a max number of categories to get
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
-	 * API name: {@code size}
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * API name: {@code page}
 	 */
 	@Nullable
-	public Integer size() {
-		return this.size;
+	public Page page() {
+		return this.page;
 	}
 
 	/**
@@ -135,11 +133,13 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * API name: {@code page}
+	 * specifies a max number of categories to get
+	 * <p>
+	 * API name: {@code size}
 	 */
 	@Nullable
-	public Page page() {
-		return this.page;
+	public Integer size() {
+		return this.size;
 	}
 
 	/**
@@ -168,32 +168,22 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * Builder for {@link GetCategoriesRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetCategoriesRequest> {
-		private String jobId;
-
 		@Nullable
 		private String categoryId;
 
 		@Nullable
 		private Integer from;
 
+		private String jobId;
+
 		@Nullable
-		private Integer size;
+		private Page page;
 
 		@Nullable
 		private String partitionFieldValue;
 
 		@Nullable
-		private Page page;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
+		private Integer size;
 
 		/**
 		 * Identifier for the category, which is unique in the job. If you specify
@@ -220,22 +210,12 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * specifies a max number of categories to get
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
-		 * API name: {@code size}
+		 * API name: {@code job_id}
 		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
-
-		/**
-		 * Only return categories for the specified partition.
-		 * <p>
-		 * API name: {@code partition_field_value}
-		 */
-		public Builder partitionFieldValue(@Nullable String value) {
-			this.partitionFieldValue = value;
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
@@ -252,6 +232,26 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 */
 		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
+		 * Only return categories for the specified partition.
+		 * <p>
+		 * API name: {@code partition_field_value}
+		 */
+		public Builder partitionFieldValue(@Nullable String value) {
+			this.partitionFieldValue = value;
+			return this;
+		}
+
+		/**
+		 * specifies a max number of categories to get
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
 		}
 
 		/**
@@ -295,14 +295,14 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _categoryId = 1 << 1;
+				final int _categoryId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				if (request.categoryId() != null)
 					propsSet |= _categoryId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _categoryId)) {
 					StringBuilder buf = new StringBuilder();
@@ -333,14 +333,14 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
 				if (request.partitionFieldValue != null) {
 					params.put("partition_field_value", request.partitionFieldValue);
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

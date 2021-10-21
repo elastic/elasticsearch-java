@@ -44,10 +44,10 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_job.Request
 
 public final class DeleteJobRequest extends RequestBase {
-	private final String jobId;
-
 	@Nullable
 	private final Boolean force;
+
+	private final String jobId;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -56,23 +56,14 @@ public final class DeleteJobRequest extends RequestBase {
 
 	public DeleteJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.force = builder.force;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
 	public DeleteJobRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -84,6 +75,15 @@ public final class DeleteJobRequest extends RequestBase {
 	@Nullable
 	public Boolean force() {
 		return this.force;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -103,23 +103,13 @@ public final class DeleteJobRequest extends RequestBase {
 	 * Builder for {@link DeleteJobRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteJobRequest> {
-		private String jobId;
-
 		@Nullable
 		private Boolean force;
 
+		private String jobId;
+
 		@Nullable
 		private Boolean waitForCompletion;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
 
 		/**
 		 * Use to forcefully delete an opened job; this method is quicker than closing
@@ -129,6 +119,16 @@ public final class DeleteJobRequest extends RequestBase {
 		 */
 		public Builder force(@Nullable Boolean value) {
 			this.force = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 

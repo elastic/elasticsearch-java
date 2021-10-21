@@ -150,11 +150,11 @@ public final class PendingTasksRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

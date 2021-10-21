@@ -44,9 +44,9 @@ import javax.annotation.Nullable;
 // typedef: dangling_indices.delete_dangling_index.Request
 
 public final class DeleteDanglingIndexRequest extends RequestBase {
-	private final String indexUuid;
-
 	private final boolean acceptDataLoss;
+
+	private final String indexUuid;
 
 	@Nullable
 	private final String masterTimeout;
@@ -58,8 +58,8 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 
 	public DeleteDanglingIndexRequest(Builder builder) {
 
-		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");
+		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -70,21 +70,21 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The UUID of the dangling index
-	 * <p>
-	 * API name: {@code index_uuid}
-	 */
-	public String indexUuid() {
-		return this.indexUuid;
-	}
-
-	/**
 	 * Required - Must be set to true in order to delete the dangling index
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
 	public boolean acceptDataLoss() {
 		return this.acceptDataLoss;
+	}
+
+	/**
+	 * Required - The UUID of the dangling index
+	 * <p>
+	 * API name: {@code index_uuid}
+	 */
+	public String indexUuid() {
+		return this.indexUuid;
 	}
 
 	/**
@@ -113,9 +113,9 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * Builder for {@link DeleteDanglingIndexRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteDanglingIndexRequest> {
-		private String indexUuid;
-
 		private Boolean acceptDataLoss;
+
+		private String indexUuid;
 
 		@Nullable
 		private String masterTimeout;
@@ -124,22 +124,22 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Required - The UUID of the dangling index
-		 * <p>
-		 * API name: {@code index_uuid}
-		 */
-		public Builder indexUuid(String value) {
-			this.indexUuid = value;
-			return this;
-		}
-
-		/**
 		 * Required - Must be set to true in order to delete the dangling index
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
 		public Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
+			return this;
+		}
+
+		/**
+		 * Required - The UUID of the dangling index
+		 * <p>
+		 * API name: {@code index_uuid}
+		 */
+		public Builder indexUuid(String value) {
+			this.indexUuid = value;
 			return this;
 		}
 
@@ -209,10 +209,10 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
+				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);
 				}

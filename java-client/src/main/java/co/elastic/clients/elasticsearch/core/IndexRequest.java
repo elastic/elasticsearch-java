@@ -55,13 +55,13 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	private final String id;
 
-	private final String index;
-
 	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
 	private final Long ifSeqNo;
+
+	private final String index;
 
 	@Nullable
 	private final OpType opType;
@@ -71,6 +71,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
+
+	@Nullable
+	private final Boolean requireAlias;
 
 	@Nullable
 	private final String routing;
@@ -87,9 +90,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
-	@Nullable
-	private final Boolean requireAlias;
-
 	private final TDocument document;
 
 	@Nullable
@@ -100,18 +100,18 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	public IndexRequest(Builder<TDocument> builder) {
 
 		this.id = builder.id;
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
+		this.requireAlias = builder.requireAlias;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.requireAlias = builder.requireAlias;
 		this.document = Objects.requireNonNull(builder.document, "_value_body");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -129,15 +129,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	public String id() {
 		return this.id;
-	}
-
-	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
 	}
 
 	/**
@@ -160,6 +151,15 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	public Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * Required - The name of the index
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -195,6 +195,16 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * When true, requires destination to be an alias. Default is false
+	 * <p>
+	 * API name: {@code require_alias}
+	 */
+	@Nullable
+	public Boolean requireAlias() {
+		return this.requireAlias;
 	}
 
 	/**
@@ -252,16 +262,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * When true, requires destination to be an alias. Default is false
-	 * <p>
-	 * API name: {@code require_alias}
-	 */
-	@Nullable
-	public Boolean requireAlias() {
-		return this.requireAlias;
-	}
-
-	/**
 	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
@@ -287,13 +287,13 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		@Nullable
 		private String id;
 
-		private String index;
-
 		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
 		private Long ifSeqNo;
+
+		private String index;
 
 		@Nullable
 		private OpType opType;
@@ -303,6 +303,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
+
+		@Nullable
+		private Boolean requireAlias;
 
 		@Nullable
 		private String routing;
@@ -319,9 +322,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		@Nullable
 		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
-		@Nullable
-		private Boolean requireAlias;
-
 		private TDocument document;
 
 		@Nullable
@@ -334,16 +334,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 */
 		public Builder<TDocument> id(@Nullable String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder<TDocument> index(String value) {
-			this.index = value;
 			return this;
 		}
 
@@ -366,6 +356,16 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 */
 		public Builder<TDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder<TDocument> index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -401,6 +401,16 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 */
 		public Builder<TDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * When true, requires destination to be an alias. Default is false
+		 * <p>
+		 * API name: {@code require_alias}
+		 */
+		public Builder<TDocument> requireAlias(@Nullable Boolean value) {
+			this.requireAlias = value;
 			return this;
 		}
 
@@ -459,16 +469,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * When true, requires destination to be an alias. Default is false
-		 * <p>
-		 * API name: {@code require_alias}
-		 */
-		public Builder<TDocument> requireAlias(@Nullable Boolean value) {
-			this.requireAlias = value;
-			return this;
-		}
-
-		/**
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
@@ -517,14 +517,14 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	public static final Endpoint<IndexRequest<?>, IndexResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
+				propsSet |= _index;
 				if (request.id() != null)
 					propsSet |= _id;
-				propsSet |= _index;
 
 				if (propsSet == (_index | _id))
 					return "PUT";
@@ -536,14 +536,14 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
+				propsSet |= _index;
 				if (request.id() != null)
 					propsSet |= _id;
-				propsSet |= _index;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -568,38 +568,38 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.pipeline != null) {
+					params.put("pipeline", request.pipeline);
+				}
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.requireAlias != null) {
+					params.put("require_alias", String.valueOf(request.requireAlias));
+				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.toString());
+				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
 				if (request.ifSeqNo != null) {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
-				if (request.opType != null) {
-					params.put("op_type", request.opType.toString());
-				}
-				if (request.pipeline != null) {
-					params.put("pipeline", request.pipeline);
-				}
 				if (request.refresh != null) {
 					params.put("refresh", JsonpUtils.toString(request.refresh));
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
-				if (request.requireAlias != null) {
-					params.put("require_alias", String.valueOf(request.requireAlias));
+				if (request.opType != null) {
+					params.put("op_type", request.opType.toString());
+				}
+				if (request.version != null) {
+					params.put("version", String.valueOf(request.version));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

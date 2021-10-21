@@ -216,11 +216,11 @@ public final class GetAsyncSearchRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive);
-				}
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
+				}
+				if (request.keepAlive != null) {
+					params.put("keep_alive", request.keepAlive);
 				}
 				if (request.waitForCompletionTimeout != null) {
 					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout);

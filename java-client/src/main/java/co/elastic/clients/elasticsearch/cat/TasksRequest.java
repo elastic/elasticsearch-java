@@ -242,17 +242,17 @@ public final class TasksRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.actions != null) {
-					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
 				}
-				if (request.nodeId != null) {
-					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.parentTask != null) {
 					params.put("parent_task", String.valueOf(request.parentTask));
+				}
+				if (request.actions != null) {
+					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.nodeId != null) {
+					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

@@ -50,9 +50,6 @@ import javax.annotation.Nullable;
 
 public final class CancelRequest extends RequestBase {
 	@Nullable
-	private final String taskId;
-
-	@Nullable
 	private final List<String> actions;
 
 	@Nullable
@@ -62,32 +59,25 @@ public final class CancelRequest extends RequestBase {
 	private final String parentTaskId;
 
 	@Nullable
+	private final String taskId;
+
+	@Nullable
 	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public CancelRequest(Builder builder) {
 
-		this.taskId = builder.taskId;
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
+		this.taskId = builder.taskId;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
 	public CancelRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Cancel the task with specified task id (node_id:task_number)
-	 * <p>
-	 * API name: {@code task_id}
-	 */
-	@Nullable
-	public String taskId() {
-		return this.taskId;
 	}
 
 	/**
@@ -125,6 +115,16 @@ public final class CancelRequest extends RequestBase {
 	}
 
 	/**
+	 * Cancel the task with specified task id (node_id:task_number)
+	 * <p>
+	 * API name: {@code task_id}
+	 */
+	@Nullable
+	public String taskId() {
+		return this.taskId;
+	}
+
+	/**
 	 * Should the request block until the cancellation of the task and its
 	 * descendant tasks is completed. Defaults to false
 	 * <p>
@@ -142,9 +142,6 @@ public final class CancelRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<CancelRequest> {
 		@Nullable
-		private String taskId;
-
-		@Nullable
 		private List<String> actions;
 
 		@Nullable
@@ -154,17 +151,10 @@ public final class CancelRequest extends RequestBase {
 		private String parentTaskId;
 
 		@Nullable
-		private Boolean waitForCompletion;
+		private String taskId;
 
-		/**
-		 * Cancel the task with specified task id (node_id:task_number)
-		 * <p>
-		 * API name: {@code task_id}
-		 */
-		public Builder taskId(@Nullable String value) {
-			this.taskId = value;
-			return this;
-		}
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * A comma-separated list of actions that should be cancelled. Leave empty to
@@ -246,6 +236,16 @@ public final class CancelRequest extends RequestBase {
 		}
 
 		/**
+		 * Cancel the task with specified task id (node_id:task_number)
+		 * <p>
+		 * API name: {@code task_id}
+		 */
+		public Builder taskId(@Nullable String value) {
+			this.taskId = value;
+			return this;
+		}
+
+		/**
 		 * Should the request block until the cancellation of the task and its
 		 * descendant tasks is completed. Defaults to false
 		 * <p>
@@ -310,14 +310,14 @@ public final class CancelRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.actions != null) {
-					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.nodes != null) {
 					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
+				}
+				if (request.actions != null) {
+					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

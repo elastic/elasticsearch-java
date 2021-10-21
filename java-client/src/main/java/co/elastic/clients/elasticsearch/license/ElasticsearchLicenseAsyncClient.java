@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -64,7 +64,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLicenseResponse> get(GetLicenseRequest request) throws IOException {
+	public CompletableFuture<GetLicenseResponse> get(GetLicenseRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetLicenseRequest.ENDPOINT);
 	}
 
@@ -72,16 +73,16 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 * Retrieves licensing information for the cluster
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetLicenseRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetLicenseResponse> get(
-			Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn) throws IOException {
+			Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetLicenseRequest.Builder()).build());
 	}
 
@@ -93,7 +94,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLicenseResponse> get() throws IOException {
+	public CompletableFuture<GetLicenseResponse> get() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetLicenseRequest.Builder().build(), GetLicenseRequest.ENDPOINT);
 	}
 
@@ -133,7 +134,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostResponse> post(PostRequest request) throws IOException {
+	public CompletableFuture<PostResponse> post(PostRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PostRequest.ENDPOINT);
 	}
 
@@ -141,16 +142,15 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 * Updates the license for the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PostRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostResponse> post(Function<PostRequest.Builder, ObjectBuilder<PostRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return post(fn.apply(new PostRequest.Builder()).build());
 	}
 
@@ -162,7 +162,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostResponse> post() throws IOException {
+	public CompletableFuture<PostResponse> post() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PostRequest.Builder().build(), PostRequest.ENDPOINT);
 	}
 
@@ -176,7 +176,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartBasicResponse> postStartBasic(PostStartBasicRequest request) throws IOException {
+	public CompletableFuture<PostStartBasicResponse> postStartBasic(PostStartBasicRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PostStartBasicRequest.ENDPOINT);
 	}
 
@@ -184,16 +185,16 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 * Starts an indefinite basic license.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PostStartBasicRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostStartBasicResponse> postStartBasic(
-			Function<PostStartBasicRequest.Builder, ObjectBuilder<PostStartBasicRequest>> fn) throws IOException {
+			Function<PostStartBasicRequest.Builder, ObjectBuilder<PostStartBasicRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return postStartBasic(fn.apply(new PostStartBasicRequest.Builder()).build());
 	}
 
@@ -205,7 +206,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartBasicResponse> postStartBasic() throws IOException {
+	public CompletableFuture<PostStartBasicResponse> postStartBasic() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PostStartBasicRequest.Builder().build(),
 				PostStartBasicRequest.ENDPOINT);
 	}
@@ -220,7 +221,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartTrialResponse> postStartTrial(PostStartTrialRequest request) throws IOException {
+	public CompletableFuture<PostStartTrialResponse> postStartTrial(PostStartTrialRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PostStartTrialRequest.ENDPOINT);
 	}
 
@@ -228,16 +230,16 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 * starts a limited time trial license.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PostStartTrialRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostStartTrialResponse> postStartTrial(
-			Function<PostStartTrialRequest.Builder, ObjectBuilder<PostStartTrialRequest>> fn) throws IOException {
+			Function<PostStartTrialRequest.Builder, ObjectBuilder<PostStartTrialRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return postStartTrial(fn.apply(new PostStartTrialRequest.Builder()).build());
 	}
 
@@ -249,7 +251,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartTrialResponse> postStartTrial() throws IOException {
+	public CompletableFuture<PostStartTrialResponse> postStartTrial() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PostStartTrialRequest.Builder().build(),
 				PostStartTrialRequest.ENDPOINT);
 	}

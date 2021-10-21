@@ -50,16 +50,13 @@ import javax.annotation.Nullable;
 // typedef: indices.get_field_mapping.Request
 
 public final class GetFieldMappingRequest extends RequestBase {
-	private final List<String> fields;
-
-	@Nullable
-	private final List<String> index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
+
+	private final List<String> fields;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -71,44 +68,28 @@ public final class GetFieldMappingRequest extends RequestBase {
 	private final Boolean includeTypeName;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean local;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetFieldMappingRequest(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.includeTypeName = builder.includeTypeName;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 
 	}
 
 	public GetFieldMappingRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of fields
-	 * <p>
-	 * API name: {@code fields}
-	 */
-	public List<String> fields() {
-		return this.fields;
-	}
-
-	/**
-	 * A comma-separated list of index names
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -132,6 +113,15 @@ public final class GetFieldMappingRequest extends RequestBase {
 	@Nullable
 	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * Required - A comma-separated list of fields
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public List<String> fields() {
+		return this.fields;
 	}
 
 	/**
@@ -164,6 +154,16 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Return local information, do not retrieve the state from master node
 	 * (default: false)
 	 * <p>
@@ -180,16 +180,13 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * Builder for {@link GetFieldMappingRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetFieldMappingRequest> {
-		private List<String> fields;
-
-		@Nullable
-		private List<String> index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
+
+		private List<String> fields;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -201,69 +198,10 @@ public final class GetFieldMappingRequest extends RequestBase {
 		private Boolean includeTypeName;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean local;
-
-		/**
-		 * Required - A comma-separated list of fields
-		 * <p>
-		 * API name: {@code fields}
-		 */
-		public Builder fields(List<String> value) {
-			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of fields
-		 * <p>
-		 * API name: {@code fields}
-		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -311,6 +249,37 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - A comma-separated list of fields
+		 * <p>
+		 * API name: {@code fields}
+		 */
+		public Builder fields(List<String> value) {
+			this.fields = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of fields
+		 * <p>
+		 * API name: {@code fields}
+		 */
+		public Builder fields(String... value) {
+			this.fields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 */
+		public Builder addFields(String value) {
+			if (this.fields == null) {
+				this.fields = new ArrayList<>();
+			}
+			this.fields.add(value);
+			return this;
+		}
+
+		/**
 		 * Whether specified concrete indices should be ignored when unavailable
 		 * (missing or closed)
 		 * <p>
@@ -336,6 +305,37 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -376,14 +376,14 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _fields = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _fields = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _fields;
 				if (request.index() != null)
 					propsSet |= _index;
+				propsSet |= _fields;
 
 				if (propsSet == (_fields)) {
 					StringBuilder buf = new StringBuilder();
@@ -412,8 +412,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.includeTypeName != null) {
+					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
@@ -422,11 +422,11 @@ public final class GetFieldMappingRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));

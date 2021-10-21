@@ -177,13 +177,13 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 
 			// Request path
 			request -> {
-				final int _index = 1 << 0;
-				final int _rollupIndex = 1 << 1;
+				final int _rollupIndex = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _index;
 				propsSet |= _rollupIndex;
+				propsSet |= _index;
 
 				if (propsSet == (_index | _rollupIndex)) {
 					StringBuilder buf = new StringBuilder();

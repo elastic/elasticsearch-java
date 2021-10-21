@@ -53,8 +53,6 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model.Request
 @JsonpDeserializable
 public final class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
-	private final String modelId;
-
 	@Nullable
 	private final String compressedDefinition;
 
@@ -71,6 +69,8 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	@Nullable
 	private final JsonData metadata;
 
+	private final String modelId;
+
 	@Nullable
 	private final List<String> tags;
 
@@ -78,28 +78,19 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 
 	public PutTrainedModelRequest(Builder builder) {
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.compressedDefinition = builder.compressedDefinition;
 		this.definition = builder.definition;
 		this.description = builder.description;
 		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
 		this.input = Objects.requireNonNull(builder.input, "input");
 		this.metadata = builder.metadata;
+		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.tags = ModelTypeHelper.unmodifiable(builder.tags);
 
 	}
 
 	public PutTrainedModelRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The unique identifier of the trained model.
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	public String modelId() {
-		return this.modelId;
 	}
 
 	/**
@@ -163,6 +154,15 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	@Nullable
 	public JsonData metadata() {
 		return this.metadata;
+	}
+
+	/**
+	 * Required - The unique identifier of the trained model.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	public String modelId() {
+		return this.modelId;
 	}
 
 	/**
@@ -237,8 +237,6 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * Builder for {@link PutTrainedModelRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutTrainedModelRequest> {
-		private String modelId;
-
 		@Nullable
 		private String compressedDefinition;
 
@@ -255,18 +253,10 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private JsonData metadata;
 
+		private String modelId;
+
 		@Nullable
 		private List<String> tags;
-
-		/**
-		 * Required - The unique identifier of the trained model.
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(String value) {
-			this.modelId = value;
-			return this;
-		}
 
 		/**
 		 * The compressed (GZipped and Base64 encoded) inference definition of the
@@ -360,6 +350,16 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 */
 		public Builder metadata(@Nullable JsonData value) {
 			this.metadata = value;
+			return this;
+		}
+
+		/**
+		 * Required - The unique identifier of the trained model.
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public Builder modelId(String value) {
+			this.modelId = value;
 			return this;
 		}
 

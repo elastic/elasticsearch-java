@@ -52,15 +52,8 @@ import javax.annotation.Nullable;
 // typedef: snapshot.create.Request
 @JsonpDeserializable
 public final class CreateSnapshotRequest extends RequestBase implements JsonpSerializable {
-	private final String repository;
-
-	private final String snapshot;
-
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final Boolean waitForCompletion;
+	private final List<String> featureStates;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -72,7 +65,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	private final List<String> indices;
 
 	@Nullable
-	private final List<String> featureStates;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Map<String, JsonData> metadata;
@@ -80,20 +73,27 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final Boolean partial;
 
+	private final String repository;
+
+	private final String snapshot;
+
+	@Nullable
+	private final Boolean waitForCompletion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public CreateSnapshotRequest(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.masterTimeout = builder.masterTimeout;
-		this.waitForCompletion = builder.waitForCompletion;
+		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
+		this.masterTimeout = builder.masterTimeout;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
+		this.repository = Objects.requireNonNull(builder.repository, "repository");
+		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -102,44 +102,18 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Required - Repository for the snapshot.
+	 * Feature states to include in the snapshot. Each feature state includes one or
+	 * more system indices containing related data. You can view a list of eligible
+	 * features using the get features API. If <code>include_global_state</code> is
+	 * <code>true</code>, all current feature states are included by default. If
+	 * <code>include_global_state</code> is <code>false</code>, no feature states
+	 * are included by default.
 	 * <p>
-	 * API name: {@code repository}
-	 */
-	public String repository() {
-		return this.repository;
-	}
-
-	/**
-	 * Required - Name of the snapshot. Must be unique in the repository.
-	 * <p>
-	 * API name: {@code snapshot}
-	 */
-	public String snapshot() {
-		return this.snapshot;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
+	 * API name: {@code feature_states}
 	 */
 	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * If <code>true</code>, the request returns a response when the snapshot is
-	 * complete. If <code>false</code>, the request returns a response when the
-	 * snapshot initializes.
-	 * <p>
-	 * API name: {@code wait_for_completion}
-	 */
-	@Nullable
-	public Boolean waitForCompletion() {
-		return this.waitForCompletion;
+	public List<String> featureStates() {
+		return this.featureStates;
 	}
 
 	/**
@@ -181,18 +155,14 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Feature states to include in the snapshot. Each feature state includes one or
-	 * more system indices containing related data. You can view a list of eligible
-	 * features using the get features API. If <code>include_global_state</code> is
-	 * <code>true</code>, all current feature states are included by default. If
-	 * <code>include_global_state</code> is <code>false</code>, no feature states
-	 * are included by default.
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
-	 * API name: {@code feature_states}
+	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public List<String> featureStates() {
-		return this.featureStates;
+	public String masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -221,6 +191,36 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * Required - Repository for the snapshot.
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public String repository() {
+		return this.repository;
+	}
+
+	/**
+	 * Required - Name of the snapshot. Must be unique in the repository.
+	 * <p>
+	 * API name: {@code snapshot}
+	 */
+	public String snapshot() {
+		return this.snapshot;
+	}
+
+	/**
+	 * If <code>true</code>, the request returns a response when the snapshot is
+	 * complete. If <code>false</code>, the request returns a response when the
+	 * snapshot initializes.
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -231,6 +231,17 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.featureStates != null) {
+
+			generator.writeKey("feature_states");
+			generator.writeStartArray();
+			for (String item0 : this.featureStates) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.ignoreUnavailable != null) {
 
 			generator.writeKey("ignore_unavailable");
@@ -248,17 +259,6 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.featureStates != null) {
-
-			generator.writeKey("feature_states");
-			generator.writeStartArray();
-			for (String item0 : this.featureStates) {
 				generator.write(item0);
 
 			}
@@ -292,15 +292,8 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * Builder for {@link CreateSnapshotRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<CreateSnapshotRequest> {
-		private String repository;
-
-		private String snapshot;
-
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private Boolean waitForCompletion;
+		private List<String> featureStates;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -312,7 +305,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		private List<String> indices;
 
 		@Nullable
-		private List<String> featureStates;
+		private String masterTimeout;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
@@ -320,46 +313,51 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private Boolean partial;
 
+		private String repository;
+
+		private String snapshot;
+
+		@Nullable
+		private Boolean waitForCompletion;
+
 		/**
-		 * Required - Repository for the snapshot.
+		 * Feature states to include in the snapshot. Each feature state includes one or
+		 * more system indices containing related data. You can view a list of eligible
+		 * features using the get features API. If <code>include_global_state</code> is
+		 * <code>true</code>, all current feature states are included by default. If
+		 * <code>include_global_state</code> is <code>false</code>, no feature states
+		 * are included by default.
 		 * <p>
-		 * API name: {@code repository}
+		 * API name: {@code feature_states}
 		 */
-		public Builder repository(String value) {
-			this.repository = value;
+		public Builder featureStates(@Nullable List<String> value) {
+			this.featureStates = value;
 			return this;
 		}
 
 		/**
-		 * Required - Name of the snapshot. Must be unique in the repository.
+		 * Feature states to include in the snapshot. Each feature state includes one or
+		 * more system indices containing related data. You can view a list of eligible
+		 * features using the get features API. If <code>include_global_state</code> is
+		 * <code>true</code>, all current feature states are included by default. If
+		 * <code>include_global_state</code> is <code>false</code>, no feature states
+		 * are included by default.
 		 * <p>
-		 * API name: {@code snapshot}
+		 * API name: {@code feature_states}
 		 */
-		public Builder snapshot(String value) {
-			this.snapshot = value;
+		public Builder featureStates(String... value) {
+			this.featureStates = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the request returns a response when the snapshot is
-		 * complete. If <code>false</code>, the request returns a response when the
-		 * snapshot initializes.
-		 * <p>
-		 * API name: {@code wait_for_completion}
-		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
+		public Builder addFeatureStates(String value) {
+			if (this.featureStates == null) {
+				this.featureStates = new ArrayList<>();
+			}
+			this.featureStates.add(value);
 			return this;
 		}
 
@@ -424,43 +422,13 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Feature states to include in the snapshot. Each feature state includes one or
-		 * more system indices containing related data. You can view a list of eligible
-		 * features using the get features API. If <code>include_global_state</code> is
-		 * <code>true</code>, all current feature states are included by default. If
-		 * <code>include_global_state</code> is <code>false</code>, no feature states
-		 * are included by default.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code feature_states}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder featureStates(@Nullable List<String> value) {
-			this.featureStates = value;
-			return this;
-		}
-
-		/**
-		 * Feature states to include in the snapshot. Each feature state includes one or
-		 * more system indices containing related data. You can view a list of eligible
-		 * features using the get features API. If <code>include_global_state</code> is
-		 * <code>true</code>, all current feature states are included by default. If
-		 * <code>include_global_state</code> is <code>false</code>, no feature states
-		 * are included by default.
-		 * <p>
-		 * API name: {@code feature_states}
-		 */
-		public Builder featureStates(String... value) {
-			this.featureStates = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
-		 */
-		public Builder addFeatureStates(String value) {
-			if (this.featureStates == null) {
-				this.featureStates = new ArrayList<>();
-			}
-			this.featureStates.add(value);
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -501,6 +469,38 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * Required - Repository for the snapshot.
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder repository(String value) {
+			this.repository = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the snapshot. Must be unique in the repository.
+		 * <p>
+		 * API name: {@code snapshot}
+		 */
+		public Builder snapshot(String value) {
+			this.snapshot = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the request returns a response when the snapshot is
+		 * complete. If <code>false</code>, the request returns a response when the
+		 * snapshot initializes.
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link CreateSnapshotRequest}.
 		 *
 		 * @throws NullPointerException
@@ -523,12 +523,12 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	protected static void setupCreateSnapshotRequestDeserializer(
 			DelegatingDeserializer<CreateSnapshotRequest.Builder> op) {
 
+		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"feature_states");
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"feature_states");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
 

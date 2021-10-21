@@ -48,8 +48,6 @@ import javax.annotation.Nullable;
 // typedef: ml.put_data_frame_analytics.Request
 @JsonpDeserializable
 public final class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
-
 	@Nullable
 	private final Boolean allowLazyStart;
 
@@ -63,6 +61,8 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 
 	private final DataframeAnalyticsDestination dest;
 
+	private final String id;
+
 	@Nullable
 	private final Integer maxNumThreads;
 
@@ -75,12 +75,12 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 
 	public PutDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.allowLazyStart = builder.allowLazyStart;
 		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
 		this.dest = Objects.requireNonNull(builder.dest, "dest");
+		this.id = Objects.requireNonNull(builder.id, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.source = Objects.requireNonNull(builder.source, "source");
@@ -89,17 +89,6 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 
 	public PutDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the data frame analytics job. This identifier can
-	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-	 * underscores. It must start and end with alphanumeric characters.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -185,6 +174,17 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 */
 	public DataframeAnalyticsDestination dest() {
 		return this.dest;
+	}
+
+	/**
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -284,8 +284,6 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * Builder for {@link PutDataFrameAnalyticsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
-		private String id;
-
 		@Nullable
 		private Boolean allowLazyStart;
 
@@ -299,6 +297,8 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 
 		private DataframeAnalyticsDestination dest;
 
+		private String id;
+
 		@Nullable
 		private Integer maxNumThreads;
 
@@ -306,18 +306,6 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		private String modelMemoryLimit;
 
 		private DataframeAnalyticsSource source;
-
-		/**
-		 * Required - Identifier for the data frame analytics job. This identifier can
-		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-		 * underscores. It must start and end with alphanumeric characters.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
 
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
@@ -425,6 +413,18 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		public Builder dest(
 				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
 			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
+		}
+
+		/**
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
 		}
 
 		/**

@@ -51,9 +51,6 @@ import javax.annotation.Nullable;
 
 public final class FlushRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -66,34 +63,26 @@ public final class FlushRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean waitIfOngoing;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public FlushRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.force = builder.force;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.waitIfOngoing = builder.waitIfOngoing;
 
 	}
 
 	public FlushRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * for all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -144,6 +133,17 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * for all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * If set to true the flush operation will block until the flush can be executed
 	 * if another flush operation is already executing. The default is true. If set
 	 * to false the flush will be skipped iff if another flush operation is already
@@ -163,9 +163,6 @@ public final class FlushRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<FlushRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -178,40 +175,10 @@ public final class FlushRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean waitIfOngoing;
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * for all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * for all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -283,6 +250,39 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * If set to true the flush operation will block until the flush can be executed
 		 * if another flush operation is already executing. The default is true. If set
 		 * to false the flush will be skipped iff if another flush operation is already
@@ -347,18 +347,18 @@ public final class FlushRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.force != null) {
-					params.put("force", String.valueOf(request.force));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.force != null) {
+					params.put("force", String.valueOf(request.force));
 				}
 				if (request.waitIfOngoing != null) {
 					params.put("wait_if_ongoing", String.valueOf(request.waitIfOngoing));

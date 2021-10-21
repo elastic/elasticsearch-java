@@ -56,6 +56,21 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class MgetRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+
+	@Nullable
+	private final List<String> sourceExcludes;
+
+	@Nullable
+	private final List<String> sourceIncludes;
+
+	@Nullable
+	private final List<Operation> docs;
+
+	@Nullable
+	private final List<String> ids;
+
+	@Nullable
 	private final String index;
 
 	@Nullable
@@ -71,43 +86,75 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
-
-	@Nullable
 	private final List<String> storedFields;
-
-	@Nullable
-	private final List<Operation> docs;
-
-	@Nullable
-	private final List<String> ids;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MgetRequest(Builder builder) {
 
+		this.source = builder.source;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
+		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
 		this.index = builder.index;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
 
 	}
 
 	public MgetRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+		return this.source;
+	}
+
+	/**
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
+	 * API name: {@code _source_excludes}
+	 */
+	@Nullable
+	public List<String> sourceExcludes() {
+		return this.sourceExcludes;
+	}
+
+	/**
+	 * A list of fields to extract and return from the _source field
+	 * <p>
+	 * API name: {@code _source_includes}
+	 */
+	@Nullable
+	public List<String> sourceIncludes() {
+		return this.sourceIncludes;
+	}
+
+	/**
+	 * API name: {@code docs}
+	 */
+	@Nullable
+	public List<Operation> docs() {
+		return this.docs;
+	}
+
+	/**
+	 * API name: {@code ids}
+	 */
+	@Nullable
+	public List<String> ids() {
+		return this.ids;
 	}
 
 	/**
@@ -162,37 +209,6 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
-		return this.source;
-	}
-
-	/**
-	 * A list of fields to exclude from the returned _source field
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	@Nullable
-	public List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * A list of fields to extract and return from the _source field
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	@Nullable
-	public List<String> sourceIncludes() {
-		return this.sourceIncludes;
-	}
-
-	/**
 	 * A comma-separated list of stored fields to return in the response
 	 * <p>
 	 * API name: {@code stored_fields}
@@ -200,22 +216,6 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	@Nullable
 	public List<String> storedFields() {
 		return this.storedFields;
-	}
-
-	/**
-	 * API name: {@code docs}
-	 */
-	@Nullable
-	public List<Operation> docs() {
-		return this.docs;
-	}
-
-	/**
-	 * API name: {@code ids}
-	 */
-	@Nullable
-	public List<String> ids() {
-		return this.ids;
 	}
 
 	/**
@@ -261,6 +261,21 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	 */
 	public static class Builder implements ObjectBuilder<MgetRequest> {
 		@Nullable
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+
+		@Nullable
+		private List<String> sourceExcludes;
+
+		@Nullable
+		private List<String> sourceIncludes;
+
+		@Nullable
+		private List<Operation> docs;
+
+		@Nullable
+		private List<String> ids;
+
+		@Nullable
 		private String index;
 
 		@Nullable
@@ -276,73 +291,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
-
-		@Nullable
 		private List<String> storedFields;
-
-		@Nullable
-		private List<Operation> docs;
-
-		@Nullable
-		private List<String> ids;
-
-		/**
-		 * The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
-		 * <p>
-		 * API name: {@code preference}
-		 */
-		public Builder preference(@Nullable String value) {
-			this.preference = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether to perform the operation in realtime or search mode
-		 * <p>
-		 * API name: {@code realtime}
-		 */
-		public Builder realtime(@Nullable Boolean value) {
-			this.realtime = value;
-			return this;
-		}
-
-		/**
-		 * Refresh the shard containing the document before performing the operation
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable Boolean value) {
-			this.refresh = value;
-			return this;
-		}
-
-		/**
-		 * Specific routing value
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
 
 		/**
 		 * True or false to return the _source field or not, or a list of fields to
@@ -418,37 +367,6 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
-		 * <p>
-		 * API name: {@code stored_fields}
-		 */
-		public Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of stored fields to return in the response
-		 * <p>
-		 * API name: {@code stored_fields}
-		 */
-		public Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
-		 */
-		public Builder addStoredFields(String value) {
-			if (this.storedFields == null) {
-				this.storedFields = new ArrayList<>();
-			}
-			this.storedFields.add(value);
-			return this;
-		}
-
-		/**
 		 * API name: {@code docs}
 		 */
 		public Builder docs(@Nullable List<Operation> value) {
@@ -513,6 +431,88 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 				this.ids = new ArrayList<>();
 			}
 			this.ids.add(value);
+			return this;
+		}
+
+		/**
+		 * The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
+		 * API name: {@code preference}
+		 */
+		public Builder preference(@Nullable String value) {
+			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether to perform the operation in realtime or search mode
+		 * <p>
+		 * API name: {@code realtime}
+		 */
+		public Builder realtime(@Nullable Boolean value) {
+			this.realtime = value;
+			return this;
+		}
+
+		/**
+		 * Refresh the shard containing the document before performing the operation
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable Boolean value) {
+			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Specific routing value
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
+		 * API name: {@code stored_fields}
+		 */
+		public Builder storedFields(@Nullable List<String> value) {
+			this.storedFields = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
+		 * API name: {@code stored_fields}
+		 */
+		public Builder storedFields(String... value) {
+			this.storedFields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 */
+		public Builder addStoredFields(String value) {
+			if (this.storedFields == null) {
+				this.storedFields = new ArrayList<>();
+			}
+			this.storedFields.add(value);
 			return this;
 		}
 
@@ -583,17 +583,21 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.preference != null) {
-					params.put("preference", request.preference);
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
+				if (request.storedFields != null) {
+					params.put("stored_fields",
+							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
@@ -605,10 +609,6 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 				if (request.sourceIncludes != null) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.storedFields != null) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

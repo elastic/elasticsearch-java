@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -53,7 +53,8 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request) throws IOException {
+	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeprecationsRequest.ENDPOINT);
 	}
 
@@ -63,16 +64,16 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient {
 	 * major version.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeprecationsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeprecationsResponse> deprecations(
-			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn) throws IOException {
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
@@ -86,7 +87,7 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeprecationsResponse> deprecations() throws IOException {
+	public CompletableFuture<DeprecationsResponse> deprecations() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new DeprecationsRequest.Builder().build(),
 				DeprecationsRequest.ENDPOINT);
 	}

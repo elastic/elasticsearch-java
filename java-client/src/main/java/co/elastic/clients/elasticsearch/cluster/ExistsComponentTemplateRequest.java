@@ -51,21 +51,21 @@ import javax.annotation.Nullable;
 // typedef: cluster.exists_component_template.Request
 
 public final class ExistsComponentTemplateRequest extends RequestBase {
-	private final List<String> name;
+	@Nullable
+	private final Boolean local;
 
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
-	private final Boolean local;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ExistsComponentTemplateRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
-		this.masterTimeout = builder.masterTimeout;
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
@@ -74,13 +74,14 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of component template names used to limit the
-	 * request. Wildcard (*) expressions are supported.
+	 * If true, the request retrieves information from the local node only. Defaults
+	 * to false, which means information is retrieved from the master node.
 	 * <p>
-	 * API name: {@code name}
+	 * API name: {@code local}
 	 */
-	public List<String> name() {
-		return this.name;
+	@Nullable
+	public Boolean local() {
+		return this.local;
 	}
 
 	/**
@@ -95,14 +96,13 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, the request retrieves information from the local node only. Defaults
-	 * to false, which means information is retrieved from the master node.
+	 * Required - Comma-separated list of component template names used to limit the
+	 * request. Wildcard (*) expressions are supported.
 	 * <p>
-	 * API name: {@code local}
+	 * API name: {@code name}
 	 */
-	@Nullable
-	public Boolean local() {
-		return this.local;
+	public List<String> name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -111,13 +111,35 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 	 * Builder for {@link ExistsComponentTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ExistsComponentTemplateRequest> {
-		private List<String> name;
+		@Nullable
+		private Boolean local;
 
 		@Nullable
 		private String masterTimeout;
 
-		@Nullable
-		private Boolean local;
+		private List<String> name;
+
+		/**
+		 * If true, the request retrieves information from the local node only. Defaults
+		 * to false, which means information is retrieved from the master node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
 
 		/**
 		 * Required - Comma-separated list of component template names used to limit the
@@ -149,28 +171,6 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 				this.name = new ArrayList<>();
 			}
 			this.name.add(value);
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * If true, the request retrieves information from the local node only. Defaults
-		 * to false, which means information is retrieved from the master node.
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public Builder local(@Nullable Boolean value) {
-			this.local = value;
 			return this;
 		}
 

@@ -43,10 +43,10 @@ import javax.annotation.Nullable;
 // typedef: snapshot.cleanup_repository.Request
 
 public final class CleanupRepositoryRequest extends RequestBase {
-	private final String repository;
-
 	@Nullable
 	private final String masterTimeout;
+
+	private final String name;
 
 	@Nullable
 	private final String timeout;
@@ -55,23 +55,14 @@ public final class CleanupRepositoryRequest extends RequestBase {
 
 	public CleanupRepositoryRequest(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = Objects.requireNonNull(builder.name, "repository");
 		this.timeout = builder.timeout;
 
 	}
 
 	public CleanupRepositoryRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A repository name
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public String repository() {
-		return this.repository;
 	}
 
 	/**
@@ -82,6 +73,15 @@ public final class CleanupRepositoryRequest extends RequestBase {
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - A repository name
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -100,23 +100,13 @@ public final class CleanupRepositoryRequest extends RequestBase {
 	 * Builder for {@link CleanupRepositoryRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<CleanupRepositoryRequest> {
-		private String repository;
-
 		@Nullable
 		private String masterTimeout;
 
+		private String name;
+
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - A repository name
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String value) {
-			this.repository = value;
-			return this;
-		}
 
 		/**
 		 * Explicit operation timeout for connection to master node
@@ -125,6 +115,16 @@ public final class CleanupRepositoryRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - A repository name
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -164,17 +164,17 @@ public final class CleanupRepositoryRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _repository;
+				propsSet |= _name;
 
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					buf.append("/_cleanup");
 					return buf.toString();
 				}

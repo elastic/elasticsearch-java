@@ -52,25 +52,22 @@ import javax.annotation.Nullable;
 // typedef: watcher.put_watch.Request
 @JsonpDeserializable
 public final class PutWatchRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
+	@Nullable
+	private final Map<String, Action> actions;
 
 	@Nullable
 	private final Boolean active;
+
+	@Nullable
+	private final Condition condition;
+
+	private final String id;
 
 	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
 	private final Long ifSequenceNumber;
-
-	@Nullable
-	private final Long version;
-
-	@Nullable
-	private final Map<String, Action> actions;
-
-	@Nullable
-	private final Condition condition;
 
 	@Nullable
 	private final Input input;
@@ -87,22 +84,25 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final Trigger trigger;
 
+	@Nullable
+	private final Long version;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public PutWatchRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.active = builder.active;
+		this.condition = builder.condition;
+		this.id = Objects.requireNonNull(builder.id, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSequenceNumber = builder.ifSequenceNumber;
-		this.version = builder.version;
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
-		this.condition = builder.condition;
 		this.input = builder.input;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.throttlePeriod = builder.throttlePeriod;
 		this.transform = builder.transform;
 		this.trigger = builder.trigger;
+		this.version = builder.version;
 
 	}
 
@@ -111,12 +111,11 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - Watch ID
-	 * <p>
-	 * API name: {@code id}
+	 * API name: {@code actions}
 	 */
-	public String id() {
-		return this.id;
+	@Nullable
+	public Map<String, Action> actions() {
+		return this.actions;
 	}
 
 	/**
@@ -127,6 +126,23 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public Boolean active() {
 		return this.active;
+	}
+
+	/**
+	 * API name: {@code condition}
+	 */
+	@Nullable
+	public Condition condition() {
+		return this.condition;
+	}
+
+	/**
+	 * Required - Watch ID
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -146,32 +162,6 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public Long ifSequenceNumber() {
 		return this.ifSequenceNumber;
-	}
-
-	/**
-	 * Explicit version number for concurrency control
-	 * <p>
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public Long version() {
-		return this.version;
-	}
-
-	/**
-	 * API name: {@code actions}
-	 */
-	@Nullable
-	public Map<String, Action> actions() {
-		return this.actions;
-	}
-
-	/**
-	 * API name: {@code condition}
-	 */
-	@Nullable
-	public Condition condition() {
-		return this.condition;
 	}
 
 	/**
@@ -212,6 +202,16 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public Trigger trigger() {
 		return this.trigger;
+	}
+
+	/**
+	 * Explicit version number for concurrency control
+	 * <p>
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public Long version() {
+		return this.version;
 	}
 
 	/**
@@ -288,25 +288,22 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link PutWatchRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutWatchRequest> {
-		private String id;
+		@Nullable
+		private Map<String, Action> actions;
 
 		@Nullable
 		private Boolean active;
+
+		@Nullable
+		private Condition condition;
+
+		private String id;
 
 		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
 		private Long ifSequenceNumber;
-
-		@Nullable
-		private Long version;
-
-		@Nullable
-		private Map<String, Action> actions;
-
-		@Nullable
-		private Condition condition;
 
 		@Nullable
 		private Input input;
@@ -323,54 +320,8 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Trigger trigger;
 
-		/**
-		 * Required - Watch ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether the watch is in/active by default
-		 * <p>
-		 * API name: {@code active}
-		 */
-		public Builder active(@Nullable Boolean value) {
-			this.active = value;
-			return this;
-		}
-
-		/**
-		 * only update the watch if the last operation that has changed the watch has
-		 * the specified primary term
-		 * <p>
-		 * API name: {@code if_primary_term}
-		 */
-		public Builder ifPrimaryTerm(@Nullable Long value) {
-			this.ifPrimaryTerm = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code if_sequence_number}
-		 */
-		public Builder ifSequenceNumber(@Nullable Long value) {
-			this.ifSequenceNumber = value;
-			return this;
-		}
-
-		/**
-		 * Explicit version number for concurrency control
-		 * <p>
-		 * API name: {@code version}
-		 */
-		public Builder version(@Nullable Long value) {
-			this.version = value;
-			return this;
-		}
+		@Nullable
+		private Long version;
 
 		/**
 		 * API name: {@code actions}
@@ -406,6 +357,16 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * Specify whether the watch is in/active by default
+		 * <p>
+		 * API name: {@code active}
+		 */
+		public Builder active(@Nullable Boolean value) {
+			this.active = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code condition}
 		 */
 		public Builder condition(@Nullable Condition value) {
@@ -418,6 +379,35 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
+		}
+
+		/**
+		 * Required - Watch ID
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * only update the watch if the last operation that has changed the watch has
+		 * the specified primary term
+		 * <p>
+		 * API name: {@code if_primary_term}
+		 */
+		public Builder ifPrimaryTerm(@Nullable Long value) {
+			this.ifPrimaryTerm = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code if_sequence_number}
+		 */
+		public Builder ifSequenceNumber(@Nullable Long value) {
+			this.ifSequenceNumber = value;
+			return this;
 		}
 
 		/**
@@ -490,6 +480,16 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
+		}
+
+		/**
+		 * Explicit version number for concurrency control
+		 * <p>
+		 * API name: {@code version}
+		 */
+		public Builder version(@Nullable Long value) {
+			this.version = value;
+			return this;
 		}
 
 		/**

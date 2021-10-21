@@ -44,8 +44,6 @@ import javax.annotation.Nullable;
 // typedef: transform.stop_transform.Request
 
 public final class StopTransformRequest extends RequestBase {
-	private final String transformId;
-
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -54,6 +52,8 @@ public final class StopTransformRequest extends RequestBase {
 
 	@Nullable
 	private final String timeout;
+
+	private final String transformId;
 
 	@Nullable
 	private final Boolean waitForCheckpoint;
@@ -65,10 +65,10 @@ public final class StopTransformRequest extends RequestBase {
 
 	public StopTransformRequest(Builder builder) {
 
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
 		this.timeout = builder.timeout;
+		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.waitForCheckpoint = builder.waitForCheckpoint;
 		this.waitForCompletion = builder.waitForCompletion;
 
@@ -76,15 +76,6 @@ public final class StopTransformRequest extends RequestBase {
 
 	public StopTransformRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The id of the transform to stop
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	public String transformId() {
-		return this.transformId;
 	}
 
 	/**
@@ -120,6 +111,15 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - The id of the transform to stop
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	public String transformId() {
+		return this.transformId;
+	}
+
+	/**
 	 * Whether to wait for the transform to reach a checkpoint before stopping.
 	 * Default to false
 	 * <p>
@@ -147,8 +147,6 @@ public final class StopTransformRequest extends RequestBase {
 	 * Builder for {@link StopTransformRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<StopTransformRequest> {
-		private String transformId;
-
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -158,21 +156,13 @@ public final class StopTransformRequest extends RequestBase {
 		@Nullable
 		private String timeout;
 
+		private String transformId;
+
 		@Nullable
 		private Boolean waitForCheckpoint;
 
 		@Nullable
 		private Boolean waitForCompletion;
-
-		/**
-		 * Required - The id of the transform to stop
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(String value) {
-			this.transformId = value;
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no transforms. (This
@@ -203,6 +193,16 @@ public final class StopTransformRequest extends RequestBase {
 		 */
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - The id of the transform to stop
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public Builder transformId(String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -275,20 +275,20 @@ public final class StopTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.waitForCheckpoint != null) {
+					params.put("wait_for_checkpoint", String.valueOf(request.waitForCheckpoint));
 				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				if (request.waitForCheckpoint != null) {
-					params.put("wait_for_checkpoint", String.valueOf(request.waitForCheckpoint));
-				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

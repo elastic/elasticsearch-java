@@ -52,9 +52,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class HasPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String user;
-
-	@Nullable
 	private final List<ApplicationPrivilegesCheck> application;
 
 	@Nullable
@@ -63,29 +60,22 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	private final List<IndexPrivilegesCheck> index;
 
+	@Nullable
+	private final String user;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public HasPrivilegesRequest(Builder builder) {
 
-		this.user = builder.user;
 		this.application = ModelTypeHelper.unmodifiable(builder.application);
 		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.user = builder.user;
 
 	}
 
 	public HasPrivilegesRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Username
-	 * <p>
-	 * API name: {@code user}
-	 */
-	@Nullable
-	public String user() {
-		return this.user;
 	}
 
 	/**
@@ -110,6 +100,16 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	public List<IndexPrivilegesCheck> index() {
 		return this.index;
+	}
+
+	/**
+	 * Username
+	 * <p>
+	 * API name: {@code user}
+	 */
+	@Nullable
+	public String user() {
+		return this.user;
 	}
 
 	/**
@@ -165,9 +165,6 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	 */
 	public static class Builder implements ObjectBuilder<HasPrivilegesRequest> {
 		@Nullable
-		private String user;
-
-		@Nullable
 		private List<ApplicationPrivilegesCheck> application;
 
 		@Nullable
@@ -176,15 +173,8 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private List<IndexPrivilegesCheck> index;
 
-		/**
-		 * Username
-		 * <p>
-		 * API name: {@code user}
-		 */
-		public Builder user(@Nullable String value) {
-			this.user = value;
-			return this;
-		}
+		@Nullable
+		private String user;
 
 		/**
 		 * API name: {@code application}
@@ -295,6 +285,16 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		 */
 		public Builder addIndex(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn) {
 			return this.addIndex(fn.apply(new IndexPrivilegesCheck.Builder()).build());
+		}
+
+		/**
+		 * Username
+		 * <p>
+		 * API name: {@code user}
+		 */
+		public Builder user(@Nullable String value) {
+			this.user = value;
+			return this;
 		}
 
 		/**

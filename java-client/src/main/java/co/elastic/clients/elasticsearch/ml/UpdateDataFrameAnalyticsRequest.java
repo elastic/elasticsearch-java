@@ -47,34 +47,55 @@ import javax.annotation.Nullable;
 // typedef: ml.update_data_frame_analytics.Request
 @JsonpDeserializable
 public final class UpdateDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
+	@Nullable
+	private final Boolean allowLazyStart;
 
 	@Nullable
 	private final String description;
 
-	@Nullable
-	private final String modelMemoryLimit;
+	private final String id;
 
 	@Nullable
 	private final Integer maxNumThreads;
 
 	@Nullable
-	private final Boolean allowLazyStart;
+	private final String modelMemoryLimit;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public UpdateDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.description = builder.description;
-		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.maxNumThreads = builder.maxNumThreads;
 		this.allowLazyStart = builder.allowLazyStart;
+		this.description = builder.description;
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.maxNumThreads = builder.maxNumThreads;
+		this.modelMemoryLimit = builder.modelMemoryLimit;
 
 	}
 
 	public UpdateDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Specifies whether this job can start when there is insufficient machine
+	 * learning node capacity for it to be immediately assigned to a node.
+	 * <p>
+	 * API name: {@code allow_lazy_start}
+	 */
+	@Nullable
+	public Boolean allowLazyStart() {
+		return this.allowLazyStart;
+	}
+
+	/**
+	 * A description of the job.
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public String description() {
+		return this.description;
 	}
 
 	/**
@@ -89,13 +110,17 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	}
 
 	/**
-	 * A description of the job.
+	 * The maximum number of threads to be used by the analysis. The default value
+	 * is 1. Using more threads may decrease the time necessary to complete the
+	 * analysis at the cost of using more CPU. Note that the process may use
+	 * additional threads for operational functionality other than the analysis
+	 * itself.
 	 * <p>
-	 * API name: {@code description}
+	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public String description() {
-		return this.description;
+	public Integer maxNumThreads() {
+		return this.maxNumThreads;
 	}
 
 	/**
@@ -114,31 +139,6 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	}
 
 	/**
-	 * The maximum number of threads to be used by the analysis. The default value
-	 * is 1. Using more threads may decrease the time necessary to complete the
-	 * analysis at the cost of using more CPU. Note that the process may use
-	 * additional threads for operational functionality other than the analysis
-	 * itself.
-	 * <p>
-	 * API name: {@code max_num_threads}
-	 */
-	@Nullable
-	public Integer maxNumThreads() {
-		return this.maxNumThreads;
-	}
-
-	/**
-	 * Specifies whether this job can start when there is insufficient machine
-	 * learning node capacity for it to be immediately assigned to a node.
-	 * <p>
-	 * API name: {@code allow_lazy_start}
-	 */
-	@Nullable
-	public Boolean allowLazyStart() {
-		return this.allowLazyStart;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -149,16 +149,16 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.allowLazyStart != null) {
+
+			generator.writeKey("allow_lazy_start");
+			generator.write(this.allowLazyStart);
+
+		}
 		if (this.description != null) {
 
 			generator.writeKey("description");
 			generator.write(this.description);
-
-		}
-		if (this.modelMemoryLimit != null) {
-
-			generator.writeKey("model_memory_limit");
-			generator.write(this.modelMemoryLimit);
 
 		}
 		if (this.maxNumThreads != null) {
@@ -167,10 +167,10 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 			generator.write(this.maxNumThreads);
 
 		}
-		if (this.allowLazyStart != null) {
+		if (this.modelMemoryLimit != null) {
 
-			generator.writeKey("allow_lazy_start");
-			generator.write(this.allowLazyStart);
+			generator.writeKey("model_memory_limit");
+			generator.write(this.modelMemoryLimit);
 
 		}
 
@@ -182,29 +182,28 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * Builder for {@link UpdateDataFrameAnalyticsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateDataFrameAnalyticsRequest> {
-		private String id;
+		@Nullable
+		private Boolean allowLazyStart;
 
 		@Nullable
 		private String description;
 
-		@Nullable
-		private String modelMemoryLimit;
+		private String id;
 
 		@Nullable
 		private Integer maxNumThreads;
 
 		@Nullable
-		private Boolean allowLazyStart;
+		private String modelMemoryLimit;
 
 		/**
-		 * Required - Identifier for the data frame analytics job. This identifier can
-		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-		 * underscores. It must start and end with alphanumeric characters.
+		 * Specifies whether this job can start when there is insufficient machine
+		 * learning node capacity for it to be immediately assigned to a node.
 		 * <p>
-		 * API name: {@code id}
+		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder id(String value) {
-			this.id = value;
+		public Builder allowLazyStart(@Nullable Boolean value) {
+			this.allowLazyStart = value;
 			return this;
 		}
 
@@ -219,17 +218,14 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		}
 
 		/**
-		 * The approximate maximum amount of memory resources that are permitted for
-		 * analytical processing. The default value for data frame analytics jobs is
-		 * 1gb. If your elasticsearch.yml file contains an
-		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-		 * create data frame analytics jobs that have model_memory_limit values greater
-		 * than that setting.
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
 		 * <p>
-		 * API name: {@code model_memory_limit}
+		 * API name: {@code id}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
-			this.modelMemoryLimit = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -248,13 +244,17 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		}
 
 		/**
-		 * Specifies whether this job can start when there is insufficient machine
-		 * learning node capacity for it to be immediately assigned to a node.
+		 * The approximate maximum amount of memory resources that are permitted for
+		 * analytical processing. The default value for data frame analytics jobs is
+		 * 1gb. If your elasticsearch.yml file contains an
+		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
+		 * create data frame analytics jobs that have model_memory_limit values greater
+		 * than that setting.
 		 * <p>
-		 * API name: {@code allow_lazy_start}
+		 * API name: {@code model_memory_limit}
 		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
-			this.allowLazyStart = value;
+		public Builder modelMemoryLimit(@Nullable String value) {
+			this.modelMemoryLimit = value;
 			return this;
 		}
 
@@ -282,10 +282,10 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	protected static void setupUpdateDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<UpdateDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 
 	}
 

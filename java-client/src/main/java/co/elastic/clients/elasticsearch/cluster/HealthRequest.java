@@ -56,10 +56,10 @@ import javax.annotation.Nullable;
 
 public final class HealthRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<String> index;
 
 	@Nullable
 	private final Level level;
@@ -80,13 +80,13 @@ public final class HealthRequest extends RequestBase {
 	private final WaitForEvents waitForEvents;
 
 	@Nullable
-	private final String waitForNodes;
-
-	@Nullable
 	private final Boolean waitForNoInitializingShards;
 
 	@Nullable
 	private final Boolean waitForNoRelocatingShards;
+
+	@Nullable
+	private final String waitForNodes;
 
 	@Nullable
 	private final WaitForStatus waitForStatus;
@@ -95,23 +95,34 @@ public final class HealthRequest extends RequestBase {
 
 	public HealthRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.waitForEvents = builder.waitForEvents;
-		this.waitForNodes = builder.waitForNodes;
 		this.waitForNoInitializingShards = builder.waitForNoInitializingShards;
 		this.waitForNoRelocatingShards = builder.waitForNoRelocatingShards;
+		this.waitForNodes = builder.waitForNodes;
 		this.waitForStatus = builder.waitForStatus;
 
 	}
 
 	public HealthRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	@Nullable
+	public List<ExpandWildcardOptions> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
@@ -124,17 +135,6 @@ public final class HealthRequest extends RequestBase {
 	@Nullable
 	public List<String> index() {
 		return this.index;
-	}
-
-	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
-	 * <p>
-	 * API name: {@code expand_wildcards}
-	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
-		return this.expandWildcards;
 	}
 
 	/**
@@ -204,18 +204,6 @@ public final class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * The request waits until the specified number N of nodes is available. It also
-	 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
-	 * ge(N), le(N), gt(N) and lt(N) notation.
-	 * <p>
-	 * API name: {@code wait_for_nodes}
-	 */
-	@Nullable
-	public String waitForNodes() {
-		return this.waitForNodes;
-	}
-
-	/**
 	 * A boolean value which controls whether to wait (until the timeout provided)
 	 * for the cluster to have no shard initializations. Defaults to false, which
 	 * means it will not wait for initializing shards.
@@ -240,6 +228,18 @@ public final class HealthRequest extends RequestBase {
 	}
 
 	/**
+	 * The request waits until the specified number N of nodes is available. It also
+	 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
+	 * ge(N), le(N), gt(N) and lt(N) notation.
+	 * <p>
+	 * API name: {@code wait_for_nodes}
+	 */
+	@Nullable
+	public String waitForNodes() {
+		return this.waitForNodes;
+	}
+
+	/**
 	 * One of green, yellow or red. Will wait (until the timeout provided) until the
 	 * status of the cluster changes to the one provided or better, i.e. green &gt;
 	 * yellow &gt; red. By default, will not wait for any status.
@@ -258,10 +258,10 @@ public final class HealthRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<HealthRequest> {
 		@Nullable
-		private List<String> index;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<String> index;
 
 		@Nullable
 		private Level level;
@@ -282,16 +282,49 @@ public final class HealthRequest extends RequestBase {
 		private WaitForEvents waitForEvents;
 
 		@Nullable
-		private String waitForNodes;
-
-		@Nullable
 		private Boolean waitForNoInitializingShards;
 
 		@Nullable
 		private Boolean waitForNoRelocatingShards;
 
 		@Nullable
+		private String waitForNodes;
+
+		@Nullable
 		private WaitForStatus waitForStatus;
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
@@ -325,39 +358,6 @@ public final class HealthRequest extends RequestBase {
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
-			return this;
-		}
-
-		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -428,18 +428,6 @@ public final class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * The request waits until the specified number N of nodes is available. It also
-		 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
-		 * ge(N), le(N), gt(N) and lt(N) notation.
-		 * <p>
-		 * API name: {@code wait_for_nodes}
-		 */
-		public Builder waitForNodes(@Nullable String value) {
-			this.waitForNodes = value;
-			return this;
-		}
-
-		/**
 		 * A boolean value which controls whether to wait (until the timeout provided)
 		 * for the cluster to have no shard initializations. Defaults to false, which
 		 * means it will not wait for initializing shards.
@@ -460,6 +448,18 @@ public final class HealthRequest extends RequestBase {
 		 */
 		public Builder waitForNoRelocatingShards(@Nullable Boolean value) {
 			this.waitForNoRelocatingShards = value;
+			return this;
+		}
+
+		/**
+		 * The request waits until the specified number N of nodes is available. It also
+		 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
+		 * ge(N), le(N), gt(N) and lt(N) notation.
+		 * <p>
+		 * API name: {@code wait_for_nodes}
+		 */
+		public Builder waitForNodes(@Nullable String value) {
+			this.waitForNodes = value;
 			return this;
 		}
 
@@ -529,6 +529,9 @@ public final class HealthRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
@@ -536,32 +539,29 @@ public final class HealthRequest extends RequestBase {
 				if (request.level != null) {
 					params.put("level", request.level.toString());
 				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
-				}
 				if (request.waitForEvents != null) {
 					params.put("wait_for_events", request.waitForEvents.toString());
-				}
-				if (request.waitForNodes != null) {
-					params.put("wait_for_nodes", request.waitForNodes);
 				}
 				if (request.waitForNoInitializingShards != null) {
 					params.put("wait_for_no_initializing_shards", String.valueOf(request.waitForNoInitializingShards));
 				}
+				if (request.waitForStatus != null) {
+					params.put("wait_for_status", request.waitForStatus.toString());
+				}
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				}
+				if (request.waitForNodes != null) {
+					params.put("wait_for_nodes", request.waitForNodes);
+				}
 				if (request.waitForNoRelocatingShards != null) {
 					params.put("wait_for_no_relocating_shards", String.valueOf(request.waitForNoRelocatingShards));
 				}
-				if (request.waitForStatus != null) {
-					params.put("wait_for_status", request.waitForStatus.toString());
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

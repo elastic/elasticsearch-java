@@ -51,10 +51,10 @@ import javax.annotation.Nullable;
 
 public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
-	private final List<String> nodeNames;
+	private final List<String> nodeIds;
 
 	@Nullable
-	private final List<String> nodeIds;
+	private final List<String> nodeNames;
 
 	@Nullable
 	private final String timeout;
@@ -63,25 +63,14 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 
 	public PostVotingConfigExclusionsRequest(Builder builder) {
 
-		this.nodeNames = ModelTypeHelper.unmodifiable(builder.nodeNames);
 		this.nodeIds = ModelTypeHelper.unmodifiable(builder.nodeIds);
+		this.nodeNames = ModelTypeHelper.unmodifiable(builder.nodeNames);
 		this.timeout = builder.timeout;
 
 	}
 
 	public PostVotingConfigExclusionsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of the names of the nodes to exclude from the voting
-	 * configuration. If specified, you may not also specify node_ids.
-	 * <p>
-	 * API name: {@code node_names}
-	 */
-	@Nullable
-	public List<String> nodeNames() {
-		return this.nodeNames;
 	}
 
 	/**
@@ -93,6 +82,17 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
 	public List<String> nodeIds() {
 		return this.nodeIds;
+	}
+
+	/**
+	 * A comma-separated list of the names of the nodes to exclude from the voting
+	 * configuration. If specified, you may not also specify node_ids.
+	 * <p>
+	 * API name: {@code node_names}
+	 */
+	@Nullable
+	public List<String> nodeNames() {
+		return this.nodeNames;
 	}
 
 	/**
@@ -115,46 +115,13 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<PostVotingConfigExclusionsRequest> {
 		@Nullable
-		private List<String> nodeNames;
-
-		@Nullable
 		private List<String> nodeIds;
 
 		@Nullable
+		private List<String> nodeNames;
+
+		@Nullable
 		private String timeout;
-
-		/**
-		 * A comma-separated list of the names of the nodes to exclude from the voting
-		 * configuration. If specified, you may not also specify node_ids.
-		 * <p>
-		 * API name: {@code node_names}
-		 */
-		public Builder nodeNames(@Nullable List<String> value) {
-			this.nodeNames = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of the names of the nodes to exclude from the voting
-		 * configuration. If specified, you may not also specify node_ids.
-		 * <p>
-		 * API name: {@code node_names}
-		 */
-		public Builder nodeNames(String... value) {
-			this.nodeNames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeNames(List)}, creating the list if needed.
-		 */
-		public Builder addNodeNames(String value) {
-			if (this.nodeNames == null) {
-				this.nodeNames = new ArrayList<>();
-			}
-			this.nodeNames.add(value);
-			return this;
-		}
 
 		/**
 		 * A comma-separated list of the persistent ids of the nodes to exclude from the
@@ -186,6 +153,39 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 				this.nodeIds = new ArrayList<>();
 			}
 			this.nodeIds.add(value);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of the names of the nodes to exclude from the voting
+		 * configuration. If specified, you may not also specify node_ids.
+		 * <p>
+		 * API name: {@code node_names}
+		 */
+		public Builder nodeNames(@Nullable List<String> value) {
+			this.nodeNames = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of the names of the nodes to exclude from the voting
+		 * configuration. If specified, you may not also specify node_ids.
+		 * <p>
+		 * API name: {@code node_names}
+		 */
+		public Builder nodeNames(String... value) {
+			this.nodeNames = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeNames(List)}, creating the list if needed.
+		 */
+		public Builder addNodeNames(String value) {
+			if (this.nodeNames == null) {
+				this.nodeNames = new ArrayList<>();
+			}
+			this.nodeNames.add(value);
 			return this;
 		}
 

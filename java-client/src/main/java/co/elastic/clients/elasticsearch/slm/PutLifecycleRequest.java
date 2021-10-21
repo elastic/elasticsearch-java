@@ -46,19 +46,16 @@ import javax.annotation.Nullable;
 // typedef: slm.put_lifecycle.Request
 @JsonpDeserializable
 public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
-	private final String policyId;
+	@Nullable
+	private final Configuration config;
 
 	@Nullable
 	private final String masterTimeout;
 
 	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final Configuration config;
-
-	@Nullable
 	private final String name;
+
+	private final String policyId;
 
 	@Nullable
 	private final String repository;
@@ -69,18 +66,21 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final String schedule;
 
+	@Nullable
+	private final String timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public PutLifecycleRequest(Builder builder) {
 
-		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.config = builder.config;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
+		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
 		this.repository = builder.repository;
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -89,12 +89,13 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Required - ID for the snapshot lifecycle policy you want to create or update.
+	 * Configuration for each snapshot created by the policy.
 	 * <p>
-	 * API name: {@code policy_id}
+	 * API name: {@code config}
 	 */
-	public String policyId() {
-		return this.policyId;
+	@Nullable
+	public Configuration config() {
+		return this.config;
 	}
 
 	/**
@@ -109,27 +110,6 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * Configuration for each snapshot created by the policy.
-	 * <p>
-	 * API name: {@code config}
-	 */
-	@Nullable
-	public Configuration config() {
-		return this.config;
-	}
-
-	/**
 	 * Name automatically assigned to each snapshot created by the policy. Date math
 	 * is supported. To prevent conflicting snapshot names, a UUID is automatically
 	 * appended to each snapshot name.
@@ -139,6 +119,15 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public String name() {
 		return this.name;
+	}
+
+	/**
+	 * Required - ID for the snapshot lifecycle policy you want to create or update.
+	 * <p>
+	 * API name: {@code policy_id}
+	 */
+	public String policyId() {
+		return this.policyId;
 	}
 
 	/**
@@ -172,6 +161,17 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public String schedule() {
 		return this.schedule;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public String timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -224,19 +224,16 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
-		private String policyId;
+		@Nullable
+		private Configuration config;
 
 		@Nullable
 		private String masterTimeout;
 
 		@Nullable
-		private String timeout;
-
-		@Nullable
-		private Configuration config;
-
-		@Nullable
 		private String name;
+
+		private String policyId;
 
 		@Nullable
 		private String repository;
@@ -247,37 +244,8 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private String schedule;
 
-		/**
-		 * Required - ID for the snapshot lifecycle policy you want to create or update.
-		 * <p>
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(String value) {
-			this.policyId = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
+		@Nullable
+		private String timeout;
 
 		/**
 		 * Configuration for each snapshot created by the policy.
@@ -299,6 +267,17 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
 		 * Name automatically assigned to each snapshot created by the policy. Date math
 		 * is supported. To prevent conflicting snapshot names, a UUID is automatically
 		 * appended to each snapshot name.
@@ -307,6 +286,16 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - ID for the snapshot lifecycle policy you want to create or update.
+		 * <p>
+		 * API name: {@code policy_id}
+		 */
+		public Builder policyId(String value) {
+			this.policyId = value;
 			return this;
 		}
 
@@ -349,6 +338,17 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder schedule(@Nullable String value) {
 			this.schedule = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
 			return this;
 		}
 

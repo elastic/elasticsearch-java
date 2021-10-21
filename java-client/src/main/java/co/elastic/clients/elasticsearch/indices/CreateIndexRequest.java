@@ -52,22 +52,13 @@ import javax.annotation.Nullable;
 // typedef: indices.create.Request
 @JsonpDeserializable
 public final class CreateIndexRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
+	@Nullable
+	private final Map<String, Alias> aliases;
 
 	@Nullable
 	private final Boolean includeTypeName;
 
-	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-	@Nullable
-	private final Map<String, Alias> aliases;
+	private final String index;
 
 	@Nullable
 	private final JsonValue /*
@@ -76,20 +67,29 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 							 */ mappings;
 
 	@Nullable
+	private final String masterTimeout;
+
+	@Nullable
 	private final Map<String, JsonData> settings;
+
+	@Nullable
+	private final String timeout;
+
+	@Nullable
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public CreateIndexRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.includeTypeName = builder.includeTypeName;
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.mappings = builder.mappings;
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
@@ -98,12 +98,11 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
+	 * API name: {@code aliases}
 	 */
-	public String index() {
-		return this.index;
+	@Nullable
+	public Map<String, Alias> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -115,41 +114,12 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Required - The name of the index
 	 * <p>
-	 * API name: {@code master_timeout}
+	 * API name: {@code index}
 	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * Set the number of active shards to wait for before the operation returns.
-	 * <p>
-	 * API name: {@code wait_for_active_shards}
-	 */
-	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
-		return this.waitForActiveShards;
-	}
-
-	/**
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
-		return this.aliases;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -171,11 +141,41 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * API name: {@code settings}
 	 */
 	@Nullable
 	public Map<String, JsonData> settings() {
 		return this.settings;
+	}
+
+	/**
+	 * Explicit operation timeout
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public String timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Set the number of active shards to wait for before the operation returns.
+	 * <p>
+	 * API name: {@code wait_for_active_shards}
+	 */
+	@Nullable
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+		return this.waitForActiveShards;
 	}
 
 	/**
@@ -228,22 +228,13 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link CreateIndexRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<CreateIndexRequest> {
-		private String index;
+		@Nullable
+		private Map<String, Alias> aliases;
 
 		@Nullable
 		private Boolean includeTypeName;
 
-		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-		@Nullable
-		private Map<String, Alias> aliases;
+		private String index;
 
 		@Nullable
 		private JsonValue /*
@@ -252,55 +243,16 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 							 */ mappings;
 
 		@Nullable
+		private String masterTimeout;
+
+		@Nullable
 		private Map<String, JsonData> settings;
 
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+		@Nullable
+		private String timeout;
 
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Set the number of active shards to wait for before the operation returns.
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
-			return this;
-		}
+		@Nullable
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		/**
 		 * API name: {@code aliases}
@@ -336,6 +288,24 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * API name: {@code include_type_name}
+		 */
+		public Builder includeTypeName(@Nullable Boolean value) {
+			this.includeTypeName = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
 		 * Mapping for fields in the index. If specified, this mapping can include:
 		 * <ul>
 		 * <li>Field names</li>
@@ -350,6 +320,16 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 													 * (singleKey = false) | _types.mapping.TypeMapping)
 													 */ value) {
 			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -369,6 +349,26 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 				this.settings = new HashMap<>();
 			}
 			this.settings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Set the number of active shards to wait for before the operation returns.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -433,17 +433,17 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.includeTypeName != null) {
+					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

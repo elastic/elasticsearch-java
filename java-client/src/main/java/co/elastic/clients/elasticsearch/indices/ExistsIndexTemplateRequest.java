@@ -45,32 +45,22 @@ import javax.annotation.Nullable;
 // typedef: indices.exists_index_template.Request
 
 public final class ExistsIndexTemplateRequest extends RequestBase {
-	private final String name;
-
 	@Nullable
 	private final String masterTimeout;
+
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ExistsIndexTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
 	public ExistsIndexTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of index template names used to limit the
-	 * request. Wildcard (*) expressions are supported.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
 	}
 
 	/**
@@ -84,27 +74,26 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * Required - Comma-separated list of index template names used to limit the
+	 * request. Wildcard (*) expressions are supported.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ExistsIndexTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ExistsIndexTemplateRequest> {
-		private String name;
-
 		@Nullable
 		private String masterTimeout;
 
-		/**
-		 * Required - Comma-separated list of index template names used to limit the
-		 * request. Wildcard (*) expressions are supported.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+		private String name;
 
 		/**
 		 * Period to wait for a connection to the master node. If no response is
@@ -114,6 +103,17 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of index template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 

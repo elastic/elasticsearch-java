@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -51,7 +51,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request) throws IOException {
+	public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeletePipelineRequest.ENDPOINT);
 	}
 
@@ -59,16 +60,16 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 * Deletes a pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeletePipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeletePipelineResponse> deletePipeline(
-			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn) throws IOException {
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -95,7 +96,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request) throws IOException {
+	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetPipelineRequest.ENDPOINT);
 	}
 
@@ -103,16 +105,16 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 * Returns a pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetPipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetPipelineResponse> getPipeline(
-			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) throws IOException {
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -124,7 +126,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException {
+	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetPipelineRequest.Builder().build(),
 				GetPipelineRequest.ENDPOINT);
 	}
@@ -152,7 +154,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request) throws IOException {
+	public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PutPipelineRequest.ENDPOINT);
 	}
 
@@ -160,16 +163,16 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 * Creates or updates a pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutPipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutPipelineResponse> putPipeline(
-			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn) throws IOException {
+			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
@@ -183,7 +186,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateResponse> simulate(SimulateRequest request) throws IOException {
+	public CompletableFuture<SimulateResponse> simulate(SimulateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, SimulateRequest.ENDPOINT);
 	}
 
@@ -191,16 +195,16 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 * Allows to simulate a pipeline with example documents.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SimulateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<SimulateResponse> simulate(
-			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn) throws IOException {
+			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
@@ -212,7 +216,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateResponse> simulate() throws IOException {
+	public CompletableFuture<SimulateResponse> simulate() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT);
 	}
 

@@ -46,6 +46,11 @@ import javax.annotation.Nullable;
 // typedef: snapshot.clone.Request
 @JsonpDeserializable
 public final class CloneSnapshotRequest extends RequestBase implements JsonpSerializable {
+	private final String indices;
+
+	@Nullable
+	private final String masterTimeout;
+
 	private final String repository;
 
 	private final String snapshot;
@@ -53,28 +58,40 @@ public final class CloneSnapshotRequest extends RequestBase implements JsonpSeri
 	private final String targetSnapshot;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
 	private final String timeout;
-
-	private final String indices;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public CloneSnapshotRequest(Builder builder) {
 
+		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.masterTimeout = builder.masterTimeout;
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.targetSnapshot = Objects.requireNonNull(builder.targetSnapshot, "target_snapshot");
-		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
 
 	}
 
 	public CloneSnapshotRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Required - API name: {@code indices}
+	 */
+	public String indices() {
+		return this.indices;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -105,28 +122,11 @@ public final class CloneSnapshotRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
 	 * API name: {@code timeout}
 	 */
 	@Nullable
 	public String timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * Required - API name: {@code indices}
-	 */
-	public String indices() {
-		return this.indices;
 	}
 
 	/**
@@ -151,6 +151,11 @@ public final class CloneSnapshotRequest extends RequestBase implements JsonpSeri
 	 * Builder for {@link CloneSnapshotRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<CloneSnapshotRequest> {
+		private String indices;
+
+		@Nullable
+		private String masterTimeout;
+
 		private String repository;
 
 		private String snapshot;
@@ -158,12 +163,25 @@ public final class CloneSnapshotRequest extends RequestBase implements JsonpSeri
 		private String targetSnapshot;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
 		private String timeout;
 
-		private String indices;
+		/**
+		 * Required - API name: {@code indices}
+		 */
+		public Builder indices(String value) {
+			this.indices = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
 
 		/**
 		 * Required - A repository name
@@ -196,28 +214,10 @@ public final class CloneSnapshotRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code indices}
-		 */
-		public Builder indices(String value) {
-			this.indices = value;
 			return this;
 		}
 
@@ -262,15 +262,15 @@ public final class CloneSnapshotRequest extends RequestBase implements JsonpSeri
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
-				final int _snapshot = 1 << 1;
-				final int _targetSnapshot = 1 << 2;
+				final int _targetSnapshot = 1 << 0;
+				final int _repository = 1 << 1;
+				final int _snapshot = 1 << 2;
 
 				int propsSet = 0;
 
+				propsSet |= _targetSnapshot;
 				propsSet |= _repository;
 				propsSet |= _snapshot;
-				propsSet |= _targetSnapshot;
 
 				if (propsSet == (_repository | _snapshot | _targetSnapshot)) {
 					StringBuilder buf = new StringBuilder();

@@ -55,10 +55,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class MsearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
+	private final Boolean ccsMinimizeRoundtrips;
 
 	@Nullable
-	private final Boolean ccsMinimizeRoundtrips;
+	private final List<String> index;
 
 	@Nullable
 	private final Long maxConcurrentSearches;
@@ -75,8 +75,8 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 
 	public MsearchTemplateRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
 		this.typedKeys = builder.typedKeys;
@@ -89,16 +89,6 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * A comma-separated list of index names to use as default
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
 	 * Indicates whether network round-trips should be minimized as part of
 	 * cross-cluster search requests execution
 	 * <p>
@@ -107,6 +97,16 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	@Nullable
 	public Boolean ccsMinimizeRoundtrips() {
 		return this.ccsMinimizeRoundtrips;
+	}
+
+	/**
+	 * A comma-separated list of index names to use as default
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -170,10 +170,10 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 */
 	public static class Builder implements ObjectBuilder<MsearchTemplateRequest> {
 		@Nullable
-		private List<String> index;
+		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private Boolean ccsMinimizeRoundtrips;
+		private List<String> index;
 
 		@Nullable
 		private Long maxConcurrentSearches;
@@ -185,6 +185,17 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		private Boolean typedKeys;
 
 		private List<TemplateItem> searchTemplates;
+
+		/**
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution
+		 * <p>
+		 * API name: {@code ccs_minimize_roundtrips}
+		 */
+		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+			this.ccsMinimizeRoundtrips = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of index names to use as default
@@ -214,17 +225,6 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Indicates whether network round-trips should be minimized as part of
-		 * cross-cluster search requests execution
-		 * <p>
-		 * API name: {@code ccs_minimize_roundtrips}
-		 */
-		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
-			this.ccsMinimizeRoundtrips = value;
 			return this;
 		}
 
@@ -369,8 +369,8 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				if (request.typedKeys != null) {
+					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
@@ -378,8 +378,8 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 

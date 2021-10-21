@@ -46,13 +46,13 @@ import javax.annotation.Nullable;
 
 public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	@Nullable
-	private final String id;
-
-	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Integer from;
+
+	@Nullable
+	private final String id;
 
 	@Nullable
 	private final Integer size;
@@ -64,9 +64,9 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	public GetDataFrameAnalyticsStatsRequest(Builder builder) {
 
-		this.id = builder.id;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
+		this.id = builder.id;
 		this.size = builder.size;
 		this.verbose = builder.verbose;
 
@@ -74,18 +74,6 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	public GetDataFrameAnalyticsStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Identifier for the data frame analytics job. If you do not specify this
-	 * option, the API returns information for the first hundred data frame
-	 * analytics jobs.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -121,6 +109,18 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Identifier for the data frame analytics job. If you do not specify this
+	 * option, the API returns information for the first hundred data frame
+	 * analytics jobs.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
+	}
+
+	/**
 	 * Specifies the maximum number of data frame analytics jobs to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -147,31 +147,19 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsStatsRequest> {
 		@Nullable
-		private String id;
-
-		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
 		private Integer from;
 
 		@Nullable
+		private String id;
+
+		@Nullable
 		private Integer size;
 
 		@Nullable
 		private Boolean verbose;
-
-		/**
-		 * Identifier for the data frame analytics job. If you do not specify this
-		 * option, the API returns information for the first hundred data frame
-		 * analytics jobs.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
 
 		/**
 		 * Specifies what to do when the request:
@@ -202,6 +190,18 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 */
 		public Builder from(@Nullable Integer value) {
 			this.from = value;
+			return this;
+		}
+
+		/**
+		 * Identifier for the data frame analytics job. If you do not specify this
+		 * option, the API returns information for the first hundred data frame
+		 * analytics jobs.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -283,14 +283,14 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.verbose != null) {
 					params.put("verbose", String.valueOf(request.verbose));

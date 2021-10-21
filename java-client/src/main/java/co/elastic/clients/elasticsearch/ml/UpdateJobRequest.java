@@ -54,8 +54,6 @@ import javax.annotation.Nullable;
 // typedef: ml.update_job.Request
 @JsonpDeserializable
 public final class UpdateJobRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
 	@Nullable
 	private final Boolean allowLazyOpen;
 
@@ -66,22 +64,33 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	private final String backgroundPersistInterval;
 
 	@Nullable
-	private final Map<String, JsonData> customSettings;
-
-	@Nullable
 	private final List<String> categorizationFilters;
 
 	@Nullable
-	private final String description;
-
-	@Nullable
-	private final ModelPlotConfig modelPlotConfig;
+	private final Map<String, JsonData> customSettings;
 
 	@Nullable
 	private final Long dailyModelSnapshotRetentionAfterDays;
 
 	@Nullable
+	private final String description;
+
+	@Nullable
+	private final List<Detector> detectors;
+
+	@Nullable
+	private final List<String> groups;
+
+	private final String jobId;
+
+	@Nullable
+	private final ModelPlotConfig modelPlotConfig;
+
+	@Nullable
 	private final Long modelSnapshotRetentionDays;
+
+	@Nullable
+	private final PerPartitionCategorization perPartitionCategorization;
 
 	@Nullable
 	private final Long renormalizationWindowDays;
@@ -89,48 +98,30 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final Long resultsRetentionDays;
 
-	@Nullable
-	private final List<String> groups;
-
-	@Nullable
-	private final List<Detector> detectors;
-
-	@Nullable
-	private final PerPartitionCategorization perPartitionCategorization;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public UpdateJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
 		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
-		this.description = builder.description;
-		this.modelPlotConfig = builder.modelPlotConfig;
+		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
+		this.description = builder.description;
+		this.detectors = ModelTypeHelper.unmodifiable(builder.detectors);
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
+		this.perPartitionCategorization = builder.perPartitionCategorization;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
 		this.resultsRetentionDays = builder.resultsRetentionDays;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.detectors = ModelTypeHelper.unmodifiable(builder.detectors);
-		this.perPartitionCategorization = builder.perPartitionCategorization;
 
 	}
 
 	public UpdateJobRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the job
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -166,6 +157,14 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * API name: {@code categorization_filters}
+	 */
+	@Nullable
+	public List<String> categorizationFilters() {
+		return this.categorizationFilters;
+	}
+
+	/**
 	 * Advanced configuration option. Contains custom meta data about the job. For
 	 * example, it can contain custom URL information as shown in Adding custom URLs
 	 * to machine learning results.
@@ -178,11 +177,11 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * API name: {@code categorization_filters}
+	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	@Nullable
-	public List<String> categorizationFilters() {
-		return this.categorizationFilters;
+	public Long dailyModelSnapshotRetentionAfterDays() {
+		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
 	/**
@@ -196,19 +195,40 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * An array of detector update objects.
+	 * <p>
+	 * API name: {@code detectors}
+	 */
+	@Nullable
+	public List<Detector> detectors() {
+		return this.detectors;
+	}
+
+	/**
+	 * A list of job groups. A job can belong to no groups or many.
+	 * <p>
+	 * API name: {@code groups}
+	 */
+	@Nullable
+	public List<String> groups() {
+		return this.groups;
+	}
+
+	/**
+	 * Required - Identifier for the job
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
 	 * API name: {@code model_plot_config}
 	 */
 	@Nullable
 	public ModelPlotConfig modelPlotConfig() {
 		return this.modelPlotConfig;
-	}
-
-	/**
-	 * API name: {@code daily_model_snapshot_retention_after_days}
-	 */
-	@Nullable
-	public Long dailyModelSnapshotRetentionAfterDays() {
-		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
 	/**
@@ -222,6 +242,16 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
+	}
+
+	/**
+	 * Settings related to how categorization interacts with partition fields.
+	 * <p>
+	 * API name: {@code per_partition_categorization}
+	 */
+	@Nullable
+	public PerPartitionCategorization perPartitionCategorization() {
+		return this.perPartitionCategorization;
 	}
 
 	/**
@@ -248,36 +278,6 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public Long resultsRetentionDays() {
 		return this.resultsRetentionDays;
-	}
-
-	/**
-	 * A list of job groups. A job can belong to no groups or many.
-	 * <p>
-	 * API name: {@code groups}
-	 */
-	@Nullable
-	public List<String> groups() {
-		return this.groups;
-	}
-
-	/**
-	 * An array of detector update objects.
-	 * <p>
-	 * API name: {@code detectors}
-	 */
-	@Nullable
-	public List<Detector> detectors() {
-		return this.detectors;
-	}
-
-	/**
-	 * Settings related to how categorization interacts with partition fields.
-	 * <p>
-	 * API name: {@code per_partition_categorization}
-	 */
-	@Nullable
-	public PerPartitionCategorization perPartitionCategorization() {
-		return this.perPartitionCategorization;
 	}
 
 	/**
@@ -309,6 +309,17 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 			generator.write(this.backgroundPersistInterval);
 
 		}
+		if (this.categorizationFilters != null) {
+
+			generator.writeKey("categorization_filters");
+			generator.writeStartArray();
+			for (String item0 : this.categorizationFilters) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.customSettings != null) {
 
 			generator.writeKey("custom_settings");
@@ -321,15 +332,10 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 			generator.writeEnd();
 
 		}
-		if (this.categorizationFilters != null) {
+		if (this.dailyModelSnapshotRetentionAfterDays != null) {
 
-			generator.writeKey("categorization_filters");
-			generator.writeStartArray();
-			for (String item0 : this.categorizationFilters) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.writeKey("daily_model_snapshot_retention_after_days");
+			generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
 		}
 		if (this.description != null) {
@@ -338,22 +344,44 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 			generator.write(this.description);
 
 		}
+		if (this.detectors != null) {
+
+			generator.writeKey("detectors");
+			generator.writeStartArray();
+			for (Detector item0 : this.detectors) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.groups != null) {
+
+			generator.writeKey("groups");
+			generator.writeStartArray();
+			for (String item0 : this.groups) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.modelPlotConfig != null) {
 
 			generator.writeKey("model_plot_config");
 			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
-		if (this.dailyModelSnapshotRetentionAfterDays != null) {
-
-			generator.writeKey("daily_model_snapshot_retention_after_days");
-			generator.write(this.dailyModelSnapshotRetentionAfterDays);
-
-		}
 		if (this.modelSnapshotRetentionDays != null) {
 
 			generator.writeKey("model_snapshot_retention_days");
 			generator.write(this.modelSnapshotRetentionDays);
+
+		}
+		if (this.perPartitionCategorization != null) {
+
+			generator.writeKey("per_partition_categorization");
+			this.perPartitionCategorization.serialize(generator, mapper);
 
 		}
 		if (this.renormalizationWindowDays != null) {
@@ -368,34 +396,6 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 			generator.write(this.resultsRetentionDays);
 
 		}
-		if (this.groups != null) {
-
-			generator.writeKey("groups");
-			generator.writeStartArray();
-			for (String item0 : this.groups) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.detectors != null) {
-
-			generator.writeKey("detectors");
-			generator.writeStartArray();
-			for (Detector item0 : this.detectors) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.perPartitionCategorization != null) {
-
-			generator.writeKey("per_partition_categorization");
-			this.perPartitionCategorization.serialize(generator, mapper);
-
-		}
 
 	}
 
@@ -405,8 +405,6 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link UpdateJobRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateJobRequest> {
-		private String jobId;
-
 		@Nullable
 		private Boolean allowLazyOpen;
 
@@ -417,47 +415,39 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		private String backgroundPersistInterval;
 
 		@Nullable
-		private Map<String, JsonData> customSettings;
-
-		@Nullable
 		private List<String> categorizationFilters;
 
 		@Nullable
-		private String description;
-
-		@Nullable
-		private ModelPlotConfig modelPlotConfig;
+		private Map<String, JsonData> customSettings;
 
 		@Nullable
 		private Long dailyModelSnapshotRetentionAfterDays;
 
 		@Nullable
+		private String description;
+
+		@Nullable
+		private List<Detector> detectors;
+
+		@Nullable
+		private List<String> groups;
+
+		private String jobId;
+
+		@Nullable
+		private ModelPlotConfig modelPlotConfig;
+
+		@Nullable
 		private Long modelSnapshotRetentionDays;
+
+		@Nullable
+		private PerPartitionCategorization perPartitionCategorization;
 
 		@Nullable
 		private Long renormalizationWindowDays;
 
 		@Nullable
 		private Long resultsRetentionDays;
-
-		@Nullable
-		private List<String> groups;
-
-		@Nullable
-		private List<Detector> detectors;
-
-		@Nullable
-		private PerPartitionCategorization perPartitionCategorization;
-
-		/**
-		 * Required - Identifier for the job
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code allow_lazy_open}
@@ -499,29 +489,6 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Advanced configuration option. Contains custom meta data about the job. For
-		 * example, it can contain custom URL information as shown in Adding custom URLs
-		 * to machine learning results.
-		 * <p>
-		 * API name: {@code custom_settings}
-		 */
-		public Builder customSettings(@Nullable Map<String, JsonData> value) {
-			this.customSettings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #customSettings(Map)}, creating the map if needed.
-		 */
-		public Builder putCustomSettings(String key, JsonData value) {
-			if (this.customSettings == null) {
-				this.customSettings = new HashMap<>();
-			}
-			this.customSettings.put(key, value);
-			return this;
-		}
-
-		/**
 		 * API name: {@code categorization_filters}
 		 */
 		public Builder categorizationFilters(@Nullable List<String> value) {
@@ -550,28 +517,26 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * A description of the job.
+		 * Advanced configuration option. Contains custom meta data about the job. For
+		 * example, it can contain custom URL information as shown in Adding custom URLs
+		 * to machine learning results.
 		 * <p>
-		 * API name: {@code description}
+		 * API name: {@code custom_settings}
 		 */
-		public Builder description(@Nullable String value) {
-			this.description = value;
+		public Builder customSettings(@Nullable Map<String, JsonData> value) {
+			this.customSettings = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code model_plot_config}
+		 * Add a key/value to {@link #customSettings(Map)}, creating the map if needed.
 		 */
-		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
-			this.modelPlotConfig = value;
+		public Builder putCustomSettings(String key, JsonData value) {
+			if (this.customSettings == null) {
+				this.customSettings = new HashMap<>();
+			}
+			this.customSettings.put(key, value);
 			return this;
-		}
-
-		/**
-		 * API name: {@code model_plot_config}
-		 */
-		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
-			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**
@@ -583,72 +548,12 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Advanced configuration option, which affects the automatic removal of old
-		 * model snapshots for this job. It specifies the maximum period of time (in
-		 * days) that snapshots are retained. This period is relative to the timestamp
-		 * of the most recent snapshot for this job.
+		 * A description of the job.
 		 * <p>
-		 * API name: {@code model_snapshot_retention_days}
+		 * API name: {@code description}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
-			this.modelSnapshotRetentionDays = value;
-			return this;
-		}
-
-		/**
-		 * Advanced configuration option. The period over which adjustments to the score
-		 * are applied, as new data is seen.
-		 * <p>
-		 * API name: {@code renormalization_window_days}
-		 */
-		public Builder renormalizationWindowDays(@Nullable Long value) {
-			this.renormalizationWindowDays = value;
-			return this;
-		}
-
-		/**
-		 * Advanced configuration option. The period of time (in days) that results are
-		 * retained. Age is calculated relative to the timestamp of the latest bucket
-		 * result. If this property has a non-null value, once per day at 00:30 (server
-		 * time), results that are the specified number of days older than the latest
-		 * bucket result are deleted from Elasticsearch. The default value is null,
-		 * which means all results are retained.
-		 * <p>
-		 * API name: {@code results_retention_days}
-		 */
-		public Builder resultsRetentionDays(@Nullable Long value) {
-			this.resultsRetentionDays = value;
-			return this;
-		}
-
-		/**
-		 * A list of job groups. A job can belong to no groups or many.
-		 * <p>
-		 * API name: {@code groups}
-		 */
-		public Builder groups(@Nullable List<String> value) {
-			this.groups = value;
-			return this;
-		}
-
-		/**
-		 * A list of job groups. A job can belong to no groups or many.
-		 * <p>
-		 * API name: {@code groups}
-		 */
-		public Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
-		 */
-		public Builder addGroups(String value) {
-			if (this.groups == null) {
-				this.groups = new ArrayList<>();
-			}
-			this.groups.add(value);
+		public Builder description(@Nullable String value) {
+			this.description = value;
 			return this;
 		}
 
@@ -698,6 +603,75 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * A list of job groups. A job can belong to no groups or many.
+		 * <p>
+		 * API name: {@code groups}
+		 */
+		public Builder groups(@Nullable List<String> value) {
+			this.groups = value;
+			return this;
+		}
+
+		/**
+		 * A list of job groups. A job can belong to no groups or many.
+		 * <p>
+		 * API name: {@code groups}
+		 */
+		public Builder groups(String... value) {
+			this.groups = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 */
+		public Builder addGroups(String value) {
+			if (this.groups == null) {
+				this.groups = new ArrayList<>();
+			}
+			this.groups.add(value);
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the job
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code model_plot_config}
+		 */
+		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
+			this.modelPlotConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code model_plot_config}
+		 */
+		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
+		}
+
+		/**
+		 * Advanced configuration option, which affects the automatic removal of old
+		 * model snapshots for this job. It specifies the maximum period of time (in
+		 * days) that snapshots are retained. This period is relative to the timestamp
+		 * of the most recent snapshot for this job.
+		 * <p>
+		 * API name: {@code model_snapshot_retention_days}
+		 */
+		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
+			this.modelSnapshotRetentionDays = value;
+			return this;
+		}
+
+		/**
 		 * Settings related to how categorization interacts with partition fields.
 		 * <p>
 		 * API name: {@code per_partition_categorization}
@@ -715,6 +689,32 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		public Builder perPartitionCategorization(
 				Function<PerPartitionCategorization.Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
 			return this.perPartitionCategorization(fn.apply(new PerPartitionCategorization.Builder()).build());
+		}
+
+		/**
+		 * Advanced configuration option. The period over which adjustments to the score
+		 * are applied, as new data is seen.
+		 * <p>
+		 * API name: {@code renormalization_window_days}
+		 */
+		public Builder renormalizationWindowDays(@Nullable Long value) {
+			this.renormalizationWindowDays = value;
+			return this;
+		}
+
+		/**
+		 * Advanced configuration option. The period of time (in days) that results are
+		 * retained. Age is calculated relative to the timestamp of the latest bucket
+		 * result. If this property has a non-null value, once per day at 00:30 (server
+		 * time), results that are the specified number of days older than the latest
+		 * bucket result are deleted from Elasticsearch. The default value is null,
+		 * which means all results are retained.
+		 * <p>
+		 * API name: {@code results_retention_days}
+		 */
+		public Builder resultsRetentionDays(@Nullable Long value) {
+			this.resultsRetentionDays = value;
+			return this;
 		}
 
 		/**
@@ -743,22 +743,22 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::analysisLimits, AnalysisMemoryLimit._DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
 				"background_persist_interval");
-		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
-				"custom_settings");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelPlotConfig, ModelPlotConfig._DESERIALIZER, "model_plot_config");
+		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
+		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
+		op.add(Builder::modelPlotConfig, ModelPlotConfig._DESERIALIZER, "model_plot_config");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
-		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.longDeserializer(), "renormalization_window_days");
-		op.add(Builder::resultsRetentionDays, JsonpDeserializer.longDeserializer(), "results_retention_days");
-		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
-		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
 		op.add(Builder::perPartitionCategorization, PerPartitionCategorization._DESERIALIZER,
 				"per_partition_categorization");
+		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.longDeserializer(), "renormalization_window_days");
+		op.add(Builder::resultsRetentionDays, JsonpDeserializer.longDeserializer(), "results_retention_days");
 
 	}
 

@@ -50,16 +50,16 @@ import javax.annotation.Nullable;
 
 public final class NodesInfoRequest extends RequestBase {
 	@Nullable
-	private final List<String> nodeId;
+	private final Boolean flatSettings;
+
+	@Nullable
+	private final String masterTimeout;
 
 	@Nullable
 	private final List<String> metric;
 
 	@Nullable
-	private final Boolean flatSettings;
-
-	@Nullable
-	private final String masterTimeout;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final String timeout;
@@ -68,37 +68,16 @@ public final class NodesInfoRequest extends RequestBase {
 
 	public NodesInfoRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
 
 	public NodesInfoRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of node IDs or names used to limit returned information.
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
-	}
-
-	/**
-	 * Limits the information returned to the specific metrics. Supports a
-	 * comma-separated list, such as http,ingest.
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
 	}
 
 	/**
@@ -123,6 +102,27 @@ public final class NodesInfoRequest extends RequestBase {
 	}
 
 	/**
+	 * Limits the information returned to the specific metrics. Supports a
+	 * comma-separated list, such as http,ingest.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	@Nullable
+	public List<String> metric() {
+		return this.metric;
+	}
+
+	/**
+	 * Comma-separated list of node IDs or names used to limit returned information.
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	@Nullable
+	public List<String> nodeId() {
+		return this.nodeId;
+	}
+
+	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
 	 * <p>
@@ -140,48 +140,38 @@ public final class NodesInfoRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<NodesInfoRequest> {
 		@Nullable
-		private List<String> nodeId;
-
-		@Nullable
-		private List<String> metric;
-
-		@Nullable
 		private Boolean flatSettings;
 
 		@Nullable
 		private String masterTimeout;
 
 		@Nullable
+		private List<String> metric;
+
+		@Nullable
+		private List<String> nodeId;
+
+		@Nullable
 		private String timeout;
 
 		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * If true, returns settings in flat format.
 		 * <p>
-		 * API name: {@code node_id}
+		 * API name: {@code flat_settings}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public Builder flatSettings(@Nullable Boolean value) {
+			this.flatSettings = value;
 			return this;
 		}
 
 		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code node_id}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -219,23 +209,33 @@ public final class NodesInfoRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns settings in flat format.
+		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
-		 * API name: {@code flat_settings}
+		 * API name: {@code node_id}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
+		public Builder nodeId(@Nullable List<String> value) {
+			this.nodeId = value;
 			return this;
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
+		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
-		 * API name: {@code master_timeout}
+		 * API name: {@code node_id}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
 			return this;
 		}
 
@@ -276,15 +276,15 @@ public final class NodesInfoRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _nodeId = 1 << 0;
-				final int _metric = 1 << 1;
+				final int _metric = 1 << 0;
+				final int _nodeId = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
-					propsSet |= _nodeId;
 				if (request.metric() != null)
 					propsSet |= _metric;
+				if (request.nodeId() != null)
+					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -325,11 +325,11 @@ public final class NodesInfoRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

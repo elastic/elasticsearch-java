@@ -52,7 +52,16 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get.Request
 
-public class GetRequest extends RequestBase {
+public final class GetRequest extends RequestBase {
+	@Nullable
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+
+	@Nullable
+	private final List<String> sourceExcludes;
+
+	@Nullable
+	private final List<String> sourceIncludes;
+
 	private final String id;
 
 	private final String index;
@@ -70,15 +79,6 @@ public class GetRequest extends RequestBase {
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
-
-	@Nullable
 	private final List<String> storedFields;
 
 	@Nullable
@@ -89,21 +89,56 @@ public class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRequest(AbstractBuilder<?> builder) {
+	public GetRequest(Builder builder) {
 
+		this.source = builder.source;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public GetRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return.
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+		return this.source;
+	}
+
+	/**
+	 * A comma-separated list of source fields to exclude in the response.
+	 * <p>
+	 * API name: {@code _source_excludes}
+	 */
+	@Nullable
+	public List<String> sourceExcludes() {
+		return this.sourceExcludes;
+	}
+
+	/**
+	 * A comma-separated list of source fields to include in the response.
+	 * <p>
+	 * API name: {@code _source_includes}
+	 */
+	@Nullable
+	public List<String> sourceIncludes() {
+		return this.sourceIncludes;
 	}
 
 	/**
@@ -167,37 +202,6 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return.
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
-		return this.source;
-	}
-
-	/**
-	 * A comma-separated list of source fields to exclude in the response.
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	@Nullable
-	public List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * A comma-separated list of source fields to include in the response.
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	@Nullable
-	public List<String> sourceIncludes() {
-		return this.sourceIncludes;
-	}
-
-	/**
 	 * A comma-separated list of stored fields to return in the response
 	 * <p>
 	 * API name: {@code stored_fields}
@@ -233,25 +237,16 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRequest}.
 	 */
-	public static class Builder extends GetRequest.AbstractBuilder<Builder> implements ObjectBuilder<GetRequest> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+	public static class Builder implements ObjectBuilder<GetRequest> {
+		@Nullable
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
-		/**
-		 * Builds a {@link GetRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetRequest build() {
+		@Nullable
+		private List<String> sourceExcludes;
 
-			return new GetRequest(this);
-		}
-	}
+		@Nullable
+		private List<String> sourceIncludes;
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		private String id;
 
 		private String index;
@@ -269,15 +264,6 @@ public class GetRequest extends RequestBase {
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
-
-		@Nullable
 		private List<String> storedFields;
 
 		@Nullable
@@ -287,13 +273,86 @@ public class GetRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of source fields to exclude in the response.
+		 * <p>
+		 * API name: {@code _source_excludes}
+		 */
+		public Builder sourceExcludes(@Nullable List<String> value) {
+			this.sourceExcludes = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of source fields to exclude in the response.
+		 * <p>
+		 * API name: {@code _source_excludes}
+		 */
+		public Builder sourceExcludes(String... value) {
+			this.sourceExcludes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 */
+		public Builder addSourceExcludes(String value) {
+			if (this.sourceExcludes == null) {
+				this.sourceExcludes = new ArrayList<>();
+			}
+			this.sourceExcludes.add(value);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of source fields to include in the response.
+		 * <p>
+		 * API name: {@code _source_includes}
+		 */
+		public Builder sourceIncludes(@Nullable List<String> value) {
+			this.sourceIncludes = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of source fields to include in the response.
+		 * <p>
+		 * API name: {@code _source_includes}
+		 */
+		public Builder sourceIncludes(String... value) {
+			this.sourceIncludes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 */
+		public Builder addSourceIncludes(String value) {
+			if (this.sourceIncludes == null) {
+				this.sourceIncludes = new ArrayList<>();
+			}
+			this.sourceIncludes.add(value);
+			return this;
+		}
+
+		/**
 		 * Required - Unique identifier of the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public BuilderT id(String value) {
+		public Builder id(String value) {
 			this.id = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -301,9 +360,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public BuilderT index(String value) {
+		public Builder index(String value) {
 			this.index = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -312,9 +371,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public BuilderT preference(@Nullable String value) {
+		public Builder preference(@Nullable String value) {
 			this.preference = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -322,9 +381,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code realtime}
 		 */
-		public BuilderT realtime(@Nullable Boolean value) {
+		public Builder realtime(@Nullable Boolean value) {
 			this.realtime = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -333,9 +392,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public BuilderT refresh(@Nullable Boolean value) {
+		public Builder refresh(@Nullable Boolean value) {
 			this.refresh = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -343,82 +402,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public BuilderT routing(@Nullable String value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
-			return self();
-		}
-
-		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return.
-		 * <p>
-		 * API name: {@code _source}
-		 */
-		public BuilderT source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
-			this.source = value;
-			return self();
-		}
-
-		/**
-		 * A comma-separated list of source fields to exclude in the response.
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public BuilderT sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
-			return self();
-		}
-
-		/**
-		 * A comma-separated list of source fields to exclude in the response.
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public BuilderT sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public BuilderT addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
-			return self();
-		}
-
-		/**
-		 * A comma-separated list of source fields to include in the response.
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public BuilderT sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
-			return self();
-		}
-
-		/**
-		 * A comma-separated list of source fields to include in the response.
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public BuilderT sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public BuilderT addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
-			return self();
+			return this;
 		}
 
 		/**
@@ -426,9 +412,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 */
-		public BuilderT storedFields(@Nullable List<String> value) {
+		public Builder storedFields(@Nullable List<String> value) {
 			this.storedFields = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -436,20 +422,20 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 */
-		public BuilderT storedFields(String... value) {
+		public Builder storedFields(String... value) {
 			this.storedFields = Arrays.asList(value);
-			return self();
+			return this;
 		}
 
 		/**
 		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
-		public BuilderT addStoredFields(String value) {
+		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
 				this.storedFields = new ArrayList<>();
 			}
 			this.storedFields.add(value);
-			return self();
+			return this;
 		}
 
 		/**
@@ -458,9 +444,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public BuilderT version(@Nullable Long value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -468,13 +454,21 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public BuilderT versionType(@Nullable VersionType value) {
+		public Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
-			return self();
+			return this;
 		}
 
-		protected abstract BuilderT self();
+		/**
+		 * Builds a {@link GetRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetRequest build() {
 
+			return new GetRequest(this);
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -491,13 +485,13 @@ public class GetRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -515,17 +509,24 @@ public class GetRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.preference != null) {
-					params.put("preference", request.preference);
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.toString());
+				}
+				if (request.storedFields != null) {
+					params.put("stored_fields",
+							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
@@ -538,15 +539,8 @@ public class GetRequest extends RequestBase {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.storedFields != null) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 

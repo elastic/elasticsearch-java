@@ -44,13 +44,13 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_data_frame_analytics.Request
 
 public final class StopDataFrameAnalyticsRequest extends RequestBase {
-	private final String id;
-
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Boolean force;
+
+	private final String id;
 
 	@Nullable
 	private final String timeout;
@@ -59,26 +59,15 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 
 	public StopDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
+		this.id = Objects.requireNonNull(builder.id, "id");
 		this.timeout = builder.timeout;
 
 	}
 
 	public StopDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the data frame analytics job. This identifier can
-	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-	 * underscores. It must start and end with alphanumeric characters.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -104,6 +93,17 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
 	 * Controls the amount of time to wait until the data frame analytics job stops.
 	 * Defaults to 20 seconds.
 	 * <p>
@@ -120,28 +120,16 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * Builder for {@link StopDataFrameAnalyticsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<StopDataFrameAnalyticsRequest> {
-		private String id;
-
 		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
 		private Boolean force;
 
+		private String id;
+
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - Identifier for the data frame analytics job. This identifier can
-		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-		 * underscores. It must start and end with alphanumeric characters.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no data frame analytics.
@@ -162,6 +150,18 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		 */
 		public Builder force(@Nullable Boolean value) {
 			this.force = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -225,11 +225,11 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

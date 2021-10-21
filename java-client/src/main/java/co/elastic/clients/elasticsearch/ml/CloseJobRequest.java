@@ -44,16 +44,16 @@ import javax.annotation.Nullable;
 // typedef: ml.close_job.Request
 
 public final class CloseJobRequest extends RequestBase {
-	private final String jobId;
+	@Nullable
+	private final Boolean allowNoJobs;
 
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Boolean allowNoJobs;
-
-	@Nullable
 	private final Boolean force;
+
+	private final String jobId;
 
 	@Nullable
 	private final String timeout;
@@ -62,10 +62,10 @@ public final class CloseJobRequest extends RequestBase {
 
 	public CloseJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.allowNoMatch = builder.allowNoMatch;
 		this.allowNoJobs = builder.allowNoJobs;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.timeout = builder.timeout;
 
 	}
@@ -75,17 +75,14 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier for the anomaly detection job. It can be a job
-	 * identifier, a group name, or a wildcard expression. You can close multiple
-	 * anomaly detection jobs in a single API request by using a group name, a
-	 * comma-separated list of jobs, or a wildcard expression. You can close all
-	 * jobs by using <code>_all</code> or by specifying <code>*</code> as the job
-	 * identifier.
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
 	 * <p>
-	 * API name: {@code job_id}
+	 * API name: {@code allow_no_jobs}
 	 */
-	public String jobId() {
-		return this.jobId;
+	@Nullable
+	public Boolean allowNoJobs() {
+		return this.allowNoJobs;
 	}
 
 	/**
@@ -102,17 +99,6 @@ public final class CloseJobRequest extends RequestBase {
 	@Nullable
 	public Boolean allowNoMatch() {
 		return this.allowNoMatch;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
-	 * <p>
-	 * API name: {@code allow_no_jobs}
-	 */
-	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
 	}
 
 	/**
@@ -133,6 +119,20 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - Identifier for the anomaly detection job. It can be a job
+	 * identifier, a group name, or a wildcard expression. You can close multiple
+	 * anomaly detection jobs in a single API request by using a group name, a
+	 * comma-separated list of jobs, or a wildcard expression. You can close all
+	 * jobs by using <code>_all</code> or by specifying <code>*</code> as the job
+	 * identifier.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
 	 * Controls the time to wait until a job has closed.
 	 * <p>
 	 * API name: {@code timeout}
@@ -148,32 +148,28 @@ public final class CloseJobRequest extends RequestBase {
 	 * Builder for {@link CloseJobRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<CloseJobRequest> {
-		private String jobId;
+		@Nullable
+		private Boolean allowNoJobs;
 
 		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Boolean allowNoJobs;
-
-		@Nullable
 		private Boolean force;
+
+		private String jobId;
 
 		@Nullable
 		private String timeout;
 
 		/**
-		 * Required - Identifier for the anomaly detection job. It can be a job
-		 * identifier, a group name, or a wildcard expression. You can close multiple
-		 * anomaly detection jobs in a single API request by using a group name, a
-		 * comma-separated list of jobs, or a wildcard expression. You can close all
-		 * jobs by using <code>_all</code> or by specifying <code>*</code> as the job
-		 * identifier.
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
 		 * <p>
-		 * API name: {@code job_id}
+		 * API name: {@code allow_no_jobs}
 		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
+		public Builder allowNoJobs(@Nullable Boolean value) {
+			this.allowNoJobs = value;
 			return this;
 		}
 
@@ -194,17 +190,6 @@ public final class CloseJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
-		 * <p>
-		 * API name: {@code allow_no_jobs}
-		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
-			return this;
-		}
-
-		/**
 		 * Use to close a failed job, or to forcefully close a job which has not
 		 * responded to its initial close request; the request returns without
 		 * performing the associated actions such as flushing buffers and persisting the
@@ -218,6 +203,21 @@ public final class CloseJobRequest extends RequestBase {
 		 */
 		public Builder force(@Nullable Boolean value) {
 			this.force = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job. It can be a job
+		 * identifier, a group name, or a wildcard expression. You can close multiple
+		 * anomaly detection jobs in a single API request by using a group name, a
+		 * comma-separated list of jobs, or a wildcard expression. You can close all
+		 * jobs by using <code>_all</code> or by specifying <code>*</code> as the job
+		 * identifier.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
@@ -279,14 +279,14 @@ public final class CloseJobRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
 				if (request.allowNoJobs != null) {
 					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
 				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

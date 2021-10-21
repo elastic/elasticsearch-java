@@ -50,36 +50,26 @@ import javax.annotation.Nullable;
 
 public final class GetRepositoryRequest extends RequestBase {
 	@Nullable
-	private final List<String> repository;
-
-	@Nullable
 	private final Boolean local;
 
 	@Nullable
 	private final String masterTimeout;
 
+	@Nullable
+	private final List<String> name;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public GetRepositoryRequest(Builder builder) {
 
-		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
 	public GetRepositoryRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of repository names
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	@Nullable
-	public List<String> repository() {
-		return this.repository;
 	}
 
 	/**
@@ -103,6 +93,16 @@ public final class GetRepositoryRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * A comma-separated list of repository names
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	@Nullable
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -110,44 +110,13 @@ public final class GetRepositoryRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetRepositoryRequest> {
 		@Nullable
-		private List<String> repository;
-
-		@Nullable
 		private Boolean local;
 
 		@Nullable
 		private String masterTimeout;
 
-		/**
-		 * A comma-separated list of repository names
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(@Nullable List<String> value) {
-			this.repository = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of repository names
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String... value) {
-			this.repository = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
-		 */
-		public Builder addRepository(String value) {
-			if (this.repository == null) {
-				this.repository = new ArrayList<>();
-			}
-			this.repository.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> name;
 
 		/**
 		 * Return local information, do not retrieve the state from master node
@@ -167,6 +136,37 @@ public final class GetRepositoryRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of repository names
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder name(@Nullable List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of repository names
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 
@@ -196,24 +196,23 @@ public final class GetRepositoryRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
+				if (request.name() != null)
+					propsSet |= _name;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					return buf.toString();
 				}
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -223,11 +222,11 @@ public final class GetRepositoryRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

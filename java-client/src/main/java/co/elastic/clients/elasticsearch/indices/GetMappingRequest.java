@@ -51,9 +51,6 @@ import javax.annotation.Nullable;
 
 public final class GetMappingRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -66,6 +63,9 @@ public final class GetMappingRequest extends RequestBase {
 	private final Boolean includeTypeName;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean local;
 
 	@Nullable
@@ -75,11 +75,11 @@ public final class GetMappingRequest extends RequestBase {
 
 	public GetMappingRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeTypeName = builder.includeTypeName;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
@@ -87,16 +87,6 @@ public final class GetMappingRequest extends RequestBase {
 
 	public GetMappingRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -142,6 +132,16 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Return local information, do not retrieve the state from master node
 	 * (default: false)
 	 * <p>
@@ -169,9 +169,6 @@ public final class GetMappingRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetMappingRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -184,41 +181,13 @@ public final class GetMappingRequest extends RequestBase {
 		private Boolean includeTypeName;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
 		private String masterTimeout;
-
-		/**
-		 * A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -281,6 +250,37 @@ public final class GetMappingRequest extends RequestBase {
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -357,8 +357,11 @@ public final class GetMappingRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.includeTypeName != null) {
+					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
@@ -367,14 +370,11 @@ public final class GetMappingRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

@@ -52,9 +52,6 @@ import javax.annotation.Nullable;
 
 public final class ShardStoresRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -64,32 +61,25 @@ public final class ShardStoresRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final List<ShardStatus> status;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ShardStoresRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.status = ModelTypeHelper.unmodifiable(builder.status);
 
 	}
 
 	public ShardStoresRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * List of data streams, indices, and aliases used to limit the request.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -127,6 +117,16 @@ public final class ShardStoresRequest extends RequestBase {
 	}
 
 	/**
+	 * List of data streams, indices, and aliases used to limit the request.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * List of shard health statuses used to limit the request.
 	 * <p>
 	 * API name: {@code status}
@@ -143,9 +143,6 @@ public final class ShardStoresRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<ShardStoresRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -155,38 +152,10 @@ public final class ShardStoresRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private List<ShardStatus> status;
-
-		/**
-		 * List of data streams, indices, and aliases used to limit the request.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * List of data streams, indices, and aliases used to limit the request.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -242,6 +211,37 @@ public final class ShardStoresRequest extends RequestBase {
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * List of data streams, indices, and aliases used to limit the request.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * List of data streams, indices, and aliases used to limit the request.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -328,15 +328,15 @@ public final class ShardStoresRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.status != null) {
 					params.put("status",

@@ -56,31 +56,6 @@ import javax.annotation.Nullable;
 // typedef: _global.explain.Request
 @JsonpDeserializable
 public final class ExplainRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
-
-	private final String index;
-
-	@Nullable
-	private final String analyzer;
-
-	@Nullable
-	private final Boolean analyzeWildcard;
-
-	@Nullable
-	private final DefaultOperator defaultOperator;
-
-	@Nullable
-	private final String df;
-
-	@Nullable
-	private final Boolean lenient;
-
-	@Nullable
-	private final String preference;
-
-	@Nullable
-	private final String routing;
-
 	@Nullable
 	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
@@ -91,7 +66,26 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	private final List<String> sourceIncludes;
 
 	@Nullable
-	private final List<String> storedFields;
+	private final Boolean analyzeWildcard;
+
+	@Nullable
+	private final String analyzer;
+
+	@Nullable
+	private final DefaultOperator defaultOperator;
+
+	@Nullable
+	private final String df;
+
+	private final String id;
+
+	private final String index;
+
+	@Nullable
+	private final Boolean lenient;
+
+	@Nullable
+	private final String preference;
 
 	@Nullable
 	private final String q;
@@ -99,121 +93,36 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Query query;
 
+	@Nullable
+	private final String routing;
+
+	@Nullable
+	private final List<String> storedFields;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public ExplainRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.analyzer = builder.analyzer;
-		this.analyzeWildcard = builder.analyzeWildcard;
-		this.defaultOperator = builder.defaultOperator;
-		this.df = builder.df;
-		this.lenient = builder.lenient;
-		this.preference = builder.preference;
-		this.routing = builder.routing;
 		this.source = builder.source;
 		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.analyzeWildcard = builder.analyzeWildcard;
+		this.analyzer = builder.analyzer;
+		this.defaultOperator = builder.defaultOperator;
+		this.df = builder.df;
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.lenient = builder.lenient;
+		this.preference = builder.preference;
 		this.q = builder.q;
 		this.query = builder.query;
+		this.routing = builder.routing;
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 
 	}
 
 	public ExplainRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The document ID
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
-	}
-
-	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * The analyzer for the query string query
-	 * <p>
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public String analyzer() {
-		return this.analyzer;
-	}
-
-	/**
-	 * Specify whether wildcards and prefix queries in the query string query should
-	 * be analyzed (default: false)
-	 * <p>
-	 * API name: {@code analyze_wildcard}
-	 */
-	@Nullable
-	public Boolean analyzeWildcard() {
-		return this.analyzeWildcard;
-	}
-
-	/**
-	 * The default operator for query string query (AND or OR)
-	 * <p>
-	 * API name: {@code default_operator}
-	 */
-	@Nullable
-	public DefaultOperator defaultOperator() {
-		return this.defaultOperator;
-	}
-
-	/**
-	 * The default field for query string query (default: _all)
-	 * <p>
-	 * API name: {@code df}
-	 */
-	@Nullable
-	public String df() {
-		return this.df;
-	}
-
-	/**
-	 * Specify whether format-based query failures (such as providing text to a
-	 * numeric field) should be ignored
-	 * <p>
-	 * API name: {@code lenient}
-	 */
-	@Nullable
-	public Boolean lenient() {
-		return this.lenient;
-	}
-
-	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
-	 * <p>
-	 * API name: {@code preference}
-	 */
-	@Nullable
-	public String preference() {
-		return this.preference;
-	}
-
-	/**
-	 * Specific routing value
-	 * <p>
-	 * API name: {@code routing}
-	 */
-	@Nullable
-	public String routing() {
-		return this.routing;
 	}
 
 	/**
@@ -248,13 +157,84 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of stored fields to return in the response
+	 * Specify whether wildcards and prefix queries in the query string query should
+	 * be analyzed (default: false)
 	 * <p>
-	 * API name: {@code stored_fields}
+	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public List<String> storedFields() {
-		return this.storedFields;
+	public Boolean analyzeWildcard() {
+		return this.analyzeWildcard;
+	}
+
+	/**
+	 * The analyzer for the query string query
+	 * <p>
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public String analyzer() {
+		return this.analyzer;
+	}
+
+	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
+	 * API name: {@code default_operator}
+	 */
+	@Nullable
+	public DefaultOperator defaultOperator() {
+		return this.defaultOperator;
+	}
+
+	/**
+	 * The default field for query string query (default: _all)
+	 * <p>
+	 * API name: {@code df}
+	 */
+	@Nullable
+	public String df() {
+		return this.df;
+	}
+
+	/**
+	 * Required - The document ID
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * Required - The name of the index
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
+	 * API name: {@code lenient}
+	 */
+	@Nullable
+	public Boolean lenient() {
+		return this.lenient;
+	}
+
+	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
+	 * API name: {@code preference}
+	 */
+	@Nullable
+	public String preference() {
+		return this.preference;
 	}
 
 	/**
@@ -273,6 +253,26 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public Query query() {
 		return this.query;
+	}
+
+	/**
+	 * Specific routing value
+	 * <p>
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public String routing() {
+		return this.routing;
+	}
+
+	/**
+	 * A comma-separated list of stored fields to return in the response
+	 * <p>
+	 * API name: {@code stored_fields}
+	 */
+	@Nullable
+	public List<String> storedFields() {
+		return this.storedFields;
 	}
 
 	/**
@@ -301,31 +301,6 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * Builder for {@link ExplainRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ExplainRequest> {
-		private String id;
-
-		private String index;
-
-		@Nullable
-		private String analyzer;
-
-		@Nullable
-		private Boolean analyzeWildcard;
-
-		@Nullable
-		private DefaultOperator defaultOperator;
-
-		@Nullable
-		private String df;
-
-		@Nullable
-		private Boolean lenient;
-
-		@Nullable
-		private String preference;
-
-		@Nullable
-		private String routing;
-
 		@Nullable
 		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
@@ -336,7 +311,26 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		private List<String> sourceIncludes;
 
 		@Nullable
-		private List<String> storedFields;
+		private Boolean analyzeWildcard;
+
+		@Nullable
+		private String analyzer;
+
+		@Nullable
+		private DefaultOperator defaultOperator;
+
+		@Nullable
+		private String df;
+
+		private String id;
+
+		private String index;
+
+		@Nullable
+		private Boolean lenient;
+
+		@Nullable
+		private String preference;
 
 		@Nullable
 		private String q;
@@ -344,98 +338,11 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Query query;
 
-		/**
-		 * Required - The document ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+		@Nullable
+		private String routing;
 
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The analyzer for the query string query
-		 * <p>
-		 * API name: {@code analyzer}
-		 */
-		public Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether wildcards and prefix queries in the query string query should
-		 * be analyzed (default: false)
-		 * <p>
-		 * API name: {@code analyze_wildcard}
-		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
-			this.analyzeWildcard = value;
-			return this;
-		}
-
-		/**
-		 * The default operator for query string query (AND or OR)
-		 * <p>
-		 * API name: {@code default_operator}
-		 */
-		public Builder defaultOperator(@Nullable DefaultOperator value) {
-			this.defaultOperator = value;
-			return this;
-		}
-
-		/**
-		 * The default field for query string query (default: _all)
-		 * <p>
-		 * API name: {@code df}
-		 */
-		public Builder df(@Nullable String value) {
-			this.df = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether format-based query failures (such as providing text to a
-		 * numeric field) should be ignored
-		 * <p>
-		 * API name: {@code lenient}
-		 */
-		public Builder lenient(@Nullable Boolean value) {
-			this.lenient = value;
-			return this;
-		}
-
-		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
-		 * <p>
-		 * API name: {@code preference}
-		 */
-		public Builder preference(@Nullable String value) {
-			this.preference = value;
-			return this;
-		}
-
-		/**
-		 * Specific routing value
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
+		@Nullable
+		private List<String> storedFields;
 
 		/**
 		 * True or false to return the _source field or not, or a list of fields to
@@ -511,6 +418,124 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Specify whether wildcards and prefix queries in the query string query should
+		 * be analyzed (default: false)
+		 * <p>
+		 * API name: {@code analyze_wildcard}
+		 */
+		public Builder analyzeWildcard(@Nullable Boolean value) {
+			this.analyzeWildcard = value;
+			return this;
+		}
+
+		/**
+		 * The analyzer for the query string query
+		 * <p>
+		 * API name: {@code analyzer}
+		 */
+		public Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
+			return this;
+		}
+
+		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
+		 * API name: {@code default_operator}
+		 */
+		public Builder defaultOperator(@Nullable DefaultOperator value) {
+			this.defaultOperator = value;
+			return this;
+		}
+
+		/**
+		 * The default field for query string query (default: _all)
+		 * <p>
+		 * API name: {@code df}
+		 */
+		public Builder df(@Nullable String value) {
+			this.df = value;
+			return this;
+		}
+
+		/**
+		 * Required - The document ID
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
+		 * API name: {@code lenient}
+		 */
+		public Builder lenient(@Nullable Boolean value) {
+			this.lenient = value;
+			return this;
+		}
+
+		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
+		 * API name: {@code preference}
+		 */
+		public Builder preference(@Nullable String value) {
+			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
+		 * API name: {@code q}
+		 */
+		public Builder q(@Nullable String value) {
+			this.q = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(@Nullable Query value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Specific routing value
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
 		 * A comma-separated list of stored fields to return in the response
 		 * <p>
 		 * API name: {@code stored_fields}
@@ -539,31 +564,6 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 			}
 			this.storedFields.add(value);
 			return this;
-		}
-
-		/**
-		 * Query in the Lucene query string syntax
-		 * <p>
-		 * API name: {@code q}
-		 */
-		public Builder q(@Nullable String value) {
-			this.q = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(@Nullable Query value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -606,13 +606,13 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -630,26 +630,30 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.analyzer != null) {
-					params.put("analyzer", request.analyzer);
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
-				if (request.analyzeWildcard != null) {
-					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
-				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
+				if (request.q != null) {
+					params.put("q", request.q);
 				}
 				if (request.df != null) {
 					params.put("df", request.df);
 				}
-				if (request.lenient != null) {
-					params.put("lenient", String.valueOf(request.lenient));
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.toString());
+				}
+				if (request.analyzer != null) {
+					params.put("analyzer", request.analyzer);
+				}
+				if (request.storedFields != null) {
+					params.put("stored_fields",
+							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
@@ -662,12 +666,8 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.storedFields != null) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.q != null) {
-					params.put("q", request.q);
+				if (request.lenient != null) {
+					params.put("lenient", String.valueOf(request.lenient));
 				}
 				return params;
 

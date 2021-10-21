@@ -49,32 +49,22 @@ import javax.annotation.Nullable;
 
 public final class SegmentsRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> index;
+	private final Bytes bytes;
 
 	@Nullable
-	private final Bytes bytes;
+	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public SegmentsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.bytes = builder.bytes;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
 	public SegmentsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names to limit the returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -87,6 +77,16 @@ public final class SegmentsRequest extends CatRequestBase {
 		return this.bytes;
 	}
 
+	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -94,10 +94,20 @@ public final class SegmentsRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<SegmentsRequest> {
 		@Nullable
-		private List<String> index;
+		private Bytes bytes;
 
 		@Nullable
-		private Bytes bytes;
+		private List<String> index;
+
+		/**
+		 * The unit in which to display byte values
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of index names to limit the returned information
@@ -127,16 +137,6 @@ public final class SegmentsRequest extends CatRequestBase {
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
 			return this;
 		}
 

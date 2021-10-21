@@ -50,9 +50,6 @@ import javax.annotation.Nullable;
 
 public final class GetTemplateRequest extends RequestBase {
 	@Nullable
-	private final List<String> name;
-
-	@Nullable
 	private final Boolean flatSettings;
 
 	@Nullable
@@ -64,30 +61,23 @@ public final class GetTemplateRequest extends RequestBase {
 	@Nullable
 	private final String masterTimeout;
 
+	@Nullable
+	private final List<String> name;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public GetTemplateRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
 	public GetTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The comma separated names of the index templates
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public List<String> name() {
-		return this.name;
 	}
 
 	/**
@@ -129,15 +119,22 @@ public final class GetTemplateRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * The comma separated names of the index templates
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetTemplateRequest> {
-		@Nullable
-		private List<String> name;
-
 		@Nullable
 		private Boolean flatSettings;
 
@@ -150,36 +147,8 @@ public final class GetTemplateRequest extends RequestBase {
 		@Nullable
 		private String masterTimeout;
 
-		/**
-		 * The comma separated names of the index templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * The comma separated names of the index templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> name;
 
 		/**
 		 * Return settings in flat format (default: false)
@@ -217,6 +186,37 @@ public final class GetTemplateRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The comma separated names of the index templates
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * The comma separated names of the index templates
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 
@@ -272,17 +272,17 @@ public final class GetTemplateRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

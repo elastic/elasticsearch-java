@@ -57,21 +57,6 @@ import javax.annotation.Nullable;
 
 public final class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
-	private final String index;
-
-	@Nullable
-	private final String type;
-
-	@Nullable
-	private final String pipeline;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
-	@Nullable
-	private final String routing;
-
-	@Nullable
 	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 	@Nullable
@@ -81,13 +66,28 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 	private final List<String> sourceIncludes;
 
 	@Nullable
-	private final String timeout;
+	private final String index;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final String pipeline;
+
+	@Nullable
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final Boolean requireAlias;
+
+	@Nullable
+	private final String routing;
+
+	@Nullable
+	private final String timeout;
+
+	@Nullable
+	private final String type;
+
+	@Nullable
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	private final List<Operation> operations;
 
@@ -95,17 +95,17 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 
 	public BulkRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.type = builder.type;
-		this.pipeline = builder.pipeline;
-		this.refresh = builder.refresh;
-		this.routing = builder.routing;
 		this.source = builder.source;
 		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.timeout = builder.timeout;
-		this.waitForActiveShards = builder.waitForActiveShards;
+		this.index = builder.index;
+		this.pipeline = builder.pipeline;
+		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
+		this.routing = builder.routing;
+		this.timeout = builder.timeout;
+		this.type = builder.type;
+		this.waitForActiveShards = builder.waitForActiveShards;
 		this.operations = ModelTypeHelper.unmodifiableNonNull(builder.operations, "_value_body");
 
 	}
@@ -118,59 +118,6 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 	public Iterator<?> _serializables() {
 		return this.operations.iterator();
 	}
-	/**
-	 * Default index for items which don't provide one
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * Default document type for items which don't provide one
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
-	 * The pipeline id to preprocess incoming documents with
-	 * <p>
-	 * API name: {@code pipeline}
-	 */
-	@Nullable
-	public String pipeline() {
-		return this.pipeline;
-	}
-
-	/**
-	 * If <code>true</code> then refresh the affected shards to make this operation
-	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-	 * this operation visible to search, if <code>false</code> (the default) then do
-	 * nothing with refreshes.
-	 * <p>
-	 * API name: {@code refresh}
-	 */
-	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
-		return this.refresh;
-	}
-
-	/**
-	 * Specific routing value
-	 * <p>
-	 * API name: {@code routing}
-	 */
-	@Nullable
-	public String routing() {
-		return this.routing;
-	}
-
 	/**
 	 * True or false to return the _source field or not, or default list of fields
 	 * to return, can be overridden on each sub-request
@@ -205,6 +152,59 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 	}
 
 	/**
+	 * Default index for items which don't provide one
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * The pipeline id to preprocess incoming documents with
+	 * <p>
+	 * API name: {@code pipeline}
+	 */
+	@Nullable
+	public String pipeline() {
+		return this.pipeline;
+	}
+
+	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+	 * this operation visible to search, if <code>false</code> (the default) then do
+	 * nothing with refreshes.
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public JsonValue /* _types.Refresh */ refresh() {
+		return this.refresh;
+	}
+
+	/**
+	 * Sets require_alias for all incoming documents. Defaults to unset (false)
+	 * <p>
+	 * API name: {@code require_alias}
+	 */
+	@Nullable
+	public Boolean requireAlias() {
+		return this.requireAlias;
+	}
+
+	/**
+	 * Specific routing value
+	 * <p>
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public String routing() {
+		return this.routing;
+	}
+
+	/**
 	 * Explicit operation timeout
 	 * <p>
 	 * API name: {@code timeout}
@@ -212,6 +212,16 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 	@Nullable
 	public String timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Default document type for items which don't provide one
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -226,16 +236,6 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 	@Nullable
 	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
-	}
-
-	/**
-	 * Sets require_alias for all incoming documents. Defaults to unset (false)
-	 * <p>
-	 * API name: {@code require_alias}
-	 */
-	@Nullable
-	public Boolean requireAlias() {
-		return this.requireAlias;
 	}
 
 	/**
@@ -267,21 +267,6 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 	 */
 	public static class Builder implements ObjectBuilder<BulkRequest> {
 		@Nullable
-		private String index;
-
-		@Nullable
-		private String type;
-
-		@Nullable
-		private String pipeline;
-
-		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
-
-		@Nullable
-		private String routing;
-
-		@Nullable
 		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 		@Nullable
@@ -291,68 +276,30 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 		private List<String> sourceIncludes;
 
 		@Nullable
-		private String timeout;
+		private String index;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private String pipeline;
+
+		@Nullable
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private Boolean requireAlias;
 
+		@Nullable
+		private String routing;
+
+		@Nullable
+		private String timeout;
+
+		@Nullable
+		private String type;
+
+		@Nullable
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+
 		private List<Operation> operations;
-
-		/**
-		 * Default index for items which don't provide one
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Default document type for items which don't provide one
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * The pipeline id to preprocess incoming documents with
-		 * <p>
-		 * API name: {@code pipeline}
-		 */
-		public Builder pipeline(@Nullable String value) {
-			this.pipeline = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code> then refresh the affected shards to make this operation
-		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-		 * this operation visible to search, if <code>false</code> (the default) then do
-		 * nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
-			this.refresh = value;
-			return this;
-		}
-
-		/**
-		 * Specific routing value
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
 
 		/**
 		 * True or false to return the _source field or not, or default list of fields
@@ -432,12 +379,75 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 		}
 
 		/**
+		 * Default index for items which don't provide one
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * The pipeline id to preprocess incoming documents with
+		 * <p>
+		 * API name: {@code pipeline}
+		 */
+		public Builder pipeline(@Nullable String value) {
+			this.pipeline = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+		 * this operation visible to search, if <code>false</code> (the default) then do
+		 * nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Sets require_alias for all incoming documents. Defaults to unset (false)
+		 * <p>
+		 * API name: {@code require_alias}
+		 */
+		public Builder requireAlias(@Nullable Boolean value) {
+			this.requireAlias = value;
+			return this;
+		}
+
+		/**
+		 * Specific routing value
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
 		 * Explicit operation timeout
 		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Default document type for items which don't provide one
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -452,16 +462,6 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
-			return this;
-		}
-
-		/**
-		 * Sets require_alias for all incoming documents. Defaults to unset (false)
-		 * <p>
-		 * API name: {@code require_alias}
-		 */
-		public Builder requireAlias(@Nullable Boolean value) {
-			this.requireAlias = value;
 			return this;
 		}
 
@@ -577,11 +577,17 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.requireAlias != null) {
+					params.put("require_alias", String.valueOf(request.requireAlias));
+				}
 				if (request.refresh != null) {
 					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
@@ -596,12 +602,6 @@ public final class BulkRequest extends RequestBase implements NdJsonpSerializabl
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
-				}
-				if (request.requireAlias != null) {
-					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				return params;
 

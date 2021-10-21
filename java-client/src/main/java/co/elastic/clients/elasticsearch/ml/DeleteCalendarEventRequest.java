@@ -133,13 +133,13 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _calendarId = 1 << 0;
-				final int _eventId = 1 << 1;
+				final int _eventId = 1 << 0;
+				final int _calendarId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _calendarId;
 				propsSet |= _eventId;
+				propsSet |= _calendarId;
 
 				if (propsSet == (_calendarId | _eventId)) {
 					StringBuilder buf = new StringBuilder();

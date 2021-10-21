@@ -46,10 +46,10 @@ import javax.annotation.Nullable;
 // typedef: ilm.move_to_step.Request
 @JsonpDeserializable
 public final class MoveToStepRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
-
 	@Nullable
 	private final StepKey currentStep;
+
+	private final String index;
 
 	@Nullable
 	private final StepKey nextStep;
@@ -58,8 +58,8 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 
 	public MoveToStepRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.currentStep = builder.currentStep;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.nextStep = builder.nextStep;
 
 	}
@@ -69,20 +69,20 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * API name: {@code current_step}
+	 */
+	@Nullable
+	public StepKey currentStep() {
+		return this.currentStep;
+	}
+
+	/**
 	 * Required - The name of the index whose lifecycle step is to change
 	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code current_step}
-	 */
-	@Nullable
-	public StepKey currentStep() {
-		return this.currentStep;
 	}
 
 	/**
@@ -125,23 +125,13 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link MoveToStepRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<MoveToStepRequest> {
-		private String index;
-
 		@Nullable
 		private StepKey currentStep;
 
+		private String index;
+
 		@Nullable
 		private StepKey nextStep;
-
-		/**
-		 * Required - The name of the index whose lifecycle step is to change
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code current_step}
@@ -156,6 +146,16 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		 */
 		public Builder currentStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
 			return this.currentStep(fn.apply(new StepKey.Builder()).build());
+		}
+
+		/**
+		 * Required - The name of the index whose lifecycle step is to change
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
 		}
 
 		/**

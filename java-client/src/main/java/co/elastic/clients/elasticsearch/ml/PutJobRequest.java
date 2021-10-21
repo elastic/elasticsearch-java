@@ -51,8 +51,6 @@ import javax.annotation.Nullable;
 // typedef: ml.put_job.Request
 @JsonpDeserializable
 public final class PutJobRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
 	@Nullable
 	private final Boolean allowLazyOpen;
 
@@ -80,6 +78,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final List<String> groups;
 
+	private final String jobId;
+
 	@Nullable
 	private final ModelPlotConfig modelPlotConfig;
 
@@ -99,7 +99,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	public PutJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
 		this.analysisLimits = builder.analysisLimits;
@@ -111,6 +110,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
 		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
@@ -121,17 +121,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	public PutJobRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The identifier for the anomaly detection job. This identifier can
-	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-	 * underscores. It must start and end with alphanumeric characters.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -255,6 +244,17 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public List<String> groups() {
 		return this.groups;
+	}
+
+	/**
+	 * Required - The identifier for the anomaly detection job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -436,8 +436,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link PutJobRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutJobRequest> {
-		private String jobId;
-
 		@Nullable
 		private Boolean allowLazyOpen;
 
@@ -465,6 +463,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private List<String> groups;
 
+		private String jobId;
+
 		@Nullable
 		private ModelPlotConfig modelPlotConfig;
 
@@ -479,18 +479,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Long resultsRetentionDays;
-
-		/**
-		 * Required - The identifier for the anomaly detection job. This identifier can
-		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-		 * underscores. It must start and end with alphanumeric characters.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
 
 		/**
 		 * Advanced configuration option. Specifies whether this job can open when there
@@ -690,6 +678,18 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 				this.groups = new ArrayList<>();
 			}
 			this.groups.add(value);
+			return this;
+		}
+
+		/**
+		 * Required - The identifier for the anomaly detection job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 

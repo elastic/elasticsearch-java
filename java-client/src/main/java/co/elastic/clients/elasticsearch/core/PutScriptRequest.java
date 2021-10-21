@@ -47,43 +47,34 @@ import javax.annotation.Nullable;
 // typedef: _global.put_script.Request
 @JsonpDeserializable
 public final class PutScriptRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
-
 	@Nullable
 	private final String context;
+
+	private final String id;
 
 	@Nullable
 	private final String masterTimeout;
 
 	@Nullable
-	private final String timeout;
+	private final StoredScript script;
 
 	@Nullable
-	private final StoredScript script;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutScriptRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.context = builder.context;
+		this.id = Objects.requireNonNull(builder.id, "id");
 		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.script = builder.script;
+		this.timeout = builder.timeout;
 
 	}
 
 	public PutScriptRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Script ID
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -97,6 +88,15 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Required - Script ID
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
 	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -107,6 +107,14 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public StoredScript script() {
+		return this.script;
+	}
+
+	/**
 	 * Explicit operation timeout
 	 * <p>
 	 * API name: {@code timeout}
@@ -114,14 +122,6 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public String timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public StoredScript script() {
-		return this.script;
 	}
 
 	/**
@@ -150,29 +150,19 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PutScriptRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutScriptRequest> {
-		private String id;
-
 		@Nullable
 		private String context;
+
+		private String id;
 
 		@Nullable
 		private String masterTimeout;
 
 		@Nullable
-		private String timeout;
-
-		@Nullable
 		private StoredScript script;
 
-		/**
-		 * Required - Script ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+		@Nullable
+		private String timeout;
 
 		/**
 		 * Script context
@@ -185,22 +175,22 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Required - Script ID
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
 		 * Specify timeout for connection to master
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
 			return this;
 		}
 
@@ -217,6 +207,16 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 */
 		public Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
 			return this.script(fn.apply(new StoredScript.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
 		}
 
 		/**
@@ -259,14 +259,14 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _context = 1 << 1;
+				final int _context = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				if (request.context() != null)
 					propsSet |= _context;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();

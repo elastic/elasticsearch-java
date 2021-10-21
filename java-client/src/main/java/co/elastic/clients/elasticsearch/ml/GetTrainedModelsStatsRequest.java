@@ -46,13 +46,13 @@ import javax.annotation.Nullable;
 
 public final class GetTrainedModelsStatsRequest extends RequestBase {
 	@Nullable
-	private final String modelId;
-
-	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Integer from;
+
+	@Nullable
+	private final String modelId;
 
 	@Nullable
 	private final Integer size;
@@ -61,25 +61,15 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	public GetTrainedModelsStatsRequest(Builder builder) {
 
-		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
+		this.modelId = builder.modelId;
 		this.size = builder.size;
 
 	}
 
 	public GetTrainedModelsStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The unique identifier of the trained model.
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	@Nullable
-	public String modelId() {
-		return this.modelId;
 	}
 
 	/**
@@ -108,6 +98,16 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * The unique identifier of the trained model.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	@Nullable
+	public String modelId() {
+		return this.modelId;
+	}
+
+	/**
 	 * Specifies the maximum number of models to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -124,26 +124,16 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetTrainedModelsStatsRequest> {
 		@Nullable
-		private String modelId;
-
-		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
 		private Integer from;
 
 		@Nullable
-		private Integer size;
+		private String modelId;
 
-		/**
-		 * The unique identifier of the trained model.
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(@Nullable String value) {
-			this.modelId = value;
-			return this;
-		}
+		@Nullable
+		private Integer size;
 
 		/**
 		 * Specifies what to do when the request:
@@ -167,6 +157,16 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		 */
 		public Builder from(@Nullable Integer value) {
 			this.from = value;
+			return this;
+		}
+
+		/**
+		 * The unique identifier of the trained model.
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public Builder modelId(@Nullable String value) {
+			this.modelId = value;
 			return this;
 		}
 
@@ -236,14 +236,14 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

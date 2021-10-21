@@ -48,19 +48,22 @@ import javax.annotation.Nullable;
 // typedef: ml.get_model_snapshots.Request
 @JsonpDeserializable
 public final class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final String snapshotId;
-
 	@Nullable
 	private final Boolean desc;
 
 	@Nullable
+	private final String end;
+
+	@Nullable
 	private final Integer from;
+
+	private final String jobId;
 
 	@Nullable
 	private final Integer size;
+
+	@Nullable
+	private final String snapshotId;
 
 	@Nullable
 	private final String sort;
@@ -68,45 +71,23 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	@Nullable
 	private final String start;
 
-	@Nullable
-	private final String end;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public GetModelSnapshotsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = builder.snapshotId;
 		this.desc = builder.desc;
+		this.end = builder.end;
 		this.from = builder.from;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.size = builder.size;
+		this.snapshotId = builder.snapshotId;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.end = builder.end;
 
 	}
 
 	public GetModelSnapshotsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * A numerical character string that uniquely identifies the model snapshot.
-	 * <p>
-	 * API name: {@code snapshot_id}
-	 */
-	@Nullable
-	public String snapshotId() {
-		return this.snapshotId;
 	}
 
 	/**
@@ -120,6 +101,14 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public String end() {
+		return this.end;
+	}
+
+	/**
 	 * Skips the specified number of snapshots.
 	 * <p>
 	 * API name: {@code from}
@@ -130,6 +119,15 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
 	 * Specifies the maximum number of snapshots to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -137,6 +135,16 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	@Nullable
 	public Integer size() {
 		return this.size;
+	}
+
+	/**
+	 * A numerical character string that uniquely identifies the model snapshot.
+	 * <p>
+	 * API name: {@code snapshot_id}
+	 */
+	@Nullable
+	public String snapshotId() {
+		return this.snapshotId;
 	}
 
 	/**
@@ -159,14 +167,6 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * API name: {@code end}
-	 */
-	@Nullable
-	public String end() {
-		return this.end;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -177,16 +177,16 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.start != null) {
-
-			generator.writeKey("start");
-			generator.write(this.start);
-
-		}
 		if (this.end != null) {
 
 			generator.writeKey("end");
 			generator.write(this.end);
+
+		}
+		if (this.start != null) {
+
+			generator.writeKey("start");
+			generator.write(this.start);
 
 		}
 
@@ -198,48 +198,28 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * Builder for {@link GetModelSnapshotsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetModelSnapshotsRequest> {
-		private String jobId;
-
-		@Nullable
-		private String snapshotId;
-
 		@Nullable
 		private Boolean desc;
 
 		@Nullable
+		private String end;
+
+		@Nullable
 		private Integer from;
+
+		private String jobId;
 
 		@Nullable
 		private Integer size;
+
+		@Nullable
+		private String snapshotId;
 
 		@Nullable
 		private String sort;
 
 		@Nullable
 		private String start;
-
-		@Nullable
-		private String end;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * A numerical character string that uniquely identifies the model snapshot.
-		 * <p>
-		 * API name: {@code snapshot_id}
-		 */
-		public Builder snapshotId(@Nullable String value) {
-			this.snapshotId = value;
-			return this;
-		}
 
 		/**
 		 * If true, the results are sorted in descending order.
@@ -248,6 +228,14 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 */
 		public Builder desc(@Nullable Boolean value) {
 			this.desc = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code end}
+		 */
+		public Builder end(@Nullable String value) {
+			this.end = value;
 			return this;
 		}
 
@@ -262,12 +250,32 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
 		 * Specifies the maximum number of snapshots to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * A numerical character string that uniquely identifies the model snapshot.
+		 * <p>
+		 * API name: {@code snapshot_id}
+		 */
+		public Builder snapshotId(@Nullable String value) {
+			this.snapshotId = value;
 			return this;
 		}
 
@@ -287,14 +295,6 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 */
 		public Builder start(@Nullable String value) {
 			this.start = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code end}
-		 */
-		public Builder end(@Nullable String value) {
-			this.end = value;
 			return this;
 		}
 
@@ -321,8 +321,8 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	protected static void setupGetModelSnapshotsRequestDeserializer(
 			DelegatingDeserializer<GetModelSnapshotsRequest.Builder> op) {
 
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 
 	}
 
@@ -340,14 +340,14 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				if (request.snapshotId() != null)
 					propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();
@@ -376,17 +376,17 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.desc != null) {
-					params.put("desc", String.valueOf(request.desc));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
-				}
 				if (request.sort != null) {
 					params.put("sort", request.sort);
+				}
+				if (request.desc != null) {
+					params.put("desc", String.valueOf(request.desc));
 				}
 				return params;
 

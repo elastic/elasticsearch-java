@@ -45,56 +45,34 @@ import javax.annotation.Nullable;
 
 public final class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
-	private final String name;
-
-	@Nullable
-	private final Boolean local;
-
-	@Nullable
 	private final Boolean flatSettings;
 
 	@Nullable
 	private final Boolean includeTypeName;
 
 	@Nullable
+	private final Boolean local;
+
+	@Nullable
 	private final String masterTimeout;
+
+	@Nullable
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetIndexTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
-		this.local = builder.local;
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
+		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = builder.name;
 
 	}
 
 	public GetIndexTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of index template names used to limit the request.
-	 * Wildcard (*) expressions are supported.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public String name() {
-		return this.name;
-	}
-
-	/**
-	 * If true, the request retrieves information from the local node only. Defaults
-	 * to false, which means information is retrieved from the master node.
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public Boolean local() {
-		return this.local;
 	}
 
 	/**
@@ -118,6 +96,17 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * If true, the request retrieves information from the local node only. Defaults
+	 * to false, which means information is retrieved from the master node.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public Boolean local() {
+		return this.local;
+	}
+
+	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
@@ -128,6 +117,17 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * Comma-separated list of index template names used to limit the request.
+	 * Wildcard (*) expressions are supported.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public String name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -135,41 +135,19 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetIndexTemplateRequest> {
 		@Nullable
-		private String name;
-
-		@Nullable
-		private Boolean local;
-
-		@Nullable
 		private Boolean flatSettings;
 
 		@Nullable
 		private Boolean includeTypeName;
 
 		@Nullable
+		private Boolean local;
+
+		@Nullable
 		private String masterTimeout;
 
-		/**
-		 * Comma-separated list of index template names used to limit the request.
-		 * Wildcard (*) expressions are supported.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * If true, the request retrieves information from the local node only. Defaults
-		 * to false, which means information is retrieved from the master node.
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public Builder local(@Nullable Boolean value) {
-			this.local = value;
-			return this;
-		}
+		@Nullable
+		private String name;
 
 		/**
 		 * If true, returns settings in flat format.
@@ -192,6 +170,17 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * If true, the request retrieves information from the local node only. Defaults
+		 * to false, which means information is retrieved from the master node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
+
+		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
@@ -199,6 +188,17 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of index template names used to limit the request.
+		 * Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -254,17 +254,17 @@ public final class GetIndexTemplateRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

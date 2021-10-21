@@ -53,47 +53,34 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final String expiration;
 
 	@Nullable
-	private final String expiration;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final String name;
 
 	@Nullable
-	private final Map<String, RoleDescriptor> roleDescriptors;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
-	private final Map<String, JsonData> metadata;
+	private final Map<String, RoleDescriptor> roleDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public CreateApiKeyRequest(Builder builder) {
 
-		this.refresh = builder.refresh;
 		this.expiration = builder.expiration;
-		this.name = builder.name;
-		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.name = builder.name;
+		this.refresh = builder.refresh;
+		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
 	public CreateApiKeyRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * If <code>true</code> (the default) then refresh the affected shards to make
-	 * this operation visible to search, if <code>wait_for</code> then wait for a
-	 * refresh to make this operation visible to search, if <code>false</code> then
-	 * do nothing with refreshes.
-	 * <p>
-	 * API name: {@code refresh}
-	 */
-	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
-		return this.refresh;
 	}
 
 	/**
@@ -107,6 +94,18 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
+	 * Arbitrary metadata that you want to associate with the API key. It supports
+	 * nested data structure. Within the metadata object, keys beginning with _ are
+	 * reserved for system usage.
+	 * <p>
+	 * API name: {@code metadata}
+	 */
+	@Nullable
+	public Map<String, JsonData> metadata() {
+		return this.metadata;
+	}
+
+	/**
 	 * Specifies the name for this API key.
 	 * <p>
 	 * API name: {@code name}
@@ -114,6 +113,19 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public String name() {
 		return this.name;
+	}
+
+	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public JsonValue /* _types.Refresh */ refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -134,18 +146,6 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Arbitrary metadata that you want to associate with the API key. It supports
-	 * nested data structure. Within the metadata object, keys beginning with _ are
-	 * reserved for system usage.
-	 * <p>
-	 * API name: {@code metadata}
-	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
-		return this.metadata;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -160,6 +160,18 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 
 			generator.writeKey("expiration");
 			generator.write(this.expiration);
+
+		}
+		if (this.metadata != null) {
+
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.name != null) {
@@ -180,18 +192,6 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
-
-			generator.writeKey("metadata");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 
 	}
 
@@ -202,32 +202,19 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 */
 	public static class Builder implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private String expiration;
 
 		@Nullable
-		private String expiration;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private String name;
 
 		@Nullable
-		private Map<String, RoleDescriptor> roleDescriptors;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
-		private Map<String, JsonData> metadata;
-
-		/**
-		 * If <code>true</code> (the default) then refresh the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> then
-		 * do nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
-			this.refresh = value;
-			return this;
-		}
+		private Map<String, RoleDescriptor> roleDescriptors;
 
 		/**
 		 * Expiration time for the API key. By default, API keys never expire.
@@ -240,12 +227,48 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * Arbitrary metadata that you want to associate with the API key. It supports
+		 * nested data structure. Within the metadata object, keys beginning with _ are
+		 * reserved for system usage.
+		 * <p>
+		 * API name: {@code metadata}
+		 */
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
+			this.metadata = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 */
+		public Builder putMetadata(String key, JsonData value) {
+			if (this.metadata == null) {
+				this.metadata = new HashMap<>();
+			}
+			this.metadata.put(key, value);
+			return this;
+		}
+
+		/**
 		 * Specifies the name for this API key.
 		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+			this.refresh = value;
 			return this;
 		}
 
@@ -293,29 +316,6 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Arbitrary metadata that you want to associate with the API key. It supports
-		 * nested data structure. Within the metadata object, keys beginning with _ are
-		 * reserved for system usage.
-		 * <p>
-		 * API name: {@code metadata}
-		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link CreateApiKeyRequest}.
 		 *
 		 * @throws NullPointerException
@@ -338,10 +338,10 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	protected static void setupCreateApiKeyRequestDeserializer(DelegatingDeserializer<CreateApiKeyRequest.Builder> op) {
 
 		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 
 	}
 

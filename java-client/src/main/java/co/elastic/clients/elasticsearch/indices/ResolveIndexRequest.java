@@ -49,31 +49,22 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_index.Request
 
 public final class ResolveIndexRequest extends RequestBase {
-	private final List<String> name;
-
 	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
+
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ResolveIndexRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
 	public ResolveIndexRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of names or wildcard expressions
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
 	}
 
 	/**
@@ -87,47 +78,25 @@ public final class ResolveIndexRequest extends RequestBase {
 		return this.expandWildcards;
 	}
 
+	/**
+	 * Required - A comma-separated list of names or wildcard expressions
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ResolveIndexRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ResolveIndexRequest> {
-		private List<String> name;
-
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
-		/**
-		 * Required - A comma-separated list of names or wildcard expressions
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of names or wildcard expressions
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
+		private List<String> name;
 
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
@@ -159,6 +128,37 @@ public final class ResolveIndexRequest extends RequestBase {
 				this.expandWildcards = new ArrayList<>();
 			}
 			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of names or wildcard expressions
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of names or wildcard expressions
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 

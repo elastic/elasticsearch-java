@@ -56,16 +56,10 @@ import javax.annotation.Nullable;
 // typedef: rollup.rollup_search.Request
 @JsonpDeserializable
 public final class RollupSearchRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> index;
-
-	@Nullable
-	private final String type;
-
-	@Nullable
-	private final Boolean typedKeys;
-
 	@Nullable
 	private final Map<String, Aggregation> aggs;
+
+	private final List<String> index;
 
 	@Nullable
 	private final Query query;
@@ -73,21 +67,35 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final Integer size;
 
+	@Nullable
+	private final String type;
+
+	@Nullable
+	private final Boolean typedKeys;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public RollupSearchRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.type = builder.type;
-		this.typedKeys = builder.typedKeys;
 		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.query = builder.query;
 		this.size = builder.size;
+		this.type = builder.type;
+		this.typedKeys = builder.typedKeys;
 
 	}
 
 	public RollupSearchRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code aggs}
+	 */
+	@Nullable
+	public Map<String, Aggregation> aggs() {
+		return this.aggs;
 	}
 
 	/**
@@ -98,6 +106,22 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	 */
 	public List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public Query query() {
+		return this.query;
+	}
+
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Integer size() {
+		return this.size;
 	}
 
 	/**
@@ -119,30 +143,6 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public Boolean typedKeys() {
 		return this.typedKeys;
-	}
-
-	/**
-	 * API name: {@code aggs}
-	 */
-	@Nullable
-	public Map<String, Aggregation> aggs() {
-		return this.aggs;
-	}
-
-	/**
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
-	}
-
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public Integer size() {
-		return this.size;
 	}
 
 	/**
@@ -189,16 +189,10 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link RollupSearchRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupSearchRequest> {
-		private List<String> index;
-
-		@Nullable
-		private String type;
-
-		@Nullable
-		private Boolean typedKeys;
-
 		@Nullable
 		private Map<String, Aggregation> aggs;
+
+		private List<String> index;
 
 		@Nullable
 		private Query query;
@@ -206,59 +200,11 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private Integer size;
 
-		/**
-		 * Required - The indices or index-pattern(s) (containing rollup or regular
-		 * data) that should be searched
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
+		@Nullable
+		private String type;
 
-		/**
-		 * Required - The indices or index-pattern(s) (containing rollup or regular
-		 * data) that should be searched
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * The doc type inside the index
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
-		 * <p>
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
-			return this;
-		}
+		@Nullable
+		private Boolean typedKeys;
 
 		/**
 		 * API name: {@code aggs}
@@ -294,6 +240,39 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * Required - The indices or index-pattern(s) (containing rollup or regular
+		 * data) that should be searched
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Required - The indices or index-pattern(s) (containing rollup or regular
+		 * data) that should be searched
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable Query value) {
@@ -313,6 +292,27 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * The doc type inside the index
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
+		 * API name: {@code typed_keys}
+		 */
+		public Builder typedKeys(@Nullable Boolean value) {
+			this.typedKeys = value;
 			return this;
 		}
 

@@ -53,30 +53,38 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class SimulateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String id;
-
-	@Nullable
-	private final Boolean verbose;
-
-	@Nullable
 	private final List<Document> docs;
 
 	@Nullable
+	private final String id;
+
+	@Nullable
 	private final Pipeline pipeline;
+
+	@Nullable
+	private final Boolean verbose;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public SimulateRequest(Builder builder) {
 
-		this.id = builder.id;
-		this.verbose = builder.verbose;
 		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
+		this.id = builder.id;
 		this.pipeline = builder.pipeline;
+		this.verbose = builder.verbose;
 
 	}
 
 	public SimulateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code docs}
+	 */
+	@Nullable
+	public List<Document> docs() {
+		return this.docs;
 	}
 
 	/**
@@ -90,6 +98,14 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * API name: {@code pipeline}
+	 */
+	@Nullable
+	public Pipeline pipeline() {
+		return this.pipeline;
+	}
+
+	/**
 	 * Verbose mode. Display data output for each processor in executed pipeline
 	 * <p>
 	 * API name: {@code verbose}
@@ -97,22 +113,6 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public Boolean verbose() {
 		return this.verbose;
-	}
-
-	/**
-	 * API name: {@code docs}
-	 */
-	@Nullable
-	public List<Document> docs() {
-		return this.docs;
-	}
-
-	/**
-	 * API name: {@code pipeline}
-	 */
-	@Nullable
-	public Pipeline pipeline() {
-		return this.pipeline;
 	}
 
 	/**
@@ -153,36 +153,16 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	 */
 	public static class Builder implements ObjectBuilder<SimulateRequest> {
 		@Nullable
-		private String id;
-
-		@Nullable
-		private Boolean verbose;
-
-		@Nullable
 		private List<Document> docs;
+
+		@Nullable
+		private String id;
 
 		@Nullable
 		private Pipeline pipeline;
 
-		/**
-		 * Pipeline ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Verbose mode. Display data output for each processor in executed pipeline
-		 * <p>
-		 * API name: {@code verbose}
-		 */
-		public Builder verbose(@Nullable Boolean value) {
-			this.verbose = value;
-			return this;
-		}
+		@Nullable
+		private Boolean verbose;
 
 		/**
 		 * API name: {@code docs}
@@ -226,6 +206,16 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * Pipeline ID
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code pipeline}
 		 */
 		public Builder pipeline(@Nullable Pipeline value) {
@@ -238,6 +228,16 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
 			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+		}
+
+		/**
+		 * Verbose mode. Display data output for each processor in executed pipeline
+		 * <p>
+		 * API name: {@code verbose}
+		 */
+		public Builder verbose(@Nullable Boolean value) {
+			this.verbose = value;
+			return this;
 		}
 
 		/**

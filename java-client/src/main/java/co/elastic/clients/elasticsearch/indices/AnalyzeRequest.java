@@ -54,9 +54,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String index;
-
-	@Nullable
 	private final String analyzer;
 
 	@Nullable
@@ -75,6 +72,9 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	private final List<TokenFilter> filter;
 
 	@Nullable
+	private final String index;
+
+	@Nullable
 	private final String normalizer;
 
 	@Nullable
@@ -87,13 +87,13 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 	public AnalyzeRequest(Builder builder) {
 
-		this.index = builder.index;
 		this.analyzer = builder.analyzer;
 		this.attributes = ModelTypeHelper.unmodifiable(builder.attributes);
 		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
 		this.explain = builder.explain;
 		this.field = builder.field;
 		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.index = builder.index;
 		this.normalizer = builder.normalizer;
 		this.text = ModelTypeHelper.unmodifiable(builder.text);
 		this.tokenizer = builder.tokenizer;
@@ -102,16 +102,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 	public AnalyzeRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The name of the index to scope the operation
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public String index() {
-		return this.index;
 	}
 
 	/**
@@ -160,6 +150,16 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public List<TokenFilter> filter() {
 		return this.filter;
+	}
+
+	/**
+	 * The name of the index to scope the operation
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -281,9 +281,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder implements ObjectBuilder<AnalyzeRequest> {
 		@Nullable
-		private String index;
-
-		@Nullable
 		private String analyzer;
 
 		@Nullable
@@ -302,6 +299,9 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		private List<TokenFilter> filter;
 
 		@Nullable
+		private String index;
+
+		@Nullable
 		private String normalizer;
 
 		@Nullable
@@ -309,16 +309,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		@Nullable
 		private Tokenizer tokenizer;
-
-		/**
-		 * The name of the index to scope the operation
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code analyzer}
@@ -451,6 +441,16 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		 */
 		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
 			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
+		}
+
+		/**
+		 * The name of the index to scope the operation
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable String value) {
+			this.index = value;
+			return this;
 		}
 
 		/**

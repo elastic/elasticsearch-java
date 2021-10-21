@@ -55,9 +55,6 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	private final String index;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final String pipeline;
 
 	@Nullable
@@ -68,6 +65,9 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 
 	@Nullable
 	private final String timeout;
+
+	@Nullable
+	private final String type;
 
 	@Nullable
 	private final Long version;
@@ -89,11 +89,11 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
+		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -122,16 +122,6 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	 */
 	public String index() {
 		return this.index;
-	}
-
-	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
 	}
 
 	/**
@@ -175,6 +165,16 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	@Nullable
 	public String timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -239,9 +239,6 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		private String index;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private String pipeline;
 
 		@Nullable
@@ -252,6 +249,9 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 
 		@Nullable
 		private String timeout;
+
+		@Nullable
+		private String type;
 
 		@Nullable
 		private Long version;
@@ -284,16 +284,6 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		 */
 		public Builder<TDocument> index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -337,6 +327,16 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		 */
 		public Builder<TDocument> timeout(@Nullable String value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder<TDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -429,14 +429,14 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 				if (request.type() != null)
 					propsSet |= _type;
 
@@ -470,23 +470,23 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
-				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
-				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());
 				}
+				if (request.refresh != null) {
+					params.put("refresh", JsonpUtils.toString(request.refresh));
+				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				}
+				if (request.version != null) {
+					params.put("version", String.valueOf(request.version));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

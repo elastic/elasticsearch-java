@@ -45,8 +45,6 @@ import javax.annotation.Nullable;
 // typedef: ccr.forget_follower.Request
 @JsonpDeserializable
 public final class ForgetFollowerRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
-
 	@Nullable
 	private final String followerCluster;
 
@@ -56,6 +54,8 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final String followerIndexUuid;
 
+	private final String index;
+
 	@Nullable
 	private final String leaderRemoteCluster;
 
@@ -63,26 +63,16 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 
 	public ForgetFollowerRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.followerCluster = builder.followerCluster;
 		this.followerIndex = builder.followerIndex;
 		this.followerIndexUuid = builder.followerIndexUuid;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.leaderRemoteCluster = builder.leaderRemoteCluster;
 
 	}
 
 	public ForgetFollowerRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - the name of the leader index for which specified follower
-	 * retention leases should be removed
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
 	}
 
 	/**
@@ -107,6 +97,16 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	@Nullable
 	public String followerIndexUuid() {
 		return this.followerIndexUuid;
+	}
+
+	/**
+	 * Required - the name of the leader index for which specified follower
+	 * retention leases should be removed
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -161,8 +161,6 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	 * Builder for {@link ForgetFollowerRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ForgetFollowerRequest> {
-		private String index;
-
 		@Nullable
 		private String followerCluster;
 
@@ -172,19 +170,10 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private String followerIndexUuid;
 
+		private String index;
+
 		@Nullable
 		private String leaderRemoteCluster;
-
-		/**
-		 * Required - the name of the leader index for which specified follower
-		 * retention leases should be removed
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code follower_cluster}
@@ -207,6 +196,17 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		 */
 		public Builder followerIndexUuid(@Nullable String value) {
 			this.followerIndexUuid = value;
+			return this;
+		}
+
+		/**
+		 * Required - the name of the leader index for which specified follower
+		 * retention leases should be removed
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 

@@ -46,29 +46,37 @@ import javax.annotation.Nullable;
 // typedef: ml.update_model_snapshot.Request
 @JsonpDeserializable
 public final class UpdateModelSnapshotRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	private final String snapshotId;
-
 	@Nullable
 	private final String description;
 
+	private final String jobId;
+
 	@Nullable
 	private final Boolean retain;
+
+	private final String snapshotId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public UpdateModelSnapshotRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
 		this.description = builder.description;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.retain = builder.retain;
+		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
 
 	}
 
 	public UpdateModelSnapshotRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public String description() {
+		return this.description;
 	}
 
 	/**
@@ -81,28 +89,20 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	}
 
 	/**
+	 * API name: {@code retain}
+	 */
+	@Nullable
+	public Boolean retain() {
+		return this.retain;
+	}
+
+	/**
 	 * Required - The ID of the snapshot to update
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
 		return this.snapshotId;
-	}
-
-	/**
-	 * API name: {@code description}
-	 */
-	@Nullable
-	public String description() {
-		return this.description;
-	}
-
-	/**
-	 * API name: {@code retain}
-	 */
-	@Nullable
-	public Boolean retain() {
-		return this.retain;
 	}
 
 	/**
@@ -137,15 +137,23 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	 * Builder for {@link UpdateModelSnapshotRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateModelSnapshotRequest> {
-		private String jobId;
-
-		private String snapshotId;
-
 		@Nullable
 		private String description;
 
+		private String jobId;
+
 		@Nullable
 		private Boolean retain;
+
+		private String snapshotId;
+
+		/**
+		 * API name: {@code description}
+		 */
+		public Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
 
 		/**
 		 * Required - The ID of the job to fetch
@@ -158,28 +166,20 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 		}
 
 		/**
+		 * API name: {@code retain}
+		 */
+		public Builder retain(@Nullable Boolean value) {
+			this.retain = value;
+			return this;
+		}
+
+		/**
 		 * Required - The ID of the snapshot to update
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {
 			this.snapshotId = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code description}
-		 */
-		public Builder description(@Nullable String value) {
-			this.description = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code retain}
-		 */
-		public Builder retain(@Nullable Boolean value) {
-			this.retain = value;
 			return this;
 		}
 
@@ -225,13 +225,13 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

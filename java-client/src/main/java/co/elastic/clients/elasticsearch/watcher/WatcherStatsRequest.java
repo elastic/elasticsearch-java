@@ -50,32 +50,22 @@ import javax.annotation.Nullable;
 
 public final class WatcherStatsRequest extends RequestBase {
 	@Nullable
-	private final List<WatcherMetric> metric;
+	private final Boolean emitStacktraces;
 
 	@Nullable
-	private final Boolean emitStacktraces;
+	private final List<WatcherMetric> metric;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public WatcherStatsRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.emitStacktraces = builder.emitStacktraces;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 
 	}
 
 	public WatcherStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Defines which additional metrics are included in the response.
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<WatcherMetric> metric() {
-		return this.metric;
 	}
 
 	/**
@@ -88,6 +78,16 @@ public final class WatcherStatsRequest extends RequestBase {
 		return this.emitStacktraces;
 	}
 
+	/**
+	 * Defines which additional metrics are included in the response.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	@Nullable
+	public List<WatcherMetric> metric() {
+		return this.metric;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -95,10 +95,20 @@ public final class WatcherStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<WatcherStatsRequest> {
 		@Nullable
-		private List<WatcherMetric> metric;
+		private Boolean emitStacktraces;
 
 		@Nullable
-		private Boolean emitStacktraces;
+		private List<WatcherMetric> metric;
+
+		/**
+		 * Defines whether stack traces are generated for each watch that is running.
+		 * <p>
+		 * API name: {@code emit_stacktraces}
+		 */
+		public Builder emitStacktraces(@Nullable Boolean value) {
+			this.emitStacktraces = value;
+			return this;
+		}
 
 		/**
 		 * Defines which additional metrics are included in the response.
@@ -128,16 +138,6 @@ public final class WatcherStatsRequest extends RequestBase {
 				this.metric = new ArrayList<>();
 			}
 			this.metric.add(value);
-			return this;
-		}
-
-		/**
-		 * Defines whether stack traces are generated for each watch that is running.
-		 * <p>
-		 * API name: {@code emit_stacktraces}
-		 */
-		public Builder emitStacktraces(@Nullable Boolean value) {
-			this.emitStacktraces = value;
 			return this;
 		}
 

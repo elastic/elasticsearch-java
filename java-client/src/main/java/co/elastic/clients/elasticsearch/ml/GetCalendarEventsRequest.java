@@ -47,30 +47,30 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	private final String calendarId;
 
 	@Nullable
-	private final String jobId;
-
-	@Nullable
 	private final String end;
 
 	@Nullable
 	private final Integer from;
 
 	@Nullable
-	private final String start;
+	private final String jobId;
 
 	@Nullable
 	private final Integer size;
+
+	@Nullable
+	private final String start;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetCalendarEventsRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
-		this.jobId = builder.jobId;
 		this.end = builder.end;
 		this.from = builder.from;
-		this.start = builder.start;
+		this.jobId = builder.jobId;
 		this.size = builder.size;
+		this.start = builder.start;
 
 	}
 
@@ -85,16 +85,6 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	 */
 	public String calendarId() {
 		return this.calendarId;
-	}
-
-	/**
-	 * Get events for the job. When this option is used calendar_id must be '_all'
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	@Nullable
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -118,13 +108,13 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	}
 
 	/**
-	 * Get events after this time
+	 * Get events for the job. When this option is used calendar_id must be '_all'
 	 * <p>
-	 * API name: {@code start}
+	 * API name: {@code job_id}
 	 */
 	@Nullable
-	public String start() {
-		return this.start;
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -137,6 +127,16 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		return this.size;
 	}
 
+	/**
+	 * Get events after this time
+	 * <p>
+	 * API name: {@code start}
+	 */
+	@Nullable
+	public String start() {
+		return this.start;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -146,19 +146,19 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		private String calendarId;
 
 		@Nullable
-		private String jobId;
-
-		@Nullable
 		private String end;
 
 		@Nullable
 		private Integer from;
 
 		@Nullable
-		private String start;
+		private String jobId;
 
 		@Nullable
 		private Integer size;
+
+		@Nullable
+		private String start;
 
 		/**
 		 * Required - The ID of the calendar containing the events
@@ -167,16 +167,6 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		 */
 		public Builder calendarId(String value) {
 			this.calendarId = value;
-			return this;
-		}
-
-		/**
-		 * Get events for the job. When this option is used calendar_id must be '_all'
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(@Nullable String value) {
-			this.jobId = value;
 			return this;
 		}
 
@@ -201,12 +191,12 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		}
 
 		/**
-		 * Get events after this time
+		 * Get events for the job. When this option is used calendar_id must be '_all'
 		 * <p>
-		 * API name: {@code start}
+		 * API name: {@code job_id}
 		 */
-		public Builder start(@Nullable String value) {
-			this.start = value;
+		public Builder jobId(@Nullable String value) {
+			this.jobId = value;
 			return this;
 		}
 
@@ -217,6 +207,16 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		 */
 		public Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Get events after this time
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public Builder start(@Nullable String value) {
+			this.start = value;
 			return this;
 		}
 
@@ -268,20 +268,20 @@ public final class GetCalendarEventsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
+				}
 				if (request.jobId != null) {
 					params.put("job_id", request.jobId);
+				}
+				if (request.start != null) {
+					params.put("start", request.start);
 				}
 				if (request.end != null) {
 					params.put("end", request.end);
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
-				}
-				if (request.start != null) {
-					params.put("start", request.start);
-				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 

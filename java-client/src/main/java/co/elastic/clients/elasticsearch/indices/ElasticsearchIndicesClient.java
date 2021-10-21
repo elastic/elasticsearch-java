@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -51,7 +51,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException {
+	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, AddBlockRequest.ENDPOINT);
 	}
 
@@ -59,16 +59,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Adds a block to an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link AddBlockRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final AddBlockResponse addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
@@ -83,7 +82,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException {
+	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, AnalyzeRequest.ENDPOINT);
 	}
 
@@ -92,16 +91,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * the text.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link AnalyzeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final AnalyzeResponse analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
@@ -114,7 +112,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public AnalyzeResponse analyze() throws IOException {
+	public AnalyzeResponse analyze() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT);
 	}
 
@@ -128,7 +126,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException {
+	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ClearCacheRequest.ENDPOINT);
 	}
 
@@ -136,16 +134,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Clears all or specific caches for one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCacheRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
@@ -157,7 +154,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClearCacheResponse clearCache() throws IOException {
+	public ClearCacheResponse clearCache() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
 	}
 
@@ -171,7 +168,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException {
+	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, CloneIndexRequest.ENDPOINT);
 	}
 
@@ -179,16 +176,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Clones an index
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CloneIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CloneIndexResponse clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
@@ -202,7 +198,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloseIndexResponse close(CloseIndexRequest request) throws IOException {
+	public CloseIndexResponse close(CloseIndexRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, CloseIndexRequest.ENDPOINT);
 	}
 
@@ -210,16 +206,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Closes an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CloseIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CloseIndexResponse close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
@@ -233,7 +228,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateIndexResponse create(CreateIndexRequest request) throws IOException {
+	public CreateIndexResponse create(CreateIndexRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, CreateIndexRequest.ENDPOINT);
 	}
 
@@ -241,16 +236,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Creates an index with optional settings and mappings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CreateIndexResponse create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
@@ -264,7 +258,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request) throws IOException {
+	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, CreateDataStreamRequest.ENDPOINT);
 	}
 
@@ -272,16 +267,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Creates a data stream
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateDataStreamRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CreateDataStreamResponse createDataStream(
-			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn) throws IOException {
+			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
 	}
 
@@ -295,7 +290,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request) throws IOException {
+	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DataStreamsStatsRequest.ENDPOINT);
 	}
 
@@ -303,16 +299,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Provides statistics on operations happening in a data stream.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DataStreamsStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DataStreamsStatsResponse dataStreamsStats(
-			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) throws IOException {
+			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
 	}
 
@@ -324,7 +320,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DataStreamsStatsResponse dataStreamsStats() throws IOException {
+	public DataStreamsStatsResponse dataStreamsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new DataStreamsStatsRequest.Builder().build(),
 				DataStreamsStatsRequest.ENDPOINT);
 	}
@@ -339,7 +335,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException {
+	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteIndexRequest.ENDPOINT);
 	}
 
@@ -347,16 +343,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Deletes an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
@@ -370,7 +365,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException {
+	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteAliasRequest.ENDPOINT);
 	}
 
@@ -378,16 +373,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Deletes an alias.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteAliasRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteAliasResponse deleteAlias(
-			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn) throws IOException {
+			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
@@ -401,7 +396,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request) throws IOException {
+	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteDataStreamRequest.ENDPOINT);
 	}
 
@@ -409,16 +405,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Deletes a data stream.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataStreamRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteDataStreamResponse deleteDataStream(
-			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn) throws IOException {
+			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
@@ -432,7 +428,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request) throws IOException {
+	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteIndexTemplateRequest.ENDPOINT);
 	}
 
@@ -440,9 +437,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Deletes an index template.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteIndexTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
@@ -450,7 +446,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public final DeleteIndexTemplateResponse deleteIndexTemplate(
 			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
@@ -464,7 +460,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request) throws IOException {
+	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteTemplateRequest.ENDPOINT);
 	}
 
@@ -472,16 +469,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Deletes an index template.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteTemplateResponse deleteTemplate(
-			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn) throws IOException {
+			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
 	}
 
@@ -495,7 +492,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException {
+	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DiskUsageRequest.ENDPOINT);
 	}
 
@@ -503,16 +500,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Analyzes the disk usage of each field of an index or data stream
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DiskUsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DiskUsageResponse diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
@@ -526,7 +522,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse exists(ExistsRequest request) throws IOException {
+	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExistsRequest.ENDPOINT);
 	}
 
@@ -534,16 +530,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about whether a particular index exists.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
@@ -557,7 +552,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException {
+	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExistsAliasRequest.ENDPOINT);
 	}
 
@@ -565,16 +560,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about whether a particular alias exists.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsAliasRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
 	}
 
@@ -588,7 +582,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request) throws IOException {
+	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExistsIndexTemplateRequest.ENDPOINT);
 	}
 
@@ -596,9 +591,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about whether a particular index template exists.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsIndexTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
@@ -606,7 +600,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public final BooleanResponse existsIndexTemplate(
 			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
 	}
 
@@ -620,7 +614,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException {
+	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExistsTemplateRequest.ENDPOINT);
 	}
 
@@ -628,16 +622,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about whether a particular index template exists.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse existsTemplate(
-			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn) throws IOException {
+			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
@@ -652,7 +646,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException {
+	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExistsTypeRequest.ENDPOINT);
 	}
 
@@ -661,16 +655,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * (DEPRECATED)
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsTypeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse existsType(Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
 	}
 
@@ -684,7 +677,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FlushResponse flush(FlushRequest request) throws IOException {
+	public FlushResponse flush(FlushRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, FlushRequest.ENDPOINT);
 	}
 
@@ -692,16 +685,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Performs the flush operation on one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FlushRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FlushResponse flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
@@ -713,7 +705,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FlushResponse flush() throws IOException {
+	public FlushResponse flush() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT);
 	}
 
@@ -727,7 +719,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException {
+	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ForcemergeRequest.ENDPOINT);
 	}
 
@@ -735,16 +727,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Performs the force merge operation on one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ForcemergeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ForcemergeResponse forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
 	}
 
@@ -756,7 +747,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ForcemergeResponse forcemerge() throws IOException {
+	public ForcemergeResponse forcemerge() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT);
 	}
 
@@ -771,7 +762,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FreezeResponse freeze(FreezeRequest request) throws IOException {
+	public FreezeResponse freeze(FreezeRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, FreezeRequest.ENDPOINT);
 	}
 
@@ -780,16 +771,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * (except for maintaining its metadata in memory) and is read-only.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FreezeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/freeze-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FreezeResponse freeze(Function<FreezeRequest.Builder, ObjectBuilder<FreezeRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return freeze(fn.apply(new FreezeRequest.Builder()).build());
 	}
 
@@ -803,7 +793,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetIndexResponse get(GetIndexRequest request) throws IOException {
+	public GetIndexResponse get(GetIndexRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetIndexRequest.ENDPOINT);
 	}
 
@@ -811,16 +801,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
@@ -834,7 +823,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException {
+	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetAliasRequest.ENDPOINT);
 	}
 
@@ -842,16 +831,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns an alias.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAliasRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetAliasResponse getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
@@ -863,7 +851,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetAliasResponse getAlias() throws IOException {
+	public GetAliasResponse getAlias() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT);
 	}
 
@@ -877,7 +865,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDataStreamResponse getDataStream(GetDataStreamRequest request) throws IOException {
+	public GetDataStreamResponse getDataStream(GetDataStreamRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetDataStreamRequest.ENDPOINT);
 	}
 
@@ -885,16 +874,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns data streams.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetDataStreamResponse getDataStream(
-			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn) throws IOException {
+			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
 	}
 
@@ -906,7 +895,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDataStreamResponse getDataStream() throws IOException {
+	public GetDataStreamResponse getDataStream() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataStreamRequest.Builder().build(), GetDataStreamRequest.ENDPOINT);
 	}
 
@@ -920,7 +909,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetFieldMappingResponse getFieldMapping(GetFieldMappingRequest request) throws IOException {
+	public GetFieldMappingResponse getFieldMapping(GetFieldMappingRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetFieldMappingRequest.ENDPOINT);
 	}
 
@@ -928,16 +918,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns mapping for one or more fields.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetFieldMappingRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetFieldMappingResponse getFieldMapping(
-			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn) throws IOException {
+			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
 	}
 
@@ -951,7 +941,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request) throws IOException {
+	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetIndexTemplateRequest.ENDPOINT);
 	}
 
@@ -959,16 +950,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns an index template.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIndexTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetIndexTemplateResponse getIndexTemplate(
-			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn) throws IOException {
+			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
@@ -980,7 +971,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetIndexTemplateResponse getIndexTemplate() throws IOException {
+	public GetIndexTemplateResponse getIndexTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetIndexTemplateRequest.Builder().build(),
 				GetIndexTemplateRequest.ENDPOINT);
 	}
@@ -995,7 +986,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException {
+	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetMappingRequest.ENDPOINT);
 	}
 
@@ -1003,16 +994,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns mappings for one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetMappingRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetMappingResponse getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
 	}
 
@@ -1024,7 +1014,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetMappingResponse getMapping() throws IOException {
+	public GetMappingResponse getMapping() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT);
 	}
 
@@ -1038,7 +1028,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException {
+	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetSettingsRequest.ENDPOINT);
 	}
 
@@ -1046,16 +1036,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns settings for one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetSettingsResponse getSettings(
-			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn) throws IOException {
+			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
@@ -1067,7 +1057,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetSettingsResponse getSettings() throws IOException {
+	public GetSettingsResponse getSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT);
 	}
 
@@ -1081,7 +1071,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException {
+	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetTemplateRequest.ENDPOINT);
 	}
 
@@ -1089,16 +1079,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns an index template.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetTemplateResponse getTemplate(
-			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) throws IOException {
+			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
 	}
 
@@ -1110,7 +1100,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTemplateResponse getTemplate() throws IOException {
+	public GetTemplateResponse getTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT);
 	}
 
@@ -1124,7 +1114,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request) throws IOException {
+	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, MigrateToDataStreamRequest.ENDPOINT);
 	}
 
@@ -1132,9 +1123,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Migrates an alias to a data stream
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MigrateToDataStreamRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
 	 *      on elastic.co</a>
@@ -1142,7 +1132,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public final MigrateToDataStreamResponse migrateToDataStream(
 			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
 	}
 
@@ -1156,7 +1146,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public OpenResponse open(OpenRequest request) throws IOException {
+	public OpenResponse open(OpenRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, OpenRequest.ENDPOINT);
 	}
 
@@ -1164,15 +1154,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Opens an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link OpenRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final OpenResponse open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) throws IOException {
+	public final OpenResponse open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 
@@ -1187,7 +1177,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PromoteDataStreamResponse promoteDataStream(PromoteDataStreamRequest request) throws IOException {
+	public PromoteDataStreamResponse promoteDataStream(PromoteDataStreamRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PromoteDataStreamRequest.ENDPOINT);
 	}
 
@@ -1196,16 +1187,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * regular data stream
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PromoteDataStreamRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PromoteDataStreamResponse promoteDataStream(
-			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn) throws IOException {
+			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return promoteDataStream(fn.apply(new PromoteDataStreamRequest.Builder()).build());
 	}
 
@@ -1219,7 +1210,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException {
+	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutAliasRequest.ENDPOINT);
 	}
 
@@ -1227,16 +1218,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Creates or updates an alias.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAliasRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutAliasResponse putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
 	}
 
@@ -1250,7 +1240,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request) throws IOException {
+	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutIndexTemplateRequest.ENDPOINT);
 	}
 
@@ -1258,16 +1249,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Creates or updates an index template.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutIndexTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutIndexTemplateResponse putIndexTemplate(
-			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn) throws IOException {
+			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1281,7 +1272,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException {
+	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutMappingRequest.ENDPOINT);
 	}
 
@@ -1289,16 +1280,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Updates the index mappings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutMappingRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutMappingResponse putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
 	}
 
@@ -1312,7 +1302,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException {
+	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutSettingsRequest.ENDPOINT);
 	}
 
@@ -1320,16 +1310,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Updates the index settings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutSettingsResponse putSettings(
-			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn) throws IOException {
+			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
@@ -1341,7 +1331,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutSettingsResponse putSettings() throws IOException {
+	public PutSettingsResponse putSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT);
 	}
 
@@ -1355,7 +1345,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException {
+	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutTemplateRequest.ENDPOINT);
 	}
 
@@ -1363,16 +1353,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Creates or updates an index template.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutTemplateResponse putTemplate(
-			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn) throws IOException {
+			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
 	}
 
@@ -1386,7 +1376,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RecoveryResponse recovery(RecoveryRequest request) throws IOException {
+	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, RecoveryRequest.ENDPOINT);
 	}
 
@@ -1394,16 +1384,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about ongoing index shard recoveries.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RecoveryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -1415,7 +1404,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RecoveryResponse recovery() throws IOException {
+	public RecoveryResponse recovery() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT);
 	}
 
@@ -1429,7 +1418,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RefreshResponse refresh(RefreshRequest request) throws IOException {
+	public RefreshResponse refresh(RefreshRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, RefreshRequest.ENDPOINT);
 	}
 
@@ -1437,16 +1426,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Performs the refresh operation in one or more indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RefreshRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
 	}
 
@@ -1458,7 +1446,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RefreshResponse refresh() throws IOException {
+	public RefreshResponse refresh() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT);
 	}
 
@@ -1473,7 +1461,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ReloadSearchAnalyzersResponse reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ReloadSearchAnalyzersRequest.ENDPOINT);
 	}
 
@@ -1481,9 +1469,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Reloads an index's search analyzers and their resources.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ReloadSearchAnalyzersRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-reload-analyzers.html">Documentation
 	 *      on elastic.co</a>
@@ -1491,7 +1478,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public final ReloadSearchAnalyzersResponse reloadSearchAnalyzers(
 			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
@@ -1505,7 +1492,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException {
+	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ResolveIndexRequest.ENDPOINT);
 	}
 
@@ -1513,16 +1500,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Returns information about any matching indices, aliases, and data streams
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ResolveIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ResolveIndexResponse resolveIndex(
-			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn) throws IOException {
+			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
 	}
 
@@ -1537,7 +1524,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RolloverResponse rollover(RolloverRequest request) throws IOException {
+	public RolloverResponse rollover(RolloverRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, RolloverRequest.ENDPOINT);
 	}
 
@@ -1546,16 +1533,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * considered to be too large or too old.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RolloverRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final RolloverResponse rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return rollover(fn.apply(new RolloverRequest.Builder()).build());
 	}
 
@@ -1569,7 +1555,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SegmentsResponse segments(SegmentsRequest request) throws IOException {
+	public SegmentsResponse segments(SegmentsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, SegmentsRequest.ENDPOINT);
 	}
 
@@ -1577,16 +1563,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Provides low-level information about segments in a Lucene index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SegmentsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -1598,7 +1583,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SegmentsResponse segments() throws IOException {
+	public SegmentsResponse segments() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT);
 	}
 
@@ -1612,7 +1597,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException {
+	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ShardStoresRequest.ENDPOINT);
 	}
 
@@ -1620,16 +1605,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Provides store information for shard copies of indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ShardStoresRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ShardStoresResponse shardStores(
-			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn) throws IOException {
+			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
 	}
 
@@ -1641,7 +1626,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ShardStoresResponse shardStores() throws IOException {
+	public ShardStoresResponse shardStores() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ShardStoresRequest.Builder().build(), ShardStoresRequest.ENDPOINT);
 	}
 
@@ -1655,7 +1640,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ShrinkResponse shrink(ShrinkRequest request) throws IOException {
+	public ShrinkResponse shrink(ShrinkRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ShrinkRequest.ENDPOINT);
 	}
 
@@ -1663,16 +1648,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Allow to shrink an existing index into a new index with fewer primary shards.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ShrinkRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ShrinkResponse shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return shrink(fn.apply(new ShrinkRequest.Builder()).build());
 	}
 
@@ -1688,7 +1672,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, SimulateIndexTemplateRequest.ENDPOINT);
 	}
 
@@ -1697,9 +1681,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * system
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
@@ -1707,7 +1690,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public final SimulateIndexTemplateResponse simulateIndexTemplate(
 			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1721,7 +1704,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request) throws IOException {
+	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, SimulateTemplateRequest.ENDPOINT);
 	}
 
@@ -1729,16 +1713,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Simulate resolving the given template name or body
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SimulateTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final SimulateTemplateResponse simulateTemplate(
-			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn) throws IOException {
+			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
@@ -1750,7 +1734,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SimulateTemplateResponse simulateTemplate() throws IOException {
+	public SimulateTemplateResponse simulateTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SimulateTemplateRequest.Builder().build(),
 				SimulateTemplateRequest.ENDPOINT);
 	}
@@ -1766,7 +1750,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SplitResponse split(SplitRequest request) throws IOException {
+	public SplitResponse split(SplitRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, SplitRequest.ENDPOINT);
 	}
 
@@ -1775,16 +1759,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * shards.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SplitRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final SplitResponse split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return split(fn.apply(new SplitRequest.Builder()).build());
 	}
 
@@ -1798,7 +1781,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException {
+	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, IndicesStatsRequest.ENDPOINT);
 	}
 
@@ -1806,16 +1789,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Provides statistics on operations happening in an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link IndicesStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final IndicesStatsResponse stats(
-			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn) throws IOException {
+			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
@@ -1827,7 +1810,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public IndicesStatsResponse stats() throws IOException {
+	public IndicesStatsResponse stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new IndicesStatsRequest.Builder().build(), IndicesStatsRequest.ENDPOINT);
 	}
 
@@ -1842,7 +1825,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UnfreezeResponse unfreeze(UnfreezeRequest request) throws IOException {
+	public UnfreezeResponse unfreeze(UnfreezeRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UnfreezeRequest.ENDPOINT);
 	}
 
@@ -1851,16 +1834,15 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * the normal recovery process and becomes writeable again.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UnfreezeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/unfreeze-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UnfreezeResponse unfreeze(Function<UnfreezeRequest.Builder, ObjectBuilder<UnfreezeRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return unfreeze(fn.apply(new UnfreezeRequest.Builder()).build());
 	}
 
@@ -1874,7 +1856,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request) throws IOException {
+	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpdateAliasesRequest.ENDPOINT);
 	}
 
@@ -1882,16 +1865,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Updates index aliases.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateAliasesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UpdateAliasesResponse updateAliases(
-			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn) throws IOException {
+			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
@@ -1903,7 +1886,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateAliasesResponse updateAliases() throws IOException {
+	public UpdateAliasesResponse updateAliases() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new UpdateAliasesRequest.Builder().build(), UpdateAliasesRequest.ENDPOINT);
 	}
 
@@ -1917,7 +1900,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ValidateQueryResponse validateQuery(ValidateQueryRequest request) throws IOException {
+	public ValidateQueryResponse validateQuery(ValidateQueryRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ValidateQueryRequest.ENDPOINT);
 	}
 
@@ -1925,16 +1909,16 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ValidateQueryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ValidateQueryResponse validateQuery(
-			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn) throws IOException {
+			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
 	}
 
@@ -1946,7 +1930,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ValidateQueryResponse validateQuery() throws IOException {
+	public ValidateQueryResponse validateQuery() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ValidateQueryRequest.Builder().build(), ValidateQueryRequest.ENDPOINT);
 	}
 

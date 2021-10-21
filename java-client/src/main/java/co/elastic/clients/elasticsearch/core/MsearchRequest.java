@@ -56,9 +56,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class MsearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -72,6 +69,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	@Nullable
+	private final List<String> index;
 
 	@Nullable
 	private final Long maxConcurrentSearches;
@@ -94,12 +94,12 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 	public MsearchRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
@@ -111,16 +111,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 	public MsearchRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of data streams, indices, and index aliases to search.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -178,6 +168,16 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Comma-separated list of data streams, indices, and index aliases to search.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -267,9 +267,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder implements ObjectBuilder<MsearchRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -283,6 +280,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 		@Nullable
 		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private List<String> index;
 
 		@Nullable
 		private Long maxConcurrentSearches;
@@ -300,37 +300,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private Boolean typedKeys;
 
 		private List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
-
-		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -409,6 +378,37 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams, indices, and index aliases to search.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams, indices, and index aliases to search.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -563,36 +563,36 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.preFilterShardSize != null) {
+					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				if (request.maxConcurrentShardRequests != null) {
+					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
+				}
+				if (request.typedKeys != null) {
+					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
 				}
-				if (request.maxConcurrentShardRequests != null) {
-					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
-				}
-				if (request.preFilterShardSize != null) {
-					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
-				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 

@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.xpack;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public XpackInfoResponse info(XpackInfoRequest request) throws IOException {
+	public XpackInfoResponse info(XpackInfoRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, XpackInfoRequest.ENDPOINT);
 	}
 
@@ -58,16 +58,15 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 * Retrieves information about the installed X-Pack features.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link XpackInfoRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final XpackInfoResponse info(Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return info(fn.apply(new XpackInfoRequest.Builder()).build());
 	}
 
@@ -79,7 +78,7 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public XpackInfoResponse info() throws IOException {
+	public XpackInfoResponse info() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new XpackInfoRequest.Builder().build(), XpackInfoRequest.ENDPOINT);
 	}
 
@@ -93,7 +92,7 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage(UsageRequest request) throws IOException {
+	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UsageRequest.ENDPOINT);
 	}
 
@@ -101,16 +100,15 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 * Retrieves usage information about the installed X-Pack features.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return usage(fn.apply(new UsageRequest.Builder()).build());
 	}
 
@@ -122,7 +120,7 @@ public class ElasticsearchXpackClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage() throws IOException {
+	public UsageResponse usage() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
 	}
 

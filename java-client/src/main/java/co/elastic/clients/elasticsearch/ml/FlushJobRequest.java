@@ -47,11 +47,6 @@ import javax.annotation.Nullable;
 // typedef: ml.flush_job.Request
 @JsonpDeserializable
 public final class FlushJobRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final String skipTime;
-
 	@Nullable
 	private final String advanceTime;
 
@@ -61,6 +56,11 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final String end;
 
+	private final String jobId;
+
+	@Nullable
+	private final String skipTime;
+
 	@Nullable
 	private final String start;
 
@@ -68,37 +68,17 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 
 	public FlushJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.skipTime = builder.skipTime;
 		this.advanceTime = builder.advanceTime;
 		this.calcInterim = builder.calcInterim;
 		this.end = builder.end;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.skipTime = builder.skipTime;
 		this.start = builder.start;
 
 	}
 
 	public FlushJobRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * Specifies to skip to a particular time value. Results are not generated and
-	 * the model is not updated for data from the specified time interval.
-	 * <p>
-	 * API name: {@code skip_time}
-	 */
-	@Nullable
-	public String skipTime() {
-		return this.skipTime;
 	}
 
 	/**
@@ -132,6 +112,26 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public String end() {
 		return this.end;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * Specifies to skip to a particular time value. Results are not generated and
+	 * the model is not updated for data from the specified time interval.
+	 * <p>
+	 * API name: {@code skip_time}
+	 */
+	@Nullable
+	public String skipTime() {
+		return this.skipTime;
 	}
 
 	/**
@@ -189,11 +189,6 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link FlushJobRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<FlushJobRequest> {
-		private String jobId;
-
-		@Nullable
-		private String skipTime;
-
 		@Nullable
 		private String advanceTime;
 
@@ -203,29 +198,13 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private String end;
 
+		private String jobId;
+
+		@Nullable
+		private String skipTime;
+
 		@Nullable
 		private String start;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * Specifies to skip to a particular time value. Results are not generated and
-		 * the model is not updated for data from the specified time interval.
-		 * <p>
-		 * API name: {@code skip_time}
-		 */
-		public Builder skipTime(@Nullable String value) {
-			this.skipTime = value;
-			return this;
-		}
 
 		/**
 		 * Specifies to advance to a particular time value. Results are generated and
@@ -257,6 +236,27 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder end(@Nullable String value) {
 			this.end = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * Specifies to skip to a particular time value. Results are not generated and
+		 * the model is not updated for data from the specified time interval.
+		 * <p>
+		 * API name: {@code skip_time}
+		 */
+		public Builder skipTime(@Nullable String value) {
+			this.skipTime = value;
 			return this;
 		}
 

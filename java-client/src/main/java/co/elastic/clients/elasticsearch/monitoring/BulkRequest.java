@@ -27,17 +27,16 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.core.bulk.Operation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -52,36 +51,32 @@ import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
 
-public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
-	@Nullable
-	private final String type;
-
-	private final String systemId;
+public final class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
+	private final String interval;
 
 	private final String systemApiVersion;
 
-	private final String interval;
-
-	private final List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> operations;
+	private final String systemId;
 
 	@Nullable
-	private final JsonpSerializer<TSource> tSourceSerializer;
+	private final String type;
+
+	private final List<Operation> operations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BulkRequest(Builder<TSource> builder) {
+	public BulkRequest(Builder builder) {
 
-		this.type = builder.type;
-		this.systemId = Objects.requireNonNull(builder.systemId, "system_id");
-		this.systemApiVersion = Objects.requireNonNull(builder.systemApiVersion, "system_api_version");
 		this.interval = Objects.requireNonNull(builder.interval, "interval");
+		this.systemApiVersion = Objects.requireNonNull(builder.systemApiVersion, "system_api_version");
+		this.systemId = Objects.requireNonNull(builder.systemId, "system_id");
+		this.type = builder.type;
 		this.operations = ModelTypeHelper.unmodifiableNonNull(builder.operations, "_value_body");
-		this.tSourceSerializer = builder.tSourceSerializer;
 
 	}
 
-	public BulkRequest(Function<Builder<TSource>, Builder<TSource>> fn) {
-		this(fn.apply(new Builder<>()));
+	public BulkRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	@Override
@@ -89,22 +84,12 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		return this.operations.iterator();
 	}
 	/**
-	 * Default document type for items which don't provide one
+	 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 	 * <p>
-	 * API name: {@code type}
+	 * API name: {@code interval}
 	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
-	 * Required - Identifier of the monitored system
-	 * <p>
-	 * API name: {@code system_id}
-	 */
-	public String systemId() {
-		return this.systemId;
+	public String interval() {
+		return this.interval;
 	}
 
 	/**
@@ -117,12 +102,22 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	}
 
 	/**
-	 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
+	 * Required - Identifier of the monitored system
 	 * <p>
-	 * API name: {@code interval}
+	 * API name: {@code system_id}
 	 */
-	public String interval() {
-		return this.interval;
+	public String systemId() {
+		return this.systemId;
+	}
+
+	/**
+	 * Default document type for items which don't provide one
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -130,7 +125,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> operations() {
+	public List<Operation> operations() {
 		return this.operations;
 	}
 
@@ -139,8 +134,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */ item0 : this.operations) {
-			generator.write(item0);
+		for (Operation item0 : this.operations) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -152,38 +147,25 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	/**
 	 * Builder for {@link BulkRequest}.
 	 */
-	public static class Builder<TSource> implements ObjectBuilder<BulkRequest<TSource>> {
-		@Nullable
-		private String type;
-
-		private String systemId;
+	public static class Builder implements ObjectBuilder<BulkRequest> {
+		private String interval;
 
 		private String systemApiVersion;
 
-		private String interval;
-
-		private List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> operations;
+		private String systemId;
 
 		@Nullable
-		private JsonpSerializer<TSource> tSourceSerializer;
+		private String type;
+
+		private List<Operation> operations;
 
 		/**
-		 * Default document type for items which don't provide one
+		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 		 * <p>
-		 * API name: {@code type}
+		 * API name: {@code interval}
 		 */
-		public Builder<TSource> type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Required - Identifier of the monitored system
-		 * <p>
-		 * API name: {@code system_id}
-		 */
-		public Builder<TSource> systemId(String value) {
-			this.systemId = value;
+		public Builder interval(String value) {
+			this.interval = value;
 			return this;
 		}
 
@@ -192,18 +174,28 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code system_api_version}
 		 */
-		public Builder<TSource> systemApiVersion(String value) {
+		public Builder systemApiVersion(String value) {
 			this.systemApiVersion = value;
 			return this;
 		}
 
 		/**
-		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
+		 * Required - Identifier of the monitored system
 		 * <p>
-		 * API name: {@code interval}
+		 * API name: {@code system_id}
 		 */
-		public Builder<TSource> interval(String value) {
-			this.interval = value;
+		public Builder systemId(String value) {
+			this.systemId = value;
+			return this;
+		}
+
+		/**
+		 * Default document type for items which don't provide one
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -212,8 +204,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> operations(
-				List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> value) {
+		public Builder operations(List<Operation> value) {
 			this.operations = value;
 			return this;
 		}
@@ -223,8 +214,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> operations(
-				JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */... value) {
+		public Builder operations(Operation... value) {
 			this.operations = Arrays.asList(value);
 			return this;
 		}
@@ -232,8 +222,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		/**
 		 * Add a value to {@link #operations(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addOperations(
-				JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */ value) {
+		public Builder addOperations(Operation value) {
 			if (this.operations == null) {
 				this.operations = new ArrayList<>();
 			}
@@ -242,12 +231,17 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Serializer for TSource. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
+		 * Set {@link #operations(List)} to a singleton list.
 		 */
-		public Builder<TSource> tSourceSerializer(@Nullable JsonpSerializer<TSource> value) {
-			this.tSourceSerializer = value;
-			return this;
+		public Builder operations(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.operations(fn.apply(new Operation.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #operations(List)}, creating the list if needed.
+		 */
+		public Builder addOperations(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.addOperations(fn.apply(new Operation.Builder()).build());
 		}
 
 		/**
@@ -256,9 +250,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public BulkRequest<TSource> build() {
+		public BulkRequest build() {
 
-			return new BulkRequest<TSource>(this);
+			return new BulkRequest(this);
 		}
 	}
 
@@ -267,7 +261,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	/**
 	 * Endpoint "{@code monitoring.bulk}".
 	 */
-	public static final Endpoint<BulkRequest<?>, BulkResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<BulkRequest, BulkResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

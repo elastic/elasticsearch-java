@@ -49,19 +49,19 @@ import javax.annotation.Nullable;
 // typedef: ml.get_records.Request
 @JsonpDeserializable
 public final class GetRecordsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final Integer from;
-
-	@Nullable
-	private final Integer size;
-
 	@Nullable
 	private final Boolean desc;
 
 	@Nullable
+	private final String end;
+
+	@Nullable
 	private final Boolean excludeInterim;
+
+	@Nullable
+	private final Integer from;
+
+	private final String jobId;
 
 	@Nullable
 	private final Page page;
@@ -70,28 +70,28 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	private final Double recordScore;
 
 	@Nullable
+	private final Integer size;
+
+	@Nullable
 	private final String sort;
 
 	@Nullable
 	private final String start;
 
-	@Nullable
-	private final String end;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public GetRecordsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.from = builder.from;
-		this.size = builder.size;
 		this.desc = builder.desc;
+		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
+		this.from = builder.from;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.page = builder.page;
 		this.recordScore = builder.recordScore;
+		this.size = builder.size;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.end = builder.end;
 
 	}
 
@@ -100,12 +100,27 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - The ID of the job
-	 * <p>
-	 * API name: {@code job_id}
+	 * API name: {@code desc}
 	 */
-	public String jobId() {
-		return this.jobId;
+	@Nullable
+	public Boolean desc() {
+		return this.desc;
+	}
+
+	/**
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public String end() {
+		return this.end;
+	}
+
+	/**
+	 * API name: {@code exclude_interim}
+	 */
+	@Nullable
+	public Boolean excludeInterim() {
+		return this.excludeInterim;
 	}
 
 	/**
@@ -119,29 +134,12 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * specifies a max number of records to get
+	 * Required - The ID of the job
 	 * <p>
-	 * API name: {@code size}
+	 * API name: {@code job_id}
 	 */
-	@Nullable
-	public Integer size() {
-		return this.size;
-	}
-
-	/**
-	 * API name: {@code desc}
-	 */
-	@Nullable
-	public Boolean desc() {
-		return this.desc;
-	}
-
-	/**
-	 * API name: {@code exclude_interim}
-	 */
-	@Nullable
-	public Boolean excludeInterim() {
-		return this.excludeInterim;
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -161,6 +159,16 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * specifies a max number of records to get
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Integer size() {
+		return this.size;
+	}
+
+	/**
 	 * API name: {@code sort}
 	 */
 	@Nullable
@@ -174,14 +182,6 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	public String start() {
 		return this.start;
-	}
-
-	/**
-	 * API name: {@code end}
-	 */
-	@Nullable
-	public String end() {
-		return this.end;
 	}
 
 	/**
@@ -199,6 +199,12 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 
 			generator.writeKey("desc");
 			generator.write(this.desc);
+
+		}
+		if (this.end != null) {
+
+			generator.writeKey("end");
+			generator.write(this.end);
 
 		}
 		if (this.excludeInterim != null) {
@@ -231,12 +237,6 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 			generator.write(this.start);
 
 		}
-		if (this.end != null) {
-
-			generator.writeKey("end");
-			generator.write(this.end);
-
-		}
 
 	}
 
@@ -246,19 +246,19 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link GetRecordsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetRecordsRequest> {
-		private String jobId;
-
-		@Nullable
-		private Integer from;
-
-		@Nullable
-		private Integer size;
-
 		@Nullable
 		private Boolean desc;
 
 		@Nullable
+		private String end;
+
+		@Nullable
 		private Boolean excludeInterim;
+
+		@Nullable
+		private Integer from;
+
+		private String jobId;
 
 		@Nullable
 		private Page page;
@@ -267,21 +267,35 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		private Double recordScore;
 
 		@Nullable
+		private Integer size;
+
+		@Nullable
 		private String sort;
 
 		@Nullable
 		private String start;
 
-		@Nullable
-		private String end;
+		/**
+		 * API name: {@code desc}
+		 */
+		public Builder desc(@Nullable Boolean value) {
+			this.desc = value;
+			return this;
+		}
 
 		/**
-		 * Required - The ID of the job
-		 * <p>
-		 * API name: {@code job_id}
+		 * API name: {@code end}
 		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
+		public Builder end(@Nullable String value) {
+			this.end = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code exclude_interim}
+		 */
+		public Builder excludeInterim(@Nullable Boolean value) {
+			this.excludeInterim = value;
 			return this;
 		}
 
@@ -296,28 +310,12 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * specifies a max number of records to get
+		 * Required - The ID of the job
 		 * <p>
-		 * API name: {@code size}
+		 * API name: {@code job_id}
 		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code desc}
-		 */
-		public Builder desc(@Nullable Boolean value) {
-			this.desc = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code exclude_interim}
-		 */
-		public Builder excludeInterim(@Nullable Boolean value) {
-			this.excludeInterim = value;
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
@@ -345,6 +343,16 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * specifies a max number of records to get
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code sort}
 		 */
 		public Builder sort(@Nullable String value) {
@@ -357,14 +365,6 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		 */
 		public Builder start(@Nullable String value) {
 			this.start = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code end}
-		 */
-		public Builder end(@Nullable String value) {
-			this.end = value;
 			return this;
 		}
 
@@ -391,12 +391,12 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	protected static void setupGetRecordsRequestDeserializer(DelegatingDeserializer<GetRecordsRequest.Builder> op) {
 
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -437,11 +437,11 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

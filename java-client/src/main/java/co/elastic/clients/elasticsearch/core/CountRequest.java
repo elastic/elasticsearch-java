@@ -58,16 +58,13 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final String analyzer;
+	private final Boolean analyzeWildcard;
 
 	@Nullable
-	private final Boolean analyzeWildcard;
+	private final String analyzer;
 
 	@Nullable
 	private final DefaultOperator defaultOperator;
@@ -85,6 +82,9 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean lenient;
 
 	@Nullable
@@ -94,52 +94,42 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	private final String preference;
 
 	@Nullable
-	private final String routing;
-
-	@Nullable
-	private final Long terminateAfter;
-
-	@Nullable
 	private final String q;
 
 	@Nullable
 	private final Query query;
 
+	@Nullable
+	private final String routing;
+
+	@Nullable
+	private final Long terminateAfter;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public CountRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
+		this.analyzer = builder.analyzer;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.lenient = builder.lenient;
 		this.minScore = builder.minScore;
 		this.preference = builder.preference;
-		this.routing = builder.routing;
-		this.terminateAfter = builder.terminateAfter;
 		this.q = builder.q;
 		this.query = builder.query;
+		this.routing = builder.routing;
+		this.terminateAfter = builder.terminateAfter;
 
 	}
 
 	public CountRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of indices to restrict the results
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -155,16 +145,6 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The analyzer to use for the query string
-	 * <p>
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public String analyzer() {
-		return this.analyzer;
-	}
-
-	/**
 	 * Specify whether wildcard and prefix queries should be analyzed (default:
 	 * false)
 	 * <p>
@@ -173,6 +153,16 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
+	}
+
+	/**
+	 * The analyzer to use for the query string
+	 * <p>
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public String analyzer() {
+		return this.analyzer;
 	}
 
 	/**
@@ -230,6 +220,16 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * A comma-separated list of indices to restrict the results
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Specify whether format-based query failures (such as providing text to a
 	 * numeric field) should be ignored
 	 * <p>
@@ -263,6 +263,24 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
+	 * API name: {@code q}
+	 */
+	@Nullable
+	public String q() {
+		return this.q;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public Query query() {
+		return this.query;
+	}
+
+	/**
 	 * A comma-separated list of specific routing values
 	 * <p>
 	 * API name: {@code routing}
@@ -281,24 +299,6 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public Long terminateAfter() {
 		return this.terminateAfter;
-	}
-
-	/**
-	 * Query in the Lucene query string syntax
-	 * <p>
-	 * API name: {@code q}
-	 */
-	@Nullable
-	public String q() {
-		return this.q;
-	}
-
-	/**
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
 	}
 
 	/**
@@ -328,16 +328,13 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	 */
 	public static class Builder implements ObjectBuilder<CountRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private String analyzer;
+		private Boolean analyzeWildcard;
 
 		@Nullable
-		private Boolean analyzeWildcard;
+		private String analyzer;
 
 		@Nullable
 		private DefaultOperator defaultOperator;
@@ -355,6 +352,9 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean lenient;
 
 		@Nullable
@@ -364,47 +364,16 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		private String preference;
 
 		@Nullable
-		private String routing;
-
-		@Nullable
-		private Long terminateAfter;
-
-		@Nullable
 		private String q;
 
 		@Nullable
 		private Query query;
 
-		/**
-		 * A comma-separated list of indices to restrict the results
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
+		@Nullable
+		private String routing;
 
-		/**
-		 * A comma-separated list of indices to restrict the results
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		@Nullable
+		private Long terminateAfter;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -419,16 +388,6 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The analyzer to use for the query string
-		 * <p>
-		 * API name: {@code analyzer}
-		 */
-		public Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
-			return this;
-		}
-
-		/**
 		 * Specify whether wildcard and prefix queries should be analyzed (default:
 		 * false)
 		 * <p>
@@ -436,6 +395,16 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
+			return this;
+		}
+
+		/**
+		 * The analyzer to use for the query string
+		 * <p>
+		 * API name: {@code analyzer}
+		 */
+		public Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
 			return this;
 		}
 
@@ -516,6 +485,37 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * A comma-separated list of indices to restrict the results
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of indices to restrict the results
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Specify whether format-based query failures (such as providing text to a
 		 * numeric field) should be ignored
 		 * <p>
@@ -549,27 +549,6 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * A comma-separated list of specific routing values
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
-
-		/**
-		 * The maximum count for each shard, upon reaching which the query execution
-		 * will terminate early
-		 * <p>
-		 * API name: {@code terminate_after}
-		 */
-		public Builder terminateAfter(@Nullable Long value) {
-			this.terminateAfter = value;
-			return this;
-		}
-
-		/**
 		 * Query in the Lucene query string syntax
 		 * <p>
 		 * API name: {@code q}
@@ -592,6 +571,27 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * A comma-separated list of specific routing values
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * The maximum count for each shard, upon reaching which the query execution
+		 * will terminate early
+		 * <p>
+		 * API name: {@code terminate_after}
+		 */
+		public Builder terminateAfter(@Nullable Long value) {
+			this.terminateAfter = value;
+			return this;
 		}
 
 		/**
@@ -660,18 +660,6 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.analyzer != null) {
-					params.put("analyzer", request.analyzer);
-				}
-				if (request.analyzeWildcard != null) {
-					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
-				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
-				}
 				if (request.df != null) {
 					params.put("df", request.df);
 				}
@@ -679,11 +667,14 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
+				if (request.preference != null) {
+					params.put("preference", request.preference);
 				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
+				}
+				if (request.terminateAfter != null) {
+					params.put("terminate_after", String.valueOf(request.terminateAfter));
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
@@ -691,17 +682,26 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 				if (request.minScore != null) {
 					params.put("min_score", String.valueOf(request.minScore));
 				}
-				if (request.preference != null) {
-					params.put("preference", request.preference);
-				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
-				if (request.terminateAfter != null) {
-					params.put("terminate_after", String.valueOf(request.terminateAfter));
-				}
 				if (request.q != null) {
 					params.put("q", request.q);
+				}
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.toString());
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.analyzer != null) {
+					params.put("analyzer", request.analyzer);
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				return params;
 
