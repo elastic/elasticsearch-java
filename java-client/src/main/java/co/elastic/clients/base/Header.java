@@ -19,14 +19,14 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.util.NamedValue;
+import co.elastic.clients.util.NamedString;
 
 import java.util.Locale;
 
 /**
  * Raw HTTP header field, consisting of a string name and value.
  */
-public class Header extends NamedValue<String> implements ConvertibleToHeader {
+public class Header extends NamedString implements ConvertibleToHeader {
 
     /**
      * Construct a raw header field.
