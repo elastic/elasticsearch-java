@@ -13,9 +13,9 @@ Requirements:
   https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
 
 
-Releases are hosted on
-https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you
-are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is
+Releases are hosted on 
+https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you 
+are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is 
 available at https://snapshots.elastic.co/maven/.
 
 
@@ -57,16 +57,3 @@ dependencies:
 
 </project>
 --------------------------------------------------
-
-[discrete]
-[[compatibility]]
-=== Compatibility
-
-The `main` branch targets the next major release (8.0), the `7.x` branch targets
-the next minor release. Support is still incomplete as the API code is generated
-from the {es} Specification that is also still a work in progress.
-
-The {es} Java client is forward compatible; meaning that the client supports
-communicating with greater or equal minor versions of {es}. {es} language
-clients are only backwards compatible with default distributions and without
-guarantees made.
