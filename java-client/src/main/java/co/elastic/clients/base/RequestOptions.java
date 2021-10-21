@@ -45,6 +45,8 @@ public class RequestOptions {
 
             // Default headers
             Arrays.asList(
+                    AcceptType.forMediaType(MediaType.vendorElasticsearchJSON()).toHeader(),
+                    ContentType.forMediaType(MediaType.vendorElasticsearchJSON()).toHeader(),
                     ClientMetadata.forLocalSystem().toHeader(),
                     UserAgent.DEFAULT.toHeader()
             ),
