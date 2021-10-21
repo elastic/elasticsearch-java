@@ -49,22 +49,14 @@ import javax.annotation.Nullable;
 // typedef: ml.get_buckets.Request
 @JsonpDeserializable
 public final class GetBucketsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final String timestamp;
-
-	@Nullable
-	private final Integer from;
-
-	@Nullable
-	private final Integer size;
-
 	@Nullable
 	private final Double anomalyScore;
 
 	@Nullable
 	private final Boolean desc;
+
+	@Nullable
+	private final String end;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -73,7 +65,15 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	private final Boolean expand;
 
 	@Nullable
+	private final Integer from;
+
+	private final String jobId;
+
+	@Nullable
 	private final Page page;
+
+	@Nullable
+	private final Integer size;
 
 	@Nullable
 	private final String sort;
@@ -82,68 +82,29 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	private final String start;
 
 	@Nullable
-	private final String end;
+	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetBucketsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.timestamp = builder.timestamp;
-		this.from = builder.from;
-		this.size = builder.size;
 		this.anomalyScore = builder.anomalyScore;
 		this.desc = builder.desc;
+		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
 		this.expand = builder.expand;
+		this.from = builder.from;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.page = builder.page;
+		this.size = builder.size;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.end = builder.end;
+		this.timestamp = builder.timestamp;
 
 	}
 
 	public GetBucketsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - ID of the job to get bucket results from
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * The timestamp of the desired single bucket result
-	 * <p>
-	 * API name: {@code timestamp}
-	 */
-	@Nullable
-	public String timestamp() {
-		return this.timestamp;
-	}
-
-	/**
-	 * skips a number of buckets
-	 * <p>
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public Integer from() {
-		return this.from;
-	}
-
-	/**
-	 * specifies a max number of buckets to get
-	 * <p>
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public Integer size() {
-		return this.size;
 	}
 
 	/**
@@ -163,6 +124,14 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public String end() {
+		return this.end;
+	}
+
+	/**
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
@@ -179,11 +148,40 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * skips a number of buckets
+	 * <p>
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public Integer from() {
+		return this.from;
+	}
+
+	/**
+	 * Required - ID of the job to get bucket results from
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
 	 * API name: {@code page}
 	 */
 	@Nullable
 	public Page page() {
 		return this.page;
+	}
+
+	/**
+	 * specifies a max number of buckets to get
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Integer size() {
+		return this.size;
 	}
 
 	/**
@@ -203,11 +201,13 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * API name: {@code end}
+	 * The timestamp of the desired single bucket result
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String end() {
-		return this.end;
+	public String timestamp() {
+		return this.timestamp;
 	}
 
 	/**
@@ -231,6 +231,12 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 
 			generator.writeKey("desc");
 			generator.write(this.desc);
+
+		}
+		if (this.end != null) {
+
+			generator.writeKey("end");
+			generator.write(this.end);
 
 		}
 		if (this.excludeInterim != null) {
@@ -263,12 +269,6 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 			generator.write(this.start);
 
 		}
-		if (this.end != null) {
-
-			generator.writeKey("end");
-			generator.write(this.end);
-
-		}
 
 	}
 
@@ -278,22 +278,14 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link GetBucketsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetBucketsRequest> {
-		private String jobId;
-
-		@Nullable
-		private String timestamp;
-
-		@Nullable
-		private Integer from;
-
-		@Nullable
-		private Integer size;
-
 		@Nullable
 		private Double anomalyScore;
 
 		@Nullable
 		private Boolean desc;
+
+		@Nullable
+		private String end;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -302,7 +294,15 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		private Boolean expand;
 
 		@Nullable
+		private Integer from;
+
+		private String jobId;
+
+		@Nullable
 		private Page page;
+
+		@Nullable
+		private Integer size;
 
 		@Nullable
 		private String sort;
@@ -311,47 +311,7 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		private String start;
 
 		@Nullable
-		private String end;
-
-		/**
-		 * Required - ID of the job to get bucket results from
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * The timestamp of the desired single bucket result
-		 * <p>
-		 * API name: {@code timestamp}
-		 */
-		public Builder timestamp(@Nullable String value) {
-			this.timestamp = value;
-			return this;
-		}
-
-		/**
-		 * skips a number of buckets
-		 * <p>
-		 * API name: {@code from}
-		 */
-		public Builder from(@Nullable Integer value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * specifies a max number of buckets to get
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
+		private String timestamp;
 
 		/**
 		 * API name: {@code anomaly_score}
@@ -366,6 +326,14 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		 */
 		public Builder desc(@Nullable Boolean value) {
 			this.desc = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code end}
+		 */
+		public Builder end(@Nullable String value) {
+			this.end = value;
 			return this;
 		}
 
@@ -386,6 +354,26 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * skips a number of buckets
+		 * <p>
+		 * API name: {@code from}
+		 */
+		public Builder from(@Nullable Integer value) {
+			this.from = value;
+			return this;
+		}
+
+		/**
+		 * Required - ID of the job to get bucket results from
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code page}
 		 */
 		public Builder page(@Nullable Page value) {
@@ -398,6 +386,16 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		 */
 		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
+		 * specifies a max number of buckets to get
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
 		}
 
 		/**
@@ -417,10 +415,12 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * API name: {@code end}
+		 * The timestamp of the desired single bucket result
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
-		public Builder end(@Nullable String value) {
-			this.end = value;
+		public Builder timestamp(@Nullable String value) {
+			this.timestamp = value;
 			return this;
 		}
 
@@ -448,12 +448,12 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
 		op.add(Builder::expand, JsonpDeserializer.booleanDeserializer(), "expand");
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -509,11 +509,11 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

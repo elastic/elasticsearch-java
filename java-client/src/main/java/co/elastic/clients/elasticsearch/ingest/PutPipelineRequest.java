@@ -52,19 +52,16 @@ import javax.annotation.Nullable;
 // typedef: ingest.put_pipeline.Request
 @JsonpDeserializable
 public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
-
-	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
-
 	@Nullable
 	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final String description;
+
+	private final String id;
+
+	@Nullable
+	private final String masterTimeout;
 
 	@Nullable
 	private final List<Processor> onFailure;
@@ -73,55 +70,28 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	private final List<Processor> processors;
 
 	@Nullable
+	private final String timeout;
+
+	@Nullable
 	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutPipelineRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.description = builder.description;
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.masterTimeout = builder.masterTimeout;
 		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
 		this.processors = ModelTypeHelper.unmodifiable(builder.processors);
+		this.timeout = builder.timeout;
 		this.version = builder.version;
 
 	}
 
 	public PutPipelineRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Pipeline ID
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
 	}
 
 	/**
@@ -146,6 +116,26 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * Required - Pipeline ID
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * API name: {@code on_failure}
 	 */
 	@Nullable
@@ -159,6 +149,16 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public List<Processor> processors() {
 		return this.processors;
+	}
+
+	/**
+	 * Explicit operation timeout
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public String timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -235,19 +235,16 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link PutPipelineRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutPipelineRequest> {
-		private String id;
-
-		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
 		@Nullable
 		private Map<String, JsonData> meta;
 
 		@Nullable
 		private String description;
+
+		private String id;
+
+		@Nullable
+		private String masterTimeout;
 
 		@Nullable
 		private List<Processor> onFailure;
@@ -256,38 +253,10 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		private List<Processor> processors;
 
 		@Nullable
+		private String timeout;
+
+		@Nullable
 		private Long version;
-
-		/**
-		 * Required - Pipeline ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
 
 		/**
 		 * Optional metadata about the ingest pipeline. May have any contents. This map
@@ -318,6 +287,27 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 */
 		public Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * Required - Pipeline ID
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -401,6 +391,16 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 */
 		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addProcessors(fn.apply(new Processor.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
 		}
 
 		/**

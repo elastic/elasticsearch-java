@@ -49,10 +49,10 @@ import javax.annotation.Nullable;
 // typedef: ml.put_filter.Request
 @JsonpDeserializable
 public final class PutFilterRequest extends RequestBase implements JsonpSerializable {
-	private final String filterId;
-
 	@Nullable
 	private final String description;
+
+	private final String filterId;
 
 	@Nullable
 	private final List<String> items;
@@ -61,8 +61,8 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 
 	public PutFilterRequest(Builder builder) {
 
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 		this.description = builder.description;
+		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 		this.items = ModelTypeHelper.unmodifiable(builder.items);
 
 	}
@@ -72,20 +72,20 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public String description() {
+		return this.description;
+	}
+
+	/**
 	 * Required - The ID of the filter to create
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	public String filterId() {
 		return this.filterId;
-	}
-
-	/**
-	 * API name: {@code description}
-	 */
-	@Nullable
-	public String description() {
-		return this.description;
 	}
 
 	/**
@@ -133,13 +133,21 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PutFilterRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutFilterRequest> {
-		private String filterId;
-
 		@Nullable
 		private String description;
 
+		private String filterId;
+
 		@Nullable
 		private List<String> items;
+
+		/**
+		 * API name: {@code description}
+		 */
+		public Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
 
 		/**
 		 * Required - The ID of the filter to create
@@ -148,14 +156,6 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 		 */
 		public Builder filterId(String value) {
 			this.filterId = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code description}
-		 */
-		public Builder description(@Nullable String value) {
-			this.description = value;
 			return this;
 		}
 

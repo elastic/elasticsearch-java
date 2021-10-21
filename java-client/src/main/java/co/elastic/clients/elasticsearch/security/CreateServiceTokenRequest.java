@@ -42,24 +42,33 @@ import javax.annotation.Nullable;
 // typedef: security.create_service_token.Request
 
 public final class CreateServiceTokenRequest extends RequestBase {
+	private final String name;
+
 	private final String namespace;
 
 	private final String service;
-
-	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public CreateServiceTokenRequest(Builder builder) {
 
+		this.name = Objects.requireNonNull(builder.name, "name");
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
-		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
 	public CreateServiceTokenRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Required - An identifier for the token name
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -80,26 +89,27 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		return this.service;
 	}
 
-	/**
-	 * Required - An identifier for the token name
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link CreateServiceTokenRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<CreateServiceTokenRequest> {
+		private String name;
+
 		private String namespace;
 
 		private String service;
 
-		private String name;
+		/**
+		 * Required - An identifier for the token name
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
 
 		/**
 		 * Required - An identifier for the namespace
@@ -118,16 +128,6 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 */
 		public Builder service(String value) {
 			this.service = value;
-			return this;
-		}
-
-		/**
-		 * Required - An identifier for the token name
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
 			return this;
 		}
 
@@ -151,14 +151,14 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name))
@@ -171,14 +171,14 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {

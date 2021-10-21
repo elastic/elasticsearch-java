@@ -202,14 +202,14 @@ public final class GetSettingsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

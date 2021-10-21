@@ -49,8 +49,6 @@ import javax.annotation.Nullable;
 // typedef: ml.get_influencers.Request
 @JsonpDeserializable
 public final class GetInfluencersRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
 	@Nullable
 	private final Boolean desc;
 
@@ -61,10 +59,15 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	private final Boolean excludeInterim;
 
 	@Nullable
-	private final Double influencerScore;
+	private final Integer from;
 
 	@Nullable
-	private final Integer from;
+	private final Double influencerScore;
+
+	private final String jobId;
+
+	@Nullable
+	private final Page page;
 
 	@Nullable
 	private final Integer size;
@@ -75,37 +78,25 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final String start;
 
-	@Nullable
-	private final Page page;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public GetInfluencersRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.desc = builder.desc;
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
-		this.influencerScore = builder.influencerScore;
 		this.from = builder.from;
+		this.influencerScore = builder.influencerScore;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.page = builder.page;
 
 	}
 
 	public GetInfluencersRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -140,6 +131,16 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * Skips the specified number of influencers.
+	 * <p>
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public Integer from() {
+		return this.from;
+	}
+
+	/**
 	 * Returns influencers with anomaly scores greater than or equal to this value.
 	 * <p>
 	 * API name: {@code influencer_score}
@@ -150,13 +151,20 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Skips the specified number of influencers.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
-	 * API name: {@code from}
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * API name: {@code page}
 	 */
 	@Nullable
-	public Integer from() {
-		return this.from;
+	public Page page() {
+		return this.page;
 	}
 
 	/**
@@ -191,14 +199,6 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * API name: {@code page}
-	 */
-	@Nullable
-	public Page page() {
-		return this.page;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -224,8 +224,6 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * Builder for {@link GetInfluencersRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetInfluencersRequest> {
-		private String jobId;
-
 		@Nullable
 		private Boolean desc;
 
@@ -236,10 +234,15 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		private Boolean excludeInterim;
 
 		@Nullable
-		private Double influencerScore;
+		private Integer from;
 
 		@Nullable
-		private Integer from;
+		private Double influencerScore;
+
+		private String jobId;
+
+		@Nullable
+		private Page page;
 
 		@Nullable
 		private Integer size;
@@ -249,19 +252,6 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 
 		@Nullable
 		private String start;
-
-		@Nullable
-		private Page page;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
 
 		/**
 		 * If true, the results are sorted in descending order.
@@ -295,6 +285,16 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * Skips the specified number of influencers.
+		 * <p>
+		 * API name: {@code from}
+		 */
+		public Builder from(@Nullable Integer value) {
+			this.from = value;
+			return this;
+		}
+
+		/**
 		 * Returns influencers with anomaly scores greater than or equal to this value.
 		 * <p>
 		 * API name: {@code influencer_score}
@@ -305,13 +305,28 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Skips the specified number of influencers.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
-		 * API name: {@code from}
+		 * API name: {@code job_id}
 		 */
-		public Builder from(@Nullable Integer value) {
-			this.from = value;
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code page}
+		 */
+		public Builder page(@Nullable Page value) {
+			this.page = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code page}
+		 */
+		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**
@@ -343,21 +358,6 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code page}
-		 */
-		public Builder page(@Nullable Page value) {
-			this.page = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code page}
-		 */
-		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
-			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**
@@ -424,29 +424,29 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.desc != null) {
-					params.put("desc", String.valueOf(request.desc));
-				}
-				if (request.end != null) {
-					params.put("end", request.end);
-				}
 				if (request.excludeInterim != null) {
 					params.put("exclude_interim", String.valueOf(request.excludeInterim));
-				}
-				if (request.influencerScore != null) {
-					params.put("influencer_score", String.valueOf(request.influencerScore));
-				}
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
+				if (request.start != null) {
+					params.put("start", request.start);
+				}
+				if (request.end != null) {
+					params.put("end", request.end);
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
+				}
 				if (request.sort != null) {
 					params.put("sort", request.sort);
 				}
-				if (request.start != null) {
-					params.put("start", request.start);
+				if (request.influencerScore != null) {
+					params.put("influencer_score", String.valueOf(request.influencerScore));
+				}
+				if (request.desc != null) {
+					params.put("desc", String.valueOf(request.desc));
 				}
 				return params;
 

@@ -46,10 +46,10 @@ import javax.annotation.Nullable;
 
 public final class GetTransformRequest extends RequestBase {
 	@Nullable
-	private final String transformId;
+	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Boolean allowNoMatch;
+	private final Boolean excludeGenerated;
 
 	@Nullable
 	private final Integer from;
@@ -58,33 +58,22 @@ public final class GetTransformRequest extends RequestBase {
 	private final Integer size;
 
 	@Nullable
-	private final Boolean excludeGenerated;
+	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetTransformRequest(Builder builder) {
 
-		this.transformId = builder.transformId;
 		this.allowNoMatch = builder.allowNoMatch;
+		this.excludeGenerated = builder.excludeGenerated;
 		this.from = builder.from;
 		this.size = builder.size;
-		this.excludeGenerated = builder.excludeGenerated;
+		this.transformId = builder.transformId;
 
 	}
 
 	public GetTransformRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The id or comma delimited list of id expressions of the transforms to get,
-	 * '_all' or '*' implies get all transforms
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	@Nullable
-	public String transformId() {
-		return this.transformId;
 	}
 
 	/**
@@ -96,6 +85,16 @@ public final class GetTransformRequest extends RequestBase {
 	@Nullable
 	public Boolean allowNoMatch() {
 		return this.allowNoMatch;
+	}
+
+	/**
+	 * Omits fields that are illegal to set on transform PUT
+	 * <p>
+	 * API name: {@code exclude_generated}
+	 */
+	@Nullable
+	public Boolean excludeGenerated() {
+		return this.excludeGenerated;
 	}
 
 	/**
@@ -119,13 +118,14 @@ public final class GetTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Omits fields that are illegal to set on transform PUT
+	 * The id or comma delimited list of id expressions of the transforms to get,
+	 * '_all' or '*' implies get all transforms
 	 * <p>
-	 * API name: {@code exclude_generated}
+	 * API name: {@code transform_id}
 	 */
 	@Nullable
-	public Boolean excludeGenerated() {
-		return this.excludeGenerated;
+	public String transformId() {
+		return this.transformId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -135,10 +135,10 @@ public final class GetTransformRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetTransformRequest> {
 		@Nullable
-		private String transformId;
+		private Boolean allowNoMatch;
 
 		@Nullable
-		private Boolean allowNoMatch;
+		private Boolean excludeGenerated;
 
 		@Nullable
 		private Integer from;
@@ -147,18 +147,7 @@ public final class GetTransformRequest extends RequestBase {
 		private Integer size;
 
 		@Nullable
-		private Boolean excludeGenerated;
-
-		/**
-		 * The id or comma delimited list of id expressions of the transforms to get,
-		 * '_all' or '*' implies get all transforms
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(@Nullable String value) {
-			this.transformId = value;
-			return this;
-		}
+		private String transformId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no transforms. (This
@@ -168,6 +157,16 @@ public final class GetTransformRequest extends RequestBase {
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * Omits fields that are illegal to set on transform PUT
+		 * <p>
+		 * API name: {@code exclude_generated}
+		 */
+		public Builder excludeGenerated(@Nullable Boolean value) {
+			this.excludeGenerated = value;
 			return this;
 		}
 
@@ -192,12 +191,13 @@ public final class GetTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Omits fields that are illegal to set on transform PUT
+		 * The id or comma delimited list of id expressions of the transforms to get,
+		 * '_all' or '*' implies get all transforms
 		 * <p>
-		 * API name: {@code exclude_generated}
+		 * API name: {@code transform_id}
 		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
-			this.excludeGenerated = value;
+		public Builder transformId(@Nullable String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -253,17 +253,17 @@ public final class GetTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
 				if (request.excludeGenerated != null) {
 					params.put("exclude_generated", String.valueOf(request.excludeGenerated));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

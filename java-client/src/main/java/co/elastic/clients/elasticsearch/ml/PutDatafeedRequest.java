@@ -59,31 +59,31 @@ import javax.annotation.Nullable;
 // typedef: ml.put_datafeed.Request
 @JsonpDeserializable
 public final class PutDatafeedRequest extends RequestBase implements JsonpSerializable {
-	private final String datafeedId;
+	@Nullable
+	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
+	private final ChunkingConfig chunkingConfig;
+
+	private final String datafeedId;
+
+	@Nullable
+	private final DelayedDataCheckConfig delayedDataCheckConfig;
+
+	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
+
+	@Nullable
+	private final String frequency;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
-
-	@Nullable
-	private final Map<String, Aggregation> aggregations;
-
-	@Nullable
-	private final ChunkingConfig chunkingConfig;
-
-	@Nullable
-	private final DelayedDataCheckConfig delayedDataCheckConfig;
-
-	@Nullable
-	private final String frequency;
 
 	@Nullable
 	private final List<String> indices;
@@ -116,15 +116,15 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 	public PutDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
+		this.chunkingConfig = builder.chunkingConfig;
+		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.frequency = builder.frequency;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
-		this.chunkingConfig = builder.chunkingConfig;
-		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
-		this.frequency = builder.frequency;
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
@@ -142,12 +142,11 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - The ID of the datafeed to create
-	 * <p>
-	 * API name: {@code datafeed_id}
+	 * API name: {@code aggregations}
 	 */
-	public String datafeedId() {
-		return this.datafeedId;
+	@Nullable
+	public Map<String, Aggregation> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
@@ -162,6 +161,31 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * API name: {@code chunking_config}
+	 */
+	@Nullable
+	public ChunkingConfig chunkingConfig() {
+		return this.chunkingConfig;
+	}
+
+	/**
+	 * Required - The ID of the datafeed to create
+	 * <p>
+	 * API name: {@code datafeed_id}
+	 */
+	public String datafeedId() {
+		return this.datafeedId;
+	}
+
+	/**
+	 * API name: {@code delayed_data_check_config}
+	 */
+	@Nullable
+	public DelayedDataCheckConfig delayedDataCheckConfig() {
+		return this.delayedDataCheckConfig;
+	}
+
+	/**
 	 * Whether source index expressions should get expanded to open or closed
 	 * indices (default: open)
 	 * <p>
@@ -170,6 +194,14 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * API name: {@code frequency}
+	 */
+	@Nullable
+	public String frequency() {
+		return this.frequency;
 	}
 
 	/**
@@ -190,38 +222,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
-	}
-
-	/**
-	 * API name: {@code aggregations}
-	 */
-	@Nullable
-	public Map<String, Aggregation> aggregations() {
-		return this.aggregations;
-	}
-
-	/**
-	 * API name: {@code chunking_config}
-	 */
-	@Nullable
-	public ChunkingConfig chunkingConfig() {
-		return this.chunkingConfig;
-	}
-
-	/**
-	 * API name: {@code delayed_data_check_config}
-	 */
-	@Nullable
-	public DelayedDataCheckConfig delayedDataCheckConfig() {
-		return this.delayedDataCheckConfig;
-	}
-
-	/**
-	 * API name: {@code frequency}
-	 */
-	@Nullable
-	public String frequency() {
-		return this.frequency;
 	}
 
 	/**
@@ -417,31 +417,31 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link PutDatafeedRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutDatafeedRequest> {
-		private String datafeedId;
+		@Nullable
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
+		private ChunkingConfig chunkingConfig;
+
+		private String datafeedId;
+
+		@Nullable
+		private DelayedDataCheckConfig delayedDataCheckConfig;
+
+		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
+
+		@Nullable
+		private String frequency;
 
 		@Nullable
 		private Boolean ignoreThrottled;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
-
-		@Nullable
-		private Map<String, Aggregation> aggregations;
-
-		@Nullable
-		private ChunkingConfig chunkingConfig;
-
-		@Nullable
-		private DelayedDataCheckConfig delayedDataCheckConfig;
-
-		@Nullable
-		private String frequency;
 
 		@Nullable
 		private List<String> indices;
@@ -471,13 +471,36 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Integer scrollSize;
 
 		/**
-		 * Required - The ID of the datafeed to create
-		 * <p>
-		 * API name: {@code datafeed_id}
+		 * API name: {@code aggregations}
 		 */
-		public Builder datafeedId(String value) {
-			this.datafeedId = value;
+		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
+			this.aggregations = value;
 			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
+		 */
+		public Builder putAggregations(String key, Aggregation value) {
+			if (this.aggregations == null) {
+				this.aggregations = new HashMap<>();
+			}
+			this.aggregations.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #aggregations(Map)} to a singleton map.
+		 */
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
+		 */
+		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -489,6 +512,47 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		public Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code chunking_config}
+		 */
+		public Builder chunkingConfig(@Nullable ChunkingConfig value) {
+			this.chunkingConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code chunking_config}
+		 */
+		public Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
+			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
+		}
+
+		/**
+		 * Required - The ID of the datafeed to create
+		 * <p>
+		 * API name: {@code datafeed_id}
+		 */
+		public Builder datafeedId(String value) {
+			this.datafeedId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code delayed_data_check_config}
+		 */
+		public Builder delayedDataCheckConfig(@Nullable DelayedDataCheckConfig value) {
+			this.delayedDataCheckConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code delayed_data_check_config}
+		 */
+		public Builder delayedDataCheckConfig(
+				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
+			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
 		}
 
 		/**
@@ -525,6 +589,14 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * API name: {@code frequency}
+		 */
+		public Builder frequency(@Nullable String value) {
+			this.frequency = value;
+			return this;
+		}
+
+		/**
 		 * Ignore indices that are marked as throttled (default: true)
 		 * <p>
 		 * API name: {@code ignore_throttled}
@@ -541,78 +613,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code aggregations}
-		 */
-		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Aggregation value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code chunking_config}
-		 */
-		public Builder chunkingConfig(@Nullable ChunkingConfig value) {
-			this.chunkingConfig = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code chunking_config}
-		 */
-		public Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
-			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code delayed_data_check_config}
-		 */
-		public Builder delayedDataCheckConfig(@Nullable DelayedDataCheckConfig value) {
-			this.delayedDataCheckConfig = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code delayed_data_check_config}
-		 */
-		public Builder delayedDataCheckConfig(
-				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
-			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code frequency}
-		 */
-		public Builder frequency(@Nullable String value) {
-			this.frequency = value;
 			return this;
 		}
 
@@ -849,18 +849,18 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				return params;
 

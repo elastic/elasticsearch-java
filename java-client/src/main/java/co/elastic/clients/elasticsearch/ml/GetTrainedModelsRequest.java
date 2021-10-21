@@ -46,9 +46,6 @@ import javax.annotation.Nullable;
 
 public final class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
-	private final String modelId;
-
-	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
@@ -64,6 +61,9 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	private final String include;
 
 	@Nullable
+	private final String modelId;
+
+	@Nullable
 	private final Integer size;
 
 	@Nullable
@@ -73,12 +73,12 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 	public GetTrainedModelsRequest(Builder builder) {
 
-		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.decompressDefinition = builder.decompressDefinition;
 		this.excludeGenerated = builder.excludeGenerated;
 		this.from = builder.from;
 		this.include = builder.include;
+		this.modelId = builder.modelId;
 		this.size = builder.size;
 		this.tags = builder.tags;
 
@@ -86,16 +86,6 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 	public GetTrainedModelsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The unique identifier of the trained model.
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	@Nullable
-	public String modelId() {
-		return this.modelId;
 	}
 
 	/**
@@ -157,6 +147,16 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	}
 
 	/**
+	 * The unique identifier of the trained model.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	@Nullable
+	public String modelId() {
+		return this.modelId;
+	}
+
+	/**
 	 * Specifies the maximum number of models to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -185,9 +185,6 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetTrainedModelsRequest> {
 		@Nullable
-		private String modelId;
-
-		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
@@ -203,20 +200,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		private String include;
 
 		@Nullable
+		private String modelId;
+
+		@Nullable
 		private Integer size;
 
 		@Nullable
 		private String tags;
-
-		/**
-		 * The unique identifier of the trained model.
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(@Nullable String value) {
-			this.modelId = value;
-			return this;
-		}
 
 		/**
 		 * Specifies what to do when the request:
@@ -273,6 +263,16 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 */
 		public Builder include(@Nullable String value) {
 			this.include = value;
+			return this;
+		}
+
+		/**
+		 * The unique identifier of the trained model.
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public Builder modelId(@Nullable String value) {
+			this.modelId = value;
 			return this;
 		}
 
@@ -352,8 +352,11 @@ public final class GetTrainedModelsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.include != null) {
+					params.put("include", request.include);
+				}
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.decompressDefinition != null) {
 					params.put("decompress_definition", String.valueOf(request.decompressDefinition));
@@ -364,11 +367,8 @@ public final class GetTrainedModelsRequest extends RequestBase {
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.include != null) {
-					params.put("include", request.include);
-				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.tags != null) {
 					params.put("tags", request.tags);

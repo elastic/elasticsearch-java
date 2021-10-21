@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core.reindex;
 
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -72,7 +73,7 @@ public final class Source implements JsonpSerializable {
 	private final List<String> sourceFields;
 
 	@Nullable
-	private final Map<String, SourceRuntimeMapping> runtimeMappings;
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -149,14 +150,10 @@ public final class Source implements JsonpSerializable {
 	}
 
 	/**
-	 * Definitions of search-time runtime fields that can be used by the transform.
-	 * For search runtime fields all data nodes, including remote nodes, must be
-	 * 7.12 or later.
-	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
 	@Nullable
-	public Map<String, SourceRuntimeMapping> runtimeMappings() {
+	public Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -229,7 +226,7 @@ public final class Source implements JsonpSerializable {
 
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
-			for (Map.Entry<String, SourceRuntimeMapping> item0 : this.runtimeMappings.entrySet()) {
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -267,7 +264,7 @@ public final class Source implements JsonpSerializable {
 		private List<String> sourceFields;
 
 		@Nullable
-		private Map<String, SourceRuntimeMapping> runtimeMappings;
+		private Map<String, RuntimeField> runtimeMappings;
 
 		/**
 		 * Required - API name: {@code index}
@@ -404,13 +401,9 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Definitions of search-time runtime fields that can be used by the transform.
-		 * For search runtime fields all data nodes, including remote nodes, must be
-		 * 7.12 or later.
-		 * <p>
 		 * API name: {@code runtime_mappings}
 		 */
-		public Builder runtimeMappings(@Nullable Map<String, SourceRuntimeMapping> value) {
+		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
 			return this;
 		}
@@ -418,7 +411,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
 		 */
-		public Builder putRuntimeMappings(String key, SourceRuntimeMapping value) {
+		public Builder putRuntimeMappings(String key, RuntimeField value) {
 			if (this.runtimeMappings == null) {
 				this.runtimeMappings = new HashMap<>();
 			}
@@ -429,18 +422,15 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * Set {@link #runtimeMappings(Map)} to a singleton map.
 		 */
-		public Builder runtimeMappings(String key,
-				Function<SourceRuntimeMapping.Builder, ObjectBuilder<SourceRuntimeMapping>> fn) {
-			return this.runtimeMappings(
-					Collections.singletonMap(key, fn.apply(new SourceRuntimeMapping.Builder()).build()));
+		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
 		 */
-		public Builder putRuntimeMappings(String key,
-				Function<SourceRuntimeMapping.Builder, ObjectBuilder<SourceRuntimeMapping>> fn) {
-			return this.putRuntimeMappings(key, fn.apply(new SourceRuntimeMapping.Builder()).build());
+		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -473,7 +463,7 @@ public final class Source implements JsonpSerializable {
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_source");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(SourceRuntimeMapping._DESERIALIZER),
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 
 	}

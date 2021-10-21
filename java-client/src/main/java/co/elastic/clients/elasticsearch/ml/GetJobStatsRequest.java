@@ -45,32 +45,22 @@ import javax.annotation.Nullable;
 
 public final class GetJobStatsRequest extends RequestBase {
 	@Nullable
-	private final String jobId;
+	private final Boolean allowNoJobs;
 
 	@Nullable
-	private final Boolean allowNoJobs;
+	private final String jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetJobStatsRequest(Builder builder) {
 
-		this.jobId = builder.jobId;
 		this.allowNoJobs = builder.allowNoJobs;
+		this.jobId = builder.jobId;
 
 	}
 
 	public GetJobStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the jobs stats to fetch
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	@Nullable
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -84,6 +74,16 @@ public final class GetJobStatsRequest extends RequestBase {
 		return this.allowNoJobs;
 	}
 
+	/**
+	 * The ID of the jobs stats to fetch
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	@Nullable
+	public String jobId() {
+		return this.jobId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -91,20 +91,10 @@ public final class GetJobStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetJobStatsRequest> {
 		@Nullable
-		private String jobId;
-
-		@Nullable
 		private Boolean allowNoJobs;
 
-		/**
-		 * The ID of the jobs stats to fetch
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(@Nullable String value) {
-			this.jobId = value;
-			return this;
-		}
+		@Nullable
+		private String jobId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
@@ -114,6 +104,16 @@ public final class GetJobStatsRequest extends RequestBase {
 		 */
 		public Builder allowNoJobs(@Nullable Boolean value) {
 			this.allowNoJobs = value;
+			return this;
+		}
+
+		/**
+		 * The ID of the jobs stats to fetch
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(@Nullable String value) {
+			this.jobId = value;
 			return this;
 		}
 

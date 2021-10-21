@@ -56,12 +56,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class MsearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -77,6 +71,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Long maxConcurrentSearches;
 
 	@Nullable
@@ -89,6 +86,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	private final SearchType searchType;
 
 	@Nullable
+	private final List<String> type;
+
+	@Nullable
 	private final Boolean typedKeys;
 
 	private final List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
@@ -97,17 +97,17 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 	public MsearchRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.searchType = builder.searchType;
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.typedKeys = builder.typedKeys;
 		this.searches = ModelTypeHelper.unmodifiableNonNull(builder.searches, "_value_body");
 
@@ -115,26 +115,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 	public MsearchRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of data streams, indices, and index aliases to search.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
-	 * A comma-separated list of document types to use as default
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
 	}
 
 	/**
@@ -195,6 +175,16 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Comma-separated list of data streams, indices, and index aliases to search.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Maximum number of concurrent searches the multi search API can execute.
 	 * <p>
 	 * API name: {@code max_concurrent_searches}
@@ -242,6 +232,16 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * A comma-separated list of document types to use as default
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public List<String> type() {
+		return this.type;
+	}
+
+	/**
 	 * Specifies whether aggregation and suggester names should be prefixed by their
 	 * respective types in the response.
 	 * <p>
@@ -281,12 +281,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder implements ObjectBuilder<MsearchRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -302,6 +296,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Long maxConcurrentSearches;
 
 		@Nullable
@@ -314,71 +311,12 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private SearchType searchType;
 
 		@Nullable
+		private List<String> type;
+
+		@Nullable
 		private Boolean typedKeys;
 
 		private List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
-
-		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to use as default
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to use as default
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -461,6 +399,37 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Comma-separated list of data streams, indices, and index aliases to search.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams, indices, and index aliases to search.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Maximum number of concurrent searches the multi search API can execute.
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
@@ -504,6 +473,37 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 */
 		public Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types to use as default
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable List<String> value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types to use as default
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(String... value) {
+			this.type = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #type(List)}, creating the list if needed.
+		 */
+		public Builder addType(String value) {
+			if (this.type == null) {
+				this.type = new ArrayList<>();
+			}
+			this.type.add(value);
 			return this;
 		}
 
@@ -623,36 +623,36 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.preFilterShardSize != null) {
+					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				if (request.maxConcurrentShardRequests != null) {
+					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
+				}
+				if (request.typedKeys != null) {
+					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
 				}
-				if (request.maxConcurrentShardRequests != null) {
-					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
-				}
-				if (request.preFilterShardSize != null) {
-					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
-				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 

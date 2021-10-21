@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws IOException {
+	public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeletePolicyRequest.ENDPOINT);
 	}
 
@@ -58,16 +58,16 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 * Deletes an existing enrich policy and its enrich index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeletePolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeletePolicyResponse deletePolicy(
-			Function<DeletePolicyRequest.Builder, ObjectBuilder<DeletePolicyRequest>> fn) throws IOException {
+			Function<DeletePolicyRequest.Builder, ObjectBuilder<DeletePolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deletePolicy(fn.apply(new DeletePolicyRequest.Builder()).build());
 	}
 
@@ -81,7 +81,8 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ExecutePolicyResponse executePolicy(ExecutePolicyRequest request) throws IOException {
+	public ExecutePolicyResponse executePolicy(ExecutePolicyRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExecutePolicyRequest.ENDPOINT);
 	}
 
@@ -89,16 +90,16 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 * Creates the enrich index for an existing enrich policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExecutePolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/execute-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ExecutePolicyResponse executePolicy(
-			Function<ExecutePolicyRequest.Builder, ObjectBuilder<ExecutePolicyRequest>> fn) throws IOException {
+			Function<ExecutePolicyRequest.Builder, ObjectBuilder<ExecutePolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return executePolicy(fn.apply(new ExecutePolicyRequest.Builder()).build());
 	}
 
@@ -112,7 +113,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetPolicyResponse getPolicy(GetPolicyRequest request) throws IOException {
+	public GetPolicyResponse getPolicy(GetPolicyRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetPolicyRequest.ENDPOINT);
 	}
 
@@ -120,16 +121,15 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 * Gets information about an enrich policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetPolicyResponse getPolicy(Function<GetPolicyRequest.Builder, ObjectBuilder<GetPolicyRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getPolicy(fn.apply(new GetPolicyRequest.Builder()).build());
 	}
 
@@ -141,7 +141,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetPolicyResponse getPolicy() throws IOException {
+	public GetPolicyResponse getPolicy() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT);
 	}
 
@@ -155,7 +155,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutPolicyResponse putPolicy(PutPolicyRequest request) throws IOException {
+	public PutPolicyResponse putPolicy(PutPolicyRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutPolicyRequest.ENDPOINT);
 	}
 
@@ -163,16 +163,15 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 * Creates a new enrich policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutPolicyResponse putPolicy(Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putPolicy(fn.apply(new PutPolicyRequest.Builder()).build());
 	}
 

@@ -47,31 +47,22 @@ import javax.annotation.Nullable;
 // typedef: watcher.ack_watch.Request
 
 public final class AckWatchRequest extends RequestBase {
-	private final String watchId;
-
 	@Nullable
 	private final List<String> actionId;
+
+	private final String watchId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public AckWatchRequest(Builder builder) {
 
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 		this.actionId = ModelTypeHelper.unmodifiable(builder.actionId);
+		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 
 	}
 
 	public AckWatchRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Watch ID
-	 * <p>
-	 * API name: {@code watch_id}
-	 */
-	public String watchId() {
-		return this.watchId;
 	}
 
 	/**
@@ -84,26 +75,25 @@ public final class AckWatchRequest extends RequestBase {
 		return this.actionId;
 	}
 
+	/**
+	 * Required - Watch ID
+	 * <p>
+	 * API name: {@code watch_id}
+	 */
+	public String watchId() {
+		return this.watchId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link AckWatchRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<AckWatchRequest> {
-		private String watchId;
-
 		@Nullable
 		private List<String> actionId;
 
-		/**
-		 * Required - Watch ID
-		 * <p>
-		 * API name: {@code watch_id}
-		 */
-		public Builder watchId(String value) {
-			this.watchId = value;
-			return this;
-		}
+		private String watchId;
 
 		/**
 		 * A comma-separated list of the action ids to be acked
@@ -133,6 +123,16 @@ public final class AckWatchRequest extends RequestBase {
 				this.actionId = new ArrayList<>();
 			}
 			this.actionId.add(value);
+			return this;
+		}
+
+		/**
+		 * Required - Watch ID
+		 * <p>
+		 * API name: {@code watch_id}
+		 */
+		public Builder watchId(String value) {
+			this.watchId = value;
 			return this;
 		}
 

@@ -49,32 +49,22 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_stream.Request
 
 public final class DeleteDataStreamRequest extends RequestBase {
-	private final List<String> name;
-
 	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
+
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DeleteDataStreamRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
 	public DeleteDataStreamRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of data streams to delete; use
-	 * <code>*</code> to delete all data streams
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
 	}
 
 	/**
@@ -88,49 +78,26 @@ public final class DeleteDataStreamRequest extends RequestBase {
 		return this.expandWildcards;
 	}
 
+	/**
+	 * Required - A comma-separated list of data streams to delete; use
+	 * <code>*</code> to delete all data streams
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link DeleteDataStreamRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteDataStreamRequest> {
-		private List<String> name;
-
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
-		/**
-		 * Required - A comma-separated list of data streams to delete; use
-		 * <code>*</code> to delete all data streams
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of data streams to delete; use
-		 * <code>*</code> to delete all data streams
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
+		private List<String> name;
 
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
@@ -162,6 +129,39 @@ public final class DeleteDataStreamRequest extends RequestBase {
 				this.expandWildcards = new ArrayList<>();
 			}
 			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of data streams to delete; use
+		 * <code>*</code> to delete all data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of data streams to delete; use
+		 * <code>*</code> to delete all data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 

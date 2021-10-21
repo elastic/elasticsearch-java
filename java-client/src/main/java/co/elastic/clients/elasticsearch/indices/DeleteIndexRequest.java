@@ -50,8 +50,6 @@ import javax.annotation.Nullable;
 // typedef: indices.delete.Request
 
 public final class DeleteIndexRequest extends RequestBase {
-	private final List<String> index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -60,6 +58,8 @@ public final class DeleteIndexRequest extends RequestBase {
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	private final List<String> index;
 
 	@Nullable
 	private final String masterTimeout;
@@ -71,10 +71,10 @@ public final class DeleteIndexRequest extends RequestBase {
 
 	public DeleteIndexRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -82,16 +82,6 @@ public final class DeleteIndexRequest extends RequestBase {
 
 	public DeleteIndexRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of indices to delete; use <code>_all</code>
-	 * or <code>*</code> string to delete all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -127,6 +117,16 @@ public final class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - A comma-separated list of indices to delete; use <code>_all</code>
+	 * or <code>*</code> string to delete all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -152,8 +152,6 @@ public final class DeleteIndexRequest extends RequestBase {
 	 * Builder for {@link DeleteIndexRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteIndexRequest> {
-		private List<String> index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -163,44 +161,13 @@ public final class DeleteIndexRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
+		private List<String> index;
+
 		@Nullable
 		private String masterTimeout;
 
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
-		 * or <code>*</code> string to delete all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
-		 * or <code>*</code> string to delete all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Ignore if a wildcard expression resolves to no concrete indices (default:
@@ -253,6 +220,39 @@ public final class DeleteIndexRequest extends RequestBase {
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
+		 * or <code>*</code> string to delete all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
+		 * or <code>*</code> string to delete all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -321,8 +321,8 @@ public final class DeleteIndexRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
@@ -331,8 +331,8 @@ public final class DeleteIndexRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

@@ -59,16 +59,6 @@ import javax.annotation.Nullable;
 // typedef: _global.search_mvt.Request
 @JsonpDeserializable
 public final class SearchMvtRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> index;
-
-	private final String field;
-
-	private final int zoom;
-
-	private final int x;
-
-	private final int y;
-
 	@Nullable
 	private final Map<String, Aggregation> aggs;
 
@@ -78,6 +68,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final Integer extent;
 
+	private final String field;
+
 	@Nullable
 	private final List<String> fields;
 
@@ -86,6 +78,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 	@Nullable
 	private final GridType gridType;
+
+	private final List<String> index;
 
 	@Nullable
 	private final Query query;
@@ -99,76 +93,36 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
+	private final int x;
+
+	private final int y;
+
+	private final int zoom;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public SearchMvtRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.zoom = Objects.requireNonNull(builder.zoom, "zoom");
-		this.x = Objects.requireNonNull(builder.x, "x");
-		this.y = Objects.requireNonNull(builder.y, "y");
 		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.exactBounds = builder.exactBounds;
 		this.extent = builder.extent;
+		this.field = Objects.requireNonNull(builder.field, "field");
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.gridPrecision = builder.gridPrecision;
 		this.gridType = builder.gridType;
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.query = builder.query;
 		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.size = builder.size;
 		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.x = Objects.requireNonNull(builder.x, "x");
+		this.y = Objects.requireNonNull(builder.y, "y");
+		this.zoom = Objects.requireNonNull(builder.zoom, "zoom");
 
 	}
 
 	public SearchMvtRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of data streams, indices, or aliases to
-	 * search
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
-	 * Required - Field containing geospatial data to return
-	 * <p>
-	 * API name: {@code field}
-	 */
-	public String field() {
-		return this.field;
-	}
-
-	/**
-	 * Required - Zoom level for the vector tile to search
-	 * <p>
-	 * API name: {@code zoom}
-	 */
-	public int zoom() {
-		return this.zoom;
-	}
-
-	/**
-	 * Required - X coordinate for the vector tile to search
-	 * <p>
-	 * API name: {@code x}
-	 */
-	public int x() {
-		return this.x;
-	}
-
-	/**
-	 * Required - Y coordinate for the vector tile to search
-	 * <p>
-	 * API name: {@code y}
-	 */
-	public int y() {
-		return this.y;
 	}
 
 	/**
@@ -216,6 +170,15 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Required - Field containing geospatial data to return
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
+	}
+
+	/**
 	 * Fields to return in the <code>hits</code> layer. Supports wildcards
 	 * (<code>*</code>). This parameter does not support fields with array values.
 	 * Fields with array values may return inconsistent results.
@@ -250,6 +213,16 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public GridType gridType() {
 		return this.gridType;
+	}
+
+	/**
+	 * Required - Comma-separated list of data streams, indices, or aliases to
+	 * search
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -294,6 +267,33 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
+	}
+
+	/**
+	 * Required - X coordinate for the vector tile to search
+	 * <p>
+	 * API name: {@code x}
+	 */
+	public int x() {
+		return this.x;
+	}
+
+	/**
+	 * Required - Y coordinate for the vector tile to search
+	 * <p>
+	 * API name: {@code y}
+	 */
+	public int y() {
+		return this.y;
+	}
+
+	/**
+	 * Required - Zoom level for the vector tile to search
+	 * <p>
+	 * API name: {@code zoom}
+	 */
+	public int zoom() {
+		return this.zoom;
 	}
 
 	/**
@@ -397,16 +397,6 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link SearchMvtRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<SearchMvtRequest> {
-		private List<String> index;
-
-		private String field;
-
-		private Integer zoom;
-
-		private Integer x;
-
-		private Integer y;
-
 		@Nullable
 		private Map<String, Aggregation> aggs;
 
@@ -416,6 +406,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private Integer extent;
 
+		private String field;
+
 		@Nullable
 		private List<String> fields;
 
@@ -424,6 +416,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private GridType gridType;
+
+		private List<String> index;
 
 		@Nullable
 		private Query query;
@@ -437,78 +431,11 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
-		/**
-		 * Required - Comma-separated list of data streams, indices, or aliases to
-		 * search
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
+		private Integer x;
 
-		/**
-		 * Required - Comma-separated list of data streams, indices, or aliases to
-		 * search
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
+		private Integer y;
 
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - Field containing geospatial data to return
-		 * <p>
-		 * API name: {@code field}
-		 */
-		public Builder field(String value) {
-			this.field = value;
-			return this;
-		}
-
-		/**
-		 * Required - Zoom level for the vector tile to search
-		 * <p>
-		 * API name: {@code zoom}
-		 */
-		public Builder zoom(int value) {
-			this.zoom = value;
-			return this;
-		}
-
-		/**
-		 * Required - X coordinate for the vector tile to search
-		 * <p>
-		 * API name: {@code x}
-		 */
-		public Builder x(int value) {
-			this.x = value;
-			return this;
-		}
-
-		/**
-		 * Required - Y coordinate for the vector tile to search
-		 * <p>
-		 * API name: {@code y}
-		 */
-		public Builder y(int value) {
-			this.y = value;
-			return this;
-		}
+		private Integer zoom;
 
 		/**
 		 * Sub-aggregations for the geotile_grid.
@@ -580,6 +507,16 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Required - Field containing geospatial data to return
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
 		 * Fields to return in the <code>hits</code> layer. Supports wildcards
 		 * (<code>*</code>). This parameter does not support fields with array values.
 		 * Fields with array values may return inconsistent results.
@@ -636,6 +573,39 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 */
 		public Builder gridType(@Nullable GridType value) {
 			this.gridType = value;
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams, indices, or aliases to
+		 * search
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams, indices, or aliases to
+		 * search
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -741,6 +711,36 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Required - X coordinate for the vector tile to search
+		 * <p>
+		 * API name: {@code x}
+		 */
+		public Builder x(int value) {
+			this.x = value;
+			return this;
+		}
+
+		/**
+		 * Required - Y coordinate for the vector tile to search
+		 * <p>
+		 * API name: {@code y}
+		 */
+		public Builder y(int value) {
+			this.y = value;
+			return this;
+		}
+
+		/**
+		 * Required - Zoom level for the vector tile to search
+		 * <p>
+		 * API name: {@code zoom}
+		 */
+		public Builder zoom(int value) {
+			this.zoom = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link SearchMvtRequest}.
 		 *
 		 * @throws NullPointerException
@@ -790,19 +790,19 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 			// Request path
 			request -> {
-				final int _index = 1 << 0;
-				final int _field = 1 << 1;
-				final int _zoom = 1 << 2;
-				final int _x = 1 << 3;
-				final int _y = 1 << 4;
+				final int _field = 1 << 0;
+				final int _x = 1 << 1;
+				final int _index = 1 << 2;
+				final int _y = 1 << 3;
+				final int _zoom = 1 << 4;
 
 				int propsSet = 0;
 
-				propsSet |= _index;
 				propsSet |= _field;
-				propsSet |= _zoom;
 				propsSet |= _x;
+				propsSet |= _index;
 				propsSet |= _y;
+				propsSet |= _zoom;
 
 				if (propsSet == (_index | _field | _zoom | _x | _y)) {
 					StringBuilder buf = new StringBuilder();
@@ -825,8 +825,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, SearchMvtResponse._DESERIALIZER);
 }

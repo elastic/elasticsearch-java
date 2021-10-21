@@ -36,7 +36,6 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,32 +43,37 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Request
 
 public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
-	private final String id;
-
-	private final String index;
+	@Nullable
+	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 	@Nullable
-	private final String type;
+	private final Boolean detectNoop;
+
+	@Nullable
+	private final TPartialDocument doc;
+
+	@Nullable
+	private final Boolean docAsUpsert;
+
+	private final String id;
 
 	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
 	private final Long ifSeqNo;
+
+	private final String index;
 
 	@Nullable
 	private final String lang;
@@ -87,37 +91,22 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final String routing;
 
 	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
-
-	@Nullable
-	private final Boolean detectNoop;
-
-	@Nullable
-	private final TPartialDocument doc;
-
-	@Nullable
-	private final Boolean docAsUpsert;
-
-	@Nullable
 	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
 	private final Boolean scriptedUpsert;
 
 	@Nullable
-	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+	private final String timeout;
+
+	@Nullable
+	private final String type;
 
 	@Nullable
 	private final TDocument upsert;
+
+	@Nullable
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -129,27 +118,25 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 
 	public UpdateRequest(Builder<TDocument, TPartialDocument> builder) {
 
+		this.source = builder.source;
+		this.detectNoop = builder.detectNoop;
+		this.doc = builder.doc;
+		this.docAsUpsert = builder.docAsUpsert;
 		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.lang = builder.lang;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
 		this.routing = builder.routing;
-		this.timeout = builder.timeout;
-		this.waitForActiveShards = builder.waitForActiveShards;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.detectNoop = builder.detectNoop;
-		this.doc = builder.doc;
-		this.docAsUpsert = builder.docAsUpsert;
 		this.script = builder.script;
 		this.scriptedUpsert = builder.scriptedUpsert;
-		this.source = builder.source;
+		this.timeout = builder.timeout;
+		this.type = builder.type;
 		this.upsert = builder.upsert;
+		this.waitForActiveShards = builder.waitForActiveShards;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 		this.tPartialDocumentSerializer = builder.tPartialDocumentSerializer;
 
@@ -160,31 +147,54 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Set to false to disable source retrieval. You can also specify a
+	 * comma-separated list of the fields you want to retrieve.
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
+		return this.source;
+	}
+
+	/**
+	 * Set to false to disable setting 'result' in the response to 'noop' if no
+	 * change to the document occurred.
+	 * <p>
+	 * API name: {@code detect_noop}
+	 */
+	@Nullable
+	public Boolean detectNoop() {
+		return this.detectNoop;
+	}
+
+	/**
+	 * A partial update to an existing document.
+	 * <p>
+	 * API name: {@code doc}
+	 */
+	@Nullable
+	public TPartialDocument doc() {
+		return this.doc;
+	}
+
+	/**
+	 * Set to true to use the contents of 'doc' as the value of 'upsert'
+	 * <p>
+	 * API name: {@code doc_as_upsert}
+	 */
+	@Nullable
+	public Boolean docAsUpsert() {
+		return this.docAsUpsert;
+	}
+
+	/**
 	 * Required - Document ID
 	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
-	}
-
-	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
 	}
 
 	/**
@@ -205,6 +215,15 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	@Nullable
 	public Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * Required - The name of the index
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -261,82 +280,6 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
-	 * Period to wait for dynamic mapping updates and active shards. This guarantees
-	 * Elasticsearch waits for at least the timeout before failing. The actual wait
-	 * time could be longer, particularly when multiple waits occur.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * The number of shard copies that must be active before proceeding with the
-	 * operations. Set to 'all' or any positive integer up to the total number of
-	 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
-	 * shard.
-	 * <p>
-	 * API name: {@code wait_for_active_shards}
-	 */
-	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
-		return this.waitForActiveShards;
-	}
-
-	/**
-	 * Specify the source fields you want to exclude.
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	@Nullable
-	public List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * Specify the source fields you want to retrieve.
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	@Nullable
-	public List<String> sourceIncludes() {
-		return this.sourceIncludes;
-	}
-
-	/**
-	 * Set to false to disable setting 'result' in the response to 'noop' if no
-	 * change to the document occurred.
-	 * <p>
-	 * API name: {@code detect_noop}
-	 */
-	@Nullable
-	public Boolean detectNoop() {
-		return this.detectNoop;
-	}
-
-	/**
-	 * A partial update to an existing document.
-	 * <p>
-	 * API name: {@code doc}
-	 */
-	@Nullable
-	public TPartialDocument doc() {
-		return this.doc;
-	}
-
-	/**
-	 * Set to true to use the contents of 'doc' as the value of 'upsert'
-	 * <p>
-	 * API name: {@code doc_as_upsert}
-	 */
-	@Nullable
-	public Boolean docAsUpsert() {
-		return this.docAsUpsert;
-	}
-
-	/**
 	 * Script to execute to update the document.
 	 * <p>
 	 * API name: {@code script}
@@ -357,14 +300,25 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
-	 * Set to false to disable source retrieval. You can also specify a
-	 * comma-separated list of the fields you want to retrieve.
+	 * Period to wait for dynamic mapping updates and active shards. This guarantees
+	 * Elasticsearch waits for at least the timeout before failing. The actual wait
+	 * time could be longer, particularly when multiple waits occur.
 	 * <p>
-	 * API name: {@code _source}
+	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
-		return this.source;
+	public String timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -379,6 +333,19 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * The number of shard copies that must be active before proceeding with the
+	 * operations. Set to 'all' or any positive integer up to the total number of
+	 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
+	 * shard.
+	 * <p>
+	 * API name: {@code wait_for_active_shards}
+	 */
+	@Nullable
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+		return this.waitForActiveShards;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -389,6 +356,12 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.source != null) {
+
+			generator.writeKey("_source");
+			generator.write(this.source);
+
+		}
 		if (this.detectNoop != null) {
 
 			generator.writeKey("detect_noop");
@@ -419,12 +392,6 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 			generator.write(this.scriptedUpsert);
 
 		}
-		if (this.source != null) {
-
-			generator.writeKey("_source");
-			generator.write(this.source);
-
-		}
 		if (this.upsert != null) {
 
 			generator.writeKey("upsert");
@@ -442,18 +409,27 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	public static class Builder<TDocument, TPartialDocument>
 			implements
 				ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>> {
-		private String id;
-
-		private String index;
+		@Nullable
+		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 		@Nullable
-		private String type;
+		private Boolean detectNoop;
+
+		@Nullable
+		private TPartialDocument doc;
+
+		@Nullable
+		private Boolean docAsUpsert;
+
+		private String id;
 
 		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
 		private Long ifSeqNo;
+
+		private String index;
 
 		@Nullable
 		private String lang;
@@ -471,37 +447,22 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private String routing;
 
 		@Nullable
-		private String timeout;
-
-		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
-
-		@Nullable
-		private Boolean detectNoop;
-
-		@Nullable
-		private TPartialDocument doc;
-
-		@Nullable
-		private Boolean docAsUpsert;
-
-		@Nullable
 		private JsonValue /* _types.Script */ script;
 
 		@Nullable
 		private Boolean scriptedUpsert;
 
 		@Nullable
-		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+		private String timeout;
+
+		@Nullable
+		private String type;
 
 		@Nullable
 		private TDocument upsert;
+
+		@Nullable
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -510,32 +471,55 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
+		 * Set to false to disable source retrieval. You can also specify a
+		 * comma-separated list of the fields you want to retrieve.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public Builder<TDocument, TPartialDocument> source(
+				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * Set to false to disable setting 'result' in the response to 'noop' if no
+		 * change to the document occurred.
+		 * <p>
+		 * API name: {@code detect_noop}
+		 */
+		public Builder<TDocument, TPartialDocument> detectNoop(@Nullable Boolean value) {
+			this.detectNoop = value;
+			return this;
+		}
+
+		/**
+		 * A partial update to an existing document.
+		 * <p>
+		 * API name: {@code doc}
+		 */
+		public Builder<TDocument, TPartialDocument> doc(@Nullable TPartialDocument value) {
+			this.doc = value;
+			return this;
+		}
+
+		/**
+		 * Set to true to use the contents of 'doc' as the value of 'upsert'
+		 * <p>
+		 * API name: {@code doc_as_upsert}
+		 */
+		public Builder<TDocument, TPartialDocument> docAsUpsert(@Nullable Boolean value) {
+			this.docAsUpsert = value;
+			return this;
+		}
+
+		/**
 		 * Required - Document ID
 		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder<TDocument, TPartialDocument> id(String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder<TDocument, TPartialDocument> index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder<TDocument, TPartialDocument> type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -556,6 +540,16 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 */
 		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder<TDocument, TPartialDocument> index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -613,125 +607,6 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * Period to wait for dynamic mapping updates and active shards. This guarantees
-		 * Elasticsearch waits for at least the timeout before failing. The actual wait
-		 * time could be longer, particularly when multiple waits occur.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder<TDocument, TPartialDocument> timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operations. Set to 'all' or any positive integer up to the total number of
-		 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
-		 * shard.
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public Builder<TDocument, TPartialDocument> waitForActiveShards(
-				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
-			return this;
-		}
-
-		/**
-		 * Specify the source fields you want to exclude.
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public Builder<TDocument, TPartialDocument> sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
-			return this;
-		}
-
-		/**
-		 * Specify the source fields you want to exclude.
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public Builder<TDocument, TPartialDocument> sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument, TPartialDocument> addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
-			return this;
-		}
-
-		/**
-		 * Specify the source fields you want to retrieve.
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public Builder<TDocument, TPartialDocument> sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
-			return this;
-		}
-
-		/**
-		 * Specify the source fields you want to retrieve.
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public Builder<TDocument, TPartialDocument> sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument, TPartialDocument> addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
-			return this;
-		}
-
-		/**
-		 * Set to false to disable setting 'result' in the response to 'noop' if no
-		 * change to the document occurred.
-		 * <p>
-		 * API name: {@code detect_noop}
-		 */
-		public Builder<TDocument, TPartialDocument> detectNoop(@Nullable Boolean value) {
-			this.detectNoop = value;
-			return this;
-		}
-
-		/**
-		 * A partial update to an existing document.
-		 * <p>
-		 * API name: {@code doc}
-		 */
-		public Builder<TDocument, TPartialDocument> doc(@Nullable TPartialDocument value) {
-			this.doc = value;
-			return this;
-		}
-
-		/**
-		 * Set to true to use the contents of 'doc' as the value of 'upsert'
-		 * <p>
-		 * API name: {@code doc_as_upsert}
-		 */
-		public Builder<TDocument, TPartialDocument> docAsUpsert(@Nullable Boolean value) {
-			this.docAsUpsert = value;
-			return this;
-		}
-
-		/**
 		 * Script to execute to update the document.
 		 * <p>
 		 * API name: {@code script}
@@ -752,14 +627,24 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * Set to false to disable source retrieval. You can also specify a
-		 * comma-separated list of the fields you want to retrieve.
+		 * Period to wait for dynamic mapping updates and active shards. This guarantees
+		 * Elasticsearch waits for at least the timeout before failing. The actual wait
+		 * time could be longer, particularly when multiple waits occur.
 		 * <p>
-		 * API name: {@code _source}
+		 * API name: {@code timeout}
 		 */
-		public Builder<TDocument, TPartialDocument> source(
-				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
-			this.source = value;
+		public Builder<TDocument, TPartialDocument> timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder<TDocument, TPartialDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -771,6 +656,20 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 */
 		public Builder<TDocument, TPartialDocument> upsert(@Nullable TDocument value) {
 			this.upsert = value;
+			return this;
+		}
+
+		/**
+		 * The number of shard copies that must be active before proceeding with the
+		 * operations. Set to 'all' or any positive integer up to the total number of
+		 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
+		 * shard.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public Builder<TDocument, TPartialDocument> waitForActiveShards(
+				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -823,12 +722,12 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 			JsonpDeserializer<TDocument> tDocumentDeserializer,
 			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
 
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::detectNoop, JsonpDeserializer.booleanDeserializer(), "detect_noop");
 		op.add(Builder::doc, tPartialDocumentDeserializer, "doc");
 		op.add(Builder::docAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::scriptedUpsert, JsonpDeserializer.booleanDeserializer(), "scripted_upsert");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::upsert, tDocumentDeserializer, "upsert");
 
 	}
@@ -847,14 +746,14 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 				if (request.type() != null)
 					propsSet |= _type;
 
@@ -885,40 +784,32 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.requireAlias != null) {
+					params.put("require_alias", String.valueOf(request.requireAlias));
+				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
 				if (request.ifSeqNo != null) {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
-				if (request.lang != null) {
-					params.put("lang", request.lang);
-				}
 				if (request.refresh != null) {
 					params.put("refresh", JsonpUtils.toString(request.refresh));
-				}
-				if (request.requireAlias != null) {
-					params.put("require_alias", String.valueOf(request.requireAlias));
-				}
-				if (request.retryOnConflict != null) {
-					params.put("retry_on_conflict", String.valueOf(request.retryOnConflict));
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
-				if (request.sourceExcludes != null) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.lang != null) {
+					params.put("lang", request.lang);
 				}
-				if (request.sourceIncludes != null) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.retryOnConflict != null) {
+					params.put("retry_on_conflict", String.valueOf(request.retryOnConflict));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

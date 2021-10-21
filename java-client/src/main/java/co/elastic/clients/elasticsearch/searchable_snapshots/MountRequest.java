@@ -52,48 +52,89 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.mount.Request
 @JsonpDeserializable
 public final class MountRequest extends RequestBase implements JsonpSerializable {
-	private final String repository;
-
-	private final String snapshot;
-
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final Boolean waitForCompletion;
-
-	@Nullable
-	private final String storage;
+	private final List<String> ignoreIndexSettings;
 
 	private final String index;
-
-	@Nullable
-	private final String renamedIndex;
 
 	@Nullable
 	private final Map<String, JsonData> indexSettings;
 
 	@Nullable
-	private final List<String> ignoreIndexSettings;
+	private final String masterTimeout;
+
+	@Nullable
+	private final String renamedIndex;
+
+	private final String repository;
+
+	private final String snapshot;
+
+	@Nullable
+	private final String storage;
+
+	@Nullable
+	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MountRequest(Builder builder) {
 
+		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.indexSettings = ModelTypeHelper.unmodifiable(builder.indexSettings);
+		this.masterTimeout = builder.masterTimeout;
+		this.renamedIndex = builder.renamedIndex;
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.masterTimeout = builder.masterTimeout;
-		this.waitForCompletion = builder.waitForCompletion;
 		this.storage = builder.storage;
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.renamedIndex = builder.renamedIndex;
-		this.indexSettings = ModelTypeHelper.unmodifiable(builder.indexSettings);
-		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
 	public MountRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code ignore_index_settings}
+	 */
+	@Nullable
+	public List<String> ignoreIndexSettings() {
+		return this.ignoreIndexSettings;
+	}
+
+	/**
+	 * Required - API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code index_settings}
+	 */
+	@Nullable
+	public Map<String, JsonData> indexSettings() {
+		return this.indexSettings;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * API name: {@code renamed_index}
+	 */
+	@Nullable
+	public String renamedIndex() {
+		return this.renamedIndex;
 	}
 
 	/**
@@ -116,13 +157,14 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Selects the kind of local storage used to accelerate searches. Experimental,
+	 * and defaults to <code>full_copy</code>
 	 * <p>
-	 * API name: {@code master_timeout}
+	 * API name: {@code storage}
 	 */
 	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
+	public String storage() {
+		return this.storage;
 	}
 
 	/**
@@ -136,48 +178,6 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Selects the kind of local storage used to accelerate searches. Experimental,
-	 * and defaults to <code>full_copy</code>
-	 * <p>
-	 * API name: {@code storage}
-	 */
-	@Nullable
-	public String storage() {
-		return this.storage;
-	}
-
-	/**
-	 * Required - API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * API name: {@code renamed_index}
-	 */
-	@Nullable
-	public String renamedIndex() {
-		return this.renamedIndex;
-	}
-
-	/**
-	 * API name: {@code index_settings}
-	 */
-	@Nullable
-	public Map<String, JsonData> indexSettings() {
-		return this.indexSettings;
-	}
-
-	/**
-	 * API name: {@code ignore_index_settings}
-	 */
-	@Nullable
-	public List<String> ignoreIndexSettings() {
-		return this.ignoreIndexSettings;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -188,27 +188,6 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
-
-		if (this.renamedIndex != null) {
-
-			generator.writeKey("renamed_index");
-			generator.write(this.renamedIndex);
-
-		}
-		if (this.indexSettings != null) {
-
-			generator.writeKey("index_settings");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.indexSettings.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.ignoreIndexSettings != null) {
 
 			generator.writeKey("ignore_index_settings");
@@ -221,6 +200,28 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 
 		}
 
+		generator.writeKey("index");
+		generator.write(this.index);
+
+		if (this.indexSettings != null) {
+
+			generator.writeKey("index_settings");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.indexSettings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.renamedIndex != null) {
+
+			generator.writeKey("renamed_index");
+			generator.write(this.renamedIndex);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -229,116 +230,29 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	 * Builder for {@link MountRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<MountRequest> {
-		private String repository;
-
-		private String snapshot;
-
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private Boolean waitForCompletion;
-
-		@Nullable
-		private String storage;
+		private List<String> ignoreIndexSettings;
 
 		private String index;
-
-		@Nullable
-		private String renamedIndex;
 
 		@Nullable
 		private Map<String, JsonData> indexSettings;
 
 		@Nullable
-		private List<String> ignoreIndexSettings;
+		private String masterTimeout;
 
-		/**
-		 * Required - The name of the repository containing the snapshot of the index to
-		 * mount
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String value) {
-			this.repository = value;
-			return this;
-		}
+		@Nullable
+		private String renamedIndex;
 
-		/**
-		 * Required - The name of the snapshot of the index to mount
-		 * <p>
-		 * API name: {@code snapshot}
-		 */
-		public Builder snapshot(String value) {
-			this.snapshot = value;
-			return this;
-		}
+		private String repository;
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
+		private String snapshot;
 
-		/**
-		 * Should this request wait until the operation has completed before returning
-		 * <p>
-		 * API name: {@code wait_for_completion}
-		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
-			return this;
-		}
+		@Nullable
+		private String storage;
 
-		/**
-		 * Selects the kind of local storage used to accelerate searches. Experimental,
-		 * and defaults to <code>full_copy</code>
-		 * <p>
-		 * API name: {@code storage}
-		 */
-		public Builder storage(@Nullable String value) {
-			this.storage = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code renamed_index}
-		 */
-		public Builder renamedIndex(@Nullable String value) {
-			this.renamedIndex = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code index_settings}
-		 */
-		public Builder indexSettings(@Nullable Map<String, JsonData> value) {
-			this.indexSettings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #indexSettings(Map)}, creating the map if needed.
-		 */
-		public Builder putIndexSettings(String key, JsonData value) {
-			if (this.indexSettings == null) {
-				this.indexSettings = new HashMap<>();
-			}
-			this.indexSettings.put(key, value);
-			return this;
-		}
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * API name: {@code ignore_index_settings}
@@ -369,6 +283,93 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Required - API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index_settings}
+		 */
+		public Builder indexSettings(@Nullable Map<String, JsonData> value) {
+			this.indexSettings = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #indexSettings(Map)}, creating the map if needed.
+		 */
+		public Builder putIndexSettings(String key, JsonData value) {
+			if (this.indexSettings == null) {
+				this.indexSettings = new HashMap<>();
+			}
+			this.indexSettings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code renamed_index}
+		 */
+		public Builder renamedIndex(@Nullable String value) {
+			this.renamedIndex = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the repository containing the snapshot of the index to
+		 * mount
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder repository(String value) {
+			this.repository = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the snapshot of the index to mount
+		 * <p>
+		 * API name: {@code snapshot}
+		 */
+		public Builder snapshot(String value) {
+			this.snapshot = value;
+			return this;
+		}
+
+		/**
+		 * Selects the kind of local storage used to accelerate searches. Experimental,
+		 * and defaults to <code>full_copy</code>
+		 * <p>
+		 * API name: {@code storage}
+		 */
+		public Builder storage(@Nullable String value) {
+			this.storage = value;
+			return this;
+		}
+
+		/**
+		 * Should this request wait until the operation has completed before returning
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link MountRequest}.
 		 *
 		 * @throws NullPointerException
@@ -390,12 +391,12 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 
 	protected static void setupMountRequestDeserializer(DelegatingDeserializer<MountRequest.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::renamedIndex, JsonpDeserializer.stringDeserializer(), "renamed_index");
-		op.add(Builder::indexSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
-				"index_settings");
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::indexSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"index_settings");
+		op.add(Builder::renamedIndex, JsonpDeserializer.stringDeserializer(), "renamed_index");
 
 	}
 
@@ -441,11 +442,11 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
-				if (request.waitForCompletion != null) {
-					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-				}
 				if (request.storage != null) {
 					params.put("storage", request.storage);
+				}
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 

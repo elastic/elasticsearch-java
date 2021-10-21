@@ -53,30 +53,20 @@ import javax.annotation.Nullable;
 // typedef: ccr.put_auto_follow_pattern.Request
 @JsonpDeserializable
 public final class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
-
-	private final String remoteCluster;
-
 	@Nullable
 	private final String followIndexPattern;
-
-	@Nullable
-	private final List<String> leaderIndexPatterns;
 
 	@Nullable
 	private final List<String> leaderIndexExclusionPatterns;
 
 	@Nullable
+	private final List<String> leaderIndexPatterns;
+
+	@Nullable
 	private final Integer maxOutstandingReadRequests;
 
 	@Nullable
-	private final Map<String, JsonData> settings;
-
-	@Nullable
 	private final Integer maxOutstandingWriteRequests;
-
-	@Nullable
-	private final String readPollTimeout;
 
 	@Nullable
 	private final Integer maxReadRequestOperationCount;
@@ -99,19 +89,25 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	@Nullable
 	private final String maxWriteRequestSize;
 
+	private final String name;
+
+	@Nullable
+	private final String readPollTimeout;
+
+	private final String remoteCluster;
+
+	@Nullable
+	private final Map<String, JsonData> settings;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public PutAutoFollowPatternRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexPatterns);
 		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
+		this.leaderIndexPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexPatterns);
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
-		this.readPollTimeout = builder.readPollTimeout;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
 		this.maxReadRequestSize = builder.maxReadRequestSize;
 		this.maxRetryDelay = builder.maxRetryDelay;
@@ -119,29 +115,15 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		this.maxWriteBufferSize = builder.maxWriteBufferSize;
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.readPollTimeout = builder.readPollTimeout;
+		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
 	public PutAutoFollowPatternRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The name of the collection of auto-follow patterns.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
-	}
-
-	/**
-	 * Required - The remote cluster containing the leader indices to match against.
-	 * <p>
-	 * API name: {@code remote_cluster}
-	 */
-	public String remoteCluster() {
-		return this.remoteCluster;
 	}
 
 	/**
@@ -158,17 +140,6 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * An array of simple index patterns to match against indices in the remote
-	 * cluster specified by the remote_cluster field.
-	 * <p>
-	 * API name: {@code leader_index_patterns}
-	 */
-	@Nullable
-	public List<String> leaderIndexPatterns() {
-		return this.leaderIndexPatterns;
-	}
-
-	/**
 	 * An array of simple index patterns that can be used to exclude indices from
 	 * being auto-followed. Indices in the remote cluster whose names are matching
 	 * one or more leader_index_patterns and one or more
@@ -182,6 +153,17 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	}
 
 	/**
+	 * An array of simple index patterns to match against indices in the remote
+	 * cluster specified by the remote_cluster field.
+	 * <p>
+	 * API name: {@code leader_index_patterns}
+	 */
+	@Nullable
+	public List<String> leaderIndexPatterns() {
+		return this.leaderIndexPatterns;
+	}
+
+	/**
 	 * The maximum number of outstanding reads requests from the remote cluster.
 	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
@@ -192,17 +174,6 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * Settings to override from the leader index. Note that certain settings can
-	 * not be overrode (e.g., index.number_of_shards).
-	 * <p>
-	 * API name: {@code settings}
-	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
-		return this.settings;
-	}
-
-	/**
 	 * The maximum number of outstanding reads requests from the remote cluster.
 	 * <p>
 	 * API name: {@code max_outstanding_write_requests}
@@ -210,20 +181,6 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	@Nullable
 	public Integer maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
-	}
-
-	/**
-	 * The maximum time to wait for new operations on the remote cluster when the
-	 * follower index is synchronized with the leader index. When the timeout has
-	 * elapsed, the poll for operations will return to the follower so that it can
-	 * update some statistics. Then the follower will immediately attempt to read
-	 * from the leader again.
-	 * <p>
-	 * API name: {@code read_poll_timeout}
-	 */
-	@Nullable
-	public String readPollTimeout() {
-		return this.readPollTimeout;
 	}
 
 	/**
@@ -305,6 +262,49 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	}
 
 	/**
+	 * Required - The name of the collection of auto-follow patterns.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * The maximum time to wait for new operations on the remote cluster when the
+	 * follower index is synchronized with the leader index. When the timeout has
+	 * elapsed, the poll for operations will return to the follower so that it can
+	 * update some statistics. Then the follower will immediately attempt to read
+	 * from the leader again.
+	 * <p>
+	 * API name: {@code read_poll_timeout}
+	 */
+	@Nullable
+	public String readPollTimeout() {
+		return this.readPollTimeout;
+	}
+
+	/**
+	 * Required - The remote cluster containing the leader indices to match against.
+	 * <p>
+	 * API name: {@code remote_cluster}
+	 */
+	public String remoteCluster() {
+		return this.remoteCluster;
+	}
+
+	/**
+	 * Settings to override from the leader index. Note that certain settings can
+	 * not be overrode (e.g., index.number_of_shards).
+	 * <p>
+	 * API name: {@code settings}
+	 */
+	@Nullable
+	public Map<String, JsonData> settings() {
+		return this.settings;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -315,24 +315,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("remote_cluster");
-		generator.write(this.remoteCluster);
-
 		if (this.followIndexPattern != null) {
 
 			generator.writeKey("follow_index_pattern");
 			generator.write(this.followIndexPattern);
-
-		}
-		if (this.leaderIndexPatterns != null) {
-
-			generator.writeKey("leader_index_patterns");
-			generator.writeStartArray();
-			for (String item0 : this.leaderIndexPatterns) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
 
 		}
 		if (this.leaderIndexExclusionPatterns != null) {
@@ -346,34 +332,27 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 			generator.writeEnd();
 
 		}
+		if (this.leaderIndexPatterns != null) {
+
+			generator.writeKey("leader_index_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.leaderIndexPatterns) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.maxOutstandingReadRequests != null) {
 
 			generator.writeKey("max_outstanding_read_requests");
 			generator.write(this.maxOutstandingReadRequests);
 
 		}
-		if (this.settings != null) {
-
-			generator.writeKey("settings");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.maxOutstandingWriteRequests != null) {
 
 			generator.writeKey("max_outstanding_write_requests");
 			generator.write(this.maxOutstandingWriteRequests);
-
-		}
-		if (this.readPollTimeout != null) {
-
-			generator.writeKey("read_poll_timeout");
-			generator.write(this.readPollTimeout);
 
 		}
 		if (this.maxReadRequestOperationCount != null) {
@@ -418,6 +397,28 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 			generator.write(this.maxWriteRequestSize);
 
 		}
+		if (this.readPollTimeout != null) {
+
+			generator.writeKey("read_poll_timeout");
+			generator.write(this.readPollTimeout);
+
+		}
+
+		generator.writeKey("remote_cluster");
+		generator.write(this.remoteCluster);
+
+		if (this.settings != null) {
+
+			generator.writeKey("settings");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -427,30 +428,20 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * Builder for {@link PutAutoFollowPatternRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutAutoFollowPatternRequest> {
-		private String name;
-
-		private String remoteCluster;
-
 		@Nullable
 		private String followIndexPattern;
-
-		@Nullable
-		private List<String> leaderIndexPatterns;
 
 		@Nullable
 		private List<String> leaderIndexExclusionPatterns;
 
 		@Nullable
+		private List<String> leaderIndexPatterns;
+
+		@Nullable
 		private Integer maxOutstandingReadRequests;
 
 		@Nullable
-		private Map<String, JsonData> settings;
-
-		@Nullable
 		private Integer maxOutstandingWriteRequests;
-
-		@Nullable
-		private String readPollTimeout;
 
 		@Nullable
 		private Integer maxReadRequestOperationCount;
@@ -473,25 +464,15 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		@Nullable
 		private String maxWriteRequestSize;
 
-		/**
-		 * Required - The name of the collection of auto-follow patterns.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+		private String name;
 
-		/**
-		 * Required - The remote cluster containing the leader indices to match against.
-		 * <p>
-		 * API name: {@code remote_cluster}
-		 */
-		public Builder remoteCluster(String value) {
-			this.remoteCluster = value;
-			return this;
-		}
+		@Nullable
+		private String readPollTimeout;
+
+		private String remoteCluster;
+
+		@Nullable
+		private Map<String, JsonData> settings;
 
 		/**
 		 * The name of follower index. The template {{leader_index}} can be used to
@@ -503,40 +484,6 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 */
 		public Builder followIndexPattern(@Nullable String value) {
 			this.followIndexPattern = value;
-			return this;
-		}
-
-		/**
-		 * An array of simple index patterns to match against indices in the remote
-		 * cluster specified by the remote_cluster field.
-		 * <p>
-		 * API name: {@code leader_index_patterns}
-		 */
-		public Builder leaderIndexPatterns(@Nullable List<String> value) {
-			this.leaderIndexPatterns = value;
-			return this;
-		}
-
-		/**
-		 * An array of simple index patterns to match against indices in the remote
-		 * cluster specified by the remote_cluster field.
-		 * <p>
-		 * API name: {@code leader_index_patterns}
-		 */
-		public Builder leaderIndexPatterns(String... value) {
-			this.leaderIndexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addLeaderIndexPatterns(String value) {
-			if (this.leaderIndexPatterns == null) {
-				this.leaderIndexPatterns = new ArrayList<>();
-			}
-			this.leaderIndexPatterns.add(value);
 			return this;
 		}
 
@@ -579,6 +526,40 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
+		 * API name: {@code leader_index_patterns}
+		 */
+		public Builder leaderIndexPatterns(@Nullable List<String> value) {
+			this.leaderIndexPatterns = value;
+			return this;
+		}
+
+		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
+		 * API name: {@code leader_index_patterns}
+		 */
+		public Builder leaderIndexPatterns(String... value) {
+			this.leaderIndexPatterns = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addLeaderIndexPatterns(String value) {
+			if (this.leaderIndexPatterns == null) {
+				this.leaderIndexPatterns = new ArrayList<>();
+			}
+			this.leaderIndexPatterns.add(value);
+			return this;
+		}
+
+		/**
 		 * The maximum number of outstanding reads requests from the remote cluster.
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
@@ -589,48 +570,12 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * Settings to override from the leader index. Note that certain settings can
-		 * not be overrode (e.g., index.number_of_shards).
-		 * <p>
-		 * API name: {@code settings}
-		 */
-		public Builder settings(@Nullable Map<String, JsonData> value) {
-			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
-		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
-			return this;
-		}
-
-		/**
 		 * The maximum number of outstanding reads requests from the remote cluster.
 		 * <p>
 		 * API name: {@code max_outstanding_write_requests}
 		 */
 		public Builder maxOutstandingWriteRequests(@Nullable Integer value) {
 			this.maxOutstandingWriteRequests = value;
-			return this;
-		}
-
-		/**
-		 * The maximum time to wait for new operations on the remote cluster when the
-		 * follower index is synchronized with the leader index. When the timeout has
-		 * elapsed, the poll for operations will return to the follower so that it can
-		 * update some statistics. Then the follower will immediately attempt to read
-		 * from the leader again.
-		 * <p>
-		 * API name: {@code read_poll_timeout}
-		 */
-		public Builder readPollTimeout(@Nullable String value) {
-			this.readPollTimeout = value;
 			return this;
 		}
 
@@ -713,6 +658,62 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		}
 
 		/**
+		 * Required - The name of the collection of auto-follow patterns.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * The maximum time to wait for new operations on the remote cluster when the
+		 * follower index is synchronized with the leader index. When the timeout has
+		 * elapsed, the poll for operations will return to the follower so that it can
+		 * update some statistics. Then the follower will immediately attempt to read
+		 * from the leader again.
+		 * <p>
+		 * API name: {@code read_poll_timeout}
+		 */
+		public Builder readPollTimeout(@Nullable String value) {
+			this.readPollTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - The remote cluster containing the leader indices to match against.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 */
+		public Builder remoteCluster(String value) {
+			this.remoteCluster = value;
+			return this;
+		}
+
+		/**
+		 * Settings to override from the leader index. Note that certain settings can
+		 * not be overrode (e.g., index.number_of_shards).
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public Builder settings(@Nullable Map<String, JsonData> value) {
+			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
+		 */
+		public Builder putSettings(String key, JsonData value) {
+			if (this.settings == null) {
+				this.settings = new HashMap<>();
+			}
+			this.settings.put(key, value);
+			return this;
+		}
+
+		/**
 		 * Builds a {@link PutAutoFollowPatternRequest}.
 		 *
 		 * @throws NullPointerException
@@ -735,19 +736,16 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	protected static void setupPutAutoFollowPatternRequestDeserializer(
 			DelegatingDeserializer<PutAutoFollowPatternRequest.Builder> op) {
 
-		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
 		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
-		op.add(Builder::leaderIndexPatterns,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
 		op.add(Builder::leaderIndexExclusionPatterns,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"leader_index_exclusion_patterns");
+		op.add(Builder::leaderIndexPatterns,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_read_requests");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
 		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_write_requests");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
 		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
@@ -757,6 +755,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
+		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
 
 	}
 

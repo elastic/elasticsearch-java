@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 public final class StateRequest extends RequestBase {
 	@Nullable
-	private final List<String> metric;
-
-	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -70,10 +64,16 @@ public final class StateRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean local;
 
 	@Nullable
 	private final String masterTimeout;
+
+	@Nullable
+	private final List<String> metric;
 
 	@Nullable
 	private final Long waitForMetadataVersion;
@@ -85,14 +85,14 @@ public final class StateRequest extends RequestBase {
 
 	public StateRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.waitForMetadataVersion = builder.waitForMetadataVersion;
 		this.waitForTimeout = builder.waitForTimeout;
 
@@ -100,27 +100,6 @@ public final class StateRequest extends RequestBase {
 
 	public StateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Limit the information returned to the specified metrics
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -168,6 +147,17 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Return local information, do not retrieve the state from master node
 	 * (default: false)
 	 * <p>
@@ -186,6 +176,16 @@ public final class StateRequest extends RequestBase {
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Limit the information returned to the specified metrics
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	@Nullable
+	public List<String> metric() {
+		return this.metric;
 	}
 
 	/**
@@ -216,12 +216,6 @@ public final class StateRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StateRequest> {
 		@Nullable
-		private List<String> metric;
-
-		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -234,80 +228,22 @@ public final class StateRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
 		private String masterTimeout;
 
 		@Nullable
+		private List<String> metric;
+
+		@Nullable
 		private Long waitForMetadataVersion;
 
 		@Nullable
 		private String waitForTimeout;
-
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -376,6 +312,39 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Return local information, do not retrieve the state from master node
 		 * (default: false)
 		 * <p>
@@ -393,6 +362,37 @@ public final class StateRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(@Nullable List<String> value) {
+			this.metric = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(String... value) {
+			this.metric = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 */
+		public Builder addMetric(String value) {
+			if (this.metric == null) {
+				this.metric = new ArrayList<>();
+			}
+			this.metric.add(value);
 			return this;
 		}
 
@@ -486,30 +486,30 @@ public final class StateRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
+				if (request.waitForTimeout != null) {
+					params.put("wait_for_timeout", request.waitForTimeout);
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.waitForMetadataVersion != null) {
 					params.put("wait_for_metadata_version", String.valueOf(request.waitForMetadataVersion));
 				}
-				if (request.waitForTimeout != null) {
-					params.put("wait_for_timeout", request.waitForTimeout);
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

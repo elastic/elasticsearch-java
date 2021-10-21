@@ -51,9 +51,6 @@ import javax.annotation.Nullable;
 
 public final class UpgradeRequest extends RequestBase {
 	@Nullable
-	private final String index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -63,37 +60,29 @@ public final class UpgradeRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Boolean waitForCompletion;
+	private final String index;
 
 	@Nullable
 	private final Boolean onlyAncientSegments;
+
+	@Nullable
+	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public UpgradeRequest(Builder builder) {
 
-		this.index = builder.index;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.waitForCompletion = builder.waitForCompletion;
+		this.index = builder.index;
 		this.onlyAncientSegments = builder.onlyAncientSegments;
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
 	public UpgradeRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public String index() {
-		return this.index;
 	}
 
 	/**
@@ -131,14 +120,14 @@ public final class UpgradeRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify whether the request should block until the all segments are upgraded
-	 * (default: false)
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
 	 * <p>
-	 * API name: {@code wait_for_completion}
+	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
-		return this.waitForCompletion;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -152,15 +141,23 @@ public final class UpgradeRequest extends RequestBase {
 		return this.onlyAncientSegments;
 	}
 
+	/**
+	 * Specify whether the request should block until the all segments are upgraded
+	 * (default: false)
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link UpgradeRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpgradeRequest> {
-		@Nullable
-		private String index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -171,21 +168,13 @@ public final class UpgradeRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Boolean waitForCompletion;
+		private String index;
 
 		@Nullable
 		private Boolean onlyAncientSegments;
 
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -244,13 +233,13 @@ public final class UpgradeRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify whether the request should block until the all segments are upgraded
-		 * (default: false)
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
 		 * <p>
-		 * API name: {@code wait_for_completion}
+		 * API name: {@code index}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
+		public Builder index(@Nullable String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -262,6 +251,17 @@ public final class UpgradeRequest extends RequestBase {
 		 */
 		public Builder onlyAncientSegments(@Nullable Boolean value) {
 			this.onlyAncientSegments = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether the request should block until the all segments are upgraded
+		 * (default: false)
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 
@@ -317,9 +317,6 @@ public final class UpgradeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
@@ -327,11 +324,14 @@ public final class UpgradeRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.waitForCompletion != null) {
-					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.onlyAncientSegments != null) {
 					params.put("only_ancient_segments", String.valueOf(request.onlyAncientSegments));
+				}
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 

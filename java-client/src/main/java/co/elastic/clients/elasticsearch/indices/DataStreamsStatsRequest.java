@@ -50,22 +50,30 @@ import javax.annotation.Nullable;
 
 public final class DataStreamsStatsRequest extends RequestBase {
 	@Nullable
-	private final String name;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DataStreamsStatsRequest(Builder builder) {
 
-		this.name = builder.name;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.name = builder.name;
 
 	}
 
 	public DataStreamsStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code expand_wildcards}
+	 */
+	@Nullable
+	public List<ExpandWildcardOptions> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
@@ -79,14 +87,6 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		return this.name;
 	}
 
-	/**
-	 * API name: {@code expand_wildcards}
-	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
-		return this.expandWildcards;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -94,21 +94,10 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<DataStreamsStatsRequest> {
 		@Nullable
-		private String name;
-
-		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
-		/**
-		 * A comma-separated list of data stream names; use <code>_all</code> or empty
-		 * string to perform the operation on all data streams
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
+		@Nullable
+		private String name;
 
 		/**
 		 * API name: {@code expand_wildcards}
@@ -134,6 +123,17 @@ public final class DataStreamsStatsRequest extends RequestBase {
 				this.expandWildcards = new ArrayList<>();
 			}
 			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of data stream names; use <code>_all</code> or empty
+		 * string to perform the operation on all data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 

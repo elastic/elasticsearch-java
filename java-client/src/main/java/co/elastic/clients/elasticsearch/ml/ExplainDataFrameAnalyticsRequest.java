@@ -49,49 +49,106 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class ExplainDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String id;
-
-	@Nullable
-	private final DataframeAnalyticsSource source;
-
-	@Nullable
-	private final DataframeAnalyticsDestination dest;
+	private final Boolean allowLazyStart;
 
 	private final DataframeAnalysis analysis;
-
-	@Nullable
-	private final String description;
-
-	@Nullable
-	private final String modelMemoryLimit;
-
-	@Nullable
-	private final Integer maxNumThreads;
 
 	@Nullable
 	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	@Nullable
-	private final Boolean allowLazyStart;
+	private final String description;
+
+	@Nullable
+	private final DataframeAnalyticsDestination dest;
+
+	@Nullable
+	private final String id;
+
+	@Nullable
+	private final Integer maxNumThreads;
+
+	@Nullable
+	private final String modelMemoryLimit;
+
+	@Nullable
+	private final DataframeAnalyticsSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ExplainDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = builder.id;
-		this.source = builder.source;
-		this.dest = builder.dest;
-		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
-		this.description = builder.description;
-		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.maxNumThreads = builder.maxNumThreads;
-		this.analyzedFields = builder.analyzedFields;
 		this.allowLazyStart = builder.allowLazyStart;
+		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
+		this.analyzedFields = builder.analyzedFields;
+		this.description = builder.description;
+		this.dest = builder.dest;
+		this.id = builder.id;
+		this.maxNumThreads = builder.maxNumThreads;
+		this.modelMemoryLimit = builder.modelMemoryLimit;
+		this.source = builder.source;
 
 	}
 
 	public ExplainDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Specifies whether this job can start when there is insufficient machine
+	 * learning node capacity for it to be immediately assigned to a node.
+	 * <p>
+	 * API name: {@code allow_lazy_start}
+	 */
+	@Nullable
+	public Boolean allowLazyStart() {
+		return this.allowLazyStart;
+	}
+
+	/**
+	 * Required - The analysis configuration, which contains the information
+	 * necessary to perform one of the following types of analysis: classification,
+	 * outlier detection, or regression.
+	 * <p>
+	 * API name: {@code analysis}
+	 */
+	public DataframeAnalysis analysis() {
+		return this.analysis;
+	}
+
+	/**
+	 * Specify includes and/or excludes patterns to select which fields will be
+	 * included in the analysis. The patterns specified in excludes are applied
+	 * last, therefore excludes takes precedence. In other words, if the same field
+	 * is specified in both includes and excludes, then the field will not be
+	 * included in the analysis.
+	 * <p>
+	 * API name: {@code analyzed_fields}
+	 */
+	@Nullable
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+		return this.analyzedFields;
+	}
+
+	/**
+	 * A description of the job.
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public String description() {
+		return this.description;
+	}
+
+	/**
+	 * The destination configuration, consisting of index and optionally
+	 * results_field (ml by default).
+	 * <p>
+	 * API name: {@code dest}
+	 */
+	@Nullable
+	public DataframeAnalyticsDestination dest() {
+		return this.dest;
 	}
 
 	/**
@@ -107,46 +164,17 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	}
 
 	/**
-	 * The configuration of how to source the analysis data. It requires an index.
-	 * Optionally, query and _source may be specified.
+	 * The maximum number of threads to be used by the analysis. The default value
+	 * is 1. Using more threads may decrease the time necessary to complete the
+	 * analysis at the cost of using more CPU. Note that the process may use
+	 * additional threads for operational functionality other than the analysis
+	 * itself.
 	 * <p>
-	 * API name: {@code source}
+	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public DataframeAnalyticsSource source() {
-		return this.source;
-	}
-
-	/**
-	 * The destination configuration, consisting of index and optionally
-	 * results_field (ml by default).
-	 * <p>
-	 * API name: {@code dest}
-	 */
-	@Nullable
-	public DataframeAnalyticsDestination dest() {
-		return this.dest;
-	}
-
-	/**
-	 * Required - The analysis configuration, which contains the information
-	 * necessary to perform one of the following types of analysis: classification,
-	 * outlier detection, or regression.
-	 * <p>
-	 * API name: {@code analysis}
-	 */
-	public DataframeAnalysis analysis() {
-		return this.analysis;
-	}
-
-	/**
-	 * A description of the job.
-	 * <p>
-	 * API name: {@code description}
-	 */
-	@Nullable
-	public String description() {
-		return this.description;
+	public Integer maxNumThreads() {
+		return this.maxNumThreads;
 	}
 
 	/**
@@ -165,42 +193,14 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	}
 
 	/**
-	 * The maximum number of threads to be used by the analysis. The default value
-	 * is 1. Using more threads may decrease the time necessary to complete the
-	 * analysis at the cost of using more CPU. Note that the process may use
-	 * additional threads for operational functionality other than the analysis
-	 * itself.
+	 * The configuration of how to source the analysis data. It requires an index.
+	 * Optionally, query and _source may be specified.
 	 * <p>
-	 * API name: {@code max_num_threads}
+	 * API name: {@code source}
 	 */
 	@Nullable
-	public Integer maxNumThreads() {
-		return this.maxNumThreads;
-	}
-
-	/**
-	 * Specify includes and/or excludes patterns to select which fields will be
-	 * included in the analysis. The patterns specified in excludes are applied
-	 * last, therefore excludes takes precedence. In other words, if the same field
-	 * is specified in both includes and excludes, then the field will not be
-	 * included in the analysis.
-	 * <p>
-	 * API name: {@code analyzed_fields}
-	 */
-	@Nullable
-	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
-		return this.analyzedFields;
-	}
-
-	/**
-	 * Specifies whether this job can start when there is insufficient machine
-	 * learning node capacity for it to be immediately assigned to a node.
-	 * <p>
-	 * API name: {@code allow_lazy_start}
-	 */
-	@Nullable
-	public Boolean allowLazyStart() {
-		return this.allowLazyStart;
+	public DataframeAnalyticsSource source() {
+		return this.source;
 	}
 
 	/**
@@ -214,10 +214,26 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.source != null) {
+		if (this.allowLazyStart != null) {
 
-			generator.writeKey("source");
-			this.source.serialize(generator, mapper);
+			generator.writeKey("allow_lazy_start");
+			generator.write(this.allowLazyStart);
+
+		}
+
+		generator.writeKey("analysis");
+		this.analysis.serialize(generator, mapper);
+
+		if (this.analyzedFields != null) {
+
+			generator.writeKey("analyzed_fields");
+			generator.write(this.analyzedFields);
+
+		}
+		if (this.description != null) {
+
+			generator.writeKey("description");
+			generator.write(this.description);
 
 		}
 		if (this.dest != null) {
@@ -226,14 +242,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 			this.dest.serialize(generator, mapper);
 
 		}
+		if (this.maxNumThreads != null) {
 
-		generator.writeKey("analysis");
-		this.analysis.serialize(generator, mapper);
-
-		if (this.description != null) {
-
-			generator.writeKey("description");
-			generator.write(this.description);
+			generator.writeKey("max_num_threads");
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.modelMemoryLimit != null) {
@@ -242,22 +254,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 			generator.write(this.modelMemoryLimit);
 
 		}
-		if (this.maxNumThreads != null) {
+		if (this.source != null) {
 
-			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads);
-
-		}
-		if (this.analyzedFields != null) {
-
-			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
-
-		}
-		if (this.allowLazyStart != null) {
-
-			generator.writeKey("allow_lazy_start");
-			generator.write(this.allowLazyStart);
+			generator.writeKey("source");
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -270,84 +270,40 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 */
 	public static class Builder implements ObjectBuilder<ExplainDataFrameAnalyticsRequest> {
 		@Nullable
-		private String id;
-
-		@Nullable
-		private DataframeAnalyticsSource source;
-
-		@Nullable
-		private DataframeAnalyticsDestination dest;
+		private Boolean allowLazyStart;
 
 		private DataframeAnalysis analysis;
-
-		@Nullable
-		private String description;
-
-		@Nullable
-		private String modelMemoryLimit;
-
-		@Nullable
-		private Integer maxNumThreads;
 
 		@Nullable
 		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		@Nullable
-		private Boolean allowLazyStart;
+		private String description;
+
+		@Nullable
+		private DataframeAnalyticsDestination dest;
+
+		@Nullable
+		private String id;
+
+		@Nullable
+		private Integer maxNumThreads;
+
+		@Nullable
+		private String modelMemoryLimit;
+
+		@Nullable
+		private DataframeAnalyticsSource source;
 
 		/**
-		 * Identifier for the data frame analytics job. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * Specifies whether this job can start when there is insufficient machine
+		 * learning node capacity for it to be immediately assigned to a node.
 		 * <p>
-		 * API name: {@code id}
+		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
+		public Builder allowLazyStart(@Nullable Boolean value) {
+			this.allowLazyStart = value;
 			return this;
-		}
-
-		/**
-		 * The configuration of how to source the analysis data. It requires an index.
-		 * Optionally, query and _source may be specified.
-		 * <p>
-		 * API name: {@code source}
-		 */
-		public Builder source(@Nullable DataframeAnalyticsSource value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
-		 * The configuration of how to source the analysis data. It requires an index.
-		 * Optionally, query and _source may be specified.
-		 * <p>
-		 * API name: {@code source}
-		 */
-		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
-			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
-		}
-
-		/**
-		 * The destination configuration, consisting of index and optionally
-		 * results_field (ml by default).
-		 * <p>
-		 * API name: {@code dest}
-		 */
-		public Builder dest(@Nullable DataframeAnalyticsDestination value) {
-			this.dest = value;
-			return this;
-		}
-
-		/**
-		 * The destination configuration, consisting of index and optionally
-		 * results_field (ml by default).
-		 * <p>
-		 * API name: {@code dest}
-		 */
-		public Builder dest(
-				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
-			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
 		}
 
 		/**
@@ -374,12 +330,74 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		}
 
 		/**
+		 * Specify includes and/or excludes patterns to select which fields will be
+		 * included in the analysis. The patterns specified in excludes are applied
+		 * last, therefore excludes takes precedence. In other words, if the same field
+		 * is specified in both includes and excludes, then the field will not be
+		 * included in the analysis.
+		 * <p>
+		 * API name: {@code analyzed_fields}
+		 */
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+			this.analyzedFields = value;
+			return this;
+		}
+
+		/**
 		 * A description of the job.
 		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * The destination configuration, consisting of index and optionally
+		 * results_field (ml by default).
+		 * <p>
+		 * API name: {@code dest}
+		 */
+		public Builder dest(@Nullable DataframeAnalyticsDestination value) {
+			this.dest = value;
+			return this;
+		}
+
+		/**
+		 * The destination configuration, consisting of index and optionally
+		 * results_field (ml by default).
+		 * <p>
+		 * API name: {@code dest}
+		 */
+		public Builder dest(
+				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
+			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
+		}
+
+		/**
+		 * Identifier for the data frame analytics job. This identifier can contain
+		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
+		 * must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * The maximum number of threads to be used by the analysis. The default value
+		 * is 1. Using more threads may decrease the time necessary to complete the
+		 * analysis at the cost of using more CPU. Note that the process may use
+		 * additional threads for operational functionality other than the analysis
+		 * itself.
+		 * <p>
+		 * API name: {@code max_num_threads}
+		 */
+		public Builder maxNumThreads(@Nullable Integer value) {
+			this.maxNumThreads = value;
 			return this;
 		}
 
@@ -399,42 +417,24 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		}
 
 		/**
-		 * The maximum number of threads to be used by the analysis. The default value
-		 * is 1. Using more threads may decrease the time necessary to complete the
-		 * analysis at the cost of using more CPU. Note that the process may use
-		 * additional threads for operational functionality other than the analysis
-		 * itself.
+		 * The configuration of how to source the analysis data. It requires an index.
+		 * Optionally, query and _source may be specified.
 		 * <p>
-		 * API name: {@code max_num_threads}
+		 * API name: {@code source}
 		 */
-		public Builder maxNumThreads(@Nullable Integer value) {
-			this.maxNumThreads = value;
+		public Builder source(@Nullable DataframeAnalyticsSource value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * Specify includes and/or excludes patterns to select which fields will be
-		 * included in the analysis. The patterns specified in excludes are applied
-		 * last, therefore excludes takes precedence. In other words, if the same field
-		 * is specified in both includes and excludes, then the field will not be
-		 * included in the analysis.
+		 * The configuration of how to source the analysis data. It requires an index.
+		 * Optionally, query and _source may be specified.
 		 * <p>
-		 * API name: {@code analyzed_fields}
+		 * API name: {@code source}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
-			this.analyzedFields = value;
-			return this;
-		}
-
-		/**
-		 * Specifies whether this job can start when there is insufficient machine
-		 * learning node capacity for it to be immediately assigned to a node.
-		 * <p>
-		 * API name: {@code allow_lazy_start}
-		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
-			this.allowLazyStart = value;
-			return this;
+		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
@@ -461,14 +461,14 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	protected static void setupExplainDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
-		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
-		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
+		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
 
 	}
 

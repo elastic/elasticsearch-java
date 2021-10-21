@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -51,7 +51,7 @@ public class ElasticsearchGraphClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ExploreResponse explore(ExploreRequest request) throws IOException {
+	public ExploreResponse explore(ExploreRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExploreRequest.ENDPOINT);
 	}
 
@@ -60,16 +60,15 @@ public class ElasticsearchGraphClient extends ApiClient {
 	 * an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExploreRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ExploreResponse explore(Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return explore(fn.apply(new ExploreRequest.Builder()).build());
 	}
 

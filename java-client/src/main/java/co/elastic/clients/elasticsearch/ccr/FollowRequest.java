@@ -52,9 +52,6 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	private final String index;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-	@Nullable
 	private final String leaderIndex;
 
 	@Nullable
@@ -90,12 +87,14 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final String remoteCluster;
 
+	@Nullable
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public FollowRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.waitForActiveShards = builder.waitForActiveShards;
 		this.leaderIndex = builder.leaderIndex;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
@@ -108,6 +107,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
 		this.readPollTimeout = builder.readPollTimeout;
 		this.remoteCluster = builder.remoteCluster;
+		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
@@ -122,19 +122,6 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public String index() {
 		return this.index;
-	}
-
-	/**
-	 * Sets the number of shard copies that must be active before returning.
-	 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
-	 * any non-negative value less than or equal to the total number of copies for
-	 * the shard (number of replicas + 1)
-	 * <p>
-	 * API name: {@code wait_for_active_shards}
-	 */
-	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
-		return this.waitForActiveShards;
 	}
 
 	/**
@@ -234,6 +221,19 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before returning.
+	 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+	 * any non-negative value less than or equal to the total number of copies for
+	 * the shard (number of replicas + 1)
+	 * <p>
+	 * API name: {@code wait_for_active_shards}
+	 */
+	@Nullable
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+		return this.waitForActiveShards;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -328,9 +328,6 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		private String index;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-		@Nullable
 		private String leaderIndex;
 
 		@Nullable
@@ -366,6 +363,9 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private String remoteCluster;
 
+		@Nullable
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+
 		/**
 		 * Required - The name of the follower index
 		 * <p>
@@ -373,19 +373,6 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public Builder index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Sets the number of shard copies that must be active before returning.
-		 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
-		 * any non-negative value less than or equal to the total number of copies for
-		 * the shard (number of replicas + 1)
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -482,6 +469,19 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public Builder remoteCluster(@Nullable String value) {
 			this.remoteCluster = value;
+			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before returning.
+		 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+		 * any non-negative value less than or equal to the total number of copies for
+		 * the shard (number of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 

@@ -55,18 +55,18 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	private final List<String> nodeId;
 
 	@Nullable
-	private final String timeout;
+	private final String secureSettingsPassword;
 
 	@Nullable
-	private final String secureSettingsPassword;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ReloadSecureSettingsRequest(Builder builder) {
 
 		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
-		this.timeout = builder.timeout;
 		this.secureSettingsPassword = builder.secureSettingsPassword;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -86,6 +86,14 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	}
 
 	/**
+	 * API name: {@code secure_settings_password}
+	 */
+	@Nullable
+	public String secureSettingsPassword() {
+		return this.secureSettingsPassword;
+	}
+
+	/**
 	 * Explicit operation timeout
 	 * <p>
 	 * API name: {@code timeout}
@@ -93,14 +101,6 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	@Nullable
 	public String timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * API name: {@code secure_settings_password}
-	 */
-	@Nullable
-	public String secureSettingsPassword() {
-		return this.secureSettingsPassword;
 	}
 
 	/**
@@ -133,10 +133,10 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		private List<String> nodeId;
 
 		@Nullable
-		private String timeout;
+		private String secureSettingsPassword;
 
 		@Nullable
-		private String secureSettingsPassword;
+		private String timeout;
 
 		/**
 		 * A comma-separated list of node IDs to span the reload/reinit call. Should
@@ -172,20 +172,20 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		}
 
 		/**
+		 * API name: {@code secure_settings_password}
+		 */
+		public Builder secureSettingsPassword(@Nullable String value) {
+			this.secureSettingsPassword = value;
+			return this;
+		}
+
+		/**
 		 * Explicit operation timeout
 		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code secure_settings_password}
-		 */
-		public Builder secureSettingsPassword(@Nullable String value) {
-			this.secureSettingsPassword = value;
 			return this;
 		}
 

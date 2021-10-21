@@ -50,10 +50,10 @@ import javax.annotation.Nullable;
 
 public final class ClusterStatsRequest extends RequestBase {
 	@Nullable
-	private final List<String> nodeId;
+	private final Boolean flatSettings;
 
 	@Nullable
-	private final Boolean flatSettings;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final String timeout;
@@ -62,14 +62,24 @@ public final class ClusterStatsRequest extends RequestBase {
 
 	public ClusterStatsRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.flatSettings = builder.flatSettings;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
 
 	public ClusterStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
+	 * API name: {@code flat_settings}
+	 */
+	@Nullable
+	public Boolean flatSettings() {
+		return this.flatSettings;
 	}
 
 	/**
@@ -81,16 +91,6 @@ public final class ClusterStatsRequest extends RequestBase {
 	@Nullable
 	public List<String> nodeId() {
 		return this.nodeId;
-	}
-
-	/**
-	 * Return settings in flat format (default: false)
-	 * <p>
-	 * API name: {@code flat_settings}
-	 */
-	@Nullable
-	public Boolean flatSettings() {
-		return this.flatSettings;
 	}
 
 	/**
@@ -113,13 +113,23 @@ public final class ClusterStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<ClusterStatsRequest> {
 		@Nullable
-		private List<String> nodeId;
-
-		@Nullable
 		private Boolean flatSettings;
 
 		@Nullable
+		private List<String> nodeId;
+
+		@Nullable
 		private String timeout;
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
+		 * API name: {@code flat_settings}
+		 */
+		public Builder flatSettings(@Nullable Boolean value) {
+			this.flatSettings = value;
+			return this;
+		}
 
 		/**
 		 * Comma-separated list of node filters used to limit returned information.
@@ -151,16 +161,6 @@ public final class ClusterStatsRequest extends RequestBase {
 				this.nodeId = new ArrayList<>();
 			}
 			this.nodeId.add(value);
-			return this;
-		}
-
-		/**
-		 * Return settings in flat format (default: false)
-		 * <p>
-		 * API name: {@code flat_settings}
-		 */
-		public Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
 			return this;
 		}
 

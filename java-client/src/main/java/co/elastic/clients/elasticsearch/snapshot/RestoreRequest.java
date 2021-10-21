@@ -52,16 +52,6 @@ import javax.annotation.Nullable;
 // typedef: snapshot.restore.Request
 @JsonpDeserializable
 public final class RestoreRequest extends RequestBase implements JsonpSerializable {
-	private final String repository;
-
-	private final String snapshot;
-
-	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final Boolean waitForCompletion;
-
 	@Nullable
 	private final List<String> ignoreIndexSettings;
 
@@ -81,6 +71,9 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	private final List<String> indices;
 
 	@Nullable
+	private final String masterTimeout;
+
+	@Nullable
 	private final Boolean partial;
 
 	@Nullable
@@ -89,66 +82,35 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String renameReplacement;
 
+	private final String repository;
+
+	private final String snapshot;
+
+	@Nullable
+	private final Boolean waitForCompletion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public RestoreRequest(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.masterTimeout = builder.masterTimeout;
-		this.waitForCompletion = builder.waitForCompletion;
 		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeAliases = builder.includeAliases;
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indexSettings = builder.indexSettings;
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.masterTimeout = builder.masterTimeout;
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
+		this.repository = Objects.requireNonNull(builder.repository, "repository");
+		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
 	public RestoreRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A repository name
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public String repository() {
-		return this.repository;
-	}
-
-	/**
-	 * Required - A snapshot name
-	 * <p>
-	 * API name: {@code snapshot}
-	 */
-	public String snapshot() {
-		return this.snapshot;
-	}
-
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Should this request wait until the operation has completed before returning
-	 * <p>
-	 * API name: {@code wait_for_completion}
-	 */
-	@Nullable
-	public Boolean waitForCompletion() {
-		return this.waitForCompletion;
 	}
 
 	/**
@@ -200,6 +162,16 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * API name: {@code partial}
 	 */
 	@Nullable
@@ -221,6 +193,34 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public String renameReplacement() {
 		return this.renameReplacement;
+	}
+
+	/**
+	 * Required - A repository name
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public String repository() {
+		return this.repository;
+	}
+
+	/**
+	 * Required - A snapshot name
+	 * <p>
+	 * API name: {@code snapshot}
+	 */
+	public String snapshot() {
+		return this.snapshot;
+	}
+
+	/**
+	 * Should this request wait until the operation has completed before returning
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public Boolean waitForCompletion() {
+		return this.waitForCompletion;
 	}
 
 	/**
@@ -307,16 +307,6 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * Builder for {@link RestoreRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RestoreRequest> {
-		private String repository;
-
-		private String snapshot;
-
-		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private Boolean waitForCompletion;
-
 		@Nullable
 		private List<String> ignoreIndexSettings;
 
@@ -336,6 +326,9 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		private List<String> indices;
 
 		@Nullable
+		private String masterTimeout;
+
+		@Nullable
 		private Boolean partial;
 
 		@Nullable
@@ -344,45 +337,12 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private String renameReplacement;
 
-		/**
-		 * Required - A repository name
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String value) {
-			this.repository = value;
-			return this;
-		}
+		private String repository;
 
-		/**
-		 * Required - A snapshot name
-		 * <p>
-		 * API name: {@code snapshot}
-		 */
-		public Builder snapshot(String value) {
-			this.snapshot = value;
-			return this;
-		}
+		private String snapshot;
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Should this request wait until the operation has completed before returning
-		 * <p>
-		 * API name: {@code wait_for_completion}
-		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
-			return this;
-		}
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * API name: {@code ignore_index_settings}
@@ -479,6 +439,16 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code partial}
 		 */
 		public Builder partial(@Nullable Boolean value) {
@@ -499,6 +469,36 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 */
 		public Builder renameReplacement(@Nullable String value) {
 			this.renameReplacement = value;
+			return this;
+		}
+
+		/**
+		 * Required - A repository name
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public Builder repository(String value) {
+			this.repository = value;
+			return this;
+		}
+
+		/**
+		 * Required - A snapshot name
+		 * <p>
+		 * API name: {@code snapshot}
+		 */
+		public Builder snapshot(String value) {
+			this.snapshot = value;
+			return this;
+		}
+
+		/**
+		 * Should this request wait until the operation has completed before returning
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 

@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -51,7 +51,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException {
+	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, CancelRequest.ENDPOINT);
 	}
 
@@ -59,16 +59,16 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CancelRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CancelResponse> cancel(
-			Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn) throws IOException {
+			Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
@@ -80,7 +80,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CancelResponse> cancel() throws IOException {
+	public CompletableFuture<CancelResponse> cancel() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT);
 	}
 
@@ -94,7 +94,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException {
+	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetTasksRequest.ENDPOINT);
 	}
 
@@ -102,16 +102,16 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 * Returns information about a task.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTasksRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetTasksResponse> get(
-			Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn) throws IOException {
+			Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
@@ -125,7 +125,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException {
+	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ListRequest.ENDPOINT);
 	}
 
@@ -133,16 +133,15 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 * Returns a list of tasks.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ListRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return list(fn.apply(new ListRequest.Builder()).build());
 	}
 
@@ -154,7 +153,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ListResponse> list() throws IOException {
+	public CompletableFuture<ListResponse> list() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest.ENDPOINT);
 	}
 

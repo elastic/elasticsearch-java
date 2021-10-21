@@ -50,9 +50,6 @@ import javax.annotation.Nullable;
 
 public final class RecoveryRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean activeOnly;
 
 	@Nullable
@@ -61,30 +58,22 @@ public final class RecoveryRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean detailed;
 
+	@Nullable
+	private final List<String> index;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public RecoveryRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.activeOnly = builder.activeOnly;
 		this.bytes = builder.bytes;
 		this.detailed = builder.detailed;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
 	public RecoveryRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list or wildcard expression of index names to limit the
-	 * returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -118,15 +107,23 @@ public final class RecoveryRequest extends CatRequestBase {
 		return this.detailed;
 	}
 
+	/**
+	 * Comma-separated list or wildcard expression of index names to limit the
+	 * returned information
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link RecoveryRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryRequest> {
-		@Nullable
-		private List<String> index;
-
 		@Nullable
 		private Boolean activeOnly;
 
@@ -135,6 +132,40 @@ public final class RecoveryRequest extends CatRequestBase {
 
 		@Nullable
 		private Boolean detailed;
+
+		@Nullable
+		private List<String> index;
+
+		/**
+		 * If <code>true</code>, the response only includes ongoing shard recoveries
+		 * <p>
+		 * API name: {@code active_only}
+		 */
+		public Builder activeOnly(@Nullable Boolean value) {
+			this.activeOnly = value;
+			return this;
+		}
+
+		/**
+		 * The unit in which to display byte values
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes detailed information about shard
+		 * recoveries
+		 * <p>
+		 * API name: {@code detailed}
+		 */
+		public Builder detailed(@Nullable Boolean value) {
+			this.detailed = value;
+			return this;
+		}
 
 		/**
 		 * Comma-separated list or wildcard expression of index names to limit the
@@ -166,37 +197,6 @@ public final class RecoveryRequest extends CatRequestBase {
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the response only includes ongoing shard recoveries
-		 * <p>
-		 * API name: {@code active_only}
-		 */
-		public Builder activeOnly(@Nullable Boolean value) {
-			this.activeOnly = value;
-			return this;
-		}
-
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the response includes detailed information about shard
-		 * recoveries
-		 * <p>
-		 * API name: {@code detailed}
-		 */
-		public Builder detailed(@Nullable Boolean value) {
-			this.detailed = value;
 			return this;
 		}
 
@@ -254,14 +254,14 @@ public final class RecoveryRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.detailed != null) {
+					params.put("detailed", String.valueOf(request.detailed));
+				}
 				if (request.activeOnly != null) {
 					params.put("active_only", String.valueOf(request.activeOnly));
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.toString());
-				}
-				if (request.detailed != null) {
-					params.put("detailed", String.valueOf(request.detailed));
 				}
 				return params;
 

@@ -49,13 +49,13 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class AllocationExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String currentNode;
+
+	@Nullable
 	private final Boolean includeDiskInfo;
 
 	@Nullable
 	private final Boolean includeYesDecisions;
-
-	@Nullable
-	private final String currentNode;
 
 	@Nullable
 	private final String index;
@@ -70,9 +70,9 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 
 	public AllocationExplainRequest(Builder builder) {
 
+		this.currentNode = builder.currentNode;
 		this.includeDiskInfo = builder.includeDiskInfo;
 		this.includeYesDecisions = builder.includeYesDecisions;
-		this.currentNode = builder.currentNode;
 		this.index = builder.index;
 		this.primary = builder.primary;
 		this.shard = builder.shard;
@@ -81,6 +81,17 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 
 	public AllocationExplainRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Specifies the node ID or the name of the node to only explain a shard that is
+	 * currently located on the specified node.
+	 * <p>
+	 * API name: {@code current_node}
+	 */
+	@Nullable
+	public String currentNode() {
+		return this.currentNode;
 	}
 
 	/**
@@ -101,17 +112,6 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	@Nullable
 	public Boolean includeYesDecisions() {
 		return this.includeYesDecisions;
-	}
-
-	/**
-	 * Specifies the node ID or the name of the node to only explain a shard that is
-	 * currently located on the specified node.
-	 * <p>
-	 * API name: {@code current_node}
-	 */
-	@Nullable
-	public String currentNode() {
-		return this.currentNode;
 	}
 
 	/**
@@ -189,13 +189,13 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 */
 	public static class Builder implements ObjectBuilder<AllocationExplainRequest> {
 		@Nullable
+		private String currentNode;
+
+		@Nullable
 		private Boolean includeDiskInfo;
 
 		@Nullable
 		private Boolean includeYesDecisions;
-
-		@Nullable
-		private String currentNode;
 
 		@Nullable
 		private String index;
@@ -205,6 +205,17 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 
 		@Nullable
 		private Integer shard;
+
+		/**
+		 * Specifies the node ID or the name of the node to only explain a shard that is
+		 * currently located on the specified node.
+		 * <p>
+		 * API name: {@code current_node}
+		 */
+		public Builder currentNode(@Nullable String value) {
+			this.currentNode = value;
+			return this;
+		}
 
 		/**
 		 * If true, returns information about disk usage and shard sizes.
@@ -223,17 +234,6 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 */
 		public Builder includeYesDecisions(@Nullable Boolean value) {
 			this.includeYesDecisions = value;
-			return this;
-		}
-
-		/**
-		 * Specifies the node ID or the name of the node to only explain a shard that is
-		 * currently located on the specified node.
-		 * <p>
-		 * API name: {@code current_node}
-		 */
-		public Builder currentNode(@Nullable String value) {
-			this.currentNode = value;
 			return this;
 		}
 

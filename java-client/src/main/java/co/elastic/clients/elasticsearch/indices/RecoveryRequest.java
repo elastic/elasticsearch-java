@@ -50,37 +50,26 @@ import javax.annotation.Nullable;
 
 public final class RecoveryRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean activeOnly;
 
 	@Nullable
 	private final Boolean detailed;
 
+	@Nullable
+	private final List<String> index;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public RecoveryRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.activeOnly = builder.activeOnly;
 		this.detailed = builder.detailed;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
 	public RecoveryRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -103,6 +92,17 @@ public final class RecoveryRequest extends RequestBase {
 		return this.detailed;
 	}
 
+	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -110,13 +110,33 @@ public final class RecoveryRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean activeOnly;
 
 		@Nullable
 		private Boolean detailed;
+
+		@Nullable
+		private List<String> index;
+
+		/**
+		 * Display only those recoveries that are currently on-going
+		 * <p>
+		 * API name: {@code active_only}
+		 */
+		public Builder activeOnly(@Nullable Boolean value) {
+			this.activeOnly = value;
+			return this;
+		}
+
+		/**
+		 * Whether to display detailed information about shard recovery
+		 * <p>
+		 * API name: {@code detailed}
+		 */
+		public Builder detailed(@Nullable Boolean value) {
+			this.detailed = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of index names; use <code>_all</code> or empty string
@@ -148,26 +168,6 @@ public final class RecoveryRequest extends RequestBase {
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Display only those recoveries that are currently on-going
-		 * <p>
-		 * API name: {@code active_only}
-		 */
-		public Builder activeOnly(@Nullable Boolean value) {
-			this.activeOnly = value;
-			return this;
-		}
-
-		/**
-		 * Whether to display detailed information about shard recovery
-		 * <p>
-		 * API name: {@code detailed}
-		 */
-		public Builder detailed(@Nullable Boolean value) {
-			this.detailed = value;
 			return this;
 		}
 
@@ -223,11 +223,11 @@ public final class RecoveryRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.activeOnly != null) {
-					params.put("active_only", String.valueOf(request.activeOnly));
-				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
+				}
+				if (request.activeOnly != null) {
+					params.put("active_only", String.valueOf(request.activeOnly));
 				}
 				return params;
 

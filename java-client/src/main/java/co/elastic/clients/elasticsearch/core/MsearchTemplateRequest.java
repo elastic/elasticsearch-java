@@ -55,19 +55,19 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class MsearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
+
+	@Nullable
+	private final List<String> index;
 
 	@Nullable
 	private final Long maxConcurrentSearches;
 
 	@Nullable
 	private final SearchType searchType;
+
+	@Nullable
+	private final List<String> type;
 
 	@Nullable
 	private final Boolean typedKeys;
@@ -78,11 +78,11 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 
 	public MsearchTemplateRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.typedKeys = builder.typedKeys;
 		this.searchTemplates = ModelTypeHelper.unmodifiableNonNull(builder.searchTemplates, "_value_body");
 
@@ -90,26 +90,6 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 
 	public MsearchTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names to use as default
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
-	 * A comma-separated list of document types to use as default
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
 	}
 
 	/**
@@ -121,6 +101,16 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	@Nullable
 	public Boolean ccsMinimizeRoundtrips() {
 		return this.ccsMinimizeRoundtrips;
+	}
+
+	/**
+	 * A comma-separated list of index names to use as default
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -142,6 +132,16 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	@Nullable
 	public SearchType searchType() {
 		return this.searchType;
+	}
+
+	/**
+	 * A comma-separated list of document types to use as default
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public List<String> type() {
+		return this.type;
 	}
 
 	/**
@@ -184,13 +184,10 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 */
 	public static class Builder implements ObjectBuilder<MsearchTemplateRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean ccsMinimizeRoundtrips;
+
+		@Nullable
+		private List<String> index;
 
 		@Nullable
 		private Long maxConcurrentSearches;
@@ -199,9 +196,23 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		private SearchType searchType;
 
 		@Nullable
+		private List<String> type;
+
+		@Nullable
 		private Boolean typedKeys;
 
 		private List<TemplateItem> searchTemplates;
+
+		/**
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution
+		 * <p>
+		 * API name: {@code ccs_minimize_roundtrips}
+		 */
+		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+			this.ccsMinimizeRoundtrips = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of index names to use as default
@@ -235,6 +246,27 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
+		 * Controls the maximum number of concurrent searches the multi search api will
+		 * execute
+		 * <p>
+		 * API name: {@code max_concurrent_searches}
+		 */
+		public Builder maxConcurrentSearches(@Nullable Long value) {
+			this.maxConcurrentSearches = value;
+			return this;
+		}
+
+		/**
+		 * Search operation type
+		 * <p>
+		 * API name: {@code search_type}
+		 */
+		public Builder searchType(@Nullable SearchType value) {
+			this.searchType = value;
+			return this;
+		}
+
+		/**
 		 * A comma-separated list of document types to use as default
 		 * <p>
 		 * API name: {@code type}
@@ -262,38 +294,6 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 				this.type = new ArrayList<>();
 			}
 			this.type.add(value);
-			return this;
-		}
-
-		/**
-		 * Indicates whether network round-trips should be minimized as part of
-		 * cross-cluster search requests execution
-		 * <p>
-		 * API name: {@code ccs_minimize_roundtrips}
-		 */
-		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
-			this.ccsMinimizeRoundtrips = value;
-			return this;
-		}
-
-		/**
-		 * Controls the maximum number of concurrent searches the multi search api will
-		 * execute
-		 * <p>
-		 * API name: {@code max_concurrent_searches}
-		 */
-		public Builder maxConcurrentSearches(@Nullable Long value) {
-			this.maxConcurrentSearches = value;
-			return this;
-		}
-
-		/**
-		 * Search operation type
-		 * <p>
-		 * API name: {@code search_type}
-		 */
-		public Builder searchType(@Nullable SearchType value) {
-			this.searchType = value;
 			return this;
 		}
 
@@ -430,8 +430,8 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				if (request.typedKeys != null) {
+					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
@@ -439,8 +439,8 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 

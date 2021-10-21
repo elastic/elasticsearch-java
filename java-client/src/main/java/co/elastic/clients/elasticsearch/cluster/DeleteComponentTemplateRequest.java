@@ -43,10 +43,10 @@ import javax.annotation.Nullable;
 // typedef: cluster.delete_component_template.Request
 
 public final class DeleteComponentTemplateRequest extends RequestBase {
-	private final String name;
-
 	@Nullable
 	private final String masterTimeout;
+
+	private final String name;
 
 	@Nullable
 	private final String timeout;
@@ -55,23 +55,14 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 
 	public DeleteComponentTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = Objects.requireNonNull(builder.name, "name");
 		this.timeout = builder.timeout;
 
 	}
 
 	public DeleteComponentTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The name of the template
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
 	}
 
 	/**
@@ -82,6 +73,15 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - The name of the template
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -100,23 +100,13 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	 * Builder for {@link DeleteComponentTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteComponentTemplateRequest> {
-		private String name;
-
 		@Nullable
 		private String masterTimeout;
 
+		private String name;
+
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - The name of the template
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
 
 		/**
 		 * Specify timeout for connection to master
@@ -125,6 +115,16 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the template
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 

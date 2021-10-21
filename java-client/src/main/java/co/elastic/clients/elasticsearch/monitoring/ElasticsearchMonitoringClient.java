@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.monitoring;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class ElasticsearchMonitoringClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
+	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
 	}
 
@@ -58,17 +58,16 @@ public class ElasticsearchMonitoringClient extends ApiClient {
 	 * Used by the monitoring features to send monitoring data.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final <TSource> BulkResponse bulk(
-			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
+	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
 	}
 
 }

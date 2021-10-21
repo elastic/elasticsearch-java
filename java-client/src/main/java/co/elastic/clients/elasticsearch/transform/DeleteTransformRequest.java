@@ -44,31 +44,22 @@ import javax.annotation.Nullable;
 // typedef: transform.delete_transform.Request
 
 public final class DeleteTransformRequest extends RequestBase {
-	private final String transformId;
-
 	@Nullable
 	private final Boolean force;
+
+	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DeleteTransformRequest(Builder builder) {
 
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.force = builder.force;
+		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 
 	}
 
 	public DeleteTransformRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The id of the transform to delete
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	public String transformId() {
-		return this.transformId;
 	}
 
 	/**
@@ -83,26 +74,25 @@ public final class DeleteTransformRequest extends RequestBase {
 		return this.force;
 	}
 
+	/**
+	 * Required - The id of the transform to delete
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	public String transformId() {
+		return this.transformId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link DeleteTransformRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteTransformRequest> {
-		private String transformId;
-
 		@Nullable
 		private Boolean force;
 
-		/**
-		 * Required - The id of the transform to delete
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(String value) {
-			this.transformId = value;
-			return this;
-		}
+		private String transformId;
 
 		/**
 		 * When <code>true</code>, the transform is deleted regardless of its current
@@ -113,6 +103,16 @@ public final class DeleteTransformRequest extends RequestBase {
 		 */
 		public Builder force(@Nullable Boolean value) {
 			this.force = value;
+			return this;
+		}
+
+		/**
+		 * Required - The id of the transform to delete
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public Builder transformId(String value) {
+			this.transformId = value;
 			return this;
 		}
 

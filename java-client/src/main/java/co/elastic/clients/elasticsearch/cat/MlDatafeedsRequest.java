@@ -44,32 +44,22 @@ import javax.annotation.Nullable;
 
 public final class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
-	private final String datafeedId;
+	private final Boolean allowNoDatafeeds;
 
 	@Nullable
-	private final Boolean allowNoDatafeeds;
+	private final String datafeedId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MlDatafeedsRequest(Builder builder) {
 
-		this.datafeedId = builder.datafeedId;
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
+		this.datafeedId = builder.datafeedId;
 
 	}
 
 	public MlDatafeedsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the datafeeds stats to fetch
-	 * <p>
-	 * API name: {@code datafeed_id}
-	 */
-	@Nullable
-	public String datafeedId() {
-		return this.datafeedId;
 	}
 
 	/**
@@ -83,6 +73,16 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		return this.allowNoDatafeeds;
 	}
 
+	/**
+	 * The ID of the datafeeds stats to fetch
+	 * <p>
+	 * API name: {@code datafeed_id}
+	 */
+	@Nullable
+	public String datafeedId() {
+		return this.datafeedId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -90,20 +90,10 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
-		private String datafeedId;
-
-		@Nullable
 		private Boolean allowNoDatafeeds;
 
-		/**
-		 * The ID of the datafeeds stats to fetch
-		 * <p>
-		 * API name: {@code datafeed_id}
-		 */
-		public Builder datafeedId(@Nullable String value) {
-			this.datafeedId = value;
-			return this;
-		}
+		@Nullable
+		private String datafeedId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
@@ -113,6 +103,16 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		 */
 		public Builder allowNoDatafeeds(@Nullable Boolean value) {
 			this.allowNoDatafeeds = value;
+			return this;
+		}
+
+		/**
+		 * The ID of the datafeeds stats to fetch
+		 * <p>
+		 * API name: {@code datafeed_id}
+		 */
+		public Builder datafeedId(@Nullable String value) {
+			this.datafeedId = value;
 			return this;
 		}
 

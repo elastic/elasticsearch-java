@@ -47,9 +47,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String jobId;
-
-	@Nullable
 	private final AnalysisConfig analysisConfig;
 
 	@Nullable
@@ -60,6 +57,9 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	@Nullable
 	private final String description;
+
+	@Nullable
+	private final String jobId;
 
 	@Nullable
 	private final ModelPlotConfig modelPlot;
@@ -74,11 +74,11 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	public ValidateRequest(Builder builder) {
 
-		this.jobId = builder.jobId;
 		this.analysisConfig = builder.analysisConfig;
 		this.analysisLimits = builder.analysisLimits;
 		this.dataDescription = builder.dataDescription;
 		this.description = builder.description;
+		this.jobId = builder.jobId;
 		this.modelPlot = builder.modelPlot;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.resultsIndexName = builder.resultsIndexName;
@@ -87,14 +87,6 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	public ValidateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * API name: {@code job_id}
-	 */
-	@Nullable
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -127,6 +119,14 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public String description() {
 		return this.description;
+	}
+
+	/**
+	 * API name: {@code job_id}
+	 */
+	@Nullable
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -164,12 +164,6 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.jobId != null) {
-
-			generator.writeKey("job_id");
-			generator.write(this.jobId);
-
-		}
 		if (this.analysisConfig != null) {
 
 			generator.writeKey("analysis_config");
@@ -192,6 +186,12 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 			generator.writeKey("description");
 			generator.write(this.description);
+
+		}
+		if (this.jobId != null) {
+
+			generator.writeKey("job_id");
+			generator.write(this.jobId);
 
 		}
 		if (this.modelPlot != null) {
@@ -222,9 +222,6 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 */
 	public static class Builder implements ObjectBuilder<ValidateRequest> {
 		@Nullable
-		private String jobId;
-
-		@Nullable
 		private AnalysisConfig analysisConfig;
 
 		@Nullable
@@ -237,6 +234,9 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		private String description;
 
 		@Nullable
+		private String jobId;
+
+		@Nullable
 		private ModelPlotConfig modelPlot;
 
 		@Nullable
@@ -244,14 +244,6 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 		@Nullable
 		private String resultsIndexName;
-
-		/**
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(@Nullable String value) {
-			this.jobId = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code analysis_config}
@@ -303,6 +295,14 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(@Nullable String value) {
+			this.jobId = value;
 			return this;
 		}
 
@@ -359,11 +359,11 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	protected static void setupValidateRequestDeserializer(DelegatingDeserializer<ValidateRequest.Builder> op) {
 
-		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
 		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::modelPlot, ModelPlotConfig._DESERIALIZER, "model_plot");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");

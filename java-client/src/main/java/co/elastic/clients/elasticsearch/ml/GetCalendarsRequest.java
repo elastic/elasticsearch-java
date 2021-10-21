@@ -54,10 +54,10 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	private final Integer from;
 
 	@Nullable
-	private final Integer size;
+	private final Page page;
 
 	@Nullable
-	private final Page page;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,8 +65,8 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 
 		this.calendarId = builder.calendarId;
 		this.from = builder.from;
-		this.size = builder.size;
 		this.page = builder.page;
+		this.size = builder.size;
 
 	}
 
@@ -95,6 +95,14 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
+	 * API name: {@code page}
+	 */
+	@Nullable
+	public Page page() {
+		return this.page;
+	}
+
+	/**
 	 * Specifies the maximum number of calendars to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -102,14 +110,6 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public Integer size() {
 		return this.size;
-	}
-
-	/**
-	 * API name: {@code page}
-	 */
-	@Nullable
-	public Page page() {
-		return this.page;
 	}
 
 	/**
@@ -145,10 +145,10 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		private Integer from;
 
 		@Nullable
-		private Integer size;
+		private Page page;
 
 		@Nullable
-		private Page page;
+		private Integer size;
 
 		/**
 		 * A string that uniquely identifies a calendar.
@@ -171,16 +171,6 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Specifies the maximum number of calendars to obtain.
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code page}
 		 */
 		public Builder page(@Nullable Page value) {
@@ -193,6 +183,16 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
+		 * Specifies the maximum number of calendars to obtain.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
 		}
 
 		/**
@@ -263,11 +263,11 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

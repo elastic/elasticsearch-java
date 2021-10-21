@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -53,7 +53,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<AllocationExplainResponse> allocationExplain(AllocationExplainRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, AllocationExplainRequest.ENDPOINT);
 	}
 
@@ -61,16 +61,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Provides explanations for shard allocations in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link AllocationExplainRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<AllocationExplainResponse> allocationExplain(
-			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn) throws IOException {
+			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
 	}
 
@@ -82,7 +82,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException {
+	public CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new AllocationExplainRequest.Builder().build(),
 				AllocationExplainRequest.ENDPOINT);
 	}
@@ -98,7 +98,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
-			DeleteComponentTemplateRequest request) throws IOException {
+			DeleteComponentTemplateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteComponentTemplateRequest.ENDPOINT);
 	}
 
@@ -106,9 +106,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Deletes a component template
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteComponentTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
@@ -116,7 +115,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 
 	public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
 			Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
 	}
 
@@ -131,7 +130,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteVotingConfigExclusionsRequest.ENDPOINT);
 	}
 
@@ -139,9 +138,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Clears cluster voting config exclusions.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteVotingConfigExclusionsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
@@ -149,7 +147,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 
 	public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
 			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
 	}
 
@@ -161,7 +159,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions() throws IOException {
+	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new DeleteVotingConfigExclusionsRequest.Builder().build(),
 				DeleteVotingConfigExclusionsRequest.ENDPOINT);
 	}
@@ -177,7 +176,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ExistsComponentTemplateRequest.ENDPOINT);
 	}
 
@@ -185,9 +184,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Returns information about whether a particular component template exist
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsComponentTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
@@ -195,7 +193,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 
 	public final CompletableFuture<BooleanResponse> existsComponentTemplate(
 			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
 	}
 
@@ -210,7 +208,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(GetComponentTemplateRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetComponentTemplateRequest.ENDPOINT);
 	}
 
@@ -218,9 +216,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Returns one or more component templates
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetComponentTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
@@ -228,7 +225,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 
 	public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
 			Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
 	}
 
@@ -240,7 +237,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate() throws IOException {
+	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetComponentTemplateRequest.Builder().build(),
 				GetComponentTemplateRequest.ENDPOINT);
 	}
@@ -255,7 +253,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request) throws IOException {
+	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetSettingsRequest.ENDPOINT);
 	}
 
@@ -263,16 +262,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Returns cluster settings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetSettingsResponse> getSettings(
-			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn) throws IOException {
+			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
@@ -284,7 +283,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException {
+	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetSettingsRequest.Builder().build(),
 				GetSettingsRequest.ENDPOINT);
 	}
@@ -299,7 +298,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException {
+	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, HealthRequest.ENDPOINT);
 	}
 
@@ -307,16 +306,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Returns basic information about the health of the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link HealthRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<HealthResponse> health(
-			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) throws IOException {
+			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -328,7 +327,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HealthResponse> health() throws IOException {
+	public CompletableFuture<HealthResponse> health() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT);
 	}
 
@@ -343,7 +342,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request) throws IOException {
+	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PendingTasksRequest.ENDPOINT);
 	}
 
@@ -352,16 +352,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * mapping, allocate or fail shard) which have not yet been executed.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PendingTasksRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PendingTasksResponse> pendingTasks(
-			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn) throws IOException {
+			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
 	}
 
@@ -374,7 +374,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException {
+	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PendingTasksRequest.Builder().build(),
 				PendingTasksRequest.ENDPOINT);
 	}
@@ -390,7 +390,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<BooleanResponse> postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PostVotingConfigExclusionsRequest.ENDPOINT);
 	}
 
@@ -398,9 +398,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Updates the cluster voting config exclusions by node ids or node names.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PostVotingConfigExclusionsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
@@ -408,7 +407,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 
 	public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
 			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
 	}
 
@@ -420,7 +419,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> postVotingConfigExclusions() throws IOException {
+	public CompletableFuture<BooleanResponse> postVotingConfigExclusions() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PostVotingConfigExclusionsRequest.Builder().build(),
 				PostVotingConfigExclusionsRequest.ENDPOINT);
 	}
@@ -436,7 +435,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(PutComponentTemplateRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PutComponentTemplateRequest.ENDPOINT);
 	}
 
@@ -444,9 +443,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Creates or updates a component template
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutComponentTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
@@ -454,7 +452,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 
 	public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
 			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
 	}
 
@@ -468,7 +466,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request) throws IOException {
+	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PutSettingsRequest.ENDPOINT);
 	}
 
@@ -476,16 +475,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Updates the cluster settings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutSettingsResponse> putSettings(
-			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn) throws IOException {
+			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
@@ -497,7 +496,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException {
+	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PutSettingsRequest.Builder().build(),
 				PutSettingsRequest.ENDPOINT);
 	}
@@ -525,7 +524,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RerouteResponse> reroute(RerouteRequest request) throws IOException {
+	public CompletableFuture<RerouteResponse> reroute(RerouteRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, RerouteRequest.ENDPOINT);
 	}
 
@@ -533,16 +533,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Allows to manually change the allocation of individual shards in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RerouteRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RerouteResponse> reroute(
-			Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn) throws IOException {
+			Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return reroute(fn.apply(new RerouteRequest.Builder()).build());
 	}
 
@@ -554,7 +554,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RerouteResponse> reroute() throws IOException {
+	public CompletableFuture<RerouteResponse> reroute() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new RerouteRequest.Builder().build(), RerouteRequest.ENDPOINT);
 	}
 
@@ -568,7 +568,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StateResponse> state(StateRequest request) throws IOException {
+	public CompletableFuture<StateResponse> state(StateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, StateRequest.ENDPOINT);
 	}
 
@@ -576,16 +576,15 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Returns a comprehensive information about the state of the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StateResponse> state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return state(fn.apply(new StateRequest.Builder()).build());
 	}
 
@@ -597,7 +596,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StateResponse> state() throws IOException {
+	public CompletableFuture<StateResponse> state() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new StateRequest.Builder().build(), StateRequest.ENDPOINT);
 	}
 
@@ -611,7 +610,8 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request) throws IOException {
+	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ClusterStatsRequest.ENDPOINT);
 	}
 
@@ -619,16 +619,16 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 * Returns high-level overview of cluster statistics.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClusterStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClusterStatsResponse> stats(
-			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn) throws IOException {
+			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
@@ -640,7 +640,7 @@ public class ElasticsearchClusterAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClusterStatsResponse> stats() throws IOException {
+	public CompletableFuture<ClusterStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ClusterStatsRequest.Builder().build(),
 				ClusterStatsRequest.ENDPOINT);
 	}

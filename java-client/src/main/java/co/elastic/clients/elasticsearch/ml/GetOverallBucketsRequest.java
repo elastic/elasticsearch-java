@@ -48,45 +48,45 @@ import javax.annotation.Nullable;
 // typedef: ml.get_overall_buckets.Request
 @JsonpDeserializable
 public final class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
 	@Nullable
-	private final String bucketSpan;
-
-	@Nullable
-	private final String overallScore;
-
-	@Nullable
-	private final Integer topN;
-
-	@Nullable
-	private final String end;
-
-	@Nullable
-	private final String start;
-
-	@Nullable
-	private final Boolean excludeInterim;
+	private final Boolean allowNoJobs;
 
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Boolean allowNoJobs;
+	private final String bucketSpan;
+
+	@Nullable
+	private final String end;
+
+	@Nullable
+	private final Boolean excludeInterim;
+
+	private final String jobId;
+
+	@Nullable
+	private final String overallScore;
+
+	@Nullable
+	private final String start;
+
+	@Nullable
+	private final Integer topN;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetOverallBucketsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.bucketSpan = builder.bucketSpan;
-		this.overallScore = builder.overallScore;
-		this.topN = builder.topN;
-		this.end = builder.end;
-		this.start = builder.start;
-		this.excludeInterim = builder.excludeInterim;
-		this.allowNoMatch = builder.allowNoMatch;
 		this.allowNoJobs = builder.allowNoJobs;
+		this.allowNoMatch = builder.allowNoMatch;
+		this.bucketSpan = builder.bucketSpan;
+		this.end = builder.end;
+		this.excludeInterim = builder.excludeInterim;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.overallScore = builder.overallScore;
+		this.start = builder.start;
+		this.topN = builder.topN;
 
 	}
 
@@ -95,14 +95,22 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Required - Identifier for the anomaly detection job. It can be a job
-	 * identifier, a group name, a comma-separated list of jobs or groups, or a
-	 * wildcard expression.
-	 * <p>
-	 * API name: {@code job_id}
+	 * API name: {@code allow_no_jobs}
 	 */
-	public String jobId() {
-		return this.jobId;
+	@Nullable
+	public Boolean allowNoJobs() {
+		return this.allowNoJobs;
+	}
+
+	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
+	 * API name: {@code allow_no_match}
+	 */
+	@Nullable
+	public Boolean allowNoMatch() {
+		return this.allowNoMatch;
 	}
 
 	/**
@@ -118,28 +126,6 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Returns overall buckets with overall scores greater than or equal to this
-	 * value.
-	 * <p>
-	 * API name: {@code overall_score}
-	 */
-	@Nullable
-	public String overallScore() {
-		return this.overallScore;
-	}
-
-	/**
-	 * The number of top anomaly detection job bucket scores to be used in the
-	 * overall_score calculation.
-	 * <p>
-	 * API name: {@code top_n}
-	 */
-	@Nullable
-	public Integer topN() {
-		return this.topN;
-	}
-
-	/**
 	 * Returns overall buckets with timestamps earlier than this time.
 	 * <p>
 	 * API name: {@code end}
@@ -147,16 +133,6 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	@Nullable
 	public String end() {
 		return this.end;
-	}
-
-	/**
-	 * Returns overall buckets with timestamps after this time.
-	 * <p>
-	 * API name: {@code start}
-	 */
-	@Nullable
-	public String start() {
-		return this.start;
 	}
 
 	/**
@@ -171,22 +147,46 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
+	 * Required - Identifier for the anomaly detection job. It can be a job
+	 * identifier, a group name, a comma-separated list of jobs or groups, or a
+	 * wildcard expression.
 	 * <p>
-	 * API name: {@code allow_no_match}
+	 * API name: {@code job_id}
 	 */
-	@Nullable
-	public Boolean allowNoMatch() {
-		return this.allowNoMatch;
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code allow_no_jobs}
+	 * Returns overall buckets with overall scores greater than or equal to this
+	 * value.
+	 * <p>
+	 * API name: {@code overall_score}
 	 */
 	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
+	public String overallScore() {
+		return this.overallScore;
+	}
+
+	/**
+	 * Returns overall buckets with timestamps after this time.
+	 * <p>
+	 * API name: {@code start}
+	 */
+	@Nullable
+	public String start() {
+		return this.start;
+	}
+
+	/**
+	 * The number of top anomaly detection job bucket scores to be used in the
+	 * overall_score calculation.
+	 * <p>
+	 * API name: {@code top_n}
+	 */
+	@Nullable
+	public Integer topN() {
+		return this.topN;
 	}
 
 	/**
@@ -215,41 +215,48 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * Builder for {@link GetOverallBucketsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetOverallBucketsRequest> {
-		private String jobId;
-
 		@Nullable
-		private String bucketSpan;
-
-		@Nullable
-		private String overallScore;
-
-		@Nullable
-		private Integer topN;
-
-		@Nullable
-		private String end;
-
-		@Nullable
-		private String start;
-
-		@Nullable
-		private Boolean excludeInterim;
+		private Boolean allowNoJobs;
 
 		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Boolean allowNoJobs;
+		private String bucketSpan;
+
+		@Nullable
+		private String end;
+
+		@Nullable
+		private Boolean excludeInterim;
+
+		private String jobId;
+
+		@Nullable
+		private String overallScore;
+
+		@Nullable
+		private String start;
+
+		@Nullable
+		private Integer topN;
 
 		/**
-		 * Required - Identifier for the anomaly detection job. It can be a job
-		 * identifier, a group name, a comma-separated list of jobs or groups, or a
-		 * wildcard expression.
-		 * <p>
-		 * API name: {@code job_id}
+		 * API name: {@code allow_no_jobs}
 		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
+		public Builder allowNoJobs(@Nullable Boolean value) {
+			this.allowNoJobs = value;
+			return this;
+		}
+
+		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
+		 * API name: {@code allow_no_match}
+		 */
+		public Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
 			return this;
 		}
 
@@ -266,44 +273,12 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
-		 * Returns overall buckets with overall scores greater than or equal to this
-		 * value.
-		 * <p>
-		 * API name: {@code overall_score}
-		 */
-		public Builder overallScore(@Nullable String value) {
-			this.overallScore = value;
-			return this;
-		}
-
-		/**
-		 * The number of top anomaly detection job bucket scores to be used in the
-		 * overall_score calculation.
-		 * <p>
-		 * API name: {@code top_n}
-		 */
-		public Builder topN(@Nullable Integer value) {
-			this.topN = value;
-			return this;
-		}
-
-		/**
 		 * Returns overall buckets with timestamps earlier than this time.
 		 * <p>
 		 * API name: {@code end}
 		 */
 		public Builder end(@Nullable String value) {
 			this.end = value;
-			return this;
-		}
-
-		/**
-		 * Returns overall buckets with timestamps after this time.
-		 * <p>
-		 * API name: {@code start}
-		 */
-		public Builder start(@Nullable String value) {
-			this.start = value;
 			return this;
 		}
 
@@ -319,21 +294,46 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * Required - Identifier for the anomaly detection job. It can be a job
+		 * identifier, a group name, a comma-separated list of jobs or groups, or a
+		 * wildcard expression.
 		 * <p>
-		 * API name: {@code allow_no_match}
+		 * API name: {@code job_id}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
-			this.allowNoMatch = value;
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code allow_no_jobs}
+		 * Returns overall buckets with overall scores greater than or equal to this
+		 * value.
+		 * <p>
+		 * API name: {@code overall_score}
 		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
+		public Builder overallScore(@Nullable String value) {
+			this.overallScore = value;
+			return this;
+		}
+
+		/**
+		 * Returns overall buckets with timestamps after this time.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public Builder start(@Nullable String value) {
+			this.start = value;
+			return this;
+		}
+
+		/**
+		 * The number of top anomaly detection job bucket scores to be used in the
+		 * overall_score calculation.
+		 * <p>
+		 * API name: {@code top_n}
+		 */
+		public Builder topN(@Nullable Integer value) {
+			this.topN = value;
 			return this;
 		}
 
@@ -401,23 +401,23 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.bucketSpan != null) {
-					params.put("bucket_span", request.bucketSpan);
-				}
-				if (request.overallScore != null) {
-					params.put("overall_score", request.overallScore);
-				}
 				if (request.topN != null) {
 					params.put("top_n", String.valueOf(request.topN));
 				}
-				if (request.end != null) {
-					params.put("end", request.end);
+				if (request.excludeInterim != null) {
+					params.put("exclude_interim", String.valueOf(request.excludeInterim));
+				}
+				if (request.bucketSpan != null) {
+					params.put("bucket_span", request.bucketSpan);
 				}
 				if (request.start != null) {
 					params.put("start", request.start);
 				}
-				if (request.excludeInterim != null) {
-					params.put("exclude_interim", String.valueOf(request.excludeInterim));
+				if (request.end != null) {
+					params.put("end", request.end);
+				}
+				if (request.overallScore != null) {
+					params.put("overall_score", request.overallScore);
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));

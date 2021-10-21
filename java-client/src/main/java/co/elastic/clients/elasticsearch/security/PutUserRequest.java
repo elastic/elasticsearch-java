@@ -54,13 +54,11 @@ import javax.annotation.Nullable;
 // typedef: security.put_user.Request
 @JsonpDeserializable
 public final class PutUserRequest extends RequestBase implements JsonpSerializable {
-	private final String username;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
 	@Nullable
 	private final String email;
+
+	@Nullable
+	private final Boolean enabled;
 
 	@Nullable
 	private final String fullName;
@@ -75,24 +73,26 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	private final String passwordHash;
 
 	@Nullable
-	private final List<String> roles;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
-	private final Boolean enabled;
+	private final List<String> roles;
+
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutUserRequest(Builder builder) {
 
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.refresh = builder.refresh;
 		this.email = builder.email;
+		this.enabled = builder.enabled;
 		this.fullName = builder.fullName;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.password = builder.password;
 		this.passwordHash = builder.passwordHash;
+		this.refresh = builder.refresh;
 		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.enabled = builder.enabled;
+		this.username = Objects.requireNonNull(builder.username, "username");
 
 	}
 
@@ -101,33 +101,19 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - The username of the User
-	 * <p>
-	 * API name: {@code username}
-	 */
-	public String username() {
-		return this.username;
-	}
-
-	/**
-	 * If <code>true</code> (the default) then refresh the affected shards to make
-	 * this operation visible to search, if <code>wait_for</code> then wait for a
-	 * refresh to make this operation visible to search, if <code>false</code> then
-	 * do nothing with refreshes.
-	 * <p>
-	 * API name: {@code refresh}
-	 */
-	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
-		return this.refresh;
-	}
-
-	/**
 	 * API name: {@code email}
 	 */
 	@Nullable
 	public String email() {
 		return this.email;
+	}
+
+	/**
+	 * API name: {@code enabled}
+	 */
+	@Nullable
+	public Boolean enabled() {
+		return this.enabled;
 	}
 
 	/**
@@ -163,6 +149,19 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public JsonValue /* _types.Refresh */ refresh() {
+		return this.refresh;
+	}
+
+	/**
 	 * API name: {@code roles}
 	 */
 	@Nullable
@@ -171,11 +170,12 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - The username of the User
+	 * <p>
+	 * API name: {@code username}
 	 */
-	@Nullable
-	public Boolean enabled() {
-		return this.enabled;
+	public String username() {
+		return this.username;
 	}
 
 	/**
@@ -193,6 +193,12 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 
 			generator.writeKey("email");
 			generator.write(this.email);
+
+		}
+		if (this.enabled != null) {
+
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
 
 		}
 		if (this.fullName != null) {
@@ -236,12 +242,6 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.enabled != null) {
-
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
-
-		}
 
 	}
 
@@ -251,13 +251,11 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * Builder for {@link PutUserRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutUserRequest> {
-		private String username;
-
-		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
-
 		@Nullable
 		private String email;
+
+		@Nullable
+		private Boolean enabled;
 
 		@Nullable
 		private String fullName;
@@ -272,39 +270,26 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		private String passwordHash;
 
 		@Nullable
-		private List<String> roles;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
-		private Boolean enabled;
+		private List<String> roles;
 
-		/**
-		 * Required - The username of the User
-		 * <p>
-		 * API name: {@code username}
-		 */
-		public Builder username(String value) {
-			this.username = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code> (the default) then refresh the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> then
-		 * do nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
-			this.refresh = value;
-			return this;
-		}
+		private String username;
 
 		/**
 		 * API name: {@code email}
 		 */
 		public Builder email(@Nullable String value) {
 			this.email = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code enabled}
+		 */
+		public Builder enabled(@Nullable Boolean value) {
+			this.enabled = value;
 			return this;
 		}
 
@@ -352,6 +337,19 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+			this.refresh = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code roles}
 		 */
 		public Builder roles(@Nullable List<String> value) {
@@ -379,10 +377,12 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - The username of the User
+		 * <p>
+		 * API name: {@code username}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
+		public Builder username(String value) {
+			this.username = value;
 			return this;
 		}
 
@@ -409,12 +409,12 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
 
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

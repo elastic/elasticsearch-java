@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -52,7 +52,7 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeprecationsResponse deprecations(DeprecationsRequest request) throws IOException {
+	public DeprecationsResponse deprecations(DeprecationsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeprecationsRequest.ENDPOINT);
 	}
 
@@ -62,16 +62,16 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 * major version.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeprecationsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeprecationsResponse deprecations(
-			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn) throws IOException {
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
@@ -85,7 +85,7 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeprecationsResponse deprecations() throws IOException {
+	public DeprecationsResponse deprecations() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new DeprecationsRequest.Builder().build(), DeprecationsRequest.ENDPOINT);
 	}
 

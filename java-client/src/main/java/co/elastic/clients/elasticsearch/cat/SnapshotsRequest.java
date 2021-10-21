@@ -49,32 +49,22 @@ import javax.annotation.Nullable;
 
 public final class SnapshotsRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> repository;
+	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Boolean ignoreUnavailable;
+	private final List<String> repository;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public SnapshotsRequest(Builder builder) {
 
-		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 
 	}
 
 	public SnapshotsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Name of repository from which to fetch the snapshot information
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	@Nullable
-	public List<String> repository() {
-		return this.repository;
 	}
 
 	/**
@@ -87,6 +77,16 @@ public final class SnapshotsRequest extends CatRequestBase {
 		return this.ignoreUnavailable;
 	}
 
+	/**
+	 * Name of repository from which to fetch the snapshot information
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	@Nullable
+	public List<String> repository() {
+		return this.repository;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -94,10 +94,20 @@ public final class SnapshotsRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<SnapshotsRequest> {
 		@Nullable
-		private List<String> repository;
+		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Boolean ignoreUnavailable;
+		private List<String> repository;
+
+		/**
+		 * Set to true to ignore unavailable snapshots
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
 
 		/**
 		 * Name of repository from which to fetch the snapshot information
@@ -127,16 +137,6 @@ public final class SnapshotsRequest extends CatRequestBase {
 				this.repository = new ArrayList<>();
 			}
 			this.repository.add(value);
-			return this;
-		}
-
-		/**
-		 * Set to true to ignore unavailable snapshots
-		 * <p>
-		 * API name: {@code ignore_unavailable}
-		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
-			this.ignoreUnavailable = value;
 			return this;
 		}
 

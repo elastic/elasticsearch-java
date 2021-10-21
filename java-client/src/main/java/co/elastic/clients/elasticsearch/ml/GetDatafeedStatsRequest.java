@@ -50,32 +50,22 @@ import javax.annotation.Nullable;
 
 public final class GetDatafeedStatsRequest extends RequestBase {
 	@Nullable
-	private final List<String> datafeedId;
+	private final Boolean allowNoDatafeeds;
 
 	@Nullable
-	private final Boolean allowNoDatafeeds;
+	private final List<String> datafeedId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetDatafeedStatsRequest(Builder builder) {
 
-		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
+		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
 
 	}
 
 	public GetDatafeedStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the datafeeds stats to fetch
-	 * <p>
-	 * API name: {@code datafeed_id}
-	 */
-	@Nullable
-	public List<String> datafeedId() {
-		return this.datafeedId;
 	}
 
 	/**
@@ -89,6 +79,16 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		return this.allowNoDatafeeds;
 	}
 
+	/**
+	 * The ID of the datafeeds stats to fetch
+	 * <p>
+	 * API name: {@code datafeed_id}
+	 */
+	@Nullable
+	public List<String> datafeedId() {
+		return this.datafeedId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -96,10 +96,21 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDatafeedStatsRequest> {
 		@Nullable
-		private List<String> datafeedId;
+		private Boolean allowNoDatafeeds;
 
 		@Nullable
-		private Boolean allowNoDatafeeds;
+		private List<String> datafeedId;
+
+		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
+		 * API name: {@code allow_no_datafeeds}
+		 */
+		public Builder allowNoDatafeeds(@Nullable Boolean value) {
+			this.allowNoDatafeeds = value;
+			return this;
+		}
 
 		/**
 		 * The ID of the datafeeds stats to fetch
@@ -129,17 +140,6 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 				this.datafeedId = new ArrayList<>();
 			}
 			this.datafeedId.add(value);
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-		 * includes <code>_all</code> string or when no datafeeds have been specified)
-		 * <p>
-		 * API name: {@code allow_no_datafeeds}
-		 */
-		public Builder allowNoDatafeeds(@Nullable Boolean value) {
-			this.allowNoDatafeeds = value;
 			return this;
 		}
 

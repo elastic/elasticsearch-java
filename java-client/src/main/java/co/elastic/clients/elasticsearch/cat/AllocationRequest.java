@@ -49,32 +49,22 @@ import javax.annotation.Nullable;
 
 public final class AllocationRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> nodeId;
+	private final Bytes bytes;
 
 	@Nullable
-	private final Bytes bytes;
+	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public AllocationRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.bytes = builder.bytes;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
 	public AllocationRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of node IDs or names to limit the returned information
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
 	}
 
 	/**
@@ -87,6 +77,16 @@ public final class AllocationRequest extends CatRequestBase {
 		return this.bytes;
 	}
 
+	/**
+	 * A comma-separated list of node IDs or names to limit the returned information
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	@Nullable
+	public List<String> nodeId() {
+		return this.nodeId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -94,10 +94,20 @@ public final class AllocationRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<AllocationRequest> {
 		@Nullable
-		private List<String> nodeId;
+		private Bytes bytes;
 
 		@Nullable
-		private Bytes bytes;
+		private List<String> nodeId;
+
+		/**
+		 * The unit in which to display byte values
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned information
@@ -127,16 +137,6 @@ public final class AllocationRequest extends CatRequestBase {
 				this.nodeId = new ArrayList<>();
 			}
 			this.nodeId.add(value);
-			return this;
-		}
-
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
 			return this;
 		}
 

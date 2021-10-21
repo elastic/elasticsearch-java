@@ -37,8 +37,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -252,8 +251,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, StartDatafeedResponse._DESERIALIZER);
 }

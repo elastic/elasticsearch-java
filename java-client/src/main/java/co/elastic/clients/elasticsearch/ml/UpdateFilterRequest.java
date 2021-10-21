@@ -49,13 +49,13 @@ import javax.annotation.Nullable;
 // typedef: ml.update_filter.Request
 @JsonpDeserializable
 public final class UpdateFilterRequest extends RequestBase implements JsonpSerializable {
-	private final String filterId;
-
 	@Nullable
 	private final List<String> addItems;
 
 	@Nullable
 	private final String description;
+
+	private final String filterId;
 
 	@Nullable
 	private final List<String> removeItems;
@@ -64,24 +64,15 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 
 	public UpdateFilterRequest(Builder builder) {
 
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 		this.addItems = ModelTypeHelper.unmodifiable(builder.addItems);
 		this.description = builder.description;
+		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 		this.removeItems = ModelTypeHelper.unmodifiable(builder.removeItems);
 
 	}
 
 	public UpdateFilterRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The ID of the filter to update
-	 * <p>
-	 * API name: {@code filter_id}
-	 */
-	public String filterId() {
-		return this.filterId;
 	}
 
 	/**
@@ -98,6 +89,15 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public String description() {
 		return this.description;
+	}
+
+	/**
+	 * Required - The ID of the filter to update
+	 * <p>
+	 * API name: {@code filter_id}
+	 */
+	public String filterId() {
+		return this.filterId;
 	}
 
 	/**
@@ -156,26 +156,16 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link UpdateFilterRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateFilterRequest> {
-		private String filterId;
-
 		@Nullable
 		private List<String> addItems;
 
 		@Nullable
 		private String description;
 
+		private String filterId;
+
 		@Nullable
 		private List<String> removeItems;
-
-		/**
-		 * Required - The ID of the filter to update
-		 * <p>
-		 * API name: {@code filter_id}
-		 */
-		public Builder filterId(String value) {
-			this.filterId = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code add_items}
@@ -209,6 +199,16 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * Required - The ID of the filter to update
+		 * <p>
+		 * API name: {@code filter_id}
+		 */
+		public Builder filterId(String value) {
+			this.filterId = value;
 			return this;
 		}
 

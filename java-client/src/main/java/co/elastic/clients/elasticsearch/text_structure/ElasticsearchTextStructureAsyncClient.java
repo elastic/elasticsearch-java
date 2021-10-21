@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.text_structure;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -53,7 +53,7 @@ public class ElasticsearchTextStructureAsyncClient extends ApiClient {
 	 */
 
 	public <TJsonDocument> CompletableFuture<FindStructureResponse> findStructure(
-			FindStructureRequest<TJsonDocument> request) throws IOException {
+			FindStructureRequest<TJsonDocument> request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, FindStructureRequest.ENDPOINT);
 	}
 
@@ -62,9 +62,8 @@ public class ElasticsearchTextStructureAsyncClient extends ApiClient {
 	 * suitable to be ingested into Elasticsearch.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FindStructureRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
 	 *      on elastic.co</a>
@@ -72,7 +71,7 @@ public class ElasticsearchTextStructureAsyncClient extends ApiClient {
 
 	public final <TJsonDocument> CompletableFuture<FindStructureResponse> findStructure(
 			Function<FindStructureRequest.Builder<TJsonDocument>, ObjectBuilder<FindStructureRequest<TJsonDocument>>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return findStructure(fn.apply(new FindStructureRequest.Builder<TJsonDocument>()).build());
 	}
 

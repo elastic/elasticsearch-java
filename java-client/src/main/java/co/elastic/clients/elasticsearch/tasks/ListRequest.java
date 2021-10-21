@@ -342,8 +342,11 @@ public final class ListRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.actions != null) {
-					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.nodes != null) {
+					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.parentTaskId != null) {
+					params.put("parent_task_id", request.parentTaskId);
 				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
@@ -351,17 +354,14 @@ public final class ListRequest extends RequestBase {
 				if (request.groupBy != null) {
 					params.put("group_by", request.groupBy.toString());
 				}
-				if (request.nodes != null) {
-					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.parentTaskId != null) {
-					params.put("parent_task_id", request.parentTaskId);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.actions != null) {
+					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

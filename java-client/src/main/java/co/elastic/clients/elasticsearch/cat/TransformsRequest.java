@@ -45,9 +45,6 @@ import javax.annotation.Nullable;
 
 public final class TransformsRequest extends CatRequestBase {
 	@Nullable
-	private final String transformId;
-
-	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
@@ -56,30 +53,22 @@ public final class TransformsRequest extends CatRequestBase {
 	@Nullable
 	private final Integer size;
 
+	@Nullable
+	private final String transformId;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public TransformsRequest(Builder builder) {
 
-		this.transformId = builder.transformId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
+		this.transformId = builder.transformId;
 
 	}
 
 	public TransformsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The id of the transform for which to get stats. '_all' or '*' implies all
-	 * transforms
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	@Nullable
-	public String transformId() {
-		return this.transformId;
 	}
 
 	/**
@@ -113,15 +102,23 @@ public final class TransformsRequest extends CatRequestBase {
 		return this.size;
 	}
 
+	/**
+	 * The id of the transform for which to get stats. '_all' or '*' implies all
+	 * transforms
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	@Nullable
+	public String transformId() {
+		return this.transformId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link TransformsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<TransformsRequest> {
-		@Nullable
-		private String transformId;
-
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -131,16 +128,8 @@ public final class TransformsRequest extends CatRequestBase {
 		@Nullable
 		private Integer size;
 
-		/**
-		 * The id of the transform for which to get stats. '_all' or '*' implies all
-		 * transforms
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(@Nullable String value) {
-			this.transformId = value;
-			return this;
-		}
+		@Nullable
+		private String transformId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no transforms. (This
@@ -170,6 +159,17 @@ public final class TransformsRequest extends CatRequestBase {
 		 */
 		public Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * The id of the transform for which to get stats. '_all' or '*' implies all
+		 * transforms
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public Builder transformId(@Nullable String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -227,14 +227,14 @@ public final class TransformsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

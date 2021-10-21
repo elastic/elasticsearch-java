@@ -151,11 +151,11 @@ public final class GetLicenseRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.acceptEnterprise != null) {
-					params.put("accept_enterprise", String.valueOf(request.acceptEnterprise));
-				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
+				}
+				if (request.acceptEnterprise != null) {
+					params.put("accept_enterprise", String.valueOf(request.acceptEnterprise));
 				}
 				return params;
 

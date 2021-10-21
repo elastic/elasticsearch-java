@@ -50,50 +50,30 @@ import javax.annotation.Nullable;
 
 public final class StatusRequest extends RequestBase {
 	@Nullable
-	private final String repository;
-
-	@Nullable
-	private final List<String> snapshot;
-
-	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
 	private final String masterTimeout;
 
+	@Nullable
+	private final String repository;
+
+	@Nullable
+	private final List<String> snapshot;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public StatusRequest(Builder builder) {
 
-		this.repository = builder.repository;
-		this.snapshot = ModelTypeHelper.unmodifiable(builder.snapshot);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
+		this.repository = builder.repository;
+		this.snapshot = ModelTypeHelper.unmodifiable(builder.snapshot);
 
 	}
 
 	public StatusRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A repository name
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	@Nullable
-	public String repository() {
-		return this.repository;
-	}
-
-	/**
-	 * A comma-separated list of snapshot names
-	 * <p>
-	 * API name: {@code snapshot}
-	 */
-	@Nullable
-	public List<String> snapshot() {
-		return this.snapshot;
 	}
 
 	/**
@@ -117,6 +97,26 @@ public final class StatusRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * A repository name
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	@Nullable
+	public String repository() {
+		return this.repository;
+	}
+
+	/**
+	 * A comma-separated list of snapshot names
+	 * <p>
+	 * API name: {@code snapshot}
+	 */
+	@Nullable
+	public List<String> snapshot() {
+		return this.snapshot;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -124,16 +124,37 @@ public final class StatusRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StatusRequest> {
 		@Nullable
+		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private String masterTimeout;
+
+		@Nullable
 		private String repository;
 
 		@Nullable
 		private List<String> snapshot;
 
-		@Nullable
-		private Boolean ignoreUnavailable;
+		/**
+		 * Whether to ignore unavailable snapshots, defaults to false which means a
+		 * SnapshotMissingException is thrown
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
 
-		@Nullable
-		private String masterTimeout;
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
 
 		/**
 		 * A repository name
@@ -173,27 +194,6 @@ public final class StatusRequest extends RequestBase {
 				this.snapshot = new ArrayList<>();
 			}
 			this.snapshot.add(value);
-			return this;
-		}
-
-		/**
-		 * Whether to ignore unavailable snapshots, defaults to false which means a
-		 * SnapshotMissingException is thrown
-		 * <p>
-		 * API name: {@code ignore_unavailable}
-		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
-			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
 			return this;
 		}
 
@@ -265,11 +265,11 @@ public final class StatusRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				return params;
 

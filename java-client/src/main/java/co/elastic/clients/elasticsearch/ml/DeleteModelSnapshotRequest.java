@@ -133,13 +133,13 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

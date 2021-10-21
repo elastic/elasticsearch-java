@@ -54,16 +54,37 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class ReindexRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final Conflicts conflicts;
+
+	@Nullable
+	private final Destination dest;
+
+	@Nullable
+	private final Long maxDocs;
+
+	@Nullable
 	private final Boolean refresh;
 
 	@Nullable
 	private final Long requestsPerSecond;
 
 	@Nullable
+	private final Boolean requireAlias;
+
+	@Nullable
+	private final JsonValue /* _types.Script */ script;
+
+	@Nullable
 	private final String scroll;
 
 	@Nullable
+	private final Long size;
+
+	@Nullable
 	private final Long slices;
+
+	@Nullable
+	private final Source source;
 
 	@Nullable
 	private final String timeout;
@@ -74,50 +95,53 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Boolean waitForCompletion;
 
-	@Nullable
-	private final Boolean requireAlias;
-
-	@Nullable
-	private final Conflicts conflicts;
-
-	@Nullable
-	private final Destination dest;
-
-	@Nullable
-	private final Long maxDocs;
-
-	@Nullable
-	private final JsonValue /* _types.Script */ script;
-
-	@Nullable
-	private final Long size;
-
-	@Nullable
-	private final Source source;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public ReindexRequest(Builder builder) {
 
-		this.refresh = builder.refresh;
-		this.requestsPerSecond = builder.requestsPerSecond;
-		this.scroll = builder.scroll;
-		this.slices = builder.slices;
-		this.timeout = builder.timeout;
-		this.waitForActiveShards = builder.waitForActiveShards;
-		this.waitForCompletion = builder.waitForCompletion;
-		this.requireAlias = builder.requireAlias;
 		this.conflicts = builder.conflicts;
 		this.dest = builder.dest;
 		this.maxDocs = builder.maxDocs;
+		this.refresh = builder.refresh;
+		this.requestsPerSecond = builder.requestsPerSecond;
+		this.requireAlias = builder.requireAlias;
 		this.script = builder.script;
+		this.scroll = builder.scroll;
 		this.size = builder.size;
+		this.slices = builder.slices;
 		this.source = builder.source;
+		this.timeout = builder.timeout;
+		this.waitForActiveShards = builder.waitForActiveShards;
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
 	public ReindexRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code conflicts}
+	 */
+	@Nullable
+	public Conflicts conflicts() {
+		return this.conflicts;
+	}
+
+	/**
+	 * API name: {@code dest}
+	 */
+	@Nullable
+	public Destination dest() {
+		return this.dest;
+	}
+
+	/**
+	 * API name: {@code max_docs}
+	 */
+	@Nullable
+	public Long maxDocs() {
+		return this.maxDocs;
 	}
 
 	/**
@@ -142,6 +166,22 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * API name: {@code require_alias}
+	 */
+	@Nullable
+	public Boolean requireAlias() {
+		return this.requireAlias;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public JsonValue /* _types.Script */ script() {
+		return this.script;
+	}
+
+	/**
 	 * Control how long to keep the search context alive
 	 * <p>
 	 * API name: {@code scroll}
@@ -149,6 +189,14 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public String scroll() {
 		return this.scroll;
+	}
+
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Long size() {
+		return this.size;
 	}
 
 	/**
@@ -160,6 +208,14 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public Long slices() {
 		return this.slices;
+	}
+
+	/**
+	 * API name: {@code source}
+	 */
+	@Nullable
+	public Source source() {
+		return this.source;
 	}
 
 	/**
@@ -195,62 +251,6 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public Boolean waitForCompletion() {
 		return this.waitForCompletion;
-	}
-
-	/**
-	 * API name: {@code require_alias}
-	 */
-	@Nullable
-	public Boolean requireAlias() {
-		return this.requireAlias;
-	}
-
-	/**
-	 * API name: {@code conflicts}
-	 */
-	@Nullable
-	public Conflicts conflicts() {
-		return this.conflicts;
-	}
-
-	/**
-	 * API name: {@code dest}
-	 */
-	@Nullable
-	public Destination dest() {
-		return this.dest;
-	}
-
-	/**
-	 * API name: {@code max_docs}
-	 */
-	@Nullable
-	public Long maxDocs() {
-		return this.maxDocs;
-	}
-
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public JsonValue /* _types.Script */ script() {
-		return this.script;
-	}
-
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public Long size() {
-		return this.size;
-	}
-
-	/**
-	 * API name: {@code source}
-	 */
-	@Nullable
-	public Source source() {
-		return this.source;
 	}
 
 	/**
@@ -309,16 +309,37 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder implements ObjectBuilder<ReindexRequest> {
 		@Nullable
+		private Conflicts conflicts;
+
+		@Nullable
+		private Destination dest;
+
+		@Nullable
+		private Long maxDocs;
+
+		@Nullable
 		private Boolean refresh;
 
 		@Nullable
 		private Long requestsPerSecond;
 
 		@Nullable
+		private Boolean requireAlias;
+
+		@Nullable
+		private JsonValue /* _types.Script */ script;
+
+		@Nullable
 		private String scroll;
 
 		@Nullable
+		private Long size;
+
+		@Nullable
 		private Long slices;
+
+		@Nullable
+		private Source source;
 
 		@Nullable
 		private String timeout;
@@ -329,26 +350,36 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean waitForCompletion;
 
-		@Nullable
-		private Boolean requireAlias;
+		/**
+		 * API name: {@code conflicts}
+		 */
+		public Builder conflicts(@Nullable Conflicts value) {
+			this.conflicts = value;
+			return this;
+		}
 
-		@Nullable
-		private Conflicts conflicts;
+		/**
+		 * API name: {@code dest}
+		 */
+		public Builder dest(@Nullable Destination value) {
+			this.dest = value;
+			return this;
+		}
 
-		@Nullable
-		private Destination dest;
+		/**
+		 * API name: {@code dest}
+		 */
+		public Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
+			return this.dest(fn.apply(new Destination.Builder()).build());
+		}
 
-		@Nullable
-		private Long maxDocs;
-
-		@Nullable
-		private JsonValue /* _types.Script */ script;
-
-		@Nullable
-		private Long size;
-
-		@Nullable
-		private Source source;
+		/**
+		 * API name: {@code max_docs}
+		 */
+		public Builder maxDocs(@Nullable Long value) {
+			this.maxDocs = value;
+			return this;
+		}
 
 		/**
 		 * Should the affected indexes be refreshed?
@@ -372,12 +403,36 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * API name: {@code require_alias}
+		 */
+		public Builder requireAlias(@Nullable Boolean value) {
+			this.requireAlias = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
 		 * Control how long to keep the search context alive
 		 * <p>
 		 * API name: {@code scroll}
 		 */
 		public Builder scroll(@Nullable String value) {
 			this.scroll = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Long value) {
+			this.size = value;
 			return this;
 		}
 
@@ -390,6 +445,21 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 		public Builder slices(@Nullable Long value) {
 			this.slices = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code source}
+		 */
+		public Builder source(@Nullable Source value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code source}
+		 */
+		public Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
+			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
 		/**
@@ -425,76 +495,6 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 		public Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code require_alias}
-		 */
-		public Builder requireAlias(@Nullable Boolean value) {
-			this.requireAlias = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code conflicts}
-		 */
-		public Builder conflicts(@Nullable Conflicts value) {
-			this.conflicts = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code dest}
-		 */
-		public Builder dest(@Nullable Destination value) {
-			this.dest = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code dest}
-		 */
-		public Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
-			return this.dest(fn.apply(new Destination.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code max_docs}
-		 */
-		public Builder maxDocs(@Nullable Long value) {
-			this.maxDocs = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code script}
-		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
-			this.script = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable Long value) {
-			this.size = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code source}
-		 */
-		public Builder source(@Nullable Source value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code source}
-		 */
-		public Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
-			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
 		/**
@@ -549,20 +549,20 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.refresh != null) {
-					params.put("refresh", String.valueOf(request.refresh));
+				if (request.slices != null) {
+					params.put("slices", String.valueOf(request.slices));
 				}
 				if (request.requestsPerSecond != null) {
 					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
 				}
+				if (request.requireAlias != null) {
+					params.put("require_alias", String.valueOf(request.requireAlias));
+				}
 				if (request.scroll != null) {
 					params.put("scroll", request.scroll);
 				}
-				if (request.slices != null) {
-					params.put("slices", String.valueOf(request.slices));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.refresh != null) {
+					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
@@ -570,8 +570,8 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
-				if (request.requireAlias != null) {
-					params.put("require_alias", String.valueOf(request.requireAlias));
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

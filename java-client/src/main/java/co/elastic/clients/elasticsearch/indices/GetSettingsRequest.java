@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 public final class GetSettingsRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
-	private final List<String> name;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -72,50 +66,35 @@ public final class GetSettingsRequest extends RequestBase {
 	private final Boolean includeDefaults;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean local;
 
 	@Nullable
 	private final String masterTimeout;
 
+	@Nullable
+	private final List<String> name;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public GetSettingsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
 	public GetSettingsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
-	 * The name of the settings that should be included
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public List<String> name() {
-		return this.name;
 	}
 
 	/**
@@ -173,6 +152,17 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Return local information, do not retrieve the state from master node
 	 * (default: false)
 	 * <p>
@@ -193,18 +183,22 @@ public final class GetSettingsRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * The name of the settings that should be included
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetSettingsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetSettingsRequest> {
-		@Nullable
-		private List<String> index;
-
-		@Nullable
-		private List<String> name;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -221,74 +215,16 @@ public final class GetSettingsRequest extends RequestBase {
 		private Boolean includeDefaults;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
 		private String masterTimeout;
 
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * The name of the settings that should be included
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * The name of the settings that should be included
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> name;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -367,6 +303,39 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Return local information, do not retrieve the state from master node
 		 * (default: false)
 		 * <p>
@@ -384,6 +353,37 @@ public final class GetSettingsRequest extends RequestBase {
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The name of the settings that should be included
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * The name of the settings that should be included
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 
@@ -413,15 +413,15 @@ public final class GetSettingsRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _index = 1 << 0;
-				final int _name = 1 << 1;
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
 				if (request.name() != null)
 					propsSet |= _name;
+				if (request.index() != null)
+					propsSet |= _index;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -458,27 +458,27 @@ public final class GetSettingsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

@@ -50,22 +50,32 @@ import javax.annotation.Nullable;
 
 public final class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> threadPoolPatterns;
+	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
 	@Nullable
-	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
+	private final List<String> threadPoolPatterns;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ThreadPoolRequest(Builder builder) {
 
-		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
 		this.size = builder.size;
+		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
 	}
 
 	public ThreadPoolRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * The multiplier in which to display values
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public JsonValue /* Union(_types.Size | internal.boolean) */ size() {
+		return this.size;
 	}
 
 	/**
@@ -79,16 +89,6 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		return this.threadPoolPatterns;
 	}
 
-	/**
-	 * The multiplier in which to display values
-	 * <p>
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.Size | internal.boolean) */ size() {
-		return this.size;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -96,10 +96,20 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
-		private List<String> threadPoolPatterns;
+		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
 		@Nullable
-		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
+		private List<String> threadPoolPatterns;
+
+		/**
+		 * The multiplier in which to display values
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
+			this.size = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of regular-expressions to filter the thread pools in
@@ -132,16 +142,6 @@ public final class ThreadPoolRequest extends CatRequestBase {
 				this.threadPoolPatterns = new ArrayList<>();
 			}
 			this.threadPoolPatterns.add(value);
-			return this;
-		}
-
-		/**
-		 * The multiplier in which to display values
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
-			this.size = value;
 			return this;
 		}
 

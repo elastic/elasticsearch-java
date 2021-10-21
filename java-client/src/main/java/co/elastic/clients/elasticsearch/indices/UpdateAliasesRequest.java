@@ -52,26 +52,34 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final List<Action> actions;
+
+	@Nullable
 	private final String masterTimeout;
 
 	@Nullable
 	private final String timeout;
 
-	@Nullable
-	private final List<Action> actions;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public UpdateAliasesRequest(Builder builder) {
 
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 
 	}
 
 	public UpdateAliasesRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code actions}
+	 */
+	@Nullable
+	public List<Action> actions() {
+		return this.actions;
 	}
 
 	/**
@@ -92,14 +100,6 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	public String timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * API name: {@code actions}
-	 */
-	@Nullable
-	public List<Action> actions() {
-		return this.actions;
 	}
 
 	/**
@@ -134,33 +134,13 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 */
 	public static class Builder implements ObjectBuilder<UpdateAliasesRequest> {
 		@Nullable
+		private List<Action> actions;
+
+		@Nullable
 		private String masterTimeout;
 
 		@Nullable
 		private String timeout;
-
-		@Nullable
-		private List<Action> actions;
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Request timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code actions}
@@ -201,6 +181,26 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		 */
 		public Builder addActions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
 			return this.addActions(fn.apply(new Action.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Request timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
 		}
 
 		/**

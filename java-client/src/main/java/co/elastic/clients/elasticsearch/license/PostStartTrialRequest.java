@@ -144,11 +144,11 @@ public final class PostStartTrialRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.acknowledge != null) {
-					params.put("acknowledge", String.valueOf(request.acknowledge));
-				}
 				if (request.typeQueryString != null) {
 					params.put("type_query_string", request.typeQueryString);
+				}
+				if (request.acknowledge != null) {
+					params.put("acknowledge", String.valueOf(request.acknowledge));
 				}
 				return params;
 

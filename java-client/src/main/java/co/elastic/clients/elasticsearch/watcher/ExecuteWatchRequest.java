@@ -50,16 +50,16 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String id;
+	private final Map<String, ActionExecutionMode> actionModes;
+
+	@Nullable
+	private final Map<String, JsonData> alternativeInput;
 
 	@Nullable
 	private final Boolean debug;
 
 	@Nullable
-	private final Map<String, ActionExecutionMode> actionModes;
-
-	@Nullable
-	private final Map<String, JsonData> alternativeInput;
+	private final String id;
 
 	@Nullable
 	private final Boolean ignoreCondition;
@@ -80,10 +80,10 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 	public ExecuteWatchRequest(Builder builder) {
 
-		this.id = builder.id;
-		this.debug = builder.debug;
 		this.actionModes = ModelTypeHelper.unmodifiable(builder.actionModes);
 		this.alternativeInput = ModelTypeHelper.unmodifiable(builder.alternativeInput);
+		this.debug = builder.debug;
+		this.id = builder.id;
 		this.ignoreCondition = builder.ignoreCondition;
 		this.recordExecution = builder.recordExecution;
 		this.simulatedActions = builder.simulatedActions;
@@ -94,26 +94,6 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 	public ExecuteWatchRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Watch ID
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
-	}
-
-	/**
-	 * indicates whether the watch should execute in debug mode
-	 * <p>
-	 * API name: {@code debug}
-	 */
-	@Nullable
-	public Boolean debug() {
-		return this.debug;
 	}
 
 	/**
@@ -130,6 +110,26 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public Map<String, JsonData> alternativeInput() {
 		return this.alternativeInput;
+	}
+
+	/**
+	 * indicates whether the watch should execute in debug mode
+	 * <p>
+	 * API name: {@code debug}
+	 */
+	@Nullable
+	public Boolean debug() {
+		return this.debug;
+	}
+
+	/**
+	 * Watch ID
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -246,16 +246,16 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 */
 	public static class Builder implements ObjectBuilder<ExecuteWatchRequest> {
 		@Nullable
-		private String id;
+		private Map<String, ActionExecutionMode> actionModes;
+
+		@Nullable
+		private Map<String, JsonData> alternativeInput;
 
 		@Nullable
 		private Boolean debug;
 
 		@Nullable
-		private Map<String, ActionExecutionMode> actionModes;
-
-		@Nullable
-		private Map<String, JsonData> alternativeInput;
+		private String id;
 
 		@Nullable
 		private Boolean ignoreCondition;
@@ -271,26 +271,6 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 		@Nullable
 		private Watch watch;
-
-		/**
-		 * Watch ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * indicates whether the watch should execute in debug mode
-		 * <p>
-		 * API name: {@code debug}
-		 */
-		public Builder debug(@Nullable Boolean value) {
-			this.debug = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code action_modes}
@@ -328,6 +308,26 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 				this.alternativeInput = new HashMap<>();
 			}
 			this.alternativeInput.put(key, value);
+			return this;
+		}
+
+		/**
+		 * indicates whether the watch should execute in debug mode
+		 * <p>
+		 * API name: {@code debug}
+		 */
+		public Builder debug(@Nullable Boolean value) {
+			this.debug = value;
+			return this;
+		}
+
+		/**
+		 * Watch ID
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 

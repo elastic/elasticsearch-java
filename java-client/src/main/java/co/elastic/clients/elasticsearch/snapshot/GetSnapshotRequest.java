@@ -49,45 +49,99 @@ import javax.annotation.Nullable;
 // typedef: snapshot.get.Request
 
 public final class GetSnapshotRequest extends RequestBase {
-	private final String repository;
-
-	private final List<String> snapshot;
+	@Nullable
+	private final Boolean human;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final Boolean verbose;
+	private final Boolean includeRepository;
 
 	@Nullable
 	private final Boolean indexDetails;
 
 	@Nullable
-	private final Boolean human;
+	private final String masterTimeout;
+
+	private final String repository;
+
+	private final List<String> snapshot;
 
 	@Nullable
-	private final Boolean includeRepository;
+	private final Boolean verbose;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetSnapshotRequest(Builder builder) {
 
+		this.human = builder.human;
+		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeRepository = builder.includeRepository;
+		this.indexDetails = builder.indexDetails;
+		this.masterTimeout = builder.masterTimeout;
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = ModelTypeHelper.unmodifiableNonNull(builder.snapshot, "snapshot");
-		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.masterTimeout = builder.masterTimeout;
 		this.verbose = builder.verbose;
-		this.indexDetails = builder.indexDetails;
-		this.human = builder.human;
-		this.includeRepository = builder.includeRepository;
 
 	}
 
 	public GetSnapshotRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code human}
+	 */
+	@Nullable
+	public Boolean human() {
+		return this.human;
+	}
+
+	/**
+	 * If false, the request returns an error for any snapshots that are
+	 * unavailable.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Whether to include the repository name in the snapshot info. Defaults to
+	 * true.
+	 * <p>
+	 * API name: {@code include_repository}
+	 */
+	@Nullable
+	public Boolean includeRepository() {
+		return this.includeRepository;
+	}
+
+	/**
+	 * If true, returns additional information about each index in the snapshot
+	 * comprising the number of shards in the index, the total size of the index in
+	 * bytes, and the maximum number of segments per shard in the index. Defaults to
+	 * false, meaning that this information is omitted.
+	 * <p>
+	 * API name: {@code index_details}
+	 */
+	@Nullable
+	public Boolean indexDetails() {
+		return this.indexDetails;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -117,28 +171,6 @@ public final class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * If false, the request returns an error for any snapshots that are
-	 * unavailable.
-	 * <p>
-	 * API name: {@code ignore_unavailable}
-	 */
-	@Nullable
-	public Boolean ignoreUnavailable() {
-		return this.ignoreUnavailable;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
 	 * If true, returns additional information about each snapshot such as the
 	 * version of Elasticsearch which took the snapshot, the start and end times of
 	 * the snapshot, and the number of shards snapshotted.
@@ -150,65 +182,87 @@ public final class GetSnapshotRequest extends RequestBase {
 		return this.verbose;
 	}
 
-	/**
-	 * If true, returns additional information about each index in the snapshot
-	 * comprising the number of shards in the index, the total size of the index in
-	 * bytes, and the maximum number of segments per shard in the index. Defaults to
-	 * false, meaning that this information is omitted.
-	 * <p>
-	 * API name: {@code index_details}
-	 */
-	@Nullable
-	public Boolean indexDetails() {
-		return this.indexDetails;
-	}
-
-	/**
-	 * API name: {@code human}
-	 */
-	@Nullable
-	public Boolean human() {
-		return this.human;
-	}
-
-	/**
-	 * Whether to include the repository name in the snapshot info. Defaults to
-	 * true.
-	 * <p>
-	 * API name: {@code include_repository}
-	 */
-	@Nullable
-	public Boolean includeRepository() {
-		return this.includeRepository;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetSnapshotRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetSnapshotRequest> {
-		private String repository;
-
-		private List<String> snapshot;
+		@Nullable
+		private Boolean human;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private Boolean verbose;
+		private Boolean includeRepository;
 
 		@Nullable
 		private Boolean indexDetails;
 
 		@Nullable
-		private Boolean human;
+		private String masterTimeout;
+
+		private String repository;
+
+		private List<String> snapshot;
 
 		@Nullable
-		private Boolean includeRepository;
+		private Boolean verbose;
+
+		/**
+		 * API name: {@code human}
+		 */
+		public Builder human(@Nullable Boolean value) {
+			this.human = value;
+			return this;
+		}
+
+		/**
+		 * If false, the request returns an error for any snapshots that are
+		 * unavailable.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Whether to include the repository name in the snapshot info. Defaults to
+		 * true.
+		 * <p>
+		 * API name: {@code include_repository}
+		 */
+		public Builder includeRepository(@Nullable Boolean value) {
+			this.includeRepository = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns additional information about each index in the snapshot
+		 * comprising the number of shards in the index, the total size of the index in
+		 * bytes, and the maximum number of segments per shard in the index. Defaults to
+		 * false, meaning that this information is omitted.
+		 * <p>
+		 * API name: {@code index_details}
+		 */
+		public Builder indexDetails(@Nullable Boolean value) {
+			this.indexDetails = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
 
 		/**
 		 * Required - Comma-separated list of snapshot repository names used to limit
@@ -267,28 +321,6 @@ public final class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * If false, the request returns an error for any snapshots that are
-		 * unavailable.
-		 * <p>
-		 * API name: {@code ignore_unavailable}
-		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
-			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
 		 * If true, returns additional information about each snapshot such as the
 		 * version of Elasticsearch which took the snapshot, the start and end times of
 		 * the snapshot, and the number of shards snapshotted.
@@ -297,38 +329,6 @@ public final class GetSnapshotRequest extends RequestBase {
 		 */
 		public Builder verbose(@Nullable Boolean value) {
 			this.verbose = value;
-			return this;
-		}
-
-		/**
-		 * If true, returns additional information about each index in the snapshot
-		 * comprising the number of shards in the index, the total size of the index in
-		 * bytes, and the maximum number of segments per shard in the index. Defaults to
-		 * false, meaning that this information is omitted.
-		 * <p>
-		 * API name: {@code index_details}
-		 */
-		public Builder indexDetails(@Nullable Boolean value) {
-			this.indexDetails = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code human}
-		 */
-		public Builder human(@Nullable Boolean value) {
-			this.human = value;
-			return this;
-		}
-
-		/**
-		 * Whether to include the repository name in the snapshot info. Defaults to
-		 * true.
-		 * <p>
-		 * API name: {@code include_repository}
-		 */
-		public Builder includeRepository(@Nullable Boolean value) {
-			this.includeRepository = value;
 			return this;
 		}
 
@@ -383,14 +383,14 @@ public final class GetSnapshotRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
-				if (request.verbose != null) {
-					params.put("verbose", String.valueOf(request.verbose));
+				if (request.includeRepository != null) {
+					params.put("include_repository", String.valueOf(request.includeRepository));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.indexDetails != null) {
 					params.put("index_details", String.valueOf(request.indexDetails));
@@ -398,8 +398,8 @@ public final class GetSnapshotRequest extends RequestBase {
 				if (request.human != null) {
 					params.put("human", String.valueOf(request.human));
 				}
-				if (request.includeRepository != null) {
-					params.put("include_repository", String.valueOf(request.includeRepository));
+				if (request.verbose != null) {
+					params.put("verbose", String.valueOf(request.verbose));
 				}
 				return params;
 

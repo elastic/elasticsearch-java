@@ -54,11 +54,6 @@ import javax.annotation.Nullable;
 // typedef: security.put_role.Request
 @JsonpDeserializable
 public final class PutRoleRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
 	@Nullable
 	private final List<ApplicationPrivileges> applications;
 
@@ -74,6 +69,11 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Map<String, JsonData> metadata;
 
+	private final String name;
+
+	@Nullable
+	private final JsonValue /* _types.Refresh */ refresh;
+
 	@Nullable
 	private final List<String> runAs;
 
@@ -84,13 +84,13 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 
 	public PutRoleRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.refresh = builder.refresh;
 		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
 		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
 		this.global = ModelTypeHelper.unmodifiable(builder.global);
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.refresh = builder.refresh;
 		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = builder.transientMetadata;
 
@@ -98,28 +98,6 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 
 	public PutRoleRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Role name
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
-	}
-
-	/**
-	 * If <code>true</code> (the default) then refresh the affected shards to make
-	 * this operation visible to search, if <code>wait_for</code> then wait for a
-	 * refresh to make this operation visible to search, if <code>false</code> then
-	 * do nothing with refreshes.
-	 * <p>
-	 * API name: {@code refresh}
-	 */
-	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
-		return this.refresh;
 	}
 
 	/**
@@ -174,6 +152,28 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public Map<String, JsonData> metadata() {
 		return this.metadata;
+	}
+
+	/**
+	 * Required - Role name
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public JsonValue /* _types.Refresh */ refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -294,11 +294,6 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * Builder for {@link PutRoleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutRoleRequest> {
-		private String name;
-
-		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
-
 		@Nullable
 		private List<ApplicationPrivileges> applications;
 
@@ -314,34 +309,16 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Map<String, JsonData> metadata;
 
+		private String name;
+
+		@Nullable
+		private JsonValue /* _types.Refresh */ refresh;
+
 		@Nullable
 		private List<String> runAs;
 
 		@Nullable
 		private TransientMetadata transientMetadata;
-
-		/**
-		 * Required - Role name
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code> (the default) then refresh the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> then
-		 * do nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
-			this.refresh = value;
-			return this;
-		}
 
 		/**
 		 * A list of application privilege entries.
@@ -509,6 +486,29 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 				this.metadata = new HashMap<>();
 			}
 			this.metadata.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Role name
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+			this.refresh = value;
 			return this;
 		}
 

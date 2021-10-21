@@ -54,16 +54,16 @@ import javax.annotation.Nullable;
 // typedef: security.put_role_mapping.Request
 @JsonpDeserializable
 public final class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
 	@Nullable
 	private final Boolean enabled;
 
 	@Nullable
 	private final Map<String, JsonData> metadata;
+
+	private final String name;
+
+	@Nullable
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final List<String> roles;
@@ -78,10 +78,10 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 
 	public PutRoleMappingRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.refresh = builder.refresh;
 		this.enabled = builder.enabled;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.refresh = builder.refresh;
 		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
 		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
@@ -90,6 +90,22 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 
 	public PutRoleMappingRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code enabled}
+	 */
+	@Nullable
+	public Boolean enabled() {
+		return this.enabled;
+	}
+
+	/**
+	 * API name: {@code metadata}
+	 */
+	@Nullable
+	public Map<String, JsonData> metadata() {
+		return this.metadata;
 	}
 
 	/**
@@ -112,22 +128,6 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	@Nullable
 	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
-	}
-
-	/**
-	 * API name: {@code enabled}
-	 */
-	@Nullable
-	public Boolean enabled() {
-		return this.enabled;
-	}
-
-	/**
-	 * API name: {@code metadata}
-	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
-		return this.metadata;
 	}
 
 	/**
@@ -220,16 +220,16 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	 * Builder for {@link PutRoleMappingRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutRoleMappingRequest> {
-		private String name;
-
-		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
-
 		@Nullable
 		private Boolean enabled;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
+
+		private String name;
+
+		@Nullable
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private List<String> roles;
@@ -239,29 +239,6 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 
 		@Nullable
 		private List<String> runAs;
-
-		/**
-		 * Required - Role-mapping name
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code> (the default) then refresh the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> then
-		 * do nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
-			this.refresh = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code enabled}
@@ -287,6 +264,29 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 				this.metadata = new HashMap<>();
 			}
 			this.metadata.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Role-mapping name
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+			this.refresh = value;
 			return this;
 		}
 

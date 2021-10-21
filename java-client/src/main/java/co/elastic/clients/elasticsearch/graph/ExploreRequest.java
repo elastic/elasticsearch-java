@@ -52,10 +52,16 @@ import javax.annotation.Nullable;
 // typedef: graph.explore.Request
 @JsonpDeserializable
 public final class ExploreRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Hop connections;
+
+	@Nullable
+	private final ExploreControls controls;
+
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
+	private final Query query;
 
 	@Nullable
 	private final String routing;
@@ -64,13 +70,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	private final String timeout;
 
 	@Nullable
-	private final Hop connections;
-
-	@Nullable
-	private final ExploreControls controls;
-
-	@Nullable
-	private final Query query;
+	private final List<String> type;
 
 	@Nullable
 	private final List<VertexDefinition> vertices;
@@ -79,19 +79,35 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 
 	public ExploreRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
-		this.routing = builder.routing;
-		this.timeout = builder.timeout;
 		this.connections = builder.connections;
 		this.controls = builder.controls;
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.query = builder.query;
+		this.routing = builder.routing;
+		this.timeout = builder.timeout;
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.vertices = ModelTypeHelper.unmodifiable(builder.vertices);
 
 	}
 
 	public ExploreRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code connections}
+	 */
+	@Nullable
+	public Hop connections() {
+		return this.connections;
+	}
+
+	/**
+	 * API name: {@code controls}
+	 */
+	@Nullable
+	public ExploreControls controls() {
+		return this.controls;
 	}
 
 	/**
@@ -105,14 +121,11 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of document types to search; leave empty to perform
-	 * the operation on all types
-	 * <p>
-	 * API name: {@code type}
+	 * API name: {@code query}
 	 */
 	@Nullable
-	public List<String> type() {
-		return this.type;
+	public Query query() {
+		return this.query;
 	}
 
 	/**
@@ -136,27 +149,14 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code connections}
+	 * A comma-separated list of document types to search; leave empty to perform
+	 * the operation on all types
+	 * <p>
+	 * API name: {@code type}
 	 */
 	@Nullable
-	public Hop connections() {
-		return this.connections;
-	}
-
-	/**
-	 * API name: {@code controls}
-	 */
-	@Nullable
-	public ExploreControls controls() {
-		return this.controls;
-	}
-
-	/**
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
+	public List<String> type() {
+		return this.type;
 	}
 
 	/**
@@ -216,10 +216,16 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * Builder for {@link ExploreRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ExploreRequest> {
+		@Nullable
+		private Hop connections;
+
+		@Nullable
+		private ExploreControls controls;
+
 		private List<String> index;
 
 		@Nullable
-		private List<String> type;
+		private Query query;
 
 		@Nullable
 		private String routing;
@@ -228,16 +234,40 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		private String timeout;
 
 		@Nullable
-		private Hop connections;
-
-		@Nullable
-		private ExploreControls controls;
-
-		@Nullable
-		private Query query;
+		private List<String> type;
 
 		@Nullable
 		private List<VertexDefinition> vertices;
+
+		/**
+		 * API name: {@code connections}
+		 */
+		public Builder connections(@Nullable Hop value) {
+			this.connections = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code connections}
+		 */
+		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+			return this.connections(fn.apply(new Hop.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code controls}
+		 */
+		public Builder controls(@Nullable ExploreControls value) {
+			this.controls = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code controls}
+		 */
+		public Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
+			return this.controls(fn.apply(new ExploreControls.Builder()).build());
+		}
 
 		/**
 		 * Required - A comma-separated list of index names to search; use
@@ -273,6 +303,41 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(@Nullable Query value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Specific routing value
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
 		 * A comma-separated list of document types to search; leave empty to perform
 		 * the operation on all types
 		 * <p>
@@ -303,71 +368,6 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 			}
 			this.type.add(value);
 			return this;
-		}
-
-		/**
-		 * Specific routing value
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code connections}
-		 */
-		public Builder connections(@Nullable Hop value) {
-			this.connections = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code connections}
-		 */
-		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
-			return this.connections(fn.apply(new Hop.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code controls}
-		 */
-		public Builder controls(@Nullable ExploreControls value) {
-			this.controls = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code controls}
-		 */
-		public Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
-			return this.controls(fn.apply(new ExploreControls.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(@Nullable Query value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

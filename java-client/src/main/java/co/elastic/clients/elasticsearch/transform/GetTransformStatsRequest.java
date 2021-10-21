@@ -45,8 +45,6 @@ import javax.annotation.Nullable;
 // typedef: transform.get_transform_stats.Request
 
 public final class GetTransformStatsRequest extends RequestBase {
-	private final String transformId;
-
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -56,29 +54,21 @@ public final class GetTransformStatsRequest extends RequestBase {
 	@Nullable
 	private final Long size;
 
+	private final String transformId;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public GetTransformStatsRequest(Builder builder) {
 
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
+		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 
 	}
 
 	public GetTransformStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The id of the transform for which to get stats. '_all' or '*'
-	 * implies all transforms
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	public String transformId() {
-		return this.transformId;
 	}
 
 	/**
@@ -112,14 +102,22 @@ public final class GetTransformStatsRequest extends RequestBase {
 		return this.size;
 	}
 
+	/**
+	 * Required - The id of the transform for which to get stats. '_all' or '*'
+	 * implies all transforms
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	public String transformId() {
+		return this.transformId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetTransformStatsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetTransformStatsRequest> {
-		private String transformId;
-
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -129,16 +127,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 		@Nullable
 		private Long size;
 
-		/**
-		 * Required - The id of the transform for which to get stats. '_all' or '*'
-		 * implies all transforms
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(String value) {
-			this.transformId = value;
-			return this;
-		}
+		private String transformId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no transforms. (This
@@ -168,6 +157,17 @@ public final class GetTransformStatsRequest extends RequestBase {
 		 */
 		public Builder size(@Nullable Long value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Required - The id of the transform for which to get stats. '_all' or '*'
+		 * implies all transforms
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public Builder transformId(String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -218,14 +218,14 @@ public final class GetTransformStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

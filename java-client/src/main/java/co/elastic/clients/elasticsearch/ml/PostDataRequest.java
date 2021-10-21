@@ -277,11 +277,11 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.resetEnd != null) {
-					params.put("reset_end", request.resetEnd);
-				}
 				if (request.resetStart != null) {
 					params.put("reset_start", request.resetStart);
+				}
+				if (request.resetEnd != null) {
+					params.put("reset_end", request.resetEnd);
 				}
 				return params;
 

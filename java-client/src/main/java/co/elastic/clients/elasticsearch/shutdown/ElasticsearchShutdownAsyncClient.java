@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +52,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request) throws IOException {
+	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteNodeRequest.ENDPOINT);
 	}
 
@@ -61,16 +62,16 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 * and ECK. Direct use is not supported.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteNodeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteNodeResponse> deleteNode(
-			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn) throws IOException {
+			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
@@ -86,7 +87,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request) throws IOException {
+	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetNodeRequest.ENDPOINT);
 	}
 
@@ -96,16 +98,16 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 * supported.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetNodeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetNodeResponse> getNode(
-			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn) throws IOException {
+			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
@@ -119,7 +121,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetNodeResponse> getNode() throws IOException {
+	public CompletableFuture<GetNodeResponse> getNode() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT);
 	}
 
@@ -134,7 +136,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request) throws IOException {
+	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PutNodeRequest.ENDPOINT);
 	}
 
@@ -143,16 +146,16 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 * Direct use is not supported.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutNodeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutNodeResponse> putNode(
-			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn) throws IOException {
+			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 
