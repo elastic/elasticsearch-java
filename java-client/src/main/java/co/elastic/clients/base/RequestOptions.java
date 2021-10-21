@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -74,7 +73,7 @@ public class RequestOptions {
         private Consumer<List<String>> onWarning;
 
         private Builder() {
-            this.headers = new TreeMap<>();
+            this.headers = new HashMap<>();
             this.queryParameters = new HashMap<>();
             this.timeout = null;
             this.onWarning = null;
@@ -153,9 +152,9 @@ public class RequestOptions {
                            Iterable<QueryParameter> queryParameters,
                            Duration timeout,
                            Consumer<List<String>> onWarning) {
-        this.headers = new TreeMap<>(String::compareToIgnoreCase);
+        this.headers = new HashMap<>();
         headers.forEach(header -> this.headers.put(header.name(), header));
-        this.queryParameters = new TreeMap<>(String::compareTo);
+        this.queryParameters = new HashMap<>();
         queryParameters.forEach(parameter -> this.queryParameters.put(parameter.name(), parameter));
         this.timeout = timeout;
         this.onWarning = onWarning;

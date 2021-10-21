@@ -44,9 +44,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 
 public class RestClientTransport implements Transport {
@@ -79,7 +79,7 @@ public class RestClientTransport implements Transport {
 
     @Override
     public Map<String, String> headers() {
-        Map<String, String> headers = new TreeMap<>(String::compareToIgnoreCase);
+        Map<String, String> headers = new HashMap<>();
         requestOptions.headers().forEach(header -> {
             headers.put(header.name(), header.value());
         });
@@ -88,7 +88,7 @@ public class RestClientTransport implements Transport {
 
     @Override
     public Map<String, String> queryParameters() {
-        Map<String, String> queryParameters = new TreeMap<>(String::compareTo);
+        Map<String, String> queryParameters = new HashMap<>();
         requestOptions.queryParameters().forEach(parameter -> {
             queryParameters.put(parameter.name(), parameter.value());
         });
