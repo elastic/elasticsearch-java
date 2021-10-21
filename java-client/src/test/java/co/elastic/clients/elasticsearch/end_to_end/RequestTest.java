@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.end_to_end;
 
 import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.base.rest_client.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;

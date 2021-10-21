@@ -22,7 +22,7 @@ package co.elastic.clients.base.rest_client;
 import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchCatRequest;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
