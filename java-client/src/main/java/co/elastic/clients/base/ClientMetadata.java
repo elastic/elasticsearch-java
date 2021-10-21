@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * This class models a set of client metadata, including Elasticsearch
+ * This class models a set of client metadata, including client
  * version, Java platform version and {@link Transport} version. This
  * information is typically compiled into a header field called
  * {@code X-Elastic-Client-Meta} and sent to the server with each request.
@@ -59,11 +59,11 @@ public class ClientMetadata implements ConvertibleToHeader {
      * @return {@link ClientMetadata} instance
      */
     public static ClientMetadata forLocalSystem() {
-        Version esVersion = getElasticsearchVersion();
+        Version clientVersion = getClientVersion();
         return new Builder()
-                .withElasticsearchVersion(esVersion)
+                .withClientVersion(clientVersion)
                 .withJavaVersion(getJavaVersion())
-                .withTransportVersion(esVersion)
+                .withTransportVersion(clientVersion)
                 .build();
     }
 
@@ -73,18 +73,18 @@ public class ClientMetadata implements ConvertibleToHeader {
      */
     public static class Builder {
 
-        private Version elasticsearchVersion;
+        private Version clientVersion;
         private Version javaVersion;
         private Version transportVersion;
 
         public Builder() {
-            elasticsearchVersion = null;
+            clientVersion = null;
             javaVersion = null;
             transportVersion = null;
         }
 
-        public Builder withElasticsearchVersion(Version version) {
-            elasticsearchVersion = version;
+        public Builder withClientVersion(Version version) {
+            clientVersion = version;
             return this;
         }
 
@@ -100,14 +100,14 @@ public class ClientMetadata implements ConvertibleToHeader {
 
         public ClientMetadata build() {
             return new ClientMetadata(
-                    elasticsearchVersion,
+                    clientVersion,
                     javaVersion,
                     transportVersion);
         }
 
     }
 
-    private final Version elasticsearchVersion;
+    private final Version clientVersion;
     private final Version javaVersion;
     private final Version transportVersion;
 
@@ -116,16 +116,16 @@ public class ClientMetadata implements ConvertibleToHeader {
      * instances to be constructed via the {@link Builder} or
      * the {@link #forLocalSystem()} method.
      *
-     * @param elasticsearchVersion {@link Version} of Elasticsearch
+     * @param clientVersion {@link Version} of the client
      * @param javaVersion {@link Version} of the Java platform
      * @param transportVersion {@link Version} of {@link Transport}
      */
-    private ClientMetadata(Version elasticsearchVersion, Version javaVersion, Version transportVersion) {
-        if (elasticsearchVersion == null) {
-            throw new IllegalArgumentException("Elasticsearch version may not be omitted from client metadata");
+    private ClientMetadata(Version clientVersion, Version javaVersion, Version transportVersion) {
+        if (clientVersion == null) {
+            throw new IllegalArgumentException("Client version may not be omitted from client metadata");
         }
         else {
-            this.elasticsearchVersion = elasticsearchVersion;
+            this.clientVersion = clientVersion;
         }
         if (javaVersion == null) {
             throw new IllegalArgumentException("Java version may not be omitted from client metadata");
@@ -145,18 +145,18 @@ public class ClientMetadata implements ConvertibleToHeader {
      * Separate constructor used for the {@link #EMPTY} instance.
      */
     private ClientMetadata() {
-        this.elasticsearchVersion = null;
+        this.clientVersion = null;
         this.javaVersion = null;
         this.transportVersion = null;
     }
 
     /**
-     * {@link Version} of Elasticsearch represented by this metadata.
+     * {@link Version} of the client represented by this metadata.
      *
      * @return Elasticsearch {@link Version}
      */
-    public Version elasticsearchVersion() {
-        return elasticsearchVersion;
+    public Version clientVersion() {
+        return clientVersion;
     }
 
     /**
@@ -190,8 +190,8 @@ public class ClientMetadata implements ConvertibleToHeader {
      */
     private List<String> pairStrings() {
         List<String> bits = new ArrayList<>();
-        if (elasticsearchVersion != null) {
-            bits.add("es=" + elasticsearchVersion);
+        if (clientVersion != null) {
+            bits.add("es=" + clientVersion);
         }
         if (javaVersion != null) {
             bits.add("jv=" + javaVersion);
@@ -242,9 +242,9 @@ public class ClientMetadata implements ConvertibleToHeader {
      * Fetch and return Elasticsearch version information
      * in raw string form.
      *
-     * @return Elasticsearch version string
+     * @return client version string
      */
-    public static String getElasticsearchVersionString() {
+    public static String getClientVersionString() {
         InputStream in = ApiClient.class.getResourceAsStream(VERSION_PROPERTIES);
         if (in == null) {
             // Failed to locate version.properties file
@@ -268,8 +268,8 @@ public class ClientMetadata implements ConvertibleToHeader {
      *
      * @return Elasticsearch {@link Version}
      */
-    public static Version getElasticsearchVersion() {
-        String versionString = getElasticsearchVersionString();
+    public static Version getClientVersion() {
+        String versionString = getClientVersionString();
         return versionString == null ? null : Version.parse(versionString);
     }
 

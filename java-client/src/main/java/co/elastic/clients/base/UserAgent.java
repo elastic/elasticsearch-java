@@ -30,7 +30,7 @@ public class UserAgent implements ConvertibleToHeader {
 
     static final String DEFAULT_NAME = "elasticsearch-java";
 
-    static final String DEFAULT_VERSION = ClientMetadata.getElasticsearchVersionString();
+    static final String DEFAULT_VERSION = ClientMetadata.getClientVersionString();
 
     public static final UserAgent DEFAULT = new UserAgent(DEFAULT_NAME, DEFAULT_VERSION);
 
