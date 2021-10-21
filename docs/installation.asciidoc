@@ -1,26 +1,22 @@
 [[installation]]
 == Installation
 
-experimental[]
-
-This page guides you through the installation process of the client.
+beta[]
 
 Requirements:
 
-* Java 8 or later. The library provides high-level type-safe classes 
-  and methods for all {es} APIs. It sits on top of the 
-  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html[Low Level Rest Client] 
-  that manages all http communications.
- 
-* The JSON implementation used by the Java client is pluggable and you must add 
-  a JSON object mapping library as a dependency to your project. It has support 
-  for https://github.com/FasterXML/jackson[Jackson] or a 
+* Java 8 or later.
+* Optionally, a JSON object mapping library to allow seamless integration of 
+  your application classes with the Elasticsearch API. The Java client has 
+  support for https://github.com/FasterXML/jackson[Jackson] or a 
   http://json-b.net/[JSON-B] library like 
   https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
 
 
-Releases are hosted on https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you are looking for
-a SNAPSHOT version, the Elastic Maven Snapshot repository is available at https://snapshots.elastic.co/maven/.
+Releases are hosted on 
+https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you 
+are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is 
+available at https://snapshots.elastic.co/maven/.
 
 
 [discrete]
@@ -50,7 +46,7 @@ dependencies:
     <dependency>
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
-      <version>7.15.0-SNAPSHOT</version>
+      <version>7.15.0</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -61,16 +57,3 @@ dependencies:
 
 </project>
 --------------------------------------------------
-
-[discrete]
-[[compatibility]]
-=== Compatibility
-
-The `main` branch targets the next major release (8.0), the `7.x` branch targets 
-the next minor release. Support is still incomplete as the API code is generated 
-from the {es} Specification that is also still a work in progress.
-
-The {es} Java client is forward compatible; meaning that the client supports 
-communicating with greater or equal minor versions of {es}. {es} language 
-clients are only backwards compatible with default distributions and without 
-guarantees made. 

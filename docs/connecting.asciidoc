@@ -1,25 +1,61 @@
 [[connecting]]
 == Connecting
 
-experimental[]
+beta[]
 
-The code snippet below shows how to initialize a low level REST client and the 
-Jackson object mapper to configure an ElasticsearchClient:
+The Java client is structured around three main components:
 
+* **API client classes**. These provide strongly typed data structures and 
+methods for {es} APIs. Since the {es} API is large, it is structured in feature 
+groups (also called “namespaces”), each having its own client class. {es} core 
+features are implemented in the `ElasticsearchClient` class.
+* **A JSON object mapper**. This maps your application classes to JSON and 
+seamlessly integrates them with the API client.
+* **A transport layer implementation**. This is where all HTTP request handling 
+takes place.
+
+This code snippet creates and wires together these three components:
 
 ["source","java"]
 --------------------------------------------------
 // Create the low-level client
-RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
+RestClient restClient = RestClient.builder(
+    new HttpHost("localhost", 9200)).build();
 
-// Create the transport that provides JSON and http services to API clients
-Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+// Create the transport with a Jackson mapper
+Transport transport = new RestClientTransport(
+    restClient, new JacksonJsonpMapper());
 
-// And create our API client
+// And create the API client
 ElasticsearchClient client = new ElasticsearchClient(transport);
 --------------------------------------------------
 
-Authentication is managed by the 
-https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html[low-level Rest Client].
-For further details on configuring authentication, refer to the 
-https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/_basic_authentication.html[documentation].
+Authentication is managed by the <<java-rest-low>>. For further details on 
+configuring authentication, refer to 
+{java-api-client}/_basic_authentication.html[its documentation].
+
+[discrete]
+=== Your first request
+
+The code snippet below searches all items from a “product” index whose name 
+matches “bicycle” and return them as instances of a `Product` application class.
+
+It illustrates the use of fluent functional builders to write search queries as 
+concise DSL-like code. This pattern is explained in more detail in 
+<<api-conventions>>.
+
+["source","java"]
+--------------------------------------------------
+SearchResponse<Product> search = client.search(s -> s
+    .index("products")
+    .query(q -> q
+        .term(t -> t
+            .field("name")
+            .value("bicycle")
+    )),
+    Product.class);
+
+for (Hit<AppData> hit: search.hits().hits()) {
+    processAppData(hit.source());
+}
+--------------------------------------------------
