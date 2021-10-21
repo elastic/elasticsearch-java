@@ -21,6 +21,8 @@ package co.elastic.clients.base;
 
 import co.elastic.clients.util.NamedValue;
 
+import java.util.Locale;
+
 /**
  * Raw HTTP header field, consisting of a string name and value.
  */
@@ -29,7 +31,8 @@ public class Header extends NamedValue<String> implements ConvertibleToHeader {
     /**
      * Construct a raw header field.
      *
-     * The {@link Object#toString()} method of the value passed is
+     * Header names are coerced to lower case and the
+     * {@link Object#toString()} method of the value is
      * used to obtain the field value sent over the wire.
      *
      * By convention, a null value denotes that the header with that
@@ -44,7 +47,7 @@ public class Header extends NamedValue<String> implements ConvertibleToHeader {
     }
 
     private Header(String name, String value) {
-        super(name, value);
+        super(name.toLowerCase(Locale.ROOT), value);
     }
 
     @Override
