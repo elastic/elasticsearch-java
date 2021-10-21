@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -51,7 +51,8 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request) throws IOException {
+	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ClearCursorRequest.ENDPOINT);
 	}
 
@@ -59,16 +60,16 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 * Clears the SQL cursor
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCursorRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-sql-cursor-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearCursorResponse> clearCursor(
-			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn) throws IOException {
+			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
 	}
 
@@ -82,7 +83,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException {
+	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, QueryRequest.ENDPOINT);
 	}
 
@@ -90,16 +91,15 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 * Executes a SQL request
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<QueryResponse> query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
@@ -111,7 +111,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryResponse> query() throws IOException {
+	public CompletableFuture<QueryResponse> query() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT);
 	}
 
@@ -125,7 +125,8 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TranslateResponse> translate(TranslateRequest request) throws IOException {
+	public CompletableFuture<TranslateResponse> translate(TranslateRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, TranslateRequest.ENDPOINT);
 	}
 
@@ -133,16 +134,16 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 * Translates SQL into Elasticsearch queries
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TranslateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TranslateResponse> translate(
-			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn) throws IOException {
+			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return translate(fn.apply(new TranslateRequest.Builder()).build());
 	}
 

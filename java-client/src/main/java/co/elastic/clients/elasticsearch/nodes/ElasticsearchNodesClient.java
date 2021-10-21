@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException {
+	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, HotThreadsRequest.ENDPOINT);
 	}
 
@@ -58,16 +58,15 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link HotThreadsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -79,7 +78,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public HotThreadsResponse hotThreads() throws IOException {
+	public HotThreadsResponse hotThreads() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT);
 	}
 
@@ -93,7 +92,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesInfoResponse info(NodesInfoRequest request) throws IOException {
+	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, NodesInfoRequest.ENDPOINT);
 	}
 
@@ -101,16 +100,15 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 * Returns information about nodes in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesInfoRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -122,7 +120,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesInfoResponse info() throws IOException {
+	public NodesInfoResponse info() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT);
 	}
 
@@ -136,7 +134,8 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException {
+	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ReloadSecureSettingsRequest.ENDPOINT);
 	}
 
@@ -144,9 +143,8 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 * Reloads secure settings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ReloadSecureSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
 	 *      on elastic.co</a>
@@ -154,7 +152,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 
 	public final ReloadSecureSettingsResponse reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -166,7 +164,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException {
+	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
 				ReloadSecureSettingsRequest.ENDPOINT);
 	}
@@ -181,7 +179,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException {
+	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, NodesStatsRequest.ENDPOINT);
 	}
 
@@ -189,16 +187,15 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 * Returns statistical information about nodes in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -210,7 +207,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesStatsResponse stats() throws IOException {
+	public NodesStatsResponse stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT);
 	}
 
@@ -224,7 +221,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage(UsageRequest request) throws IOException {
+	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UsageRequest.ENDPOINT);
 	}
 
@@ -232,16 +229,15 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return usage(fn.apply(new UsageRequest.Builder()).build());
 	}
 
@@ -253,7 +249,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage() throws IOException {
+	public UsageResponse usage() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
 	}
 

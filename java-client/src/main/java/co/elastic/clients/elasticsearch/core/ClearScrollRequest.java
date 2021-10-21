@@ -44,7 +44,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Request
@@ -66,8 +65,6 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * A comma-separated list of scroll IDs to clear
-	 * <p>
 	 * API name: {@code scroll_id}
 	 */
 	@Nullable
@@ -86,6 +83,18 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.scrollId != null) {
+
+			generator.writeKey("scroll_id");
+			generator.writeStartArray();
+			for (String item0 : this.scrollId) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -98,8 +107,6 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 		private List<String> scrollId;
 
 		/**
-		 * A comma-separated list of scroll IDs to clear
-		 * <p>
 		 * API name: {@code scroll_id}
 		 */
 		public Builder scrollId(@Nullable List<String> value) {
@@ -108,8 +115,6 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * A comma-separated list of scroll IDs to clear
-		 * <p>
 		 * API name: {@code scroll_id}
 		 */
 		public Builder scrollId(String... value) {
@@ -150,6 +155,9 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 
 	protected static void setupClearScrollRequestDeserializer(DelegatingDeserializer<ClearScrollRequest.Builder> op) {
 
+		op.add(Builder::scrollId, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"scroll_id");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -166,29 +174,7 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 
 			// Request path
 			request -> {
-				final int _scrollId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.scrollId() != null)
-					propsSet |= _scrollId;
-
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_search");
-					buf.append("/scroll");
-					return buf.toString();
-				}
-				if (propsSet == (_scrollId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_search");
-					buf.append("/scroll");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.scrollId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+				return "/_search/scroll";
 
 			},
 

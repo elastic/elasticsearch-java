@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,8 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteTransformResponse deleteTransform(DeleteTransformRequest request) throws IOException {
+	public DeleteTransformResponse deleteTransform(DeleteTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteTransformRequest.ENDPOINT);
 	}
 
@@ -58,16 +59,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Deletes an existing transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteTransformResponse deleteTransform(
-			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn) throws IOException {
+			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
 	}
 
@@ -81,7 +82,7 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTransformResponse getTransform(GetTransformRequest request) throws IOException {
+	public GetTransformResponse getTransform(GetTransformRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetTransformRequest.ENDPOINT);
 	}
 
@@ -89,16 +90,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Retrieves configuration information for transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetTransformResponse getTransform(
-			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn) throws IOException {
+			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getTransform(fn.apply(new GetTransformRequest.Builder()).build());
 	}
 
@@ -110,7 +111,7 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTransformResponse getTransform() throws IOException {
+	public GetTransformResponse getTransform() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTransformRequest.Builder().build(), GetTransformRequest.ENDPOINT);
 	}
 
@@ -124,7 +125,8 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTransformStatsResponse getTransformStats(GetTransformStatsRequest request) throws IOException {
+	public GetTransformStatsResponse getTransformStats(GetTransformStatsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetTransformStatsRequest.ENDPOINT);
 	}
 
@@ -132,16 +134,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Retrieves usage information for transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTransformStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetTransformStatsResponse getTransformStats(
-			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn) throws IOException {
+			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getTransformStats(fn.apply(new GetTransformStatsRequest.Builder()).build());
 	}
 
@@ -156,7 +158,7 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 */
 
 	public <TTransform> PreviewTransformResponse<TTransform> previewTransform(PreviewTransformRequest request,
-			Class<TTransform> tTransformClass) throws IOException {
+			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request,
 				PreviewTransformRequest.createPreviewTransformEndpoint(getDeserializer(tTransformClass)));
 	}
@@ -165,9 +167,8 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Previews a transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PreviewTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
 	 *      on elastic.co</a>
@@ -175,7 +176,7 @@ public class ElasticsearchTransformClient extends ApiClient {
 
 	public final <TTransform> PreviewTransformResponse<TTransform> previewTransform(
 			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn,
-			Class<TTransform> tTransformClass) throws IOException {
+			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
 		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), tTransformClass);
 	}
 
@@ -189,7 +190,7 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutTransformResponse putTransform(PutTransformRequest request) throws IOException {
+	public PutTransformResponse putTransform(PutTransformRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutTransformRequest.ENDPOINT);
 	}
 
@@ -197,16 +198,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Instantiates a transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutTransformResponse putTransform(
-			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn) throws IOException {
+			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putTransform(fn.apply(new PutTransformRequest.Builder()).build());
 	}
 
@@ -220,7 +221,8 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StartTransformResponse startTransform(StartTransformRequest request) throws IOException {
+	public StartTransformResponse startTransform(StartTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, StartTransformRequest.ENDPOINT);
 	}
 
@@ -228,16 +230,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Starts one or more transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StartTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final StartTransformResponse startTransform(
-			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn) throws IOException {
+			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return startTransform(fn.apply(new StartTransformRequest.Builder()).build());
 	}
 
@@ -251,7 +253,8 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StopTransformResponse stopTransform(StopTransformRequest request) throws IOException {
+	public StopTransformResponse stopTransform(StopTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, StopTransformRequest.ENDPOINT);
 	}
 
@@ -259,16 +262,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Stops one or more transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StopTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final StopTransformResponse stopTransform(
-			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn) throws IOException {
+			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stopTransform(fn.apply(new StopTransformRequest.Builder()).build());
 	}
 
@@ -282,7 +285,8 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateTransformResponse updateTransform(UpdateTransformRequest request) throws IOException {
+	public UpdateTransformResponse updateTransform(UpdateTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpdateTransformRequest.ENDPOINT);
 	}
 
@@ -290,16 +294,16 @@ public class ElasticsearchTransformClient extends ApiClient {
 	 * Updates certain properties of a transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UpdateTransformResponse updateTransform(
-			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn) throws IOException {
+			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return updateTransform(fn.apply(new UpdateTransformRequest.Builder()).build());
 	}
 

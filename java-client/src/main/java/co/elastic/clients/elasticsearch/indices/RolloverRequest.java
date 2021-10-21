@@ -56,7 +56,10 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	private final String alias;
 
 	@Nullable
-	private final String newIndex;
+	private final Map<String, Alias> aliases;
+
+	@Nullable
+	private final RolloverConditions conditions;
 
 	@Nullable
 	private final Boolean dryRun;
@@ -65,7 +68,19 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	private final Boolean includeTypeName;
 
 	@Nullable
+	private final JsonValue /*
+							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+							 * false) | _types.mapping.TypeMapping)
+							 */ mappings;
+
+	@Nullable
 	private final String masterTimeout;
+
+	@Nullable
+	private final String newIndex;
+
+	@Nullable
+	private final Map<String, JsonData> settings;
 
 	@Nullable
 	private final String timeout;
@@ -73,36 +88,21 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
-	@Nullable
-	private final Map<String, Alias> aliases;
-
-	@Nullable
-	private final RolloverConditions conditions;
-
-	@Nullable
-	private final JsonValue /*
-							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
-							 * false) | _types.mapping.TypeMapping)
-							 */ mappings;
-
-	@Nullable
-	private final Map<String, JsonData> settings;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public RolloverRequest(Builder builder) {
 
 		this.alias = Objects.requireNonNull(builder.alias, "alias");
-		this.newIndex = builder.newIndex;
-		this.dryRun = builder.dryRun;
-		this.includeTypeName = builder.includeTypeName;
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
-		this.waitForActiveShards = builder.waitForActiveShards;
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.conditions = builder.conditions;
+		this.dryRun = builder.dryRun;
+		this.includeTypeName = builder.includeTypeName;
 		this.mappings = builder.mappings;
+		this.masterTimeout = builder.masterTimeout;
+		this.newIndex = builder.newIndex;
 		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
+		this.timeout = builder.timeout;
+		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
@@ -120,13 +120,19 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The name of the rollover index
-	 * <p>
-	 * API name: {@code new_index}
+	 * API name: {@code aliases}
 	 */
 	@Nullable
-	public String newIndex() {
-		return this.newIndex;
+	public Map<String, Alias> aliases() {
+		return this.aliases;
+	}
+
+	/**
+	 * API name: {@code conditions}
+	 */
+	@Nullable
+	public RolloverConditions conditions() {
+		return this.conditions;
 	}
 
 	/**
@@ -149,6 +155,17 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * API name: {@code mappings}
+	 */
+	@Nullable
+	public JsonValue /*
+						 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+						 * false) | _types.mapping.TypeMapping)
+						 */ mappings() {
+		return this.mappings;
+	}
+
+	/**
 	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -156,6 +173,24 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * The name of the rollover index
+	 * <p>
+	 * API name: {@code new_index}
+	 */
+	@Nullable
+	public String newIndex() {
+		return this.newIndex;
+	}
+
+	/**
+	 * API name: {@code settings}
+	 */
+	@Nullable
+	public Map<String, JsonData> settings() {
+		return this.settings;
 	}
 
 	/**
@@ -177,41 +212,6 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
-	}
-
-	/**
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
-		return this.aliases;
-	}
-
-	/**
-	 * API name: {@code conditions}
-	 */
-	@Nullable
-	public RolloverConditions conditions() {
-		return this.conditions;
-	}
-
-	/**
-	 * API name: {@code mappings}
-	 */
-	@Nullable
-	public JsonValue /*
-						 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
-						 * false) | _types.mapping.TypeMapping)
-						 */ mappings() {
-		return this.mappings;
-	}
-
-	/**
-	 * API name: {@code settings}
-	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
-		return this.settings;
 	}
 
 	/**
@@ -273,7 +273,10 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 		private String alias;
 
 		@Nullable
-		private String newIndex;
+		private Map<String, Alias> aliases;
+
+		@Nullable
+		private RolloverConditions conditions;
 
 		@Nullable
 		private Boolean dryRun;
@@ -282,28 +285,25 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 		private Boolean includeTypeName;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-		@Nullable
-		private Map<String, Alias> aliases;
-
-		@Nullable
-		private RolloverConditions conditions;
-
-		@Nullable
 		private JsonValue /*
 							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
 							 * false) | _types.mapping.TypeMapping)
 							 */ mappings;
 
 		@Nullable
+		private String masterTimeout;
+
+		@Nullable
+		private String newIndex;
+
+		@Nullable
 		private Map<String, JsonData> settings;
+
+		@Nullable
+		private String timeout;
+
+		@Nullable
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		/**
 		 * Required - The name of the alias to rollover
@@ -312,66 +312,6 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder alias(String value) {
 			this.alias = value;
-			return this;
-		}
-
-		/**
-		 * The name of the rollover index
-		 * <p>
-		 * API name: {@code new_index}
-		 */
-		public Builder newIndex(@Nullable String value) {
-			this.newIndex = value;
-			return this;
-		}
-
-		/**
-		 * If set to true the rollover action will only be validated but not actually
-		 * performed even if a condition matches. The default is false
-		 * <p>
-		 * API name: {@code dry_run}
-		 */
-		public Builder dryRun(@Nullable Boolean value) {
-			this.dryRun = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Set the number of active shards to wait for on the newly created rollover
-		 * index before the operation returns.
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -424,6 +364,25 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * If set to true the rollover action will only be validated but not actually
+		 * performed even if a condition matches. The default is false
+		 * <p>
+		 * API name: {@code dry_run}
+		 */
+		public Builder dryRun(@Nullable Boolean value) {
+			this.dryRun = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code include_type_name}
+		 */
+		public Builder includeTypeName(@Nullable Boolean value) {
+			this.includeTypeName = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(@Nullable JsonValue /*
@@ -431,6 +390,26 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 													 * (singleKey = false) | _types.mapping.TypeMapping)
 													 */ value) {
 			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The name of the rollover index
+		 * <p>
+		 * API name: {@code new_index}
+		 */
+		public Builder newIndex(@Nullable String value) {
+			this.newIndex = value;
 			return this;
 		}
 
@@ -450,6 +429,27 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 				this.settings = new HashMap<>();
 			}
 			this.settings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Set the number of active shards to wait for on the newly created rollover
+		 * index before the operation returns.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -496,14 +496,14 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 
 			// Request path
 			request -> {
-				final int _alias = 1 << 0;
-				final int _newIndex = 1 << 1;
+				final int _newIndex = 1 << 0;
+				final int _alias = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _alias;
 				if (request.newIndex() != null)
 					propsSet |= _newIndex;
+				propsSet |= _alias;
 
 				if (propsSet == (_alias)) {
 					StringBuilder buf = new StringBuilder();
@@ -528,20 +528,20 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.dryRun != null) {
-					params.put("dry_run", String.valueOf(request.dryRun));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				}
+				if (request.dryRun != null) {
+					params.put("dry_run", String.valueOf(request.dryRun));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 

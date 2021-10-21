@@ -55,8 +55,6 @@ import javax.annotation.Nullable;
 // typedef: _global.rank_eval.Request
 @JsonpDeserializable
 public final class RankEvalRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -66,42 +64,32 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final List<String> index;
+
 	@Nullable
-	private final String searchType;
+	private final RankEvalMetric metric;
 
 	private final List<RankEvalRequestItem> requests;
 
 	@Nullable
-	private final RankEvalMetric metric;
+	private final String searchType;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public RankEvalRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.searchType = builder.searchType;
-		this.requests = ModelTypeHelper.unmodifiableNonNull(builder.requests, "requests");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.metric = builder.metric;
+		this.requests = ModelTypeHelper.unmodifiableNonNull(builder.requests, "requests");
+		this.searchType = builder.searchType;
 
 	}
 
 	public RankEvalRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of data streams, indices, and index aliases
-	 * used to limit the request. Wildcard (<code>*</code>) expressions are
-	 * supported. To target all data streams and indices in a cluster, omit this
-	 * parameter or use <code>_all</code> or <code>*</code>.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -142,23 +130,15 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Search operation type
+	 * Required - Comma-separated list of data streams, indices, and index aliases
+	 * used to limit the request. Wildcard (<code>*</code>) expressions are
+	 * supported. To target all data streams and indices in a cluster, omit this
+	 * parameter or use <code>_all</code> or <code>*</code>.
 	 * <p>
-	 * API name: {@code search_type}
+	 * API name: {@code index}
 	 */
-	@Nullable
-	public String searchType() {
-		return this.searchType;
-	}
-
-	/**
-	 * Required - A set of typical search requests, together with their provided
-	 * ratings.
-	 * <p>
-	 * API name: {@code requests}
-	 */
-	public List<RankEvalRequestItem> requests() {
-		return this.requests;
+	public List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -172,6 +152,26 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * Required - A set of typical search requests, together with their provided
+	 * ratings.
+	 * <p>
+	 * API name: {@code requests}
+	 */
+	public List<RankEvalRequestItem> requests() {
+		return this.requests;
+	}
+
+	/**
+	 * Search operation type
+	 * <p>
+	 * API name: {@code search_type}
+	 */
+	@Nullable
+	public String searchType() {
+		return this.searchType;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -182,6 +182,13 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.metric != null) {
+
+			generator.writeKey("metric");
+			this.metric.serialize(generator, mapper);
+
+		}
+
 		generator.writeKey("requests");
 		generator.writeStartArray();
 		for (RankEvalRequestItem item0 : this.requests) {
@@ -189,13 +196,6 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 		}
 		generator.writeEnd();
-
-		if (this.metric != null) {
-
-			generator.writeKey("metric");
-			this.metric.serialize(generator, mapper);
-
-		}
 
 	}
 
@@ -205,8 +205,6 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link RankEvalRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RankEvalRequest> {
-		private List<String> index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -216,50 +214,15 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		@Nullable
-		private String searchType;
-
-		private List<RankEvalRequestItem> requests;
+		private List<String> index;
 
 		@Nullable
 		private RankEvalMetric metric;
 
-		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * used to limit the request. Wildcard (<code>*</code>) expressions are
-		 * supported. To target all data streams and indices in a cluster, omit this
-		 * parameter or use <code>_all</code> or <code>*</code>.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
+		private List<RankEvalRequestItem> requests;
 
-		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * used to limit the request. Wildcard (<code>*</code>) expressions are
-		 * supported. To target all data streams and indices in a cluster, omit this
-		 * parameter or use <code>_all</code> or <code>*</code>.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		@Nullable
+		private String searchType;
 
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
@@ -321,13 +284,59 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Search operation type
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard (<code>*</code>) expressions are
+		 * supported. To target all data streams and indices in a cluster, omit this
+		 * parameter or use <code>_all</code> or <code>*</code>.
 		 * <p>
-		 * API name: {@code search_type}
+		 * API name: {@code index}
 		 */
-		public Builder searchType(@Nullable String value) {
-			this.searchType = value;
+		public Builder index(List<String> value) {
+			this.index = value;
 			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard (<code>*</code>) expressions are
+		 * supported. To target all data streams and indices in a cluster, omit this
+		 * parameter or use <code>_all</code> or <code>*</code>.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
+		 * Definition of the evaluation metric to calculate.
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(@Nullable RankEvalMetric value) {
+			this.metric = value;
+			return this;
+		}
+
+		/**
+		 * Definition of the evaluation metric to calculate.
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
+			return this.metric(fn.apply(new RankEvalMetric.Builder()).build());
 		}
 
 		/**
@@ -378,22 +387,13 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Definition of the evaluation metric to calculate.
+		 * Search operation type
 		 * <p>
-		 * API name: {@code metric}
+		 * API name: {@code search_type}
 		 */
-		public Builder metric(@Nullable RankEvalMetric value) {
-			this.metric = value;
+		public Builder searchType(@Nullable String value) {
+			this.searchType = value;
 			return this;
-		}
-
-		/**
-		 * Definition of the evaluation metric to calculate.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
-			return this.metric(fn.apply(new RankEvalMetric.Builder()).build());
 		}
 
 		/**
@@ -418,8 +418,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 	protected static void setupRankEvalRequestDeserializer(DelegatingDeserializer<RankEvalRequest.Builder> op) {
 
-		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem._DESERIALIZER), "requests");
 		op.add(Builder::metric, RankEvalMetric._DESERIALIZER, "metric");
+		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem._DESERIALIZER), "requests");
 
 	}
 
@@ -462,15 +462,15 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType);

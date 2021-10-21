@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +52,7 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteDanglingIndexRequest.ENDPOINT);
 	}
 
@@ -60,9 +60,8 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 	 * Deletes the specified dangling index
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDanglingIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
 	 *      on elastic.co</a>
@@ -70,7 +69,7 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 
 	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
 			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
@@ -85,7 +84,7 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ImportDanglingIndexRequest.ENDPOINT);
 	}
 
@@ -93,9 +92,8 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 	 * Imports the specified dangling index
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ImportDanglingIndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
 	 *      on elastic.co</a>
@@ -103,7 +101,7 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient {
 
 	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
 			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 

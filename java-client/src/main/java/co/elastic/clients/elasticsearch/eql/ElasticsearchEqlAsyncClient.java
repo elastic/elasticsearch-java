@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +52,8 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<EqlDeleteResponse> delete(EqlDeleteRequest request) throws IOException {
+	public CompletableFuture<EqlDeleteResponse> delete(EqlDeleteRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, EqlDeleteRequest.ENDPOINT);
 	}
 
@@ -61,16 +62,16 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link EqlDeleteRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<EqlDeleteResponse> delete(
-			Function<EqlDeleteRequest.Builder, ObjectBuilder<EqlDeleteRequest>> fn) throws IOException {
+			Function<EqlDeleteRequest.Builder, ObjectBuilder<EqlDeleteRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return delete(fn.apply(new EqlDeleteRequest.Builder()).build());
 	}
 
@@ -86,7 +87,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 */
 
 	public <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(EqlGetRequest request, Class<TEvent> tEventClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
 				EqlGetRequest.createGetEndpoint(getDeserializer(tEventClass)));
 	}
@@ -96,9 +97,8 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 * search
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link EqlGetRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
 	 *      on elastic.co</a>
@@ -106,7 +106,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 
 	public final <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(
 			Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn, Class<TEvent> tEventClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventClass);
 	}
 
@@ -121,7 +121,8 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetStatusResponse> getStatus(GetStatusRequest request) throws IOException {
+	public CompletableFuture<GetStatusResponse> getStatus(GetStatusRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetStatusRequest.ENDPOINT);
 	}
 
@@ -130,16 +131,16 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 * Language (EQL) search
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetStatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetStatusResponse> getStatus(
-			Function<GetStatusRequest.Builder, ObjectBuilder<GetStatusRequest>> fn) throws IOException {
+			Function<GetStatusRequest.Builder, ObjectBuilder<GetStatusRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getStatus(fn.apply(new GetStatusRequest.Builder()).build());
 	}
 
@@ -154,7 +155,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 */
 
 	public <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(EqlSearchRequest request,
-			Class<TEvent> tEventClass) throws IOException {
+			Class<TEvent> tEventClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
 				EqlSearchRequest.createSearchEndpoint(getDeserializer(tEventClass)));
 	}
@@ -163,9 +164,8 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 	 * Returns results matching a query expressed in Event Query Language (EQL)
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link EqlSearchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
 	 *      on elastic.co</a>
@@ -173,7 +173,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient {
 
 	public final <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(
 			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
 	}
 

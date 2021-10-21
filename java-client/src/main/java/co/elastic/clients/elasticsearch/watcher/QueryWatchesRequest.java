@@ -56,26 +56,26 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	private final Integer from;
 
 	@Nullable
-	private final Integer size;
-
-	@Nullable
 	private final Query query;
 
 	@Nullable
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<String> searchAfter;
 
 	@Nullable
-	private final List<String> searchAfter;
+	private final Integer size;
+
+	@Nullable
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public QueryWatchesRequest(Builder builder) {
 
 		this.from = builder.from;
-		this.size = builder.size;
 		this.query = builder.query;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
+		this.size = builder.size;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 
 	}
 
@@ -94,16 +94,6 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The number of hits to return. Needs to be non-negative.
-	 * <p>
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public Integer size() {
-		return this.size;
-	}
-
-	/**
 	 * Optional, query filter watches to be returned.
 	 * <p>
 	 * API name: {@code query}
@@ -114,16 +104,6 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Optional sort definition.
-	 * <p>
-	 * API name: {@code sort}
-	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
-		return this.sort;
-	}
-
-	/**
 	 * Optional search After to do pagination using last hit’s sort values.
 	 * <p>
 	 * API name: {@code search_after}
@@ -131,6 +111,26 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public List<String> searchAfter() {
 		return this.searchAfter;
+	}
+
+	/**
+	 * The number of hits to return. Needs to be non-negative.
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Integer size() {
+		return this.size;
+	}
+
+	/**
+	 * Optional sort definition.
+	 * <p>
+	 * API name: {@code sort}
+	 */
+	@Nullable
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+		return this.sort;
 	}
 
 	/**
@@ -150,27 +150,10 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 			generator.write(this.from);
 
 		}
-		if (this.size != null) {
-
-			generator.writeKey("size");
-			generator.write(this.size);
-
-		}
 		if (this.query != null) {
 
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
-
-		}
-		if (this.sort != null) {
-
-			generator.writeKey("sort");
-			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
 
 		}
 		if (this.searchAfter != null) {
@@ -178,6 +161,23 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 			generator.writeKey("search_after");
 			generator.writeStartArray();
 			for (String item0 : this.searchAfter) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.size != null) {
+
+			generator.writeKey("size");
+			generator.write(this.size);
+
+		}
+		if (this.sort != null) {
+
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -197,16 +197,16 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		private Integer from;
 
 		@Nullable
-		private Integer size;
-
-		@Nullable
 		private Query query;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<String> searchAfter;
 
 		@Nullable
-		private List<String> searchAfter;
+		private Integer size;
+
+		@Nullable
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
 		 * The offset from the first result to fetch. Needs to be non-negative.
@@ -215,16 +215,6 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder from(@Nullable Integer value) {
 			this.from = value;
-			return this;
-		}
-
-		/**
-		 * The number of hits to return. Needs to be non-negative.
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
 			return this;
 		}
 
@@ -245,37 +235,6 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Optional sort definition.
-		 * <p>
-		 * API name: {@code sort}
-		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
-			this.sort = value;
-			return this;
-		}
-
-		/**
-		 * Optional sort definition.
-		 * <p>
-		 * API name: {@code sort}
-		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
-			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
-			return this;
 		}
 
 		/**
@@ -310,6 +269,47 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * The number of hits to return. Needs to be non-negative.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Optional sort definition.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+			this.sort = value;
+			return this;
+		}
+
+		/**
+		 * Optional sort definition.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 */
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
+			if (this.sort == null) {
+				this.sort = new ArrayList<>();
+			}
+			this.sort.add(value);
+			return this;
+		}
+
+		/**
 		 * Builds a {@link QueryWatchesRequest}.
 		 *
 		 * @throws NullPointerException
@@ -332,11 +332,11 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	protected static void setupQueryWatchesRequestDeserializer(DelegatingDeserializer<QueryWatchesRequest.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
-		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"search_after");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}
 

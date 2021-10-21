@@ -46,46 +46,34 @@ import javax.annotation.Nullable;
 
 public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
-	private final String id;
+	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Boolean allowNoMatch;
+	private final Boolean excludeGenerated;
 
 	@Nullable
 	private final Integer from;
 
 	@Nullable
-	private final Integer size;
+	private final String id;
 
 	@Nullable
-	private final Boolean excludeGenerated;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = builder.id;
 		this.allowNoMatch = builder.allowNoMatch;
-		this.from = builder.from;
-		this.size = builder.size;
 		this.excludeGenerated = builder.excludeGenerated;
+		this.from = builder.from;
+		this.id = builder.id;
+		this.size = builder.size;
 
 	}
 
 	public GetDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Identifier for the data frame analytics job. If you do not specify this
-	 * option, the API returns information for the first hundred data frame
-	 * analytics jobs.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -111,6 +99,18 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
+	 * Indicates if certain fields should be removed from the configuration on
+	 * retrieval. This allows the configuration to be in an acceptable format to be
+	 * retrieved and then added to another cluster.
+	 * <p>
+	 * API name: {@code exclude_generated}
+	 */
+	@Nullable
+	public Boolean excludeGenerated() {
+		return this.excludeGenerated;
+	}
+
+	/**
 	 * Skips the specified number of data frame analytics jobs.
 	 * <p>
 	 * API name: {@code from}
@@ -118,6 +118,18 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	public Integer from() {
 		return this.from;
+	}
+
+	/**
+	 * Identifier for the data frame analytics job. If you do not specify this
+	 * option, the API returns information for the first hundred data frame
+	 * analytics jobs.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -130,18 +142,6 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 		return this.size;
 	}
 
-	/**
-	 * Indicates if certain fields should be removed from the configuration on
-	 * retrieval. This allows the configuration to be in an acceptable format to be
-	 * retrieved and then added to another cluster.
-	 * <p>
-	 * API name: {@code exclude_generated}
-	 */
-	@Nullable
-	public Boolean excludeGenerated() {
-		return this.excludeGenerated;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -149,31 +149,19 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsRequest> {
 		@Nullable
-		private String id;
+		private Boolean allowNoMatch;
 
 		@Nullable
-		private Boolean allowNoMatch;
+		private Boolean excludeGenerated;
 
 		@Nullable
 		private Integer from;
 
 		@Nullable
-		private Integer size;
+		private String id;
 
 		@Nullable
-		private Boolean excludeGenerated;
-
-		/**
-		 * Identifier for the data frame analytics job. If you do not specify this
-		 * option, the API returns information for the first hundred data frame
-		 * analytics jobs.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+		private Integer size;
 
 		/**
 		 * Specifies what to do when the request:
@@ -198,6 +186,18 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 		}
 
 		/**
+		 * Indicates if certain fields should be removed from the configuration on
+		 * retrieval. This allows the configuration to be in an acceptable format to be
+		 * retrieved and then added to another cluster.
+		 * <p>
+		 * API name: {@code exclude_generated}
+		 */
+		public Builder excludeGenerated(@Nullable Boolean value) {
+			this.excludeGenerated = value;
+			return this;
+		}
+
+		/**
 		 * Skips the specified number of data frame analytics jobs.
 		 * <p>
 		 * API name: {@code from}
@@ -208,24 +208,24 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 		}
 
 		/**
+		 * Identifier for the data frame analytics job. If you do not specify this
+		 * option, the API returns information for the first hundred data frame
+		 * analytics jobs.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
 		 * Specifies the maximum number of data frame analytics jobs to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Integer value) {
 			this.size = value;
-			return this;
-		}
-
-		/**
-		 * Indicates if certain fields should be removed from the configuration on
-		 * retrieval. This allows the configuration to be in an acceptable format to be
-		 * retrieved and then added to another cluster.
-		 * <p>
-		 * API name: {@code exclude_generated}
-		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
-			this.excludeGenerated = value;
 			return this;
 		}
 
@@ -285,17 +285,17 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
 				if (request.excludeGenerated != null) {
 					params.put("exclude_generated", String.valueOf(request.excludeGenerated));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

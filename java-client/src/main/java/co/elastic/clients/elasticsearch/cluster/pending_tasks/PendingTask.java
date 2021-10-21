@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -41,6 +42,8 @@ import javax.annotation.Nullable;
 // typedef: cluster.pending_tasks.PendingTask
 @JsonpDeserializable
 public final class PendingTask implements JsonpSerializable {
+	private final boolean executing;
+
 	private final int insertOrder;
 
 	private final String priority;
@@ -55,6 +58,7 @@ public final class PendingTask implements JsonpSerializable {
 
 	public PendingTask(Builder builder) {
 
+		this.executing = Objects.requireNonNull(builder.executing, "executing");
 		this.insertOrder = Objects.requireNonNull(builder.insertOrder, "insert_order");
 		this.priority = Objects.requireNonNull(builder.priority, "priority");
 		this.source = Objects.requireNonNull(builder.source, "source");
@@ -65,6 +69,13 @@ public final class PendingTask implements JsonpSerializable {
 
 	public PendingTask(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Required - API name: {@code executing}
+	 */
+	public boolean executing() {
+		return this.executing;
 	}
 
 	/**
@@ -113,6 +124,9 @@ public final class PendingTask implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("executing");
+		generator.write(this.executing);
+
 		generator.writeKey("insert_order");
 		generator.write(this.insertOrder);
 
@@ -136,6 +150,8 @@ public final class PendingTask implements JsonpSerializable {
 	 * Builder for {@link PendingTask}.
 	 */
 	public static class Builder implements ObjectBuilder<PendingTask> {
+		private Boolean executing;
+
 		private Integer insertOrder;
 
 		private String priority;
@@ -145,6 +161,14 @@ public final class PendingTask implements JsonpSerializable {
 		private String timeInQueue;
 
 		private Integer timeInQueueMillis;
+
+		/**
+		 * Required - API name: {@code executing}
+		 */
+		public Builder executing(boolean value) {
+			this.executing = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code insert_order}
@@ -208,6 +232,7 @@ public final class PendingTask implements JsonpSerializable {
 
 	protected static void setupPendingTaskDeserializer(DelegatingDeserializer<PendingTask.Builder> op) {
 
+		op.add(Builder::executing, JsonpDeserializer.booleanDeserializer(), "executing");
 		op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");

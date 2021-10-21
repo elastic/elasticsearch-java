@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.logstash;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -51,7 +51,7 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse deletePipeline(DeletePipelineRequest request) throws IOException {
+	public BooleanResponse deletePipeline(DeletePipelineRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT);
 	}
 
@@ -59,16 +59,16 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 * Deletes Logstash Pipelines used by Central Management
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeletePipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse deletePipeline(
-			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn) throws IOException {
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -82,7 +82,7 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException {
+	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT);
 	}
 
@@ -90,16 +90,16 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 * Retrieves Logstash Pipelines used by Central Management
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetPipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetPipelineResponse getPipeline(
-			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) throws IOException {
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -113,7 +113,7 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse putPipeline(PutPipelineRequest request) throws IOException {
+	public BooleanResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT);
 	}
 
@@ -121,16 +121,15 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 * Adds and updates Logstash Pipelines used for Central Management
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutPipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse putPipeline(Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 

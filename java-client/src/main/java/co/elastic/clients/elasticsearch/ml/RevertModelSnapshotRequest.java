@@ -46,25 +46,33 @@ import javax.annotation.Nullable;
 // typedef: ml.revert_model_snapshot.Request
 @JsonpDeserializable
 public final class RevertModelSnapshotRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean deleteInterveningResults;
+
 	private final String jobId;
 
 	private final String snapshotId;
-
-	@Nullable
-	private final Boolean deleteInterveningResults;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public RevertModelSnapshotRequest(Builder builder) {
 
+		this.deleteInterveningResults = builder.deleteInterveningResults;
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
-		this.deleteInterveningResults = builder.deleteInterveningResults;
 
 	}
 
 	public RevertModelSnapshotRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code delete_intervening_results}
+	 */
+	@Nullable
+	public Boolean deleteInterveningResults() {
+		return this.deleteInterveningResults;
 	}
 
 	/**
@@ -83,14 +91,6 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	 */
 	public String snapshotId() {
 		return this.snapshotId;
-	}
-
-	/**
-	 * API name: {@code delete_intervening_results}
-	 */
-	@Nullable
-	public Boolean deleteInterveningResults() {
-		return this.deleteInterveningResults;
 	}
 
 	/**
@@ -119,12 +119,20 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	 * Builder for {@link RevertModelSnapshotRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RevertModelSnapshotRequest> {
+		@Nullable
+		private Boolean deleteInterveningResults;
+
 		private String jobId;
 
 		private String snapshotId;
 
-		@Nullable
-		private Boolean deleteInterveningResults;
+		/**
+		 * API name: {@code delete_intervening_results}
+		 */
+		public Builder deleteInterveningResults(@Nullable Boolean value) {
+			this.deleteInterveningResults = value;
+			return this;
+		}
 
 		/**
 		 * Required - The ID of the job to fetch
@@ -143,14 +151,6 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 		 */
 		public Builder snapshotId(String value) {
 			this.snapshotId = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code delete_intervening_results}
-		 */
-		public Builder deleteInterveningResults(@Nullable Boolean value) {
-			this.deleteInterveningResults = value;
 			return this;
 		}
 
@@ -196,13 +196,13 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

@@ -52,9 +52,6 @@ import javax.annotation.Nullable;
 
 public final class IndicesRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Bytes bytes;
 
 	@Nullable
@@ -67,33 +64,26 @@ public final class IndicesRequest extends CatRequestBase {
 	private final Boolean includeUnloadedSegments;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean pri;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public IndicesRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.bytes = builder.bytes;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.health = builder.health;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.pri = builder.pri;
 
 	}
 
 	public IndicesRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names to limit the returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -140,6 +130,16 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Set to true to return stats only for primary shards
 	 * <p>
 	 * API name: {@code pri}
@@ -156,9 +156,6 @@ public final class IndicesRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<IndicesRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Bytes bytes;
 
 		@Nullable
@@ -171,38 +168,10 @@ public final class IndicesRequest extends CatRequestBase {
 		private Boolean includeUnloadedSegments;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean pri;
-
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * The unit in which to display byte values
@@ -270,6 +239,37 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Set to true to return stats only for primary shards
 		 * <p>
 		 * API name: {@code pri}
@@ -333,21 +333,21 @@ public final class IndicesRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+				}
+				if (request.bytes != null) {
+					params.put("bytes", request.bytes.toString());
+				}
+				if (request.pri != null) {
+					params.put("pri", String.valueOf(request.pri));
 				}
 				if (request.health != null) {
 					params.put("health", request.health.toString());
 				}
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
-				}
-				if (request.pri != null) {
-					params.put("pri", String.valueOf(request.pri));
 				}
 				return params;
 

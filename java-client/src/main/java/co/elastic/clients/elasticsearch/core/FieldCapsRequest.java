@@ -57,9 +57,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -75,6 +72,9 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	private final Boolean includeUnmapped;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Query indexFilter;
 
 	@Nullable
@@ -84,12 +84,12 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 
 	public FieldCapsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
 		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 
@@ -97,17 +97,6 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 
 	public FieldCapsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -165,6 +154,17 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * API name: {@code index_filter}
 	 */
 	@Nullable
@@ -219,9 +219,6 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	 */
 	public static class Builder implements ObjectBuilder<FieldCapsRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -237,43 +234,13 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		private Boolean includeUnmapped;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Query indexFilter;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -369,6 +336,39 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		 */
 		public Builder includeUnmapped(@Nullable Boolean value) {
 			this.includeUnmapped = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -488,18 +488,18 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.fields != null) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.fields != null) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));

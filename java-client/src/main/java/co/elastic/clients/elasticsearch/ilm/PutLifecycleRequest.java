@@ -45,13 +45,17 @@ import javax.annotation.Nullable;
 // typedef: ilm.put_lifecycle.Request
 @JsonpDeserializable
 public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
-	private final String policy;
+	private final String name;
+
+	@Nullable
+	private final Policy policy;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutLifecycleRequest(Builder builder) {
 
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
+		this.name = Objects.requireNonNull(builder.name, "policy");
+		this.policy = builder.policy;
 
 	}
 
@@ -64,7 +68,15 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code policy}
 	 */
-	public String policy() {
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code policy}
+	 */
+	@Nullable
+	public Policy policy() {
 		return this.policy;
 	}
 
@@ -79,6 +91,13 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.policy != null) {
+
+			generator.writeKey("policy");
+			this.policy.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -87,16 +106,34 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
-		private String policy;
+		private String name;
+
+		@Nullable
+		private Policy policy;
 
 		/**
 		 * Required - The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(String value) {
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code policy}
+		 */
+		public Builder policy(@Nullable Policy value) {
 			this.policy = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code policy}
+		 */
+		public Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+			return this.policy(fn.apply(new Policy.Builder()).build());
 		}
 
 		/**
@@ -121,6 +158,8 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
 
+		op.add(Builder::policy, Policy._DESERIALIZER, "policy");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -137,18 +176,18 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 			// Request path
 			request -> {
-				final int _policy = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _policy;
+				propsSet |= _name;
 
-				if (propsSet == (_policy)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policy, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

@@ -46,9 +46,6 @@ import javax.annotation.Nullable;
 
 public final class MlTrainedModelsRequest extends CatRequestBase {
 	@Nullable
-	private final String modelId;
-
-	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
@@ -58,32 +55,25 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	private final Integer from;
 
 	@Nullable
+	private final String modelId;
+
+	@Nullable
 	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MlTrainedModelsRequest(Builder builder) {
 
-		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
 		this.from = builder.from;
+		this.modelId = builder.modelId;
 		this.size = builder.size;
 
 	}
 
 	public MlTrainedModelsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the trained models stats to fetch
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	@Nullable
-	public String modelId() {
-		return this.modelId;
 	}
 
 	/**
@@ -119,6 +109,16 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The ID of the trained models stats to fetch
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	@Nullable
+	public String modelId() {
+		return this.modelId;
+	}
+
+	/**
 	 * specifies a max number of trained models to get
 	 * <p>
 	 * API name: {@code size}
@@ -135,9 +135,6 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<MlTrainedModelsRequest> {
 		@Nullable
-		private String modelId;
-
-		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
@@ -147,17 +144,10 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		private Integer from;
 
 		@Nullable
-		private Integer size;
+		private String modelId;
 
-		/**
-		 * The ID of the trained models stats to fetch
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(@Nullable String value) {
-			this.modelId = value;
-			return this;
-		}
+		@Nullable
+		private Integer size;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no trained models. (This
@@ -188,6 +178,16 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		 */
 		public Builder from(@Nullable Integer value) {
 			this.from = value;
+			return this;
+		}
+
+		/**
+		 * The ID of the trained models stats to fetch
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public Builder modelId(@Nullable String value) {
+			this.modelId = value;
 			return this;
 		}
 
@@ -257,8 +257,8 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.toString());
@@ -266,8 +266,8 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

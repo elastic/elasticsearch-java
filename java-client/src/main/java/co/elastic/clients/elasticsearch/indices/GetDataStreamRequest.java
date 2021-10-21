@@ -50,33 +50,22 @@ import javax.annotation.Nullable;
 
 public final class GetDataStreamRequest extends RequestBase {
 	@Nullable
-	private final List<String> name;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetDataStreamRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
 	public GetDataStreamRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of data streams to get; use <code>*</code> to get all
-	 * data streams
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public List<String> name() {
-		return this.name;
 	}
 
 	/**
@@ -90,6 +79,17 @@ public final class GetDataStreamRequest extends RequestBase {
 		return this.expandWildcards;
 	}
 
+	/**
+	 * A comma-separated list of data streams to get; use <code>*</code> to get all
+	 * data streams
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -97,43 +97,10 @@ public final class GetDataStreamRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDataStreamRequest> {
 		@Nullable
-		private List<String> name;
-
-		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
-		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> name;
 
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
@@ -165,6 +132,39 @@ public final class GetDataStreamRequest extends RequestBase {
 				this.expandWildcards = new ArrayList<>();
 			}
 			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of data streams to get; use <code>*</code> to get all
+		 * data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of data streams to get; use <code>*</code> to get all
+		 * data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 

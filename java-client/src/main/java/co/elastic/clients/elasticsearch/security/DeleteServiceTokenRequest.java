@@ -45,46 +45,28 @@ import javax.annotation.Nullable;
 // typedef: security.delete_service_token.Request
 
 public final class DeleteServiceTokenRequest extends RequestBase {
-	private final String namespace;
-
-	private final String service;
-
 	private final String name;
+
+	private final String namespace;
 
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
+
+	private final String service;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DeleteServiceTokenRequest(Builder builder) {
 
-		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
-		this.service = Objects.requireNonNull(builder.service, "service");
 		this.name = Objects.requireNonNull(builder.name, "name");
+		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.refresh = builder.refresh;
+		this.service = Objects.requireNonNull(builder.service, "service");
 
 	}
 
 	public DeleteServiceTokenRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - An identifier for the namespace
-	 * <p>
-	 * API name: {@code namespace}
-	 */
-	public String namespace() {
-		return this.namespace;
-	}
-
-	/**
-	 * Required - An identifier for the service name
-	 * <p>
-	 * API name: {@code service}
-	 */
-	public String service() {
-		return this.service;
 	}
 
 	/**
@@ -94,6 +76,15 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 */
 	public String name() {
 		return this.name;
+	}
+
+	/**
+	 * Required - An identifier for the namespace
+	 * <p>
+	 * API name: {@code namespace}
+	 */
+	public String namespace() {
+		return this.namespace;
 	}
 
 	/**
@@ -109,40 +100,29 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		return this.refresh;
 	}
 
+	/**
+	 * Required - An identifier for the service name
+	 * <p>
+	 * API name: {@code service}
+	 */
+	public String service() {
+		return this.service;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link DeleteServiceTokenRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteServiceTokenRequest> {
-		private String namespace;
-
-		private String service;
-
 		private String name;
+
+		private String namespace;
 
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
 
-		/**
-		 * Required - An identifier for the namespace
-		 * <p>
-		 * API name: {@code namespace}
-		 */
-		public Builder namespace(String value) {
-			this.namespace = value;
-			return this;
-		}
-
-		/**
-		 * Required - An identifier for the service name
-		 * <p>
-		 * API name: {@code service}
-		 */
-		public Builder service(String value) {
-			this.service = value;
-			return this;
-		}
+		private String service;
 
 		/**
 		 * Required - An identifier for the token name
@@ -151,6 +131,16 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 */
 		public Builder name(String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - An identifier for the namespace
+		 * <p>
+		 * API name: {@code namespace}
+		 */
+		public Builder namespace(String value) {
+			this.namespace = value;
 			return this;
 		}
 
@@ -164,6 +154,16 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 */
 		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Required - An identifier for the service name
+		 * <p>
+		 * API name: {@code service}
+		 */
+		public Builder service(String value) {
+			this.service = value;
 			return this;
 		}
 
@@ -193,14 +193,14 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {

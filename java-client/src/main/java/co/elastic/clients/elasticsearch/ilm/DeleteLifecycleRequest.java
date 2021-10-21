@@ -42,13 +42,13 @@ import javax.annotation.Nullable;
 // typedef: ilm.delete_lifecycle.Request
 
 public final class DeleteLifecycleRequest extends RequestBase {
-	private final String policy;
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DeleteLifecycleRequest(Builder builder) {
 
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
+		this.name = Objects.requireNonNull(builder.name, "policy");
 
 	}
 
@@ -61,8 +61,8 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code policy}
 	 */
-	public String policy() {
-		return this.policy;
+	public String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,15 +71,15 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	 * Builder for {@link DeleteLifecycleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteLifecycleRequest> {
-		private String policy;
+		private String name;
 
 		/**
 		 * Required - The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(String value) {
-			this.policy = value;
+		public Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -109,18 +109,18 @@ public final class DeleteLifecycleRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _policy = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _policy;
+				propsSet |= _name;
 
-				if (propsSet == (_policy)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policy, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

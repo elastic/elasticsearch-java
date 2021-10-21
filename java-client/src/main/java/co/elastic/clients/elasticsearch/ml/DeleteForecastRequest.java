@@ -44,13 +44,13 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_forecast.Request
 
 public final class DeleteForecastRequest extends RequestBase {
-	private final String jobId;
+	@Nullable
+	private final Boolean allowNoForecasts;
 
 	@Nullable
 	private final String forecastId;
 
-	@Nullable
-	private final Boolean allowNoForecasts;
+	private final String jobId;
 
 	@Nullable
 	private final String timeout;
@@ -59,9 +59,9 @@ public final class DeleteForecastRequest extends RequestBase {
 
 	public DeleteForecastRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.forecastId = builder.forecastId;
 		this.allowNoForecasts = builder.allowNoForecasts;
+		this.forecastId = builder.forecastId;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.timeout = builder.timeout;
 
 	}
@@ -71,12 +71,15 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier for the anomaly detection job.
+	 * Specifies whether an error occurs when there are no forecasts. In particular,
+	 * if this parameter is set to <code>false</code> and there are no forecasts
+	 * associated with the job, attempts to delete all forecasts return an error.
 	 * <p>
-	 * API name: {@code job_id}
+	 * API name: {@code allow_no_forecasts}
 	 */
-	public String jobId() {
-		return this.jobId;
+	@Nullable
+	public Boolean allowNoForecasts() {
+		return this.allowNoForecasts;
 	}
 
 	/**
@@ -92,15 +95,12 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies whether an error occurs when there are no forecasts. In particular,
-	 * if this parameter is set to <code>false</code> and there are no forecasts
-	 * associated with the job, attempts to delete all forecasts return an error.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
-	 * API name: {@code allow_no_forecasts}
+	 * API name: {@code job_id}
 	 */
-	@Nullable
-	public Boolean allowNoForecasts() {
-		return this.allowNoForecasts;
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -121,24 +121,26 @@ public final class DeleteForecastRequest extends RequestBase {
 	 * Builder for {@link DeleteForecastRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteForecastRequest> {
-		private String jobId;
+		@Nullable
+		private Boolean allowNoForecasts;
 
 		@Nullable
 		private String forecastId;
 
-		@Nullable
-		private Boolean allowNoForecasts;
+		private String jobId;
 
 		@Nullable
 		private String timeout;
 
 		/**
-		 * Required - Identifier for the anomaly detection job.
+		 * Specifies whether an error occurs when there are no forecasts. In particular,
+		 * if this parameter is set to <code>false</code> and there are no forecasts
+		 * associated with the job, attempts to delete all forecasts return an error.
 		 * <p>
-		 * API name: {@code job_id}
+		 * API name: {@code allow_no_forecasts}
 		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
+		public Builder allowNoForecasts(@Nullable Boolean value) {
+			this.allowNoForecasts = value;
 			return this;
 		}
 
@@ -155,14 +157,12 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies whether an error occurs when there are no forecasts. In particular,
-		 * if this parameter is set to <code>false</code> and there are no forecasts
-		 * associated with the job, attempts to delete all forecasts return an error.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
-		 * API name: {@code allow_no_forecasts}
+		 * API name: {@code job_id}
 		 */
-		public Builder allowNoForecasts(@Nullable Boolean value) {
-			this.allowNoForecasts = value;
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 

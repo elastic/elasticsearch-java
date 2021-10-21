@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +52,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteTransformResponse> deleteTransform(DeleteTransformRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteTransformRequest.ENDPOINT);
 	}
 
@@ -60,16 +60,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Deletes an existing transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteTransformResponse> deleteTransform(
-			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn) throws IOException {
+			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
 	}
 
@@ -83,7 +83,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTransformResponse> getTransform(GetTransformRequest request) throws IOException {
+	public CompletableFuture<GetTransformResponse> getTransform(GetTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetTransformRequest.ENDPOINT);
 	}
 
@@ -91,16 +92,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Retrieves configuration information for transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetTransformResponse> getTransform(
-			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn) throws IOException {
+			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getTransform(fn.apply(new GetTransformRequest.Builder()).build());
 	}
 
@@ -112,7 +113,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTransformResponse> getTransform() throws IOException {
+	public CompletableFuture<GetTransformResponse> getTransform() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetTransformRequest.Builder().build(),
 				GetTransformRequest.ENDPOINT);
 	}
@@ -128,7 +129,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetTransformStatsResponse> getTransformStats(GetTransformStatsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetTransformStatsRequest.ENDPOINT);
 	}
 
@@ -136,16 +137,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Retrieves usage information for transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTransformStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetTransformStatsResponse> getTransformStats(
-			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn) throws IOException {
+			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getTransformStats(fn.apply(new GetTransformStatsRequest.Builder()).build());
 	}
 
@@ -160,7 +161,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 */
 
 	public <TTransform> CompletableFuture<PreviewTransformResponse<TTransform>> previewTransform(
-			PreviewTransformRequest request, Class<TTransform> tTransformClass) throws IOException {
+			PreviewTransformRequest request, Class<TTransform> tTransformClass)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
 				PreviewTransformRequest.createPreviewTransformEndpoint(getDeserializer(tTransformClass)));
 	}
@@ -169,9 +171,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Previews a transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PreviewTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
 	 *      on elastic.co</a>
@@ -179,7 +180,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public final <TTransform> CompletableFuture<PreviewTransformResponse<TTransform>> previewTransform(
 			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn,
-			Class<TTransform> tTransformClass) throws IOException {
+			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
 		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), tTransformClass);
 	}
 
@@ -193,7 +194,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutTransformResponse> putTransform(PutTransformRequest request) throws IOException {
+	public CompletableFuture<PutTransformResponse> putTransform(PutTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PutTransformRequest.ENDPOINT);
 	}
 
@@ -201,16 +203,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Instantiates a transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutTransformResponse> putTransform(
-			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn) throws IOException {
+			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putTransform(fn.apply(new PutTransformRequest.Builder()).build());
 	}
 
@@ -224,7 +226,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartTransformResponse> startTransform(StartTransformRequest request) throws IOException {
+	public CompletableFuture<StartTransformResponse> startTransform(StartTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, StartTransformRequest.ENDPOINT);
 	}
 
@@ -232,16 +235,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Starts one or more transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StartTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StartTransformResponse> startTransform(
-			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn) throws IOException {
+			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return startTransform(fn.apply(new StartTransformRequest.Builder()).build());
 	}
 
@@ -255,7 +258,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopTransformResponse> stopTransform(StopTransformRequest request) throws IOException {
+	public CompletableFuture<StopTransformResponse> stopTransform(StopTransformRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, StopTransformRequest.ENDPOINT);
 	}
 
@@ -263,16 +267,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Stops one or more transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StopTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StopTransformResponse> stopTransform(
-			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn) throws IOException {
+			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stopTransform(fn.apply(new StopTransformRequest.Builder()).build());
 	}
 
@@ -287,7 +291,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<UpdateTransformResponse> updateTransform(UpdateTransformRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, UpdateTransformRequest.ENDPOINT);
 	}
 
@@ -295,16 +299,16 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 	 * Updates certain properties of a transform.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateTransformRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateTransformResponse> updateTransform(
-			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn) throws IOException {
+			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return updateTransform(fn.apply(new UpdateTransformRequest.Builder()).build());
 	}
 

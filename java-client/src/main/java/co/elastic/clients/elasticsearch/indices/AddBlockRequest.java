@@ -51,18 +51,18 @@ import javax.annotation.Nullable;
 // typedef: indices.add_block.Request
 
 public final class AddBlockRequest extends RequestBase {
-	private final String index;
-
-	private final IndicesBlockOptions block;
-
 	@Nullable
 	private final Boolean allowNoIndices;
+
+	private final IndicesBlockOptions block;
 
 	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	private final String index;
 
 	@Nullable
 	private final String masterTimeout;
@@ -74,11 +74,11 @@ public final class AddBlockRequest extends RequestBase {
 
 	public AddBlockRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.block = Objects.requireNonNull(builder.block, "block");
 		this.allowNoIndices = builder.allowNoIndices;
+		this.block = Objects.requireNonNull(builder.block, "block");
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -86,24 +86,6 @@ public final class AddBlockRequest extends RequestBase {
 
 	public AddBlockRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma separated list of indices to add a block to
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * Required - The block to add (one of read, write, read_only or metadata)
-	 * <p>
-	 * API name: {@code block}
-	 */
-	public IndicesBlockOptions block() {
-		return this.block;
 	}
 
 	/**
@@ -116,6 +98,15 @@ public final class AddBlockRequest extends RequestBase {
 	@Nullable
 	public Boolean allowNoIndices() {
 		return this.allowNoIndices;
+	}
+
+	/**
+	 * Required - The block to add (one of read, write, read_only or metadata)
+	 * <p>
+	 * API name: {@code block}
+	 */
+	public IndicesBlockOptions block() {
+		return this.block;
 	}
 
 	/**
@@ -138,6 +129,15 @@ public final class AddBlockRequest extends RequestBase {
 	@Nullable
 	public Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Required - A comma separated list of indices to add a block to
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -166,12 +166,10 @@ public final class AddBlockRequest extends RequestBase {
 	 * Builder for {@link AddBlockRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<AddBlockRequest> {
-		private String index;
-
-		private IndicesBlockOptions block;
-
 		@Nullable
 		private Boolean allowNoIndices;
+
+		private IndicesBlockOptions block;
 
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
@@ -179,31 +177,13 @@ public final class AddBlockRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
+		private String index;
+
 		@Nullable
 		private String masterTimeout;
 
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - A comma separated list of indices to add a block to
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - The block to add (one of read, write, read_only or metadata)
-		 * <p>
-		 * API name: {@code block}
-		 */
-		public Builder block(IndicesBlockOptions value) {
-			this.block = value;
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -214,6 +194,16 @@ public final class AddBlockRequest extends RequestBase {
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
+			return this;
+		}
+
+		/**
+		 * Required - The block to add (one of read, write, read_only or metadata)
+		 * <p>
+		 * API name: {@code block}
+		 */
+		public Builder block(IndicesBlockOptions value) {
+			this.block = value;
 			return this;
 		}
 
@@ -258,6 +248,16 @@ public final class AddBlockRequest extends RequestBase {
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma separated list of indices to add a block to
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -331,8 +331,8 @@ public final class AddBlockRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
@@ -341,8 +341,8 @@ public final class AddBlockRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

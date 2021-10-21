@@ -49,10 +49,10 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	private final String snapshotId;
 
 	@Nullable
-	private final Boolean waitForCompletion;
+	private final String timeout;
 
 	@Nullable
-	private final String timeout;
+	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,8 +60,8 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
-		this.waitForCompletion = builder.waitForCompletion;
 		this.timeout = builder.timeout;
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -89,6 +89,16 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait for the request to complete.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public String timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
 	 * responds as soon as the upgrade task is assigned to a node.
 	 * <p>
@@ -97,16 +107,6 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	@Nullable
 	public Boolean waitForCompletion() {
 		return this.waitForCompletion;
-	}
-
-	/**
-	 * Controls the time to wait for the request to complete.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -120,10 +120,10 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		private String snapshotId;
 
 		@Nullable
-		private Boolean waitForCompletion;
+		private String timeout;
 
 		@Nullable
-		private String timeout;
+		private Boolean waitForCompletion;
 
 		/**
 		 * Required - Identifier for the anomaly detection job.
@@ -147,6 +147,16 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait for the request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
 		 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
 		 * responds as soon as the upgrade task is assigned to a node.
 		 * <p>
@@ -154,16 +164,6 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
-			return this;
-		}
-
-		/**
-		 * Controls the time to wait for the request to complete.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
 			return this;
 		}
 
@@ -193,13 +193,13 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

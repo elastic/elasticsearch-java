@@ -50,8 +50,6 @@ import javax.annotation.Nullable;
 // typedef: indices.reload_search_analyzers.Request
 
 public final class ReloadSearchAnalyzersRequest extends RequestBase {
-	private final List<String> index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -61,28 +59,21 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final List<String> index;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public ReloadSearchAnalyzersRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 
 	}
 
 	public ReloadSearchAnalyzersRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of index names to reload analyzers for
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -119,14 +110,21 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 		return this.ignoreUnavailable;
 	}
 
+	/**
+	 * Required - A comma-separated list of index names to reload analyzers for
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public List<String> index() {
+		return this.index;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ReloadSearchAnalyzersRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ReloadSearchAnalyzersRequest> {
-		private List<String> index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -136,36 +134,7 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		/**
-		 * Required - A comma-separated list of index names to reload analyzers for
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of index names to reload analyzers for
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		private List<String> index;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -224,6 +193,37 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - A comma-separated list of index names to reload analyzers for
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names to reload analyzers for
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Builds a {@link ReloadSearchAnalyzersRequest}.
 		 *
 		 * @throws NullPointerException
@@ -269,15 +269,15 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				return params;
 

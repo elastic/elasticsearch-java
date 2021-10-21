@@ -51,59 +51,38 @@ import javax.annotation.Nullable;
 
 public final class ClearCacheRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
+	private final Boolean allowNoIndices;
 
 	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final Boolean allowNoIndices;
+	private final Boolean human;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Boolean pretty;
+	private final List<String> index;
 
 	@Nullable
-	private final Boolean human;
+	private final Boolean pretty;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ClearCacheRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.pretty = builder.pretty;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.human = builder.human;
+		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.pretty = builder.pretty;
 
 	}
 
 	public ClearCacheRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
-	 * <p>
-	 * API name: {@code expand_wildcards}
-	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
-		return this.expandWildcards;
 	}
 
 	/**
@@ -119,6 +98,25 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	@Nullable
+	public List<ExpandWildcardOptions> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * API name: {@code human}
+	 */
+	@Nullable
+	public Boolean human() {
+		return this.human;
+	}
+
+	/**
 	 * Whether specified concrete indices should be ignored when unavailable
 	 * (missing or closed)
 	 * <p>
@@ -130,19 +128,21 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * API name: {@code pretty}
 	 */
 	@Nullable
 	public Boolean pretty() {
 		return this.pretty;
-	}
-
-	/**
-	 * API name: {@code human}
-	 */
-	@Nullable
-	public Boolean human() {
-		return this.human;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -152,51 +152,32 @@ public final class ClearCacheRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<ClearCacheRequest> {
 		@Nullable
-		private List<String> index;
+		private Boolean allowNoIndices;
 
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
-		private Boolean allowNoIndices;
+		private Boolean human;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Boolean pretty;
+		private List<String> index;
 
 		@Nullable
-		private Boolean human;
+		private Boolean pretty;
 
 		/**
-		 * A comma-separated list of index names
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code allow_no_indices}
 		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
 			return this;
 		}
 
@@ -234,14 +215,10 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
-		 * <p>
-		 * API name: {@code allow_no_indices}
+		 * API name: {@code human}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
-			this.allowNoIndices = value;
+		public Builder human(@Nullable Boolean value) {
+			this.human = value;
 			return this;
 		}
 
@@ -257,18 +234,41 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code pretty}
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
 		 */
-		public Builder pretty(@Nullable Boolean value) {
-			this.pretty = value;
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code human}
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
 		 */
-		public Builder human(@Nullable Boolean value) {
-			this.human = value;
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code pretty}
+		 */
+		public Builder pretty(@Nullable Boolean value) {
+			this.pretty = value;
 			return this;
 		}
 
@@ -328,18 +328,18 @@ public final class ClearCacheRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.pretty != null) {
+					params.put("pretty", String.valueOf(request.pretty));
+				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.pretty != null) {
-					params.put("pretty", String.valueOf(request.pretty));
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.human != null) {
 					params.put("human", String.valueOf(request.human));

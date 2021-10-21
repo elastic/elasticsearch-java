@@ -50,13 +50,13 @@ import javax.annotation.Nullable;
 // typedef: rollup.put_job.Request
 @JsonpDeserializable
 public final class PutJobRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
-
 	@Nullable
 	private final String cron;
 
 	@Nullable
 	private final Groupings groups;
+
+	private final String id;
 
 	@Nullable
 	private final String indexPattern;
@@ -74,9 +74,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	public PutJobRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.cron = builder.cron;
 		this.groups = builder.groups;
+		this.id = Objects.requireNonNull(builder.id, "id");
 		this.indexPattern = builder.indexPattern;
 		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
 		this.pageSize = builder.pageSize;
@@ -86,15 +86,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	public PutJobRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The ID of the job to create
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -111,6 +102,15 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public Groupings groups() {
 		return this.groups;
+	}
+
+	/**
+	 * Required - The ID of the job to create
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -206,13 +206,13 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link PutJobRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutJobRequest> {
-		private String id;
-
 		@Nullable
 		private String cron;
 
 		@Nullable
 		private Groupings groups;
+
+		private String id;
 
 		@Nullable
 		private String indexPattern;
@@ -225,16 +225,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private String rollupIndex;
-
-		/**
-		 * Required - The ID of the job to create
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code cron}
@@ -257,6 +247,16 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
 			return this.groups(fn.apply(new Groupings.Builder()).build());
+		}
+
+		/**
+		 * Required - The ID of the job to create
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
 		}
 
 		/**

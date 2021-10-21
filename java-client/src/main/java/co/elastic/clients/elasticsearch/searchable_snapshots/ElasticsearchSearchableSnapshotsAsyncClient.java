@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -51,7 +51,8 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request) throws IOException {
+	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ClearCacheRequest.ENDPOINT);
 	}
 
@@ -59,16 +60,16 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 * Clear the cache of searchable snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCacheRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearCacheResponse> clearCache(
-			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn) throws IOException {
+			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
@@ -80,7 +81,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException {
+	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
 	}
 
@@ -94,7 +95,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MountResponse> mount(MountRequest request) throws IOException {
+	public CompletableFuture<MountResponse> mount(MountRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, MountRequest.ENDPOINT);
 	}
 
@@ -102,16 +103,15 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 * Mount a snapshot as a searchable index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MountRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-api-mount-snapshot.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MountResponse> mount(Function<MountRequest.Builder, ObjectBuilder<MountRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return mount(fn.apply(new MountRequest.Builder()).build());
 	}
 
@@ -126,7 +126,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<SearchableSnapshotsStatsResponse> stats(SearchableSnapshotsStatsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, SearchableSnapshotsStatsRequest.ENDPOINT);
 	}
 
@@ -134,9 +134,8 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 * Retrieve shard-level statistics about searchable snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchableSnapshotsStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
@@ -144,7 +143,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 
 	public final CompletableFuture<SearchableSnapshotsStatsResponse> stats(
 			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
 	}
 
@@ -156,7 +155,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SearchableSnapshotsStatsResponse> stats() throws IOException {
+	public CompletableFuture<SearchableSnapshotsStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new SearchableSnapshotsStatsRequest.Builder().build(),
 				SearchableSnapshotsStatsRequest.ENDPOINT);
 	}

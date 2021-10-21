@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,8 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request) throws IOException {
+	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT);
 	}
 
@@ -58,16 +59,16 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 * Deletes a pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeletePipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeletePipelineResponse deletePipeline(
-			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn) throws IOException {
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -94,7 +95,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException {
+	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT);
 	}
 
@@ -102,16 +103,16 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 * Returns a pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetPipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetPipelineResponse getPipeline(
-			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) throws IOException {
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -123,7 +124,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetPipelineResponse getPipeline() throws IOException {
+	public GetPipelineResponse getPipeline() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest.ENDPOINT);
 	}
 
@@ -150,7 +151,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException {
+	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT);
 	}
 
@@ -158,16 +159,16 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 * Creates or updates a pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutPipelineRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutPipelineResponse putPipeline(
-			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn) throws IOException {
+			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
@@ -181,7 +182,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SimulateResponse simulate(SimulateRequest request) throws IOException {
+	public SimulateResponse simulate(SimulateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, SimulateRequest.ENDPOINT);
 	}
 
@@ -189,16 +190,15 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 * Allows to simulate a pipeline with example documents.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SimulateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
@@ -210,7 +210,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SimulateResponse simulate() throws IOException {
+	public SimulateResponse simulate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT);
 	}
 

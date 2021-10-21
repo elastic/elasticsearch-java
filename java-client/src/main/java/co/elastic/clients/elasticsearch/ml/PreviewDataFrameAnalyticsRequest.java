@@ -47,32 +47,22 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String id;
+	private final DataframePreviewConfig config;
 
 	@Nullable
-	private final DataframePreviewConfig config;
+	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PreviewDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = builder.id;
 		this.config = builder.config;
+		this.id = builder.id;
 
 	}
 
 	public PreviewDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Identifier for the data frame analytics job.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -85,6 +75,16 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	@Nullable
 	public DataframePreviewConfig config() {
 		return this.config;
+	}
+
+	/**
+	 * Identifier for the data frame analytics job.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -114,20 +114,10 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	 */
 	public static class Builder implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
 		@Nullable
-		private String id;
-
-		@Nullable
 		private DataframePreviewConfig config;
 
-		/**
-		 * Identifier for the data frame analytics job.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+		@Nullable
+		private String id;
 
 		/**
 		 * A data frame analytics config as described in Create data frame analytics
@@ -150,6 +140,16 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 */
 		public Builder config(Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
 			return this.config(fn.apply(new DataframePreviewConfig.Builder()).build());
+		}
+
+		/**
+		 * Identifier for the data frame analytics job.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
 		}
 
 		/**

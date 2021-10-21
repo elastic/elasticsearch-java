@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +52,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AckWatchResponse> ackWatch(AckWatchRequest request) throws IOException {
+	public CompletableFuture<AckWatchResponse> ackWatch(AckWatchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, AckWatchRequest.ENDPOINT);
 	}
 
@@ -61,16 +62,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * actions.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link AckWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<AckWatchResponse> ackWatch(
-			Function<AckWatchRequest.Builder, ObjectBuilder<AckWatchRequest>> fn) throws IOException {
+			Function<AckWatchRequest.Builder, ObjectBuilder<AckWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return ackWatch(fn.apply(new AckWatchRequest.Builder()).build());
 	}
 
@@ -84,7 +85,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ActivateWatchResponse> activateWatch(ActivateWatchRequest request) throws IOException {
+	public CompletableFuture<ActivateWatchResponse> activateWatch(ActivateWatchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ActivateWatchRequest.ENDPOINT);
 	}
 
@@ -92,16 +94,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Activates a currently inactive watch.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ActivateWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ActivateWatchResponse> activateWatch(
-			Function<ActivateWatchRequest.Builder, ObjectBuilder<ActivateWatchRequest>> fn) throws IOException {
+			Function<ActivateWatchRequest.Builder, ObjectBuilder<ActivateWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return activateWatch(fn.apply(new ActivateWatchRequest.Builder()).build());
 	}
 
@@ -116,7 +118,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeactivateWatchResponse> deactivateWatch(DeactivateWatchRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeactivateWatchRequest.ENDPOINT);
 	}
 
@@ -124,16 +126,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Deactivates a currently active watch.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeactivateWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeactivateWatchResponse> deactivateWatch(
-			Function<DeactivateWatchRequest.Builder, ObjectBuilder<DeactivateWatchRequest>> fn) throws IOException {
+			Function<DeactivateWatchRequest.Builder, ObjectBuilder<DeactivateWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deactivateWatch(fn.apply(new DeactivateWatchRequest.Builder()).build());
 	}
 
@@ -147,7 +149,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteWatchResponse> deleteWatch(DeleteWatchRequest request) throws IOException {
+	public CompletableFuture<DeleteWatchResponse> deleteWatch(DeleteWatchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteWatchRequest.ENDPOINT);
 	}
 
@@ -155,16 +158,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Removes a watch from Watcher.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteWatchResponse> deleteWatch(
-			Function<DeleteWatchRequest.Builder, ObjectBuilder<DeleteWatchRequest>> fn) throws IOException {
+			Function<DeleteWatchRequest.Builder, ObjectBuilder<DeleteWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteWatch(fn.apply(new DeleteWatchRequest.Builder()).build());
 	}
 
@@ -178,7 +181,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExecuteWatchResponse> executeWatch(ExecuteWatchRequest request) throws IOException {
+	public CompletableFuture<ExecuteWatchResponse> executeWatch(ExecuteWatchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, ExecuteWatchRequest.ENDPOINT);
 	}
 
@@ -186,16 +190,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Forces the execution of a stored watch.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExecuteWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ExecuteWatchResponse> executeWatch(
-			Function<ExecuteWatchRequest.Builder, ObjectBuilder<ExecuteWatchRequest>> fn) throws IOException {
+			Function<ExecuteWatchRequest.Builder, ObjectBuilder<ExecuteWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return executeWatch(fn.apply(new ExecuteWatchRequest.Builder()).build());
 	}
 
@@ -207,7 +211,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExecuteWatchResponse> executeWatch() throws IOException {
+	public CompletableFuture<ExecuteWatchResponse> executeWatch() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ExecuteWatchRequest.Builder().build(),
 				ExecuteWatchRequest.ENDPOINT);
 	}
@@ -222,7 +226,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetWatchResponse> getWatch(GetWatchRequest request) throws IOException {
+	public CompletableFuture<GetWatchResponse> getWatch(GetWatchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, GetWatchRequest.ENDPOINT);
 	}
 
@@ -230,16 +235,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Retrieves a watch by its ID.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetWatchResponse> getWatch(
-			Function<GetWatchRequest.Builder, ObjectBuilder<GetWatchRequest>> fn) throws IOException {
+			Function<GetWatchRequest.Builder, ObjectBuilder<GetWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getWatch(fn.apply(new GetWatchRequest.Builder()).build());
 	}
 
@@ -253,7 +258,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutWatchResponse> putWatch(PutWatchRequest request) throws IOException {
+	public CompletableFuture<PutWatchResponse> putWatch(PutWatchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, PutWatchRequest.ENDPOINT);
 	}
 
@@ -261,16 +267,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Creates a new watch, or updates an existing one.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutWatchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutWatchResponse> putWatch(
-			Function<PutWatchRequest.Builder, ObjectBuilder<PutWatchRequest>> fn) throws IOException {
+			Function<PutWatchRequest.Builder, ObjectBuilder<PutWatchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putWatch(fn.apply(new PutWatchRequest.Builder()).build());
 	}
 
@@ -284,7 +290,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryWatchesResponse> queryWatches(QueryWatchesRequest request) throws IOException {
+	public CompletableFuture<QueryWatchesResponse> queryWatches(QueryWatchesRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, QueryWatchesRequest.ENDPOINT);
 	}
 
@@ -292,16 +299,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Retrieves stored watches.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryWatchesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<QueryWatchesResponse> queryWatches(
-			Function<QueryWatchesRequest.Builder, ObjectBuilder<QueryWatchesRequest>> fn) throws IOException {
+			Function<QueryWatchesRequest.Builder, ObjectBuilder<QueryWatchesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return queryWatches(fn.apply(new QueryWatchesRequest.Builder()).build());
 	}
 
@@ -313,7 +320,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryWatchesResponse> queryWatches() throws IOException {
+	public CompletableFuture<QueryWatchesResponse> queryWatches() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new QueryWatchesRequest.Builder().build(),
 				QueryWatchesRequest.ENDPOINT);
 	}
@@ -341,7 +348,8 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request) throws IOException {
+	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, WatcherStatsRequest.ENDPOINT);
 	}
 
@@ -349,16 +357,16 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 * Retrieves the current Watcher metrics.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link WatcherStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<WatcherStatsResponse> stats(
-			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn) throws IOException {
+			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
 	}
 
@@ -370,7 +378,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<WatcherStatsResponse> stats() throws IOException {
+	public CompletableFuture<WatcherStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new WatcherStatsRequest.Builder().build(),
 				WatcherStatsRequest.ENDPOINT);
 	}

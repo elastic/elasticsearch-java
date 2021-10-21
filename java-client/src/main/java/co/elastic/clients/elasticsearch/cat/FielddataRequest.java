@@ -49,32 +49,22 @@ import javax.annotation.Nullable;
 
 public final class FielddataRequest extends CatRequestBase {
 	@Nullable
-	private final List<String> fields;
+	private final Bytes bytes;
 
 	@Nullable
-	private final Bytes bytes;
+	private final List<String> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public FielddataRequest(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.bytes = builder.bytes;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 
 	public FielddataRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of fields to return the fielddata size
-	 * <p>
-	 * API name: {@code fields}
-	 */
-	@Nullable
-	public List<String> fields() {
-		return this.fields;
 	}
 
 	/**
@@ -87,6 +77,16 @@ public final class FielddataRequest extends CatRequestBase {
 		return this.bytes;
 	}
 
+	/**
+	 * A comma-separated list of fields to return the fielddata size
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	@Nullable
+	public List<String> fields() {
+		return this.fields;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -94,10 +94,20 @@ public final class FielddataRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<FielddataRequest> {
 		@Nullable
-		private List<String> fields;
+		private Bytes bytes;
 
 		@Nullable
-		private Bytes bytes;
+		private List<String> fields;
+
+		/**
+		 * The unit in which to display byte values
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of fields to return the fielddata size
@@ -127,16 +137,6 @@ public final class FielddataRequest extends CatRequestBase {
 				this.fields = new ArrayList<>();
 			}
 			this.fields.add(value);
-			return this;
-		}
-
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
 			return this;
 		}
 

@@ -55,44 +55,44 @@ import javax.annotation.Nullable;
 // typedef: cluster.put_component_template.Request
 @JsonpDeserializable
 public final class PutComponentTemplateRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
-
 	@Nullable
-	private final Boolean create;
-
-	@Nullable
-	private final String masterTimeout;
-
-	private final IndexState template;
+	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final Map<String, AliasDefinition> aliases;
 
 	@Nullable
+	private final Boolean create;
+
+	@Nullable
 	private final TypeMapping mappings;
+
+	@Nullable
+	private final String masterTimeout;
+
+	private final String name;
 
 	@Nullable
 	private final IndexSettings settings;
 
-	@Nullable
-	private final Long version;
+	private final IndexState template;
 
 	@Nullable
-	private final Map<String, JsonData> meta;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutComponentTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.create = builder.create;
-		this.masterTimeout = builder.masterTimeout;
-		this.template = Objects.requireNonNull(builder.template, "template");
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.mappings = builder.mappings;
-		this.settings = builder.settings;
-		this.version = builder.version;
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.create = builder.create;
+		this.mappings = builder.mappings;
+		this.masterTimeout = builder.masterTimeout;
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.settings = builder.settings;
+		this.template = Objects.requireNonNull(builder.template, "template");
+		this.version = builder.version;
 
 	}
 
@@ -101,12 +101,19 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * Required - The name of the template
-	 * <p>
-	 * API name: {@code name}
+	 * API name: {@code _meta}
 	 */
-	public String name() {
-		return this.name;
+	@Nullable
+	public Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
+	 * API name: {@code aliases}
+	 */
+	@Nullable
+	public Map<String, AliasDefinition> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -121,6 +128,14 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	}
 
 	/**
+	 * API name: {@code mappings}
+	 */
+	@Nullable
+	public TypeMapping mappings() {
+		return this.mappings;
+	}
+
+	/**
 	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -131,26 +146,12 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * Required - API name: {@code template}
+	 * Required - The name of the template
+	 * <p>
+	 * API name: {@code name}
 	 */
-	public IndexState template() {
-		return this.template;
-	}
-
-	/**
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, AliasDefinition> aliases() {
-		return this.aliases;
-	}
-
-	/**
-	 * API name: {@code mappings}
-	 */
-	@Nullable
-	public TypeMapping mappings() {
-		return this.mappings;
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -162,19 +163,18 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	}
 
 	/**
+	 * Required - API name: {@code template}
+	 */
+	public IndexState template() {
+		return this.template;
+	}
+
+	/**
 	 * API name: {@code version}
 	 */
 	@Nullable
 	public Long version() {
 		return this.version;
-	}
-
-	/**
-	 * API name: {@code _meta}
-	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
-		return this.meta;
 	}
 
 	/**
@@ -188,9 +188,18 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("template");
-		this.template.serialize(generator, mapper);
+		if (this.meta != null) {
 
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.aliases != null) {
 
 			generator.writeKey("aliases");
@@ -215,22 +224,14 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 			this.settings.serialize(generator, mapper);
 
 		}
+
+		generator.writeKey("template");
+		this.template.serialize(generator, mapper);
+
 		if (this.version != null) {
 
 			generator.writeKey("version");
 			generator.write(this.version);
-
-		}
-		if (this.meta != null) {
-
-			generator.writeKey("_meta");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
 
 		}
 
@@ -242,75 +243,48 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	 * Builder for {@link PutComponentTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutComponentTemplateRequest> {
-		private String name;
-
 		@Nullable
-		private Boolean create;
-
-		@Nullable
-		private String masterTimeout;
-
-		private IndexState template;
+		private Map<String, JsonData> meta;
 
 		@Nullable
 		private Map<String, AliasDefinition> aliases;
 
 		@Nullable
+		private Boolean create;
+
+		@Nullable
 		private TypeMapping mappings;
+
+		@Nullable
+		private String masterTimeout;
+
+		private String name;
 
 		@Nullable
 		private IndexSettings settings;
 
+		private IndexState template;
+
 		@Nullable
 		private Long version;
 
-		@Nullable
-		private Map<String, JsonData> meta;
-
 		/**
-		 * Required - The name of the template
-		 * <p>
-		 * API name: {@code name}
+		 * API name: {@code _meta}
 		 */
-		public Builder name(String value) {
-			this.name = value;
+		public Builder meta(@Nullable Map<String, JsonData> value) {
+			this.meta = value;
 			return this;
 		}
 
 		/**
-		 * Whether the index template should only be added if new or can also replace an
-		 * existing one
-		 * <p>
-		 * API name: {@code create}
+		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder create(@Nullable Boolean value) {
-			this.create = value;
+		public Builder putMeta(String key, JsonData value) {
+			if (this.meta == null) {
+				this.meta = new HashMap<>();
+			}
+			this.meta.put(key, value);
 			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code template}
-		 */
-		public Builder template(IndexState value) {
-			this.template = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code template}
-		 */
-		public Builder template(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
-			return this.template(fn.apply(new IndexState.Builder()).build());
 		}
 
 		/**
@@ -347,6 +321,17 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		}
 
 		/**
+		 * Whether the index template should only be added if new or can also replace an
+		 * existing one
+		 * <p>
+		 * API name: {@code create}
+		 */
+		public Builder create(@Nullable Boolean value) {
+			this.create = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(@Nullable TypeMapping value) {
@@ -359,6 +344,26 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		 */
 		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the template
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
 		}
 
 		/**
@@ -377,29 +382,25 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		}
 
 		/**
+		 * Required - API name: {@code template}
+		 */
+		public Builder template(IndexState value) {
+			this.template = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template}
+		 */
+		public Builder template(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
+			return this.template(fn.apply(new IndexState.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Long value) {
 			this.version = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _meta}
-		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
@@ -426,12 +427,12 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	protected static void setupPutComponentTemplateRequestDeserializer(
 			DelegatingDeserializer<PutComponentTemplateRequest.Builder> op) {
 
-		op.add(Builder::template, IndexState._DESERIALIZER, "template");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::template, IndexState._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 
@@ -469,11 +470,11 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.create != null) {
-					params.put("create", String.valueOf(request.create));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
 				}
 				return params;
 

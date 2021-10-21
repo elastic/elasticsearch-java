@@ -52,11 +52,6 @@ import javax.annotation.Nullable;
 // typedef: indices.exists_alias.Request
 
 public final class ExistsAliasRequest extends RequestBase {
-	private final List<String> name;
-
-	@Nullable
-	private final List<String> index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -67,42 +62,28 @@ public final class ExistsAliasRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean local;
+
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ExistsAliasRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
 	public ExistsAliasRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of alias names to return
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
-	}
-
-	/**
-	 * A comma-separated list of index names to filter aliases
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -140,6 +121,16 @@ public final class ExistsAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names to filter aliases
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Return local information, do not retrieve the state from master node
 	 * (default: false)
 	 * <p>
@@ -150,17 +141,21 @@ public final class ExistsAliasRequest extends RequestBase {
 		return this.local;
 	}
 
+	/**
+	 * Required - A comma-separated list of alias names to return
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public List<String> name() {
+		return this.name;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ExistsAliasRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ExistsAliasRequest> {
-		private List<String> name;
-
-		@Nullable
-		private List<String> index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -171,69 +166,12 @@ public final class ExistsAliasRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean local;
 
-		/**
-		 * Required - A comma-separated list of alias names to return
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of alias names to return
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to filter aliases
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to filter aliases
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		private List<String> name;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -292,6 +230,37 @@ public final class ExistsAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to filter aliases
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to filter aliases
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Return local information, do not retrieve the state from master node
 		 * (default: false)
 		 * <p>
@@ -299,6 +268,37 @@ public final class ExistsAliasRequest extends RequestBase {
 		 */
 		public Builder local(@Nullable Boolean value) {
 			this.local = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of alias names to return
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of alias names to return
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 
@@ -360,15 +360,15 @@ public final class ExistsAliasRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));

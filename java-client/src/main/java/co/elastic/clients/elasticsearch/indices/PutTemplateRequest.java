@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 // typedef: indices.put_template.Request
 @JsonpDeserializable
 public final class PutTemplateRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
+	@Nullable
+	private final Map<String, Alias> aliases;
 
 	@Nullable
 	private final Boolean create;
@@ -68,19 +69,15 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final Map<String, Alias> aliases;
-
-	@Nullable
 	private final List<String> indexPatterns;
 
 	@Nullable
 	private final TypeMapping mappings;
+
+	@Nullable
+	private final String masterTimeout;
+
+	private final String name;
 
 	@Nullable
 	private final Integer order;
@@ -89,23 +86,26 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	private final Map<String, JsonData> settings;
 
 	@Nullable
+	private final String timeout;
+
+	@Nullable
 	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.create = builder.create;
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
+		this.masterTimeout = builder.masterTimeout;
+		this.name = Objects.requireNonNull(builder.name, "name");
 		this.order = builder.order;
 		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
+		this.timeout = builder.timeout;
 		this.version = builder.version;
 
 	}
@@ -115,12 +115,13 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - The name of the template
+	 * Aliases for the index.
 	 * <p>
-	 * API name: {@code name}
+	 * API name: {@code aliases}
 	 */
-	public String name() {
-		return this.name;
+	@Nullable
+	public Map<String, Alias> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -150,35 +151,6 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * Aliases for the index.
-	 * <p>
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
-		return this.aliases;
-	}
-
-	/**
 	 * Array of wildcard expressions used to match the names of indices during
 	 * creation.
 	 * <p>
@@ -197,6 +169,26 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public TypeMapping mappings() {
 		return this.mappings;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - The name of the template
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -221,6 +213,14 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public Map<String, JsonData> settings() {
 		return this.settings;
+	}
+
+	/**
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public String timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -307,7 +307,8 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link PutTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutTemplateRequest> {
-		private String name;
+		@Nullable
+		private Map<String, Alias> aliases;
 
 		@Nullable
 		private Boolean create;
@@ -319,19 +320,15 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		private Boolean includeTypeName;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		@Nullable
-		private Map<String, Alias> aliases;
-
-		@Nullable
 		private List<String> indexPatterns;
 
 		@Nullable
 		private TypeMapping mappings;
+
+		@Nullable
+		private String masterTimeout;
+
+		private String name;
 
 		@Nullable
 		private Integer order;
@@ -340,62 +337,10 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		private Map<String, JsonData> settings;
 
 		@Nullable
+		private String timeout;
+
+		@Nullable
 		private Long version;
-
-		/**
-		 * Required - The name of the template
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * If true, this request cannot replace or update existing index templates.
-		 * <p>
-		 * API name: {@code create}
-		 */
-		public Builder create(@Nullable Boolean value) {
-			this.create = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code flat_settings}
-		 */
-		public Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
 
 		/**
 		 * Aliases for the index.
@@ -430,6 +375,32 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 */
 		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
 			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
+		}
+
+		/**
+		 * If true, this request cannot replace or update existing index templates.
+		 * <p>
+		 * API name: {@code create}
+		 */
+		public Builder create(@Nullable Boolean value) {
+			this.create = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code flat_settings}
+		 */
+		public Builder flatSettings(@Nullable Boolean value) {
+			this.flatSettings = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code include_type_name}
+		 */
+		public Builder includeTypeName(@Nullable Boolean value) {
+			this.includeTypeName = value;
+			return this;
 		}
 
 		/**
@@ -485,6 +456,27 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the template
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
 		 * Order in which Elasticsearch applies this template if index matches multiple
 		 * templates.
 		 * <p>
@@ -516,6 +508,14 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 				this.settings = new HashMap<>();
 			}
 			this.settings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -596,17 +596,17 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.create != null) {
-					params.put("create", String.valueOf(request.create));
-				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

@@ -48,13 +48,13 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class SimulateTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String name;
-
-	@Nullable
 	private final Boolean create;
 
 	@Nullable
 	private final String masterTimeout;
+
+	@Nullable
+	private final String name;
 
 	private final IndexTemplate template;
 
@@ -62,27 +62,15 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 
 	public SimulateTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
 		this.create = builder.create;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = builder.name;
 		this.template = Objects.requireNonNull(builder.template, "_value_body");
 
 	}
 
 	public SimulateTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Name of the index template to simulate. To test a template configuration
-	 * before you add it to the cluster, omit this parameter and specify the
-	 * template configuration in the request body.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public String name() {
-		return this.name;
 	}
 
 	/**
@@ -110,6 +98,18 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	}
 
 	/**
+	 * Name of the index template to simulate. To test a template configuration
+	 * before you add it to the cluster, omit this parameter and specify the
+	 * template configuration in the request body.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public String name() {
+		return this.name;
+	}
+
+	/**
 	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
@@ -133,27 +133,15 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	 */
 	public static class Builder implements ObjectBuilder<SimulateTemplateRequest> {
 		@Nullable
-		private String name;
-
-		@Nullable
 		private Boolean create;
 
 		@Nullable
 		private String masterTimeout;
 
-		private IndexTemplate template;
+		@Nullable
+		private String name;
 
-		/**
-		 * Name of the index template to simulate. To test a template configuration
-		 * before you add it to the cluster, omit this parameter and specify the
-		 * template configuration in the request body.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
+		private IndexTemplate template;
 
 		/**
 		 * If true, the template passed in the body is only used if no existing
@@ -176,6 +164,18 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 */
 		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Name of the index template to simulate. To test a template configuration
+		 * before you add it to the cluster, omit this parameter and specify the
+		 * template configuration in the request body.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -261,11 +261,11 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.create != null) {
-					params.put("create", String.valueOf(request.create));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
 				}
 				return params;
 

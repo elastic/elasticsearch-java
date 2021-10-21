@@ -49,21 +49,21 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String username;
+	private final String password;
 
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
-	private final String password;
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ChangePasswordRequest(Builder builder) {
 
-		this.username = builder.username;
-		this.refresh = builder.refresh;
 		this.password = builder.password;
+		this.refresh = builder.refresh;
+		this.username = builder.username;
 
 	}
 
@@ -72,13 +72,11 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * The username of the user to change the password for
-	 * <p>
-	 * API name: {@code username}
+	 * API name: {@code password}
 	 */
 	@Nullable
-	public String username() {
-		return this.username;
+	public String password() {
+		return this.password;
 	}
 
 	/**
@@ -95,11 +93,13 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * API name: {@code password}
+	 * The username of the user to change the password for
+	 * <p>
+	 * API name: {@code username}
 	 */
 	@Nullable
-	public String password() {
-		return this.password;
+	public String username() {
+		return this.username;
 	}
 
 	/**
@@ -129,21 +129,19 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	 */
 	public static class Builder implements ObjectBuilder<ChangePasswordRequest> {
 		@Nullable
-		private String username;
+		private String password;
 
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
-		private String password;
+		private String username;
 
 		/**
-		 * The username of the user to change the password for
-		 * <p>
-		 * API name: {@code username}
+		 * API name: {@code password}
 		 */
-		public Builder username(@Nullable String value) {
-			this.username = value;
+		public Builder password(@Nullable String value) {
+			this.password = value;
 			return this;
 		}
 
@@ -161,10 +159,12 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * API name: {@code password}
+		 * The username of the user to change the password for
+		 * <p>
+		 * API name: {@code username}
 		 */
-		public Builder password(@Nullable String value) {
-			this.password = value;
+		public Builder username(@Nullable String value) {
+			this.username = value;
 			return this;
 		}
 

@@ -52,22 +52,22 @@ import javax.annotation.Nullable;
 
 public final class HotThreadsRequest extends RequestBase {
 	@Nullable
-	private final List<String> nodeId;
-
-	@Nullable
 	private final Boolean ignoreIdleThreads;
 
 	@Nullable
 	private final String interval;
 
 	@Nullable
+	private final List<String> nodeId;
+
+	@Nullable
 	private final Long snapshots;
 
 	@Nullable
-	private final Long threads;
+	private final ThreadType threadType;
 
 	@Nullable
-	private final ThreadType threadType;
+	private final Long threads;
 
 	@Nullable
 	private final String timeout;
@@ -76,30 +76,18 @@ public final class HotThreadsRequest extends RequestBase {
 
 	public HotThreadsRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.snapshots = builder.snapshots;
-		this.threads = builder.threads;
 		this.threadType = builder.threadType;
+		this.threads = builder.threads;
 		this.timeout = builder.timeout;
 
 	}
 
 	public HotThreadsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
 	}
 
 	/**
@@ -124,6 +112,18 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of node IDs or names to limit the returned
+	 * information; use <code>_local</code> to return information from the node
+	 * you're connecting to, leave empty to get information from all nodes
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	@Nullable
+	public List<String> nodeId() {
+		return this.nodeId;
+	}
+
+	/**
 	 * Number of samples of thread stacktrace (default: 10)
 	 * <p>
 	 * API name: {@code snapshots}
@@ -134,6 +134,14 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * API name: {@code thread_type}
+	 */
+	@Nullable
+	public ThreadType threadType() {
+		return this.threadType;
+	}
+
+	/**
 	 * Specify the number of threads to provide information for (default: 3)
 	 * <p>
 	 * API name: {@code threads}
@@ -141,14 +149,6 @@ public final class HotThreadsRequest extends RequestBase {
 	@Nullable
 	public Long threads() {
 		return this.threads;
-	}
-
-	/**
-	 * API name: {@code thread_type}
-	 */
-	@Nullable
-	public ThreadType threadType() {
-		return this.threadType;
 	}
 
 	/**
@@ -168,25 +168,46 @@ public final class HotThreadsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<HotThreadsRequest> {
 		@Nullable
-		private List<String> nodeId;
-
-		@Nullable
 		private Boolean ignoreIdleThreads;
 
 		@Nullable
 		private String interval;
 
 		@Nullable
-		private Long snapshots;
+		private List<String> nodeId;
 
 		@Nullable
-		private Long threads;
+		private Long snapshots;
 
 		@Nullable
 		private ThreadType threadType;
 
 		@Nullable
+		private Long threads;
+
+		@Nullable
 		private String timeout;
+
+		/**
+		 * Don't show threads that are in known-idle places, such as waiting on a socket
+		 * select or pulling from an empty task queue (default: true)
+		 * <p>
+		 * API name: {@code ignore_idle_threads}
+		 */
+		public Builder ignoreIdleThreads(@Nullable Boolean value) {
+			this.ignoreIdleThreads = value;
+			return this;
+		}
+
+		/**
+		 * The interval for the second sampling of threads
+		 * <p>
+		 * API name: {@code interval}
+		 */
+		public Builder interval(@Nullable String value) {
+			this.interval = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
@@ -224,27 +245,6 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * Don't show threads that are in known-idle places, such as waiting on a socket
-		 * select or pulling from an empty task queue (default: true)
-		 * <p>
-		 * API name: {@code ignore_idle_threads}
-		 */
-		public Builder ignoreIdleThreads(@Nullable Boolean value) {
-			this.ignoreIdleThreads = value;
-			return this;
-		}
-
-		/**
-		 * The interval for the second sampling of threads
-		 * <p>
-		 * API name: {@code interval}
-		 */
-		public Builder interval(@Nullable String value) {
-			this.interval = value;
-			return this;
-		}
-
-		/**
 		 * Number of samples of thread stacktrace (default: 10)
 		 * <p>
 		 * API name: {@code snapshots}
@@ -255,20 +255,20 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
+		 * API name: {@code thread_type}
+		 */
+		public Builder threadType(@Nullable ThreadType value) {
+			this.threadType = value;
+			return this;
+		}
+
+		/**
 		 * Specify the number of threads to provide information for (default: 3)
 		 * <p>
 		 * API name: {@code threads}
 		 */
 		public Builder threads(@Nullable Long value) {
 			this.threads = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code thread_type}
-		 */
-		public Builder threadType(@Nullable ThreadType value) {
-			this.threadType = value;
 			return this;
 		}
 
@@ -337,23 +337,23 @@ public final class HotThreadsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.ignoreIdleThreads != null) {
-					params.put("ignore_idle_threads", String.valueOf(request.ignoreIdleThreads));
-				}
-				if (request.interval != null) {
-					params.put("interval", request.interval);
-				}
 				if (request.snapshots != null) {
 					params.put("snapshots", String.valueOf(request.snapshots));
-				}
-				if (request.threads != null) {
-					params.put("threads", String.valueOf(request.threads));
 				}
 				if (request.threadType != null) {
 					params.put("thread_type", request.threadType.toString());
 				}
+				if (request.threads != null) {
+					params.put("threads", String.valueOf(request.threads));
+				}
+				if (request.interval != null) {
+					params.put("interval", request.interval);
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);
+				}
+				if (request.ignoreIdleThreads != null) {
+					params.put("ignore_idle_threads", String.valueOf(request.ignoreIdleThreads));
 				}
 				return params;
 

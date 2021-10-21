@@ -43,25 +43,35 @@ import javax.annotation.Nullable;
 // typedef: snapshot.delete.Request
 
 public final class DeleteSnapshotRequest extends RequestBase {
+	@Nullable
+	private final String masterTimeout;
+
 	private final String repository;
 
 	private final String snapshot;
-
-	@Nullable
-	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DeleteSnapshotRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.masterTimeout = builder.masterTimeout;
 
 	}
 
 	public DeleteSnapshotRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -82,28 +92,28 @@ public final class DeleteSnapshotRequest extends RequestBase {
 		return this.snapshot;
 	}
 
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link DeleteSnapshotRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteSnapshotRequest> {
+		@Nullable
+		private String masterTimeout;
+
 		private String repository;
 
 		private String snapshot;
 
-		@Nullable
-		private String masterTimeout;
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
 
 		/**
 		 * Required - A repository name
@@ -122,16 +132,6 @@ public final class DeleteSnapshotRequest extends RequestBase {
 		 */
 		public Builder snapshot(String value) {
 			this.snapshot = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
 			return this;
 		}
 

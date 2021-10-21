@@ -51,12 +51,18 @@ import javax.annotation.Nullable;
 // typedef: indices.shrink.Request
 @JsonpDeserializable
 public final class ShrinkRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
+	@Nullable
+	private final Map<String, Alias> aliases;
 
-	private final String target;
+	private final String index;
 
 	@Nullable
 	private final String masterTimeout;
+
+	@Nullable
+	private final Map<String, JsonData> settings;
+
+	private final String target;
 
 	@Nullable
 	private final String timeout;
@@ -64,28 +70,30 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
-	@Nullable
-	private final Map<String, Alias> aliases;
-
-	@Nullable
-	private final Map<String, JsonData> settings;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public ShrinkRequest(Builder builder) {
 
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.target = Objects.requireNonNull(builder.target, "target");
 		this.masterTimeout = builder.masterTimeout;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
+		this.target = Objects.requireNonNull(builder.target, "target");
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
 	public ShrinkRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code aliases}
+	 */
+	@Nullable
+	public Map<String, Alias> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -98,15 +106,6 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - The name of the target index to shrink into
-	 * <p>
-	 * API name: {@code target}
-	 */
-	public String target() {
-		return this.target;
-	}
-
-	/**
 	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -114,6 +113,23 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * API name: {@code settings}
+	 */
+	@Nullable
+	public Map<String, JsonData> settings() {
+		return this.settings;
+	}
+
+	/**
+	 * Required - The name of the target index to shrink into
+	 * <p>
+	 * API name: {@code target}
+	 */
+	public String target() {
+		return this.target;
 	}
 
 	/**
@@ -135,22 +151,6 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
-	}
-
-	/**
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
-		return this.aliases;
-	}
-
-	/**
-	 * API name: {@code settings}
-	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
-		return this.settings;
 	}
 
 	/**
@@ -197,75 +197,24 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link ShrinkRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ShrinkRequest> {
-		private String index;
+		@Nullable
+		private Map<String, Alias> aliases;
 
-		private String target;
+		private String index;
 
 		@Nullable
 		private String masterTimeout;
+
+		@Nullable
+		private Map<String, JsonData> settings;
+
+		private String target;
 
 		@Nullable
 		private String timeout;
 
 		@Nullable
 		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-		@Nullable
-		private Map<String, Alias> aliases;
-
-		@Nullable
-		private Map<String, JsonData> settings;
-
-		/**
-		 * Required - The name of the source index to shrink
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the target index to shrink into
-		 * <p>
-		 * API name: {@code target}
-		 */
-		public Builder target(String value) {
-			this.target = value;
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Set the number of active shards to wait for on the shrunken index before the
-		 * operation returns.
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code aliases}
@@ -301,6 +250,26 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Required - The name of the source index to shrink
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code settings}
 		 */
 		public Builder settings(@Nullable Map<String, JsonData> value) {
@@ -316,6 +285,37 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 				this.settings = new HashMap<>();
 			}
 			this.settings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Required - The name of the target index to shrink into
+		 * <p>
+		 * API name: {@code target}
+		 */
+		public Builder target(String value) {
+			this.target = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Set the number of active shards to wait for on the shrunken index before the
+		 * operation returns.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -387,11 +387,11 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

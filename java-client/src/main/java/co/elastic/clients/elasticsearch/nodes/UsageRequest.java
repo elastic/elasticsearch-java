@@ -49,10 +49,10 @@ import javax.annotation.Nullable;
 
 public final class UsageRequest extends RequestBase {
 	@Nullable
-	private final List<String> nodeId;
+	private final List<String> metric;
 
 	@Nullable
-	private final List<String> metric;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final String timeout;
@@ -61,14 +61,24 @@ public final class UsageRequest extends RequestBase {
 
 	public UsageRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
 
 	public UsageRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Limit the information returned to the specified metrics
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	@Nullable
+	public List<String> metric() {
+		return this.metric;
 	}
 
 	/**
@@ -81,16 +91,6 @@ public final class UsageRequest extends RequestBase {
 	@Nullable
 	public List<String> nodeId() {
 		return this.nodeId;
-	}
-
-	/**
-	 * Limit the information returned to the specified metrics
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
 	}
 
 	/**
@@ -110,13 +110,44 @@ public final class UsageRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<UsageRequest> {
 		@Nullable
-		private List<String> nodeId;
-
-		@Nullable
 		private List<String> metric;
 
 		@Nullable
+		private List<String> nodeId;
+
+		@Nullable
 		private String timeout;
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(@Nullable List<String> value) {
+			this.metric = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(String... value) {
+			this.metric = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 */
+		public Builder addMetric(String value) {
+			if (this.metric == null) {
+				this.metric = new ArrayList<>();
+			}
+			this.metric.add(value);
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
@@ -150,37 +181,6 @@ public final class UsageRequest extends RequestBase {
 				this.nodeId = new ArrayList<>();
 			}
 			this.nodeId.add(value);
-			return this;
-		}
-
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
 			return this;
 		}
 
@@ -220,15 +220,15 @@ public final class UsageRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _nodeId = 1 << 0;
-				final int _metric = 1 << 1;
+				final int _metric = 1 << 0;
+				final int _nodeId = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
-					propsSet |= _nodeId;
 				if (request.metric() != null)
 					propsSet |= _metric;
+				if (request.nodeId() != null)
+					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();

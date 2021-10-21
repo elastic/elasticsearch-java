@@ -50,8 +50,6 @@ import javax.annotation.Nullable;
 // typedef: indices.get.Request
 
 public final class GetIndexRequest extends RequestBase {
-	private final List<String> index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -70,6 +68,8 @@ public final class GetIndexRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeTypeName;
 
+	private final List<String> index;
+
 	@Nullable
 	private final Boolean local;
 
@@ -80,13 +80,13 @@ public final class GetIndexRequest extends RequestBase {
 
 	public GetIndexRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.includeTypeName = builder.includeTypeName;
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
@@ -94,16 +94,6 @@ public final class GetIndexRequest extends RequestBase {
 
 	public GetIndexRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of data streams, indices, and index aliases
-	 * used to limit the request. Wildcard expressions (*) are supported.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -170,6 +160,16 @@ public final class GetIndexRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - Comma-separated list of data streams, indices, and index aliases
+	 * used to limit the request. Wildcard expressions (*) are supported.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * If true, the request retrieves information from the local node only. Defaults
 	 * to false, which means information is retrieved from the master node.
 	 * <p>
@@ -197,8 +197,6 @@ public final class GetIndexRequest extends RequestBase {
 	 * Builder for {@link GetIndexRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetIndexRequest> {
-		private List<String> index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -217,44 +215,13 @@ public final class GetIndexRequest extends RequestBase {
 		@Nullable
 		private Boolean includeTypeName;
 
+		private List<String> index;
+
 		@Nullable
 		private Boolean local;
 
 		@Nullable
 		private String masterTimeout;
-
-		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * used to limit the request. Wildcard expressions (*) are supported.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * used to limit the request. Wildcard expressions (*) are supported.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Ignore if a wildcard expression resolves to no concrete indices (default:
@@ -343,6 +310,39 @@ public final class GetIndexRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard expressions (*) are supported.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard expressions (*) are supported.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
 		 * <p>
@@ -409,30 +409,30 @@ public final class GetIndexRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.includeTypeName != null) {
+					params.put("include_type_name", String.valueOf(request.includeTypeName));
+				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
-				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

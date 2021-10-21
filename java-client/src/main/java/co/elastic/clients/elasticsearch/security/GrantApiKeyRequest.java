@@ -47,33 +47,41 @@ import javax.annotation.Nullable;
 // typedef: security.grant_api_key.Request
 @JsonpDeserializable
 public final class GrantApiKeyRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final String accessToken;
+
 	private final ApiKey apiKey;
 
 	private final ApiKeyGrantType grantType;
 
 	@Nullable
-	private final String accessToken;
+	private final String password;
 
 	@Nullable
 	private final String username;
-
-	@Nullable
-	private final String password;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GrantApiKeyRequest(Builder builder) {
 
+		this.accessToken = builder.accessToken;
 		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
 		this.grantType = Objects.requireNonNull(builder.grantType, "grant_type");
-		this.accessToken = builder.accessToken;
-		this.username = builder.username;
 		this.password = builder.password;
+		this.username = builder.username;
 
 	}
 
 	public GrantApiKeyRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code access_token}
+	 */
+	@Nullable
+	public String accessToken() {
+		return this.accessToken;
 	}
 
 	/**
@@ -91,11 +99,11 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * API name: {@code access_token}
+	 * API name: {@code password}
 	 */
 	@Nullable
-	public String accessToken() {
-		return this.accessToken;
+	public String password() {
+		return this.password;
 	}
 
 	/**
@@ -104,14 +112,6 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public String username() {
 		return this.username;
-	}
-
-	/**
-	 * API name: {@code password}
-	 */
-	@Nullable
-	public String password() {
-		return this.password;
 	}
 
 	/**
@@ -125,27 +125,28 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("api_key");
-		this.apiKey.serialize(generator, mapper);
-
-		generator.writeKey("grant_type");
-		this.grantType.serialize(generator, mapper);
 		if (this.accessToken != null) {
 
 			generator.writeKey("access_token");
 			generator.write(this.accessToken);
 
 		}
-		if (this.username != null) {
 
-			generator.writeKey("username");
-			generator.write(this.username);
+		generator.writeKey("api_key");
+		this.apiKey.serialize(generator, mapper);
 
-		}
+		generator.writeKey("grant_type");
+		this.grantType.serialize(generator, mapper);
 		if (this.password != null) {
 
 			generator.writeKey("password");
 			generator.write(this.password);
+
+		}
+		if (this.username != null) {
+
+			generator.writeKey("username");
+			generator.write(this.username);
 
 		}
 
@@ -157,18 +158,26 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link GrantApiKeyRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GrantApiKeyRequest> {
+		@Nullable
+		private String accessToken;
+
 		private ApiKey apiKey;
 
 		private ApiKeyGrantType grantType;
 
 		@Nullable
-		private String accessToken;
+		private String password;
 
 		@Nullable
 		private String username;
 
-		@Nullable
-		private String password;
+		/**
+		 * API name: {@code access_token}
+		 */
+		public Builder accessToken(@Nullable String value) {
+			this.accessToken = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code api_key}
@@ -194,10 +203,10 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code access_token}
+		 * API name: {@code password}
 		 */
-		public Builder accessToken(@Nullable String value) {
-			this.accessToken = value;
+		public Builder password(@Nullable String value) {
+			this.password = value;
 			return this;
 		}
 
@@ -206,14 +215,6 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		 */
 		public Builder username(@Nullable String value) {
 			this.username = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code password}
-		 */
-		public Builder password(@Nullable String value) {
-			this.password = value;
 			return this;
 		}
 
@@ -239,11 +240,11 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 
 	protected static void setupGrantApiKeyRequestDeserializer(DelegatingDeserializer<GrantApiKeyRequest.Builder> op) {
 
+		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
 		op.add(Builder::grantType, ApiKeyGrantType._DESERIALIZER, "grant_type");
-		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
-		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 

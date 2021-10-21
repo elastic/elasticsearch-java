@@ -139,15 +139,15 @@ public final class GetServiceAccountsRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
 				if (request.service() != null)
 					propsSet |= _service;
+				if (request.namespace() != null)
+					propsSet |= _namespace;
 
 				if (propsSet == (_namespace | _service)) {
 					StringBuilder buf = new StringBuilder();

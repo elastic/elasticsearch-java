@@ -50,51 +50,30 @@ import javax.annotation.Nullable;
 
 public final class GetJobsRequest extends RequestBase {
 	@Nullable
-	private final List<String> jobId;
+	private final Boolean allowNoJobs;
 
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Boolean allowNoJobs;
+	private final Boolean excludeGenerated;
 
 	@Nullable
-	private final Boolean excludeGenerated;
+	private final List<String> jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetJobsRequest(Builder builder) {
 
-		this.jobId = ModelTypeHelper.unmodifiable(builder.jobId);
-		this.allowNoMatch = builder.allowNoMatch;
 		this.allowNoJobs = builder.allowNoJobs;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.excludeGenerated = builder.excludeGenerated;
+		this.jobId = ModelTypeHelper.unmodifiable(builder.jobId);
 
 	}
 
 	public GetJobsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the jobs to fetch
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	@Nullable
-	public List<String> jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
-	 * <p>
-	 * API name: {@code allow_no_match}
-	 */
-	@Nullable
-	public Boolean allowNoMatch() {
-		return this.allowNoMatch;
 	}
 
 	/**
@@ -109,6 +88,17 @@ public final class GetJobsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
+	 * API name: {@code allow_no_match}
+	 */
+	@Nullable
+	public Boolean allowNoMatch() {
+		return this.allowNoMatch;
+	}
+
+	/**
 	 * Omits fields that are illegal to set on job PUT
 	 * <p>
 	 * API name: {@code exclude_generated}
@@ -118,6 +108,16 @@ public final class GetJobsRequest extends RequestBase {
 		return this.excludeGenerated;
 	}
 
+	/**
+	 * The ID of the jobs to fetch
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	@Nullable
+	public List<String> jobId() {
+		return this.jobId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -125,16 +125,48 @@ public final class GetJobsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetJobsRequest> {
 		@Nullable
-		private List<String> jobId;
+		private Boolean allowNoJobs;
 
 		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Boolean allowNoJobs;
+		private Boolean excludeGenerated;
 
 		@Nullable
-		private Boolean excludeGenerated;
+		private List<String> jobId;
+
+		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
+		 * API name: {@code allow_no_jobs}
+		 */
+		public Builder allowNoJobs(@Nullable Boolean value) {
+			this.allowNoJobs = value;
+			return this;
+		}
+
+		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
+		 * API name: {@code allow_no_match}
+		 */
+		public Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * Omits fields that are illegal to set on job PUT
+		 * <p>
+		 * API name: {@code exclude_generated}
+		 */
+		public Builder excludeGenerated(@Nullable Boolean value) {
+			this.excludeGenerated = value;
+			return this;
+		}
 
 		/**
 		 * The ID of the jobs to fetch
@@ -164,38 +196,6 @@ public final class GetJobsRequest extends RequestBase {
 				this.jobId = new ArrayList<>();
 			}
 			this.jobId.add(value);
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
-		 * <p>
-		 * API name: {@code allow_no_match}
-		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
-			this.allowNoMatch = value;
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
-		 * <p>
-		 * API name: {@code allow_no_jobs}
-		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
-			return this;
-		}
-
-		/**
-		 * Omits fields that are illegal to set on job PUT
-		 * <p>
-		 * API name: {@code exclude_generated}
-		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
-			this.excludeGenerated = value;
 			return this;
 		}
 
@@ -253,14 +253,14 @@ public final class GetJobsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
 				if (request.allowNoJobs != null) {
 					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
 				}
 				if (request.excludeGenerated != null) {
 					params.put("exclude_generated", String.valueOf(request.excludeGenerated));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

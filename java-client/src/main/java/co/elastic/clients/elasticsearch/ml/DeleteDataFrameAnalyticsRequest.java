@@ -44,10 +44,10 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_data_frame_analytics.Request
 
 public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
-	private final String id;
-
 	@Nullable
 	private final Boolean force;
+
+	private final String id;
 
 	@Nullable
 	private final String timeout;
@@ -56,23 +56,14 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 
 	public DeleteDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.force = builder.force;
+		this.id = Objects.requireNonNull(builder.id, "id");
 		this.timeout = builder.timeout;
 
 	}
 
 	public DeleteDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the data frame analytics job.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -84,6 +75,15 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	public Boolean force() {
 		return this.force;
+	}
+
+	/**
+	 * Required - Identifier for the data frame analytics job.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -102,23 +102,13 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * Builder for {@link DeleteDataFrameAnalyticsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteDataFrameAnalyticsRequest> {
-		private String id;
-
 		@Nullable
 		private Boolean force;
 
+		private String id;
+
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - Identifier for the data frame analytics job.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
 
 		/**
 		 * If <code>true</code>, it deletes a job that is not stopped; this method is
@@ -128,6 +118,16 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 */
 		public Builder force(@Nullable Boolean value) {
 			this.force = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the data frame analytics job.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 

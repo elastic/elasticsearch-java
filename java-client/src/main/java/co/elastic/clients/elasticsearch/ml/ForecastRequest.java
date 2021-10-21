@@ -45,13 +45,13 @@ import javax.annotation.Nullable;
 // typedef: ml.forecast.Request
 @JsonpDeserializable
 public final class ForecastRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
 	@Nullable
 	private final String duration;
 
 	@Nullable
 	private final String expiresIn;
+
+	private final String jobId;
 
 	@Nullable
 	private final String maxModelMemory;
@@ -60,24 +60,15 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 
 	public ForecastRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.maxModelMemory = builder.maxModelMemory;
 
 	}
 
 	public ForecastRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
 	}
 
 	/**
@@ -102,6 +93,15 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public String expiresIn() {
 		return this.expiresIn;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -155,26 +155,16 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link ForecastRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ForecastRequest> {
-		private String jobId;
-
 		@Nullable
 		private String duration;
 
 		@Nullable
 		private String expiresIn;
 
+		private String jobId;
+
 		@Nullable
 		private String maxModelMemory;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
 
 		/**
 		 * A period of time that indicates how far into the future to forecast. For
@@ -197,6 +187,16 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		 */
 		public Builder expiresIn(@Nullable String value) {
 			this.expiresIn = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 

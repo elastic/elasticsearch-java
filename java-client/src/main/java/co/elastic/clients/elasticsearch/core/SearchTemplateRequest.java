@@ -56,9 +56,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -68,13 +65,28 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
+	private final Boolean explain;
+
+	@Nullable
+	private final String id;
+
+	@Nullable
 	private final Boolean ignoreThrottled;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
+	private final Map<String, JsonData> params;
+
+	@Nullable
 	private final String preference;
+
+	@Nullable
+	private final Boolean profile;
 
 	@Nullable
 	private final String routing;
@@ -86,59 +98,36 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	private final SearchType searchType;
 
 	@Nullable
-	private final Boolean typedKeys;
-
-	@Nullable
-	private final Boolean explain;
-
-	@Nullable
-	private final String id;
-
-	@Nullable
-	private final Map<String, JsonData> params;
-
-	@Nullable
-	private final Boolean profile;
-
-	@Nullable
 	private final String source;
+
+	@Nullable
+	private final Boolean typedKeys;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public SearchTemplateRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.explain = builder.explain;
+		this.id = builder.id;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.preference = builder.preference;
+		this.profile = builder.profile;
 		this.routing = builder.routing;
 		this.scroll = builder.scroll;
 		this.searchType = builder.searchType;
-		this.typedKeys = builder.typedKeys;
-		this.explain = builder.explain;
-		this.id = builder.id;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
-		this.profile = builder.profile;
 		this.source = builder.source;
+		this.typedKeys = builder.typedKeys;
 
 	}
 
 	public SearchTemplateRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of data streams, indices, and aliases to search.
-	 * Supports wildcards (*).
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -176,6 +165,25 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * API name: {@code explain}
+	 */
+	@Nullable
+	public Boolean explain() {
+		return this.explain;
+	}
+
+	/**
+	 * ID of the search template to use. If no source is specified, this parameter
+	 * is required.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
+	}
+
+	/**
 	 * Whether specified concrete, expanded or aliased indices should be ignored
 	 * when throttled
 	 * <p>
@@ -198,6 +206,25 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * Comma-separated list of data streams, indices, and aliases to search.
+	 * Supports wildcards (*).
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code params}
+	 */
+	@Nullable
+	public Map<String, JsonData> params() {
+		return this.params;
+	}
+
+	/**
 	 * Specify the node or shard the operation should be performed on (default:
 	 * random)
 	 * <p>
@@ -206,6 +233,14 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	public String preference() {
 		return this.preference;
+	}
+
+	/**
+	 * API name: {@code profile}
+	 */
+	@Nullable
+	public Boolean profile() {
+		return this.profile;
 	}
 
 	/**
@@ -240,52 +275,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
-	}
-
-	/**
-	 * API name: {@code explain}
-	 */
-	@Nullable
-	public Boolean explain() {
-		return this.explain;
-	}
-
-	/**
-	 * ID of the search template to use. If no source is specified, this parameter
-	 * is required.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
-	}
-
-	/**
-	 * API name: {@code params}
-	 */
-	@Nullable
-	public Map<String, JsonData> params() {
-		return this.params;
-	}
-
-	/**
-	 * API name: {@code profile}
-	 */
-	@Nullable
-	public Boolean profile() {
-		return this.profile;
-	}
-
-	/**
 	 * An inline search template. Supports the same parameters as the search API's
 	 * request body. Also supports Mustache variables. If no id is specified, this
 	 * parameter is required.
@@ -295,6 +284,17 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	public String source() {
 		return this.source;
+	}
+
+	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
+	 * API name: {@code typed_keys}
+	 */
+	@Nullable
+	public Boolean typedKeys() {
+		return this.typedKeys;
 	}
 
 	/**
@@ -354,9 +354,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 */
 	public static class Builder implements ObjectBuilder<SearchTemplateRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -366,13 +363,28 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
+		private Boolean explain;
+
+		@Nullable
+		private String id;
+
+		@Nullable
 		private Boolean ignoreThrottled;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
+		private Map<String, JsonData> params;
+
+		@Nullable
 		private String preference;
+
+		@Nullable
+		private Boolean profile;
 
 		@Nullable
 		private String routing;
@@ -384,55 +396,10 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		private SearchType searchType;
 
 		@Nullable
-		private Boolean typedKeys;
-
-		@Nullable
-		private Boolean explain;
-
-		@Nullable
-		private String id;
-
-		@Nullable
-		private Map<String, JsonData> params;
-
-		@Nullable
-		private Boolean profile;
-
-		@Nullable
 		private String source;
 
-		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (*).
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (*).
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		@Nullable
+		private Boolean typedKeys;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -491,6 +458,25 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * API name: {@code explain}
+		 */
+		public Builder explain(@Nullable Boolean value) {
+			this.explain = value;
+			return this;
+		}
+
+		/**
+		 * ID of the search template to use. If no source is specified, this parameter
+		 * is required.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
 		 * Whether specified concrete, expanded or aliased indices should be ignored
 		 * when throttled
 		 * <p>
@@ -513,6 +499,58 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (*).
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (*).
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 */
+		public Builder params(@Nullable Map<String, JsonData> value) {
+			this.params = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
+		 */
+		public Builder putParams(String key, JsonData value) {
+			if (this.params == null) {
+				this.params = new HashMap<>();
+			}
+			this.params.put(key, value);
+			return this;
+		}
+
+		/**
 		 * Specify the node or shard the operation should be performed on (default:
 		 * random)
 		 * <p>
@@ -520,6 +558,14 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 */
 		public Builder preference(@Nullable String value) {
 			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code profile}
+		 */
+		public Builder profile(@Nullable Boolean value) {
+			this.profile = value;
 			return this;
 		}
 
@@ -555,63 +601,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
-		 * <p>
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code explain}
-		 */
-		public Builder explain(@Nullable Boolean value) {
-			this.explain = value;
-			return this;
-		}
-
-		/**
-		 * ID of the search template to use. If no source is specified, this parameter
-		 * is required.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code params}
-		 */
-		public Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public Builder putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code profile}
-		 */
-		public Builder profile(@Nullable Boolean value) {
-			this.profile = value;
-			return this;
-		}
-
-		/**
 		 * An inline search template. Supports the same parameters as the search API's
 		 * request body. Also supports Mustache variables. If no id is specified, this
 		 * parameter is required.
@@ -620,6 +609,17 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 */
 		public Builder source(@Nullable String value) {
 			this.source = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
+		 * API name: {@code typed_keys}
+		 */
+		public Builder typedKeys(@Nullable Boolean value) {
+			this.typedKeys = value;
 			return this;
 		}
 
@@ -696,27 +696,15 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				if (request.typedKeys != null) {
+					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
-				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
 				}
 				if (request.scroll != null) {
 					params.put("scroll", request.scroll);
@@ -724,8 +712,20 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				}
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				return params;
 

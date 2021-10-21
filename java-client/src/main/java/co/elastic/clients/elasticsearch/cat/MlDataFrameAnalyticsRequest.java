@@ -45,36 +45,26 @@ import javax.annotation.Nullable;
 
 public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
-	private final String id;
-
-	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Bytes bytes;
 
+	@Nullable
+	private final String id;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public MlDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = builder.id;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
+		this.id = builder.id;
 
 	}
 
 	public MlDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the data frame analytics to fetch
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
 	}
 
 	/**
@@ -98,6 +88,16 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		return this.bytes;
 	}
 
+	/**
+	 * The ID of the data frame analytics to fetch
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -105,23 +105,13 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<MlDataFrameAnalyticsRequest> {
 		@Nullable
-		private String id;
-
-		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
 		private Bytes bytes;
 
-		/**
-		 * The ID of the data frame analytics to fetch
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+		@Nullable
+		private String id;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no configs. (This includes
@@ -141,6 +131,16 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		 */
 		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * The ID of the data frame analytics to fetch
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -202,11 +202,11 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.toString());
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

@@ -51,9 +51,6 @@ import javax.annotation.Nullable;
 
 public final class SearchShardsRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -61,6 +58,9 @@ public final class SearchShardsRequest extends RequestBase {
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	@Nullable
+	private final List<String> index;
 
 	@Nullable
 	private final Boolean local;
@@ -75,10 +75,10 @@ public final class SearchShardsRequest extends RequestBase {
 
 	public SearchShardsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
@@ -87,17 +87,6 @@ public final class SearchShardsRequest extends RequestBase {
 
 	public SearchShardsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names to search; use <code>_all</code> or
-	 * empty string to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -132,6 +121,17 @@ public final class SearchShardsRequest extends RequestBase {
 	@Nullable
 	public Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -173,9 +173,6 @@ public final class SearchShardsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<SearchShardsRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -185,6 +182,9 @@ public final class SearchShardsRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
@@ -192,39 +192,6 @@ public final class SearchShardsRequest extends RequestBase {
 
 		@Nullable
 		private String routing;
-
-		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -279,6 +246,39 @@ public final class SearchShardsRequest extends RequestBase {
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
 			return this;
 		}
 
@@ -366,8 +366,8 @@ public final class SearchShardsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
@@ -376,14 +376,14 @@ public final class SearchShardsRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

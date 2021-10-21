@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -50,7 +50,8 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteLifecycleResponse deleteLifecycle(DeleteLifecycleRequest request) throws IOException {
+	public DeleteLifecycleResponse deleteLifecycle(DeleteLifecycleRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteLifecycleRequest.ENDPOINT);
 	}
 
@@ -58,16 +59,16 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 * Deletes an existing snapshot lifecycle policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteLifecycleResponse deleteLifecycle(
-			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn) throws IOException {
+			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteLifecycle(fn.apply(new DeleteLifecycleRequest.Builder()).build());
 	}
 
@@ -82,7 +83,8 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ExecuteLifecycleResponse executeLifecycle(ExecuteLifecycleRequest request) throws IOException {
+	public ExecuteLifecycleResponse executeLifecycle(ExecuteLifecycleRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExecuteLifecycleRequest.ENDPOINT);
 	}
 
@@ -91,16 +93,16 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 * waiting for the scheduled time.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExecuteLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ExecuteLifecycleResponse executeLifecycle(
-			Function<ExecuteLifecycleRequest.Builder, ObjectBuilder<ExecuteLifecycleRequest>> fn) throws IOException {
+			Function<ExecuteLifecycleRequest.Builder, ObjectBuilder<ExecuteLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return executeLifecycle(fn.apply(new ExecuteLifecycleRequest.Builder()).build());
 	}
 
@@ -129,7 +131,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetLifecycleResponse getLifecycle(GetLifecycleRequest request) throws IOException {
+	public GetLifecycleResponse getLifecycle(GetLifecycleRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetLifecycleRequest.ENDPOINT);
 	}
 
@@ -138,16 +140,16 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 * about the latest snapshot attempts.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetLifecycleResponse getLifecycle(
-			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn) throws IOException {
+			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
@@ -160,7 +162,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetLifecycleResponse getLifecycle() throws IOException {
+	public GetLifecycleResponse getLifecycle() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest.ENDPOINT);
 	}
 
@@ -201,7 +203,7 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutLifecycleResponse putLifecycle(PutLifecycleRequest request) throws IOException {
+	public PutLifecycleResponse putLifecycle(PutLifecycleRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutLifecycleRequest.ENDPOINT);
 	}
 
@@ -209,16 +211,16 @@ public class ElasticsearchSlmClient extends ApiClient {
 	 * Creates or updates a snapshot lifecycle policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutLifecycleResponse putLifecycle(
-			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn) throws IOException {
+			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putLifecycle(fn.apply(new PutLifecycleRequest.Builder()).build());
 	}
 

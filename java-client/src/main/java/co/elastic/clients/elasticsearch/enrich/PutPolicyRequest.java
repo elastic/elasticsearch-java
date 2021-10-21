@@ -45,35 +45,26 @@ import javax.annotation.Nullable;
 // typedef: enrich.put_policy.Request
 @JsonpDeserializable
 public final class PutPolicyRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
-
 	@Nullable
 	private final Policy geoMatch;
 
 	@Nullable
 	private final Policy match;
 
+	private final String name;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public PutPolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
 		this.geoMatch = builder.geoMatch;
 		this.match = builder.match;
+		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
 	public PutPolicyRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The name of the enrich policy
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
 	}
 
 	/**
@@ -90,6 +81,15 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public Policy match() {
 		return this.match;
+	}
+
+	/**
+	 * Required - The name of the enrich policy
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -124,23 +124,13 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PutPolicyRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutPolicyRequest> {
-		private String name;
-
 		@Nullable
 		private Policy geoMatch;
 
 		@Nullable
 		private Policy match;
 
-		/**
-		 * Required - The name of the enrich policy
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+		private String name;
 
 		/**
 		 * API name: {@code geo_match}
@@ -170,6 +160,16 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		 */
 		public Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.match(fn.apply(new Policy.Builder()).build());
+		}
+
+		/**
+		 * Required - The name of the enrich policy
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
 		}
 
 		/**

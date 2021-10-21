@@ -46,26 +46,34 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final DatafeedConfig datafeedConfig;
+
+	@Nullable
 	private final String datafeedId;
 
 	@Nullable
 	private final JobConfig jobConfig;
 
-	@Nullable
-	private final DatafeedConfig datafeedConfig;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public PreviewDatafeedRequest(Builder builder) {
 
+		this.datafeedConfig = builder.datafeedConfig;
 		this.datafeedId = builder.datafeedId;
 		this.jobConfig = builder.jobConfig;
-		this.datafeedConfig = builder.datafeedConfig;
 
 	}
 
 	public PreviewDatafeedRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code datafeed_config}
+	 */
+	@Nullable
+	public DatafeedConfig datafeedConfig() {
+		return this.datafeedConfig;
 	}
 
 	/**
@@ -87,14 +95,6 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * API name: {@code datafeed_config}
-	 */
-	@Nullable
-	public DatafeedConfig datafeedConfig() {
-		return this.datafeedConfig;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -105,16 +105,16 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.jobConfig != null) {
-
-			generator.writeKey("job_config");
-			this.jobConfig.serialize(generator, mapper);
-
-		}
 		if (this.datafeedConfig != null) {
 
 			generator.writeKey("datafeed_config");
 			this.datafeedConfig.serialize(generator, mapper);
+
+		}
+		if (this.jobConfig != null) {
+
+			generator.writeKey("job_config");
+			this.jobConfig.serialize(generator, mapper);
 
 		}
 
@@ -127,13 +127,28 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	 */
 	public static class Builder implements ObjectBuilder<PreviewDatafeedRequest> {
 		@Nullable
+		private DatafeedConfig datafeedConfig;
+
+		@Nullable
 		private String datafeedId;
 
 		@Nullable
 		private JobConfig jobConfig;
 
-		@Nullable
-		private DatafeedConfig datafeedConfig;
+		/**
+		 * API name: {@code datafeed_config}
+		 */
+		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
+			this.datafeedConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code datafeed_config}
+		 */
+		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
+		}
 
 		/**
 		 * The ID of the datafeed to preview
@@ -161,21 +176,6 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * API name: {@code datafeed_config}
-		 */
-		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
-			this.datafeedConfig = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code datafeed_config}
-		 */
-		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
-			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
-		}
-
-		/**
 		 * Builds a {@link PreviewDatafeedRequest}.
 		 *
 		 * @throws NullPointerException
@@ -198,8 +198,8 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	protected static void setupPreviewDatafeedRequestDeserializer(
 			DelegatingDeserializer<PreviewDatafeedRequest.Builder> op) {
 
-		op.add(Builder::jobConfig, JobConfig._DESERIALIZER, "job_config");
 		op.add(Builder::datafeedConfig, DatafeedConfig._DESERIALIZER, "datafeed_config");
+		op.add(Builder::jobConfig, JobConfig._DESERIALIZER, "job_config");
 
 	}
 

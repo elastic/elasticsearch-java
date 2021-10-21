@@ -44,31 +44,22 @@ import javax.annotation.Nullable;
 // typedef: _global.update_by_query_rethrottle.Request
 
 public final class UpdateByQueryRethrottleRequest extends RequestBase {
-	private final String taskId;
-
 	@Nullable
 	private final Long requestsPerSecond;
+
+	private final String taskId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public UpdateByQueryRethrottleRequest(Builder builder) {
 
-		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
 		this.requestsPerSecond = builder.requestsPerSecond;
+		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
 
 	}
 
 	public UpdateByQueryRethrottleRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The task id to rethrottle
-	 * <p>
-	 * API name: {@code task_id}
-	 */
-	public String taskId() {
-		return this.taskId;
 	}
 
 	/**
@@ -82,26 +73,25 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 		return this.requestsPerSecond;
 	}
 
+	/**
+	 * Required - The task id to rethrottle
+	 * <p>
+	 * API name: {@code task_id}
+	 */
+	public String taskId() {
+		return this.taskId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link UpdateByQueryRethrottleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateByQueryRethrottleRequest> {
-		private String taskId;
-
 		@Nullable
 		private Long requestsPerSecond;
 
-		/**
-		 * Required - The task id to rethrottle
-		 * <p>
-		 * API name: {@code task_id}
-		 */
-		public Builder taskId(String value) {
-			this.taskId = value;
-			return this;
-		}
+		private String taskId;
 
 		/**
 		 * The throttle to set on this request in floating sub-requests per second. -1
@@ -111,6 +101,16 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 		 */
 		public Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
+			return this;
+		}
+
+		/**
+		 * Required - The task id to rethrottle
+		 * <p>
+		 * API name: {@code task_id}
+		 */
+		public Builder taskId(String value) {
+			this.taskId = value;
 			return this;
 		}
 

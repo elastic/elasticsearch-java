@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -51,7 +51,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloseJobResponse closeJob(CloseJobRequest request) throws IOException {
+	public CloseJobResponse closeJob(CloseJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, CloseJobRequest.ENDPOINT);
 	}
 
@@ -60,16 +60,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * multiple times throughout its lifecycle.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CloseJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CloseJobResponse closeJob(Function<CloseJobRequest.Builder, ObjectBuilder<CloseJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return closeJob(fn.apply(new CloseJobRequest.Builder()).build());
 	}
 
@@ -83,7 +82,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteCalendarResponse deleteCalendar(DeleteCalendarRequest request) throws IOException {
+	public DeleteCalendarResponse deleteCalendar(DeleteCalendarRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteCalendarRequest.ENDPOINT);
 	}
 
@@ -91,16 +91,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes a calendar.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteCalendarRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteCalendarResponse deleteCalendar(
-			Function<DeleteCalendarRequest.Builder, ObjectBuilder<DeleteCalendarRequest>> fn) throws IOException {
+			Function<DeleteCalendarRequest.Builder, ObjectBuilder<DeleteCalendarRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteCalendar(fn.apply(new DeleteCalendarRequest.Builder()).build());
 	}
 
@@ -114,7 +114,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteCalendarEventResponse deleteCalendarEvent(DeleteCalendarEventRequest request) throws IOException {
+	public DeleteCalendarEventResponse deleteCalendarEvent(DeleteCalendarEventRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteCalendarEventRequest.ENDPOINT);
 	}
 
@@ -122,9 +123,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes scheduled events from a calendar.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteCalendarEventRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html">Documentation
 	 *      on elastic.co</a>
@@ -132,7 +132,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final DeleteCalendarEventResponse deleteCalendarEvent(
 			Function<DeleteCalendarEventRequest.Builder, ObjectBuilder<DeleteCalendarEventRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteCalendarEvent(fn.apply(new DeleteCalendarEventRequest.Builder()).build());
 	}
 
@@ -146,7 +146,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteCalendarJobResponse deleteCalendarJob(DeleteCalendarJobRequest request) throws IOException {
+	public DeleteCalendarJobResponse deleteCalendarJob(DeleteCalendarJobRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteCalendarJobRequest.ENDPOINT);
 	}
 
@@ -154,16 +155,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes anomaly detection jobs from a calendar.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteCalendarJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteCalendarJobResponse deleteCalendarJob(
-			Function<DeleteCalendarJobRequest.Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn) throws IOException {
+			Function<DeleteCalendarJobRequest.Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteCalendarJob(fn.apply(new DeleteCalendarJobRequest.Builder()).build());
 	}
 
@@ -178,7 +179,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public DeleteDataFrameAnalyticsResponse deleteDataFrameAnalytics(DeleteDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -186,9 +187,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes an existing data frame analytics job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -196,7 +196,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final DeleteDataFrameAnalyticsResponse deleteDataFrameAnalytics(
 			Function<DeleteDataFrameAnalyticsRequest.Builder, ObjectBuilder<DeleteDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteDataFrameAnalytics(fn.apply(new DeleteDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -210,7 +210,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteDatafeedResponse deleteDatafeed(DeleteDatafeedRequest request) throws IOException {
+	public DeleteDatafeedResponse deleteDatafeed(DeleteDatafeedRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteDatafeedRequest.ENDPOINT);
 	}
 
@@ -218,16 +219,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes an existing datafeed.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDatafeedRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteDatafeedResponse deleteDatafeed(
-			Function<DeleteDatafeedRequest.Builder, ObjectBuilder<DeleteDatafeedRequest>> fn) throws IOException {
+			Function<DeleteDatafeedRequest.Builder, ObjectBuilder<DeleteDatafeedRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteDatafeed(fn.apply(new DeleteDatafeedRequest.Builder()).build());
 	}
 
@@ -241,7 +242,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteFilterResponse deleteFilter(DeleteFilterRequest request) throws IOException {
+	public DeleteFilterResponse deleteFilter(DeleteFilterRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteFilterRequest.ENDPOINT);
 	}
 
@@ -249,16 +250,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes a filter.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteFilterRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteFilterResponse deleteFilter(
-			Function<DeleteFilterRequest.Builder, ObjectBuilder<DeleteFilterRequest>> fn) throws IOException {
+			Function<DeleteFilterRequest.Builder, ObjectBuilder<DeleteFilterRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteFilter(fn.apply(new DeleteFilterRequest.Builder()).build());
 	}
 
@@ -272,7 +273,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteForecastResponse deleteForecast(DeleteForecastRequest request) throws IOException {
+	public DeleteForecastResponse deleteForecast(DeleteForecastRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteForecastRequest.ENDPOINT);
 	}
 
@@ -280,16 +282,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes forecasts from a machine learning job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteForecastRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteForecastResponse deleteForecast(
-			Function<DeleteForecastRequest.Builder, ObjectBuilder<DeleteForecastRequest>> fn) throws IOException {
+			Function<DeleteForecastRequest.Builder, ObjectBuilder<DeleteForecastRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteForecast(fn.apply(new DeleteForecastRequest.Builder()).build());
 	}
 
@@ -303,7 +305,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException {
+	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteJobRequest.ENDPOINT);
 	}
 
@@ -311,16 +313,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes an existing anomaly detection job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteJobResponse deleteJob(Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
@@ -334,7 +335,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteModelSnapshotResponse deleteModelSnapshot(DeleteModelSnapshotRequest request) throws IOException {
+	public DeleteModelSnapshotResponse deleteModelSnapshot(DeleteModelSnapshotRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteModelSnapshotRequest.ENDPOINT);
 	}
 
@@ -342,9 +344,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes an existing model snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteModelSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html">Documentation
 	 *      on elastic.co</a>
@@ -352,7 +353,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final DeleteModelSnapshotResponse deleteModelSnapshot(
 			Function<DeleteModelSnapshotRequest.Builder, ObjectBuilder<DeleteModelSnapshotRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteModelSnapshot(fn.apply(new DeleteModelSnapshotRequest.Builder()).build());
 	}
 
@@ -367,7 +368,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteTrainedModelResponse deleteTrainedModel(DeleteTrainedModelRequest request) throws IOException {
+	public DeleteTrainedModelResponse deleteTrainedModel(DeleteTrainedModelRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteTrainedModelRequest.ENDPOINT);
 	}
 
@@ -376,9 +378,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * by an ingest pipeline.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteTrainedModelRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html">Documentation
 	 *      on elastic.co</a>
@@ -386,7 +387,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final DeleteTrainedModelResponse deleteTrainedModel(
 			Function<DeleteTrainedModelRequest.Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteTrainedModel(fn.apply(new DeleteTrainedModelRequest.Builder()).build());
 	}
 
@@ -401,7 +402,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public DeleteTrainedModelAliasResponse deleteTrainedModelAlias(DeleteTrainedModelAliasRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, DeleteTrainedModelAliasRequest.ENDPOINT);
 	}
 
@@ -409,9 +410,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Deletes a model alias that refers to the trained model
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteTrainedModelAliasRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html">Documentation
 	 *      on elastic.co</a>
@@ -419,7 +419,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final DeleteTrainedModelAliasResponse deleteTrainedModelAlias(
 			Function<DeleteTrainedModelAliasRequest.Builder, ObjectBuilder<DeleteTrainedModelAliasRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteTrainedModelAlias(fn.apply(new DeleteTrainedModelAliasRequest.Builder()).build());
 	}
 
@@ -433,7 +433,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public EstimateModelMemoryResponse estimateModelMemory(EstimateModelMemoryRequest request) throws IOException {
+	public EstimateModelMemoryResponse estimateModelMemory(EstimateModelMemoryRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, EstimateModelMemoryRequest.ENDPOINT);
 	}
 
@@ -441,9 +442,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Estimates the model memory
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link EstimateModelMemoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
 	 *      on elastic.co</a>
@@ -451,7 +451,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final EstimateModelMemoryResponse estimateModelMemory(
 			Function<EstimateModelMemoryRequest.Builder, ObjectBuilder<EstimateModelMemoryRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return estimateModelMemory(fn.apply(new EstimateModelMemoryRequest.Builder()).build());
 	}
 
@@ -463,7 +463,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public EstimateModelMemoryResponse estimateModelMemory() throws IOException {
+	public EstimateModelMemoryResponse estimateModelMemory() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new EstimateModelMemoryRequest.Builder().build(),
 				EstimateModelMemoryRequest.ENDPOINT);
 	}
@@ -478,7 +478,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public EvaluateDataFrameResponse evaluateDataFrame(EvaluateDataFrameRequest request) throws IOException {
+	public EvaluateDataFrameResponse evaluateDataFrame(EvaluateDataFrameRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, EvaluateDataFrameRequest.ENDPOINT);
 	}
 
@@ -486,16 +487,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Evaluates the data frame analytics for an annotated index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link EvaluateDataFrameRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final EvaluateDataFrameResponse evaluateDataFrame(
-			Function<EvaluateDataFrameRequest.Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn) throws IOException {
+			Function<EvaluateDataFrameRequest.Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return evaluateDataFrame(fn.apply(new EvaluateDataFrameRequest.Builder()).build());
 	}
 
@@ -510,7 +511,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public ExplainDataFrameAnalyticsResponse explainDataFrameAnalytics(ExplainDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ExplainDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -518,9 +519,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Explains a data frame analytics config.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -528,7 +528,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final ExplainDataFrameAnalyticsResponse explainDataFrameAnalytics(
 			Function<ExplainDataFrameAnalyticsRequest.Builder, ObjectBuilder<ExplainDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return explainDataFrameAnalytics(fn.apply(new ExplainDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -542,7 +542,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FlushJobResponse flushJob(FlushJobRequest request) throws IOException {
+	public FlushJobResponse flushJob(FlushJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, FlushJobRequest.ENDPOINT);
 	}
 
@@ -550,16 +550,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Forces any buffered data to be processed by the job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FlushJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FlushJobResponse flushJob(Function<FlushJobRequest.Builder, ObjectBuilder<FlushJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return flushJob(fn.apply(new FlushJobRequest.Builder()).build());
 	}
 
@@ -574,7 +573,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ForecastResponse forecast(ForecastRequest request) throws IOException {
+	public ForecastResponse forecast(ForecastRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ForecastRequest.ENDPOINT);
 	}
 
@@ -583,16 +582,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * behavior.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ForecastRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ForecastResponse forecast(Function<ForecastRequest.Builder, ObjectBuilder<ForecastRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return forecast(fn.apply(new ForecastRequest.Builder()).build());
 	}
 
@@ -606,7 +604,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetBucketsResponse getBuckets(GetBucketsRequest request) throws IOException {
+	public GetBucketsResponse getBuckets(GetBucketsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetBucketsRequest.ENDPOINT);
 	}
 
@@ -614,16 +612,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves anomaly detection job results for one or more buckets.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetBucketsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetBucketsResponse getBuckets(Function<GetBucketsRequest.Builder, ObjectBuilder<GetBucketsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getBuckets(fn.apply(new GetBucketsRequest.Builder()).build());
 	}
 
@@ -637,7 +634,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetCalendarEventsResponse getCalendarEvents(GetCalendarEventsRequest request) throws IOException {
+	public GetCalendarEventsResponse getCalendarEvents(GetCalendarEventsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetCalendarEventsRequest.ENDPOINT);
 	}
 
@@ -645,16 +643,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves information about the scheduled events in calendars.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetCalendarEventsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetCalendarEventsResponse getCalendarEvents(
-			Function<GetCalendarEventsRequest.Builder, ObjectBuilder<GetCalendarEventsRequest>> fn) throws IOException {
+			Function<GetCalendarEventsRequest.Builder, ObjectBuilder<GetCalendarEventsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getCalendarEvents(fn.apply(new GetCalendarEventsRequest.Builder()).build());
 	}
 
@@ -668,7 +666,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetCalendarsResponse getCalendars(GetCalendarsRequest request) throws IOException {
+	public GetCalendarsResponse getCalendars(GetCalendarsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetCalendarsRequest.ENDPOINT);
 	}
 
@@ -676,16 +674,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves configuration information for calendars.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetCalendarsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetCalendarsResponse getCalendars(
-			Function<GetCalendarsRequest.Builder, ObjectBuilder<GetCalendarsRequest>> fn) throws IOException {
+			Function<GetCalendarsRequest.Builder, ObjectBuilder<GetCalendarsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getCalendars(fn.apply(new GetCalendarsRequest.Builder()).build());
 	}
 
@@ -697,7 +695,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetCalendarsResponse getCalendars() throws IOException {
+	public GetCalendarsResponse getCalendars() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetCalendarsRequest.Builder().build(), GetCalendarsRequest.ENDPOINT);
 	}
 
@@ -711,7 +709,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetCategoriesResponse getCategories(GetCategoriesRequest request) throws IOException {
+	public GetCategoriesResponse getCategories(GetCategoriesRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetCategoriesRequest.ENDPOINT);
 	}
 
@@ -719,16 +718,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves anomaly detection job results for one or more categories.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetCategoriesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetCategoriesResponse getCategories(
-			Function<GetCategoriesRequest.Builder, ObjectBuilder<GetCategoriesRequest>> fn) throws IOException {
+			Function<GetCategoriesRequest.Builder, ObjectBuilder<GetCategoriesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getCategories(fn.apply(new GetCategoriesRequest.Builder()).build());
 	}
 
@@ -743,7 +742,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetDataFrameAnalyticsResponse getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -751,9 +750,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves configuration information for data frame analytics jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -761,7 +759,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final GetDataFrameAnalyticsResponse getDataFrameAnalytics(
 			Function<GetDataFrameAnalyticsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getDataFrameAnalytics(fn.apply(new GetDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -773,7 +771,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDataFrameAnalyticsResponse getDataFrameAnalytics() throws IOException {
+	public GetDataFrameAnalyticsResponse getDataFrameAnalytics() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataFrameAnalyticsRequest.Builder().build(),
 				GetDataFrameAnalyticsRequest.ENDPOINT);
 	}
@@ -789,7 +787,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats(GetDataFrameAnalyticsStatsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetDataFrameAnalyticsStatsRequest.ENDPOINT);
 	}
 
@@ -797,9 +795,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves usage information for data frame analytics jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataFrameAnalyticsStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html">Documentation
 	 *      on elastic.co</a>
@@ -807,7 +804,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats(
 			Function<GetDataFrameAnalyticsStatsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsStatsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getDataFrameAnalyticsStats(fn.apply(new GetDataFrameAnalyticsStatsRequest.Builder()).build());
 	}
 
@@ -819,7 +816,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats() throws IOException {
+	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataFrameAnalyticsStatsRequest.Builder().build(),
 				GetDataFrameAnalyticsStatsRequest.ENDPOINT);
 	}
@@ -834,7 +831,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDatafeedStatsResponse getDatafeedStats(GetDatafeedStatsRequest request) throws IOException {
+	public GetDatafeedStatsResponse getDatafeedStats(GetDatafeedStatsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetDatafeedStatsRequest.ENDPOINT);
 	}
 
@@ -842,16 +840,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves usage information for datafeeds.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDatafeedStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetDatafeedStatsResponse getDatafeedStats(
-			Function<GetDatafeedStatsRequest.Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn) throws IOException {
+			Function<GetDatafeedStatsRequest.Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getDatafeedStats(fn.apply(new GetDatafeedStatsRequest.Builder()).build());
 	}
 
@@ -863,7 +861,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDatafeedStatsResponse getDatafeedStats() throws IOException {
+	public GetDatafeedStatsResponse getDatafeedStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDatafeedStatsRequest.Builder().build(),
 				GetDatafeedStatsRequest.ENDPOINT);
 	}
@@ -878,7 +876,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDatafeedsResponse getDatafeeds(GetDatafeedsRequest request) throws IOException {
+	public GetDatafeedsResponse getDatafeeds(GetDatafeedsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetDatafeedsRequest.ENDPOINT);
 	}
 
@@ -886,16 +884,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves configuration information for datafeeds.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDatafeedsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetDatafeedsResponse getDatafeeds(
-			Function<GetDatafeedsRequest.Builder, ObjectBuilder<GetDatafeedsRequest>> fn) throws IOException {
+			Function<GetDatafeedsRequest.Builder, ObjectBuilder<GetDatafeedsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getDatafeeds(fn.apply(new GetDatafeedsRequest.Builder()).build());
 	}
 
@@ -907,7 +905,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetDatafeedsResponse getDatafeeds() throws IOException {
+	public GetDatafeedsResponse getDatafeeds() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDatafeedsRequest.Builder().build(), GetDatafeedsRequest.ENDPOINT);
 	}
 
@@ -921,7 +919,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetFiltersResponse getFilters(GetFiltersRequest request) throws IOException {
+	public GetFiltersResponse getFilters(GetFiltersRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetFiltersRequest.ENDPOINT);
 	}
 
@@ -929,16 +927,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves filters.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetFiltersRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetFiltersResponse getFilters(Function<GetFiltersRequest.Builder, ObjectBuilder<GetFiltersRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getFilters(fn.apply(new GetFiltersRequest.Builder()).build());
 	}
 
@@ -950,7 +947,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetFiltersResponse getFilters() throws IOException {
+	public GetFiltersResponse getFilters() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetFiltersRequest.Builder().build(), GetFiltersRequest.ENDPOINT);
 	}
 
@@ -964,7 +961,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetInfluencersResponse getInfluencers(GetInfluencersRequest request) throws IOException {
+	public GetInfluencersResponse getInfluencers(GetInfluencersRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetInfluencersRequest.ENDPOINT);
 	}
 
@@ -972,16 +970,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves anomaly detection job results for one or more influencers.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetInfluencersRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetInfluencersResponse getInfluencers(
-			Function<GetInfluencersRequest.Builder, ObjectBuilder<GetInfluencersRequest>> fn) throws IOException {
+			Function<GetInfluencersRequest.Builder, ObjectBuilder<GetInfluencersRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getInfluencers(fn.apply(new GetInfluencersRequest.Builder()).build());
 	}
 
@@ -995,7 +993,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetJobStatsResponse getJobStats(GetJobStatsRequest request) throws IOException {
+	public GetJobStatsResponse getJobStats(GetJobStatsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetJobStatsRequest.ENDPOINT);
 	}
 
@@ -1003,16 +1001,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves usage information for anomaly detection jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetJobStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetJobStatsResponse getJobStats(
-			Function<GetJobStatsRequest.Builder, ObjectBuilder<GetJobStatsRequest>> fn) throws IOException {
+			Function<GetJobStatsRequest.Builder, ObjectBuilder<GetJobStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getJobStats(fn.apply(new GetJobStatsRequest.Builder()).build());
 	}
 
@@ -1024,7 +1022,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetJobStatsResponse getJobStats() throws IOException {
+	public GetJobStatsResponse getJobStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetJobStatsRequest.Builder().build(), GetJobStatsRequest.ENDPOINT);
 	}
 
@@ -1038,7 +1036,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException {
+	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetJobsRequest.ENDPOINT);
 	}
 
@@ -1046,16 +1044,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves configuration information for anomaly detection jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetJobsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetJobsResponse getJobs(Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
@@ -1067,7 +1064,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetJobsResponse getJobs() throws IOException {
+	public GetJobsResponse getJobs() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT);
 	}
 
@@ -1081,7 +1078,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetModelSnapshotsResponse getModelSnapshots(GetModelSnapshotsRequest request) throws IOException {
+	public GetModelSnapshotsResponse getModelSnapshots(GetModelSnapshotsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetModelSnapshotsRequest.ENDPOINT);
 	}
 
@@ -1089,16 +1087,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves information about model snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetModelSnapshotsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetModelSnapshotsResponse getModelSnapshots(
-			Function<GetModelSnapshotsRequest.Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn) throws IOException {
+			Function<GetModelSnapshotsRequest.Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getModelSnapshots(fn.apply(new GetModelSnapshotsRequest.Builder()).build());
 	}
 
@@ -1113,7 +1111,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetOverallBucketsResponse getOverallBuckets(GetOverallBucketsRequest request) throws IOException {
+	public GetOverallBucketsResponse getOverallBuckets(GetOverallBucketsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetOverallBucketsRequest.ENDPOINT);
 	}
 
@@ -1122,16 +1121,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * multiple anomaly detection jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetOverallBucketsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetOverallBucketsResponse getOverallBuckets(
-			Function<GetOverallBucketsRequest.Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) throws IOException {
+			Function<GetOverallBucketsRequest.Builder, ObjectBuilder<GetOverallBucketsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getOverallBuckets(fn.apply(new GetOverallBucketsRequest.Builder()).build());
 	}
 
@@ -1145,7 +1144,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetRecordsResponse getRecords(GetRecordsRequest request) throws IOException {
+	public GetRecordsResponse getRecords(GetRecordsRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetRecordsRequest.ENDPOINT);
 	}
 
@@ -1153,16 +1152,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves anomaly records for an anomaly detection job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRecordsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetRecordsResponse getRecords(Function<GetRecordsRequest.Builder, ObjectBuilder<GetRecordsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getRecords(fn.apply(new GetRecordsRequest.Builder()).build());
 	}
 
@@ -1176,7 +1174,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTrainedModelsResponse getTrainedModels(GetTrainedModelsRequest request) throws IOException {
+	public GetTrainedModelsResponse getTrainedModels(GetTrainedModelsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetTrainedModelsRequest.ENDPOINT);
 	}
 
@@ -1184,16 +1183,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves configuration information for a trained inference model.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTrainedModelsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetTrainedModelsResponse getTrainedModels(
-			Function<GetTrainedModelsRequest.Builder, ObjectBuilder<GetTrainedModelsRequest>> fn) throws IOException {
+			Function<GetTrainedModelsRequest.Builder, ObjectBuilder<GetTrainedModelsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getTrainedModels(fn.apply(new GetTrainedModelsRequest.Builder()).build());
 	}
 
@@ -1205,7 +1204,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTrainedModelsResponse getTrainedModels() throws IOException {
+	public GetTrainedModelsResponse getTrainedModels() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTrainedModelsRequest.Builder().build(),
 				GetTrainedModelsRequest.ENDPOINT);
 	}
@@ -1221,7 +1220,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetTrainedModelsStatsResponse getTrainedModelsStats(GetTrainedModelsStatsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, GetTrainedModelsStatsRequest.ENDPOINT);
 	}
 
@@ -1229,9 +1228,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Retrieves usage information for trained inference models.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTrainedModelsStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html">Documentation
 	 *      on elastic.co</a>
@@ -1239,7 +1237,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final GetTrainedModelsStatsResponse getTrainedModelsStats(
 			Function<GetTrainedModelsStatsRequest.Builder, ObjectBuilder<GetTrainedModelsStatsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getTrainedModelsStats(fn.apply(new GetTrainedModelsStatsRequest.Builder()).build());
 	}
 
@@ -1251,7 +1249,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetTrainedModelsStatsResponse getTrainedModelsStats() throws IOException {
+	public GetTrainedModelsStatsResponse getTrainedModelsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTrainedModelsStatsRequest.Builder().build(),
 				GetTrainedModelsStatsRequest.ENDPOINT);
 	}
@@ -1279,7 +1277,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public OpenJobResponse openJob(OpenJobRequest request) throws IOException {
+	public OpenJobResponse openJob(OpenJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, OpenJobRequest.ENDPOINT);
 	}
 
@@ -1287,16 +1285,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Opens one or more anomaly detection jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link OpenJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final OpenJobResponse openJob(Function<OpenJobRequest.Builder, ObjectBuilder<OpenJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return openJob(fn.apply(new OpenJobRequest.Builder()).build());
 	}
 
@@ -1310,7 +1307,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PostCalendarEventsResponse postCalendarEvents(PostCalendarEventsRequest request) throws IOException {
+	public PostCalendarEventsResponse postCalendarEvents(PostCalendarEventsRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PostCalendarEventsRequest.ENDPOINT);
 	}
 
@@ -1318,9 +1316,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Posts scheduled events in a calendar.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PostCalendarEventsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html">Documentation
 	 *      on elastic.co</a>
@@ -1328,7 +1325,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final PostCalendarEventsResponse postCalendarEvents(
 			Function<PostCalendarEventsRequest.Builder, ObjectBuilder<PostCalendarEventsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return postCalendarEvents(fn.apply(new PostCalendarEventsRequest.Builder()).build());
 	}
 
@@ -1342,7 +1339,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TData> PostDataResponse postData(PostDataRequest<TData> request) throws IOException {
+	public <TData> PostDataResponse postData(PostDataRequest<TData> request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PostDataRequest.ENDPOINT);
 	}
 
@@ -1350,16 +1348,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Sends data to an anomaly detection job for analysis.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PostDataRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final <TData> PostDataResponse postData(
-			Function<PostDataRequest.Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn) throws IOException {
+			Function<PostDataRequest.Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn)
+			throws IOException, ElasticsearchException {
 		return postData(fn.apply(new PostDataRequest.Builder<TData>()).build());
 	}
 
@@ -1374,7 +1372,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics(PreviewDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PreviewDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -1382,9 +1380,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Previews that will be analyzed given a data frame analytics config.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PreviewDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -1392,7 +1389,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics(
 			Function<PreviewDataFrameAnalyticsRequest.Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return previewDataFrameAnalytics(fn.apply(new PreviewDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1404,7 +1401,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics() throws IOException {
+	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PreviewDataFrameAnalyticsRequest.Builder().build(),
 				PreviewDataFrameAnalyticsRequest.ENDPOINT);
 	}
@@ -1420,7 +1417,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public <TDocument> PreviewDatafeedResponse<TDocument> previewDatafeed(PreviewDatafeedRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request,
 				PreviewDatafeedRequest.createPreviewDatafeedEndpoint(getDeserializer(tDocumentClass)));
 	}
@@ -1429,9 +1426,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Previews a datafeed.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PreviewDatafeedRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
 	 *      on elastic.co</a>
@@ -1439,7 +1435,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final <TDocument> PreviewDatafeedResponse<TDocument> previewDatafeed(
 			Function<PreviewDatafeedRequest.Builder, ObjectBuilder<PreviewDatafeedRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return previewDatafeed(fn.apply(new PreviewDatafeedRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1453,7 +1449,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutCalendarResponse putCalendar(PutCalendarRequest request) throws IOException {
+	public PutCalendarResponse putCalendar(PutCalendarRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutCalendarRequest.ENDPOINT);
 	}
 
@@ -1461,16 +1457,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Instantiates a calendar.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutCalendarRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutCalendarResponse putCalendar(
-			Function<PutCalendarRequest.Builder, ObjectBuilder<PutCalendarRequest>> fn) throws IOException {
+			Function<PutCalendarRequest.Builder, ObjectBuilder<PutCalendarRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putCalendar(fn.apply(new PutCalendarRequest.Builder()).build());
 	}
 
@@ -1484,7 +1480,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutCalendarJobResponse putCalendarJob(PutCalendarJobRequest request) throws IOException {
+	public PutCalendarJobResponse putCalendarJob(PutCalendarJobRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutCalendarJobRequest.ENDPOINT);
 	}
 
@@ -1492,16 +1489,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Adds an anomaly detection job to a calendar.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutCalendarJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutCalendarJobResponse putCalendarJob(
-			Function<PutCalendarJobRequest.Builder, ObjectBuilder<PutCalendarJobRequest>> fn) throws IOException {
+			Function<PutCalendarJobRequest.Builder, ObjectBuilder<PutCalendarJobRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putCalendarJob(fn.apply(new PutCalendarJobRequest.Builder()).build());
 	}
 
@@ -1516,7 +1513,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public PutDataFrameAnalyticsResponse putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -1524,9 +1521,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Instantiates a data frame analytics job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -1534,7 +1530,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final PutDataFrameAnalyticsResponse putDataFrameAnalytics(
 			Function<PutDataFrameAnalyticsRequest.Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putDataFrameAnalytics(fn.apply(new PutDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1548,7 +1544,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutDatafeedResponse putDatafeed(PutDatafeedRequest request) throws IOException {
+	public PutDatafeedResponse putDatafeed(PutDatafeedRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutDatafeedRequest.ENDPOINT);
 	}
 
@@ -1556,16 +1552,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Instantiates a datafeed.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDatafeedRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutDatafeedResponse putDatafeed(
-			Function<PutDatafeedRequest.Builder, ObjectBuilder<PutDatafeedRequest>> fn) throws IOException {
+			Function<PutDatafeedRequest.Builder, ObjectBuilder<PutDatafeedRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putDatafeed(fn.apply(new PutDatafeedRequest.Builder()).build());
 	}
 
@@ -1579,7 +1575,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutFilterResponse putFilter(PutFilterRequest request) throws IOException {
+	public PutFilterResponse putFilter(PutFilterRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutFilterRequest.ENDPOINT);
 	}
 
@@ -1587,16 +1583,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Instantiates a filter.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutFilterRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutFilterResponse putFilter(Function<PutFilterRequest.Builder, ObjectBuilder<PutFilterRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putFilter(fn.apply(new PutFilterRequest.Builder()).build());
 	}
 
@@ -1610,7 +1605,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutJobResponse putJob(PutJobRequest request) throws IOException {
+	public PutJobResponse putJob(PutJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutJobRequest.ENDPOINT);
 	}
 
@@ -1618,16 +1613,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Instantiates an anomaly detection job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutJobResponse putJob(Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
@@ -1641,7 +1635,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutTrainedModelResponse putTrainedModel(PutTrainedModelRequest request) throws IOException {
+	public PutTrainedModelResponse putTrainedModel(PutTrainedModelRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutTrainedModelRequest.ENDPOINT);
 	}
 
@@ -1649,16 +1644,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Creates an inference trained model.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutTrainedModelRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutTrainedModelResponse putTrainedModel(
-			Function<PutTrainedModelRequest.Builder, ObjectBuilder<PutTrainedModelRequest>> fn) throws IOException {
+			Function<PutTrainedModelRequest.Builder, ObjectBuilder<PutTrainedModelRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putTrainedModel(fn.apply(new PutTrainedModelRequest.Builder()).build());
 	}
 
@@ -1673,7 +1668,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutTrainedModelAliasResponse putTrainedModelAlias(PutTrainedModelAliasRequest request) throws IOException {
+	public PutTrainedModelAliasResponse putTrainedModelAlias(PutTrainedModelAliasRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, PutTrainedModelAliasRequest.ENDPOINT);
 	}
 
@@ -1682,9 +1678,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * trained model
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutTrainedModelAliasRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html">Documentation
 	 *      on elastic.co</a>
@@ -1692,7 +1687,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final PutTrainedModelAliasResponse putTrainedModelAlias(
 			Function<PutTrainedModelAliasRequest.Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putTrainedModelAlias(fn.apply(new PutTrainedModelAliasRequest.Builder()).build());
 	}
 
@@ -1706,7 +1701,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ResetJobResponse resetJob(ResetJobRequest request) throws IOException {
+	public ResetJobResponse resetJob(ResetJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ResetJobRequest.ENDPOINT);
 	}
 
@@ -1714,16 +1709,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Resets an existing anomaly detection job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ResetJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-reset-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ResetJobResponse resetJob(Function<ResetJobRequest.Builder, ObjectBuilder<ResetJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return resetJob(fn.apply(new ResetJobRequest.Builder()).build());
 	}
 
@@ -1737,7 +1731,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RevertModelSnapshotResponse revertModelSnapshot(RevertModelSnapshotRequest request) throws IOException {
+	public RevertModelSnapshotResponse revertModelSnapshot(RevertModelSnapshotRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, RevertModelSnapshotRequest.ENDPOINT);
 	}
 
@@ -1745,9 +1740,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Reverts to a specific snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RevertModelSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html">Documentation
 	 *      on elastic.co</a>
@@ -1755,7 +1749,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final RevertModelSnapshotResponse revertModelSnapshot(
 			Function<RevertModelSnapshotRequest.Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return revertModelSnapshot(fn.apply(new RevertModelSnapshotRequest.Builder()).build());
 	}
 
@@ -1770,7 +1764,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SetUpgradeModeResponse setUpgradeMode(SetUpgradeModeRequest request) throws IOException {
+	public SetUpgradeModeResponse setUpgradeMode(SetUpgradeModeRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, SetUpgradeModeRequest.ENDPOINT);
 	}
 
@@ -1779,16 +1774,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * indices for an upgrade.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SetUpgradeModeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final SetUpgradeModeResponse setUpgradeMode(
-			Function<SetUpgradeModeRequest.Builder, ObjectBuilder<SetUpgradeModeRequest>> fn) throws IOException {
+			Function<SetUpgradeModeRequest.Builder, ObjectBuilder<SetUpgradeModeRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return setUpgradeMode(fn.apply(new SetUpgradeModeRequest.Builder()).build());
 	}
 
@@ -1801,7 +1796,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SetUpgradeModeResponse setUpgradeMode() throws IOException {
+	public SetUpgradeModeResponse setUpgradeMode() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SetUpgradeModeRequest.Builder().build(),
 				SetUpgradeModeRequest.ENDPOINT);
 	}
@@ -1817,7 +1812,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public StartDataFrameAnalyticsResponse startDataFrameAnalytics(StartDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, StartDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -1825,9 +1820,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Starts a data frame analytics job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StartDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -1835,7 +1829,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final StartDataFrameAnalyticsResponse startDataFrameAnalytics(
 			Function<StartDataFrameAnalyticsRequest.Builder, ObjectBuilder<StartDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return startDataFrameAnalytics(fn.apply(new StartDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1849,7 +1843,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StartDatafeedResponse startDatafeed(StartDatafeedRequest request) throws IOException {
+	public StartDatafeedResponse startDatafeed(StartDatafeedRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, StartDatafeedRequest.ENDPOINT);
 	}
 
@@ -1857,16 +1852,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Starts one or more datafeeds.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StartDatafeedRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final StartDatafeedResponse startDatafeed(
-			Function<StartDatafeedRequest.Builder, ObjectBuilder<StartDatafeedRequest>> fn) throws IOException {
+			Function<StartDatafeedRequest.Builder, ObjectBuilder<StartDatafeedRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return startDatafeed(fn.apply(new StartDatafeedRequest.Builder()).build());
 	}
 
@@ -1881,7 +1876,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public StopDataFrameAnalyticsResponse stopDataFrameAnalytics(StopDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, StopDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -1889,9 +1884,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Stops one or more data frame analytics jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StopDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -1899,7 +1893,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final StopDataFrameAnalyticsResponse stopDataFrameAnalytics(
 			Function<StopDataFrameAnalyticsRequest.Builder, ObjectBuilder<StopDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return stopDataFrameAnalytics(fn.apply(new StopDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1913,7 +1907,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StopDatafeedResponse stopDatafeed(StopDatafeedRequest request) throws IOException {
+	public StopDatafeedResponse stopDatafeed(StopDatafeedRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, StopDatafeedRequest.ENDPOINT);
 	}
 
@@ -1921,16 +1915,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Stops one or more datafeeds.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StopDatafeedRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final StopDatafeedResponse stopDatafeed(
-			Function<StopDatafeedRequest.Builder, ObjectBuilder<StopDatafeedRequest>> fn) throws IOException {
+			Function<StopDatafeedRequest.Builder, ObjectBuilder<StopDatafeedRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stopDatafeed(fn.apply(new StopDatafeedRequest.Builder()).build());
 	}
 
@@ -1945,7 +1939,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public UpdateDataFrameAnalyticsResponse updateDataFrameAnalytics(UpdateDataFrameAnalyticsRequest request)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpdateDataFrameAnalyticsRequest.ENDPOINT);
 	}
 
@@ -1953,9 +1947,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Updates certain properties of a data frame analytics job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -1963,7 +1956,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final UpdateDataFrameAnalyticsResponse updateDataFrameAnalytics(
 			Function<UpdateDataFrameAnalyticsRequest.Builder, ObjectBuilder<UpdateDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return updateDataFrameAnalytics(fn.apply(new UpdateDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1977,7 +1970,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateFilterResponse updateFilter(UpdateFilterRequest request) throws IOException {
+	public UpdateFilterResponse updateFilter(UpdateFilterRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpdateFilterRequest.ENDPOINT);
 	}
 
@@ -1985,16 +1978,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Updates the description of a filter, adds items, or removes items.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateFilterRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UpdateFilterResponse updateFilter(
-			Function<UpdateFilterRequest.Builder, ObjectBuilder<UpdateFilterRequest>> fn) throws IOException {
+			Function<UpdateFilterRequest.Builder, ObjectBuilder<UpdateFilterRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return updateFilter(fn.apply(new UpdateFilterRequest.Builder()).build());
 	}
 
@@ -2008,7 +2001,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateJobResponse updateJob(UpdateJobRequest request) throws IOException {
+	public UpdateJobResponse updateJob(UpdateJobRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpdateJobRequest.ENDPOINT);
 	}
 
@@ -2016,16 +2009,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Updates certain properties of an anomaly detection job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UpdateJobResponse updateJob(Function<UpdateJobRequest.Builder, ObjectBuilder<UpdateJobRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return updateJob(fn.apply(new UpdateJobRequest.Builder()).build());
 	}
 
@@ -2039,7 +2031,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateModelSnapshotResponse updateModelSnapshot(UpdateModelSnapshotRequest request) throws IOException {
+	public UpdateModelSnapshotResponse updateModelSnapshot(UpdateModelSnapshotRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpdateModelSnapshotRequest.ENDPOINT);
 	}
 
@@ -2047,9 +2040,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Updates certain properties of a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateModelSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html">Documentation
 	 *      on elastic.co</a>
@@ -2057,7 +2049,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final UpdateModelSnapshotResponse updateModelSnapshot(
 			Function<UpdateModelSnapshotRequest.Builder, ObjectBuilder<UpdateModelSnapshotRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return updateModelSnapshot(fn.apply(new UpdateModelSnapshotRequest.Builder()).build());
 	}
 
@@ -2071,7 +2063,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpgradeJobSnapshotResponse upgradeJobSnapshot(UpgradeJobSnapshotRequest request) throws IOException {
+	public UpgradeJobSnapshotResponse upgradeJobSnapshot(UpgradeJobSnapshotRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, UpgradeJobSnapshotRequest.ENDPOINT);
 	}
 
@@ -2079,9 +2072,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Upgrades a given job snapshot to the current major version.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpgradeJobSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html">Documentation
 	 *      on elastic.co</a>
@@ -2089,7 +2081,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public final UpgradeJobSnapshotResponse upgradeJobSnapshot(
 			Function<UpgradeJobSnapshotRequest.Builder, ObjectBuilder<UpgradeJobSnapshotRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return upgradeJobSnapshot(fn.apply(new UpgradeJobSnapshotRequest.Builder()).build());
 	}
 
@@ -2103,7 +2095,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ValidateResponse validate(ValidateRequest request) throws IOException {
+	public ValidateResponse validate(ValidateRequest request) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ValidateRequest.ENDPOINT);
 	}
 
@@ -2111,16 +2103,15 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Validates an anomaly detection job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ValidateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ValidateResponse validate(Function<ValidateRequest.Builder, ObjectBuilder<ValidateRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return validate(fn.apply(new ValidateRequest.Builder()).build());
 	}
 
@@ -2132,7 +2123,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ValidateResponse validate() throws IOException {
+	public ValidateResponse validate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ValidateRequest.Builder().build(), ValidateRequest.ENDPOINT);
 	}
 
@@ -2146,7 +2137,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ValidateDetectorResponse validateDetector(ValidateDetectorRequest request) throws IOException {
+	public ValidateDetectorResponse validateDetector(ValidateDetectorRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request, ValidateDetectorRequest.ENDPOINT);
 	}
 
@@ -2154,16 +2146,16 @@ public class ElasticsearchMlClient extends ApiClient {
 	 * Validates an anomaly detection detector.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ValidateDetectorRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ValidateDetectorResponse validateDetector(
-			Function<ValidateDetectorRequest.Builder, ObjectBuilder<ValidateDetectorRequest>> fn) throws IOException {
+			Function<ValidateDetectorRequest.Builder, ObjectBuilder<ValidateDetectorRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return validateDetector(fn.apply(new ValidateDetectorRequest.Builder()).build());
 	}
 
@@ -2175,7 +2167,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ValidateDetectorResponse validateDetector() throws IOException {
+	public ValidateDetectorResponse validateDetector() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ValidateDetectorRequest.Builder().build(),
 				ValidateDetectorRequest.ENDPOINT);
 	}

@@ -655,26 +655,17 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.charset != null) {
-					params.put("charset", request.charset);
-				}
-				if (request.columnNames != null) {
-					params.put("column_names", request.columnNames);
-				}
-				if (request.delimiter != null) {
-					params.put("delimiter", request.delimiter);
-				}
 				if (request.explain != null) {
 					params.put("explain", String.valueOf(request.explain));
 				}
-				if (request.format != null) {
-					params.put("format", request.format);
-				}
-				if (request.grokPattern != null) {
-					params.put("grok_pattern", request.grokPattern);
+				if (request.charset != null) {
+					params.put("charset", request.charset);
 				}
 				if (request.hasHeaderRow != null) {
 					params.put("has_header_row", String.valueOf(request.hasHeaderRow));
+				}
+				if (request.format != null) {
+					params.put("format", request.format);
 				}
 				if (request.lineMergeSizeLimit != null) {
 					params.put("line_merge_size_limit", request.lineMergeSizeLimit.toString());
@@ -682,20 +673,29 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 				if (request.linesToSample != null) {
 					params.put("lines_to_sample", request.linesToSample.toString());
 				}
+				if (request.timestampField != null) {
+					params.put("timestamp_field", request.timestampField);
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
+				}
+				if (request.timestampFormat != null) {
+					params.put("timestamp_format", request.timestampFormat);
+				}
 				if (request.quote != null) {
 					params.put("quote", request.quote);
 				}
 				if (request.shouldTrimFields != null) {
 					params.put("should_trim_fields", String.valueOf(request.shouldTrimFields));
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.grokPattern != null) {
+					params.put("grok_pattern", request.grokPattern);
 				}
-				if (request.timestampField != null) {
-					params.put("timestamp_field", request.timestampField);
+				if (request.delimiter != null) {
+					params.put("delimiter", request.delimiter);
 				}
-				if (request.timestampFormat != null) {
-					params.put("timestamp_format", request.timestampFormat);
+				if (request.columnNames != null) {
+					params.put("column_names", request.columnNames);
 				}
 				return params;
 

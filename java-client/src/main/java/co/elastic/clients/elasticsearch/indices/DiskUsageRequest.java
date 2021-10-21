@@ -51,8 +51,6 @@ import javax.annotation.Nullable;
 // typedef: indices.disk_usage.Request
 
 public final class DiskUsageRequest extends RequestBase {
-	private final String index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -65,14 +63,16 @@ public final class DiskUsageRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final String index;
+
 	@Nullable
 	private final TimeUnit masterTimeout;
 
 	@Nullable
-	private final TimeUnit timeout;
+	private final Boolean runExpensiveTasks;
 
 	@Nullable
-	private final Boolean runExpensiveTasks;
+	private final TimeUnit timeout;
 
 	@Nullable
 	private final String waitForActiveShards;
@@ -81,32 +81,20 @@ public final class DiskUsageRequest extends RequestBase {
 
 	public DiskUsageRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flush = builder.flush;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.runExpensiveTasks = builder.runExpensiveTasks;
+		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
 	public DiskUsageRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of data streams, indices, and aliases used to
-	 * limit the request. It’s recommended to execute this API with a single index
-	 * (or the latest backing index of a data stream) as the API consumes resources
-	 * significantly.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
 	}
 
 	/**
@@ -157,6 +145,18 @@ public final class DiskUsageRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - Comma-separated list of data streams, indices, and aliases used to
+	 * limit the request. It’s recommended to execute this API with a single index
+	 * (or the latest backing index of a data stream) as the API consumes resources
+	 * significantly.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
+	}
+
+	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
@@ -168,17 +168,6 @@ public final class DiskUsageRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public TimeUnit timeout() {
-		return this.timeout;
-	}
-
-	/**
 	 * Analyzing field disk usage is resource-intensive. To use the API, this
 	 * parameter must be set to true.
 	 * <p>
@@ -187,6 +176,17 @@ public final class DiskUsageRequest extends RequestBase {
 	@Nullable
 	public Boolean runExpensiveTasks() {
 		return this.runExpensiveTasks;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public TimeUnit timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -207,8 +207,6 @@ public final class DiskUsageRequest extends RequestBase {
 	 * Builder for {@link DiskUsageRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DiskUsageRequest> {
-		private String index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -221,30 +219,19 @@ public final class DiskUsageRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		@Nullable
-		private TimeUnit masterTimeout;
+		private String index;
 
 		@Nullable
-		private TimeUnit timeout;
+		private TimeUnit masterTimeout;
 
 		@Nullable
 		private Boolean runExpensiveTasks;
 
 		@Nullable
-		private String waitForActiveShards;
+		private TimeUnit timeout;
 
-		/**
-		 * Required - Comma-separated list of data streams, indices, and aliases used to
-		 * limit the request. It’s recommended to execute this API with a single index
-		 * (or the latest backing index of a data stream) as the API consumes resources
-		 * significantly.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+		@Nullable
+		private String waitForActiveShards;
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -317,6 +304,19 @@ public final class DiskUsageRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - Comma-separated list of data streams, indices, and aliases used to
+		 * limit the request. It’s recommended to execute this API with a single index
+		 * (or the latest backing index of a data stream) as the API consumes resources
+		 * significantly.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
@@ -328,17 +328,6 @@ public final class DiskUsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable TimeUnit value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
 		 * Analyzing field disk usage is resource-intensive. To use the API, this
 		 * parameter must be set to true.
 		 * <p>
@@ -346,6 +335,17 @@ public final class DiskUsageRequest extends RequestBase {
 		 */
 		public Builder runExpensiveTasks(@Nullable Boolean value) {
 			this.runExpensiveTasks = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable TimeUnit value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -407,30 +407,30 @@ public final class DiskUsageRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout.toString());
+				}
+				if (request.flush != null) {
+					params.put("flush", String.valueOf(request.flush));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.flush != null) {
-					params.put("flush", String.valueOf(request.flush));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", request.waitForActiveShards);
 				}
 				if (request.runExpensiveTasks != null) {
 					params.put("run_expensive_tasks", String.valueOf(request.runExpensiveTasks));
 				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards);
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout.toString());
 				}
 				return params;
 

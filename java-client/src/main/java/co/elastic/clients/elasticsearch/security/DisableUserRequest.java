@@ -45,31 +45,22 @@ import javax.annotation.Nullable;
 // typedef: security.disable_user.Request
 
 public final class DisableUserRequest extends RequestBase {
-	private final String username;
-
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
+
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public DisableUserRequest(Builder builder) {
 
-		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;
+		this.username = Objects.requireNonNull(builder.username, "username");
 
 	}
 
 	public DisableUserRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The username of the user to disable
-	 * <p>
-	 * API name: {@code username}
-	 */
-	public String username() {
-		return this.username;
 	}
 
 	/**
@@ -85,26 +76,25 @@ public final class DisableUserRequest extends RequestBase {
 		return this.refresh;
 	}
 
+	/**
+	 * Required - The username of the user to disable
+	 * <p>
+	 * API name: {@code username}
+	 */
+	public String username() {
+		return this.username;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link DisableUserRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DisableUserRequest> {
-		private String username;
-
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
 
-		/**
-		 * Required - The username of the user to disable
-		 * <p>
-		 * API name: {@code username}
-		 */
-		public Builder username(String value) {
-			this.username = value;
-			return this;
-		}
+		private String username;
 
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
@@ -116,6 +106,16 @@ public final class DisableUserRequest extends RequestBase {
 		 */
 		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Required - The username of the user to disable
+		 * <p>
+		 * API name: {@code username}
+		 */
+		public Builder username(String value) {
+			this.username = value;
 			return this;
 		}
 

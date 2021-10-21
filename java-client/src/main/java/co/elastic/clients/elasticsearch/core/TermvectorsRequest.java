@@ -58,22 +58,31 @@ import javax.annotation.Nullable;
 // typedef: _global.termvectors.Request
 
 public final class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
-	private final String index;
+	@Nullable
+	private final TDocument doc;
 
 	@Nullable
-	private final String id;
+	private final Boolean fieldStatistics;
 
 	@Nullable
 	private final List<String> fields;
 
 	@Nullable
-	private final Boolean fieldStatistics;
+	private final Filter filter;
+
+	@Nullable
+	private final String id;
+
+	private final String index;
 
 	@Nullable
 	private final Boolean offsets;
 
 	@Nullable
 	private final Boolean payloads;
+
+	@Nullable
+	private final Map<String, String> perFieldAnalyzer;
 
 	@Nullable
 	private final Boolean positions;
@@ -97,27 +106,21 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	private final VersionType versionType;
 
 	@Nullable
-	private final TDocument doc;
-
-	@Nullable
-	private final Filter filter;
-
-	@Nullable
-	private final Map<String, String> perFieldAnalyzer;
-
-	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public TermvectorsRequest(Builder<TDocument> builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.id = builder.id;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.doc = builder.doc;
 		this.fieldStatistics = builder.fieldStatistics;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.filter = builder.filter;
+		this.id = builder.id;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
+		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
@@ -125,9 +128,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
-		this.doc = builder.doc;
-		this.filter = builder.filter;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -137,22 +137,22 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
-	 * Required - The index in which the document resides.
-	 * <p>
-	 * API name: {@code index}
+	 * API name: {@code doc}
 	 */
-	public String index() {
-		return this.index;
+	@Nullable
+	public TDocument doc() {
+		return this.doc;
 	}
 
 	/**
-	 * The id of the document, when not specified a doc param should be supplied.
+	 * Specifies if document count, sum of document frequencies and sum of total
+	 * term frequencies should be returned.
 	 * <p>
-	 * API name: {@code id}
+	 * API name: {@code field_statistics}
 	 */
 	@Nullable
-	public String id() {
-		return this.id;
+	public Boolean fieldStatistics() {
+		return this.fieldStatistics;
 	}
 
 	/**
@@ -166,14 +166,30 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
-	 * Specifies if document count, sum of document frequencies and sum of total
-	 * term frequencies should be returned.
-	 * <p>
-	 * API name: {@code field_statistics}
+	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Boolean fieldStatistics() {
-		return this.fieldStatistics;
+	public Filter filter() {
+		return this.filter;
+	}
+
+	/**
+	 * The id of the document, when not specified a doc param should be supplied.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * Required - The index in which the document resides.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -194,6 +210,14 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	@Nullable
 	public Boolean payloads() {
 		return this.payloads;
+	}
+
+	/**
+	 * API name: {@code per_field_analyzer}
+	 */
+	@Nullable
+	public Map<String, String> perFieldAnalyzer() {
+		return this.perFieldAnalyzer;
 	}
 
 	/**
@@ -269,30 +293,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
-	 * API name: {@code doc}
-	 */
-	@Nullable
-	public TDocument doc() {
-		return this.doc;
-	}
-
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public Filter filter() {
-		return this.filter;
-	}
-
-	/**
-	 * API name: {@code per_field_analyzer}
-	 */
-	@Nullable
-	public Map<String, String> perFieldAnalyzer() {
-		return this.perFieldAnalyzer;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -336,22 +336,31 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	 * Builder for {@link TermvectorsRequest}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<TermvectorsRequest<TDocument>> {
-		private String index;
+		@Nullable
+		private TDocument doc;
 
 		@Nullable
-		private String id;
+		private Boolean fieldStatistics;
 
 		@Nullable
 		private List<String> fields;
 
 		@Nullable
-		private Boolean fieldStatistics;
+		private Filter filter;
+
+		@Nullable
+		private String id;
+
+		private String index;
 
 		@Nullable
 		private Boolean offsets;
 
 		@Nullable
 		private Boolean payloads;
+
+		@Nullable
+		private Map<String, String> perFieldAnalyzer;
 
 		@Nullable
 		private Boolean positions;
@@ -375,34 +384,24 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private VersionType versionType;
 
 		@Nullable
-		private TDocument doc;
-
-		@Nullable
-		private Filter filter;
-
-		@Nullable
-		private Map<String, String> perFieldAnalyzer;
-
-		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Required - The index in which the document resides.
-		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code doc}
 		 */
-		public Builder<TDocument> index(String value) {
-			this.index = value;
+		public Builder<TDocument> doc(@Nullable TDocument value) {
+			this.doc = value;
 			return this;
 		}
 
 		/**
-		 * The id of the document, when not specified a doc param should be supplied.
+		 * Specifies if document count, sum of document frequencies and sum of total
+		 * term frequencies should be returned.
 		 * <p>
-		 * API name: {@code id}
+		 * API name: {@code field_statistics}
 		 */
-		public Builder<TDocument> id(@Nullable String value) {
-			this.id = value;
+		public Builder<TDocument> fieldStatistics(@Nullable Boolean value) {
+			this.fieldStatistics = value;
 			return this;
 		}
 
@@ -438,13 +437,37 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
-		 * Specifies if document count, sum of document frequencies and sum of total
-		 * term frequencies should be returned.
-		 * <p>
-		 * API name: {@code field_statistics}
+		 * API name: {@code filter}
 		 */
-		public Builder<TDocument> fieldStatistics(@Nullable Boolean value) {
-			this.fieldStatistics = value;
+		public Builder<TDocument> filter(@Nullable Filter value) {
+			this.filter = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code filter}
+		 */
+		public Builder<TDocument> filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
+			return this.filter(fn.apply(new Filter.Builder()).build());
+		}
+
+		/**
+		 * The id of the document, when not specified a doc param should be supplied.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public Builder<TDocument> id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - The index in which the document resides.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder<TDocument> index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -465,6 +488,26 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		 */
 		public Builder<TDocument> payloads(@Nullable Boolean value) {
 			this.payloads = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 */
+		public Builder<TDocument> perFieldAnalyzer(@Nullable Map<String, String> value) {
+			this.perFieldAnalyzer = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #perFieldAnalyzer(Map)}, creating the map if
+		 * needed.
+		 */
+		public Builder<TDocument> putPerFieldAnalyzer(String key, String value) {
+			if (this.perFieldAnalyzer == null) {
+				this.perFieldAnalyzer = new HashMap<>();
+			}
+			this.perFieldAnalyzer.put(key, value);
 			return this;
 		}
 
@@ -537,49 +580,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		 */
 		public Builder<TDocument> versionType(@Nullable VersionType value) {
 			this.versionType = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code doc}
-		 */
-		public Builder<TDocument> doc(@Nullable TDocument value) {
-			this.doc = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code filter}
-		 */
-		public Builder<TDocument> filter(@Nullable Filter value) {
-			this.filter = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code filter}
-		 */
-		public Builder<TDocument> filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
-			return this.filter(fn.apply(new Filter.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code per_field_analyzer}
-		 */
-		public Builder<TDocument> perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #perFieldAnalyzer(Map)}, creating the map if
-		 * needed.
-		 */
-		public Builder<TDocument> putPerFieldAnalyzer(String key, String value) {
-			if (this.perFieldAnalyzer == null) {
-				this.perFieldAnalyzer = new HashMap<>();
-			}
-			this.perFieldAnalyzer.put(key, value);
 			return this;
 		}
 
@@ -672,11 +672,14 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.fields != null) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
-				if (request.fieldStatistics != null) {
-					params.put("field_statistics", String.valueOf(request.fieldStatistics));
+				if (request.realtime != null) {
+					params.put("realtime", String.valueOf(request.realtime));
+				}
+				if (request.termStatistics != null) {
+					params.put("term_statistics", String.valueOf(request.termStatistics));
 				}
 				if (request.offsets != null) {
 					params.put("offsets", String.valueOf(request.offsets));
@@ -684,26 +687,23 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 				if (request.payloads != null) {
 					params.put("payloads", String.valueOf(request.payloads));
 				}
-				if (request.positions != null) {
-					params.put("positions", String.valueOf(request.positions));
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.toString());
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.realtime != null) {
-					params.put("realtime", String.valueOf(request.realtime));
+				if (request.positions != null) {
+					params.put("positions", String.valueOf(request.positions));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (request.fieldStatistics != null) {
+					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (request.termStatistics != null) {
-					params.put("term_statistics", String.valueOf(request.termStatistics));
+				if (request.fields != null) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 

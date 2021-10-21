@@ -43,13 +43,13 @@ import javax.annotation.Nullable;
 
 public final class GetLifecycleRequest extends RequestBase {
 	@Nullable
-	private final String policy;
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetLifecycleRequest(Builder builder) {
 
-		this.policy = builder.policy;
+		this.name = builder.name;
 
 	}
 
@@ -63,8 +63,8 @@ public final class GetLifecycleRequest extends RequestBase {
 	 * API name: {@code policy}
 	 */
 	@Nullable
-	public String policy() {
-		return this.policy;
+	public String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -74,15 +74,15 @@ public final class GetLifecycleRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
-		private String policy;
+		private String name;
 
 		/**
 		 * The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(@Nullable String value) {
-			this.policy = value;
+		public Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -112,19 +112,19 @@ public final class GetLifecycleRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _policy = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.policy() != null)
-					propsSet |= _policy;
+				if (request.name() != null)
+					propsSet |= _name;
 
-				if (propsSet == (_policy)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policy, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {

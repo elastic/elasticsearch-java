@@ -56,10 +56,10 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	private final String masterTimeout;
 
 	@Nullable
-	private final String timeout;
+	private final Map<String, JsonData> persistent;
 
 	@Nullable
-	private final Map<String, JsonData> persistent;
+	private final String timeout;
 
 	@Nullable
 	private final Map<String, JsonData> transient_;
@@ -70,8 +70,8 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.persistent = ModelTypeHelper.unmodifiable(builder.persistent);
+		this.timeout = builder.timeout;
 		this.transient_ = ModelTypeHelper.unmodifiable(builder.transient_);
 
 	}
@@ -101,6 +101,14 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * API name: {@code persistent}
+	 */
+	@Nullable
+	public Map<String, JsonData> persistent() {
+		return this.persistent;
+	}
+
+	/**
 	 * Explicit operation timeout
 	 * <p>
 	 * API name: {@code timeout}
@@ -108,14 +116,6 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public String timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * API name: {@code persistent}
-	 */
-	@Nullable
-	public Map<String, JsonData> persistent() {
-		return this.persistent;
 	}
 
 	/**
@@ -177,10 +177,10 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		private String masterTimeout;
 
 		@Nullable
-		private String timeout;
+		private Map<String, JsonData> persistent;
 
 		@Nullable
-		private Map<String, JsonData> persistent;
+		private String timeout;
 
 		@Nullable
 		private Map<String, JsonData> transient_;
@@ -206,16 +206,6 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code persistent}
 		 */
 		public Builder persistent(@Nullable Map<String, JsonData> value) {
@@ -231,6 +221,16 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 				this.persistent = new HashMap<>();
 			}
 			this.persistent.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -301,11 +301,11 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout);

@@ -47,10 +47,10 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_datafeed.Request
 @JsonpDeserializable
 public final class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
-	private final String datafeedId;
-
 	@Nullable
 	private final Boolean allowNoMatch;
+
+	private final String datafeedId;
 
 	@Nullable
 	private final Boolean force;
@@ -62,8 +62,8 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 
 	public StopDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.allowNoMatch = builder.allowNoMatch;
+		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 
@@ -71,15 +71,6 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 
 	public StopDatafeedRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The ID of the datafeed to stop
-	 * <p>
-	 * API name: {@code datafeed_id}
-	 */
-	public String datafeedId() {
-		return this.datafeedId;
 	}
 
 	/**
@@ -91,6 +82,15 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public Boolean allowNoMatch() {
 		return this.allowNoMatch;
+	}
+
+	/**
+	 * Required - The ID of the datafeed to stop
+	 * <p>
+	 * API name: {@code datafeed_id}
+	 */
+	public String datafeedId() {
+		return this.datafeedId;
 	}
 
 	/**
@@ -141,26 +141,16 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<StopDatafeedRequest> {
-		private String datafeedId;
-
 		@Nullable
 		private Boolean allowNoMatch;
+
+		private String datafeedId;
 
 		@Nullable
 		private Boolean force;
 
 		@Nullable
 		private String timeout;
-
-		/**
-		 * Required - The ID of the datafeed to stop
-		 * <p>
-		 * API name: {@code datafeed_id}
-		 */
-		public Builder datafeedId(String value) {
-			this.datafeedId = value;
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
@@ -170,6 +160,16 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * Required - The ID of the datafeed to stop
+		 * <p>
+		 * API name: {@code datafeed_id}
+		 */
+		public Builder datafeedId(String value) {
+			this.datafeedId = value;
 			return this;
 		}
 

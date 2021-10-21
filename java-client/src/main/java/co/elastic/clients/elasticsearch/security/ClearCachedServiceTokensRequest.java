@@ -47,24 +47,33 @@ import javax.annotation.Nullable;
 // typedef: security.clear_cached_service_tokens.Request
 
 public final class ClearCachedServiceTokensRequest extends RequestBase {
+	private final List<String> name;
+
 	private final String namespace;
 
 	private final String service;
-
-	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ClearCachedServiceTokensRequest(Builder builder) {
 
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
 	public ClearCachedServiceTokensRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * Required - A comma-separated list of service token names
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public List<String> name() {
+		return this.name;
 	}
 
 	/**
@@ -85,46 +94,17 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		return this.service;
 	}
 
-	/**
-	 * Required - A comma-separated list of service token names
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ClearCachedServiceTokensRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ClearCachedServiceTokensRequest> {
+		private List<String> name;
+
 		private String namespace;
 
 		private String service;
-
-		private List<String> name;
-
-		/**
-		 * Required - An identifier for the namespace
-		 * <p>
-		 * API name: {@code namespace}
-		 */
-		public Builder namespace(String value) {
-			this.namespace = value;
-			return this;
-		}
-
-		/**
-		 * Required - An identifier for the service name
-		 * <p>
-		 * API name: {@code service}
-		 */
-		public Builder service(String value) {
-			this.service = value;
-			return this;
-		}
 
 		/**
 		 * Required - A comma-separated list of service token names
@@ -158,6 +138,26 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * Required - An identifier for the namespace
+		 * <p>
+		 * API name: {@code namespace}
+		 */
+		public Builder namespace(String value) {
+			this.namespace = value;
+			return this;
+		}
+
+		/**
+		 * Required - An identifier for the service name
+		 * <p>
+		 * API name: {@code service}
+		 */
+		public Builder service(String value) {
+			this.service = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link ClearCachedServiceTokensRequest}.
 		 *
 		 * @throws NullPointerException
@@ -183,14 +183,14 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {

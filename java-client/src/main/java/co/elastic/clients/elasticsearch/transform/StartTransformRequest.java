@@ -43,31 +43,22 @@ import javax.annotation.Nullable;
 // typedef: transform.start_transform.Request
 
 public final class StartTransformRequest extends RequestBase {
-	private final String transformId;
-
 	@Nullable
 	private final String timeout;
+
+	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public StartTransformRequest(Builder builder) {
 
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.timeout = builder.timeout;
+		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 
 	}
 
 	public StartTransformRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The id of the transform to start
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	public String transformId() {
-		return this.transformId;
 	}
 
 	/**
@@ -80,26 +71,25 @@ public final class StartTransformRequest extends RequestBase {
 		return this.timeout;
 	}
 
+	/**
+	 * Required - The id of the transform to start
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	public String transformId() {
+		return this.transformId;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link StartTransformRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<StartTransformRequest> {
-		private String transformId;
-
 		@Nullable
 		private String timeout;
 
-		/**
-		 * Required - The id of the transform to start
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(String value) {
-			this.transformId = value;
-			return this;
-		}
+		private String transformId;
 
 		/**
 		 * Controls the time to wait for the transform to start
@@ -108,6 +98,16 @@ public final class StartTransformRequest extends RequestBase {
 		 */
 		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Required - The id of the transform to start
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public Builder transformId(String value) {
+			this.transformId = value;
 			return this;
 		}
 

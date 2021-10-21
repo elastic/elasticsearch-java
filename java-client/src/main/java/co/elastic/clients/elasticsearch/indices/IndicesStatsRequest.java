@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 public final class IndicesStatsRequest extends RequestBase {
 	@Nullable
-	private final List<String> metric;
-
-	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final List<String> completionFields;
 
 	@Nullable
@@ -82,7 +76,13 @@ public final class IndicesStatsRequest extends RequestBase {
 	private final Boolean includeUnloadedSegments;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Level level;
+
+	@Nullable
+	private final List<String> metric;
 
 	@Nullable
 	private final List<String> types;
@@ -91,8 +91,6 @@ public final class IndicesStatsRequest extends RequestBase {
 
 	public IndicesStatsRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
@@ -101,34 +99,15 @@ public final class IndicesStatsRequest extends RequestBase {
 		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.types = ModelTypeHelper.unmodifiable(builder.types);
 
 	}
 
 	public IndicesStatsRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Limit the information returned the specific metrics.
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -219,6 +198,17 @@ public final class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Return stats aggregated at cluster, index or shard level
 	 * <p>
 	 * API name: {@code level}
@@ -226,6 +216,16 @@ public final class IndicesStatsRequest extends RequestBase {
 	@Nullable
 	public Level level() {
 		return this.level;
+	}
+
+	/**
+	 * Limit the information returned the specific metrics.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	@Nullable
+	public List<String> metric() {
+		return this.metric;
 	}
 
 	/**
@@ -245,12 +245,6 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * Builder for {@link IndicesStatsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<IndicesStatsRequest> {
-		@Nullable
-		private List<String> metric;
-
-		@Nullable
-		private List<String> index;
-
 		@Nullable
 		private List<String> completionFields;
 
@@ -276,74 +270,16 @@ public final class IndicesStatsRequest extends RequestBase {
 		private Boolean includeUnloadedSegments;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Level level;
 
 		@Nullable
+		private List<String> metric;
+
+		@Nullable
 		private List<String> types;
-
-		/**
-		 * Limit the information returned the specific metrics.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limit the information returned the specific metrics.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * A comma-separated list of fields for the <code>completion</code> index metric
@@ -542,12 +478,76 @@ public final class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Return stats aggregated at cluster, index or shard level
 		 * <p>
 		 * API name: {@code level}
 		 */
 		public Builder level(@Nullable Level value) {
 			this.level = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(@Nullable List<String> value) {
+			this.metric = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 */
+		public Builder metric(String... value) {
+			this.metric = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 */
+		public Builder addMetric(String value) {
+			if (this.metric == null) {
+				this.metric = new ArrayList<>();
+			}
+			this.metric.add(value);
 			return this;
 		}
 
@@ -657,17 +657,29 @@ public final class IndicesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.completionFields != null) {
-					params.put("completion_fields",
-							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.types != null) {
+					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
+				if (request.level != null) {
+					params.put("level", request.level.toString());
+				}
+				if (request.completionFields != null) {
+					params.put("completion_fields",
+							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.fielddataFields != null) {
 					params.put("fielddata_fields",
 							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.groups != null) {
+					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.includeUnloadedSegments != null) {
+					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
 				}
 				if (request.fields != null) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -675,20 +687,8 @@ public final class IndicesStatsRequest extends RequestBase {
 				if (request.forbidClosedIndices != null) {
 					params.put("forbid_closed_indices", String.valueOf(request.forbidClosedIndices));
 				}
-				if (request.groups != null) {
-					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.includeSegmentFileSizes != null) {
 					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
-				}
-				if (request.includeUnloadedSegments != null) {
-					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
-				}
-				if (request.level != null) {
-					params.put("level", request.level.toString());
-				}
-				if (request.types != null) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

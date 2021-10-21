@@ -51,9 +51,6 @@ import javax.annotation.Nullable;
 
 public final class ClearCacheRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -69,6 +66,9 @@ public final class ClearCacheRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final List<String> index;
+
+	@Nullable
 	private final Boolean query;
 
 	@Nullable
@@ -78,12 +78,12 @@ public final class ClearCacheRequest extends RequestBase {
 
 	public ClearCacheRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fielddata = builder.fielddata;
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.query = builder.query;
 		this.request = builder.request;
 
@@ -91,16 +91,6 @@ public final class ClearCacheRequest extends RequestBase {
 
 	public ClearCacheRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index name to limit the operation
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
 	}
 
 	/**
@@ -159,6 +149,16 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index name to limit the operation
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public List<String> index() {
+		return this.index;
+	}
+
+	/**
 	 * Clear query caches
 	 * <p>
 	 * API name: {@code query}
@@ -185,9 +185,6 @@ public final class ClearCacheRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<ClearCacheRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -203,41 +200,13 @@ public final class ClearCacheRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Boolean query;
 
 		@Nullable
 		private Boolean request;
-
-		/**
-		 * A comma-separated list of index name to limit the operation
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index name to limit the operation
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -339,6 +308,37 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index name to limit the operation
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable List<String> value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index name to limit the operation
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 */
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
 		 * Clear query caches
 		 * <p>
 		 * API name: {@code query}
@@ -412,27 +412,27 @@ public final class ClearCacheRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.request != null) {
+					params.put("request", String.valueOf(request.request));
+				}
+				if (request.fielddata != null) {
+					params.put("fielddata", String.valueOf(request.fielddata));
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
-				if (request.fielddata != null) {
-					params.put("fielddata", String.valueOf(request.fielddata));
-				}
-				if (request.fields != null) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.query != null) {
 					params.put("query", String.valueOf(request.query));
 				}
-				if (request.request != null) {
-					params.put("request", String.valueOf(request.request));
+				if (request.fields != null) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

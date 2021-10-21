@@ -46,13 +46,13 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String token;
+	private final String realmName;
 
 	@Nullable
 	private final String refreshToken;
 
 	@Nullable
-	private final String realmName;
+	private final String token;
 
 	@Nullable
 	private final String username;
@@ -61,9 +61,9 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 
 	public InvalidateTokenRequest(Builder builder) {
 
-		this.token = builder.token;
-		this.refreshToken = builder.refreshToken;
 		this.realmName = builder.realmName;
+		this.refreshToken = builder.refreshToken;
+		this.token = builder.token;
 		this.username = builder.username;
 
 	}
@@ -73,11 +73,11 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * API name: {@code token}
+	 * API name: {@code realm_name}
 	 */
 	@Nullable
-	public String token() {
-		return this.token;
+	public String realmName() {
+		return this.realmName;
 	}
 
 	/**
@@ -89,11 +89,11 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * API name: {@code realm_name}
+	 * API name: {@code token}
 	 */
 	@Nullable
-	public String realmName() {
-		return this.realmName;
+	public String token() {
+		return this.token;
 	}
 
 	/**
@@ -115,10 +115,10 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.token != null) {
+		if (this.realmName != null) {
 
-			generator.writeKey("token");
-			generator.write(this.token);
+			generator.writeKey("realm_name");
+			generator.write(this.realmName);
 
 		}
 		if (this.refreshToken != null) {
@@ -127,10 +127,10 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 			generator.write(this.refreshToken);
 
 		}
-		if (this.realmName != null) {
+		if (this.token != null) {
 
-			generator.writeKey("realm_name");
-			generator.write(this.realmName);
+			generator.writeKey("token");
+			generator.write(this.token);
 
 		}
 		if (this.username != null) {
@@ -149,22 +149,22 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	 */
 	public static class Builder implements ObjectBuilder<InvalidateTokenRequest> {
 		@Nullable
-		private String token;
+		private String realmName;
 
 		@Nullable
 		private String refreshToken;
 
 		@Nullable
-		private String realmName;
+		private String token;
 
 		@Nullable
 		private String username;
 
 		/**
-		 * API name: {@code token}
+		 * API name: {@code realm_name}
 		 */
-		public Builder token(@Nullable String value) {
-			this.token = value;
+		public Builder realmName(@Nullable String value) {
+			this.realmName = value;
 			return this;
 		}
 
@@ -177,10 +177,10 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * API name: {@code realm_name}
+		 * API name: {@code token}
 		 */
-		public Builder realmName(@Nullable String value) {
-			this.realmName = value;
+		public Builder token(@Nullable String value) {
+			this.token = value;
 			return this;
 		}
 
@@ -215,9 +215,9 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	protected static void setupInvalidateTokenRequestDeserializer(
 			DelegatingDeserializer<InvalidateTokenRequest.Builder> op) {
 
-		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
-		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
 		op.add(Builder::realmName, JsonpDeserializer.stringDeserializer(), "realm_name");
+		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}

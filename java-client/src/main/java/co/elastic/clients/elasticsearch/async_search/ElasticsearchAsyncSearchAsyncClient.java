@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +52,8 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteAsyncSearchResponse> delete(DeleteAsyncSearchRequest request) throws IOException {
+	public CompletableFuture<DeleteAsyncSearchResponse> delete(DeleteAsyncSearchRequest request)
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request, DeleteAsyncSearchRequest.ENDPOINT);
 	}
 
@@ -61,16 +62,16 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteAsyncSearchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteAsyncSearchResponse> delete(
-			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn) throws IOException {
+			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return delete(fn.apply(new DeleteAsyncSearchRequest.Builder()).build());
 	}
 
@@ -86,7 +87,7 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 */
 
 	public <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(GetAsyncSearchRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
 				GetAsyncSearchRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
 	}
@@ -96,9 +97,8 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 * its ID.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
 	 *      on elastic.co</a>
@@ -106,7 +106,7 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 
 	public final <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(
 			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -122,7 +122,7 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 */
 
 	public <TDocument> CompletableFuture<StatusResponse<TDocument>> status(StatusRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
 				StatusRequest.createStatusEndpoint(getDeserializer(tDocumentClass)));
 	}
@@ -132,9 +132,8 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 * ID.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
 	 *      on elastic.co</a>
@@ -142,7 +141,7 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 
 	public final <TDocument> CompletableFuture<StatusResponse<TDocument>> status(
 			Function<StatusRequest.Builder, ObjectBuilder<StatusRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return status(fn.apply(new StatusRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -157,7 +156,7 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 */
 
 	public <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(SubmitRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
 				SubmitRequest.createSubmitEndpoint(getDeserializer(tDocumentClass)));
 	}
@@ -166,9 +165,8 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 	 * Executes a search request asynchronously.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SubmitRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
 	 *      on elastic.co</a>
@@ -176,7 +174,7 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient {
 
 	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
 			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
 	}
 

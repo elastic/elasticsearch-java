@@ -50,16 +50,16 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	private final AccessTokenGrantType grantType;
 
 	@Nullable
-	private final String scope;
+	private final String kerberosTicket;
 
 	@Nullable
 	private final String password;
 
 	@Nullable
-	private final String kerberosTicket;
+	private final String refreshToken;
 
 	@Nullable
-	private final String refreshToken;
+	private final String scope;
 
 	@Nullable
 	private final String username;
@@ -69,10 +69,10 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	public GetTokenRequest(Builder builder) {
 
 		this.grantType = builder.grantType;
-		this.scope = builder.scope;
-		this.password = builder.password;
 		this.kerberosTicket = builder.kerberosTicket;
+		this.password = builder.password;
 		this.refreshToken = builder.refreshToken;
+		this.scope = builder.scope;
 		this.username = builder.username;
 
 	}
@@ -90,11 +90,11 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * API name: {@code scope}
+	 * API name: {@code kerberos_ticket}
 	 */
 	@Nullable
-	public String scope() {
-		return this.scope;
+	public String kerberosTicket() {
+		return this.kerberosTicket;
 	}
 
 	/**
@@ -106,19 +106,19 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * API name: {@code kerberos_ticket}
-	 */
-	@Nullable
-	public String kerberosTicket() {
-		return this.kerberosTicket;
-	}
-
-	/**
 	 * API name: {@code refresh_token}
 	 */
 	@Nullable
 	public String refreshToken() {
 		return this.refreshToken;
+	}
+
+	/**
+	 * API name: {@code scope}
+	 */
+	@Nullable
+	public String scope() {
+		return this.scope;
 	}
 
 	/**
@@ -145,10 +145,10 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 			generator.writeKey("grant_type");
 			this.grantType.serialize(generator, mapper);
 		}
-		if (this.scope != null) {
+		if (this.kerberosTicket != null) {
 
-			generator.writeKey("scope");
-			generator.write(this.scope);
+			generator.writeKey("kerberos_ticket");
+			generator.write(this.kerberosTicket);
 
 		}
 		if (this.password != null) {
@@ -157,16 +157,16 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.password);
 
 		}
-		if (this.kerberosTicket != null) {
-
-			generator.writeKey("kerberos_ticket");
-			generator.write(this.kerberosTicket);
-
-		}
 		if (this.refreshToken != null) {
 
 			generator.writeKey("refresh_token");
 			generator.write(this.refreshToken);
+
+		}
+		if (this.scope != null) {
+
+			generator.writeKey("scope");
+			generator.write(this.scope);
 
 		}
 		if (this.username != null) {
@@ -188,16 +188,16 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 		private AccessTokenGrantType grantType;
 
 		@Nullable
-		private String scope;
+		private String kerberosTicket;
 
 		@Nullable
 		private String password;
 
 		@Nullable
-		private String kerberosTicket;
+		private String refreshToken;
 
 		@Nullable
-		private String refreshToken;
+		private String scope;
 
 		@Nullable
 		private String username;
@@ -211,10 +211,10 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * API name: {@code scope}
+		 * API name: {@code kerberos_ticket}
 		 */
-		public Builder scope(@Nullable String value) {
-			this.scope = value;
+		public Builder kerberosTicket(@Nullable String value) {
+			this.kerberosTicket = value;
 			return this;
 		}
 
@@ -227,18 +227,18 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * API name: {@code kerberos_ticket}
-		 */
-		public Builder kerberosTicket(@Nullable String value) {
-			this.kerberosTicket = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code refresh_token}
 		 */
 		public Builder refreshToken(@Nullable String value) {
 			this.refreshToken = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code scope}
+		 */
+		public Builder scope(@Nullable String value) {
+			this.scope = value;
 			return this;
 		}
 
@@ -273,10 +273,10 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	protected static void setupGetTokenRequestDeserializer(DelegatingDeserializer<GetTokenRequest.Builder> op) {
 
 		op.add(Builder::grantType, AccessTokenGrantType._DESERIALIZER, "grant_type");
-		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
-		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::kerberosTicket, JsonpDeserializer.stringDeserializer(), "kerberos_ticket");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}

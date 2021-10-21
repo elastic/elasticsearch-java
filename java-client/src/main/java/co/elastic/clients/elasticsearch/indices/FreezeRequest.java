@@ -52,8 +52,6 @@ import javax.annotation.Nullable;
 // typedef: indices.freeze.Request
 
 public final class FreezeRequest extends RequestBase {
-	private final String index;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -62,6 +60,8 @@ public final class FreezeRequest extends RequestBase {
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	private final String index;
 
 	@Nullable
 	private final String masterTimeout;
@@ -76,10 +76,10 @@ public final class FreezeRequest extends RequestBase {
 
 	public FreezeRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -88,15 +88,6 @@ public final class FreezeRequest extends RequestBase {
 
 	public FreezeRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The name of the index to freeze
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
 	}
 
 	/**
@@ -131,6 +122,15 @@ public final class FreezeRequest extends RequestBase {
 	@Nullable
 	public Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Required - The name of the index to freeze
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -169,8 +169,6 @@ public final class FreezeRequest extends RequestBase {
 	 * Builder for {@link FreezeRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<FreezeRequest> {
-		private String index;
-
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -180,6 +178,8 @@ public final class FreezeRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
+		private String index;
+
 		@Nullable
 		private String masterTimeout;
 
@@ -188,16 +188,6 @@ public final class FreezeRequest extends RequestBase {
 
 		@Nullable
 		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-		/**
-		 * Required - The name of the index to freeze
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -252,6 +242,16 @@ public final class FreezeRequest extends RequestBase {
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index to freeze
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -331,8 +331,8 @@ public final class FreezeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
@@ -341,14 +341,14 @@ public final class FreezeRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
