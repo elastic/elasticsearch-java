@@ -47,7 +47,7 @@ public class ClientMetadataTest {
     @Test
     public void testCustomMetadata() {
         ClientMetadata metadata = new ClientMetadata.Builder()
-                .withElasticsearchVersion(Version.parse("12.3.4"))
+                .withClientVersion(Version.parse("12.3.4"))
                 .withJavaVersion(Version.parse("1.4.2"))
                 .withTransportVersion(Version.parse("6.7"))
                 .build();
@@ -55,7 +55,7 @@ public class ClientMetadataTest {
     }
 
     @Test
-    public void testElasticsearchVersionIsMandatory() {
+    public void testClientVersionIsMandatory() {
         assertThrows(IllegalArgumentException.class, () -> {
             new ClientMetadata.Builder()
                     .withJavaVersion(Version.parse("1.4.2"))
@@ -68,7 +68,7 @@ public class ClientMetadataTest {
     public void testJavaVersionIsMandatory() {
         assertThrows(IllegalArgumentException.class, () -> {
             new ClientMetadata.Builder()
-                    .withElasticsearchVersion(Version.parse("12.3.4"))
+                    .withClientVersion(Version.parse("12.3.4"))
                     .withTransportVersion(Version.parse("6.7"))
                     .build();
         });
@@ -78,7 +78,7 @@ public class ClientMetadataTest {
     public void testTransportVersionIsMandatory() {
         assertThrows(IllegalArgumentException.class, () -> {
             new ClientMetadata.Builder()
-                    .withElasticsearchVersion(Version.parse("12.3.4"))
+                    .withClientVersion(Version.parse("12.3.4"))
                     .withJavaVersion(Version.parse("1.4.2"))
                     .build();
         });
