@@ -19,12 +19,12 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.util.NamedValue;
+import co.elastic.clients.util.NamedString;
 
 /**
  * Raw URI query parameter, consisting of a string name and value.
  */
-public class QueryParameter extends NamedValue<String> {
+public class QueryParameter extends NamedString {
 
     /**
      * Construct a raw URI query parameter.
