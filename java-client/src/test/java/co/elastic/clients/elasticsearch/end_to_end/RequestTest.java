@@ -20,17 +20,19 @@
 package co.elastic.clients.elasticsearch.end_to_end;
 
 import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
-import co.elastic.clients.base.rest_client.RestClientTransport;
+import co.elastic.clients.base.Header;
+import co.elastic.clients.base.RequestOptions;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.base.rest_client.RestClientTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.bulk.OperationType;
-import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
@@ -40,7 +42,6 @@ import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -159,8 +160,9 @@ public class RequestTest extends Assert {
 
         // Search, adding some request options
         RequestOptions options = RequestOptions.DEFAULT.toBuilder()
-            .addHeader("x-super-header", "bar")
-            .build();
+                .withHeader(
+                        Header.raw("x-super-header", "bar"))
+                .build();
 
         SearchResponse<AppData> search = new ElasticsearchClient(
             ((RestClientTransport) client._transport()).withRequestOptions(options)
