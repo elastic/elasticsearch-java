@@ -147,6 +147,7 @@ build_image() {
 # ------------------------------------------------------- #
 
 if [[ "$CMD" == "assemble" ]]; then
+  rm -rf .ci/output/repository
   build_image
   docker run --rm --env VERSION=$VERSION \
     $git_mount $src_mount $output_mount \
@@ -154,7 +155,9 @@ if [[ "$CMD" == "assemble" ]]; then
     publishForReleaseManager
 
 	if compgen -G ".ci/output/release/*" > /dev/null; then
-	  cp .ci/output/release/dependencies.csv "$DEPENDENCIES_REPORTS_DIR"/"$DEPENDENCIES_REPORT"
+	  if [[ -n ${DEPENDENCIES_REPORTS_DIR+x} ]]; then
+	    cp .ci/output/release/dependencies.csv "$DEPENDENCIES_REPORTS_DIR"/"$DEPENDENCIES_REPORT"
+    fi
 		echo -e "\033[32;1mTARGET: successfully assembled client version $VERSION\033[0m"
 	else
 		echo -e "\033[31;1mTARGET: assemble failed, empty workspace!\033[0m"
