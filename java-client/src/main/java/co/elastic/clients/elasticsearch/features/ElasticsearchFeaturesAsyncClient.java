@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.features;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the features namespace.
  */
-public class ElasticsearchFeaturesAsyncClient extends ApiClient {
+public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFeaturesAsyncClient> {
 
 	public ElasticsearchFeaturesAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchFeaturesAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchFeaturesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchFeaturesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: features.get_features
@@ -52,7 +62,8 @@ public class ElasticsearchFeaturesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: features.reset_features
@@ -65,7 +76,8 @@ public class ElasticsearchFeaturesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

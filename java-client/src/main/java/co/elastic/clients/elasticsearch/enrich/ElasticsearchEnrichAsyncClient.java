@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the enrich namespace.
  */
-public class ElasticsearchEnrichAsyncClient extends ApiClient {
+public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnrichAsyncClient> {
 
 	public ElasticsearchEnrichAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchEnrichAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchEnrichAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchEnrichAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: enrich.delete_policy
@@ -53,7 +63,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeletePolicyResponse> deletePolicy(DeletePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeletePolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeletePolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -85,7 +95,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 
 	public CompletableFuture<ExecutePolicyResponse> executePolicy(ExecutePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExecutePolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ExecutePolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -117,7 +127,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetPolicyResponse> getPolicy(GetPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetPolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetPolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -146,7 +156,8 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetPolicyResponse> getPolicy() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: enrich.put_policy
@@ -161,7 +172,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutPolicyResponse> putPolicy(PutPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutPolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutPolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -192,7 +203,8 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<EnrichStatsResponse> stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

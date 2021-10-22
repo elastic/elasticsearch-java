@@ -23,10 +23,11 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -36,10 +37,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the logstash namespace.
  */
-public class ElasticsearchLogstashAsyncClient extends ApiClient {
+public class ElasticsearchLogstashAsyncClient extends ApiClient<ElasticsearchLogstashAsyncClient> {
 
 	public ElasticsearchLogstashAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchLogstashAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchLogstashAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchLogstashAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: logstash.delete_pipeline
@@ -54,7 +64,7 @@ public class ElasticsearchLogstashAsyncClient extends ApiClient {
 
 	public CompletableFuture<BooleanResponse> deletePipeline(DeletePipelineRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeletePipelineRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeletePipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -86,7 +96,7 @@ public class ElasticsearchLogstashAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetPipelineRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -118,7 +128,7 @@ public class ElasticsearchLogstashAsyncClient extends ApiClient {
 
 	public CompletableFuture<BooleanResponse> putPipeline(PutPipelineRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutPipelineRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

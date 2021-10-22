@@ -32,7 +32,9 @@ public class ElasticsearchException extends RuntimeException {
 	private final ErrorResponse response;
 
 	public ElasticsearchException(ErrorResponse response) {
-		super(response.error().reason());
+		super(response.error().type() != null
+				? "[" + response.error().type() + "] " + response.error().reason()
+				: response.error().reason());
 		this.response = response;
 	}
 

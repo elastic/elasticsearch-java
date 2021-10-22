@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.tasks;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the tasks namespace.
  */
-public class ElasticsearchTasksClient extends ApiClient {
+public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient> {
 
 	public ElasticsearchTasksClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchTasksClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchTasksClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchTasksClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: tasks.cancel
@@ -51,7 +61,7 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 */
 
 	public CancelResponse cancel(CancelRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CancelRequest.ENDPOINT);
+		return this.transport.performRequest(request, CancelRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -79,7 +89,8 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 */
 
 	public CancelResponse cancel() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT);
+		return this.transport.performRequest(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: tasks.get
@@ -93,7 +104,7 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 */
 
 	public GetTasksResponse get(GetTasksRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTasksRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetTasksRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -123,7 +134,7 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 */
 
 	public ListResponse list(ListRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ListRequest.ENDPOINT);
+		return this.transport.performRequest(request, ListRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -151,7 +162,8 @@ public class ElasticsearchTasksClient extends ApiClient {
 	 */
 
 	public ListResponse list() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest.ENDPOINT);
+		return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

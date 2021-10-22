@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.monitoring;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the monitoring namespace.
  */
-public class ElasticsearchMonitoringClient extends ApiClient {
+public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchMonitoringClient> {
 
 	public ElasticsearchMonitoringClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchMonitoringClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMonitoringClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMonitoringClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: monitoring.bulk
@@ -51,7 +61,7 @@ public class ElasticsearchMonitoringClient extends ApiClient {
 	 */
 
 	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
+		return this.transport.performRequest(request, BulkRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

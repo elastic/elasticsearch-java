@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.monitoring;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the monitoring namespace.
  */
-public class ElasticsearchMonitoringAsyncClient extends ApiClient {
+public class ElasticsearchMonitoringAsyncClient extends ApiClient<ElasticsearchMonitoringAsyncClient> {
 
 	public ElasticsearchMonitoringAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchMonitoringAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMonitoringAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMonitoringAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: monitoring.bulk
@@ -52,7 +62,7 @@ public class ElasticsearchMonitoringAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<BulkResponse> bulk(BulkRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, BulkRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, BulkRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

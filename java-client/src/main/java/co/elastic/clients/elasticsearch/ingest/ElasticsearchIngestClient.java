@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ingest namespace.
  */
-public class ElasticsearchIngestClient extends ApiClient {
+public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClient> {
 
 	public ElasticsearchIngestClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchIngestClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchIngestClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ingest.delete_pipeline
@@ -52,7 +62,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -82,7 +92,8 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest.ENDPOINT);
+		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.get_pipeline
@@ -96,7 +107,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 */
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -125,7 +136,8 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 */
 
 	public GetPipelineResponse getPipeline() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest.ENDPOINT);
+		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.processor_grok
@@ -138,7 +150,8 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest.ENDPOINT);
+		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.put_pipeline
@@ -152,7 +165,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 */
 
 	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -183,7 +196,7 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 */
 
 	public SimulateResponse simulate(SimulateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SimulateRequest.ENDPOINT);
+		return this.transport.performRequest(request, SimulateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -211,7 +224,8 @@ public class ElasticsearchIngestClient extends ApiClient {
 	 */
 
 	public SimulateResponse simulate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT);
+		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

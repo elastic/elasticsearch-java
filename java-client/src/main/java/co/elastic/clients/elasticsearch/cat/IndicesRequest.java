@@ -23,8 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
@@ -33,6 +31,8 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -333,6 +333,7 @@ public final class IndicesRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));

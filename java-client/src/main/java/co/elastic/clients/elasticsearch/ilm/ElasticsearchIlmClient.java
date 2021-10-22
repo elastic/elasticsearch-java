@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ilm namespace.
  */
-public class ElasticsearchIlmClient extends ApiClient {
+public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 
 	public ElasticsearchIlmClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchIlmClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchIlmClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchIlmClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ilm.delete_lifecycle
@@ -53,7 +63,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 
 	public DeleteLifecycleResponse deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteLifecycleRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -87,7 +97,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 
 	public ExplainLifecycleResponse explainLifecycle(ExplainLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExplainLifecycleRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExplainLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -120,7 +130,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public GetLifecycleResponse getLifecycle(GetLifecycleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetLifecycleRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -151,7 +161,8 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public GetLifecycleResponse getLifecycle() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest.ENDPOINT);
+		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ilm.get_status
@@ -164,7 +175,8 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public GetStatusResponse getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT);
+		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ilm.move_to_step
@@ -178,7 +190,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public MoveToStepResponse moveToStep(MoveToStepRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, MoveToStepRequest.ENDPOINT);
+		return this.transport.performRequest(request, MoveToStepRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -208,7 +220,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public PutLifecycleResponse putLifecycle(PutLifecycleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutLifecycleRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -239,7 +251,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public RemovePolicyResponse removePolicy(RemovePolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RemovePolicyRequest.ENDPOINT);
+		return this.transport.performRequest(request, RemovePolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -270,7 +282,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public RetryResponse retry(RetryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RetryRequest.ENDPOINT);
+		return this.transport.performRequest(request, RetryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -300,7 +312,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public StartIlmResponse start(StartIlmRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartIlmRequest.ENDPOINT);
+		return this.transport.performRequest(request, StartIlmRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -328,7 +340,8 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public StartIlmResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StartIlmRequest.Builder().build(), StartIlmRequest.ENDPOINT);
+		return this.transport.performRequest(new StartIlmRequest.Builder().build(), StartIlmRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ilm.stop
@@ -343,7 +356,7 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public StopIlmResponse stop(StopIlmRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopIlmRequest.ENDPOINT);
+		return this.transport.performRequest(request, StopIlmRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -373,7 +386,8 @@ public class ElasticsearchIlmClient extends ApiClient {
 	 */
 
 	public StopIlmResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StopIlmRequest.Builder().build(), StopIlmRequest.ENDPOINT);
+		return this.transport.performRequest(new StopIlmRequest.Builder().build(), StopIlmRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

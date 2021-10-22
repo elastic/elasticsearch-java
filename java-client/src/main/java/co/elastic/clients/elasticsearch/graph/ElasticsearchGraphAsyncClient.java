@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the graph namespace.
  */
-public class ElasticsearchGraphAsyncClient extends ApiClient {
+public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchGraphAsyncClient> {
 
 	public ElasticsearchGraphAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchGraphAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchGraphAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchGraphAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: graph.explore
@@ -54,7 +64,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient {
 
 	public CompletableFuture<ExploreResponse> explore(ExploreRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExploreRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ExploreRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

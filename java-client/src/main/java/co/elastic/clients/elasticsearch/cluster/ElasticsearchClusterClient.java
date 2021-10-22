@@ -23,10 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the cluster namespace.
  */
-public class ElasticsearchClusterClient extends ApiClient {
+public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterClient> {
 
 	public ElasticsearchClusterClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchClusterClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchClusterClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchClusterClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cluster.allocation_explain
@@ -53,7 +63,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public AllocationExplainResponse allocationExplain(AllocationExplainRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AllocationExplainRequest.ENDPOINT);
+		return this.transport.performRequest(request, AllocationExplainRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -83,7 +93,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public AllocationExplainResponse allocationExplain() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new AllocationExplainRequest.Builder().build(),
-				AllocationExplainRequest.ENDPOINT);
+				AllocationExplainRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.delete_component_template
@@ -98,7 +108,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public DeleteComponentTemplateResponse deleteComponentTemplate(DeleteComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteComponentTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -130,7 +140,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteVotingConfigExclusionsRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteVotingConfigExclusionsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -160,7 +171,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public BooleanResponse deleteVotingConfigExclusions() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new DeleteVotingConfigExclusionsRequest.Builder().build(),
-				DeleteVotingConfigExclusionsRequest.ENDPOINT);
+				DeleteVotingConfigExclusionsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.exists_component_template
@@ -175,7 +186,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public BooleanResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsComponentTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExistsComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -207,7 +218,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public GetComponentTemplateResponse getComponentTemplate(GetComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetComponentTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -237,7 +248,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public GetComponentTemplateResponse getComponentTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetComponentTemplateRequest.Builder().build(),
-				GetComponentTemplateRequest.ENDPOINT);
+				GetComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.get_settings
@@ -251,7 +262,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -280,7 +291,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public GetSettingsResponse getSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.health
@@ -294,7 +306,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public HealthResponse health(HealthRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, HealthRequest.ENDPOINT);
+		return this.transport.performRequest(request, HealthRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -322,7 +334,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public HealthResponse health() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT);
+		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.pending_tasks
@@ -337,7 +350,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PendingTasksRequest.ENDPOINT);
+		return this.transport.performRequest(request, PendingTasksRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -368,7 +381,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public PendingTasksResponse pendingTasks() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PendingTasksRequest.Builder().build(), PendingTasksRequest.ENDPOINT);
+		return this.transport.performRequest(new PendingTasksRequest.Builder().build(), PendingTasksRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.post_voting_config_exclusions
@@ -383,7 +397,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostVotingConfigExclusionsRequest.ENDPOINT);
+		return this.transport.performRequest(request, PostVotingConfigExclusionsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -413,7 +428,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public BooleanResponse postVotingConfigExclusions() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PostVotingConfigExclusionsRequest.Builder().build(),
-				PostVotingConfigExclusionsRequest.ENDPOINT);
+				PostVotingConfigExclusionsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.put_component_template
@@ -428,7 +443,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 
 	public PutComponentTemplateResponse putComponentTemplate(PutComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutComponentTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -459,7 +474,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -488,7 +503,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public PutSettingsResponse putSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.remote_info
@@ -501,7 +517,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public RemoteInfoResponse remoteInfo() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest.ENDPOINT);
+		return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.reroute
@@ -515,7 +532,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public RerouteResponse reroute(RerouteRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RerouteRequest.ENDPOINT);
+		return this.transport.performRequest(request, RerouteRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -543,7 +560,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public RerouteResponse reroute() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new RerouteRequest.Builder().build(), RerouteRequest.ENDPOINT);
+		return this.transport.performRequest(new RerouteRequest.Builder().build(), RerouteRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.state
@@ -557,7 +575,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public StateResponse state(StateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StateRequest.ENDPOINT);
+		return this.transport.performRequest(request, StateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -585,7 +603,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public StateResponse state() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StateRequest.Builder().build(), StateRequest.ENDPOINT);
+		return this.transport.performRequest(new StateRequest.Builder().build(), StateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.stats
@@ -599,7 +618,7 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClusterStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClusterStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -628,7 +647,8 @@ public class ElasticsearchClusterClient extends ApiClient {
 	 */
 
 	public ClusterStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ClusterStatsRequest.Builder().build(), ClusterStatsRequest.ENDPOINT);
+		return this.transport.performRequest(new ClusterStatsRequest.Builder().build(), ClusterStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

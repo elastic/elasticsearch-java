@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -196,6 +196,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.size != null) {
 					params.put("size", JsonpUtils.toString(request.size));
 				}

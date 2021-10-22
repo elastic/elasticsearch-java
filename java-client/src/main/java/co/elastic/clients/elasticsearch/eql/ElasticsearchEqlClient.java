@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the eql namespace.
  */
-public class ElasticsearchEqlClient extends ApiClient {
+public class ElasticsearchEqlClient extends ApiClient<ElasticsearchEqlClient> {
 
 	public ElasticsearchEqlClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchEqlClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchEqlClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchEqlClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: eql.delete
@@ -52,7 +62,7 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 */
 
 	public EqlDeleteResponse delete(EqlDeleteRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EqlDeleteRequest.ENDPOINT);
+		return this.transport.performRequest(request, EqlDeleteRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -85,7 +95,8 @@ public class ElasticsearchEqlClient extends ApiClient {
 
 	public <TEvent> EqlGetResponse<TEvent> get(EqlGetRequest request, Class<TEvent> tEventClass)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EqlGetRequest.createGetEndpoint(getDeserializer(tEventClass)));
+		return this.transport.performRequest(request, EqlGetRequest.createGetEndpoint(getDeserializer(tEventClass)),
+				this.transportOptions);
 	}
 
 	/**
@@ -117,7 +128,7 @@ public class ElasticsearchEqlClient extends ApiClient {
 	 */
 
 	public GetStatusResponse getStatus(GetStatusRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetStatusRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetStatusRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -150,7 +161,7 @@ public class ElasticsearchEqlClient extends ApiClient {
 	public <TEvent> EqlSearchResponse<TEvent> search(EqlSearchRequest request, Class<TEvent> tEventClass)
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request,
-				EqlSearchRequest.createSearchEndpoint(getDeserializer(tEventClass)));
+				EqlSearchRequest.createSearchEndpoint(getDeserializer(tEventClass)), this.transportOptions);
 	}
 
 	/**

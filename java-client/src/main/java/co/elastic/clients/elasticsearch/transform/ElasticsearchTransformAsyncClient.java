@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the transform namespace.
  */
-public class ElasticsearchTransformAsyncClient extends ApiClient {
+public class ElasticsearchTransformAsyncClient extends ApiClient<ElasticsearchTransformAsyncClient> {
 
 	public ElasticsearchTransformAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchTransformAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchTransformAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchTransformAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: transform.delete_transform
@@ -53,7 +63,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteTransformResponse> deleteTransform(DeleteTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteTransformRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -85,7 +95,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetTransformResponse> getTransform(GetTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetTransformRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -115,7 +125,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetTransformResponse> getTransform() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetTransformRequest.Builder().build(),
-				GetTransformRequest.ENDPOINT);
+				GetTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: transform.get_transform_stats
@@ -130,7 +140,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetTransformStatsResponse> getTransformStats(GetTransformStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetTransformStatsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetTransformStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -164,7 +174,8 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 			PreviewTransformRequest request, Class<TTransform> tTransformClass)
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
-				PreviewTransformRequest.createPreviewTransformEndpoint(getDeserializer(tTransformClass)));
+				PreviewTransformRequest.createPreviewTransformEndpoint(getDeserializer(tTransformClass)),
+				this.transportOptions);
 	}
 
 	/**
@@ -196,7 +207,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutTransformResponse> putTransform(PutTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutTransformRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -228,7 +239,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<StartTransformResponse> startTransform(StartTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StartTransformRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, StartTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -260,7 +271,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<StopTransformResponse> stopTransform(StopTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StopTransformRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, StopTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -292,7 +303,7 @@ public class ElasticsearchTransformAsyncClient extends ApiClient {
 
 	public CompletableFuture<UpdateTransformResponse> updateTransform(UpdateTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, UpdateTransformRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, UpdateTransformRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

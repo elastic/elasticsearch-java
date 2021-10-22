@@ -23,10 +23,11 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the logstash namespace.
  */
-public class ElasticsearchLogstashClient extends ApiClient {
+public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchLogstashClient> {
 
 	public ElasticsearchLogstashClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchLogstashClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchLogstashClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchLogstashClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: logstash.delete_pipeline
@@ -52,7 +62,7 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 */
 
 	public BooleanResponse deletePipeline(DeletePipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -83,7 +93,7 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 */
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -114,7 +124,7 @@ public class ElasticsearchLogstashClient extends ApiClient {
 	 */
 
 	public BooleanResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.shutdown;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the shutdown namespace.
  */
-public class ElasticsearchShutdownClient extends ApiClient {
+public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdownClient> {
 
 	public ElasticsearchShutdownClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchShutdownClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchShutdownClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchShutdownClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.delete_node
@@ -52,7 +62,7 @@ public class ElasticsearchShutdownClient extends ApiClient {
 	 */
 
 	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteNodeRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -85,7 +95,7 @@ public class ElasticsearchShutdownClient extends ApiClient {
 	 */
 
 	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetNodeRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -117,7 +127,8 @@ public class ElasticsearchShutdownClient extends ApiClient {
 	 */
 
 	public GetNodeResponse getNode() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT);
+		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.put_node
@@ -132,7 +143,7 @@ public class ElasticsearchShutdownClient extends ApiClient {
 	 */
 
 	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutNodeRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.autoscaling;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the autoscaling namespace.
  */
-public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
+public class ElasticsearchAutoscalingAsyncClient extends ApiClient<ElasticsearchAutoscalingAsyncClient> {
 
 	public ElasticsearchAutoscalingAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchAutoscalingAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchAutoscalingAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchAutoscalingAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: autoscaling.delete_autoscaling_policy
@@ -54,7 +64,8 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteAutoscalingPolicyResponse> deleteAutoscalingPolicy(
 			DeleteAutoscalingPolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteAutoscalingPolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteAutoscalingPolicyRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -89,7 +100,7 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity()
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetAutoscalingCapacityRequest._INSTANCE,
-				GetAutoscalingCapacityRequest.ENDPOINT);
+				GetAutoscalingCapacityRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_policy
@@ -105,7 +116,7 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetAutoscalingPolicyResponse> getAutoscalingPolicy(GetAutoscalingPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetAutoscalingPolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetAutoscalingPolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -139,7 +150,7 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutAutoscalingPolicyResponse> putAutoscalingPolicy(PutAutoscalingPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutAutoscalingPolicyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutAutoscalingPolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

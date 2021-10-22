@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the watcher namespace.
  */
-public class ElasticsearchWatcherClient extends ApiClient {
+public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherClient> {
 
 	public ElasticsearchWatcherClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchWatcherClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchWatcherClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchWatcherClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: watcher.ack_watch
@@ -52,7 +62,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public AckWatchResponse ackWatch(AckWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AckWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, AckWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -84,7 +94,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 
 	public ActivateWatchResponse activateWatch(ActivateWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ActivateWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, ActivateWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -116,7 +126,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 
 	public DeactivateWatchResponse deactivateWatch(DeactivateWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeactivateWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeactivateWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -147,7 +157,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public DeleteWatchResponse deleteWatch(DeleteWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -178,7 +188,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public ExecuteWatchResponse executeWatch(ExecuteWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExecuteWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExecuteWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -207,7 +217,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public ExecuteWatchResponse executeWatch() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ExecuteWatchRequest.Builder().build(), ExecuteWatchRequest.ENDPOINT);
+		return this.transport.performRequest(new ExecuteWatchRequest.Builder().build(), ExecuteWatchRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.get_watch
@@ -221,7 +232,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public GetWatchResponse getWatch(GetWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -251,7 +262,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public PutWatchResponse putWatch(PutWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutWatchRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutWatchRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -281,7 +292,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public QueryWatchesResponse queryWatches(QueryWatchesRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, QueryWatchesRequest.ENDPOINT);
+		return this.transport.performRequest(request, QueryWatchesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -310,7 +321,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public QueryWatchesResponse queryWatches() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new QueryWatchesRequest.Builder().build(), QueryWatchesRequest.ENDPOINT);
+		return this.transport.performRequest(new QueryWatchesRequest.Builder().build(), QueryWatchesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.start
@@ -323,7 +335,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public StartWatcherResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT);
+		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.stats
@@ -337,7 +350,7 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public WatcherStatsResponse stats(WatcherStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, WatcherStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, WatcherStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -366,7 +379,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 */
 
 	public WatcherStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new WatcherStatsRequest.Builder().build(), WatcherStatsRequest.ENDPOINT);
+		return this.transport.performRequest(new WatcherStatsRequest.Builder().build(), WatcherStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.stop
@@ -379,7 +393,8 @@ public class ElasticsearchWatcherClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public StopWatcherResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT);
+		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

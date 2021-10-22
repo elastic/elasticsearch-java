@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the security namespace.
  */
-public class ElasticsearchSecurityClient extends ApiClient {
+public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurityClient> {
 
 	public ElasticsearchSecurityClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSecurityClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSecurityClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSecurityClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: security.authenticate
@@ -51,7 +61,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public AuthenticateResponse authenticate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT);
+		return this.transport.performRequest(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.change_password
@@ -66,7 +77,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ChangePasswordResponse changePassword(ChangePasswordRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ChangePasswordRequest.ENDPOINT);
+		return this.transport.performRequest(request, ChangePasswordRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -96,7 +107,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ChangePasswordResponse changePassword() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ChangePasswordRequest.Builder().build(),
-				ChangePasswordRequest.ENDPOINT);
+				ChangePasswordRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.clear_api_key_cache
@@ -111,7 +122,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ClearApiKeyCacheResponse clearApiKeyCache(ClearApiKeyCacheRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearApiKeyCacheRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearApiKeyCacheRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -143,7 +154,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ClearCachedPrivilegesResponse clearCachedPrivileges(ClearCachedPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCachedPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearCachedPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -176,7 +187,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ClearCachedRealmsResponse clearCachedRealms(ClearCachedRealmsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCachedRealmsRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearCachedRealmsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -209,7 +220,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ClearCachedRolesResponse clearCachedRoles(ClearCachedRolesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCachedRolesRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearCachedRolesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -241,7 +252,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public ClearCachedServiceTokensResponse clearCachedServiceTokens(ClearCachedServiceTokensRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCachedServiceTokensRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearCachedServiceTokensRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -272,7 +283,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public CreateApiKeyResponse createApiKey(CreateApiKeyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateApiKeyRequest.ENDPOINT);
+		return this.transport.performRequest(request, CreateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -301,7 +312,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public CreateApiKeyResponse createApiKey() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new CreateApiKeyRequest.Builder().build(), CreateApiKeyRequest.ENDPOINT);
+		return this.transport.performRequest(new CreateApiKeyRequest.Builder().build(), CreateApiKeyRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.create_service_token
@@ -317,7 +329,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public CreateServiceTokenResponse createServiceToken(CreateServiceTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateServiceTokenRequest.ENDPOINT);
+		return this.transport.performRequest(request, CreateServiceTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -350,7 +362,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public DeletePrivilegesResponse deletePrivileges(DeletePrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeletePrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeletePrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -381,7 +393,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public DeleteRoleResponse deleteRole(DeleteRoleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteRoleRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteRoleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -412,7 +424,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public DeleteRoleMappingResponse deleteRoleMapping(DeleteRoleMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteRoleMappingRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -444,7 +456,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public DeleteServiceTokenResponse deleteServiceToken(DeleteServiceTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteServiceTokenRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteServiceTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -475,7 +487,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public DeleteUserResponse deleteUser(DeleteUserRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteUserRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -505,7 +517,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public DisableUserResponse disableUser(DisableUserRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DisableUserRequest.ENDPOINT);
+		return this.transport.performRequest(request, DisableUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -536,7 +548,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public EnableUserResponse enableUser(EnableUserRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EnableUserRequest.ENDPOINT);
+		return this.transport.performRequest(request, EnableUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -566,7 +578,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetApiKeyResponse getApiKey(GetApiKeyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetApiKeyRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -594,7 +606,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetApiKeyResponse getApiKey() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest.ENDPOINT);
+		return this.transport.performRequest(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_builtin_privileges
@@ -609,7 +622,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 	public GetBuiltinPrivilegesResponse getBuiltinPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetBuiltinPrivilegesRequest._INSTANCE,
-				GetBuiltinPrivilegesRequest.ENDPOINT);
+				GetBuiltinPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_privileges
@@ -624,7 +637,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetPrivilegesResponse getPrivileges(GetPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -653,7 +666,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetPrivilegesResponse getPrivileges() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetPrivilegesRequest.Builder().build(), GetPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(new GetPrivilegesRequest.Builder().build(), GetPrivilegesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_role
@@ -667,7 +681,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetRoleResponse getRole(GetRoleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRoleRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetRoleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -695,7 +709,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetRoleResponse getRole() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetRoleRequest.Builder().build(), GetRoleRequest.ENDPOINT);
+		return this.transport.performRequest(new GetRoleRequest.Builder().build(), GetRoleRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_role_mapping
@@ -710,7 +725,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetRoleMappingResponse getRoleMapping(GetRoleMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRoleMappingRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -740,7 +755,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetRoleMappingResponse getRoleMapping() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetRoleMappingRequest.Builder().build(),
-				GetRoleMappingRequest.ENDPOINT);
+				GetRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_service_accounts
@@ -755,7 +770,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetServiceAccountsResponse getServiceAccounts(GetServiceAccountsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetServiceAccountsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetServiceAccountsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -785,7 +800,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetServiceAccountsResponse getServiceAccounts() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetServiceAccountsRequest.Builder().build(),
-				GetServiceAccountsRequest.ENDPOINT);
+				GetServiceAccountsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_service_credentials
@@ -800,7 +815,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetServiceCredentialsResponse getServiceCredentials(GetServiceCredentialsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetServiceCredentialsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetServiceCredentialsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -831,7 +846,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetTokenResponse getToken(GetTokenRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTokenRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -859,7 +874,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetTokenResponse getToken() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetTokenRequest.Builder().build(), GetTokenRequest.ENDPOINT);
+		return this.transport.performRequest(new GetTokenRequest.Builder().build(), GetTokenRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user
@@ -873,7 +889,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetUserResponse getUser(GetUserRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetUserRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -901,7 +917,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GetUserResponse getUser() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetUserRequest.Builder().build(), GetUserRequest.ENDPOINT);
+		return this.transport.performRequest(new GetUserRequest.Builder().build(), GetUserRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user_privileges
@@ -916,7 +933,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetUserPrivilegesResponse getUserPrivileges(GetUserPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetUserPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetUserPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -946,7 +963,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public GetUserPrivilegesResponse getUserPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetUserPrivilegesRequest.Builder().build(),
-				GetUserPrivilegesRequest.ENDPOINT);
+				GetUserPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.grant_api_key
@@ -960,7 +977,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public GrantApiKeyResponse grantApiKey(GrantApiKeyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GrantApiKeyRequest.ENDPOINT);
+		return this.transport.performRequest(request, GrantApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -992,7 +1009,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public HasPrivilegesResponse hasPrivileges(HasPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, HasPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(request, HasPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1021,7 +1038,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public HasPrivilegesResponse hasPrivileges() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new HasPrivilegesRequest.Builder().build(), HasPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(new HasPrivilegesRequest.Builder().build(), HasPrivilegesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.invalidate_api_key
@@ -1036,7 +1054,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public InvalidateApiKeyResponse invalidateApiKey(InvalidateApiKeyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, InvalidateApiKeyRequest.ENDPOINT);
+		return this.transport.performRequest(request, InvalidateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1066,7 +1084,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public InvalidateApiKeyResponse invalidateApiKey() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new InvalidateApiKeyRequest.Builder().build(),
-				InvalidateApiKeyRequest.ENDPOINT);
+				InvalidateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.invalidate_token
@@ -1081,7 +1099,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public InvalidateTokenResponse invalidateToken(InvalidateTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, InvalidateTokenRequest.ENDPOINT);
+		return this.transport.performRequest(request, InvalidateTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1111,7 +1129,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public InvalidateTokenResponse invalidateToken() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new InvalidateTokenRequest.Builder().build(),
-				InvalidateTokenRequest.ENDPOINT);
+				InvalidateTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_privileges
@@ -1126,7 +1144,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public PutPrivilegesResponse putPrivileges(PutPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1155,7 +1173,8 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public PutPrivilegesResponse putPrivileges() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PutPrivilegesRequest.Builder().build(), PutPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequest(new PutPrivilegesRequest.Builder().build(), PutPrivilegesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_role
@@ -1169,7 +1188,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public PutRoleResponse putRole(PutRoleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutRoleRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutRoleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1200,7 +1219,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 
 	public PutRoleMappingResponse putRoleMapping(PutRoleMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutRoleMappingRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1232,7 +1251,7 @@ public class ElasticsearchSecurityClient extends ApiClient {
 	 */
 
 	public PutUserResponse putUser(PutUserRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutUserRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

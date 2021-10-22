@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the security namespace.
  */
-public class ElasticsearchSecurityAsyncClient extends ApiClient {
+public class ElasticsearchSecurityAsyncClient extends ApiClient<ElasticsearchSecurityAsyncClient> {
 
 	public ElasticsearchSecurityAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSecurityAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSecurityAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSecurityAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: security.authenticate
@@ -52,7 +62,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<AuthenticateResponse> authenticate() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT);
+		return this.transport.performRequestAsync(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.change_password
@@ -67,7 +78,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ChangePasswordResponse> changePassword(ChangePasswordRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ChangePasswordRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ChangePasswordRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -97,7 +108,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ChangePasswordResponse> changePassword() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ChangePasswordRequest.Builder().build(),
-				ChangePasswordRequest.ENDPOINT);
+				ChangePasswordRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.clear_api_key_cache
@@ -112,7 +123,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearApiKeyCacheResponse> clearApiKeyCache(ClearApiKeyCacheRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearApiKeyCacheRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearApiKeyCacheRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -144,7 +155,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearCachedPrivilegesResponse> clearCachedPrivileges(ClearCachedPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCachedPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearCachedPrivilegesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -177,7 +189,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearCachedRealmsResponse> clearCachedRealms(ClearCachedRealmsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCachedRealmsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearCachedRealmsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -210,7 +222,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearCachedRolesResponse> clearCachedRoles(ClearCachedRolesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCachedRolesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearCachedRolesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -242,7 +254,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearCachedServiceTokensResponse> clearCachedServiceTokens(
 			ClearCachedServiceTokensRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCachedServiceTokensRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearCachedServiceTokensRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -274,7 +287,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<CreateApiKeyResponse> createApiKey(CreateApiKeyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CreateApiKeyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, CreateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -304,7 +317,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<CreateApiKeyResponse> createApiKey() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new CreateApiKeyRequest.Builder().build(),
-				CreateApiKeyRequest.ENDPOINT);
+				CreateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.create_service_token
@@ -320,7 +333,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<CreateServiceTokenResponse> createServiceToken(CreateServiceTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CreateServiceTokenRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, CreateServiceTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -353,7 +366,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeletePrivilegesResponse> deletePrivileges(DeletePrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeletePrivilegesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeletePrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -385,7 +398,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteRoleResponse> deleteRole(DeleteRoleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteRoleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteRoleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -417,7 +430,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteRoleMappingResponse> deleteRoleMapping(DeleteRoleMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteRoleMappingRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -449,7 +462,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteServiceTokenResponse> deleteServiceToken(DeleteServiceTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteServiceTokenRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteServiceTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -481,7 +494,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteUserResponse> deleteUser(DeleteUserRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteUserRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -513,7 +526,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<DisableUserResponse> disableUser(DisableUserRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DisableUserRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DisableUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -545,7 +558,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<EnableUserResponse> enableUser(EnableUserRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, EnableUserRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, EnableUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -577,7 +590,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetApiKeyResponse> getApiKey(GetApiKeyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetApiKeyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -606,7 +619,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetApiKeyResponse> getApiKey() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_builtin_privileges
@@ -622,7 +636,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges()
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetBuiltinPrivilegesRequest._INSTANCE,
-				GetBuiltinPrivilegesRequest.ENDPOINT);
+				GetBuiltinPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_privileges
@@ -637,7 +651,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetPrivilegesResponse> getPrivileges(GetPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -667,7 +681,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetPrivilegesResponse> getPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetPrivilegesRequest.Builder().build(),
-				GetPrivilegesRequest.ENDPOINT);
+				GetPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_role
@@ -682,7 +696,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetRoleResponse> getRole(GetRoleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetRoleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetRoleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -711,7 +725,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetRoleResponse> getRole() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetRoleRequest.Builder().build(), GetRoleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetRoleRequest.Builder().build(), GetRoleRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_role_mapping
@@ -726,7 +741,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetRoleMappingResponse> getRoleMapping(GetRoleMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetRoleMappingRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -756,7 +771,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetRoleMappingResponse> getRoleMapping() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetRoleMappingRequest.Builder().build(),
-				GetRoleMappingRequest.ENDPOINT);
+				GetRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_service_accounts
@@ -771,7 +786,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetServiceAccountsResponse> getServiceAccounts(GetServiceAccountsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetServiceAccountsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetServiceAccountsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -802,7 +817,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	public CompletableFuture<GetServiceAccountsResponse> getServiceAccounts()
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetServiceAccountsRequest.Builder().build(),
-				GetServiceAccountsRequest.ENDPOINT);
+				GetServiceAccountsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_service_credentials
@@ -817,7 +832,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetServiceCredentialsResponse> getServiceCredentials(GetServiceCredentialsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetServiceCredentialsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetServiceCredentialsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -849,7 +865,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetTokenResponse> getToken(GetTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetTokenRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -878,7 +894,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetTokenResponse> getToken() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetTokenRequest.Builder().build(), GetTokenRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetTokenRequest.Builder().build(), GetTokenRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user
@@ -893,7 +910,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetUserResponse> getUser(GetUserRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetUserRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -922,7 +939,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetUserResponse> getUser() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetUserRequest.Builder().build(), GetUserRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetUserRequest.Builder().build(), GetUserRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user_privileges
@@ -937,7 +955,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(GetUserPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetUserPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetUserPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -967,7 +985,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetUserPrivilegesRequest.Builder().build(),
-				GetUserPrivilegesRequest.ENDPOINT);
+				GetUserPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.grant_api_key
@@ -982,7 +1000,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<GrantApiKeyResponse> grantApiKey(GrantApiKeyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GrantApiKeyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GrantApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1014,7 +1032,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<HasPrivilegesResponse> hasPrivileges(HasPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, HasPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, HasPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1044,7 +1062,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<HasPrivilegesResponse> hasPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new HasPrivilegesRequest.Builder().build(),
-				HasPrivilegesRequest.ENDPOINT);
+				HasPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.invalidate_api_key
@@ -1059,7 +1077,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey(InvalidateApiKeyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, InvalidateApiKeyRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, InvalidateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1089,7 +1107,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new InvalidateApiKeyRequest.Builder().build(),
-				InvalidateApiKeyRequest.ENDPOINT);
+				InvalidateApiKeyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.invalidate_token
@@ -1104,7 +1122,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<InvalidateTokenResponse> invalidateToken(InvalidateTokenRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, InvalidateTokenRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, InvalidateTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1134,7 +1152,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<InvalidateTokenResponse> invalidateToken() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new InvalidateTokenRequest.Builder().build(),
-				InvalidateTokenRequest.ENDPOINT);
+				InvalidateTokenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_privileges
@@ -1149,7 +1167,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutPrivilegesResponse> putPrivileges(PutPrivilegesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutPrivilegesRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1179,7 +1197,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutPrivilegesResponse> putPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PutPrivilegesRequest.Builder().build(),
-				PutPrivilegesRequest.ENDPOINT);
+				PutPrivilegesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_role
@@ -1194,7 +1212,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutRoleResponse> putRole(PutRoleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutRoleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutRoleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1226,7 +1244,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutRoleMappingResponse> putRoleMapping(PutRoleMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutRoleMappingRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutRoleMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1259,7 +1277,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutUserResponse> putUser(PutUserRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutUserRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutUserRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

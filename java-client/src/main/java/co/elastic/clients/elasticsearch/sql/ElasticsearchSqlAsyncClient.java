@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the sql namespace.
  */
-public class ElasticsearchSqlAsyncClient extends ApiClient {
+public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsyncClient> {
 
 	public ElasticsearchSqlAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSqlAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSqlAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSqlAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: sql.clear_cursor
@@ -53,7 +63,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCursorRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearCursorRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -84,7 +94,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, QueryRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, QueryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -112,7 +122,8 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<QueryResponse> query() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: sql.translate
@@ -127,7 +138,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 
 	public CompletableFuture<TranslateResponse> translate(TranslateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, TranslateRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, TranslateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

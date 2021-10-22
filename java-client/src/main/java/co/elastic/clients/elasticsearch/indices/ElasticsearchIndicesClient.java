@@ -23,10 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the indices namespace.
  */
-public class ElasticsearchIndicesClient extends ApiClient {
+public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchIndicesClient> {
 
 	public ElasticsearchIndicesClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchIndicesClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchIndicesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: indices.add_block
@@ -52,7 +62,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AddBlockRequest.ENDPOINT);
+		return this.transport.performRequest(request, AddBlockRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -83,7 +93,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AnalyzeRequest.ENDPOINT);
+		return this.transport.performRequest(request, AnalyzeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -113,7 +123,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public AnalyzeResponse analyze() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT);
+		return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.clear_cache
@@ -127,7 +138,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCacheRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearCacheRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -155,7 +166,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ClearCacheResponse clearCache() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
+		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.clone
@@ -169,7 +181,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CloneIndexRequest.ENDPOINT);
+		return this.transport.performRequest(request, CloneIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -199,7 +211,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public CloseIndexResponse close(CloseIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CloseIndexRequest.ENDPOINT);
+		return this.transport.performRequest(request, CloseIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -229,7 +241,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public CreateIndexResponse create(CreateIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateIndexRequest.ENDPOINT);
+		return this.transport.performRequest(request, CreateIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -260,7 +272,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateDataStreamRequest.ENDPOINT);
+		return this.transport.performRequest(request, CreateDataStreamRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -292,7 +304,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DataStreamsStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, DataStreamsStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -322,7 +334,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public DataStreamsStatsResponse dataStreamsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new DataStreamsStatsRequest.Builder().build(),
-				DataStreamsStatsRequest.ENDPOINT);
+				DataStreamsStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.delete
@@ -336,7 +348,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteIndexRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -366,7 +378,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteAliasRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -398,7 +410,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteDataStreamRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteDataStreamRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -430,7 +442,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteIndexTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -462,7 +474,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -493,7 +505,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DiskUsageRequest.ENDPOINT);
+		return this.transport.performRequest(request, DiskUsageRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -523,7 +535,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExistsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -553,7 +565,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsAliasRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExistsAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -584,7 +596,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsIndexTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExistsIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -615,7 +627,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExistsTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -647,7 +659,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsTypeRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExistsTypeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -678,7 +690,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public FlushResponse flush(FlushRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FlushRequest.ENDPOINT);
+		return this.transport.performRequest(request, FlushRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -706,7 +718,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public FlushResponse flush() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT);
+		return this.transport.performRequest(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.forcemerge
@@ -720,7 +733,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ForcemergeRequest.ENDPOINT);
+		return this.transport.performRequest(request, ForcemergeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -748,7 +761,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ForcemergeResponse forcemerge() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT);
+		return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.freeze
@@ -763,7 +777,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public FreezeResponse freeze(FreezeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FreezeRequest.ENDPOINT);
+		return this.transport.performRequest(request, FreezeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -794,7 +808,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetIndexResponse get(GetIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetIndexRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -824,7 +838,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetAliasRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -852,7 +866,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetAliasResponse getAlias() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT);
+		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_data_stream
@@ -867,7 +882,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public GetDataStreamResponse getDataStream(GetDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDataStreamRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetDataStreamRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -896,7 +911,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetDataStreamResponse getDataStream() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetDataStreamRequest.Builder().build(), GetDataStreamRequest.ENDPOINT);
+		return this.transport.performRequest(new GetDataStreamRequest.Builder().build(), GetDataStreamRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_field_mapping
@@ -911,7 +927,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public GetFieldMappingResponse getFieldMapping(GetFieldMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetFieldMappingRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetFieldMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -943,7 +959,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetIndexTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -973,7 +989,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public GetIndexTemplateResponse getIndexTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetIndexTemplateRequest.Builder().build(),
-				GetIndexTemplateRequest.ENDPOINT);
+				GetIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_mapping
@@ -987,7 +1003,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetMappingRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1015,7 +1031,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetMappingResponse getMapping() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT);
+		return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_settings
@@ -1029,7 +1046,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1058,7 +1075,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetSettingsResponse getSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_template
@@ -1072,7 +1090,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1101,7 +1119,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public GetTemplateResponse getTemplate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1116,7 +1135,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, MigrateToDataStreamRequest.ENDPOINT);
+		return this.transport.performRequest(request, MigrateToDataStreamRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1147,7 +1166,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public OpenResponse open(OpenRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, OpenRequest.ENDPOINT);
+		return this.transport.performRequest(request, OpenRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1179,7 +1198,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public PromoteDataStreamResponse promoteDataStream(PromoteDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PromoteDataStreamRequest.ENDPOINT);
+		return this.transport.performRequest(request, PromoteDataStreamRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1211,7 +1230,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutAliasRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1242,7 +1261,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutIndexTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1273,7 +1292,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutMappingRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1303,7 +1322,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1332,7 +1351,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public PutSettingsResponse putSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT);
+		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.put_template
@@ -1346,7 +1366,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1377,7 +1397,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RecoveryRequest.ENDPOINT);
+		return this.transport.performRequest(request, RecoveryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1405,7 +1425,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public RecoveryResponse recovery() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT);
+		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.refresh
@@ -1419,7 +1440,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public RefreshResponse refresh(RefreshRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RefreshRequest.ENDPOINT);
+		return this.transport.performRequest(request, RefreshRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1447,7 +1468,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public RefreshResponse refresh() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT);
+		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.reload_search_analyzers
@@ -1462,7 +1484,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public ReloadSearchAnalyzersResponse reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ReloadSearchAnalyzersRequest.ENDPOINT);
+		return this.transport.performRequest(request, ReloadSearchAnalyzersRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1493,7 +1515,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ResolveIndexRequest.ENDPOINT);
+		return this.transport.performRequest(request, ResolveIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1525,7 +1547,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public RolloverResponse rollover(RolloverRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RolloverRequest.ENDPOINT);
+		return this.transport.performRequest(request, RolloverRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1556,7 +1578,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public SegmentsResponse segments(SegmentsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SegmentsRequest.ENDPOINT);
+		return this.transport.performRequest(request, SegmentsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1584,7 +1606,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public SegmentsResponse segments() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT);
+		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.shard_stores
@@ -1598,7 +1621,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ShardStoresRequest.ENDPOINT);
+		return this.transport.performRequest(request, ShardStoresRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1627,7 +1650,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ShardStoresResponse shardStores() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ShardStoresRequest.Builder().build(), ShardStoresRequest.ENDPOINT);
+		return this.transport.performRequest(new ShardStoresRequest.Builder().build(), ShardStoresRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.shrink
@@ -1641,7 +1665,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ShrinkResponse shrink(ShrinkRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ShrinkRequest.ENDPOINT);
+		return this.transport.performRequest(request, ShrinkRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1673,7 +1697,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SimulateIndexTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, SimulateIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1706,7 +1730,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SimulateTemplateRequest.ENDPOINT);
+		return this.transport.performRequest(request, SimulateTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1736,7 +1760,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public SimulateTemplateResponse simulateTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SimulateTemplateRequest.Builder().build(),
-				SimulateTemplateRequest.ENDPOINT);
+				SimulateTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.split
@@ -1751,7 +1775,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public SplitResponse split(SplitRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SplitRequest.ENDPOINT);
+		return this.transport.performRequest(request, SplitRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1782,7 +1806,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, IndicesStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, IndicesStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1811,7 +1835,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public IndicesStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new IndicesStatsRequest.Builder().build(), IndicesStatsRequest.ENDPOINT);
+		return this.transport.performRequest(new IndicesStatsRequest.Builder().build(), IndicesStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.unfreeze
@@ -1826,7 +1851,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public UnfreezeResponse unfreeze(UnfreezeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UnfreezeRequest.ENDPOINT);
+		return this.transport.performRequest(request, UnfreezeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1858,7 +1883,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateAliasesRequest.ENDPOINT);
+		return this.transport.performRequest(request, UpdateAliasesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1887,7 +1912,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public UpdateAliasesResponse updateAliases() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new UpdateAliasesRequest.Builder().build(), UpdateAliasesRequest.ENDPOINT);
+		return this.transport.performRequest(new UpdateAliasesRequest.Builder().build(), UpdateAliasesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.validate_query
@@ -1902,7 +1928,7 @@ public class ElasticsearchIndicesClient extends ApiClient {
 
 	public ValidateQueryResponse validateQuery(ValidateQueryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ValidateQueryRequest.ENDPOINT);
+		return this.transport.performRequest(request, ValidateQueryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1931,7 +1957,8 @@ public class ElasticsearchIndicesClient extends ApiClient {
 	 */
 
 	public ValidateQueryResponse validateQuery() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ValidateQueryRequest.Builder().build(), ValidateQueryRequest.ENDPOINT);
+		return this.transport.performRequest(new ValidateQueryRequest.Builder().build(), ValidateQueryRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }
