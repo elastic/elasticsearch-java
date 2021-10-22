@@ -17,14 +17,13 @@
  * under the License.
  */
 
-package co.elastic.clients.base.rest_client;
+package co.elastic.clients.transport.rest_client;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchCatRequest;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.RequestOptions;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.transport.BooleanEndpoint;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.Transport;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +35,7 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Cancellable;
 import org.elasticsearch.client.Response;
+import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
 
@@ -53,12 +53,12 @@ public class RestClientTransport implements Transport {
 
     private final RestClient restClient;
     private final JsonpMapper mapper;
-    private final RequestOptions requestOptions;
+    private final TransportOptions transportOptions;
 
-    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable RequestOptions options) {
+    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable TransportOptions options) {
         this.restClient = restClient;
         this.mapper = mapper;
-        this.requestOptions = options == null ? RequestOptions.DEFAULT : options;
+        this.transportOptions = options == null ? TransportOptions.DEFAULT : options;
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
@@ -68,7 +68,7 @@ public class RestClientTransport implements Transport {
     /**
      * Creates a new {@link #RestClientTransport} with specific request options.
      */
-    public RestClientTransport withRequestOptions(@Nullable RequestOptions options) {
+    public RestClientTransport withRequestOptions(@Nullable TransportOptions options) {
         return new RestClientTransport(this.restClient, this.mapper, options);
     }
 
@@ -80,7 +80,7 @@ public class RestClientTransport implements Transport {
     @Override
     public Map<String, String> headers() {
         Map<String, String> headers = new HashMap<>();
-        requestOptions.headers().forEach(header -> {
+        transportOptions.headers().forEach(header -> {
             headers.put(header.name(), header.value());
         });
         return headers;
@@ -89,7 +89,7 @@ public class RestClientTransport implements Transport {
     @Override
     public Map<String, String> queryParameters() {
         Map<String, String> queryParameters = new HashMap<>();
-        requestOptions.queryParameters().forEach(parameter -> {
+        transportOptions.queryParameters().forEach(parameter -> {
             queryParameters.put(parameter.name(), parameter.value());
         });
         return queryParameters;
@@ -102,19 +102,21 @@ public class RestClientTransport implements Transport {
 
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
     ) throws IOException {
 
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint);
+        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
         org.elasticsearch.client.Response clientResp = restClient.performRequest(clientReq);
         return getHighLevelResponse(clientResp, endpoint);
     }
 
     public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
     ) {
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint);
+        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
 
         RequestFuture<ResponseT> future = new RequestFuture<>();
 
@@ -153,7 +155,9 @@ public class RestClientTransport implements Transport {
 
     private <RequestT> org.elasticsearch.client.Request prepareLowLevelRequest(
         RequestT request,
-        Endpoint<RequestT, ?, ?> endpoint) {
+        Endpoint<RequestT, ?, ?> endpoint,
+        @Nullable TransportOptions options
+    ) {
         String method = endpoint.method(request);
         String path = endpoint.requestUrl(request);
         Map<String, String> params = endpoint.queryParameters(request);
@@ -164,12 +168,6 @@ public class RestClientTransport implements Transport {
         queryParameters().forEach(optBuilder::addParameter);
         clientReq.addParameters(params);
         clientReq.setOptions(optBuilder.build());
-
-        // Request-type specific parameters.
-        if (request instanceof ElasticsearchCatRequest) {
-            // Format responses as json (default is plain text)
-            clientReq.addParameter("format", "json");
-        }
 
         if (endpoint.hasRequestBody()) {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
@@ -219,16 +217,21 @@ public class RestClientTransport implements Transport {
         if (endpoint.isError(statusCode)) {
             // API error
             ErrorT error = null;
-            JsonpDeserializer<ErrorT> errorParser = endpoint.errorParser(statusCode);
-            if (errorParser != null) {
-                // Expecting a body
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                clientResp.getEntity().writeTo(baos);
-                JsonParser parser = mapper.jsonProvider().createParser(new ByteArrayInputStream(baos.toByteArray()));
-                error = errorParser.deserialize(parser, mapper);
+            try {
+                JsonpDeserializer<ErrorT> errorParser = endpoint.errorParser(statusCode);
+                if (errorParser != null) {
+                    // Expecting a body
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    clientResp.getEntity().writeTo(baos);
+                    JsonParser parser = mapper.jsonProvider().createParser(new ByteArrayInputStream(baos.toByteArray()));
+                    error = errorParser.deserialize(parser, mapper);
+                }
+            } catch(Exception e) {
+                // Cannot decode error
+                throw new ResponseException(clientResp);
             }
 
-            // TODO: have the endpoint provide the exception contructor
+            // TODO: have the endpoint provide the exception constructor
             throw new ElasticsearchException((ErrorResponse) error);
 
         } else if (endpoint instanceof BooleanEndpoint) {

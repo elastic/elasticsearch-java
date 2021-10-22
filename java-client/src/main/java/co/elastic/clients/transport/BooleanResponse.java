@@ -17,41 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
-
-import java.util.Objects;
+package co.elastic.clients.transport;
 
 /**
- * A user-specified Opaque ID as used in the X-Opaque-ID header.
+ * An API response that has boolean value according to the HTTP status code.
+ * Typically status codes 1xx, 2xx and 3xx are "true" and 4xx is false.
  */
-public class OpaqueID implements ConvertibleToHeader {
+public class BooleanResponse {
+    private final boolean value;
 
-    private final Object value;
-
-    public OpaqueID(Object value) {
+    public BooleanResponse(boolean value) {
         this.value = value;
     }
 
-    public Object value() {
+    public boolean value() {
         return value;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OpaqueID)) return false;
-        OpaqueID opaqueID = (OpaqueID) o;
-        return Objects.equals(value, opaqueID.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public Header toHeader() {
-        return Header.raw("X-Opaque-ID", value);
-    }
-
 }

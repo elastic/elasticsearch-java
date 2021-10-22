@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import co.elastic.clients.json.JsonpDeserializer;
 

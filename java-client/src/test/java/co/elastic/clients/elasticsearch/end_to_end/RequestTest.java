@@ -19,11 +19,11 @@
 
 package co.elastic.clients.elasticsearch.end_to_end;
 
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.Header;
-import co.elastic.clients.base.RequestOptions;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.base.rest_client.RestClientTransport;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Header;
+import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
@@ -42,6 +42,7 @@ import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
+import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -159,7 +160,7 @@ public class RequestTest extends Assert {
         assertEquals("foo", esData.getMsg());
 
         // Search, adding some request options
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(
                         Header.raw("x-super-header", "bar"))
                 .build();
@@ -274,6 +275,25 @@ public class RequestTest extends Assert {
             assertEquals(404, ex.status());
             assertEquals("index_not_found_exception", ex.error().type());
         }
+    }
+
+    @Test
+    public void testSearchScroll() {
+        // https://github.com/elastic/elasticsearch-java/issues/36
+
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        assertThrows(ResponseException.class, () ->
+            client.clearScroll(b -> b.scrollId("DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAD4WYm9laVYtZndUQlNsdDcwakFMNjU1QQ=="))
+        );
+
+        assertThrows(ResponseException.class, () ->
+            client.closePointInTime(b -> b.id(
+            "46ToAwMDaWR5BXV1aWQyKwZub2RlXzMAAAAAAAAAACoBYwADaWR4BXV1aWQxAgZub2RlXzEAAAAAAAAAAAEBY" +
+                "QADaWR5BXV1aWQyKgZub2RlXzIAAAAAAAAAAAwBYgACBXV1aWQyAAAFdXVpZDEAAQltYXRjaF9hbGw_gAAAAA=="))
+        );
     }
 
     public static class AppData {

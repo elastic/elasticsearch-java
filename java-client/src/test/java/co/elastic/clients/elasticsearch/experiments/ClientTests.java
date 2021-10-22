@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments;
 
-import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.elasticsearch.experiments.api.Bar;
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
 import co.elastic.clients.elasticsearch.experiments.api.FooResponse;

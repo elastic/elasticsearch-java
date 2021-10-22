@@ -17,12 +17,31 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 /**
- * Marker interface for Elasticsearch standard requests that accept common parameters.
- *
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html">Documentation</a>
+ * Wraps a {@link MediaType} in the context of an HTTP
+ * <em>Content-Type</em> header.
  */
-public interface ElasticsearchCommonRequest {
+public class ContentType implements ConvertibleToHeader {
+
+    public static ContentType forMediaType(MediaType mediaType) {
+        return new ContentType(mediaType);
+    }
+
+    private final MediaType mediaType;
+
+    private ContentType(MediaType mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public MediaType mediaType() {
+        return mediaType;
+    }
+
+    @Override
+    public Header toHeader() {
+        return Header.raw("Content-Type", mediaType);
+    }
+
 }

@@ -17,7 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
+
+import co.elastic.clients.ApiClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +44,7 @@ public class ClientMetadata implements ConvertibleToHeader {
      * Location of the properties file containing project
      * version metadata.
      */
-    private static final String VERSION_PROPERTIES = "/co.elastic.clients.elasticsearch/version.properties";
+    private static final String VERSION_PROPERTIES = "version.properties";
 
     /**
      * Empty static instance of {@link ClientMetadata} used to
@@ -62,7 +64,6 @@ public class ClientMetadata implements ConvertibleToHeader {
         Version clientVersion = getClientVersion();
         return new Builder()
                 .withClientVersion(clientVersion)
-                .withJavaVersion(getJavaVersion())
                 .withTransportVersion(clientVersion)
                 .build();
     }
@@ -74,22 +75,15 @@ public class ClientMetadata implements ConvertibleToHeader {
     public static class Builder {
 
         private Version clientVersion;
-        private Version javaVersion;
         private Version transportVersion;
 
         public Builder() {
             clientVersion = null;
-            javaVersion = null;
             transportVersion = null;
         }
 
         public Builder withClientVersion(Version version) {
             clientVersion = version;
-            return this;
-        }
-
-        public Builder withJavaVersion(Version version) {
-            javaVersion = version;
             return this;
         }
 
@@ -101,14 +95,12 @@ public class ClientMetadata implements ConvertibleToHeader {
         public ClientMetadata build() {
             return new ClientMetadata(
                     clientVersion,
-                    javaVersion,
                     transportVersion);
         }
 
     }
 
     private final Version clientVersion;
-    private final Version javaVersion;
     private final Version transportVersion;
 
     /**
@@ -117,21 +109,14 @@ public class ClientMetadata implements ConvertibleToHeader {
      * the {@link #forLocalSystem()} method.
      *
      * @param clientVersion {@link Version} of the client
-     * @param javaVersion {@link Version} of the Java platform
      * @param transportVersion {@link Version} of {@link Transport}
      */
-    private ClientMetadata(Version clientVersion, Version javaVersion, Version transportVersion) {
+    private ClientMetadata(Version clientVersion, Version transportVersion) {
         if (clientVersion == null) {
             throw new IllegalArgumentException("Client version may not be omitted from client metadata");
         }
         else {
             this.clientVersion = clientVersion;
-        }
-        if (javaVersion == null) {
-            throw new IllegalArgumentException("Java version may not be omitted from client metadata");
-        }
-        else {
-            this.javaVersion = javaVersion;
         }
         if (transportVersion == null) {
             throw new IllegalArgumentException("Transport version may not be omitted from client metadata");
@@ -146,7 +131,6 @@ public class ClientMetadata implements ConvertibleToHeader {
      */
     private ClientMetadata() {
         this.clientVersion = null;
-        this.javaVersion = null;
         this.transportVersion = null;
     }
 
@@ -157,15 +141,6 @@ public class ClientMetadata implements ConvertibleToHeader {
      */
     public Version clientVersion() {
         return clientVersion;
-    }
-
-    /**
-     * {@link Version} of the Java platform represented by this metadata.
-     *
-     * @return Java platform {@link Version}
-     */
-    public Version javaVersion() {
-        return javaVersion;
     }
 
     /**
@@ -193,8 +168,9 @@ public class ClientMetadata implements ConvertibleToHeader {
         if (clientVersion != null) {
             bits.add("es=" + clientVersion);
         }
-        if (javaVersion != null) {
-            bits.add("jv=" + javaVersion);
+        if (clientVersion != null && transportVersion != null) {
+            // Only include it if it's not the empty header
+            bits.add("jv=" + System.getProperty("java.specification.version"));
         }
         if (transportVersion != null) {
             bits.add("t=" + transportVersion);
@@ -226,16 +202,6 @@ public class ClientMetadata implements ConvertibleToHeader {
         else {
             return Header.raw("X-Elastic-Client-Meta", this);
         }
-    }
-
-    /**
-     * Fetch and return Java version information as a
-     * {@link Version} object.
-     *
-     * @return Java {@link Version}
-     */
-    public static Version getJavaVersion() {
-        return Version.parse(System.getProperty("java.version"));
     }
 
     /**

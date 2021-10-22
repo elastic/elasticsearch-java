@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import org.junit.Test;
 
@@ -26,6 +26,8 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 public class ClientMetadataTest {
+
+    private static final String JV = System.getProperty("java.specification.version");
 
     @Test
     public void testMetadataForLocalSystem() {
@@ -48,27 +50,15 @@ public class ClientMetadataTest {
     public void testCustomMetadata() {
         ClientMetadata metadata = new ClientMetadata.Builder()
                 .withClientVersion(Version.parse("12.3.4"))
-                .withJavaVersion(Version.parse("1.4.2"))
                 .withTransportVersion(Version.parse("6.7"))
                 .build();
-        assertEquals("es=12.3.4,jv=1.4.2,t=6.7", metadata.toString());
+        assertEquals("es=12.3.4,jv="+JV+",t=6.7", metadata.toString());
     }
 
     @Test
     public void testClientVersionIsMandatory() {
         assertThrows(IllegalArgumentException.class, () -> {
             new ClientMetadata.Builder()
-                    .withJavaVersion(Version.parse("1.4.2"))
-                    .withTransportVersion(Version.parse("6.7"))
-                    .build();
-        });
-    }
-
-    @Test
-    public void testJavaVersionIsMandatory() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new ClientMetadata.Builder()
-                    .withClientVersion(Version.parse("12.3.4"))
                     .withTransportVersion(Version.parse("6.7"))
                     .build();
         });
@@ -79,7 +69,6 @@ public class ClientMetadataTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new ClientMetadata.Builder()
                     .withClientVersion(Version.parse("12.3.4"))
-                    .withJavaVersion(Version.parse("1.4.2"))
                     .build();
         });
     }

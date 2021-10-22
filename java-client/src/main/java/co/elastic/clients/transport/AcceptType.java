@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 /**
  * Wraps a {@link MediaType} in the context of an HTTP

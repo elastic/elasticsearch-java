@@ -17,10 +17,12 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.json.JsonpMapper;
 
+import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Map;
@@ -33,18 +35,20 @@ public interface Transport extends Closeable {
 
     <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
     ) throws IOException;
 
     <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
     );
 
     JsonpMapper jsonpMapper();
 
     /**
-     * Get a map of key-value pairs representing the base headers
+     * Get a map of key-value pairs representing the transport headers
      * used by all requests going via this transport.
      *
      * @return Map of header key-value pairs
@@ -52,7 +56,7 @@ public interface Transport extends Closeable {
     Map<String, String> headers();
 
     /**
-     * Get a map of key-value pairs representing the base query
+     * Get a map of key-value pairs representing the transport query
      * parameters used by all requests going via this transport.
      *
      * @return Map of query parameter key-value pairs

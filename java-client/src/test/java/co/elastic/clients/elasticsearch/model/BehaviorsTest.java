@@ -19,16 +19,12 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.base.ElasticsearchCatRequest;
-import co.elastic.clients.base.ElasticsearchCommonRequest;
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch._types.ShapeRelation;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
-import co.elastic.clients.elasticsearch.cat.ShardsRequest;
 import co.elastic.clients.json.JsonData;
 import org.junit.Test;
 
@@ -105,11 +101,5 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals("some-field", q.term().field());
         assertEquals("some-value", q.term().value());
-    }
-
-    @Test
-    public void testRequestMarkers() {
-        assertTrue(ElasticsearchCommonRequest.class.isAssignableFrom(IndexRequest.class));
-        assertTrue(ElasticsearchCatRequest.class.isAssignableFrom(ShardsRequest.class));
     }
 }

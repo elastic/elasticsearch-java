@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch._types.query_dsl.SpanGapQuery;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
@@ -59,21 +58,5 @@ public class BuiltinTypesTest extends ModelTestCase {
 
         assertEquals("a-field", q.field());
         assertEquals(12, q.spanWidth());
-    }
-
-    @Test
-    public void testErrorResponse() {
-        String json = "{\"error\":{\"root_cause\":[{\"type\":\"index_not_found_exception\",\"reason\":\"no such index [doesnotexist]\"," +
-            "\"resource.type\":\"index_expression\",\"resource.id\":\"doesnotexist\",\"index_uuid\":\"_na_\"," +
-            "\"index\":\"doesnotexist\"}],\"type\":\"index_not_found_exception\",\"reason\":\"no such index [doesnotexist]\",\"resource" +
-            ".type\":\"index_expression\",\"resource.id\":\"doesnotexist\",\"index_uuid\":\"_na_\",\"index\":\"doesnotexist\"}," +
-            "\"status\":404}";
-
-        System.out.println(json);
-
-        ElasticsearchError error = fromJson(json, ElasticsearchError.class);
-
-        assertEquals(404, error.status());
-        assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
     }
 }

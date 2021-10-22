@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import org.junit.Test;
 
@@ -33,7 +33,7 @@ public class RequestOptionsTest {
 
     @Test
     public void testDefaultHeadersContainsClientMetadata() {
-        RequestOptions options = RequestOptions.DEFAULT;
+        TransportOptions options = TransportOptions.DEFAULT;
         List<Header> clientMetadataHeaders = options.headers().stream().filter(header ->
                 header.name().equalsIgnoreCase("X-Elastic-Client-Meta")).collect(Collectors.toList());
         assertEquals(1, clientMetadataHeaders.size());
@@ -46,7 +46,7 @@ public class RequestOptionsTest {
 
     @Test
     public void testCanDisableClientMetadata() {
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(ClientMetadata.EMPTY.toHeader())
                 .build();
         List<Header> clientMetadataHeaders = options.headers().stream().filter(header ->
@@ -56,7 +56,7 @@ public class RequestOptionsTest {
 
     @Test
     public void testDisabledClientMetadataIsPropagatedThroughBuilder() {
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(ClientMetadata.EMPTY.toHeader())
                 .build();
         List<Header> clientMetadataHeaders = options.toBuilder().headers().stream().filter(header ->
@@ -66,7 +66,7 @@ public class RequestOptionsTest {
 
     @Test
     public void testCanReEnableClientMetadata() {
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(ClientMetadata.EMPTY.toHeader())
                 .withHeader(ClientMetadata.forLocalSystem().toHeader())
                 .build();
@@ -77,7 +77,7 @@ public class RequestOptionsTest {
 
     @Test
     public void testDefaultHeadersContainsUserAgent() {
-        RequestOptions options = RequestOptions.DEFAULT;
+        TransportOptions options = TransportOptions.DEFAULT;
         Collection<Header> headers = options.headers();
         assertTrue(headers.contains(Header.raw("User-Agent", UserAgent.DEFAULT)));
     }
@@ -85,7 +85,7 @@ public class RequestOptionsTest {
     @Test
     public void testCustomUserAgent() {
         UserAgent userAgent = new UserAgent("MegaClient", "1.2.3");
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(userAgent.toHeader())
                 .build();
         Collection<Header> headers = options.headers();
@@ -96,7 +96,7 @@ public class RequestOptionsTest {
     public void testCustomUserAgentWithMetadata() {
         UserAgent userAgent = new UserAgent("MegaClient", "1.2.3",
                 Collections.singletonMap("AmigaOS", "4.1"));
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(userAgent.toHeader())
                 .build();
         Collection<Header> headers = options.headers();
@@ -106,7 +106,7 @@ public class RequestOptionsTest {
     @Test
     public void testCustomHeader() {
         Header customHeader = Header.raw("X-Files", "Mulder, Scully");
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(customHeader)
                 .build();
         Collection<Header> headers = options.headers();
@@ -116,7 +116,7 @@ public class RequestOptionsTest {
     @Test
     public void testOpaqueID() {
         Header idHeader = new OpaqueID("ABC123").toHeader();
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(idHeader)
                 .build();
         Collection<Header> headers = options.headers();
@@ -126,7 +126,7 @@ public class RequestOptionsTest {
     @Test
     public void testNullOpaqueIDShouldDisableHeader() {
         Header idHeader = new OpaqueID(null).toHeader();
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withHeader(idHeader)
                 .build();
         List<Header> idHeaders = options.headers().stream().filter(header ->
@@ -137,7 +137,7 @@ public class RequestOptionsTest {
     @Test
     public void testQueryParameter() {
         QueryParameter prettyPrint = QueryParameter.raw("format", "pretty");
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withQueryParameter(prettyPrint)
                 .build();
         List<QueryParameter> formatParameters = options.queryParameters().stream().filter(header ->
@@ -149,7 +149,7 @@ public class RequestOptionsTest {
     @Test
     public void testNullQueryParameter() {
         QueryParameter nullFormat = QueryParameter.raw("format", null);
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withQueryParameter(nullFormat)
                 .build();
         List<QueryParameter> formatParameters = options.queryParameters().stream().filter(header ->
@@ -160,7 +160,7 @@ public class RequestOptionsTest {
     @Test
     public void testBuilderContainsNullQueryParameter() {
         QueryParameter nullFormat = QueryParameter.raw("format", null);
-        RequestOptions options = RequestOptions.DEFAULT.toBuilder()
+        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
                 .withQueryParameter(nullFormat)
                 .build();
         List<QueryParameter> formatParameters = options.toBuilder().queryParameters().stream().filter(header ->

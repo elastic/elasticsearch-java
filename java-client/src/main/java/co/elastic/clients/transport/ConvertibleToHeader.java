@@ -17,20 +17,19 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 /**
- * An API response that has boolean value according to the HTTP status code.
- * Typically status codes 1xx, 2xx and 3xx are "true" and 4xx is false.
+ * Interface implemented by any classes whose instances
+ * can represent an HTTP header value, such as {@link UserAgent}.
  */
-public class BooleanResponse {
-    private final boolean value;
+public interface ConvertibleToHeader {
 
-    public BooleanResponse(boolean value) {
-        this.value = value;
-    }
+    /**
+     * Convert this object into an HTTP header.
+     *
+     * @return {@link Header} instance
+     */
+    Header toHeader();
 
-    public boolean value() {
-        return value;
-    }
 }

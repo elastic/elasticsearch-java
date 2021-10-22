@@ -17,30 +17,33 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapperBase;
 
-public abstract class ApiClient {
+import java.util.Map;
+import java.util.function.Function;
 
-    protected final Transport transport;
+public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse> {
 
-    protected ApiClient(Transport transport) {
-        this.transport = transport;
+    public BooleanEndpoint(
+        Function<RequestT, String> method,
+        Function<RequestT, String> requestUrl,
+        Function<RequestT,
+            Map<String, String>> queryParameters,
+        Function<RequestT, Map<String, String>> headers,
+        boolean hasRequestBody, // always true
+        JsonpDeserializer<BooleanResponse> responseParser // always null
+    ) {
+        super(method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
     }
 
-    protected <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
-        // Try the built-in deserializers first to avoid repeated lookups in the Jsonp mapper for client-defined classes
-        JsonpDeserializer<T> result = JsonpMapperBase.findDeserializer(clazz);
-        if (result != null) {
-            return result;
-        }
-
-        return JsonpDeserializer.of(clazz);
+    @Override
+    public boolean isError(int statusCode) {
+        return statusCode >= 500;
     }
 
-    public Transport _transport() {
-        return this.transport;
+    public boolean getResult(int statusCode) {
+        return statusCode < 400;
     }
 }
