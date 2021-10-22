@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.migration;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the migration namespace.
  */
-public class ElasticsearchMigrationAsyncClient extends ApiClient {
+public class ElasticsearchMigrationAsyncClient extends ApiClient<ElasticsearchMigrationAsyncClient> {
 
 	public ElasticsearchMigrationAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchMigrationAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMigrationAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMigrationAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: migration.deprecations
@@ -55,7 +65,7 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeprecationsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeprecationsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -89,7 +99,7 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeprecationsResponse> deprecations() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new DeprecationsRequest.Builder().build(),
-				DeprecationsRequest.ENDPOINT);
+				DeprecationsRequest.ENDPOINT, this.transportOptions);
 	}
 
 }

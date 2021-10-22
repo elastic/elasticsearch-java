@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ssl;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ssl namespace.
  */
-public class ElasticsearchSslClient extends ApiClient {
+public class ElasticsearchSslClient extends ApiClient<ElasticsearchSslClient> {
 
 	public ElasticsearchSslClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSslClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSslClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSslClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ssl.certificates
@@ -51,7 +61,8 @@ public class ElasticsearchSslClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CertificatesResponse certificates() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(CertificatesRequest._INSTANCE, CertificatesRequest.ENDPOINT);
+		return this.transport.performRequest(CertificatesRequest._INSTANCE, CertificatesRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

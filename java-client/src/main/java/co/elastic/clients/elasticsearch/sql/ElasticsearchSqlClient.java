@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the sql namespace.
  */
-public class ElasticsearchSqlClient extends ApiClient {
+public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 
 	public ElasticsearchSqlClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSqlClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSqlClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSqlClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: sql.clear_cursor
@@ -51,7 +61,7 @@ public class ElasticsearchSqlClient extends ApiClient {
 	 */
 
 	public ClearCursorResponse clearCursor(ClearCursorRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCursorRequest.ENDPOINT);
+		return this.transport.performRequest(request, ClearCursorRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -82,7 +92,7 @@ public class ElasticsearchSqlClient extends ApiClient {
 	 */
 
 	public QueryResponse query(QueryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, QueryRequest.ENDPOINT);
+		return this.transport.performRequest(request, QueryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -110,7 +120,8 @@ public class ElasticsearchSqlClient extends ApiClient {
 	 */
 
 	public QueryResponse query() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT);
+		return this.transport.performRequest(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: sql.translate
@@ -124,7 +135,7 @@ public class ElasticsearchSqlClient extends ApiClient {
 	 */
 
 	public TranslateResponse translate(TranslateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, TranslateRequest.ENDPOINT);
+		return this.transport.performRequest(request, TranslateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

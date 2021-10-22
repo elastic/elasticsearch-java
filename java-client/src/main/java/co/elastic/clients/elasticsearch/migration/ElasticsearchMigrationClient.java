@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.migration;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the migration namespace.
  */
-public class ElasticsearchMigrationClient extends ApiClient {
+public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchMigrationClient> {
 
 	public ElasticsearchMigrationClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchMigrationClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMigrationClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMigrationClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: migration.deprecations
@@ -53,7 +63,7 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 */
 
 	public DeprecationsResponse deprecations(DeprecationsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeprecationsRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeprecationsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -86,7 +96,8 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 */
 
 	public DeprecationsResponse deprecations() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new DeprecationsRequest.Builder().build(), DeprecationsRequest.ENDPOINT);
+		return this.transport.performRequest(new DeprecationsRequest.Builder().build(), DeprecationsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

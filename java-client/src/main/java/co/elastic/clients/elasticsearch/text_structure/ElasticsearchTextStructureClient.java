@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.text_structure;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the text_structure namespace.
  */
-public class ElasticsearchTextStructureClient extends ApiClient {
+public class ElasticsearchTextStructureClient extends ApiClient<ElasticsearchTextStructureClient> {
 
 	public ElasticsearchTextStructureClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchTextStructureClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchTextStructureClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchTextStructureClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: text_structure.find_structure
@@ -53,7 +63,7 @@ public class ElasticsearchTextStructureClient extends ApiClient {
 
 	public <TJsonDocument> FindStructureResponse findStructure(FindStructureRequest<TJsonDocument> request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FindStructureRequest.ENDPOINT);
+		return this.transport.performRequest(request, FindStructureRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

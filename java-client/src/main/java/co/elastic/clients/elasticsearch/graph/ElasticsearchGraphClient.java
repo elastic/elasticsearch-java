@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the graph namespace.
  */
-public class ElasticsearchGraphClient extends ApiClient {
+public class ElasticsearchGraphClient extends ApiClient<ElasticsearchGraphClient> {
 
 	public ElasticsearchGraphClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchGraphClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchGraphClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchGraphClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: graph.explore
@@ -52,7 +62,7 @@ public class ElasticsearchGraphClient extends ApiClient {
 	 */
 
 	public ExploreResponse explore(ExploreRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExploreRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExploreRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

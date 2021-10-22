@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,23 @@ import javax.annotation.Nullable;
 /**
  * Client for the searchable_snapshots namespace.
  */
-public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
+public class ElasticsearchSearchableSnapshotsAsyncClient
+		extends
+			ApiClient<ElasticsearchSearchableSnapshotsAsyncClient> {
 
 	public ElasticsearchSearchableSnapshotsAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSearchableSnapshotsAsyncClient(Transport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSearchableSnapshotsAsyncClient withTransportOptions(
+			@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSearchableSnapshotsAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: searchable_snapshots.clear_cache
@@ -53,7 +67,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 
 	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCacheRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ClearCacheRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -82,7 +96,8 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: searchable_snapshots.mount
@@ -96,7 +111,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<MountResponse> mount(MountRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, MountRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, MountRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -127,7 +142,8 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 
 	public CompletableFuture<SearchableSnapshotsStatsResponse> stats(SearchableSnapshotsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, SearchableSnapshotsStatsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, SearchableSnapshotsStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -157,7 +173,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient extends ApiClient {
 
 	public CompletableFuture<SearchableSnapshotsStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new SearchableSnapshotsStatsRequest.Builder().build(),
-				SearchableSnapshotsStatsRequest.ENDPOINT);
+				SearchableSnapshotsStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 }

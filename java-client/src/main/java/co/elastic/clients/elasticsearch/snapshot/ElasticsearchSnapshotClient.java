@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the snapshot namespace.
  */
-public class ElasticsearchSnapshotClient extends ApiClient {
+public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshotClient> {
 
 	public ElasticsearchSnapshotClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSnapshotClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSnapshotClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSnapshotClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.cleanup_repository
@@ -52,7 +62,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 
 	public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CleanupRepositoryRequest.ENDPOINT);
+		return this.transport.performRequest(request, CleanupRepositoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -84,7 +94,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CloneSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, CloneSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -116,7 +126,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public CreateSnapshotResponse create(CreateSnapshotRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, CreateSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -148,7 +158,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 
 	public CreateRepositoryResponse createRepository(CreateRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateRepositoryRequest.ENDPOINT);
+		return this.transport.performRequest(request, CreateRepositoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -179,7 +189,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -211,7 +221,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 
 	public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteRepositoryRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteRepositoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -242,7 +252,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -273,7 +283,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 
 	public GetRepositoryResponse getRepository(GetRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRepositoryRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetRepositoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -302,7 +312,8 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public GetRepositoryResponse getRepository() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetRepositoryRequest.Builder().build(), GetRepositoryRequest.ENDPOINT);
+		return this.transport.performRequest(new GetRepositoryRequest.Builder().build(), GetRepositoryRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.restore
@@ -316,7 +327,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public RestoreResponse restore(RestoreRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RestoreRequest.ENDPOINT);
+		return this.transport.performRequest(request, RestoreRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -346,7 +357,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public StatusResponse status(StatusRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StatusRequest.ENDPOINT);
+		return this.transport.performRequest(request, StatusRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -374,7 +385,8 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 */
 
 	public StatusResponse status() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StatusRequest.Builder().build(), StatusRequest.ENDPOINT);
+		return this.transport.performRequest(new StatusRequest.Builder().build(), StatusRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.verify_repository
@@ -389,7 +401,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 
 	public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, VerifyRepositoryRequest.ENDPOINT);
+		return this.transport.performRequest(request, VerifyRepositoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

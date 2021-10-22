@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ccr namespace.
  */
-public class ElasticsearchCcrAsyncClient extends ApiClient {
+public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsyncClient> {
 
 	public ElasticsearchCcrAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchCcrAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchCcrAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchCcrAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ccr.delete_auto_follow_pattern
@@ -53,7 +63,8 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteAutoFollowPatternResponse> deleteAutoFollowPattern(
 			DeleteAutoFollowPatternRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteAutoFollowPatternRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteAutoFollowPatternRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -85,7 +96,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<FollowResponse> follow(FollowRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, FollowRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, FollowRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -119,7 +130,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<FollowInfoResponse> followInfo(FollowInfoRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, FollowInfoRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, FollowInfoRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -153,7 +164,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<FollowStatsResponse> followStats(FollowStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, FollowStatsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, FollowStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -186,7 +197,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<ForgetFollowerResponse> forgetFollower(ForgetFollowerRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ForgetFollowerRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ForgetFollowerRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -219,7 +230,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern(GetAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetAutoFollowPatternRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -252,7 +263,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 	public CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern()
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetAutoFollowPatternRequest.Builder().build(),
-				GetAutoFollowPatternRequest.ENDPOINT);
+				GetAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ccr.pause_auto_follow_pattern
@@ -267,7 +278,8 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<PauseAutoFollowPatternResponse> pauseAutoFollowPattern(
 			PauseAutoFollowPatternRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PauseAutoFollowPatternRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PauseAutoFollowPatternRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -300,7 +312,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<PauseFollowResponse> pauseFollow(PauseFollowRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PauseFollowRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PauseFollowRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -335,7 +347,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutAutoFollowPatternResponse> putAutoFollowPattern(PutAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutAutoFollowPatternRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -369,7 +381,8 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<ResumeAutoFollowPatternResponse> resumeAutoFollowPattern(
 			ResumeAutoFollowPatternRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ResumeAutoFollowPatternRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ResumeAutoFollowPatternRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -401,7 +414,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<ResumeFollowResponse> resumeFollow(ResumeFollowRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ResumeFollowRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ResumeFollowRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -431,7 +444,8 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<CcrStatsResponse> stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ccr.unfollow
@@ -447,7 +461,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient {
 
 	public CompletableFuture<UnfollowResponse> unfollow(UnfollowRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, UnfollowRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, UnfollowRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the enrich namespace.
  */
-public class ElasticsearchEnrichClient extends ApiClient {
+public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClient> {
 
 	public ElasticsearchEnrichClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchEnrichClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchEnrichClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchEnrichClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: enrich.delete_policy
@@ -51,7 +61,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 */
 
 	public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeletePolicyRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeletePolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -83,7 +93,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 
 	public ExecutePolicyResponse executePolicy(ExecutePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExecutePolicyRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExecutePolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -114,7 +124,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 */
 
 	public GetPolicyResponse getPolicy(GetPolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetPolicyRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetPolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -142,7 +152,8 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 */
 
 	public GetPolicyResponse getPolicy() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT);
+		return this.transport.performRequest(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: enrich.put_policy
@@ -156,7 +167,7 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 */
 
 	public PutPolicyResponse putPolicy(PutPolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutPolicyRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutPolicyRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -186,7 +197,8 @@ public class ElasticsearchEnrichClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public EnrichStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT);
+		return this.transport.performRequest(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

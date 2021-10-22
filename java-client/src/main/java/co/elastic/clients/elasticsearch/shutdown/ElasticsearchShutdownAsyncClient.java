@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.shutdown;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the shutdown namespace.
  */
-public class ElasticsearchShutdownAsyncClient extends ApiClient {
+public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShutdownAsyncClient> {
 
 	public ElasticsearchShutdownAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchShutdownAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchShutdownAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.delete_node
@@ -54,7 +64,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteNodeRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -89,7 +99,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetNodeRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -122,7 +132,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.put_node
@@ -138,7 +149,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutNodeRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

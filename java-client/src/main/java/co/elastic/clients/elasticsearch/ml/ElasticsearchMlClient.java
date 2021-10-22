@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -34,10 +35,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ml namespace.
  */
-public class ElasticsearchMlClient extends ApiClient {
+public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public ElasticsearchMlClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchMlClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMlClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMlClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ml.close_job
@@ -52,7 +62,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public CloseJobResponse closeJob(CloseJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CloseJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, CloseJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -84,7 +94,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteCalendarResponse deleteCalendar(DeleteCalendarRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteCalendarRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteCalendarRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -116,7 +126,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteCalendarEventResponse deleteCalendarEvent(DeleteCalendarEventRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteCalendarEventRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteCalendarEventRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -148,7 +158,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteCalendarJobResponse deleteCalendarJob(DeleteCalendarJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteCalendarJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteCalendarJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -180,7 +190,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteDataFrameAnalyticsResponse deleteDataFrameAnalytics(DeleteDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -212,7 +222,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteDatafeedResponse deleteDatafeed(DeleteDatafeedRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteDatafeedRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteDatafeedRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -243,7 +253,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public DeleteFilterResponse deleteFilter(DeleteFilterRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteFilterRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteFilterRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -275,7 +285,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteForecastResponse deleteForecast(DeleteForecastRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteForecastRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteForecastRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -306,7 +316,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -337,7 +347,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteModelSnapshotResponse deleteModelSnapshot(DeleteModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteModelSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteModelSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -370,7 +380,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteTrainedModelResponse deleteTrainedModel(DeleteTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteTrainedModelRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteTrainedModelRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -403,7 +413,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public DeleteTrainedModelAliasResponse deleteTrainedModelAlias(DeleteTrainedModelAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteTrainedModelAliasRequest.ENDPOINT);
+		return this.transport.performRequest(request, DeleteTrainedModelAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -435,7 +445,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public EstimateModelMemoryResponse estimateModelMemory(EstimateModelMemoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EstimateModelMemoryRequest.ENDPOINT);
+		return this.transport.performRequest(request, EstimateModelMemoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -465,7 +475,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public EstimateModelMemoryResponse estimateModelMemory() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new EstimateModelMemoryRequest.Builder().build(),
-				EstimateModelMemoryRequest.ENDPOINT);
+				EstimateModelMemoryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.evaluate_data_frame
@@ -480,7 +490,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public EvaluateDataFrameResponse evaluateDataFrame(EvaluateDataFrameRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EvaluateDataFrameRequest.ENDPOINT);
+		return this.transport.performRequest(request, EvaluateDataFrameRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -512,7 +522,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public ExplainDataFrameAnalyticsResponse explainDataFrameAnalytics(ExplainDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExplainDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, ExplainDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -543,7 +553,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public FlushJobResponse flushJob(FlushJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FlushJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, FlushJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -574,7 +584,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public ForecastResponse forecast(ForecastRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ForecastRequest.ENDPOINT);
+		return this.transport.performRequest(request, ForecastRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -605,7 +615,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetBucketsResponse getBuckets(GetBucketsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetBucketsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetBucketsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -636,7 +646,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetCalendarEventsResponse getCalendarEvents(GetCalendarEventsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetCalendarEventsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetCalendarEventsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -667,7 +677,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetCalendarsResponse getCalendars(GetCalendarsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetCalendarsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetCalendarsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -696,7 +706,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetCalendarsResponse getCalendars() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetCalendarsRequest.Builder().build(), GetCalendarsRequest.ENDPOINT);
+		return this.transport.performRequest(new GetCalendarsRequest.Builder().build(), GetCalendarsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_categories
@@ -711,7 +722,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetCategoriesResponse getCategories(GetCategoriesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetCategoriesRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetCategoriesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -743,7 +754,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetDataFrameAnalyticsResponse getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -773,7 +784,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetDataFrameAnalyticsResponse getDataFrameAnalytics() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataFrameAnalyticsRequest.Builder().build(),
-				GetDataFrameAnalyticsRequest.ENDPOINT);
+				GetDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_data_frame_analytics_stats
@@ -788,7 +799,8 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats(GetDataFrameAnalyticsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDataFrameAnalyticsStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetDataFrameAnalyticsStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -818,7 +830,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataFrameAnalyticsStatsRequest.Builder().build(),
-				GetDataFrameAnalyticsStatsRequest.ENDPOINT);
+				GetDataFrameAnalyticsStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_datafeed_stats
@@ -833,7 +845,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetDatafeedStatsResponse getDatafeedStats(GetDatafeedStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDatafeedStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetDatafeedStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -863,7 +875,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetDatafeedStatsResponse getDatafeedStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDatafeedStatsRequest.Builder().build(),
-				GetDatafeedStatsRequest.ENDPOINT);
+				GetDatafeedStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_datafeeds
@@ -877,7 +889,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetDatafeedsResponse getDatafeeds(GetDatafeedsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDatafeedsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetDatafeedsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -906,7 +918,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetDatafeedsResponse getDatafeeds() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetDatafeedsRequest.Builder().build(), GetDatafeedsRequest.ENDPOINT);
+		return this.transport.performRequest(new GetDatafeedsRequest.Builder().build(), GetDatafeedsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_filters
@@ -920,7 +933,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetFiltersResponse getFilters(GetFiltersRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetFiltersRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetFiltersRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -948,7 +961,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetFiltersResponse getFilters() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetFiltersRequest.Builder().build(), GetFiltersRequest.ENDPOINT);
+		return this.transport.performRequest(new GetFiltersRequest.Builder().build(), GetFiltersRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_influencers
@@ -963,7 +977,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetInfluencersResponse getInfluencers(GetInfluencersRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetInfluencersRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetInfluencersRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -994,7 +1008,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetJobStatsResponse getJobStats(GetJobStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetJobStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetJobStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1023,7 +1037,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetJobStatsResponse getJobStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetJobStatsRequest.Builder().build(), GetJobStatsRequest.ENDPOINT);
+		return this.transport.performRequest(new GetJobStatsRequest.Builder().build(), GetJobStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_jobs
@@ -1037,7 +1052,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetJobsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetJobsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1065,7 +1080,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetJobsResponse getJobs() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT);
+		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_model_snapshots
@@ -1080,7 +1096,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetModelSnapshotsResponse getModelSnapshots(GetModelSnapshotsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetModelSnapshotsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetModelSnapshotsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1113,7 +1129,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetOverallBucketsResponse getOverallBuckets(GetOverallBucketsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetOverallBucketsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetOverallBucketsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1145,7 +1161,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public GetRecordsResponse getRecords(GetRecordsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRecordsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetRecordsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1176,7 +1192,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetTrainedModelsResponse getTrainedModels(GetTrainedModelsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTrainedModelsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetTrainedModelsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1206,7 +1222,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetTrainedModelsResponse getTrainedModels() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTrainedModelsRequest.Builder().build(),
-				GetTrainedModelsRequest.ENDPOINT);
+				GetTrainedModelsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_trained_models_stats
@@ -1221,7 +1237,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetTrainedModelsStatsResponse getTrainedModelsStats(GetTrainedModelsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTrainedModelsStatsRequest.ENDPOINT);
+		return this.transport.performRequest(request, GetTrainedModelsStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1251,7 +1267,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public GetTrainedModelsStatsResponse getTrainedModelsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTrainedModelsStatsRequest.Builder().build(),
-				GetTrainedModelsStatsRequest.ENDPOINT);
+				GetTrainedModelsStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.info
@@ -1264,7 +1280,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public MlInfoResponse info() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(MlInfoRequest._INSTANCE, MlInfoRequest.ENDPOINT);
+		return this.transport.performRequest(MlInfoRequest._INSTANCE, MlInfoRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.open_job
@@ -1278,7 +1294,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public OpenJobResponse openJob(OpenJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, OpenJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, OpenJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1309,7 +1325,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PostCalendarEventsResponse postCalendarEvents(PostCalendarEventsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostCalendarEventsRequest.ENDPOINT);
+		return this.transport.performRequest(request, PostCalendarEventsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1341,7 +1357,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public <TData> PostDataResponse postData(PostDataRequest<TData> request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostDataRequest.ENDPOINT);
+		return this.transport.performRequest(request, PostDataRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1373,7 +1389,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics(PreviewDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PreviewDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, PreviewDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1403,7 +1419,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PreviewDataFrameAnalyticsRequest.Builder().build(),
-				PreviewDataFrameAnalyticsRequest.ENDPOINT);
+				PreviewDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.preview_datafeed
@@ -1419,7 +1435,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	public <TDocument> PreviewDatafeedResponse<TDocument> previewDatafeed(PreviewDatafeedRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequest(request,
-				PreviewDatafeedRequest.createPreviewDatafeedEndpoint(getDeserializer(tDocumentClass)));
+				PreviewDatafeedRequest.createPreviewDatafeedEndpoint(getDeserializer(tDocumentClass)),
+				this.transportOptions);
 	}
 
 	/**
@@ -1450,7 +1467,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public PutCalendarResponse putCalendar(PutCalendarRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutCalendarRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutCalendarRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1482,7 +1499,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PutCalendarJobResponse putCalendarJob(PutCalendarJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutCalendarJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutCalendarJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1514,7 +1531,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PutDataFrameAnalyticsResponse putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1545,7 +1562,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public PutDatafeedResponse putDatafeed(PutDatafeedRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutDatafeedRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutDatafeedRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1576,7 +1593,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public PutFilterResponse putFilter(PutFilterRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutFilterRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutFilterRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1606,7 +1623,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public PutJobResponse putJob(PutJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1637,7 +1654,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PutTrainedModelResponse putTrainedModel(PutTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutTrainedModelRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutTrainedModelRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1670,7 +1687,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public PutTrainedModelAliasResponse putTrainedModelAlias(PutTrainedModelAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutTrainedModelAliasRequest.ENDPOINT);
+		return this.transport.performRequest(request, PutTrainedModelAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1702,7 +1719,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public ResetJobResponse resetJob(ResetJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ResetJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, ResetJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1733,7 +1750,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public RevertModelSnapshotResponse revertModelSnapshot(RevertModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RevertModelSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, RevertModelSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1766,7 +1783,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public SetUpgradeModeResponse setUpgradeMode(SetUpgradeModeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SetUpgradeModeRequest.ENDPOINT);
+		return this.transport.performRequest(request, SetUpgradeModeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1798,7 +1815,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public SetUpgradeModeResponse setUpgradeMode() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SetUpgradeModeRequest.Builder().build(),
-				SetUpgradeModeRequest.ENDPOINT);
+				SetUpgradeModeRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.start_data_frame_analytics
@@ -1813,7 +1830,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public StartDataFrameAnalyticsResponse startDataFrameAnalytics(StartDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, StartDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1845,7 +1862,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public StartDatafeedResponse startDatafeed(StartDatafeedRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartDatafeedRequest.ENDPOINT);
+		return this.transport.performRequest(request, StartDatafeedRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1877,7 +1894,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public StopDataFrameAnalyticsResponse stopDataFrameAnalytics(StopDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, StopDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1908,7 +1925,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public StopDatafeedResponse stopDatafeed(StopDatafeedRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopDatafeedRequest.ENDPOINT);
+		return this.transport.performRequest(request, StopDatafeedRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1940,7 +1957,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public UpdateDataFrameAnalyticsResponse updateDataFrameAnalytics(UpdateDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateDataFrameAnalyticsRequest.ENDPOINT);
+		return this.transport.performRequest(request, UpdateDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -1971,7 +1988,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public UpdateFilterResponse updateFilter(UpdateFilterRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateFilterRequest.ENDPOINT);
+		return this.transport.performRequest(request, UpdateFilterRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -2002,7 +2019,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public UpdateJobResponse updateJob(UpdateJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateJobRequest.ENDPOINT);
+		return this.transport.performRequest(request, UpdateJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -2033,7 +2050,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public UpdateModelSnapshotResponse updateModelSnapshot(UpdateModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateModelSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, UpdateModelSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -2065,7 +2082,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public UpgradeJobSnapshotResponse upgradeJobSnapshot(UpgradeJobSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpgradeJobSnapshotRequest.ENDPOINT);
+		return this.transport.performRequest(request, UpgradeJobSnapshotRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -2096,7 +2113,7 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public ValidateResponse validate(ValidateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ValidateRequest.ENDPOINT);
+		return this.transport.performRequest(request, ValidateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -2124,7 +2141,8 @@ public class ElasticsearchMlClient extends ApiClient {
 	 */
 
 	public ValidateResponse validate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ValidateRequest.Builder().build(), ValidateRequest.ENDPOINT);
+		return this.transport.performRequest(new ValidateRequest.Builder().build(), ValidateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.validate_detector
@@ -2139,7 +2157,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public ValidateDetectorResponse validateDetector(ValidateDetectorRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ValidateDetectorRequest.ENDPOINT);
+		return this.transport.performRequest(request, ValidateDetectorRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -2169,7 +2187,7 @@ public class ElasticsearchMlClient extends ApiClient {
 
 	public ValidateDetectorResponse validateDetector() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ValidateDetectorRequest.Builder().build(),
-				ValidateDetectorRequest.ENDPOINT);
+				ValidateDetectorRequest.ENDPOINT, this.transportOptions);
 	}
 
 }

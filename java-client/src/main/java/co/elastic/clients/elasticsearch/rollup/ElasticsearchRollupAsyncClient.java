@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the rollup namespace.
  */
-public class ElasticsearchRollupAsyncClient extends ApiClient {
+public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchRollupAsyncClient> {
 
 	public ElasticsearchRollupAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchRollupAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchRollupAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchRollupAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: rollup.delete_job
@@ -53,7 +63,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteJobRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -85,7 +95,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetJobsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetJobsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -114,7 +124,8 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetJobsResponse> getJobs() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: rollup.get_rollup_caps
@@ -130,7 +141,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetRollupCapsResponse> getRollupCaps(GetRollupCapsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetRollupCapsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetRollupCapsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -162,7 +173,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetRollupCapsResponse> getRollupCaps() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetRollupCapsRequest.Builder().build(),
-				GetRollupCapsRequest.ENDPOINT);
+				GetRollupCapsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: rollup.get_rollup_index_caps
@@ -178,7 +189,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(GetRollupIndexCapsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetRollupIndexCapsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetRollupIndexCapsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -210,7 +221,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutJobRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -241,7 +252,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<RollupResponse> rollup(RollupRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RollupRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, RollupRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -274,7 +285,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	public <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(RollupSearchRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(request,
-				RollupSearchRequest.createRollupSearchEndpoint(getDeserializer(tDocumentClass)));
+				RollupSearchRequest.createRollupSearchEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
 	}
 
 	/**
@@ -306,7 +317,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<StartJobResponse> startJob(StartJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StartJobRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, StartJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -338,7 +349,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public CompletableFuture<StopJobResponse> stopJob(StopJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StopJobRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, StopJobRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**

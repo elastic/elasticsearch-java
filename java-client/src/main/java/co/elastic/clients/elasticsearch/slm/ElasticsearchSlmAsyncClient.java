@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the slm namespace.
  */
-public class ElasticsearchSlmAsyncClient extends ApiClient {
+public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsyncClient> {
 
 	public ElasticsearchSlmAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchSlmAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSlmAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSlmAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: slm.delete_lifecycle
@@ -53,7 +63,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 
 	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteLifecycleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, DeleteLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -86,7 +96,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 
 	public CompletableFuture<ExecuteLifecycleResponse> executeLifecycle(ExecuteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExecuteLifecycleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, ExecuteLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -118,7 +128,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ExecuteRetentionResponse> executeRetention() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT);
+		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_lifecycle
@@ -134,7 +145,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetLifecycleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -166,7 +177,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
-				GetLifecycleRequest.ENDPOINT);
+				GetLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_stats
@@ -180,7 +191,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatsResponse> getStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT);
+		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_status
@@ -193,7 +205,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatusResponse> getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT);
+		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.put_lifecycle
@@ -208,7 +221,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 
 	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutLifecycleRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PutLifecycleRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -238,7 +251,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<StartSlmResponse> start() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT);
+		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.stop
@@ -251,7 +265,8 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<StopSlmResponse> stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT);
+		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 }

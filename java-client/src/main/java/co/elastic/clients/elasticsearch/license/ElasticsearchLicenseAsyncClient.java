@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the license namespace.
  */
-public class ElasticsearchLicenseAsyncClient extends ApiClient {
+public class ElasticsearchLicenseAsyncClient extends ApiClient<ElasticsearchLicenseAsyncClient> {
 
 	public ElasticsearchLicenseAsyncClient(Transport transport) {
-		super(transport);
+		super(transport, null);
+	}
+
+	public ElasticsearchLicenseAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchLicenseAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchLicenseAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: license.delete
@@ -51,7 +61,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<DeleteLicenseResponse> delete() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT);
+		return this.transport.performRequestAsync(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: license.get
@@ -66,7 +77,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 
 	public CompletableFuture<GetLicenseResponse> get(GetLicenseRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetLicenseRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, GetLicenseRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -95,7 +106,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetLicenseResponse> get() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetLicenseRequest.Builder().build(), GetLicenseRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new GetLicenseRequest.Builder().build(), GetLicenseRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: license.get_basic_status
@@ -108,7 +120,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetBasicStatusResponse> getBasicStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest.ENDPOINT);
+		return this.transport.performRequestAsync(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: license.get_trial_status
@@ -121,7 +134,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetTrialStatusResponse> getTrialStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest.ENDPOINT);
+		return this.transport.performRequestAsync(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: license.post
@@ -135,7 +149,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<PostResponse> post(PostRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PostRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PostRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -163,7 +177,8 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<PostResponse> post() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new PostRequest.Builder().build(), PostRequest.ENDPOINT);
+		return this.transport.performRequestAsync(new PostRequest.Builder().build(), PostRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: license.post_start_basic
@@ -178,7 +193,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 
 	public CompletableFuture<PostStartBasicResponse> postStartBasic(PostStartBasicRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PostStartBasicRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PostStartBasicRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -208,7 +223,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 
 	public CompletableFuture<PostStartBasicResponse> postStartBasic() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PostStartBasicRequest.Builder().build(),
-				PostStartBasicRequest.ENDPOINT);
+				PostStartBasicRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: license.post_start_trial
@@ -223,7 +238,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 
 	public CompletableFuture<PostStartTrialResponse> postStartTrial(PostStartTrialRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PostStartTrialRequest.ENDPOINT);
+		return this.transport.performRequestAsync(request, PostStartTrialRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -253,7 +268,7 @@ public class ElasticsearchLicenseAsyncClient extends ApiClient {
 
 	public CompletableFuture<PostStartTrialResponse> postStartTrial() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PostStartTrialRequest.Builder().build(),
-				PostStartTrialRequest.ENDPOINT);
+				PostStartTrialRequest.ENDPOINT, this.transportOptions);
 	}
 
 }
