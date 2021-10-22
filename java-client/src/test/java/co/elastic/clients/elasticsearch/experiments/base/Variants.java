@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * Describes the variants of a base class, providing their name and parsers. It is representation-agnostic.
+ * Describes the variants of a transport class, providing their name and parsers. It is representation-agnostic.
  */
 public class Variants<T> {
 

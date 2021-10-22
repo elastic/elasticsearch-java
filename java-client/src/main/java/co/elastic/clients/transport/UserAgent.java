@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import java.util.Collections;
 import java.util.Map;

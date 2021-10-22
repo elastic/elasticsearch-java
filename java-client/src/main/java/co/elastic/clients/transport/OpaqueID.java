@@ -17,10 +17,41 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
+
+import java.util.Objects;
 
 /**
- * Marker interface for Elasticsearch cat requests.
+ * A user-specified Opaque ID as used in the X-Opaque-ID header.
  */
-public interface ElasticsearchCatRequest {
+public class OpaqueID implements ConvertibleToHeader {
+
+    private final Object value;
+
+    public OpaqueID(Object value) {
+        this.value = value;
+    }
+
+    public Object value() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OpaqueID)) return false;
+        OpaqueID opaqueID = (OpaqueID) o;
+        return Objects.equals(value, opaqueID.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public Header toHeader() {
+        return Header.raw("X-Opaque-ID", value);
+    }
+
 }

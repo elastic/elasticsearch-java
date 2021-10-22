@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -39,33 +39,45 @@ import java.util.stream.Collectors;
  * as a basis for a {@link Builder} via the {@link #toBuilder()}
  * method.
  */
-public class RequestOptions {
+public class TransportOptions {
 
-    public static final RequestOptions DEFAULT = new RequestOptions(
+    public static final TransportOptions DEFAULT;
 
-            // Default headers
-            Arrays.asList(
+    static {
+        TransportOptions options;
+        try {
+            options = new TransportOptions(
+
+                // Default headers
+                Arrays.asList(
                     AcceptType.forMediaType(MediaType.vendorElasticsearchJSON()).toHeader(),
                     ContentType.forMediaType(MediaType.vendorElasticsearchJSON()).toHeader(),
                     ClientMetadata.forLocalSystem().toHeader(),
                     UserAgent.DEFAULT.toHeader()
-            ),
+                ),
 
-            // Default query parameters
-            Collections.emptyList(),
+                // Default query parameters
+                Collections.emptyList(),
 
-            // Timeout
-            null,
+                // Timeout
+                null,
 
-            // Warning callback
-            null
+                // Warning callback
+                null
 
-    );
+            );
+        } catch(Exception e) {
+            // FIXME: revisit to have finer-grained fallbacks
+            options = new TransportOptions(Collections.emptyList(), Collections.emptyList(), null, null);
+            e.printStackTrace();
+        }
+        DEFAULT = options;
+    }
 
     /**
-     * Builder for constructing {@link RequestOptions} instances.
+     * Builder for constructing {@link TransportOptions} instances.
      * This is typically obtained via the {@link #toBuilder()}
-     * method, i.e. {@code RequestOptions.DEFAULT.toBuilder()}.
+     * method, i.e. {@code TransportOptions.DEFAULT.toBuilder()}.
      */
     public static class Builder {
 
@@ -139,8 +151,8 @@ public class RequestOptions {
             return onWarning;
         }
 
-        public RequestOptions build() {
-            return new RequestOptions(headers.values(), queryParameters.values(), timeout, onWarning);
+        public TransportOptions build() {
+            return new TransportOptions(headers.values(), queryParameters.values(), timeout, onWarning);
         }
 
     }
@@ -150,7 +162,7 @@ public class RequestOptions {
     private final Duration timeout;
     private final Consumer<List<String>> onWarning;
 
-    private RequestOptions(Iterable<Header> headers,
+    private TransportOptions(Iterable<Header> headers,
                            Iterable<QueryParameter> queryParameters,
                            Duration timeout,
                            Consumer<List<String>> onWarning) {

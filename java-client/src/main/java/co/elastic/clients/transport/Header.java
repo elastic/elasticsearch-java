@@ -17,34 +17,42 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import co.elastic.clients.util.NamedString;
 
+import java.util.Locale;
+
 /**
- * Raw URI query parameter, consisting of a string name and value.
+ * Raw HTTP header field, consisting of a string name and value.
  */
-public class QueryParameter extends NamedString {
+public class Header extends NamedString implements ConvertibleToHeader {
 
     /**
-     * Construct a raw URI query parameter.
+     * Construct a raw header field.
      *
-     * The {@link Object#toString()} method of the value passed is
+     * Header names are coerced to lower case and the
+     * {@link Object#toString()} method of the value is
      * used to obtain the field value sent over the wire.
      *
-     * By convention, a null value denotes that the parameter with that
+     * By convention, a null value denotes that the header with that
      * name is disabled, and will not be sent.
      *
-     * @param name query parameter name
-     * @param value query parameter value
-     * @return new {@link QueryParameter} object
+     * @param name header field name
+     * @param value header field value
+     * @return new {@link Header} object
      */
-    public static QueryParameter raw(String name, Object value) {
-        return new QueryParameter(name, value == null ? null : value.toString());
+    public static Header raw(String name, Object value) {
+        return new Header(name, value == null ? null : value.toString());
     }
 
-    private QueryParameter(String name, String value) {
-        super(name, value);
+    private Header(String name, String value) {
+        super(name.toLowerCase(Locale.ROOT), value);
+    }
+
+    @Override
+    public Header toHeader() {
+        return this;
     }
 
 }

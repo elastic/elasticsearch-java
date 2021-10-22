@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.experiments.generics;
 
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;

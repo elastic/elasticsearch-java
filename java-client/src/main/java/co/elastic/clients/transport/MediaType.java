@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +42,7 @@ public class MediaType {
      * {@code compatible-with} parameter that points to the
      * major client version.
      *
-     * The base type is {@code application/vnd.elasticsearch+json}.
+     * The transport type is {@code application/vnd.elasticsearch+json}.
      *
      * @return new {@link MediaType} for ES-specific JSON
      */

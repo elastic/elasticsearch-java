@@ -28,7 +28,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 /**
- * An abstract base class
+ * An abstract transport class
  */
 public abstract class BaseClass implements JsonpSerializable {
 

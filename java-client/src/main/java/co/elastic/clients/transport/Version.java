@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.transport;
 
 import java.util.Objects;
 
@@ -44,7 +44,7 @@ import java.util.Objects;
  *    value -1 can be used to denote omission.
  *
  * @see <a href="https://github.com/elastic/dev/blob/main/releases/time_based_releases.md#versioning">
- *     Time-based releases &emdash; Versioning</a>
+ *     Time-based releases - Versioning</a>
  *
  */
 public class Version {
