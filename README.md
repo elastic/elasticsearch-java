@@ -6,19 +6,21 @@ The official Java client for [Elasticsearch](https://github.com/elastic/elastics
 
 ---
 
-**Note: this project is still in beta.** This client is meant to replace the existing [Java High Level Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-high.html) and remove all dependencies to the Elasticsearch server code base.
+**Note: this project is still in beta.** This client is meant to replace the existing [Java High Level Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html) and remove all dependencies to the Elasticsearch server code base.
 
 ---
 
-The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
+The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
 
 The `docs/design` folder contains records of the major decisions in the design of the API. Most notably:
 
-- Object construction is based on the [fluent builder pattern](https://www.informit.com/articles/article.aspx?p=1216151).
+- Object construction is based on the [builder pattern](https://www.informit.com/articles/article.aspx?p=1216151).
 - Nested objects can be constructed with builder lambdas, allowing for clean and expressive DSL-like code.
 - Optional values are represented as `null` with `@Nullable` annotations instead of the newer  `Optional`, the Java ecosystem being still very null-based.
 
 ## Getting started
+
+Please refer to [the full documentation on elastic.co](https://www.elasticco/guide/en/elasticsearch/client/java-api-client/current/index.html) for comprehensive information.
 
 ### Installing the library
 
@@ -92,7 +94,7 @@ The Elasticsearch Java client is forward compatible; meaning that the client sup
 
 ## Current status
 
-Beta state means we don't expect large architectural changes and the library is already fairly usable. This library also essentially deals with request & response serialization & deserialization and delegates all http request processing to the battle-tested [Low Level Rest Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-low.html).
+Beta state means we don't expect large architectural changes and the library is already fairly usable. This library also essentially deals with request & response serialization & deserialization and delegates all http request processing to the battle-tested [Low Level Rest Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html).
 
 What's missing falls in two main categories, related to the [Elasticsearch specification](https://github.com/elastic/elasticsearch-specification):
 * incomplete support for some data types used in specification (e.g. unions). Until they have been implemented in the code generator, they are represented as raw `JsonValue` objects.
