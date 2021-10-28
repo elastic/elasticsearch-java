@@ -343,7 +343,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
-		public Builder addIndexPatterns(String value) {
+		public Builder addIndexPattern(String value) {
 			if (this.indexPatterns == null) {
 				this.indexPatterns = new ArrayList<>();
 			}
