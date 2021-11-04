@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
@@ -97,6 +98,11 @@ public abstract class ModelTestCase extends Assert {
     protected <T> T checkJsonRoundtrip(T value, String expectedJson) {
         assertEquals(expectedJson, toJson(value));
         return fromJson(expectedJson, (Class<T>)value.getClass());
+    }
+
+    protected <T> T fromJson(String json, JsonpDeserializer<T> deserializer) {
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        return deserializer.deserialize(parser, mapper);
     }
 
     public static void assertGetterType(Class<?> expected, Class<?> clazz, String name) {
