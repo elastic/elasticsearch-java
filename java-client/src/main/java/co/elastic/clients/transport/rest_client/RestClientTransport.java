@@ -19,16 +19,16 @@
 
 package co.elastic.clients.transport.rest_client;
 
-import co.elastic.clients.transport.BooleanEndpoint;
-import co.elastic.clients.transport.BooleanResponse;
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.TransportOptions;
-import co.elastic.clients.transport.Transport;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
+import co.elastic.clients.transport.BooleanEndpoint;
+import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;

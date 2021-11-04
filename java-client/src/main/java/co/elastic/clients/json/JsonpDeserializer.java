@@ -408,6 +408,24 @@ public abstract class JsonpDeserializer<V> {
         return JSON_VALUE;
     }
 
+    //----- Void
+
+    private static final JsonpDeserializer<Void> VOID = new JsonpDeserializer<Void>(EnumSet.noneOf(Event.class)) {
+        @Override
+        public Void deserialize(JsonParser parser, JsonpMapper mapper) {
+            throw new JsonParsingException("Void types should not have any value", parser.getLocation());
+        }
+
+        @Override
+        public Void deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            return deserialize(parser, mapper);
+        }
+    };
+
+    public static JsonpDeserializer<Void> voidDeserializer() {
+        return VOID;
+    }
+
     //----- Array
 
     private static class ArrayDeserializer<T> extends JsonpDeserializer<List<T>> {
