@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch._types.query_dsl.SpanGapQuery;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import org.junit.Test;
 
@@ -48,11 +48,10 @@ public class BuiltinTypesTest extends ModelTestCase {
     @Test
     public void testSpanGapQuery() {
         // Hand-written class
-
-        SpanGapQuery q = new SpanGapQuery.Builder()
+        SpanGapQuery q = SpanGapQuery.of(b -> b
             .field("a-field")
             .spanWidth(12)
-            .build();
+        );
 
         q = checkJsonRoundtrip(q, "{\"a-field\":12}");
 

@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Test;
 
@@ -38,16 +38,17 @@ public class RequestEncodingTest extends ModelTestCase {
                 .type(b2 -> b2
                     .value("foo"))
             )
-            .putAggs("myagg", b1 -> b1
-                .avg(b2 -> b2
-                    .field("foo"))
+            .aggregations(b1 -> b1
+                .entry("myagg", b2 -> b2
+                    .avg(b3 -> b3.field("foo"))
+                )
             )
             .build();
 
         JsonbJsonpMapper mapper = new JsonbJsonpMapper();
         String str = toJson(request, mapper);
 
-        assertEquals("{\"aggs\":{\"myagg\":{\"avg\":{\"field\":\"foo\"}}},\"query\":{\"type\":{\"value\":\"foo\"}}}", str);
+        assertEquals("{\"aggregations\":{\"myagg\":{\"avg\":{\"field\":\"foo\"}}},\"query\":{\"type\":{\"value\":\"foo\"}}}", str);
 
         request = fromJson(str, SearchRequest.class, mapper);
 

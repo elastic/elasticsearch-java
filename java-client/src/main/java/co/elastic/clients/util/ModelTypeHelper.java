@@ -19,33 +19,139 @@
 
 package co.elastic.clients.util;
 
+import javax.annotation.Nullable;
+import java.util.AbstractList;
+import java.util.AbstractMap;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 
 /**
  * Utility functions for API model types
  */
-
 public class ModelTypeHelper {
-
     private ModelTypeHelper() {}
 
-    public static <T> List<T> unmodifiable(List<T> list) {
-        return list == null ? list : Collections.unmodifiableList(list);
+    //----- Required properties
+
+    public static <T> T requireNonNull(T value, Object obj, String name) {
+        if (value == null) {
+            throw new MissingRequiredPropertyException(obj, name);
+        }
+        return value;
     }
 
+    //----- Lists
+
+    private static final List<Object> UNDEFINED_LIST = new AbstractList<Object>() {
+        @Override
+        public Object get(int index) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public Iterator<Object> iterator() {
+            return Collections.emptyIterator();
+        }
+    };
+
+    /**
+     * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
+     * when used as the value of an array property in API objects.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> undefinedList() {
+        return (List<T>)UNDEFINED_LIST;
+    }
+
+    /**
+     * Is {@code list} defined according to JSON/JavaScript semantics?
+     *
+     * @return true if {@code list} is not {@code null} and not {@link #undefinedList()}
+     */
+    public static <T> boolean isDefined(List<T> list) {
+        return list != null && list != UNDEFINED_LIST;
+    }
+
+    /**
+     * Returns an unmodifiable view of a list. If {@code list} is {@code null}, an {@link #undefinedList()} is returned.
+     */
+    public static <T> List<T> unmodifiable(@Nullable List<T> list) {
+        if (list == null) {
+            return undefinedList();
+        }
+        if (list == UNDEFINED_LIST) {
+            return list;
+        }
+        return Collections.unmodifiableList(list);
+    }
+
+    /**
+     * Returns an unmodifiable view of a required list.
+     */
+    public static <T> List<T> unmodifiableRequired(List<T> list, Object obj, String name) {
+        // We only check that the list is defined and not that it has some elements, as empty required
+        // lists may have a meaning in some APIs. Furthermore, being defined means that it was set by
+        // the application, so it's not an omission.
+        requireNonNull(list == UNDEFINED_LIST ? null : list, obj, name);
+        return Collections.unmodifiableList(list);
+    }
+
+    //----- Maps
+
+    private static final Map<Object, Object> UNDEFINED_MAP = new AbstractMap<Object, Object>() {
+        @Override
+        public Set<Entry<Object, Object>> entrySet() {
+            return Collections.emptySet();
+        }
+    };
+
+    /**
+     * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
+     * when used as the value of an array property in API objects.
+     */
+    @SuppressWarnings("unchecked")
+    public static <K, V> Map<K, V> undefinedMap() {
+        return (Map<K, V>)UNDEFINED_MAP;
+    }
+
+    /**
+     * Is {@code map} defined according to JSON/JavaScript semantics?
+     *
+     * @return true if {@code map} is not {@code null} and not {@link #undefinedMap()}
+     */
+    public static <K, V> boolean isDefined(Map<K, V> map) {
+        return map != null && map != UNDEFINED_MAP;
+    }
+
+    /**
+     * Returns an unmodifiable view of a map. If {@code map} is {@code null}, an {@link #undefinedMap()} is returned.
+     */
     public static <K, V> Map<K, V> unmodifiable(Map<K, V> map) {
-        return map == null ? map : Collections.unmodifiableMap(map);
+        if (map == null) {
+            return undefinedMap();
+        }
+        if (map == UNDEFINED_MAP) {
+            return map;
+        }
+        return Collections.unmodifiableMap(map);
     }
 
-    public static <T> List<T> unmodifiableNonNull(List<T> list, String message) {
-        return Collections.unmodifiableList(Objects.requireNonNull(list, message));
+    /**
+     * Returns an unmodifiable view of a required map.
+     */
+    public static <K, V> Map<K, V> unmodifiableRequired(Map<K, V> map, Object obj, String name) {
+        // We only check that the map is defined and not that it has some elements, as empty required
+        // maps may have a meaning in some APIs. Furthermore, being defined means that it was set by
+        // the application, so it's not an omission.
+        requireNonNull(map == UNDEFINED_MAP ? null : map, obj, name);
+        return Collections.unmodifiableMap(map);
     }
-
-    public static <K, V> Map<K, V> unmodifiableNonNull(Map<K, V> map, String message) {
-        return Collections.unmodifiableMap(Objects.requireNonNull(map, message));
-    }
-
 }

@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
 import javax.annotation.Nullable;
@@ -85,7 +86,9 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
         }
     }
 
-    protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> {
+    protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>>
+        extends ObjectBuilderBase {
+
         private Map<String, TValue> result;
 
         @Nullable

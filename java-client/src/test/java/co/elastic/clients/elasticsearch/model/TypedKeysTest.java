@@ -67,18 +67,17 @@ public class TypedKeysTest extends ModelTestCase {
     @Test
     public void testAdditionalProperties() {
 
-        Aggregate avg1 = new AvgAggregate(_1 -> _1.value(1.0))._toAggregate();
-        Aggregate avg2 = new AvgAggregate(_1 -> _1.value(2.0))._toAggregate();
-
+        Aggregate avg1 = AvgAggregate.of(_1 -> _1.value(1.0))._toAggregate();
+        Aggregate avg2 = AvgAggregate.of(_1 -> _1.value(2.0))._toAggregate();
 
         Aggregate aggregate = new StringTermsAggregate.Builder()
             .sumOtherDocCount(1)
             .buckets(
-                new StringTermsBucket(_1 -> _1
+                StringTermsBucket.of(_1 -> _1
                     .key("key_1")
                     .docCount(1)
                     .aggregations(MapBuilder.of("bar", avg1))),
-                new StringTermsBucket(_1 -> _1
+                StringTermsBucket.of(_1 -> _1
                     .key("key_2")
                     .docCount(2)
                     .aggregations(MapBuilder.of("bar", avg2)))
