@@ -19,11 +19,10 @@
 
 package co.elastic.clients.transport;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class ClientMetadataTest {
+public class ClientMetadataTest extends Assert {
 
     private static final String JV = System.getProperty("java.specification.version");
 

@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch.core.GetSourceResponse;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
+import co.elastic.clients.elasticsearch.core.GetSourceResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapperBase;
@@ -79,12 +79,10 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void testArrayValueBody() {
 
-        NodesResponse nr = new NodesResponse(_0 -> _0
-            .addValueBody(_1 -> _1
-                .bulkTotalOperations("1")
-            )
-            .addValueBody(_1 -> _1
-                .bulkTotalOperations("2")
+        NodesResponse nr = NodesResponse.of(_0 -> _0
+            .valueBody(
+                _1 -> _1.bulkTotalOperations("1"),
+                _1 -> _1.bulkTotalOperations("2")
             )
         );
 
@@ -98,7 +96,7 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void testGenericValueBody() {
 
-        GetSourceResponse<String> r = new GetSourceResponse<>(_0 -> _0
+        GetSourceResponse<String> r = GetSourceResponse.of(_0 -> _0
             .valueBody("The value")
         );
 

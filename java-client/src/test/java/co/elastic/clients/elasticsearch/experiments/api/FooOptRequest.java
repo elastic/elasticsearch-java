@@ -19,11 +19,11 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
