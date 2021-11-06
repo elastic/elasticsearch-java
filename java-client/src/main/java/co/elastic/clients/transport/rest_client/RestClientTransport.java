@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
+import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Cancellable;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.ResponseException;
@@ -40,7 +41,6 @@ import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
 
 import javax.annotation.Nullable;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -212,47 +212,50 @@ public class RestClientTransport implements Transport {
         Endpoint<?, ResponseT, ErrorT> endpoint
     ) throws IOException {
 
-        int statusCode = clientResp.getStatusLine().getStatusCode();
+        try {
+            int statusCode = clientResp.getStatusLine().getStatusCode();
 
-        if (endpoint.isError(statusCode)) {
-            // API error
-            ErrorT error = null;
-            try {
-                JsonpDeserializer<ErrorT> errorParser = endpoint.errorParser(statusCode);
-                if (errorParser != null) {
-                    // Expecting a body
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    clientResp.getEntity().writeTo(baos);
-                    JsonParser parser = mapper.jsonProvider().createParser(new ByteArrayInputStream(baos.toByteArray()));
-                    error = errorParser.deserialize(parser, mapper);
+            if (endpoint.isError(statusCode)) {
+                // API error
+                ErrorT error = null;
+                try {
+                    JsonpDeserializer<ErrorT> errorParser = endpoint.errorParser(statusCode);
+                    if (errorParser != null) {
+                        // Expecting a body
+                        InputStream content = clientResp.getEntity().getContent();
+                        JsonParser parser = mapper.jsonProvider().createParser(content);
+                        error = errorParser.deserialize(parser, mapper);
+                    }
+                } catch (Exception e) {
+                    // Cannot decode error
+                    throw new ResponseException(clientResp);
                 }
-            } catch(Exception e) {
-                // Cannot decode error
-                throw new ResponseException(clientResp);
+
+                // TODO: have the endpoint provide the exception constructor
+                throw new ElasticsearchException((ErrorResponse) error);
+
+            } else if (endpoint instanceof BooleanEndpoint) {
+                BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
+
+                @SuppressWarnings("unchecked")
+                ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
+
+                return response;
+
+            } else {
+                // Successful response
+                ResponseT response = null;
+                JsonpDeserializer<ResponseT> responseParser = endpoint.responseParser();
+                if (responseParser != null) {
+                    // Expecting a body
+                    InputStream content = clientResp.getEntity().getContent();
+                    JsonParser parser = mapper.jsonProvider().createParser(content);
+                    response = responseParser.deserialize(parser, mapper);
+                }
+                return response;
             }
-
-            // TODO: have the endpoint provide the exception constructor
-            throw new ElasticsearchException((ErrorResponse) error);
-
-        } else if (endpoint instanceof BooleanEndpoint) {
-            BooleanEndpoint<?> bep = (BooleanEndpoint<?>)endpoint;
-
-            @SuppressWarnings("unchecked")
-            ResponseT response = (ResponseT)new BooleanResponse(bep.getResult(statusCode));
-
-            return response;
-
-        } else {
-            // Successful response
-            ResponseT response = null;
-            JsonpDeserializer<ResponseT> responseParser = endpoint.responseParser();
-            if (responseParser != null) {
-                // Expecting a body
-                InputStream content = clientResp.getEntity().getContent();
-                JsonParser parser = mapper.jsonProvider().createParser(content);
-                response = responseParser.deserialize(parser, mapper);
-            }
-            return response;
+        } finally {
+            EntityUtils.consume(clientResp.getEntity());
         }
     }
 }
