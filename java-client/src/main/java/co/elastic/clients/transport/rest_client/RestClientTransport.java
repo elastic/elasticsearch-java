@@ -226,9 +226,11 @@ public class RestClientTransport implements Transport {
                         JsonParser parser = mapper.jsonProvider().createParser(content);
                         error = errorParser.deserialize(parser, mapper);
                     }
-                } catch (Exception e) {
+                } catch (Exception ex) {
                     // Cannot decode error
-                    throw new ResponseException(clientResp);
+                    ResponseException respEx = new ResponseException(clientResp);
+                    respEx.initCause(ex);
+                    throw respEx;
                 }
 
                 // TODO: have the endpoint provide the exception constructor

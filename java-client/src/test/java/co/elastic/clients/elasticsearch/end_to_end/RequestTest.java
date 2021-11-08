@@ -68,7 +68,7 @@ public class RequestTest extends Assert {
 
     @BeforeClass
     public static void setup() {
-        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.12.1")
+        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.15.1")
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
             .withStartupTimeout(Duration.ofSeconds(30));
         container.start();
