@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.IndexCapabilities
 @JsonpDeserializable
-public final class IndexCapabilities implements JsonpSerializable {
+public class IndexCapabilities implements JsonpSerializable {
 	private final List<RollupJobSummary> rollupJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexCapabilities(Builder builder) {
+	private IndexCapabilities(Builder builder) {
 
-		this.rollupJobs = ModelTypeHelper.unmodifiableNonNull(builder.rollupJobs, "rollup_jobs");
+		this.rollupJobs = ModelTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
 
 	}
 
-	public IndexCapabilities(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexCapabilities of(Function<Builder, ObjectBuilder<IndexCapabilities>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rollup_jobs}
 	 */
-	public List<RollupJobSummary> rollupJobs() {
+	public final List<RollupJobSummary> rollupJobs() {
 		return this.rollupJobs;
 	}
 
@@ -75,13 +76,16 @@ public final class IndexCapabilities implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("rollup_jobs");
-		generator.writeStartArray();
-		for (RollupJobSummary item0 : this.rollupJobs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.rollupJobs)) {
+			generator.writeKey("rollup_jobs");
+			generator.writeStartArray();
+			for (RollupJobSummary item0 : this.rollupJobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class IndexCapabilities implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexCapabilities}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexCapabilities> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexCapabilities> {
 		private List<RollupJobSummary> rollupJobs;
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
 		 */
-		public Builder rollupJobs(List<RollupJobSummary> value) {
+		public final Builder rollupJobs(List<RollupJobSummary> value) {
 			this.rollupJobs = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class IndexCapabilities implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rollup_jobs}
 		 */
-		public Builder rollupJobs(RollupJobSummary... value) {
+		public final Builder rollupJobs(RollupJobSummary... value) {
 			this.rollupJobs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
+		 * Required - API name: {@code rollup_jobs}
 		 */
-		public Builder addRollupJobs(RollupJobSummary value) {
-			if (this.rollupJobs == null) {
-				this.rollupJobs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder rollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>>... fns) {
+			this.rollupJobs = new ArrayList<>(fns.length);
+			for (Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn : fns) {
+				this.rollupJobs.add(fn.apply(new RollupJobSummary.Builder()).build());
 			}
-			this.rollupJobs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #rollupJobs(List)} to a singleton list.
-		 */
-		public Builder rollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn) {
-			return this.rollupJobs(fn.apply(new RollupJobSummary.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
-		 */
-		public Builder addRollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn) {
-			return this.addRollupJobs(fn.apply(new RollupJobSummary.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class IndexCapabilities implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexCapabilities build() {
+			_checkSingleUse();
 
 			return new IndexCapabilities(this);
 		}

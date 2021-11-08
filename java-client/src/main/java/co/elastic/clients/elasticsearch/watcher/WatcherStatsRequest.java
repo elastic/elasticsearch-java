@@ -34,9 +34,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,24 +48,23 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Request
 
-public final class WatcherStatsRequest extends RequestBase {
+public class WatcherStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean emitStacktraces;
 
-	@Nullable
 	private final List<WatcherMetric> metric;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherStatsRequest(Builder builder) {
+	private WatcherStatsRequest(Builder builder) {
 
 		this.emitStacktraces = builder.emitStacktraces;
 		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 
 	}
 
-	public WatcherStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherStatsRequest of(Function<Builder, ObjectBuilder<WatcherStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +73,7 @@ public final class WatcherStatsRequest extends RequestBase {
 	 * API name: {@code emit_stacktraces}
 	 */
 	@Nullable
-	public Boolean emitStacktraces() {
+	public final Boolean emitStacktraces() {
 		return this.emitStacktraces;
 	}
 
@@ -83,8 +82,7 @@ public final class WatcherStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	@Nullable
-	public List<WatcherMetric> metric() {
+	public final List<WatcherMetric> metric() {
 		return this.metric;
 	}
 
@@ -93,7 +91,7 @@ public final class WatcherStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link WatcherStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsRequest> {
 		@Nullable
 		private Boolean emitStacktraces;
 
@@ -105,7 +103,7 @@ public final class WatcherStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code emit_stacktraces}
 		 */
-		public Builder emitStacktraces(@Nullable Boolean value) {
+		public final Builder emitStacktraces(@Nullable Boolean value) {
 			this.emitStacktraces = value;
 			return this;
 		}
@@ -115,7 +113,7 @@ public final class WatcherStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<WatcherMetric> value) {
+		public final Builder metric(@Nullable List<WatcherMetric> value) {
 			this.metric = value;
 			return this;
 		}
@@ -125,19 +123,8 @@ public final class WatcherStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(WatcherMetric... value) {
+		public final Builder metric(WatcherMetric... value) {
 			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(WatcherMetric value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
 			return this;
 		}
 
@@ -148,6 +135,7 @@ public final class WatcherStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherStatsRequest build() {
+			_checkSingleUse();
 
 			return new WatcherStatsRequest(this);
 		}
@@ -171,7 +159,7 @@ public final class WatcherStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.metric() != null)
+				if (ModelTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
 
 				if (propsSet == 0) {
@@ -186,7 +174,7 @@ public final class WatcherStatsRequest extends RequestBase {
 					buf.append("/stats");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.toString()).collect(Collectors.joining(",")), buf);
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

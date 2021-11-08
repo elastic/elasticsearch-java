@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetProcessor
 @JsonpDeserializable
-public final class SetProcessor extends ProcessorBase implements ProcessorVariant {
+public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -50,17 +51,17 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SetProcessor(Builder builder) {
+	private SetProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.override = builder.override;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public SetProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SetProcessor of(Function<Builder, ObjectBuilder<SetProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +75,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,31 +83,28 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 	 * API name: {@code override}
 	 */
 	@Nullable
-	public Boolean override() {
+	public final Boolean override() {
 		return this.override;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public JsonData value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.override != null) {
-
 			generator.writeKey("override");
 			generator.write(this.override);
 
 		}
-
 		generator.writeKey("value");
 		this.value.serialize(generator, mapper);
 
@@ -128,7 +126,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -136,7 +134,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code override}
 		 */
-		public Builder override(@Nullable Boolean value) {
+		public final Builder override(@Nullable Boolean value) {
 			this.override = value;
 			return this;
 		}
@@ -144,7 +142,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(JsonData value) {
+		public final Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -161,6 +159,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 		 *             if some of the required fields are null.
 		 */
 		public SetProcessor build() {
+			_checkSingleUse();
 
 			return new SetProcessor(this);
 		}

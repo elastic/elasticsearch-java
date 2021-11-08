@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetricsAucRoc
 @JsonpDeserializable
-public final class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSerializable {
+public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSerializable {
 	@Nullable
 	private final String className;
 
@@ -49,15 +50,16 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationClassificationMetricsAucRoc(Builder builder) {
+	private DataframeEvaluationClassificationMetricsAucRoc(Builder builder) {
 
 		this.className = builder.className;
 		this.includeCurve = builder.includeCurve;
 
 	}
 
-	public DataframeEvaluationClassificationMetricsAucRoc(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationClassificationMetricsAucRoc of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +71,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 	 * API name: {@code class_name}
 	 */
 	@Nullable
-	public String className() {
+	public final String className() {
 		return this.className;
 	}
 
@@ -80,7 +82,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 	 * API name: {@code include_curve}
 	 */
 	@Nullable
-	public Boolean includeCurve() {
+	public final Boolean includeCurve() {
 		return this.includeCurve;
 	}
 
@@ -96,13 +98,11 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.className != null) {
-
 			generator.writeKey("class_name");
 			generator.write(this.className);
 
 		}
 		if (this.includeCurve != null) {
-
 			generator.writeKey("include_curve");
 			generator.write(this.includeCurve);
 
@@ -115,7 +115,9 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 	/**
 	 * Builder for {@link DataframeEvaluationClassificationMetricsAucRoc}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc> {
 		@Nullable
 		private String className;
 
@@ -130,7 +132,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 		 * <p>
 		 * API name: {@code class_name}
 		 */
-		public Builder className(@Nullable String value) {
+		public final Builder className(@Nullable String value) {
 			this.className = value;
 			return this;
 		}
@@ -141,7 +143,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 		 * <p>
 		 * API name: {@code include_curve}
 		 */
-		public Builder includeCurve(@Nullable Boolean value) {
+		public final Builder includeCurve(@Nullable Boolean value) {
 			this.includeCurve = value;
 			return this;
 		}
@@ -153,6 +155,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationClassificationMetricsAucRoc build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationClassificationMetricsAucRoc(this);
 		}

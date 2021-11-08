@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfYear
 @JsonpDeserializable
-public final class TimeOfYear implements JsonpSerializable {
+public class TimeOfYear implements JsonpSerializable {
 	private final List<String> at;
 
 	private final List<Month> int_;
@@ -53,36 +53,36 @@ public final class TimeOfYear implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TimeOfYear(Builder builder) {
+	private TimeOfYear(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableNonNull(builder.at, "at");
-		this.int_ = ModelTypeHelper.unmodifiableNonNull(builder.int_, "int");
-		this.on = ModelTypeHelper.unmodifiableNonNull(builder.on, "on");
+		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.int_ = ModelTypeHelper.unmodifiableRequired(builder.int_, this, "int_");
+		this.on = ModelTypeHelper.unmodifiableRequired(builder.on, this, "on");
 
 	}
 
-	public TimeOfYear(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TimeOfYear of(Function<Builder, ObjectBuilder<TimeOfYear>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public List<String> at() {
+	public final List<String> at() {
 		return this.at;
 	}
 
 	/**
 	 * Required - API name: {@code int}
 	 */
-	public List<Month> int_() {
+	public final List<Month> int_() {
 		return this.int_;
 	}
 
 	/**
 	 * Required - API name: {@code on}
 	 */
-	public List<Integer> on() {
+	public final List<Integer> on() {
 		return this.on;
 	}
 
@@ -97,28 +97,35 @@ public final class TimeOfYear implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("at");
-		generator.writeStartArray();
-		for (String item0 : this.at) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.at)) {
+			generator.writeKey("at");
+			generator.writeStartArray();
+			for (String item0 : this.at) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		generator.writeKey("int");
-		generator.writeStartArray();
-		for (Month item0 : this.int_) {
-			item0.serialize(generator, mapper);
-		}
-		generator.writeEnd();
-
-		generator.writeKey("on");
-		generator.writeStartArray();
-		for (Integer item0 : this.on) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.int_)) {
+			generator.writeKey("int");
+			generator.writeStartArray();
+			for (Month item0 : this.int_) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.on)) {
+			generator.writeKey("on");
+			generator.writeStartArray();
+			for (Integer item0 : this.on) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -127,7 +134,7 @@ public final class TimeOfYear implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimeOfYear}.
 	 */
-	public static class Builder implements ObjectBuilder<TimeOfYear> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfYear> {
 		private List<String> at;
 
 		private List<Month> int_;
@@ -137,7 +144,7 @@ public final class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public Builder at(List<String> value) {
+		public final Builder at(List<String> value) {
 			this.at = value;
 			return this;
 		}
@@ -145,26 +152,15 @@ public final class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public Builder at(String... value) {
+		public final Builder at(String... value) {
 			this.at = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #at(List)}, creating the list if needed.
-		 */
-		public Builder addAt(String value) {
-			if (this.at == null) {
-				this.at = new ArrayList<>();
-			}
-			this.at.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code int}
 		 */
-		public Builder int_(List<Month> value) {
+		public final Builder int_(List<Month> value) {
 			this.int_ = value;
 			return this;
 		}
@@ -172,26 +168,15 @@ public final class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code int}
 		 */
-		public Builder int_(Month... value) {
+		public final Builder int_(Month... value) {
 			this.int_ = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #int_(List)}, creating the list if needed.
-		 */
-		public Builder addInt(Month value) {
-			if (this.int_ == null) {
-				this.int_ = new ArrayList<>();
-			}
-			this.int_.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code on}
 		 */
-		public Builder on(List<Integer> value) {
+		public final Builder on(List<Integer> value) {
 			this.on = value;
 			return this;
 		}
@@ -199,19 +184,8 @@ public final class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code on}
 		 */
-		public Builder on(Integer... value) {
+		public final Builder on(Integer... value) {
 			this.on = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #on(List)}, creating the list if needed.
-		 */
-		public Builder addOn(Integer value) {
-			if (this.on == null) {
-				this.on = new ArrayList<>();
-			}
-			this.on.add(value);
 			return this;
 		}
 
@@ -222,6 +196,7 @@ public final class TimeOfYear implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TimeOfYear build() {
+			_checkSingleUse();
 
 			return new TimeOfYear(this);
 		}

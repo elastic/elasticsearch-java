@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandMoveAction
 @JsonpDeserializable
-public final class CommandMoveAction implements JsonpSerializable {
+public class CommandMoveAction implements JsonpSerializable {
 	private final String index;
 
 	private final int shard;
@@ -51,30 +53,30 @@ public final class CommandMoveAction implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CommandMoveAction(Builder builder) {
+	private CommandMoveAction(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shard = Objects.requireNonNull(builder.shard, "shard");
-		this.fromNode = Objects.requireNonNull(builder.fromNode, "from_node");
-		this.toNode = Objects.requireNonNull(builder.toNode, "to_node");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.fromNode = ModelTypeHelper.requireNonNull(builder.fromNode, this, "fromNode");
+		this.toNode = ModelTypeHelper.requireNonNull(builder.toNode, this, "toNode");
 
 	}
 
-	public CommandMoveAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CommandMoveAction of(Function<Builder, ObjectBuilder<CommandMoveAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shard}
 	 */
-	public int shard() {
+	public final int shard() {
 		return this.shard;
 	}
 
@@ -83,7 +85,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code from_node}
 	 */
-	public String fromNode() {
+	public final String fromNode() {
 		return this.fromNode;
 	}
 
@@ -92,7 +94,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code to_node}
 	 */
-	public String toNode() {
+	public final String toNode() {
 		return this.toNode;
 	}
 
@@ -126,7 +128,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link CommandMoveAction}.
 	 */
-	public static class Builder implements ObjectBuilder<CommandMoveAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandMoveAction> {
 		private String index;
 
 		private Integer shard;
@@ -138,7 +140,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -146,7 +148,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(int value) {
+		public final Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -156,7 +158,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code from_node}
 		 */
-		public Builder fromNode(String value) {
+		public final Builder fromNode(String value) {
 			this.fromNode = value;
 			return this;
 		}
@@ -166,7 +168,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code to_node}
 		 */
-		public Builder toNode(String value) {
+		public final Builder toNode(String value) {
 			this.toNode = value;
 			return this;
 		}
@@ -178,6 +180,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CommandMoveAction build() {
+			_checkSingleUse();
 
 			return new CommandMoveAction(this);
 		}

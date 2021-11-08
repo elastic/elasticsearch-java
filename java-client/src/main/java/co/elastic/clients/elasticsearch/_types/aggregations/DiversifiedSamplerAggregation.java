@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
 @JsonpDeserializable
-public final class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
+public class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final SamplerAggregationExecutionHint executionHint;
 
@@ -58,7 +58,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DiversifiedSamplerAggregation(Builder builder) {
+	private DiversifiedSamplerAggregation(Builder builder) {
 		super(builder);
 
 		this.executionHint = builder.executionHint;
@@ -69,8 +69,8 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 
 	}
 
-	public DiversifiedSamplerAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DiversifiedSamplerAggregation of(Function<Builder, ObjectBuilder<DiversifiedSamplerAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,7 +85,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
-	public SamplerAggregationExecutionHint executionHint() {
+	public final SamplerAggregationExecutionHint executionHint() {
 		return this.executionHint;
 	}
 
@@ -93,7 +93,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code max_docs_per_value}
 	 */
 	@Nullable
-	public Integer maxDocsPerValue() {
+	public final Integer maxDocsPerValue() {
 		return this.maxDocsPerValue;
 	}
 
@@ -101,7 +101,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -109,7 +109,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -117,7 +117,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -125,30 +125,25 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 
 		super.serializeInternal(generator, mapper);
 		if (this.executionHint != null) {
-
 			generator.writeKey("execution_hint");
 			this.executionHint.serialize(generator, mapper);
 		}
 		if (this.maxDocsPerValue != null) {
-
 			generator.writeKey("max_docs_per_value");
 			generator.write(this.maxDocsPerValue);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
@@ -182,7 +177,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code execution_hint}
 		 */
-		public Builder executionHint(@Nullable SamplerAggregationExecutionHint value) {
+		public final Builder executionHint(@Nullable SamplerAggregationExecutionHint value) {
 			this.executionHint = value;
 			return this;
 		}
@@ -190,7 +185,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code max_docs_per_value}
 		 */
-		public Builder maxDocsPerValue(@Nullable Integer value) {
+		public final Builder maxDocsPerValue(@Nullable Integer value) {
 			this.maxDocsPerValue = value;
 			return this;
 		}
@@ -198,7 +193,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -206,7 +201,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -214,7 +209,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -231,6 +226,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		 *             if some of the required fields are null.
 		 */
 		public DiversifiedSamplerAggregation build() {
+			_checkSingleUse();
 
 			return new DiversifiedSamplerAggregation(this);
 		}

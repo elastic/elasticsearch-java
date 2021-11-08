@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,7 +40,7 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardSequenceNumber
 @JsonpDeserializable
-public final class ShardSequenceNumber implements JsonpSerializable {
+public class ShardSequenceNumber implements JsonpSerializable {
 	private final long globalCheckpoint;
 
 	private final long localCheckpoint;
@@ -47,36 +49,36 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardSequenceNumber(Builder builder) {
+	private ShardSequenceNumber(Builder builder) {
 
-		this.globalCheckpoint = Objects.requireNonNull(builder.globalCheckpoint, "global_checkpoint");
-		this.localCheckpoint = Objects.requireNonNull(builder.localCheckpoint, "local_checkpoint");
-		this.maxSeqNo = Objects.requireNonNull(builder.maxSeqNo, "max_seq_no");
+		this.globalCheckpoint = ModelTypeHelper.requireNonNull(builder.globalCheckpoint, this, "globalCheckpoint");
+		this.localCheckpoint = ModelTypeHelper.requireNonNull(builder.localCheckpoint, this, "localCheckpoint");
+		this.maxSeqNo = ModelTypeHelper.requireNonNull(builder.maxSeqNo, this, "maxSeqNo");
 
 	}
 
-	public ShardSequenceNumber(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardSequenceNumber of(Function<Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code global_checkpoint}
 	 */
-	public long globalCheckpoint() {
+	public final long globalCheckpoint() {
 		return this.globalCheckpoint;
 	}
 
 	/**
 	 * Required - API name: {@code local_checkpoint}
 	 */
-	public long localCheckpoint() {
+	public final long localCheckpoint() {
 		return this.localCheckpoint;
 	}
 
 	/**
 	 * Required - API name: {@code max_seq_no}
 	 */
-	public long maxSeqNo() {
+	public final long maxSeqNo() {
 		return this.maxSeqNo;
 	}
 
@@ -107,7 +109,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardSequenceNumber}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardSequenceNumber> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSequenceNumber> {
 		private Long globalCheckpoint;
 
 		private Long localCheckpoint;
@@ -117,7 +119,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code global_checkpoint}
 		 */
-		public Builder globalCheckpoint(long value) {
+		public final Builder globalCheckpoint(long value) {
 			this.globalCheckpoint = value;
 			return this;
 		}
@@ -125,7 +127,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code local_checkpoint}
 		 */
-		public Builder localCheckpoint(long value) {
+		public final Builder localCheckpoint(long value) {
 			this.localCheckpoint = value;
 			return this;
 		}
@@ -133,7 +135,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_seq_no}
 		 */
-		public Builder maxSeqNo(long value) {
+		public final Builder maxSeqNo(long value) {
 			this.maxSeqNo = value;
 			return this;
 		}
@@ -145,6 +147,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardSequenceNumber build() {
+			_checkSingleUse();
 
 			return new ShardSequenceNumber(this);
 		}

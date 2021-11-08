@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
 @JsonpDeserializable
-public final class RollupRequest extends RequestBase implements JsonpSerializable {
+public class RollupRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	private final String rollupIndex;
@@ -53,16 +55,16 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupRequest(Builder builder) {
+	private RollupRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
-		this.config = Objects.requireNonNull(builder.config, "_value_body");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.rollupIndex = ModelTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 
-	public RollupRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupRequest of(Function<Builder, ObjectBuilder<RollupRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +72,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -79,7 +81,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code rollup_index}
 	 */
-	public String rollupIndex() {
+	public final String rollupIndex() {
 		return this.rollupIndex;
 	}
 
@@ -88,7 +90,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public JsonData config() {
+	public final JsonData config() {
 		return this.config;
 	}
 
@@ -105,7 +107,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link RollupRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupRequest> {
 		private String index;
 
 		private String rollupIndex;
@@ -117,7 +119,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(String value) {
+		public final Builder rollupIndex(String value) {
 			this.rollupIndex = value;
 			return this;
 		}
@@ -137,7 +139,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder config(JsonData value) {
+		public final Builder config(JsonData value) {
 			this.config = value;
 			return this;
 		}
@@ -149,6 +151,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public RollupRequest build() {
+			_checkSingleUse();
 
 			return new RollupRequest(this);
 		}

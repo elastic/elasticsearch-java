@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 @JsonpDeserializable
-public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
+public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
 	private final float pivot;
 
 	private final float exponent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureFunctionSigmoid(Builder builder) {
+	private RankFeatureFunctionSigmoid(Builder builder) {
 
-		this.pivot = Objects.requireNonNull(builder.pivot, "pivot");
-		this.exponent = Objects.requireNonNull(builder.exponent, "exponent");
+		this.pivot = ModelTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+		this.exponent = ModelTypeHelper.requireNonNull(builder.exponent, this, "exponent");
 
 	}
 
-	public RankFeatureFunctionSigmoid(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureFunctionSigmoid of(Function<Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code pivot}
 	 */
-	public float pivot() {
+	public final float pivot() {
 		return this.pivot;
 	}
 
 	/**
 	 * Required - API name: {@code exponent}
 	 */
-	public float exponent() {
+	public final float exponent() {
 		return this.exponent;
 	}
 
@@ -94,7 +96,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	/**
 	 * Builder for {@link RankFeatureFunctionSigmoid}.
 	 */
-	public static class Builder implements ObjectBuilder<RankFeatureFunctionSigmoid> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSigmoid> {
 		private Float pivot;
 
 		private Float exponent;
@@ -102,7 +104,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		/**
 		 * Required - API name: {@code pivot}
 		 */
-		public Builder pivot(float value) {
+		public final Builder pivot(float value) {
 			this.pivot = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		/**
 		 * Required - API name: {@code exponent}
 		 */
-		public Builder exponent(float value) {
+		public final Builder exponent(float value) {
 			this.exponent = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureFunctionSigmoid build() {
+			_checkSingleUse();
 
 			return new RankFeatureFunctionSigmoid(this);
 		}

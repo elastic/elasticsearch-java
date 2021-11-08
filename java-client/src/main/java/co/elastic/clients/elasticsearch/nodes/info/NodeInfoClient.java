@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoClient
 @JsonpDeserializable
-public final class NodeInfoClient implements JsonpSerializable {
+public class NodeInfoClient implements JsonpSerializable {
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoClient(Builder builder) {
+	private NodeInfoClient(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public NodeInfoClient(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoClient of(Function<Builder, ObjectBuilder<NodeInfoClient>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoClient implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoClient}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoClient> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoClient> {
 		private String type;
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoClient implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoClient build() {
+			_checkSingleUse();
 
 			return new NodeInfoClient(this);
 		}

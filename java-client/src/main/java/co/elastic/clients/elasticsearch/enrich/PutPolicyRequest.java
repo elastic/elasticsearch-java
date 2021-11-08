@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.put_policy.Request
 @JsonpDeserializable
-public final class PutPolicyRequest extends RequestBase implements JsonpSerializable {
+public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Policy geoMatch;
 
@@ -55,23 +57,23 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPolicyRequest(Builder builder) {
+	private PutPolicyRequest(Builder builder) {
 
 		this.geoMatch = builder.geoMatch;
 		this.match = builder.match;
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public PutPolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPolicyRequest of(Function<Builder, ObjectBuilder<PutPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code geo_match}
 	 */
 	@Nullable
-	public Policy geoMatch() {
+	public final Policy geoMatch() {
 		return this.geoMatch;
 	}
 
@@ -79,7 +81,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code match}
 	 */
 	@Nullable
-	public Policy match() {
+	public final Policy match() {
 		return this.match;
 	}
 
@@ -88,7 +90,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -104,13 +106,11 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.geoMatch != null) {
-
 			generator.writeKey("geo_match");
 			this.geoMatch.serialize(generator, mapper);
 
 		}
 		if (this.match != null) {
-
 			generator.writeKey("match");
 			this.match.serialize(generator, mapper);
 
@@ -123,7 +123,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PutPolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutPolicyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPolicyRequest> {
 		@Nullable
 		private Policy geoMatch;
 
@@ -135,7 +135,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public Builder geoMatch(@Nullable Policy value) {
+		public final Builder geoMatch(@Nullable Policy value) {
 			this.geoMatch = value;
 			return this;
 		}
@@ -143,14 +143,14 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public Builder geoMatch(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+		public final Builder geoMatch(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.geoMatch(fn.apply(new Policy.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code match}
 		 */
-		public Builder match(@Nullable Policy value) {
+		public final Builder match(@Nullable Policy value) {
 			this.match = value;
 			return this;
 		}
@@ -158,7 +158,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code match}
 		 */
-		public Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+		public final Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.match(fn.apply(new Policy.Builder()).build());
 		}
 
@@ -167,7 +167,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -179,6 +179,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public PutPolicyRequest build() {
+			_checkSingleUse();
 
 			return new PutPolicyRequest(this);
 		}

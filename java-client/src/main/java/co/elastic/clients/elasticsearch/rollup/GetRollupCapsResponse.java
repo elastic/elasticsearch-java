@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: rollup.get_rollup_caps.Response
 @JsonpDeserializable
-public final class GetRollupCapsResponse extends DictionaryResponse<String, RollupCapabilities> {
+public class GetRollupCapsResponse extends DictionaryResponse<String, RollupCapabilities> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRollupCapsResponse(Builder builder) {
+	private GetRollupCapsResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetRollupCapsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRollupCapsResponse of(Function<Builder, ObjectBuilder<GetRollupCapsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class GetRollupCapsResponse extends DictionaryResponse<String, Roll
 		 *             if some of the required fields are null.
 		 */
 		public GetRollupCapsResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

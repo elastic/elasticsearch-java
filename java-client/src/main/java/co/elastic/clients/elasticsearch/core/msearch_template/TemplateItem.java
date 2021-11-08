@@ -33,11 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,14 +45,12 @@ import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.TemplateItem
 @JsonpDeserializable
-public final class TemplateItem implements JsonpSerializable {
+public class TemplateItem implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
-	@Nullable
 	private final List<String> index;
 
-	@Nullable
 	private final Map<String, JsonData> params;
 
 	@Nullable
@@ -61,7 +58,7 @@ public final class TemplateItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TemplateItem(Builder builder) {
+	private TemplateItem(Builder builder) {
 
 		this.id = builder.id;
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
@@ -70,31 +67,29 @@ public final class TemplateItem implements JsonpSerializable {
 
 	}
 
-	public TemplateItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TemplateItem of(Function<Builder, ObjectBuilder<TemplateItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -102,7 +97,7 @@ public final class TemplateItem implements JsonpSerializable {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
@@ -118,13 +113,11 @@ public final class TemplateItem implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
-		if (this.index != null) {
-
+		if (ModelTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (String item0 : this.index) {
@@ -134,8 +127,7 @@ public final class TemplateItem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.params != null) {
-
+		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -147,7 +139,6 @@ public final class TemplateItem implements JsonpSerializable {
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("source");
 			generator.write(this.source);
 
@@ -160,7 +151,7 @@ public final class TemplateItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link TemplateItem}.
 	 */
-	public static class Builder implements ObjectBuilder<TemplateItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplateItem> {
 		@Nullable
 		private String id;
 
@@ -176,7 +167,7 @@ public final class TemplateItem implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -184,7 +175,7 @@ public final class TemplateItem implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -192,45 +183,23 @@ public final class TemplateItem implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonData> value) {
+		public final Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public Builder putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code source}
 		 */
-		public Builder source(@Nullable String value) {
+		public final Builder source(@Nullable String value) {
 			this.source = value;
 			return this;
 		}
@@ -242,6 +211,7 @@ public final class TemplateItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TemplateItem build() {
+			_checkSingleUse();
 
 			return new TemplateItem(this);
 		}

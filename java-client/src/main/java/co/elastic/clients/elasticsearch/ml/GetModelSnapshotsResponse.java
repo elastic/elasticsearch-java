@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Response
 @JsonpDeserializable
-public final class GetModelSnapshotsResponse implements JsonpSerializable {
+public class GetModelSnapshotsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<ModelSnapshot> modelSnapshots;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetModelSnapshotsResponse(Builder builder) {
+	private GetModelSnapshotsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.modelSnapshots = ModelTypeHelper.unmodifiableNonNull(builder.modelSnapshots, "model_snapshots");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.modelSnapshots = ModelTypeHelper.unmodifiableRequired(builder.modelSnapshots, this, "modelSnapshots");
 
 	}
 
-	public GetModelSnapshotsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetModelSnapshotsResponse of(Function<Builder, ObjectBuilder<GetModelSnapshotsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code model_snapshots}
 	 */
-	public List<ModelSnapshot> modelSnapshots() {
+	public final List<ModelSnapshot> modelSnapshots() {
 		return this.modelSnapshots;
 	}
 
@@ -89,13 +90,16 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("model_snapshots");
-		generator.writeStartArray();
-		for (ModelSnapshot item0 : this.modelSnapshots) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.modelSnapshots)) {
+			generator.writeKey("model_snapshots");
+			generator.writeStartArray();
+			for (ModelSnapshot item0 : this.modelSnapshots) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetModelSnapshotsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetModelSnapshotsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsResponse> {
 		private Long count;
 
 		private List<ModelSnapshot> modelSnapshots;
@@ -112,7 +116,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_snapshots}
 		 */
-		public Builder modelSnapshots(List<ModelSnapshot> value) {
+		public final Builder modelSnapshots(List<ModelSnapshot> value) {
 			this.modelSnapshots = value;
 			return this;
 		}
@@ -128,34 +132,21 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_snapshots}
 		 */
-		public Builder modelSnapshots(ModelSnapshot... value) {
+		public final Builder modelSnapshots(ModelSnapshot... value) {
 			this.modelSnapshots = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
+		 * Required - API name: {@code model_snapshots}
 		 */
-		public Builder addModelSnapshots(ModelSnapshot value) {
-			if (this.modelSnapshots == null) {
-				this.modelSnapshots = new ArrayList<>();
+		@SafeVarargs
+		public final Builder modelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>>... fns) {
+			this.modelSnapshots = new ArrayList<>(fns.length);
+			for (Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn : fns) {
+				this.modelSnapshots.add(fn.apply(new ModelSnapshot.Builder()).build());
 			}
-			this.modelSnapshots.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #modelSnapshots(List)} to a singleton list.
-		 */
-		public Builder modelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
-			return this.modelSnapshots(fn.apply(new ModelSnapshot.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
-		 */
-		public Builder addModelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
-			return this.addModelSnapshots(fn.apply(new ModelSnapshot.Builder()).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetModelSnapshotsResponse build() {
+			_checkSingleUse();
 
 			return new GetModelSnapshotsResponse(this);
 		}

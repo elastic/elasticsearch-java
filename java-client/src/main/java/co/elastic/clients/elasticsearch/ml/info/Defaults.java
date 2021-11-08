@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,35 +40,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.info.Defaults
 @JsonpDeserializable
-public final class Defaults implements JsonpSerializable {
+public class Defaults implements JsonpSerializable {
 	private final AnomalyDetectors anomalyDetectors;
 
 	private final Datafeeds datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Defaults(Builder builder) {
+	private Defaults(Builder builder) {
 
-		this.anomalyDetectors = Objects.requireNonNull(builder.anomalyDetectors, "anomaly_detectors");
-		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
+		this.anomalyDetectors = ModelTypeHelper.requireNonNull(builder.anomalyDetectors, this, "anomalyDetectors");
+		this.datafeeds = ModelTypeHelper.requireNonNull(builder.datafeeds, this, "datafeeds");
 
 	}
 
-	public Defaults(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Defaults of(Function<Builder, ObjectBuilder<Defaults>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code anomaly_detectors}
 	 */
-	public AnomalyDetectors anomalyDetectors() {
+	public final AnomalyDetectors anomalyDetectors() {
 		return this.anomalyDetectors;
 	}
 
 	/**
 	 * Required - API name: {@code datafeeds}
 	 */
-	public Datafeeds datafeeds() {
+	public final Datafeeds datafeeds() {
 		return this.datafeeds;
 	}
 
@@ -94,7 +96,7 @@ public final class Defaults implements JsonpSerializable {
 	/**
 	 * Builder for {@link Defaults}.
 	 */
-	public static class Builder implements ObjectBuilder<Defaults> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Defaults> {
 		private AnomalyDetectors anomalyDetectors;
 
 		private Datafeeds datafeeds;
@@ -102,7 +104,7 @@ public final class Defaults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code anomaly_detectors}
 		 */
-		public Builder anomalyDetectors(AnomalyDetectors value) {
+		public final Builder anomalyDetectors(AnomalyDetectors value) {
 			this.anomalyDetectors = value;
 			return this;
 		}
@@ -110,14 +112,14 @@ public final class Defaults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code anomaly_detectors}
 		 */
-		public Builder anomalyDetectors(Function<AnomalyDetectors.Builder, ObjectBuilder<AnomalyDetectors>> fn) {
+		public final Builder anomalyDetectors(Function<AnomalyDetectors.Builder, ObjectBuilder<AnomalyDetectors>> fn) {
 			return this.anomalyDetectors(fn.apply(new AnomalyDetectors.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code datafeeds}
 		 */
-		public Builder datafeeds(Datafeeds value) {
+		public final Builder datafeeds(Datafeeds value) {
 			this.datafeeds = value;
 			return this;
 		}
@@ -125,7 +127,7 @@ public final class Defaults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeeds}
 		 */
-		public Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
+		public final Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
 			return this.datafeeds(fn.apply(new Datafeeds.Builder()).build());
 		}
 
@@ -136,6 +138,7 @@ public final class Defaults implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Defaults build() {
+			_checkSingleUse();
 
 			return new Defaults(this);
 		}

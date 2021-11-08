@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.validate_detector.Response
 @JsonpDeserializable
-public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
+public class ValidateDetectorResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidateDetectorResponse(Builder builder) {
+	private ValidateDetectorResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ValidateDetectorResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValidateDetectorResponse of(Function<Builder, ObjectBuilder<ValidateDetectorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ValidateDetectorResponse build() {
+			_checkSingleUse();
 
 			return new ValidateDetectorResponse(this);
 		}

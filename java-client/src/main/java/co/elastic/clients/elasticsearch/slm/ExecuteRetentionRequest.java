@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: slm.execute_retention.Request
 
-public final class ExecuteRetentionRequest extends RequestBase {
+public class ExecuteRetentionRequest extends RequestBase {
 	public ExecuteRetentionRequest() {
 	}
 

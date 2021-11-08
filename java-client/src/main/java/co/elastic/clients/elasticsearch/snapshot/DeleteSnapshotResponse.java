@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: snapshot.delete.Response
 @JsonpDeserializable
-public final class DeleteSnapshotResponse extends AcknowledgedResponseBase {
+public class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteSnapshotResponse(Builder builder) {
+	private DeleteSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteSnapshotResponse of(Function<Builder, ObjectBuilder<DeleteSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new DeleteSnapshotResponse(this);
 		}

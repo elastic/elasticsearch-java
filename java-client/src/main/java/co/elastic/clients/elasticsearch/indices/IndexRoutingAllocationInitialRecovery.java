@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,27 +40,28 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInitialRecovery
 @JsonpDeserializable
-public final class IndexRoutingAllocationInitialRecovery implements JsonpSerializable {
+public class IndexRoutingAllocationInitialRecovery implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexRoutingAllocationInitialRecovery(Builder builder) {
+	private IndexRoutingAllocationInitialRecovery(Builder builder) {
 
 		this.id = builder.id;
 
 	}
 
-	public IndexRoutingAllocationInitialRecovery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexRoutingAllocationInitialRecovery of(
+			Function<Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -75,7 +77,6 @@ public final class IndexRoutingAllocationInitialRecovery implements JsonpSeriali
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("_id");
 			generator.write(this.id);
 
@@ -88,14 +89,16 @@ public final class IndexRoutingAllocationInitialRecovery implements JsonpSeriali
 	/**
 	 * Builder for {@link IndexRoutingAllocationInitialRecovery}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexRoutingAllocationInitialRecovery> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<IndexRoutingAllocationInitialRecovery> {
 		@Nullable
 		private String id;
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -107,6 +110,7 @@ public final class IndexRoutingAllocationInitialRecovery implements JsonpSeriali
 		 *             if some of the required fields are null.
 		 */
 		public IndexRoutingAllocationInitialRecovery build() {
+			_checkSingleUse();
 
 			return new IndexRoutingAllocationInitialRecovery(this);
 		}

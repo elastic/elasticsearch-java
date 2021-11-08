@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationStore
 @JsonpDeserializable
-public final class AllocationStore implements JsonpSerializable {
+public class AllocationStore implements JsonpSerializable {
 	private final String allocationId;
 
 	private final boolean found;
@@ -56,60 +58,61 @@ public final class AllocationStore implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationStore(Builder builder) {
+	private AllocationStore(Builder builder) {
 
-		this.allocationId = Objects.requireNonNull(builder.allocationId, "allocation_id");
-		this.found = Objects.requireNonNull(builder.found, "found");
-		this.inSync = Objects.requireNonNull(builder.inSync, "in_sync");
-		this.matchingSizeInBytes = Objects.requireNonNull(builder.matchingSizeInBytes, "matching_size_in_bytes");
-		this.matchingSyncId = Objects.requireNonNull(builder.matchingSyncId, "matching_sync_id");
-		this.storeException = Objects.requireNonNull(builder.storeException, "store_exception");
+		this.allocationId = ModelTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
+		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.inSync = ModelTypeHelper.requireNonNull(builder.inSync, this, "inSync");
+		this.matchingSizeInBytes = ModelTypeHelper.requireNonNull(builder.matchingSizeInBytes, this,
+				"matchingSizeInBytes");
+		this.matchingSyncId = ModelTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId");
+		this.storeException = ModelTypeHelper.requireNonNull(builder.storeException, this, "storeException");
 
 	}
 
-	public AllocationStore(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllocationStore of(Function<Builder, ObjectBuilder<AllocationStore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allocation_id}
 	 */
-	public String allocationId() {
+	public final String allocationId() {
 		return this.allocationId;
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * Required - API name: {@code in_sync}
 	 */
-	public boolean inSync() {
+	public final boolean inSync() {
 		return this.inSync;
 	}
 
 	/**
 	 * Required - API name: {@code matching_size_in_bytes}
 	 */
-	public long matchingSizeInBytes() {
+	public final long matchingSizeInBytes() {
 		return this.matchingSizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code matching_sync_id}
 	 */
-	public boolean matchingSyncId() {
+	public final boolean matchingSyncId() {
 		return this.matchingSyncId;
 	}
 
 	/**
 	 * Required - API name: {@code store_exception}
 	 */
-	public String storeException() {
+	public final String storeException() {
 		return this.storeException;
 	}
 
@@ -149,7 +152,7 @@ public final class AllocationStore implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationStore}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationStore> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationStore> {
 		private String allocationId;
 
 		private Boolean found;
@@ -165,7 +168,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code allocation_id}
 		 */
-		public Builder allocationId(String value) {
+		public final Builder allocationId(String value) {
 			this.allocationId = value;
 			return this;
 		}
@@ -173,7 +176,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -181,7 +184,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code in_sync}
 		 */
-		public Builder inSync(boolean value) {
+		public final Builder inSync(boolean value) {
 			this.inSync = value;
 			return this;
 		}
@@ -189,7 +192,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code matching_size_in_bytes}
 		 */
-		public Builder matchingSizeInBytes(long value) {
+		public final Builder matchingSizeInBytes(long value) {
 			this.matchingSizeInBytes = value;
 			return this;
 		}
@@ -197,7 +200,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code matching_sync_id}
 		 */
-		public Builder matchingSyncId(boolean value) {
+		public final Builder matchingSyncId(boolean value) {
 			this.matchingSyncId = value;
 			return this;
 		}
@@ -205,7 +208,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_exception}
 		 */
-		public Builder storeException(String value) {
+		public final Builder storeException(String value) {
 			this.storeException = value;
 			return this;
 		}
@@ -217,6 +220,7 @@ public final class AllocationStore implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AllocationStore build() {
+			_checkSingleUse();
 
 			return new AllocationStore(this);
 		}

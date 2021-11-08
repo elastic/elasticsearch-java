@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeRegressionSummary
 @JsonpDeserializable
-public final class DataframeRegressionSummary implements JsonpSerializable {
+public class DataframeRegressionSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationValue huber;
 
@@ -53,7 +54,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeRegressionSummary(Builder builder) {
+	private DataframeRegressionSummary(Builder builder) {
 
 		this.huber = builder.huber;
 		this.mse = builder.mse;
@@ -62,15 +63,15 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 
 	}
 
-	public DataframeRegressionSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeRegressionSummary of(Function<Builder, ObjectBuilder<DataframeRegressionSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code huber}
 	 */
 	@Nullable
-	public DataframeEvaluationValue huber() {
+	public final DataframeEvaluationValue huber() {
 		return this.huber;
 	}
 
@@ -78,7 +79,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 	 * API name: {@code mse}
 	 */
 	@Nullable
-	public DataframeEvaluationValue mse() {
+	public final DataframeEvaluationValue mse() {
 		return this.mse;
 	}
 
@@ -86,7 +87,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 	 * API name: {@code msle}
 	 */
 	@Nullable
-	public DataframeEvaluationValue msle() {
+	public final DataframeEvaluationValue msle() {
 		return this.msle;
 	}
 
@@ -94,7 +95,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 	 * API name: {@code r_squared}
 	 */
 	@Nullable
-	public DataframeEvaluationValue rSquared() {
+	public final DataframeEvaluationValue rSquared() {
 		return this.rSquared;
 	}
 
@@ -110,25 +111,21 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.huber != null) {
-
 			generator.writeKey("huber");
 			this.huber.serialize(generator, mapper);
 
 		}
 		if (this.mse != null) {
-
 			generator.writeKey("mse");
 			this.mse.serialize(generator, mapper);
 
 		}
 		if (this.msle != null) {
-
 			generator.writeKey("msle");
 			this.msle.serialize(generator, mapper);
 
 		}
 		if (this.rSquared != null) {
-
 			generator.writeKey("r_squared");
 			this.rSquared.serialize(generator, mapper);
 
@@ -141,7 +138,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeRegressionSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeRegressionSummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeRegressionSummary> {
 		@Nullable
 		private DataframeEvaluationValue huber;
 
@@ -157,7 +154,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code huber}
 		 */
-		public Builder huber(@Nullable DataframeEvaluationValue value) {
+		public final Builder huber(@Nullable DataframeEvaluationValue value) {
 			this.huber = value;
 			return this;
 		}
@@ -165,14 +162,15 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code huber}
 		 */
-		public Builder huber(Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+		public final Builder huber(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
 			return this.huber(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code mse}
 		 */
-		public Builder mse(@Nullable DataframeEvaluationValue value) {
+		public final Builder mse(@Nullable DataframeEvaluationValue value) {
 			this.mse = value;
 			return this;
 		}
@@ -180,14 +178,15 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mse}
 		 */
-		public Builder mse(Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+		public final Builder mse(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
 			return this.mse(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code msle}
 		 */
-		public Builder msle(@Nullable DataframeEvaluationValue value) {
+		public final Builder msle(@Nullable DataframeEvaluationValue value) {
 			this.msle = value;
 			return this;
 		}
@@ -195,14 +194,15 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code msle}
 		 */
-		public Builder msle(Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+		public final Builder msle(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
 			return this.msle(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code r_squared}
 		 */
-		public Builder rSquared(@Nullable DataframeEvaluationValue value) {
+		public final Builder rSquared(@Nullable DataframeEvaluationValue value) {
 			this.rSquared = value;
 			return this;
 		}
@@ -210,7 +210,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code r_squared}
 		 */
-		public Builder rSquared(
+		public final Builder rSquared(
 				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
 			return this.rSquared(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
@@ -222,6 +222,7 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeRegressionSummary build() {
+			_checkSingleUse();
 
 			return new DataframeRegressionSummary(this);
 		}

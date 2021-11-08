@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _global.put_script.Response
 @JsonpDeserializable
-public final class PutScriptResponse extends AcknowledgedResponseBase {
+public class PutScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutScriptResponse(Builder builder) {
+	private PutScriptResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutScriptResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutScriptResponse of(Function<Builder, ObjectBuilder<PutScriptResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutScriptResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutScriptResponse build() {
+			_checkSingleUse();
 
 			return new PutScriptResponse(this);
 		}

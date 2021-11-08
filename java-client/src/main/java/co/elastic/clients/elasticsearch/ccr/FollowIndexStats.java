@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ccr._types.FollowIndexStats
 @JsonpDeserializable
-public final class FollowIndexStats implements JsonpSerializable {
+public class FollowIndexStats implements JsonpSerializable {
 	private final String index;
 
 	private final List<ShardStats> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowIndexStats(Builder builder) {
+	private FollowIndexStats(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public FollowIndexStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowIndexStats of(Function<Builder, ObjectBuilder<FollowIndexStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<ShardStats> shards() {
+	public final List<ShardStats> shards() {
 		return this.shards;
 	}
 
@@ -89,13 +90,16 @@ public final class FollowIndexStats implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (ShardStats item0 : this.shards) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (ShardStats item0 : this.shards) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowIndexStats}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowIndexStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowIndexStats> {
 		private String index;
 
 		private List<ShardStats> shards;
@@ -112,7 +116,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(List<ShardStats> value) {
+		public final Builder shards(List<ShardStats> value) {
 			this.shards = value;
 			return this;
 		}
@@ -128,34 +132,21 @@ public final class FollowIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(ShardStats... value) {
+		public final Builder shards(ShardStats... value) {
 			this.shards = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Required - API name: {@code shards}
 		 */
-		public Builder addShards(ShardStats value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
+		@SafeVarargs
+		public final Builder shards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>>... fns) {
+			this.shards = new ArrayList<>(fns.length);
+			for (Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn : fns) {
+				this.shards.add(fn.apply(new ShardStats.Builder()).build());
 			}
-			this.shards.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #shards(List)} to a singleton list.
-		 */
-		public Builder shards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
-			return this.shards(fn.apply(new ShardStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
-			return this.addShards(fn.apply(new ShardStats.Builder()).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FollowIndexStats build() {
+			_checkSingleUse();
 
 			return new FollowIndexStats(this);
 		}

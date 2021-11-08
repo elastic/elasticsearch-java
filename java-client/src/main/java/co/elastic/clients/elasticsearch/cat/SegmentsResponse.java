@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.segments.Response
 @JsonpDeserializable
-public final class SegmentsResponse implements JsonpSerializable {
+public class SegmentsResponse implements JsonpSerializable {
 	private final List<SegmentsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SegmentsResponse(Builder builder) {
+	private SegmentsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public SegmentsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SegmentsResponse of(Function<Builder, ObjectBuilder<SegmentsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<SegmentsRecord> valueBody() {
+	public final List<SegmentsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<SegmentsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsResponse> {
 		private List<SegmentsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<SegmentsRecord> value) {
+		public final Builder valueBody(List<SegmentsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class SegmentsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(SegmentsRecord... value) {
+		public final Builder valueBody(SegmentsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(SegmentsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new SegmentsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
-			return this.valueBody(fn.apply(new SegmentsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
-			return this.addValueBody(fn.apply(new SegmentsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SegmentsResponse build() {
+			_checkSingleUse();
 
 			return new SegmentsResponse(this);
 		}

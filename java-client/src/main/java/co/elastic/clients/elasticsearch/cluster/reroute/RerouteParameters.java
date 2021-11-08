@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteParameters
 @JsonpDeserializable
-public final class RerouteParameters implements JsonpSerializable {
+public class RerouteParameters implements JsonpSerializable {
 	private final boolean allowPrimary;
 
 	private final String index;
@@ -58,46 +60,46 @@ public final class RerouteParameters implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RerouteParameters(Builder builder) {
+	private RerouteParameters(Builder builder) {
 
-		this.allowPrimary = Objects.requireNonNull(builder.allowPrimary, "allow_primary");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.shard = Objects.requireNonNull(builder.shard, "shard");
+		this.allowPrimary = ModelTypeHelper.requireNonNull(builder.allowPrimary, this, "allowPrimary");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
 		this.fromNode = builder.fromNode;
 		this.toNode = builder.toNode;
 
 	}
 
-	public RerouteParameters(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RerouteParameters of(Function<Builder, ObjectBuilder<RerouteParameters>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allow_primary}
 	 */
-	public boolean allowPrimary() {
+	public final boolean allowPrimary() {
 		return this.allowPrimary;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code shard}
 	 */
-	public int shard() {
+	public final int shard() {
 		return this.shard;
 	}
 
@@ -105,7 +107,7 @@ public final class RerouteParameters implements JsonpSerializable {
 	 * API name: {@code from_node}
 	 */
 	@Nullable
-	public String fromNode() {
+	public final String fromNode() {
 		return this.fromNode;
 	}
 
@@ -113,7 +115,7 @@ public final class RerouteParameters implements JsonpSerializable {
 	 * API name: {@code to_node}
 	 */
 	@Nullable
-	public String toNode() {
+	public final String toNode() {
 		return this.toNode;
 	}
 
@@ -141,13 +143,11 @@ public final class RerouteParameters implements JsonpSerializable {
 		generator.write(this.shard);
 
 		if (this.fromNode != null) {
-
 			generator.writeKey("from_node");
 			generator.write(this.fromNode);
 
 		}
 		if (this.toNode != null) {
-
 			generator.writeKey("to_node");
 			generator.write(this.toNode);
 
@@ -160,7 +160,7 @@ public final class RerouteParameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteParameters}.
 	 */
-	public static class Builder implements ObjectBuilder<RerouteParameters> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteParameters> {
 		private Boolean allowPrimary;
 
 		private String index;
@@ -178,7 +178,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code allow_primary}
 		 */
-		public Builder allowPrimary(boolean value) {
+		public final Builder allowPrimary(boolean value) {
 			this.allowPrimary = value;
 			return this;
 		}
@@ -186,7 +186,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -194,7 +194,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -202,7 +202,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(int value) {
+		public final Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -210,7 +210,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code from_node}
 		 */
-		public Builder fromNode(@Nullable String value) {
+		public final Builder fromNode(@Nullable String value) {
 			this.fromNode = value;
 			return this;
 		}
@@ -218,7 +218,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code to_node}
 		 */
-		public Builder toNode(@Nullable String value) {
+		public final Builder toNode(@Nullable String value) {
 			this.toNode = value;
 			return this;
 		}
@@ -230,6 +230,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RerouteParameters build() {
+			_checkSingleUse();
 
 			return new RerouteParameters(this);
 		}

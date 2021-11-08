@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,11 +42,10 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentileRanksAggregation
 @JsonpDeserializable
-public final class PercentileRanksAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class PercentileRanksAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean keyed;
 
-	@Nullable
 	private final List<Double> values;
 
 	@Nullable
@@ -58,7 +56,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PercentileRanksAggregation(Builder builder) {
+	private PercentileRanksAggregation(Builder builder) {
 		super(builder);
 
 		this.keyed = builder.keyed;
@@ -68,8 +66,8 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 
 	}
 
-	public PercentileRanksAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PercentileRanksAggregation of(Function<Builder, ObjectBuilder<PercentileRanksAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,15 +82,14 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
 	/**
 	 * API name: {@code values}
 	 */
-	@Nullable
-	public List<Double> values() {
+	public final List<Double> values() {
 		return this.values;
 	}
 
@@ -100,7 +97,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	 * API name: {@code hdr}
 	 */
 	@Nullable
-	public HdrMethod hdr() {
+	public final HdrMethod hdr() {
 		return this.hdr;
 	}
 
@@ -108,7 +105,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	 * API name: {@code tdigest}
 	 */
 	@Nullable
-	public TDigest tdigest() {
+	public final TDigest tdigest() {
 		return this.tdigest;
 	}
 
@@ -116,13 +113,11 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 
 		super.serializeInternal(generator, mapper);
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
 		}
-		if (this.values != null) {
-
+		if (ModelTypeHelper.isDefined(this.values)) {
 			generator.writeKey("values");
 			generator.writeStartArray();
 			for (Double item0 : this.values) {
@@ -133,13 +128,11 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 
 		}
 		if (this.hdr != null) {
-
 			generator.writeKey("hdr");
 			this.hdr.serialize(generator, mapper);
 
 		}
 		if (this.tdigest != null) {
-
 			generator.writeKey("tdigest");
 			this.tdigest.serialize(generator, mapper);
 
@@ -170,7 +163,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -178,7 +171,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(@Nullable List<Double> value) {
+		public final Builder values(@Nullable List<Double> value) {
 			this.values = value;
 			return this;
 		}
@@ -186,26 +179,15 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(Double... value) {
+		public final Builder values(Double... value) {
 			this.values = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #values(List)}, creating the list if needed.
-		 */
-		public Builder addValues(Double value) {
-			if (this.values == null) {
-				this.values = new ArrayList<>();
-			}
-			this.values.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code hdr}
 		 */
-		public Builder hdr(@Nullable HdrMethod value) {
+		public final Builder hdr(@Nullable HdrMethod value) {
 			this.hdr = value;
 			return this;
 		}
@@ -213,14 +195,14 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code hdr}
 		 */
-		public Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
+		public final Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
 			return this.hdr(fn.apply(new HdrMethod.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tdigest}
 		 */
-		public Builder tdigest(@Nullable TDigest value) {
+		public final Builder tdigest(@Nullable TDigest value) {
 			this.tdigest = value;
 			return this;
 		}
@@ -228,7 +210,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code tdigest}
 		 */
-		public Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
+		public final Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
 			return this.tdigest(fn.apply(new TDigest.Builder()).build());
 		}
 
@@ -244,6 +226,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		 *             if some of the required fields are null.
 		 */
 		public PercentileRanksAggregation build() {
+			_checkSingleUse();
 
 			return new PercentileRanksAggregation(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedDoc
 @JsonpDeserializable
-public final class PinnedDoc implements JsonpSerializable {
+public class PinnedDoc implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PinnedDoc(Builder builder) {
+	private PinnedDoc(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public PinnedDoc(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PinnedDoc of(Function<Builder, ObjectBuilder<PinnedDoc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -95,7 +97,7 @@ public final class PinnedDoc implements JsonpSerializable {
 	/**
 	 * Builder for {@link PinnedDoc}.
 	 */
-	public static class Builder implements ObjectBuilder<PinnedDoc> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PinnedDoc> {
 		private String id;
 
 		private String index;
@@ -103,7 +105,7 @@ public final class PinnedDoc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class PinnedDoc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class PinnedDoc implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PinnedDoc build() {
+			_checkSingleUse();
 
 			return new PinnedDoc(this);
 		}

@@ -30,13 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Status
 @JsonpDeserializable
-public final class Status implements JsonpSerializable {
+public class Status implements JsonpSerializable {
 	private final boolean includeGlobalState;
 
 	private final Map<String, SnapshotIndexStats> indices;
@@ -63,76 +64,77 @@ public final class Status implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Status(Builder builder) {
+	private Status(Builder builder) {
 
-		this.includeGlobalState = Objects.requireNonNull(builder.includeGlobalState, "include_global_state");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.shardsStats = Objects.requireNonNull(builder.shardsStats, "shards_stats");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
-		this.uuid = Objects.requireNonNull(builder.uuid, "uuid");
+		this.includeGlobalState = ModelTypeHelper.requireNonNull(builder.includeGlobalState, this,
+				"includeGlobalState");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.shardsStats = ModelTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.uuid = ModelTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 
 	}
 
-	public Status(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code include_global_state}
 	 */
-	public boolean includeGlobalState() {
+	public final boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public Map<String, SnapshotIndexStats> indices() {
+	public final Map<String, SnapshotIndexStats> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code repository}
 	 */
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
 	/**
 	 * Required - API name: {@code shards_stats}
 	 */
-	public ShardsStats shardsStats() {
+	public final ShardsStats shardsStats() {
 		return this.shardsStats;
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code stats}
 	 */
-	public SnapshotStats stats() {
+	public final SnapshotStats stats() {
 		return this.stats;
 	}
 
 	/**
 	 * Required - API name: {@code uuid}
 	 */
-	public String uuid() {
+	public final String uuid() {
 		return this.uuid;
 	}
 
@@ -150,15 +152,17 @@ public final class Status implements JsonpSerializable {
 		generator.writeKey("include_global_state");
 		generator.write(this.includeGlobalState);
 
-		generator.writeKey("indices");
-		generator.writeStartObject();
-		for (Map.Entry<String, SnapshotIndexStats> item0 : this.indices.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartObject();
+			for (Map.Entry<String, SnapshotIndexStats> item0 : this.indices.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("repository");
 		generator.write(this.repository);
 
@@ -184,7 +188,7 @@ public final class Status implements JsonpSerializable {
 	/**
 	 * Builder for {@link Status}.
 	 */
-	public static class Builder implements ObjectBuilder<Status> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
 		private Boolean includeGlobalState;
 
 		private Map<String, SnapshotIndexStats> indices;
@@ -204,7 +208,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code include_global_state}
 		 */
-		public Builder includeGlobalState(boolean value) {
+		public final Builder includeGlobalState(boolean value) {
 			this.includeGlobalState = value;
 			return this;
 		}
@@ -212,19 +216,8 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(Map<String, SnapshotIndexStats> value) {
+		public final Builder indices(Map<String, SnapshotIndexStats> value) {
 			this.indices = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, SnapshotIndexStats value) {
-			if (this.indices == null) {
-				this.indices = new HashMap<>();
-			}
-			this.indices.put(key, value);
 			return this;
 		}
 
@@ -235,18 +228,15 @@ public final class Status implements JsonpSerializable {
 			return this.indices(Collections.singletonMap(key, fn.apply(new SnapshotIndexStats.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key,
-				Function<SnapshotIndexStats.Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
-			return this.putIndices(key, fn.apply(new SnapshotIndexStats.Builder()).build());
+		public final Builder indices(
+				Function<MapBuilder<String, SnapshotIndexStats, SnapshotIndexStats.Builder>, ObjectBuilder<Map<String, SnapshotIndexStats>>> fn) {
+			return indices(fn.apply(new MapBuilder<>(SnapshotIndexStats.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -254,7 +244,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_stats}
 		 */
-		public Builder shardsStats(ShardsStats value) {
+		public final Builder shardsStats(ShardsStats value) {
 			this.shardsStats = value;
 			return this;
 		}
@@ -262,14 +252,14 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_stats}
 		 */
-		public Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
+		public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
 			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -277,7 +267,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(String value) {
+		public final Builder state(String value) {
 			this.state = value;
 			return this;
 		}
@@ -285,7 +275,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(SnapshotStats value) {
+		public final Builder stats(SnapshotStats value) {
 			this.stats = value;
 			return this;
 		}
@@ -293,14 +283,14 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
+		public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
 			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code uuid}
 		 */
-		public Builder uuid(String value) {
+		public final Builder uuid(String value) {
 			this.uuid = value;
 			return this;
 		}
@@ -312,6 +302,7 @@ public final class Status implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Status build() {
+			_checkSingleUse();
 
 			return new Status(this);
 		}

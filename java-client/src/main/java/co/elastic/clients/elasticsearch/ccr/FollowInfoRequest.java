@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,19 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.Request
 
-public final class FollowInfoRequest extends RequestBase {
+public class FollowInfoRequest extends RequestBase {
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowInfoRequest(Builder builder) {
+	private FollowInfoRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 
 	}
 
-	public FollowInfoRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowInfoRequest of(Function<Builder, ObjectBuilder<FollowInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class FollowInfoRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -76,7 +76,7 @@ public final class FollowInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link FollowInfoRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowInfoRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowInfoRequest> {
 		private List<String> index;
 
 		/**
@@ -85,7 +85,7 @@ public final class FollowInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -96,19 +96,8 @@ public final class FollowInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -119,6 +108,7 @@ public final class FollowInfoRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public FollowInfoRequest build() {
+			_checkSingleUse();
 
 			return new FollowInfoRequest(this);
 		}

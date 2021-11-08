@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.delete_component_template.Request
 
-public final class DeleteComponentTemplateRequest extends RequestBase {
+public class DeleteComponentTemplateRequest extends RequestBase {
 	@Nullable
 	private final String masterTimeout;
 
@@ -53,16 +55,17 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteComponentTemplateRequest(Builder builder) {
+	private DeleteComponentTemplateRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteComponentTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteComponentTemplateRequest of(
+			Function<Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +74,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -80,7 +83,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -90,7 +93,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -99,7 +102,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteComponentTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteComponentTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteComponentTemplateRequest> {
 		@Nullable
 		private String masterTimeout;
 
@@ -113,7 +116,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -123,7 +126,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -133,7 +136,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -145,6 +148,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteComponentTemplateRequest build() {
+			_checkSingleUse();
 
 			return new DeleteComponentTemplateRequest(this);
 		}

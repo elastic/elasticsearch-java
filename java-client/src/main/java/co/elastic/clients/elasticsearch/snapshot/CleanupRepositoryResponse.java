@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Response
 @JsonpDeserializable
-public final class CleanupRepositoryResponse implements JsonpSerializable {
+public class CleanupRepositoryResponse implements JsonpSerializable {
 	private final CleanupRepositoryResults results;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CleanupRepositoryResponse(Builder builder) {
+	private CleanupRepositoryResponse(Builder builder) {
 
-		this.results = Objects.requireNonNull(builder.results, "results");
+		this.results = ModelTypeHelper.requireNonNull(builder.results, this, "results");
 
 	}
 
-	public CleanupRepositoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CleanupRepositoryResponse of(Function<Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code results}
 	 */
-	public CleanupRepositoryResults results() {
+	public final CleanupRepositoryResults results() {
 		return this.results;
 	}
 
@@ -82,13 +84,13 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CleanupRepositoryResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CleanupRepositoryResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
 		private CleanupRepositoryResults results;
 
 		/**
 		 * Required - API name: {@code results}
 		 */
-		public Builder results(CleanupRepositoryResults value) {
+		public final Builder results(CleanupRepositoryResults value) {
 			this.results = value;
 			return this;
 		}
@@ -96,7 +98,8 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code results}
 		 */
-		public Builder results(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
+		public final Builder results(
+				Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
 			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
 		}
 
@@ -107,6 +110,7 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CleanupRepositoryResponse build() {
+			_checkSingleUse();
 
 			return new CleanupRepositoryResponse(this);
 		}

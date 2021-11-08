@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: slm.stop.Response
 @JsonpDeserializable
-public final class StopSlmResponse extends AcknowledgedResponseBase {
+public class StopSlmResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StopSlmResponse(Builder builder) {
+	private StopSlmResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StopSlmResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopSlmResponse of(Function<Builder, ObjectBuilder<StopSlmResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class StopSlmResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopSlmResponse build() {
+			_checkSingleUse();
 
 			return new StopSlmResponse(this);
 		}

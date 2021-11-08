@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.refresh.Response
 @JsonpDeserializable
-public final class RefreshResponse extends ShardsOperationResponseBase {
+public class RefreshResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public RefreshResponse(Builder builder) {
+	private RefreshResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RefreshResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RefreshResponse of(Function<Builder, ObjectBuilder<RefreshResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class RefreshResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public RefreshResponse build() {
+			_checkSingleUse();
 
 			return new RefreshResponse(this);
 		}

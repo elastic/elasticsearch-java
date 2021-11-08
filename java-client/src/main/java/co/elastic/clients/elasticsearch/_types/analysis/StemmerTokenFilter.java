@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerTokenFilter
 @JsonpDeserializable
-public final class StemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final String language;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StemmerTokenFilter(Builder builder) {
+	private StemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = Objects.requireNonNull(builder.language, "language");
+		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public StemmerTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,7 +66,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * Required - API name: {@code language}
 	 */
-	public String language() {
+	public final String language() {
 		return this.language;
 	}
 
@@ -73,7 +74,6 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 
 		generator.write("type", "stemmer");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("language");
 		generator.write(this.language);
 
@@ -92,7 +92,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * Required - API name: {@code language}
 		 */
-		public Builder language(String value) {
+		public final Builder language(String value) {
 			this.language = value;
 			return this;
 		}
@@ -109,6 +109,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public StemmerTokenFilter build() {
+			_checkSingleUse();
 
 			return new StemmerTokenFilter(this);
 		}

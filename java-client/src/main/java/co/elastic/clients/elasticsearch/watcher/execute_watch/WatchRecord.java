@@ -38,11 +38,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.WatchRecord
 @JsonpDeserializable
-public final class WatchRecord implements JsonpSerializable {
+public class WatchRecord implements JsonpSerializable {
 	private final Condition condition;
 
 	private final Input input;
@@ -74,92 +73,92 @@ public final class WatchRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatchRecord(Builder builder) {
+	private WatchRecord(Builder builder) {
 
-		this.condition = Objects.requireNonNull(builder.condition, "condition");
-		this.input = Objects.requireNonNull(builder.input, "input");
-		this.messages = ModelTypeHelper.unmodifiableNonNull(builder.messages, "messages");
-		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.result = Objects.requireNonNull(builder.result, "result");
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.triggerEvent = Objects.requireNonNull(builder.triggerEvent, "trigger_event");
-		this.user = Objects.requireNonNull(builder.user, "user");
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
+		this.condition = ModelTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
+		this.messages = ModelTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
+		this.metadata = ModelTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.result = ModelTypeHelper.requireNonNull(builder.result, this, "result");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.triggerEvent = ModelTypeHelper.requireNonNull(builder.triggerEvent, this, "triggerEvent");
+		this.user = ModelTypeHelper.requireNonNull(builder.user, this, "user");
+		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
-	public WatchRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatchRecord of(Function<Builder, ObjectBuilder<WatchRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code condition}
 	 */
-	public Condition condition() {
+	public final Condition condition() {
 		return this.condition;
 	}
 
 	/**
 	 * Required - API name: {@code input}
 	 */
-	public Input input() {
+	public final Input input() {
 		return this.input;
 	}
 
 	/**
 	 * Required - API name: {@code messages}
 	 */
-	public List<String> messages() {
+	public final List<String> messages() {
 		return this.messages;
 	}
 
 	/**
 	 * Required - API name: {@code metadata}
 	 */
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code result}
 	 */
-	public ExecutionResult result() {
+	public final ExecutionResult result() {
 		return this.result;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public ExecutionStatus state() {
+	public final ExecutionStatus state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code trigger_event}
 	 */
-	public TriggerEventResult triggerEvent() {
+	public final TriggerEventResult triggerEvent() {
 		return this.triggerEvent;
 	}
 
 	/**
 	 * Required - API name: {@code user}
 	 */
-	public String user() {
+	public final String user() {
 		return this.user;
 	}
 
 	/**
 	 * Required - API name: {@code watch_id}
 	 */
-	public String watchId() {
+	public final String watchId() {
 		return this.watchId;
 	}
 
@@ -180,23 +179,27 @@ public final class WatchRecord implements JsonpSerializable {
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
-		generator.writeKey("messages");
-		generator.writeStartArray();
-		for (String item0 : this.messages) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.messages)) {
+			generator.writeKey("messages");
+			generator.writeStartArray();
+			for (String item0 : this.messages) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("metadata");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("node");
 		generator.write(this.node);
 
@@ -205,7 +208,6 @@ public final class WatchRecord implements JsonpSerializable {
 
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-
 		generator.writeKey("trigger_event");
 		this.triggerEvent.serialize(generator, mapper);
 
@@ -222,7 +224,7 @@ public final class WatchRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatchRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<WatchRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchRecord> {
 		private Condition condition;
 
 		private Input input;
@@ -246,7 +248,7 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(Condition value) {
+		public final Builder condition(Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -254,14 +256,14 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(Input value) {
+		public final Builder input(Input value) {
 			this.input = value;
 			return this;
 		}
@@ -269,14 +271,14 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code messages}
 		 */
-		public Builder messages(List<String> value) {
+		public final Builder messages(List<String> value) {
 			this.messages = value;
 			return this;
 		}
@@ -284,45 +286,23 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code messages}
 		 */
-		public Builder messages(String... value) {
+		public final Builder messages(String... value) {
 			this.messages = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #messages(List)}, creating the list if needed.
-		 */
-		public Builder addMessages(String value) {
-			if (this.messages == null) {
-				this.messages = new ArrayList<>();
-			}
-			this.messages.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metadata}
 		 */
-		public Builder metadata(Map<String, JsonData> value) {
+		public final Builder metadata(Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -330,7 +310,7 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code result}
 		 */
-		public Builder result(ExecutionResult value) {
+		public final Builder result(ExecutionResult value) {
 			this.result = value;
 			return this;
 		}
@@ -338,14 +318,14 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code result}
 		 */
-		public Builder result(Function<ExecutionResult.Builder, ObjectBuilder<ExecutionResult>> fn) {
+		public final Builder result(Function<ExecutionResult.Builder, ObjectBuilder<ExecutionResult>> fn) {
 			return this.result(fn.apply(new ExecutionResult.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(ExecutionStatus value) {
+		public final Builder state(ExecutionStatus value) {
 			this.state = value;
 			return this;
 		}
@@ -353,7 +333,7 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger_event}
 		 */
-		public Builder triggerEvent(TriggerEventResult value) {
+		public final Builder triggerEvent(TriggerEventResult value) {
 			this.triggerEvent = value;
 			return this;
 		}
@@ -361,14 +341,14 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger_event}
 		 */
-		public Builder triggerEvent(Function<TriggerEventResult.Builder, ObjectBuilder<TriggerEventResult>> fn) {
+		public final Builder triggerEvent(Function<TriggerEventResult.Builder, ObjectBuilder<TriggerEventResult>> fn) {
 			return this.triggerEvent(fn.apply(new TriggerEventResult.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code user}
 		 */
-		public Builder user(String value) {
+		public final Builder user(String value) {
 			this.user = value;
 			return this;
 		}
@@ -376,7 +356,7 @@ public final class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watch_id}
 		 */
-		public Builder watchId(String value) {
+		public final Builder watchId(String value) {
 			this.watchId = value;
 			return this;
 		}
@@ -388,6 +368,7 @@ public final class WatchRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatchRecord build() {
+			_checkSingleUse();
 
 			return new WatchRecord(this);
 		}

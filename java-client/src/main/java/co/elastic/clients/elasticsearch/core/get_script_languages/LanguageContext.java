@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.LanguageContext
 @JsonpDeserializable
-public final class LanguageContext implements JsonpSerializable {
+public class LanguageContext implements JsonpSerializable {
 	private final List<String> contexts;
 
 	private final ScriptLanguage language;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LanguageContext(Builder builder) {
+	private LanguageContext(Builder builder) {
 
-		this.contexts = ModelTypeHelper.unmodifiableNonNull(builder.contexts, "contexts");
-		this.language = Objects.requireNonNull(builder.language, "language");
+		this.contexts = ModelTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
+		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public LanguageContext(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LanguageContext of(Function<Builder, ObjectBuilder<LanguageContext>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code contexts}
 	 */
-	public List<String> contexts() {
+	public final List<String> contexts() {
 		return this.contexts;
 	}
 
 	/**
 	 * Required - API name: {@code language}
 	 */
-	public ScriptLanguage language() {
+	public final ScriptLanguage language() {
 		return this.language;
 	}
 
@@ -87,14 +87,16 @@ public final class LanguageContext implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("contexts");
-		generator.writeStartArray();
-		for (String item0 : this.contexts) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.contexts)) {
+			generator.writeKey("contexts");
+			generator.writeStartArray();
+			for (String item0 : this.contexts) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("language");
 		this.language.serialize(generator, mapper);
 
@@ -105,7 +107,7 @@ public final class LanguageContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link LanguageContext}.
 	 */
-	public static class Builder implements ObjectBuilder<LanguageContext> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LanguageContext> {
 		private List<String> contexts;
 
 		private ScriptLanguage language;
@@ -113,7 +115,7 @@ public final class LanguageContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code contexts}
 		 */
-		public Builder contexts(List<String> value) {
+		public final Builder contexts(List<String> value) {
 			this.contexts = value;
 			return this;
 		}
@@ -121,26 +123,15 @@ public final class LanguageContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code contexts}
 		 */
-		public Builder contexts(String... value) {
+		public final Builder contexts(String... value) {
 			this.contexts = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
-		 */
-		public Builder addContexts(String value) {
-			if (this.contexts == null) {
-				this.contexts = new ArrayList<>();
-			}
-			this.contexts.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code language}
 		 */
-		public Builder language(ScriptLanguage value) {
+		public final Builder language(ScriptLanguage value) {
 			this.language = value;
 			return this;
 		}
@@ -152,6 +143,7 @@ public final class LanguageContext implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public LanguageContext build() {
+			_checkSingleUse();
 
 			return new LanguageContext(this);
 		}

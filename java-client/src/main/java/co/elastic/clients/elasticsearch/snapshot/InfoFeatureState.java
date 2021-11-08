@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.InfoFeatureState
 @JsonpDeserializable
-public final class InfoFeatureState implements JsonpSerializable {
+public class InfoFeatureState implements JsonpSerializable {
 	private final String featureName;
 
 	private final List<String> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InfoFeatureState(Builder builder) {
+	private InfoFeatureState(Builder builder) {
 
-		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public InfoFeatureState(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InfoFeatureState of(Function<Builder, ObjectBuilder<InfoFeatureState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code feature_name}
 	 */
-	public String featureName() {
+	public final String featureName() {
 		return this.featureName;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -89,13 +89,16 @@ public final class InfoFeatureState implements JsonpSerializable {
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +107,7 @@ public final class InfoFeatureState implements JsonpSerializable {
 	/**
 	 * Builder for {@link InfoFeatureState}.
 	 */
-	public static class Builder implements ObjectBuilder<InfoFeatureState> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoFeatureState> {
 		private String featureName;
 
 		private List<String> indices;
@@ -112,7 +115,7 @@ public final class InfoFeatureState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
-		public Builder featureName(String value) {
+		public final Builder featureName(String value) {
 			this.featureName = value;
 			return this;
 		}
@@ -120,7 +123,7 @@ public final class InfoFeatureState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -128,19 +131,8 @@ public final class InfoFeatureState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
@@ -151,6 +143,7 @@ public final class InfoFeatureState implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InfoFeatureState build() {
+			_checkSingleUse();
 
 			return new InfoFeatureState(this);
 		}

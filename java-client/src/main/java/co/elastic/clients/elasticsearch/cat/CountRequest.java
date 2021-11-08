@@ -32,9 +32,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -46,20 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.count.Request
 
-public final class CountRequest extends CatRequestBase {
-	@Nullable
+public class CountRequest extends CatRequestBase {
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CountRequest(Builder builder) {
+	private CountRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
-	public CountRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,8 +66,7 @@ public final class CountRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -77,7 +75,7 @@ public final class CountRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link CountRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CountRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRequest> {
 		@Nullable
 		private List<String> index;
 
@@ -86,7 +84,7 @@ public final class CountRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -96,19 +94,8 @@ public final class CountRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -119,6 +106,7 @@ public final class CountRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CountRequest build() {
+			_checkSingleUse();
 
 			return new CountRequest(this);
 		}
@@ -142,7 +130,7 @@ public final class CountRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {

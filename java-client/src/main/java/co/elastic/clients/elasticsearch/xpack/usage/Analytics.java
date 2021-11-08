@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,33 +38,32 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Analytics
 @JsonpDeserializable
-public final class Analytics extends Base {
+public class Analytics extends Base {
 	private final AnalyticsStatistics stats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Analytics(Builder builder) {
+	private Analytics(Builder builder) {
 		super(builder);
 
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
+		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
-	public Analytics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Analytics of(Function<Builder, ObjectBuilder<Analytics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stats}
 	 */
-	public AnalyticsStatistics stats() {
+	public final AnalyticsStatistics stats() {
 		return this.stats;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("stats");
 		this.stats.serialize(generator, mapper);
 
@@ -80,7 +80,7 @@ public final class Analytics extends Base {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(AnalyticsStatistics value) {
+		public final Builder stats(AnalyticsStatistics value) {
 			this.stats = value;
 			return this;
 		}
@@ -88,7 +88,7 @@ public final class Analytics extends Base {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(Function<AnalyticsStatistics.Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
+		public final Builder stats(Function<AnalyticsStatistics.Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
 			return this.stats(fn.apply(new AnalyticsStatistics.Builder()).build());
 		}
 
@@ -104,6 +104,7 @@ public final class Analytics extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Analytics build() {
+			_checkSingleUse();
 
 			return new Analytics(this);
 		}

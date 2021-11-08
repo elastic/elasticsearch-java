@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardLease
 @JsonpDeserializable
-public final class ShardLease implements JsonpSerializable {
+public class ShardLease implements JsonpSerializable {
 	private final String id;
 
 	private final long retainingSeqNo;
@@ -51,44 +53,44 @@ public final class ShardLease implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardLease(Builder builder) {
+	private ShardLease(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.retainingSeqNo = Objects.requireNonNull(builder.retainingSeqNo, "retaining_seq_no");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
-		this.source = Objects.requireNonNull(builder.source, "source");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.retainingSeqNo = ModelTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public ShardLease(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardLease of(Function<Builder, ObjectBuilder<ShardLease>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code retaining_seq_no}
 	 */
-	public long retainingSeqNo() {
+	public final long retainingSeqNo() {
 		return this.retainingSeqNo;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public long timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
@@ -122,7 +124,7 @@ public final class ShardLease implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardLease}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardLease> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardLease> {
 		private String id;
 
 		private Long retainingSeqNo;
@@ -134,7 +136,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -142,7 +144,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retaining_seq_no}
 		 */
-		public Builder retainingSeqNo(long value) {
+		public final Builder retainingSeqNo(long value) {
 			this.retainingSeqNo = value;
 			return this;
 		}
@@ -150,7 +152,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(long value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(String value) {
+		public final Builder source(String value) {
 			this.source = value;
 			return this;
 		}
@@ -170,6 +172,7 @@ public final class ShardLease implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardLease build() {
+			_checkSingleUse();
 
 			return new ShardLease(this);
 		}

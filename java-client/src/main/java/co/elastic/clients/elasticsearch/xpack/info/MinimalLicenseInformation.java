@@ -32,7 +32,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.info.MinimalLicenseInformation
 @JsonpDeserializable
-public final class MinimalLicenseInformation implements JsonpSerializable {
+public class MinimalLicenseInformation implements JsonpSerializable {
 	private final String expiryDateInMillis;
 
 	private final LicenseType mode;
@@ -54,52 +56,53 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MinimalLicenseInformation(Builder builder) {
+	private MinimalLicenseInformation(Builder builder) {
 
-		this.expiryDateInMillis = Objects.requireNonNull(builder.expiryDateInMillis, "expiry_date_in_millis");
-		this.mode = Objects.requireNonNull(builder.mode, "mode");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.uid = Objects.requireNonNull(builder.uid, "uid");
+		this.expiryDateInMillis = ModelTypeHelper.requireNonNull(builder.expiryDateInMillis, this,
+				"expiryDateInMillis");
+		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.uid = ModelTypeHelper.requireNonNull(builder.uid, this, "uid");
 
 	}
 
-	public MinimalLicenseInformation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MinimalLicenseInformation of(Function<Builder, ObjectBuilder<MinimalLicenseInformation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code expiry_date_in_millis}
 	 */
-	public String expiryDateInMillis() {
+	public final String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code mode}
 	 */
-	public LicenseType mode() {
+	public final LicenseType mode() {
 		return this.mode;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public LicenseStatus status() {
+	public final LicenseStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public LicenseType type() {
+	public final LicenseType type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code uid}
 	 */
-	public String uid() {
+	public final String uid() {
 		return this.uid;
 	}
 
@@ -119,13 +122,10 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 
 		generator.writeKey("mode");
 		this.mode.serialize(generator, mapper);
-
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
-
 		generator.writeKey("uid");
 		generator.write(this.uid);
 
@@ -136,7 +136,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link MinimalLicenseInformation}.
 	 */
-	public static class Builder implements ObjectBuilder<MinimalLicenseInformation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MinimalLicenseInformation> {
 		private String expiryDateInMillis;
 
 		private LicenseType mode;
@@ -150,7 +150,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expiry_date_in_millis}
 		 */
-		public Builder expiryDateInMillis(String value) {
+		public final Builder expiryDateInMillis(String value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -158,7 +158,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mode}
 		 */
-		public Builder mode(LicenseType value) {
+		public final Builder mode(LicenseType value) {
 			this.mode = value;
 			return this;
 		}
@@ -166,7 +166,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(LicenseStatus value) {
+		public final Builder status(LicenseStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -174,7 +174,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(LicenseType value) {
+		public final Builder type(LicenseType value) {
 			this.type = value;
 			return this;
 		}
@@ -182,7 +182,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code uid}
 		 */
-		public Builder uid(String value) {
+		public final Builder uid(String value) {
 			this.uid = value;
 			return this;
 		}
@@ -194,6 +194,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MinimalLicenseInformation build() {
+			_checkSingleUse();
 
 			return new MinimalLicenseInformation(this);
 		}

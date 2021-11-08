@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.CreateOperation
 
-public final class CreateOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, OperationVariant {
+public class CreateOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, OperationVariant {
 	private final TDocument document;
 
 	@Nullable
@@ -47,16 +48,17 @@ public final class CreateOperation<TDocument> extends WriteOperation implements 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateOperation(Builder<TDocument> builder) {
+	private CreateOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = Objects.requireNonNull(builder.document, "document");
+		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
 
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public CreateOperation(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> CreateOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<CreateOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -70,7 +72,7 @@ public final class CreateOperation<TDocument> extends WriteOperation implements 
 	/**
 	 * Required - API name: {@code document}
 	 */
-	public TDocument document() {
+	public final TDocument document() {
 		return this.document;
 	}
 
@@ -92,7 +94,7 @@ public final class CreateOperation<TDocument> extends WriteOperation implements 
 		/**
 		 * Required - API name: {@code document}
 		 */
-		public Builder<TDocument> document(TDocument value) {
+		public final Builder<TDocument> document(TDocument value) {
 			this.document = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class CreateOperation<TDocument> extends WriteOperation implements 
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -121,6 +123,7 @@ public final class CreateOperation<TDocument> extends WriteOperation implements 
 		 *             if some of the required fields are null.
 		 */
 		public CreateOperation<TDocument> build() {
+			_checkSingleUse();
 
 			return new CreateOperation<TDocument>(this);
 		}

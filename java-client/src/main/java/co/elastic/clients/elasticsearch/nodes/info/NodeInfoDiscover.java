@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoDiscover
 @JsonpDeserializable
-public final class NodeInfoDiscover implements JsonpSerializable {
+public class NodeInfoDiscover implements JsonpSerializable {
 	private final String seedHosts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoDiscover(Builder builder) {
+	private NodeInfoDiscover(Builder builder) {
 
-		this.seedHosts = Objects.requireNonNull(builder.seedHosts, "seed_hosts");
+		this.seedHosts = ModelTypeHelper.requireNonNull(builder.seedHosts, this, "seedHosts");
 
 	}
 
-	public NodeInfoDiscover(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoDiscover of(Function<Builder, ObjectBuilder<NodeInfoDiscover>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code seed_hosts}
 	 */
-	public String seedHosts() {
+	public final String seedHosts() {
 		return this.seedHosts;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoDiscover}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoDiscover> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoDiscover> {
 		private String seedHosts;
 
 		/**
 		 * Required - API name: {@code seed_hosts}
 		 */
-		public Builder seedHosts(String value) {
+		public final Builder seedHosts(String value) {
 			this.seedHosts = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoDiscover build() {
+			_checkSingleUse();
 
 			return new NodeInfoDiscover(this);
 		}

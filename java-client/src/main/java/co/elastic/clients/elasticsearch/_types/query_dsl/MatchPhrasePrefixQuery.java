@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhrasePrefixQuery
 @JsonpDeserializable
-public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
+public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -59,20 +60,20 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchPhrasePrefixQuery(Builder builder) {
+	private MatchPhrasePrefixQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.maxExpansions = builder.maxExpansions;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.slop = builder.slop;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}
 
-	public MatchPhrasePrefixQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchPhrasePrefixQuery of(Function<Builder, ObjectBuilder<MatchPhrasePrefixQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,7 +87,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -94,7 +95,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -102,14 +103,14 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Integer maxExpansions() {
+	public final Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -117,7 +118,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 	 * API name: {@code slop}
 	 */
 	@Nullable
-	public Integer slop() {
+	public final Integer slop() {
 		return this.slop;
 	}
 
@@ -125,7 +126,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public ZeroTermsQuery zeroTermsQuery() {
+	public final ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
@@ -134,29 +135,24 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.maxExpansions != null) {
-
 			generator.writeKey("max_expansions");
 			generator.write(this.maxExpansions);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.slop != null) {
-
 			generator.writeKey("slop");
 			generator.write(this.slop);
 
 		}
 		if (this.zeroTermsQuery != null) {
-
 			generator.writeKey("zero_terms_query");
 			this.zeroTermsQuery.serialize(generator, mapper);
 		}
@@ -178,7 +174,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -200,7 +196,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -208,7 +204,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Integer value) {
+		public final Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -216,7 +212,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -224,7 +220,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code slop}
 		 */
-		public Builder slop(@Nullable Integer value) {
+		public final Builder slop(@Nullable Integer value) {
 			this.slop = value;
 			return this;
 		}
@@ -232,7 +228,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
+		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -249,6 +245,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		 *             if some of the required fields are null.
 		 */
 		public MatchPhrasePrefixQuery build() {
+			_checkSingleUse();
 
 			return new MatchPhrasePrefixQuery(this);
 		}

@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Request
 @JsonpDeserializable
-public final class OpenJobRequest extends RequestBase implements JsonpSerializable {
+public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -52,31 +54,33 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenJobRequest(Builder builder) {
+	private OpenJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public OpenJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenJobRequest of(Function<Builder, ObjectBuilder<OpenJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the job to open
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
+	 * Controls the time to wait until a job has opened.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -92,7 +96,6 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
 			generator.write(this.timeout);
 
@@ -105,26 +108,28 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link OpenJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenJobRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenJobRequest> {
 		private String jobId;
 
 		@Nullable
 		private String timeout;
 
 		/**
-		 * Required - The ID of the job to open
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
+		 * Controls the time to wait until a job has opened.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -136,6 +141,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public OpenJobRequest build() {
+			_checkSingleUse();
 
 			return new OpenJobRequest(this);
 		}

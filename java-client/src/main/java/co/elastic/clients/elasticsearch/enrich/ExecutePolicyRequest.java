@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Request
 
-public final class ExecutePolicyRequest extends RequestBase {
+public class ExecutePolicyRequest extends RequestBase {
 	private final String name;
 
 	@Nullable
@@ -51,15 +53,15 @@ public final class ExecutePolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutePolicyRequest(Builder builder) {
+	private ExecutePolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public ExecutePolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutePolicyRequest of(Function<Builder, ObjectBuilder<ExecutePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +69,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -77,7 +79,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -86,7 +88,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExecutePolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutePolicyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutePolicyRequest> {
 		private String name;
 
 		@Nullable
@@ -97,7 +99,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -107,7 +109,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -119,6 +121,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutePolicyRequest build() {
+			_checkSingleUse();
 
 			return new ExecutePolicyRequest(this);
 		}

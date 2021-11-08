@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: license.delete.Response
 @JsonpDeserializable
-public final class DeleteLicenseResponse extends AcknowledgedResponseBase {
+public class DeleteLicenseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteLicenseResponse(Builder builder) {
+	private DeleteLicenseResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteLicenseResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteLicenseResponse of(Function<Builder, ObjectBuilder<DeleteLicenseResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteLicenseResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteLicenseResponse build() {
+			_checkSingleUse();
 
 			return new DeleteLicenseResponse(this);
 		}

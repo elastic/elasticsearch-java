@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,7 +40,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessor
 @JsonpDeserializable
-public final class ClusterProcessor implements JsonpSerializable {
+public class ClusterProcessor implements JsonpSerializable {
 	private final long count;
 
 	private final long current;
@@ -49,44 +51,44 @@ public final class ClusterProcessor implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterProcessor(Builder builder) {
+	private ClusterProcessor(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.current = Objects.requireNonNull(builder.current, "current");
-		this.failed = Objects.requireNonNull(builder.failed, "failed");
-		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
+		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
 
-	public ClusterProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterProcessor of(Function<Builder, ObjectBuilder<ClusterProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code current}
 	 */
-	public long current() {
+	public final long current() {
 		return this.current;
 	}
 
 	/**
 	 * Required - API name: {@code failed}
 	 */
-	public long failed() {
+	public final long failed() {
 		return this.failed;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_millis}
 	 */
-	public long timeInMillis() {
+	public final long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -120,7 +122,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessor}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterProcessor> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessor> {
 		private Long count;
 
 		private Long current;
@@ -132,7 +134,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -140,7 +142,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current}
 		 */
-		public Builder current(long value) {
+		public final Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -148,7 +150,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failed}
 		 */
-		public Builder failed(long value) {
+		public final Builder failed(long value) {
 			this.failed = value;
 			return this;
 		}
@@ -156,7 +158,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(long value) {
+		public final Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -168,6 +170,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterProcessor build() {
+			_checkSingleUse();
 
 			return new ClusterProcessor(this);
 		}

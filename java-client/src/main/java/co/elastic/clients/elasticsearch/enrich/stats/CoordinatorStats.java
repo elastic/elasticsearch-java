@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CoordinatorStats
 @JsonpDeserializable
-public final class CoordinatorStats implements JsonpSerializable {
+public class CoordinatorStats implements JsonpSerializable {
 	private final long executedSearchesTotal;
 
 	private final String nodeId;
@@ -54,52 +56,55 @@ public final class CoordinatorStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CoordinatorStats(Builder builder) {
+	private CoordinatorStats(Builder builder) {
 
-		this.executedSearchesTotal = Objects.requireNonNull(builder.executedSearchesTotal, "executed_searches_total");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.queueSize = Objects.requireNonNull(builder.queueSize, "queue_size");
-		this.remoteRequestsCurrent = Objects.requireNonNull(builder.remoteRequestsCurrent, "remote_requests_current");
-		this.remoteRequestsTotal = Objects.requireNonNull(builder.remoteRequestsTotal, "remote_requests_total");
+		this.executedSearchesTotal = ModelTypeHelper.requireNonNull(builder.executedSearchesTotal, this,
+				"executedSearchesTotal");
+		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.queueSize = ModelTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.remoteRequestsCurrent = ModelTypeHelper.requireNonNull(builder.remoteRequestsCurrent, this,
+				"remoteRequestsCurrent");
+		this.remoteRequestsTotal = ModelTypeHelper.requireNonNull(builder.remoteRequestsTotal, this,
+				"remoteRequestsTotal");
 
 	}
 
-	public CoordinatorStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CoordinatorStats of(Function<Builder, ObjectBuilder<CoordinatorStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code executed_searches_total}
 	 */
-	public long executedSearchesTotal() {
+	public final long executedSearchesTotal() {
 		return this.executedSearchesTotal;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code queue_size}
 	 */
-	public int queueSize() {
+	public final int queueSize() {
 		return this.queueSize;
 	}
 
 	/**
 	 * Required - API name: {@code remote_requests_current}
 	 */
-	public int remoteRequestsCurrent() {
+	public final int remoteRequestsCurrent() {
 		return this.remoteRequestsCurrent;
 	}
 
 	/**
 	 * Required - API name: {@code remote_requests_total}
 	 */
-	public long remoteRequestsTotal() {
+	public final long remoteRequestsTotal() {
 		return this.remoteRequestsTotal;
 	}
 
@@ -136,7 +141,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CoordinatorStats}.
 	 */
-	public static class Builder implements ObjectBuilder<CoordinatorStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CoordinatorStats> {
 		private Long executedSearchesTotal;
 
 		private String nodeId;
@@ -150,7 +155,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code executed_searches_total}
 		 */
-		public Builder executedSearchesTotal(long value) {
+		public final Builder executedSearchesTotal(long value) {
 			this.executedSearchesTotal = value;
 			return this;
 		}
@@ -158,7 +163,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -166,7 +171,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue_size}
 		 */
-		public Builder queueSize(int value) {
+		public final Builder queueSize(int value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -174,7 +179,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote_requests_current}
 		 */
-		public Builder remoteRequestsCurrent(int value) {
+		public final Builder remoteRequestsCurrent(int value) {
 			this.remoteRequestsCurrent = value;
 			return this;
 		}
@@ -182,7 +187,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote_requests_total}
 		 */
-		public Builder remoteRequestsTotal(long value) {
+		public final Builder remoteRequestsTotal(long value) {
 			this.remoteRequestsTotal = value;
 			return this;
 		}
@@ -194,6 +199,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CoordinatorStats build() {
+			_checkSingleUse();
 
 			return new CoordinatorStats(this);
 		}

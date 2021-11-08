@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,10 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.close_job.Request
 
-public final class CloseJobRequest extends RequestBase {
-	@Nullable
-	private final Boolean allowNoJobs;
-
+public class CloseJobRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -60,29 +59,17 @@ public final class CloseJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CloseJobRequest(Builder builder) {
+	private CloseJobRequest(Builder builder) {
 
-		this.allowNoJobs = builder.allowNoJobs;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public CloseJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
-	 * <p>
-	 * API name: {@code allow_no_jobs}
-	 */
-	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
+	public static CloseJobRequest of(Function<Builder, ObjectBuilder<CloseJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +84,7 @@ public final class CloseJobRequest extends RequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -114,7 +101,7 @@ public final class CloseJobRequest extends RequestBase {
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
@@ -128,7 +115,7 @@ public final class CloseJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -138,7 +125,7 @@ public final class CloseJobRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -147,10 +134,7 @@ public final class CloseJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link CloseJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CloseJobRequest> {
-		@Nullable
-		private Boolean allowNoJobs;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseJobRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -163,17 +147,6 @@ public final class CloseJobRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
-		 * <p>
-		 * API name: {@code allow_no_jobs}
-		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
-			return this;
-		}
-
-		/**
 		 * Specifies what to do when the request: contains wildcard expressions and
 		 * there are no jobs that match; contains the <code>_all</code> string or no
 		 * identifiers and there are no matches; or contains wildcard expressions and
@@ -184,7 +157,7 @@ public final class CloseJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -201,7 +174,7 @@ public final class CloseJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
@@ -216,7 +189,7 @@ public final class CloseJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -226,7 +199,7 @@ public final class CloseJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -238,6 +211,7 @@ public final class CloseJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CloseJobRequest build() {
+			_checkSingleUse();
 
 			return new CloseJobRequest(this);
 		}
@@ -279,9 +253,6 @@ public final class CloseJobRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoJobs != null) {
-					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
-				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
 				}

@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Request
 
-public final class UpgradeJobSnapshotRequest extends RequestBase {
+public class UpgradeJobSnapshotRequest extends RequestBase {
 	private final String jobId;
 
 	private final String snapshotId;
@@ -56,17 +58,17 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpgradeJobSnapshotRequest(Builder builder) {
+	private UpgradeJobSnapshotRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public UpgradeJobSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpgradeJobSnapshotRequest of(Function<Builder, ObjectBuilder<UpgradeJobSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +76,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -84,7 +86,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
-	public String snapshotId() {
+	public final String snapshotId() {
 		return this.snapshotId;
 	}
 
@@ -94,7 +96,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -105,7 +107,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -114,7 +116,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link UpgradeJobSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpgradeJobSnapshotRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeJobSnapshotRequest> {
 		private String jobId;
 
 		private String snapshotId;
@@ -130,7 +132,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -141,7 +143,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public Builder snapshotId(String value) {
+		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
 			return this;
 		}
@@ -151,7 +153,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -162,7 +164,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -174,6 +176,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpgradeJobSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new UpgradeJobSnapshotRequest(this);
 		}

@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: graph._types.Hop
 @JsonpDeserializable
-public final class Hop implements JsonpSerializable {
+public class Hop implements JsonpSerializable {
 	@Nullable
 	private final Hop connections;
 
@@ -53,37 +54,37 @@ public final class Hop implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Hop(Builder builder) {
+	private Hop(Builder builder) {
 
 		this.connections = builder.connections;
-		this.query = Objects.requireNonNull(builder.query, "query");
-		this.vertices = ModelTypeHelper.unmodifiableNonNull(builder.vertices, "vertices");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.vertices = ModelTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
 
-	public Hop(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Hop of(Function<Builder, ObjectBuilder<Hop>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code connections}
 	 */
 	@Nullable
-	public Hop connections() {
+	public final Hop connections() {
 		return this.connections;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
 	/**
 	 * Required - API name: {@code vertices}
 	 */
-	public List<VertexDefinition> vertices() {
+	public final List<VertexDefinition> vertices() {
 		return this.vertices;
 	}
 
@@ -99,22 +100,23 @@ public final class Hop implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.connections != null) {
-
 			generator.writeKey("connections");
 			this.connections.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("query");
 		this.query.serialize(generator, mapper);
 
-		generator.writeKey("vertices");
-		generator.writeStartArray();
-		for (VertexDefinition item0 : this.vertices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.vertices)) {
+			generator.writeKey("vertices");
+			generator.writeStartArray();
+			for (VertexDefinition item0 : this.vertices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -123,7 +125,7 @@ public final class Hop implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hop}.
 	 */
-	public static class Builder implements ObjectBuilder<Hop> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hop> {
 		@Nullable
 		private Hop connections;
 
@@ -134,7 +136,7 @@ public final class Hop implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(@Nullable Hop value) {
+		public final Builder connections(@Nullable Hop value) {
 			this.connections = value;
 			return this;
 		}
@@ -142,14 +144,14 @@ public final class Hop implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
 			return this.connections(fn.apply(new Hop.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -157,14 +159,14 @@ public final class Hop implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
 		 */
-		public Builder vertices(List<VertexDefinition> value) {
+		public final Builder vertices(List<VertexDefinition> value) {
 			this.vertices = value;
 			return this;
 		}
@@ -172,34 +174,21 @@ public final class Hop implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 */
-		public Builder vertices(VertexDefinition... value) {
+		public final Builder vertices(VertexDefinition... value) {
 			this.vertices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Required - API name: {@code vertices}
 		 */
-		public Builder addVertices(VertexDefinition value) {
-			if (this.vertices == null) {
-				this.vertices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>>... fns) {
+			this.vertices = new ArrayList<>(fns.length);
+			for (Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn : fns) {
+				this.vertices.add(fn.apply(new VertexDefinition.Builder()).build());
 			}
-			this.vertices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #vertices(List)} to a singleton list.
-		 */
-		public Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
-			return this.vertices(fn.apply(new VertexDefinition.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
-		 */
-		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
-			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());
 		}
 
 		/**
@@ -209,6 +198,7 @@ public final class Hop implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Hop build() {
+			_checkSingleUse();
 
 			return new Hop(this);
 		}

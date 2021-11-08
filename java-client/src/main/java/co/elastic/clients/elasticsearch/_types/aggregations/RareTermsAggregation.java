@@ -36,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,8 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RareTermsAggregation
 @JsonpDeserializable
-public final class RareTermsAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
+public class RareTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<String> exclude;
 
 	@Nullable
@@ -69,7 +67,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RareTermsAggregation(Builder builder) {
+	private RareTermsAggregation(Builder builder) {
 		super(builder);
 
 		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
@@ -82,8 +80,8 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 
 	}
 
-	public RareTermsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RareTermsAggregation of(Function<Builder, ObjectBuilder<RareTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,8 +95,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	/**
 	 * API name: {@code exclude}
 	 */
-	@Nullable
-	public List<String> exclude() {
+	public final List<String> exclude() {
 		return this.exclude;
 	}
 
@@ -106,7 +103,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -114,7 +111,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
+	public final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
 		return this.include;
 	}
 
@@ -122,7 +119,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	 * API name: {@code max_doc_count}
 	 */
 	@Nullable
-	public Long maxDocCount() {
+	public final Long maxDocCount() {
 		return this.maxDocCount;
 	}
 
@@ -130,7 +127,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final String missing() {
 		return this.missing;
 	}
 
@@ -138,7 +135,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public Double precision() {
+	public final Double precision() {
 		return this.precision;
 	}
 
@@ -146,15 +143,14 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	 * API name: {@code value_type}
 	 */
 	@Nullable
-	public String valueType() {
+	public final String valueType() {
 		return this.valueType;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.exclude != null) {
-
+		if (ModelTypeHelper.isDefined(this.exclude)) {
 			generator.writeKey("exclude");
 			generator.writeStartArray();
 			for (String item0 : this.exclude) {
@@ -165,37 +161,31 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.include != null) {
-
 			generator.writeKey("include");
 			generator.write(this.include);
 
 		}
 		if (this.maxDocCount != null) {
-
 			generator.writeKey("max_doc_count");
 			generator.write(this.maxDocCount);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
 			generator.write(this.precision);
 
 		}
 		if (this.valueType != null) {
-
 			generator.writeKey("value_type");
 			generator.write(this.valueType);
 
@@ -235,7 +225,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable List<String> value) {
 			this.exclude = value;
 			return this;
 		}
@@ -243,26 +233,15 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(String... value) {
+		public final Builder exclude(String... value) {
 			this.exclude = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
-		 */
-		public Builder addExclude(String value) {
-			if (this.exclude == null) {
-				this.exclude = new ArrayList<>();
-			}
-			this.exclude.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -270,7 +249,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(
+		public final Builder include(
 				@Nullable JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ value) {
 			this.include = value;
 			return this;
@@ -279,7 +258,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code max_doc_count}
 		 */
-		public Builder maxDocCount(@Nullable Long value) {
+		public final Builder maxDocCount(@Nullable Long value) {
 			this.maxDocCount = value;
 			return this;
 		}
@@ -287,7 +266,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -295,7 +274,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable Double value) {
+		public final Builder precision(@Nullable Double value) {
 			this.precision = value;
 			return this;
 		}
@@ -303,7 +282,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code value_type}
 		 */
-		public Builder valueType(@Nullable String value) {
+		public final Builder valueType(@Nullable String value) {
 			this.valueType = value;
 			return this;
 		}
@@ -320,6 +299,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public RareTermsAggregation build() {
+			_checkSingleUse();
 
 			return new RareTermsAggregation(this);
 		}

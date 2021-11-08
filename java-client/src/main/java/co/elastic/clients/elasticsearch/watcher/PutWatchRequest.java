@@ -36,8 +36,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -51,8 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Request
 @JsonpDeserializable
-public final class PutWatchRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Action> actions;
 
 	@Nullable
@@ -72,7 +73,6 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final Input input;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -89,12 +89,12 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutWatchRequest(Builder builder) {
+	private PutWatchRequest(Builder builder) {
 
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.active = builder.active;
 		this.condition = builder.condition;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSequenceNumber = builder.ifSequenceNumber;
 		this.input = builder.input;
@@ -106,15 +106,14 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public PutWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutWatchRequest of(Function<Builder, ObjectBuilder<PutWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code actions}
 	 */
-	@Nullable
-	public Map<String, Action> actions() {
+	public final Map<String, Action> actions() {
 		return this.actions;
 	}
 
@@ -124,7 +123,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code active}
 	 */
 	@Nullable
-	public Boolean active() {
+	public final Boolean active() {
 		return this.active;
 	}
 
@@ -132,7 +131,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code condition}
 	 */
 	@Nullable
-	public Condition condition() {
+	public final Condition condition() {
 		return this.condition;
 	}
 
@@ -141,7 +140,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -152,7 +151,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Long ifPrimaryTerm() {
+	public final Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -160,7 +159,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code if_sequence_number}
 	 */
 	@Nullable
-	public Long ifSequenceNumber() {
+	public final Long ifSequenceNumber() {
 		return this.ifSequenceNumber;
 	}
 
@@ -168,15 +167,14 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code input}
 	 */
 	@Nullable
-	public Input input() {
+	public final Input input() {
 		return this.input;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -184,7 +182,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code throttle_period}
 	 */
 	@Nullable
-	public String throttlePeriod() {
+	public final String throttlePeriod() {
 		return this.throttlePeriod;
 	}
 
@@ -192,7 +190,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code transform}
 	 */
 	@Nullable
-	public Transform transform() {
+	public final Transform transform() {
 		return this.transform;
 	}
 
@@ -200,7 +198,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code trigger}
 	 */
 	@Nullable
-	public Trigger trigger() {
+	public final Trigger trigger() {
 		return this.trigger;
 	}
 
@@ -210,7 +208,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -225,8 +223,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-
+		if (ModelTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
@@ -238,19 +235,16 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 
 		}
 		if (this.condition != null) {
-
 			generator.writeKey("condition");
 			this.condition.serialize(generator, mapper);
 
 		}
 		if (this.input != null) {
-
 			generator.writeKey("input");
 			this.input.serialize(generator, mapper);
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -262,19 +256,16 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 
 		}
 		if (this.throttlePeriod != null) {
-
 			generator.writeKey("throttle_period");
 			generator.write(this.throttlePeriod);
 
 		}
 		if (this.transform != null) {
-
 			generator.writeKey("transform");
 			this.transform.serialize(generator, mapper);
 
 		}
 		if (this.trigger != null) {
-
 			generator.writeKey("trigger");
 			this.trigger.serialize(generator, mapper);
 
@@ -287,7 +278,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link PutWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutWatchRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutWatchRequest> {
 		@Nullable
 		private Map<String, Action> actions;
 
@@ -326,19 +317,8 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable Map<String, Action> value) {
+		public final Builder actions(@Nullable Map<String, Action> value) {
 			this.actions = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
-		 */
-		public Builder putActions(String key, Action value) {
-			if (this.actions == null) {
-				this.actions = new HashMap<>();
-			}
-			this.actions.put(key, value);
 			return this;
 		}
 
@@ -349,11 +329,9 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 			return this.actions(Collections.singletonMap(key, fn.apply(new Action.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
-		 */
-		public Builder putActions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.putActions(key, fn.apply(new Action.Builder()).build());
+		public final Builder actions(
+				Function<MapBuilder<String, Action, Action.Builder>, ObjectBuilder<Map<String, Action>>> fn) {
+			return actions(fn.apply(new MapBuilder<>(Action.Builder::new)).build());
 		}
 
 		/**
@@ -361,7 +339,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code active}
 		 */
-		public Builder active(@Nullable Boolean value) {
+		public final Builder active(@Nullable Boolean value) {
 			this.active = value;
 			return this;
 		}
@@ -369,7 +347,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(@Nullable Condition value) {
+		public final Builder condition(@Nullable Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -377,7 +355,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
@@ -386,7 +364,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -397,7 +375,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder ifPrimaryTerm(@Nullable Long value) {
+		public final Builder ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -405,7 +383,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code if_sequence_number}
 		 */
-		public Builder ifSequenceNumber(@Nullable Long value) {
+		public final Builder ifSequenceNumber(@Nullable Long value) {
 			this.ifSequenceNumber = value;
 			return this;
 		}
@@ -413,7 +391,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(@Nullable Input value) {
+		public final Builder input(@Nullable Input value) {
 			this.input = value;
 			return this;
 		}
@@ -421,33 +399,22 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public Builder throttlePeriod(@Nullable String value) {
+		public final Builder throttlePeriod(@Nullable String value) {
 			this.throttlePeriod = value;
 			return this;
 		}
@@ -455,7 +422,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(@Nullable Transform value) {
+		public final Builder transform(@Nullable Transform value) {
 			this.transform = value;
 			return this;
 		}
@@ -463,14 +430,14 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
 			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code trigger}
 		 */
-		public Builder trigger(@Nullable Trigger value) {
+		public final Builder trigger(@Nullable Trigger value) {
 			this.trigger = value;
 			return this;
 		}
@@ -478,7 +445,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code trigger}
 		 */
-		public Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
+		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
 		}
 
@@ -487,7 +454,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -499,6 +466,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public PutWatchRequest build() {
+			_checkSingleUse();
 
 			return new PutWatchRequest(this);
 		}

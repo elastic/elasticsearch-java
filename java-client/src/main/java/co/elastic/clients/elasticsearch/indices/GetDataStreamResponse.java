@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.Response
 @JsonpDeserializable
-public final class GetDataStreamResponse implements JsonpSerializable {
+public class GetDataStreamResponse implements JsonpSerializable {
 	private final List<IndicesGetDataStreamItem> dataStreams;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDataStreamResponse(Builder builder) {
+	private GetDataStreamResponse(Builder builder) {
 
-		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
+		this.dataStreams = ModelTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
-	public GetDataStreamResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDataStreamResponse of(Function<Builder, ObjectBuilder<GetDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public List<IndicesGetDataStreamItem> dataStreams() {
+	public final List<IndicesGetDataStreamItem> dataStreams() {
 		return this.dataStreams;
 	}
 
@@ -76,13 +77,16 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("data_streams");
-		generator.writeStartArray();
-		for (IndicesGetDataStreamItem item0 : this.dataStreams) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.dataStreams)) {
+			generator.writeKey("data_streams");
+			generator.writeStartArray();
+			for (IndicesGetDataStreamItem item0 : this.dataStreams) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDataStreamResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDataStreamResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataStreamResponse> {
 		private List<IndicesGetDataStreamItem> dataStreams;
 
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public Builder dataStreams(List<IndicesGetDataStreamItem> value) {
+		public final Builder dataStreams(List<IndicesGetDataStreamItem> value) {
 			this.dataStreams = value;
 			return this;
 		}
@@ -105,36 +109,22 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public Builder dataStreams(IndicesGetDataStreamItem... value) {
+		public final Builder dataStreams(IndicesGetDataStreamItem... value) {
 			this.dataStreams = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Required - API name: {@code data_streams}
 		 */
-		public Builder addDataStreams(IndicesGetDataStreamItem value) {
-			if (this.dataStreams == null) {
-				this.dataStreams = new ArrayList<>();
+		@SafeVarargs
+		public final Builder dataStreams(
+				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>>... fns) {
+			this.dataStreams = new ArrayList<>(fns.length);
+			for (Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn : fns) {
+				this.dataStreams.add(fn.apply(new IndicesGetDataStreamItem.Builder()).build());
 			}
-			this.dataStreams.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #dataStreams(List)} to a singleton list.
-		 */
-		public Builder dataStreams(
-				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
-			return this.dataStreams(fn.apply(new IndicesGetDataStreamItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(
-				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
-			return this.addDataStreams(fn.apply(new IndicesGetDataStreamItem.Builder()).build());
 		}
 
 		/**
@@ -144,6 +134,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetDataStreamResponse build() {
+			_checkSingleUse();
 
 			return new GetDataStreamResponse(this);
 		}

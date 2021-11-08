@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: slm.start.Request
 
-public final class StartSlmRequest extends RequestBase {
+public class StartSlmRequest extends RequestBase {
 	public StartSlmRequest() {
 	}
 

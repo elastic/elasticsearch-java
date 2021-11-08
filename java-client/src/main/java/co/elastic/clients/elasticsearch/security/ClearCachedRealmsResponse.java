@@ -31,12 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Response
 @JsonpDeserializable
-public final class ClearCachedRealmsResponse implements JsonpSerializable {
+public class ClearCachedRealmsResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
 	private final String clusterName;
@@ -53,36 +54,36 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCachedRealmsResponse(Builder builder) {
+	private ClearCachedRealmsResponse(Builder builder) {
 
-		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodeStats = ModelTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public ClearCachedRealmsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCachedRealmsResponse of(Function<Builder, ObjectBuilder<ClearCachedRealmsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _nodes}
 	 */
-	public NodeStatistics nodeStats() {
+	public final NodeStatistics nodeStats() {
 		return this.nodeStats;
 	}
 
 	/**
 	 * Required - API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, ClusterNode> nodes() {
+	public final Map<String, ClusterNode> nodes() {
 		return this.nodes;
 	}
 
@@ -103,14 +104,17 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, ClusterNode> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, ClusterNode> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -119,7 +123,7 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearCachedRealmsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCachedRealmsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRealmsResponse> {
 		private NodeStatistics nodeStats;
 
 		private String clusterName;
@@ -129,7 +133,7 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public Builder nodeStats(NodeStatistics value) {
+		public final Builder nodeStats(NodeStatistics value) {
 			this.nodeStats = value;
 			return this;
 		}
@@ -137,14 +141,14 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
 			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -152,19 +156,8 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(Map<String, ClusterNode> value) {
+		public final Builder nodes(Map<String, ClusterNode> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, ClusterNode value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -175,11 +168,9 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 			return this.nodes(Collections.singletonMap(key, fn.apply(new ClusterNode.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Function<ClusterNode.Builder, ObjectBuilder<ClusterNode>> fn) {
-			return this.putNodes(key, fn.apply(new ClusterNode.Builder()).build());
+		public final Builder nodes(
+				Function<MapBuilder<String, ClusterNode, ClusterNode.Builder>, ObjectBuilder<Map<String, ClusterNode>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(ClusterNode.Builder::new)).build());
 		}
 
 		/**
@@ -189,6 +180,7 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCachedRealmsResponse build() {
+			_checkSingleUse();
 
 			return new ClearCachedRealmsResponse(this);
 		}

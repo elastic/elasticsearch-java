@@ -24,8 +24,10 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.ExternallyTaggedUnion;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,14 +35,15 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -49,7 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Response
 
-public final class RollupSearchResponse<TDocument> implements JsonpSerializable {
+public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
 
 	private final boolean timedOut;
@@ -61,41 +64,41 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 
 	private final HitsMetadata<TDocument> hits;
 
-	@Nullable
-	private final Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations;
+	private final Map<String, Aggregate> aggregations;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupSearchResponse(Builder<TDocument> builder) {
+	private RollupSearchResponse(Builder<TDocument> builder) {
 
-		this.took = Objects.requireNonNull(builder.took, "took");
-		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
+		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
 		this.terminatedEarly = builder.terminatedEarly;
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public RollupSearchResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> RollupSearchResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<RollupSearchResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code took}
 	 */
-	public long took() {
+	public final long took() {
 		return this.took;
 	}
 
 	/**
 	 * Required - API name: {@code timed_out}
 	 */
-	public boolean timedOut() {
+	public final boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -103,29 +106,28 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 	 * API name: {@code terminated_early}
 	 */
 	@Nullable
-	public Boolean terminatedEarly() {
+	public final Boolean terminatedEarly() {
 		return this.terminatedEarly;
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public HitsMetadata<TDocument> hits() {
+	public final HitsMetadata<TDocument> hits() {
 		return this.hits;
 	}
 
 	/**
 	 * API name: {@code aggregations}
 	 */
-	@Nullable
-	public Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations() {
+	public final Map<String, Aggregate> aggregations() {
 		return this.aggregations;
 	}
 
@@ -147,29 +149,19 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		generator.write(this.timedOut);
 
 		if (this.terminatedEarly != null) {
-
 			generator.writeKey("terminated_early");
 			generator.write(this.terminatedEarly);
 
 		}
-
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
-		if (this.aggregations != null) {
-
+		if (ModelTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue /* _types.aggregations.Aggregate */> item0 : this.aggregations
-					.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
-
-			}
-			generator.writeEnd();
+			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
 
 		}
 
@@ -180,7 +172,9 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 	/**
 	 * Builder for {@link RollupSearchResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<RollupSearchResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<RollupSearchResponse<TDocument>> {
 		private Long took;
 
 		private Boolean timedOut;
@@ -193,7 +187,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		private HitsMetadata<TDocument> hits;
 
 		@Nullable
-		private Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations;
+		private Map<String, Aggregate> aggregations;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -201,7 +195,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code took}
 		 */
-		public Builder<TDocument> took(long value) {
+		public final Builder<TDocument> took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -209,7 +203,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code timed_out}
 		 */
-		public Builder<TDocument> timedOut(boolean value) {
+		public final Builder<TDocument> timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -217,7 +211,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * API name: {@code terminated_early}
 		 */
-		public Builder<TDocument> terminatedEarly(@Nullable Boolean value) {
+		public final Builder<TDocument> terminatedEarly(@Nullable Boolean value) {
 			this.terminatedEarly = value;
 			return this;
 		}
@@ -225,7 +219,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder<TDocument> shards(ShardStatistics value) {
+		public final Builder<TDocument> shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -233,14 +227,14 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder<TDocument> hits(HitsMetadata<TDocument> value) {
+		public final Builder<TDocument> hits(HitsMetadata<TDocument> value) {
 			this.hits = value;
 			return this;
 		}
@@ -248,7 +242,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder<TDocument> hits(
+		public final Builder<TDocument> hits(
 				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
 			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
 		}
@@ -256,28 +250,28 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder<TDocument> aggregations(
-				@Nullable Map<String, JsonValue /* _types.aggregations.Aggregate */> value) {
+		public final Builder<TDocument> aggregations(@Nullable Map<String, Aggregate> value) {
 			this.aggregations = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
+		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder<TDocument> putAggregations(String key, JsonValue /* _types.aggregations.Aggregate */ value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
-			return this;
+		public Builder<TDocument> aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregate.Builder()).build()));
+		}
+
+		public final Builder<TDocument> aggregations(
+				Function<MapBuilder<String, Aggregate, Aggregate.Builder>, ObjectBuilder<Map<String, Aggregate>>> fn) {
+			return aggregations(fn.apply(new MapBuilder<>(Aggregate.Builder::new)).build());
 		}
 
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -289,6 +283,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public RollupSearchResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new RollupSearchResponse<TDocument>(this);
 		}
@@ -314,8 +309,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
-		op.add(Builder::aggregations,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
+		op.add(Builder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
 
 	}
 

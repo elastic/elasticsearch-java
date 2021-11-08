@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineProcessor
 @JsonpDeserializable
-public final class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
+public class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineProcessor(Builder builder) {
+	private PipelineProcessor(Builder builder) {
 		super(builder);
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public PipelineProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PipelineProcessor of(Function<Builder, ObjectBuilder<PipelineProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,14 +66,13 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
@@ -91,7 +91,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -108,6 +108,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 		 *             if some of the required fields are null.
 		 */
 		public PipelineProcessor build() {
+			_checkSingleUse();
 
 			return new PipelineProcessor(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.forcemerge.Response
 @JsonpDeserializable
-public final class ForcemergeResponse extends ShardsOperationResponseBase {
+public class ForcemergeResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ForcemergeResponse(Builder builder) {
+	private ForcemergeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ForcemergeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForcemergeResponse of(Function<Builder, ObjectBuilder<ForcemergeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ForcemergeResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ForcemergeResponse build() {
+			_checkSingleUse();
 
 			return new ForcemergeResponse(this);
 		}

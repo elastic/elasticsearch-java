@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: features.get_features.Response
 @JsonpDeserializable
-public final class GetFeaturesResponse implements JsonpSerializable {
+public class GetFeaturesResponse implements JsonpSerializable {
 	private final List<Feature> features;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetFeaturesResponse(Builder builder) {
+	private GetFeaturesResponse(Builder builder) {
 
-		this.features = ModelTypeHelper.unmodifiableNonNull(builder.features, "features");
+		this.features = ModelTypeHelper.unmodifiableRequired(builder.features, this, "features");
 
 	}
 
-	public GetFeaturesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetFeaturesResponse of(Function<Builder, ObjectBuilder<GetFeaturesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code features}
 	 */
-	public List<Feature> features() {
+	public final List<Feature> features() {
 		return this.features;
 	}
 
@@ -75,13 +76,16 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("features");
-		generator.writeStartArray();
-		for (Feature item0 : this.features) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.features)) {
+			generator.writeKey("features");
+			generator.writeStartArray();
+			for (Feature item0 : this.features) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetFeaturesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetFeaturesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFeaturesResponse> {
 		private List<Feature> features;
 
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(List<Feature> value) {
+		public final Builder features(List<Feature> value) {
 			this.features = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(Feature... value) {
+		public final Builder features(Feature... value) {
 			this.features = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 * Required - API name: {@code features}
 		 */
-		public Builder addFeatures(Feature value) {
-			if (this.features == null) {
-				this.features = new ArrayList<>();
+		@SafeVarargs
+		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>>... fns) {
+			this.features = new ArrayList<>(fns.length);
+			for (Function<Feature.Builder, ObjectBuilder<Feature>> fn : fns) {
+				this.features.add(fn.apply(new Feature.Builder()).build());
 			}
-			this.features.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #features(List)} to a singleton list.
-		 */
-		public Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.features(fn.apply(new Feature.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed.
-		 */
-		public Builder addFeatures(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.addFeatures(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetFeaturesResponse build() {
+			_checkSingleUse();
 
 			return new GetFeaturesResponse(this);
 		}

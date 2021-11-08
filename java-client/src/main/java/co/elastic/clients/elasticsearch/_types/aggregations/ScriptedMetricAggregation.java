@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregation
 @JsonpDeserializable
-public final class ScriptedMetricAggregation extends MetricAggregationBase implements AggregationVariant {
+public class ScriptedMetricAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final JsonValue /* _types.Script */ combineScript;
 
@@ -53,7 +52,6 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 	@Nullable
 	private final JsonValue /* _types.Script */ mapScript;
 
-	@Nullable
 	private final Map<String, JsonData> params;
 
 	@Nullable
@@ -61,7 +59,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptedMetricAggregation(Builder builder) {
+	private ScriptedMetricAggregation(Builder builder) {
 		super(builder);
 
 		this.combineScript = builder.combineScript;
@@ -72,8 +70,8 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 
 	}
 
-	public ScriptedMetricAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptedMetricAggregation of(Function<Builder, ObjectBuilder<ScriptedMetricAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +86,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 	 * API name: {@code combine_script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ combineScript() {
+	public final JsonValue /* _types.Script */ combineScript() {
 		return this.combineScript;
 	}
 
@@ -96,7 +94,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 	 * API name: {@code init_script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ initScript() {
+	public final JsonValue /* _types.Script */ initScript() {
 		return this.initScript;
 	}
 
@@ -104,15 +102,14 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 	 * API name: {@code map_script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ mapScript() {
+	public final JsonValue /* _types.Script */ mapScript() {
 		return this.mapScript;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -120,7 +117,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 	 * API name: {@code reduce_script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ reduceScript() {
+	public final JsonValue /* _types.Script */ reduceScript() {
 		return this.reduceScript;
 	}
 
@@ -128,25 +125,21 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 
 		super.serializeInternal(generator, mapper);
 		if (this.combineScript != null) {
-
 			generator.writeKey("combine_script");
 			generator.write(this.combineScript);
 
 		}
 		if (this.initScript != null) {
-
 			generator.writeKey("init_script");
 			generator.write(this.initScript);
 
 		}
 		if (this.mapScript != null) {
-
 			generator.writeKey("map_script");
 			generator.write(this.mapScript);
 
 		}
-		if (this.params != null) {
-
+		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -158,7 +151,6 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 
 		}
 		if (this.reduceScript != null) {
-
 			generator.writeKey("reduce_script");
 			generator.write(this.reduceScript);
 
@@ -192,7 +184,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 		/**
 		 * API name: {@code combine_script}
 		 */
-		public Builder combineScript(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder combineScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.combineScript = value;
 			return this;
 		}
@@ -200,7 +192,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 		/**
 		 * API name: {@code init_script}
 		 */
-		public Builder initScript(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder initScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.initScript = value;
 			return this;
 		}
@@ -208,7 +200,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 		/**
 		 * API name: {@code map_script}
 		 */
-		public Builder mapScript(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder mapScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.mapScript = value;
 			return this;
 		}
@@ -216,26 +208,15 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonData> value) {
+		public final Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public Builder putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code reduce_script}
 		 */
-		public Builder reduceScript(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder reduceScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.reduceScript = value;
 			return this;
 		}
@@ -252,6 +233,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 		 *             if some of the required fields are null.
 		 */
 		public ScriptedMetricAggregation build() {
+			_checkSingleUse();
 
 			return new ScriptedMetricAggregation(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: watcher._types.ExecutionThreadPool
 @JsonpDeserializable
-public final class ExecutionThreadPool implements JsonpSerializable {
+public class ExecutionThreadPool implements JsonpSerializable {
 	private final long maxSize;
 
 	private final long queueSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionThreadPool(Builder builder) {
+	private ExecutionThreadPool(Builder builder) {
 
-		this.maxSize = Objects.requireNonNull(builder.maxSize, "max_size");
-		this.queueSize = Objects.requireNonNull(builder.queueSize, "queue_size");
+		this.maxSize = ModelTypeHelper.requireNonNull(builder.maxSize, this, "maxSize");
+		this.queueSize = ModelTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
 
 	}
 
-	public ExecutionThreadPool(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionThreadPool of(Function<Builder, ObjectBuilder<ExecutionThreadPool>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code max_size}
 	 */
-	public long maxSize() {
+	public final long maxSize() {
 		return this.maxSize;
 	}
 
 	/**
 	 * Required - API name: {@code queue_size}
 	 */
-	public long queueSize() {
+	public final long queueSize() {
 		return this.queueSize;
 	}
 
@@ -94,7 +96,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionThreadPool}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionThreadPool> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionThreadPool> {
 		private Long maxSize;
 
 		private Long queueSize;
@@ -102,7 +104,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_size}
 		 */
-		public Builder maxSize(long value) {
+		public final Builder maxSize(long value) {
 			this.maxSize = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue_size}
 		 */
-		public Builder queueSize(long value) {
+		public final Builder queueSize(long value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionThreadPool build() {
+			_checkSingleUse();
 
 			return new ExecutionThreadPool(this);
 		}

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.GeoIpProcessor
 @JsonpDeserializable
-public final class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
+public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String databaseFile;
 
 	private final String field;
@@ -58,20 +57,20 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoIpProcessor(Builder builder) {
+	private GeoIpProcessor(Builder builder) {
 		super(builder);
 
-		this.databaseFile = Objects.requireNonNull(builder.databaseFile, "database_file");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.firstOnly = Objects.requireNonNull(builder.firstOnly, "first_only");
-		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
-		this.properties = ModelTypeHelper.unmodifiableNonNull(builder.properties, "properties");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.databaseFile = ModelTypeHelper.requireNonNull(builder.databaseFile, this, "databaseFile");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.firstOnly = ModelTypeHelper.requireNonNull(builder.firstOnly, this, "firstOnly");
+		this.ignoreMissing = ModelTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.properties = ModelTypeHelper.unmodifiableRequired(builder.properties, this, "properties");
+		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public GeoIpProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoIpProcessor of(Function<Builder, ObjectBuilder<GeoIpProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,49 +84,48 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 	/**
 	 * Required - API name: {@code database_file}
 	 */
-	public String databaseFile() {
+	public final String databaseFile() {
 		return this.databaseFile;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code first_only}
 	 */
-	public boolean firstOnly() {
+	public final boolean firstOnly() {
 		return this.firstOnly;
 	}
 
 	/**
 	 * Required - API name: {@code ignore_missing}
 	 */
-	public boolean ignoreMissing() {
+	public final boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code properties}
 	 */
-	public List<String> properties() {
+	public final List<String> properties() {
 		return this.properties;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("database_file");
 		generator.write(this.databaseFile);
 
@@ -140,14 +138,16 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		generator.writeKey("ignore_missing");
 		generator.write(this.ignoreMissing);
 
-		generator.writeKey("properties");
-		generator.writeStartArray();
-		for (String item0 : this.properties) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.properties)) {
+			generator.writeKey("properties");
+			generator.writeStartArray();
+			for (String item0 : this.properties) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
@@ -176,7 +176,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code database_file}
 		 */
-		public Builder databaseFile(String value) {
+		public final Builder databaseFile(String value) {
 			this.databaseFile = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -192,7 +192,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code first_only}
 		 */
-		public Builder firstOnly(boolean value) {
+		public final Builder firstOnly(boolean value) {
 			this.firstOnly = value;
 			return this;
 		}
@@ -200,7 +200,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -208,7 +208,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code properties}
 		 */
-		public Builder properties(List<String> value) {
+		public final Builder properties(List<String> value) {
 			this.properties = value;
 			return this;
 		}
@@ -216,26 +216,15 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code properties}
 		 */
-		public Builder properties(String... value) {
+		public final Builder properties(String... value) {
 			this.properties = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
-		 */
-		public Builder addProperties(String value) {
-			if (this.properties == null) {
-				this.properties = new ArrayList<>();
-			}
-			this.properties.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -252,6 +241,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		 *             if some of the required fields are null.
 		 */
 		public GeoIpProcessor build() {
+			_checkSingleUse();
 
 			return new GeoIpProcessor(this);
 		}

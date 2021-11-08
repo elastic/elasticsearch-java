@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ChainInput
 @JsonpDeserializable
-public final class ChainInput implements InputVariant, JsonpSerializable {
+public class ChainInput implements InputVariant, JsonpSerializable {
 	private final List<Input> inputs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ChainInput(Builder builder) {
+	private ChainInput(Builder builder) {
 
-		this.inputs = ModelTypeHelper.unmodifiableNonNull(builder.inputs, "inputs");
+		this.inputs = ModelTypeHelper.unmodifiableRequired(builder.inputs, this, "inputs");
 
 	}
 
-	public ChainInput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ChainInput of(Function<Builder, ObjectBuilder<ChainInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +69,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Required - API name: {@code inputs}
 	 */
-	public List<Input> inputs() {
+	public final List<Input> inputs() {
 		return this.inputs;
 	}
 
@@ -83,13 +84,16 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("inputs");
-		generator.writeStartArray();
-		for (Input item0 : this.inputs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.inputs)) {
+			generator.writeKey("inputs");
+			generator.writeStartArray();
+			for (Input item0 : this.inputs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -98,13 +102,13 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link ChainInput}.
 	 */
-	public static class Builder implements ObjectBuilder<ChainInput> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainInput> {
 		private List<Input> inputs;
 
 		/**
 		 * Required - API name: {@code inputs}
 		 */
-		public Builder inputs(List<Input> value) {
+		public final Builder inputs(List<Input> value) {
 			this.inputs = value;
 			return this;
 		}
@@ -112,34 +116,21 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code inputs}
 		 */
-		public Builder inputs(Input... value) {
+		public final Builder inputs(Input... value) {
 			this.inputs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #inputs(List)}, creating the list if needed.
+		 * Required - API name: {@code inputs}
 		 */
-		public Builder addInputs(Input value) {
-			if (this.inputs == null) {
-				this.inputs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder inputs(Function<Input.Builder, ObjectBuilder<Input>>... fns) {
+			this.inputs = new ArrayList<>(fns.length);
+			for (Function<Input.Builder, ObjectBuilder<Input>> fn : fns) {
+				this.inputs.add(fn.apply(new Input.Builder()).build());
 			}
-			this.inputs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #inputs(List)} to a singleton list.
-		 */
-		public Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.inputs(fn.apply(new Input.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #inputs(List)}, creating the list if needed.
-		 */
-		public Builder addInputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.addInputs(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
@@ -149,6 +140,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ChainInput build() {
+			_checkSingleUse();
 
 			return new ChainInput(this);
 		}

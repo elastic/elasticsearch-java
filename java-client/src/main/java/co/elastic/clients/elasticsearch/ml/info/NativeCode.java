@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.info.NativeCode
 @JsonpDeserializable
-public final class NativeCode implements JsonpSerializable {
+public class NativeCode implements JsonpSerializable {
 	private final String buildHash;
 
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NativeCode(Builder builder) {
+	private NativeCode(Builder builder) {
 
-		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.buildHash = ModelTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public NativeCode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NativeCode of(Function<Builder, ObjectBuilder<NativeCode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code build_hash}
 	 */
-	public String buildHash() {
+	public final String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -95,7 +97,7 @@ public final class NativeCode implements JsonpSerializable {
 	/**
 	 * Builder for {@link NativeCode}.
 	 */
-	public static class Builder implements ObjectBuilder<NativeCode> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NativeCode> {
 		private String buildHash;
 
 		private String version;
@@ -103,7 +105,7 @@ public final class NativeCode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_hash}
 		 */
-		public Builder buildHash(String value) {
+		public final Builder buildHash(String value) {
 			this.buildHash = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class NativeCode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class NativeCode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NativeCode build() {
+			_checkSingleUse();
 
 			return new NativeCode(this);
 		}

@@ -30,12 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FieldMapping
 @JsonpDeserializable
-public final class FieldMapping implements JsonpSerializable {
+public class FieldMapping implements JsonpSerializable {
 	// Single key dictionary
 	private final String field;
 
@@ -53,37 +54,37 @@ public final class FieldMapping implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldMapping(Builder builder) {
+	private FieldMapping(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.fullName = Objects.requireNonNull(builder.fullName, "full_name");
-		this.mapping = ModelTypeHelper.unmodifiableNonNull(builder.mapping, "mapping");
+		this.fullName = ModelTypeHelper.requireNonNull(builder.fullName, this, "fullName");
+		this.mapping = ModelTypeHelper.unmodifiableRequired(builder.mapping, this, "mapping");
 
 	}
 
-	public FieldMapping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldMapping of(Function<Builder, ObjectBuilder<FieldMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code full_name}
 	 */
-	public String fullName() {
+	public final String fullName() {
 		return this.fullName;
 	}
 
 	/**
 	 * Required - API name: {@code mapping}
 	 */
-	public Map<String, Property> mapping() {
+	public final Map<String, Property> mapping() {
 		return this.mapping;
 	}
 
@@ -102,14 +103,17 @@ public final class FieldMapping implements JsonpSerializable {
 		generator.writeKey("full_name");
 		generator.write(this.fullName);
 
-		generator.writeKey("mapping");
-		generator.writeStartObject();
-		for (Map.Entry<String, Property> item0 : this.mapping.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.mapping)) {
+			generator.writeKey("mapping");
+			generator.writeStartObject();
+			for (Map.Entry<String, Property> item0 : this.mapping.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 		generator.writeEnd();
 
@@ -120,13 +124,13 @@ public final class FieldMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldMapping}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldMapping> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMapping> {
 		private String field;
 
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -138,7 +142,7 @@ public final class FieldMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code full_name}
 		 */
-		public Builder fullName(String value) {
+		public final Builder fullName(String value) {
 			this.fullName = value;
 			return this;
 		}
@@ -146,19 +150,8 @@ public final class FieldMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mapping}
 		 */
-		public Builder mapping(Map<String, Property> value) {
+		public final Builder mapping(Map<String, Property> value) {
 			this.mapping = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #mapping(Map)}, creating the map if needed.
-		 */
-		public Builder putMapping(String key, Property value) {
-			if (this.mapping == null) {
-				this.mapping = new HashMap<>();
-			}
-			this.mapping.put(key, value);
 			return this;
 		}
 
@@ -169,11 +162,9 @@ public final class FieldMapping implements JsonpSerializable {
 			return this.mapping(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #mapping(Map)}, creating the map if needed.
-		 */
-		public Builder putMapping(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.putMapping(key, fn.apply(new Property.Builder()).build());
+		public final Builder mapping(
+				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
+			return mapping(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
 		}
 
 		/**
@@ -183,6 +174,7 @@ public final class FieldMapping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldMapping build() {
+			_checkSingleUse();
 
 			return new FieldMapping(this);
 		}

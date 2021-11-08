@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: indices.create_data_stream.Request
 
-public final class CreateDataStreamRequest extends RequestBase {
+public class CreateDataStreamRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateDataStreamRequest(Builder builder) {
+	private CreateDataStreamRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public CreateDataStreamRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateDataStreamRequest of(Function<Builder, ObjectBuilder<CreateDataStreamRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class CreateDataStreamRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +72,7 @@ public final class CreateDataStreamRequest extends RequestBase {
 	/**
 	 * Builder for {@link CreateDataStreamRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateDataStreamRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateDataStreamRequest> {
 		private String name;
 
 		/**
@@ -78,7 +80,7 @@ public final class CreateDataStreamRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class CreateDataStreamRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateDataStreamRequest build() {
+			_checkSingleUse();
 
 			return new CreateDataStreamRequest(this);
 		}

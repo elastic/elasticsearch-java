@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportance
 @JsonpDeserializable
-public final class TotalFeatureImportance implements JsonpSerializable {
+public class TotalFeatureImportance implements JsonpSerializable {
 	private final String featureName;
 
 	private final List<TotalFeatureImportanceStatistics> importance;
@@ -52,16 +53,16 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TotalFeatureImportance(Builder builder) {
+	private TotalFeatureImportance(Builder builder) {
 
-		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.importance = ModelTypeHelper.unmodifiableNonNull(builder.importance, "importance");
-		this.classes = ModelTypeHelper.unmodifiableNonNull(builder.classes, "classes");
+		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.importance = ModelTypeHelper.unmodifiableRequired(builder.importance, this, "importance");
+		this.classes = ModelTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
 
 	}
 
-	public TotalFeatureImportance(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TotalFeatureImportance of(Function<Builder, ObjectBuilder<TotalFeatureImportance>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +70,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code feature_name}
 	 */
-	public String featureName() {
+	public final String featureName() {
 		return this.featureName;
 	}
 
@@ -79,7 +80,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code importance}
 	 */
-	public List<TotalFeatureImportanceStatistics> importance() {
+	public final List<TotalFeatureImportanceStatistics> importance() {
 		return this.importance;
 	}
 
@@ -89,7 +90,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code classes}
 	 */
-	public List<TotalFeatureImportanceClass> classes() {
+	public final List<TotalFeatureImportanceClass> classes() {
 		return this.classes;
 	}
 
@@ -107,21 +108,26 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		generator.writeKey("importance");
-		generator.writeStartArray();
-		for (TotalFeatureImportanceStatistics item0 : this.importance) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.importance)) {
+			generator.writeKey("importance");
+			generator.writeStartArray();
+			for (TotalFeatureImportanceStatistics item0 : this.importance) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.classes)) {
+			generator.writeKey("classes");
+			generator.writeStartArray();
+			for (TotalFeatureImportanceClass item0 : this.classes) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("classes");
-		generator.writeStartArray();
-		for (TotalFeatureImportanceClass item0 : this.classes) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -130,7 +136,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 	/**
 	 * Builder for {@link TotalFeatureImportance}.
 	 */
-	public static class Builder implements ObjectBuilder<TotalFeatureImportance> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalFeatureImportance> {
 		private String featureName;
 
 		private List<TotalFeatureImportanceStatistics> importance;
@@ -142,7 +148,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_name}
 		 */
-		public Builder featureName(String value) {
+		public final Builder featureName(String value) {
 			this.featureName = value;
 			return this;
 		}
@@ -153,7 +159,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code importance}
 		 */
-		public Builder importance(List<TotalFeatureImportanceStatistics> value) {
+		public final Builder importance(List<TotalFeatureImportanceStatistics> value) {
 			this.importance = value;
 			return this;
 		}
@@ -164,36 +170,25 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code importance}
 		 */
-		public Builder importance(TotalFeatureImportanceStatistics... value) {
+		public final Builder importance(TotalFeatureImportanceStatistics... value) {
 			this.importance = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #importance(List)}, creating the list if needed.
+		 * Required - A collection of feature importance statistics related to the
+		 * training data set for this particular feature.
+		 * <p>
+		 * API name: {@code importance}
 		 */
-		public Builder addImportance(TotalFeatureImportanceStatistics value) {
-			if (this.importance == null) {
-				this.importance = new ArrayList<>();
+		@SafeVarargs
+		public final Builder importance(
+				Function<TotalFeatureImportanceStatistics.Builder, ObjectBuilder<TotalFeatureImportanceStatistics>>... fns) {
+			this.importance = new ArrayList<>(fns.length);
+			for (Function<TotalFeatureImportanceStatistics.Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn : fns) {
+				this.importance.add(fn.apply(new TotalFeatureImportanceStatistics.Builder()).build());
 			}
-			this.importance.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #importance(List)} to a singleton list.
-		 */
-		public Builder importance(
-				Function<TotalFeatureImportanceStatistics.Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {
-			return this.importance(fn.apply(new TotalFeatureImportanceStatistics.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #importance(List)}, creating the list if needed.
-		 */
-		public Builder addImportance(
-				Function<TotalFeatureImportanceStatistics.Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {
-			return this.addImportance(fn.apply(new TotalFeatureImportanceStatistics.Builder()).build());
 		}
 
 		/**
@@ -202,7 +197,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code classes}
 		 */
-		public Builder classes(List<TotalFeatureImportanceClass> value) {
+		public final Builder classes(List<TotalFeatureImportanceClass> value) {
 			this.classes = value;
 			return this;
 		}
@@ -213,36 +208,25 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code classes}
 		 */
-		public Builder classes(TotalFeatureImportanceClass... value) {
+		public final Builder classes(TotalFeatureImportanceClass... value) {
 			this.classes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
+		 * Required - If the trained model is a classification model, feature importance
+		 * statistics are gathered per target class value.
+		 * <p>
+		 * API name: {@code classes}
 		 */
-		public Builder addClasses(TotalFeatureImportanceClass value) {
-			if (this.classes == null) {
-				this.classes = new ArrayList<>();
+		@SafeVarargs
+		public final Builder classes(
+				Function<TotalFeatureImportanceClass.Builder, ObjectBuilder<TotalFeatureImportanceClass>>... fns) {
+			this.classes = new ArrayList<>(fns.length);
+			for (Function<TotalFeatureImportanceClass.Builder, ObjectBuilder<TotalFeatureImportanceClass>> fn : fns) {
+				this.classes.add(fn.apply(new TotalFeatureImportanceClass.Builder()).build());
 			}
-			this.classes.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #classes(List)} to a singleton list.
-		 */
-		public Builder classes(
-				Function<TotalFeatureImportanceClass.Builder, ObjectBuilder<TotalFeatureImportanceClass>> fn) {
-			return this.classes(fn.apply(new TotalFeatureImportanceClass.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
-		 */
-		public Builder addClasses(
-				Function<TotalFeatureImportanceClass.Builder, ObjectBuilder<TotalFeatureImportanceClass>> fn) {
-			return this.addClasses(fn.apply(new TotalFeatureImportanceClass.Builder()).build());
 		}
 
 		/**
@@ -252,6 +236,7 @@ public final class TotalFeatureImportance implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TotalFeatureImportance build() {
+			_checkSingleUse();
 
 			return new TotalFeatureImportance(this);
 		}

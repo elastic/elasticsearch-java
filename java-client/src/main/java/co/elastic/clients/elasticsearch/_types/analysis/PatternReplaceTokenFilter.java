@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternReplaceTokenFilter
 @JsonpDeserializable
-public final class PatternReplaceTokenFilter extends TokenFilterBase implements CharFilterVariant, TokenFilterVariant {
+public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final String flags;
 
 	private final String pattern;
@@ -47,21 +48,21 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PatternReplaceTokenFilter(Builder builder) {
+	private PatternReplaceTokenFilter(Builder builder) {
 		super(builder);
 
-		this.flags = Objects.requireNonNull(builder.flags, "flags");
-		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
-		this.replacement = Objects.requireNonNull(builder.replacement, "replacement");
+		this.flags = ModelTypeHelper.requireNonNull(builder.flags, this, "flags");
+		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.replacement = ModelTypeHelper.requireNonNull(builder.replacement, this, "replacement");
 
 	}
 
-	public PatternReplaceTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PatternReplaceTokenFilter of(Function<Builder, ObjectBuilder<PatternReplaceTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link CharFilter}, {@link TokenFilter} variant type
+	 * {@link TokenFilter} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -71,21 +72,21 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 	/**
 	 * Required - API name: {@code flags}
 	 */
-	public String flags() {
+	public final String flags() {
 		return this.flags;
 	}
 
 	/**
 	 * Required - API name: {@code pattern}
 	 */
-	public String pattern() {
+	public final String pattern() {
 		return this.pattern;
 	}
 
 	/**
 	 * Required - API name: {@code replacement}
 	 */
-	public String replacement() {
+	public final String replacement() {
 		return this.replacement;
 	}
 
@@ -93,7 +94,6 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 
 		generator.write("type", "pattern_replace");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("flags");
 		generator.write(this.flags);
 
@@ -122,7 +122,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		/**
 		 * Required - API name: {@code flags}
 		 */
-		public Builder flags(String value) {
+		public final Builder flags(String value) {
 			this.flags = value;
 			return this;
 		}
@@ -130,7 +130,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public Builder pattern(String value) {
+		public final Builder pattern(String value) {
 			this.pattern = value;
 			return this;
 		}
@@ -138,7 +138,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		/**
 		 * Required - API name: {@code replacement}
 		 */
-		public Builder replacement(String value) {
+		public final Builder replacement(String value) {
 			this.replacement = value;
 			return this;
 		}
@@ -155,6 +155,7 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		 *             if some of the required fields are null.
 		 */
 		public PatternReplaceTokenFilter build() {
+			_checkSingleUse();
 
 			return new PatternReplaceTokenFilter(this);
 		}

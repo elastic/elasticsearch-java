@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FloatNumberProperty
 @JsonpDeserializable
-public final class FloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class FloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Float nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FloatNumberProperty(Builder builder) {
+	private FloatNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public FloatNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FloatNumberProperty of(Function<Builder, ObjectBuilder<FloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class FloatNumberProperty extends StandardNumberProperty implements
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Float nullValue() {
+	public final Float nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class FloatNumberProperty extends StandardNumberProperty implements
 		generator.write("type", "float");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -98,7 +97,7 @@ public final class FloatNumberProperty extends StandardNumberProperty implements
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Float value) {
+		public final Builder nullValue(@Nullable Float value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class FloatNumberProperty extends StandardNumberProperty implements
 		 *             if some of the required fields are null.
 		 */
 		public FloatNumberProperty build() {
+			_checkSingleUse();
 
 			return new FloatNumberProperty(this);
 		}

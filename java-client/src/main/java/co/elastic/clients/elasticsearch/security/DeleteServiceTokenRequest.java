@@ -32,7 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
 
-public final class DeleteServiceTokenRequest extends RequestBase {
+public class DeleteServiceTokenRequest extends RequestBase {
 	private final String name;
 
 	private final String namespace;
@@ -56,17 +58,17 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteServiceTokenRequest(Builder builder) {
+	private DeleteServiceTokenRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
 		this.refresh = builder.refresh;
-		this.service = Objects.requireNonNull(builder.service, "service");
+		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public DeleteServiceTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteServiceTokenRequest of(Function<Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +76,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -83,7 +85,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code namespace}
 	 */
-	public String namespace() {
+	public final String namespace() {
 		return this.namespace;
 	}
 
@@ -96,7 +98,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -105,7 +107,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public String service() {
+	public final String service() {
 		return this.service;
 	}
 
@@ -114,7 +116,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteServiceTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteServiceTokenRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteServiceTokenRequest> {
 		private String name;
 
 		private String namespace;
@@ -129,7 +131,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -139,7 +141,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code namespace}
 		 */
-		public Builder namespace(String value) {
+		public final Builder namespace(String value) {
 			this.namespace = value;
 			return this;
 		}
@@ -152,7 +154,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -162,7 +164,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public Builder service(String value) {
+		public final Builder service(String value) {
 			this.service = value;
 			return this;
 		}
@@ -174,6 +176,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteServiceTokenRequest build() {
+			_checkSingleUse();
 
 			return new DeleteServiceTokenRequest(this);
 		}

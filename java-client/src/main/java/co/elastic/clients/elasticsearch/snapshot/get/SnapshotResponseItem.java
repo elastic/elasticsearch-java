@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -45,10 +46,9 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.get.SnapshotResponseItem
 @JsonpDeserializable
-public final class SnapshotResponseItem implements JsonpSerializable {
+public class SnapshotResponseItem implements JsonpSerializable {
 	private final String repository;
 
-	@Nullable
 	private final List<SnapshotInfo> snapshots;
 
 	@Nullable
@@ -56,30 +56,29 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotResponseItem(Builder builder) {
+	private SnapshotResponseItem(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
+		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
 		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
 		this.error = builder.error;
 
 	}
 
-	public SnapshotResponseItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotResponseItem of(Function<Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code repository}
 	 */
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
 	/**
 	 * API name: {@code snapshots}
 	 */
-	@Nullable
-	public List<SnapshotInfo> snapshots() {
+	public final List<SnapshotInfo> snapshots() {
 		return this.snapshots;
 	}
 
@@ -87,7 +86,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 	 * API name: {@code error}
 	 */
 	@Nullable
-	public ErrorCause error() {
+	public final ErrorCause error() {
 		return this.error;
 	}
 
@@ -105,8 +104,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		generator.writeKey("repository");
 		generator.write(this.repository);
 
-		if (this.snapshots != null) {
-
+		if (ModelTypeHelper.isDefined(this.snapshots)) {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
@@ -117,7 +115,6 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 
 		}
 		if (this.error != null) {
-
 			generator.writeKey("error");
 			this.error.serialize(generator, mapper);
 
@@ -130,7 +127,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotResponseItem}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotResponseItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotResponseItem> {
 		private String repository;
 
 		@Nullable
@@ -142,7 +139,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -150,7 +147,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshots}
 		 */
-		public Builder snapshots(@Nullable List<SnapshotInfo> value) {
+		public final Builder snapshots(@Nullable List<SnapshotInfo> value) {
 			this.snapshots = value;
 			return this;
 		}
@@ -158,40 +155,27 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshots}
 		 */
-		public Builder snapshots(SnapshotInfo... value) {
+		public final Builder snapshots(SnapshotInfo... value) {
 			this.snapshots = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * API name: {@code snapshots}
 		 */
-		public Builder addSnapshots(SnapshotInfo value) {
-			if (this.snapshots == null) {
-				this.snapshots = new ArrayList<>();
+		@SafeVarargs
+		public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>>... fns) {
+			this.snapshots = new ArrayList<>(fns.length);
+			for (Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn : fns) {
+				this.snapshots.add(fn.apply(new SnapshotInfo.Builder()).build());
 			}
-			this.snapshots.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #snapshots(List)} to a singleton list.
-		 */
-		public Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
-			return this.snapshots(fn.apply(new SnapshotInfo.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
-		 */
-		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
-			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(@Nullable ErrorCause value) {
+		public final Builder error(@Nullable ErrorCause value) {
 			this.error = value;
 			return this;
 		}
@@ -199,7 +183,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
@@ -210,6 +194,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotResponseItem build() {
+			_checkSingleUse();
 
 			return new SnapshotResponseItem(this);
 		}

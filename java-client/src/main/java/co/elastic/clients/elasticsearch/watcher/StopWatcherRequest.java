@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: watcher.stop.Request
 
-public final class StopWatcherRequest extends RequestBase {
+public class StopWatcherRequest extends RequestBase {
 	public StopWatcherRequest() {
 	}
 

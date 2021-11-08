@@ -34,10 +34,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,11 +49,10 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_settings.Request
 
-public final class GetSettingsRequest extends RequestBase {
+public class GetSettingsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -65,7 +64,6 @@ public final class GetSettingsRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
@@ -74,12 +72,11 @@ public final class GetSettingsRequest extends RequestBase {
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSettingsRequest(Builder builder) {
+	private GetSettingsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -93,8 +90,8 @@ public final class GetSettingsRequest extends RequestBase {
 
 	}
 
-	public GetSettingsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetSettingsRequest of(Function<Builder, ObjectBuilder<GetSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,7 +102,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -115,8 +112,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -126,7 +122,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -137,7 +133,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -147,7 +143,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
-	public Boolean includeDefaults() {
+	public final Boolean includeDefaults() {
 		return this.includeDefaults;
 	}
 
@@ -157,8 +153,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -169,7 +164,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -179,7 +174,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -188,8 +183,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -198,7 +192,7 @@ public final class GetSettingsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetSettingsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetSettingsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSettingsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -233,7 +227,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -244,7 +238,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -255,19 +249,8 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -276,7 +259,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -287,7 +270,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -297,7 +280,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
-		public Builder includeDefaults(@Nullable Boolean value) {
+		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
 			return this;
 		}
@@ -308,7 +291,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -319,19 +302,8 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -341,7 +313,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -351,7 +323,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -361,7 +333,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable List<String> value) {
+		public final Builder name(@Nullable List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -371,19 +343,8 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
@@ -394,6 +355,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetSettingsRequest build() {
+			_checkSingleUse();
 
 			return new GetSettingsRequest(this);
 		}
@@ -418,9 +380,9 @@ public final class GetSettingsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ModelTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -464,9 +426,9 @@ public final class GetSettingsRequest extends RequestBase {
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

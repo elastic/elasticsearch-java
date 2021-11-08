@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
 @JsonpDeserializable
-public final class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer lag;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SerialDifferencingAggregation(Builder builder) {
+	private SerialDifferencingAggregation(Builder builder) {
 		super(builder);
 
 		this.lag = builder.lag;
 
 	}
 
-	public SerialDifferencingAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SerialDifferencingAggregation of(Function<Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 	 * API name: {@code lag}
 	 */
 	@Nullable
-	public Integer lag() {
+	public final Integer lag() {
 		return this.lag;
 	}
 
@@ -75,7 +75,6 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 
 		super.serializeInternal(generator, mapper);
 		if (this.lag != null) {
-
 			generator.writeKey("lag");
 			generator.write(this.lag);
 
@@ -97,7 +96,7 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 		/**
 		 * API name: {@code lag}
 		 */
-		public Builder lag(@Nullable Integer value) {
+		public final Builder lag(@Nullable Integer value) {
 			this.lag = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 		 *             if some of the required fields are null.
 		 */
 		public SerialDifferencingAggregation build() {
+			_checkSingleUse();
 
 			return new SerialDifferencingAggregation(this);
 		}

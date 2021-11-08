@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,11 +44,10 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedIndicesOptions
 @JsonpDeserializable
-public final class DatafeedIndicesOptions implements JsonpSerializable {
+public class DatafeedIndicesOptions implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -59,7 +58,7 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DatafeedIndicesOptions(Builder builder) {
+	private DatafeedIndicesOptions(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -68,39 +67,53 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 
 	}
 
-	public DatafeedIndicesOptions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DatafeedIndicesOptions of(Function<Builder, ObjectBuilder<DatafeedIndicesOptions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * If false, the request returns an error if any wildcard expression, index
+	 * alias, or <code>_all</code> value targets only missing or closed indices.
+	 * This behavior applies even if the request targets other open indices. For
+	 * example, a request targeting <code>foo*,bar*</code> returns an error if an
+	 * index starts with <code>foo</code> but no index starts with <code>bar</code>.
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
 	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * If true, missing or closed indices are not included in the response.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
 	/**
+	 * If true, concrete, expanded or aliased indices are ignored when frozen.
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
-	public Boolean ignoreThrottled() {
+	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
 	}
 
@@ -116,13 +129,11 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowNoIndices != null) {
-
 			generator.writeKey("allow_no_indices");
 			generator.write(this.allowNoIndices);
 
 		}
-		if (this.expandWildcards != null) {
-
+		if (ModelTypeHelper.isDefined(this.expandWildcards)) {
 			generator.writeKey("expand_wildcards");
 			generator.writeStartArray();
 			for (ExpandWildcardOptions item0 : this.expandWildcards) {
@@ -132,13 +143,11 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 
 		}
 		if (this.ignoreUnavailable != null) {
-
 			generator.writeKey("ignore_unavailable");
 			generator.write(this.ignoreUnavailable);
 
 		}
 		if (this.ignoreThrottled != null) {
-
 			generator.writeKey("ignore_throttled");
 			generator.write(this.ignoreThrottled);
 
@@ -151,7 +160,7 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedIndicesOptions}.
 	 */
-	public static class Builder implements ObjectBuilder<DatafeedIndicesOptions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedIndicesOptions> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -165,52 +174,61 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 		private Boolean ignoreThrottled;
 
 		/**
+		 * If false, the request returns an error if any wildcard expression, index
+		 * alias, or <code>_all</code> value targets only missing or closed indices.
+		 * This behavior applies even if the request targets other open indices. For
+		 * example, a request targeting <code>foo*,bar*</code> returns an error if an
+		 * index starts with <code>foo</code> but no index starts with <code>bar</code>.
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
-			return this;
-		}
-
-		/**
+		 * If true, missing or closed indices are not included in the response.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
 
 		/**
+		 * If true, concrete, expanded or aliased indices are ignored when frozen.
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
-		public Builder ignoreThrottled(@Nullable Boolean value) {
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
 		}
@@ -222,6 +240,7 @@ public final class DatafeedIndicesOptions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DatafeedIndicesOptions build() {
+			_checkSingleUse();
 
 			return new DatafeedIndicesOptions(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.create_data_stream.Response
 @JsonpDeserializable
-public final class CreateDataStreamResponse extends AcknowledgedResponseBase {
+public class CreateDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateDataStreamResponse(Builder builder) {
+	private CreateDataStreamResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CreateDataStreamResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateDataStreamResponse of(Function<Builder, ObjectBuilder<CreateDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class CreateDataStreamResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateDataStreamResponse build() {
+			_checkSingleUse();
 
 			return new CreateDataStreamResponse(this);
 		}

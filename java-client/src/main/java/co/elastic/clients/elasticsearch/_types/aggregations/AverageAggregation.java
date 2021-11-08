@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.AverageAggregation
 @JsonpDeserializable
-public final class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public AverageAggregation(Builder builder) {
+	private AverageAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public AverageAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AverageAggregation of(Function<Builder, ObjectBuilder<AverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class AverageAggregation extends FormatMetricAggregationBase implem
 		 *             if some of the required fields are null.
 		 */
 		public AverageAggregation build() {
+			_checkSingleUse();
 
 			return new AverageAggregation(this);
 		}

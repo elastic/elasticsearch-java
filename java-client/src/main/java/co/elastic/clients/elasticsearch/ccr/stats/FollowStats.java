@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.stats.FollowStats
 @JsonpDeserializable
-public final class FollowStats implements JsonpSerializable {
+public class FollowStats implements JsonpSerializable {
 	private final List<FollowIndexStats> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowStats(Builder builder) {
+	private FollowStats(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public FollowStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowStats of(Function<Builder, ObjectBuilder<FollowStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<FollowIndexStats> indices() {
+	public final List<FollowIndexStats> indices() {
 		return this.indices;
 	}
 
@@ -76,13 +77,16 @@ public final class FollowStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (FollowIndexStats item0 : this.indices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (FollowIndexStats item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class FollowStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowStats}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowStats> {
 		private List<FollowIndexStats> indices;
 
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<FollowIndexStats> value) {
+		public final Builder indices(List<FollowIndexStats> value) {
 			this.indices = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class FollowStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(FollowIndexStats... value) {
+		public final Builder indices(FollowIndexStats... value) {
 			this.indices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
 		 */
-		public Builder addIndices(FollowIndexStats value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder indices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>>... fns) {
+			this.indices = new ArrayList<>(fns.length);
+			for (Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn : fns) {
+				this.indices.add(fn.apply(new FollowIndexStats.Builder()).build());
 			}
-			this.indices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn) {
-			return this.indices(fn.apply(new FollowIndexStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn) {
-			return this.addIndices(fn.apply(new FollowIndexStats.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class FollowStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FollowStats build() {
+			_checkSingleUse();
 
 			return new FollowStats(this);
 		}

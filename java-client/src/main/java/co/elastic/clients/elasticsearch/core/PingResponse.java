@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: _global.ping.Response
 
-public final class PingResponse {
+public class PingResponse {
 	public PingResponse() {
 	}
 

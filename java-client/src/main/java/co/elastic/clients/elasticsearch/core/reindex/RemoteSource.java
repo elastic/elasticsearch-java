@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex.RemoteSource
 @JsonpDeserializable
-public final class RemoteSource implements JsonpSerializable {
+public class RemoteSource implements JsonpSerializable {
 	private final String connectTimeout;
 
 	private final String host;
@@ -52,52 +54,52 @@ public final class RemoteSource implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoteSource(Builder builder) {
+	private RemoteSource(Builder builder) {
 
-		this.connectTimeout = Objects.requireNonNull(builder.connectTimeout, "connect_timeout");
-		this.host = Objects.requireNonNull(builder.host, "host");
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.password = Objects.requireNonNull(builder.password, "password");
-		this.socketTimeout = Objects.requireNonNull(builder.socketTimeout, "socket_timeout");
+		this.connectTimeout = ModelTypeHelper.requireNonNull(builder.connectTimeout, this, "connectTimeout");
+		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.password = ModelTypeHelper.requireNonNull(builder.password, this, "password");
+		this.socketTimeout = ModelTypeHelper.requireNonNull(builder.socketTimeout, this, "socketTimeout");
 
 	}
 
-	public RemoteSource(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoteSource of(Function<Builder, ObjectBuilder<RemoteSource>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code connect_timeout}
 	 */
-	public String connectTimeout() {
+	public final String connectTimeout() {
 		return this.connectTimeout;
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
 	/**
 	 * Required - API name: {@code password}
 	 */
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
 	/**
 	 * Required - API name: {@code socket_timeout}
 	 */
-	public String socketTimeout() {
+	public final String socketTimeout() {
 		return this.socketTimeout;
 	}
 
@@ -134,7 +136,7 @@ public final class RemoteSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link RemoteSource}.
 	 */
-	public static class Builder implements ObjectBuilder<RemoteSource> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoteSource> {
 		private String connectTimeout;
 
 		private String host;
@@ -148,7 +150,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code connect_timeout}
 		 */
-		public Builder connectTimeout(String value) {
+		public final Builder connectTimeout(String value) {
 			this.connectTimeout = value;
 			return this;
 		}
@@ -156,7 +158,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code host}
 		 */
-		public Builder host(String value) {
+		public final Builder host(String value) {
 			this.host = value;
 			return this;
 		}
@@ -164,7 +166,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -172,7 +174,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code password}
 		 */
-		public Builder password(String value) {
+		public final Builder password(String value) {
 			this.password = value;
 			return this;
 		}
@@ -180,7 +182,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code socket_timeout}
 		 */
-		public Builder socketTimeout(String value) {
+		public final Builder socketTimeout(String value) {
 			this.socketTimeout = value;
 			return this;
 		}
@@ -192,6 +194,7 @@ public final class RemoteSource implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RemoteSource build() {
+			_checkSingleUse();
 
 			return new RemoteSource(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHitItem
 @JsonpDeserializable
-public final class RankEvalHitItem implements JsonpSerializable {
+public class RankEvalHitItem implements JsonpSerializable {
 	private final RankEvalHit hit;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class RankEvalHitItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalHitItem(Builder builder) {
+	private RankEvalHitItem(Builder builder) {
 
-		this.hit = Objects.requireNonNull(builder.hit, "hit");
+		this.hit = ModelTypeHelper.requireNonNull(builder.hit, this, "hit");
 		this.rating = builder.rating;
 
 	}
 
-	public RankEvalHitItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalHitItem of(Function<Builder, ObjectBuilder<RankEvalHitItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code hit}
 	 */
-	public RankEvalHit hit() {
+	public final RankEvalHit hit() {
 		return this.hit;
 	}
 
@@ -69,7 +71,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 	 * API name: {@code rating}
 	 */
 	@Nullable
-	public Double rating() {
+	public final Double rating() {
 		return this.rating;
 	}
 
@@ -88,7 +90,6 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		this.hit.serialize(generator, mapper);
 
 		if (this.rating != null) {
-
 			generator.writeKey("rating");
 			generator.write(this.rating);
 
@@ -101,7 +102,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalHitItem}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalHitItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHitItem> {
 		private RankEvalHit hit;
 
 		@Nullable
@@ -110,7 +111,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit}
 		 */
-		public Builder hit(RankEvalHit value) {
+		public final Builder hit(RankEvalHit value) {
 			this.hit = value;
 			return this;
 		}
@@ -118,14 +119,14 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit}
 		 */
-		public Builder hit(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {
+		public final Builder hit(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {
 			return this.hit(fn.apply(new RankEvalHit.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code rating}
 		 */
-		public Builder rating(@Nullable Double value) {
+		public final Builder rating(@Nullable Double value) {
 			this.rating = value;
 			return this;
 		}
@@ -137,6 +138,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalHitItem build() {
+			_checkSingleUse();
 
 			return new RankEvalHitItem(this);
 		}

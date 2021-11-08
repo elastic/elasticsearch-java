@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfWeek
 @JsonpDeserializable
-public final class TimeOfWeek implements JsonpSerializable {
+public class TimeOfWeek implements JsonpSerializable {
 	private final List<String> at;
 
 	private final List<Day> on;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TimeOfWeek(Builder builder) {
+	private TimeOfWeek(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableNonNull(builder.at, "at");
-		this.on = ModelTypeHelper.unmodifiableNonNull(builder.on, "on");
+		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.on = ModelTypeHelper.unmodifiableRequired(builder.on, this, "on");
 
 	}
 
-	public TimeOfWeek(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TimeOfWeek of(Function<Builder, ObjectBuilder<TimeOfWeek>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public List<String> at() {
+	public final List<String> at() {
 		return this.at;
 	}
 
 	/**
 	 * Required - API name: {@code on}
 	 */
-	public List<Day> on() {
+	public final List<Day> on() {
 		return this.on;
 	}
 
@@ -86,20 +86,25 @@ public final class TimeOfWeek implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("at");
-		generator.writeStartArray();
-		for (String item0 : this.at) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.at)) {
+			generator.writeKey("at");
+			generator.writeStartArray();
+			for (String item0 : this.at) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.on)) {
+			generator.writeKey("on");
+			generator.writeStartArray();
+			for (Day item0 : this.on) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
-		generator.writeKey("on");
-		generator.writeStartArray();
-		for (Day item0 : this.on) {
-			item0.serialize(generator, mapper);
 		}
-		generator.writeEnd();
 
 	}
 
@@ -108,7 +113,7 @@ public final class TimeOfWeek implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimeOfWeek}.
 	 */
-	public static class Builder implements ObjectBuilder<TimeOfWeek> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfWeek> {
 		private List<String> at;
 
 		private List<Day> on;
@@ -116,7 +121,7 @@ public final class TimeOfWeek implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public Builder at(List<String> value) {
+		public final Builder at(List<String> value) {
 			this.at = value;
 			return this;
 		}
@@ -124,26 +129,15 @@ public final class TimeOfWeek implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public Builder at(String... value) {
+		public final Builder at(String... value) {
 			this.at = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #at(List)}, creating the list if needed.
-		 */
-		public Builder addAt(String value) {
-			if (this.at == null) {
-				this.at = new ArrayList<>();
-			}
-			this.at.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code on}
 		 */
-		public Builder on(List<Day> value) {
+		public final Builder on(List<Day> value) {
 			this.on = value;
 			return this;
 		}
@@ -151,19 +145,8 @@ public final class TimeOfWeek implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code on}
 		 */
-		public Builder on(Day... value) {
+		public final Builder on(Day... value) {
 			this.on = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #on(List)}, creating the list if needed.
-		 */
-		public Builder addOn(Day value) {
-			if (this.on == null) {
-				this.on = new ArrayList<>();
-			}
-			this.on.add(value);
 			return this;
 		}
 
@@ -174,6 +157,7 @@ public final class TimeOfWeek implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TimeOfWeek build() {
+			_checkSingleUse();
 
 			return new TimeOfWeek(this);
 		}

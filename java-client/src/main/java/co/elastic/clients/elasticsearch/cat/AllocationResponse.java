@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Response
 @JsonpDeserializable
-public final class AllocationResponse implements JsonpSerializable {
+public class AllocationResponse implements JsonpSerializable {
 	private final List<AllocationRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationResponse(Builder builder) {
+	private AllocationResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public AllocationResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllocationResponse of(Function<Builder, ObjectBuilder<AllocationResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class AllocationResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<AllocationRecord> valueBody() {
+	public final List<AllocationRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class AllocationResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationResponse> {
 		private List<AllocationRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class AllocationResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<AllocationRecord> value) {
+		public final Builder valueBody(List<AllocationRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class AllocationResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(AllocationRecord... value) {
+		public final Builder valueBody(AllocationRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(AllocationRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new AllocationRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
-			return this.valueBody(fn.apply(new AllocationRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
-			return this.addValueBody(fn.apply(new AllocationRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class AllocationResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AllocationResponse build() {
+			_checkSingleUse();
 
 			return new AllocationResponse(this);
 		}

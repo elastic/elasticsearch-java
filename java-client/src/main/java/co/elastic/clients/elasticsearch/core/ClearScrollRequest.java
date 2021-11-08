@@ -36,9 +36,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -48,27 +48,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Request
 @JsonpDeserializable
-public final class ClearScrollRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class ClearScrollRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> scrollId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearScrollRequest(Builder builder) {
+	private ClearScrollRequest(Builder builder) {
 
 		this.scrollId = ModelTypeHelper.unmodifiable(builder.scrollId);
 
 	}
 
-	public ClearScrollRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearScrollRequest of(Function<Builder, ObjectBuilder<ClearScrollRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code scroll_id}
 	 */
-	@Nullable
-	public List<String> scrollId() {
+	public final List<String> scrollId() {
 		return this.scrollId;
 	}
 
@@ -83,8 +81,7 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.scrollId != null) {
-
+		if (ModelTypeHelper.isDefined(this.scrollId)) {
 			generator.writeKey("scroll_id");
 			generator.writeStartArray();
 			for (String item0 : this.scrollId) {
@@ -102,14 +99,14 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link ClearScrollRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearScrollRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollRequest> {
 		@Nullable
 		private List<String> scrollId;
 
 		/**
 		 * API name: {@code scroll_id}
 		 */
-		public Builder scrollId(@Nullable List<String> value) {
+		public final Builder scrollId(@Nullable List<String> value) {
 			this.scrollId = value;
 			return this;
 		}
@@ -117,19 +114,8 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code scroll_id}
 		 */
-		public Builder scrollId(String... value) {
+		public final Builder scrollId(String... value) {
 			this.scrollId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #scrollId(List)}, creating the list if needed.
-		 */
-		public Builder addScrollId(String value) {
-			if (this.scrollId == null) {
-				this.scrollId = new ArrayList<>();
-			}
-			this.scrollId.add(value);
 			return this;
 		}
 
@@ -140,6 +126,7 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public ClearScrollRequest build() {
+			_checkSingleUse();
 
 			return new ClearScrollRequest(this);
 		}

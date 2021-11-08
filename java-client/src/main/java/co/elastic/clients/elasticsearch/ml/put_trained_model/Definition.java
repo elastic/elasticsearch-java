@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,23 +43,22 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Definition
 @JsonpDeserializable
-public final class Definition implements JsonpSerializable {
-	@Nullable
+public class Definition implements JsonpSerializable {
 	private final List<Preprocessor> preprocessors;
 
 	private final TrainedModel trainedModel;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Definition(Builder builder) {
+	private Definition(Builder builder) {
 
 		this.preprocessors = ModelTypeHelper.unmodifiable(builder.preprocessors);
-		this.trainedModel = Objects.requireNonNull(builder.trainedModel, "trained_model");
+		this.trainedModel = ModelTypeHelper.requireNonNull(builder.trainedModel, this, "trainedModel");
 
 	}
 
-	public Definition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Definition of(Function<Builder, ObjectBuilder<Definition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,8 +66,7 @@ public final class Definition implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code preprocessors}
 	 */
-	@Nullable
-	public List<Preprocessor> preprocessors() {
+	public final List<Preprocessor> preprocessors() {
 		return this.preprocessors;
 	}
 
@@ -76,7 +75,7 @@ public final class Definition implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code trained_model}
 	 */
-	public TrainedModel trainedModel() {
+	public final TrainedModel trainedModel() {
 		return this.trainedModel;
 	}
 
@@ -91,8 +90,7 @@ public final class Definition implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.preprocessors != null) {
-
+		if (ModelTypeHelper.isDefined(this.preprocessors)) {
 			generator.writeKey("preprocessors");
 			generator.writeStartArray();
 			for (Preprocessor item0 : this.preprocessors) {
@@ -102,7 +100,6 @@ public final class Definition implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("trained_model");
 		this.trainedModel.serialize(generator, mapper);
 
@@ -113,7 +110,7 @@ public final class Definition implements JsonpSerializable {
 	/**
 	 * Builder for {@link Definition}.
 	 */
-	public static class Builder implements ObjectBuilder<Definition> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Definition> {
 		@Nullable
 		private List<Preprocessor> preprocessors;
 
@@ -124,7 +121,7 @@ public final class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code preprocessors}
 		 */
-		public Builder preprocessors(@Nullable List<Preprocessor> value) {
+		public final Builder preprocessors(@Nullable List<Preprocessor> value) {
 			this.preprocessors = value;
 			return this;
 		}
@@ -134,34 +131,23 @@ public final class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code preprocessors}
 		 */
-		public Builder preprocessors(Preprocessor... value) {
+		public final Builder preprocessors(Preprocessor... value) {
 			this.preprocessors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #preprocessors(List)}, creating the list if needed.
+		 * Collection of preprocessors
+		 * <p>
+		 * API name: {@code preprocessors}
 		 */
-		public Builder addPreprocessors(Preprocessor value) {
-			if (this.preprocessors == null) {
-				this.preprocessors = new ArrayList<>();
+		@SafeVarargs
+		public final Builder preprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>>... fns) {
+			this.preprocessors = new ArrayList<>(fns.length);
+			for (Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn : fns) {
+				this.preprocessors.add(fn.apply(new Preprocessor.Builder()).build());
 			}
-			this.preprocessors.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #preprocessors(List)} to a singleton list.
-		 */
-		public Builder preprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn) {
-			return this.preprocessors(fn.apply(new Preprocessor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #preprocessors(List)}, creating the list if needed.
-		 */
-		public Builder addPreprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn) {
-			return this.addPreprocessors(fn.apply(new Preprocessor.Builder()).build());
 		}
 
 		/**
@@ -169,7 +155,7 @@ public final class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model}
 		 */
-		public Builder trainedModel(TrainedModel value) {
+		public final Builder trainedModel(TrainedModel value) {
 			this.trainedModel = value;
 			return this;
 		}
@@ -179,7 +165,7 @@ public final class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model}
 		 */
-		public Builder trainedModel(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
+		public final Builder trainedModel(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
 			return this.trainedModel(fn.apply(new TrainedModel.Builder()).build());
 		}
 
@@ -190,6 +176,7 @@ public final class Definition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Definition build() {
+			_checkSingleUse();
 
 			return new Definition(this);
 		}

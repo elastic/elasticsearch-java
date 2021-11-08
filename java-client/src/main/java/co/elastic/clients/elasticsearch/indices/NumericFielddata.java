@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.NumericFielddata
 @JsonpDeserializable
-public final class NumericFielddata implements JsonpSerializable {
+public class NumericFielddata implements JsonpSerializable {
 	private final NumericFielddataFormat format;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NumericFielddata(Builder builder) {
+	private NumericFielddata(Builder builder) {
 
-		this.format = Objects.requireNonNull(builder.format, "format");
+		this.format = ModelTypeHelper.requireNonNull(builder.format, this, "format");
 
 	}
 
-	public NumericFielddata(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NumericFielddata of(Function<Builder, ObjectBuilder<NumericFielddata>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code format}
 	 */
-	public NumericFielddataFormat format() {
+	public final NumericFielddataFormat format() {
 		return this.format;
 	}
 
@@ -81,13 +83,13 @@ public final class NumericFielddata implements JsonpSerializable {
 	/**
 	 * Builder for {@link NumericFielddata}.
 	 */
-	public static class Builder implements ObjectBuilder<NumericFielddata> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NumericFielddata> {
 		private NumericFielddataFormat format;
 
 		/**
 		 * Required - API name: {@code format}
 		 */
-		public Builder format(NumericFielddataFormat value) {
+		public final Builder format(NumericFielddataFormat value) {
 			this.format = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class NumericFielddata implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NumericFielddata build() {
+			_checkSingleUse();
 
 			return new NumericFielddata(this);
 		}

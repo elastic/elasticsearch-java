@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -37,43 +38,42 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.DataStreams
 @JsonpDeserializable
-public final class DataStreams extends Base {
+public class DataStreams extends Base {
 	private final long dataStreams;
 
 	private final long indicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStreams(Builder builder) {
+	private DataStreams(Builder builder) {
 		super(builder);
 
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
-		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
+		this.dataStreams = ModelTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
+		this.indicesCount = ModelTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
 
 	}
 
-	public DataStreams(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStreams of(Function<Builder, ObjectBuilder<DataStreams>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public long dataStreams() {
+	public final long dataStreams() {
 		return this.dataStreams;
 	}
 
 	/**
 	 * Required - API name: {@code indices_count}
 	 */
-	public long indicesCount() {
+	public final long indicesCount() {
 		return this.indicesCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("data_streams");
 		generator.write(this.dataStreams);
 
@@ -95,7 +95,7 @@ public final class DataStreams extends Base {
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public Builder dataStreams(long value) {
+		public final Builder dataStreams(long value) {
 			this.dataStreams = value;
 			return this;
 		}
@@ -103,7 +103,7 @@ public final class DataStreams extends Base {
 		/**
 		 * Required - API name: {@code indices_count}
 		 */
-		public Builder indicesCount(long value) {
+		public final Builder indicesCount(long value) {
 			this.indicesCount = value;
 			return this;
 		}
@@ -120,6 +120,7 @@ public final class DataStreams extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public DataStreams build() {
+			_checkSingleUse();
 
 			return new DataStreams(this);
 		}

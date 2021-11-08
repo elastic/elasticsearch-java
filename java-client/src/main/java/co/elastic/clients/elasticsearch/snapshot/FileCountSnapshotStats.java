@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -39,35 +41,35 @@ import java.util.function.Function;
 
 // typedef: snapshot._types.FileCountSnapshotStats
 @JsonpDeserializable
-public final class FileCountSnapshotStats implements JsonpSerializable {
+public class FileCountSnapshotStats implements JsonpSerializable {
 	private final int fileCount;
 
 	private final long sizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FileCountSnapshotStats(Builder builder) {
+	private FileCountSnapshotStats(Builder builder) {
 
-		this.fileCount = Objects.requireNonNull(builder.fileCount, "file_count");
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
+		this.fileCount = ModelTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
+		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 
 	}
 
-	public FileCountSnapshotStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FileCountSnapshotStats of(Function<Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code file_count}
 	 */
-	public int fileCount() {
+	public final int fileCount() {
 		return this.fileCount;
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public long sizeInBytes() {
+	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -95,7 +97,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FileCountSnapshotStats}.
 	 */
-	public static class Builder implements ObjectBuilder<FileCountSnapshotStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileCountSnapshotStats> {
 		private Integer fileCount;
 
 		private Long sizeInBytes;
@@ -103,7 +105,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code file_count}
 		 */
-		public Builder fileCount(int value) {
+		public final Builder fileCount(int value) {
 			this.fileCount = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(long value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FileCountSnapshotStats build() {
+			_checkSingleUse();
 
 			return new FileCountSnapshotStats(this);
 		}

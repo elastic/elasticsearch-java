@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.FieldNamesField
 @JsonpDeserializable
-public final class FieldNamesField implements JsonpSerializable {
+public class FieldNamesField implements JsonpSerializable {
 	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldNamesField(Builder builder) {
+	private FieldNamesField(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public FieldNamesField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldNamesField of(Function<Builder, ObjectBuilder<FieldNamesField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -81,13 +83,13 @@ public final class FieldNamesField implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldNamesField}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldNamesField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
 		private Boolean enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class FieldNamesField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldNamesField build() {
+			_checkSingleUse();
 
 			return new FieldNamesField(this);
 		}

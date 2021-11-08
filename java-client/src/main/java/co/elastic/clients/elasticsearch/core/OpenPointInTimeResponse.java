@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Response
 @JsonpDeserializable
-public final class OpenPointInTimeResponse implements JsonpSerializable {
+public class OpenPointInTimeResponse implements JsonpSerializable {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenPointInTimeResponse(Builder builder) {
+	private OpenPointInTimeResponse(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public OpenPointInTimeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenPointInTimeResponse of(Function<Builder, ObjectBuilder<OpenPointInTimeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -82,13 +84,13 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link OpenPointInTimeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenPointInTimeResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeResponse> {
 		private String id;
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OpenPointInTimeResponse build() {
+			_checkSingleUse();
 
 			return new OpenPointInTimeResponse(this);
 		}

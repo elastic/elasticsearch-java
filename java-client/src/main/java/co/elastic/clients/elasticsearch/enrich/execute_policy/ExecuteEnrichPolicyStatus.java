@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.ExecuteEnrichPolicyStatus
 @JsonpDeserializable
-public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
+public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	private final EnrichPolicyPhase phase;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteEnrichPolicyStatus(Builder builder) {
+	private ExecuteEnrichPolicyStatus(Builder builder) {
 
-		this.phase = Objects.requireNonNull(builder.phase, "phase");
+		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 
-	public ExecuteEnrichPolicyStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteEnrichPolicyStatus of(Function<Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code phase}
 	 */
-	public EnrichPolicyPhase phase() {
+	public final EnrichPolicyPhase phase() {
 		return this.phase;
 	}
 
@@ -81,13 +83,13 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteEnrichPolicyStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
 		private EnrichPolicyPhase phase;
 
 		/**
 		 * Required - API name: {@code phase}
 		 */
-		public Builder phase(EnrichPolicyPhase value) {
+		public final Builder phase(EnrichPolicyPhase value) {
 			this.phase = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteEnrichPolicyStatus build() {
+			_checkSingleUse();
 
 			return new ExecuteEnrichPolicyStatus(this);
 		}

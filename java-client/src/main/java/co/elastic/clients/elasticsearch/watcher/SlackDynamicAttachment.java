@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,36 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackDynamicAttachment
 @JsonpDeserializable
-public final class SlackDynamicAttachment implements JsonpSerializable {
+public class SlackDynamicAttachment implements JsonpSerializable {
 	private final SlackAttachment attachmentTemplate;
 
 	private final String listPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SlackDynamicAttachment(Builder builder) {
+	private SlackDynamicAttachment(Builder builder) {
 
-		this.attachmentTemplate = Objects.requireNonNull(builder.attachmentTemplate, "attachment_template");
-		this.listPath = Objects.requireNonNull(builder.listPath, "list_path");
+		this.attachmentTemplate = ModelTypeHelper.requireNonNull(builder.attachmentTemplate, this,
+				"attachmentTemplate");
+		this.listPath = ModelTypeHelper.requireNonNull(builder.listPath, this, "listPath");
 
 	}
 
-	public SlackDynamicAttachment(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SlackDynamicAttachment of(Function<Builder, ObjectBuilder<SlackDynamicAttachment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code attachment_template}
 	 */
-	public SlackAttachment attachmentTemplate() {
+	public final SlackAttachment attachmentTemplate() {
 		return this.attachmentTemplate;
 	}
 
 	/**
 	 * Required - API name: {@code list_path}
 	 */
-	public String listPath() {
+	public final String listPath() {
 		return this.listPath;
 	}
 
@@ -95,7 +98,7 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackDynamicAttachment}.
 	 */
-	public static class Builder implements ObjectBuilder<SlackDynamicAttachment> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackDynamicAttachment> {
 		private SlackAttachment attachmentTemplate;
 
 		private String listPath;
@@ -103,7 +106,7 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attachment_template}
 		 */
-		public Builder attachmentTemplate(SlackAttachment value) {
+		public final Builder attachmentTemplate(SlackAttachment value) {
 			this.attachmentTemplate = value;
 			return this;
 		}
@@ -111,14 +114,14 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attachment_template}
 		 */
-		public Builder attachmentTemplate(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
+		public final Builder attachmentTemplate(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
 			return this.attachmentTemplate(fn.apply(new SlackAttachment.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code list_path}
 		 */
-		public Builder listPath(String value) {
+		public final Builder listPath(String value) {
 			this.listPath = value;
 			return this;
 		}
@@ -130,6 +133,7 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SlackDynamicAttachment build() {
+			_checkSingleUse();
 
 			return new SlackDynamicAttachment(this);
 		}

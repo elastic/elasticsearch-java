@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cat.repositories.Request
 
-public final class RepositoriesRequest extends CatRequestBase {
+public class RepositoriesRequest extends CatRequestBase {
 	public RepositoriesRequest() {
 	}
 

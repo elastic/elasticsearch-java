@@ -68,6 +68,8 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
+import co.elastic.clients.elasticsearch.core.KnnSearchRequest;
+import co.elastic.clients.elasticsearch.core.KnnSearchResponse;
 import co.elastic.clients.elasticsearch.core.MgetRequest;
 import co.elastic.clients.elasticsearch.core.MgetResponse;
 import co.elastic.clients.elasticsearch.core.MsearchRequest;
@@ -925,6 +927,39 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 	public InfoResponse info() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest.ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: knn_search
+
+	/**
+	 * Performs a kNN search.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> KnnSearchResponse<TDocument> knnSearch(KnnSearchRequest request, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return this.transport.performRequest(request,
+				KnnSearchRequest.createKnnSearchEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
+	}
+
+	/**
+	 * Performs a kNN search.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link KnnSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> KnnSearchResponse<TDocument> knnSearch(
+			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: mget

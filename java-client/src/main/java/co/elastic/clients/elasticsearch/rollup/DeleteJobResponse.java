@@ -43,36 +43,33 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Response
 @JsonpDeserializable
-public final class DeleteJobResponse extends AcknowledgedResponseBase {
-	@Nullable
+public class DeleteJobResponse extends AcknowledgedResponseBase {
 	private final List<TaskFailure> taskFailures;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteJobResponse(Builder builder) {
+	private DeleteJobResponse(Builder builder) {
 		super(builder);
 
 		this.taskFailures = ModelTypeHelper.unmodifiable(builder.taskFailures);
 
 	}
 
-	public DeleteJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteJobResponse of(Function<Builder, ObjectBuilder<DeleteJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code task_failures}
 	 */
-	@Nullable
-	public List<TaskFailure> taskFailures() {
+	public final List<TaskFailure> taskFailures() {
 		return this.taskFailures;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.taskFailures != null) {
-
+		if (ModelTypeHelper.isDefined(this.taskFailures)) {
 			generator.writeKey("task_failures");
 			generator.writeStartArray();
 			for (TaskFailure item0 : this.taskFailures) {
@@ -99,7 +96,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code task_failures}
 		 */
-		public Builder taskFailures(@Nullable List<TaskFailure> value) {
+		public final Builder taskFailures(@Nullable List<TaskFailure> value) {
 			this.taskFailures = value;
 			return this;
 		}
@@ -107,34 +104,21 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code task_failures}
 		 */
-		public Builder taskFailures(TaskFailure... value) {
+		public final Builder taskFailures(TaskFailure... value) {
 			this.taskFailures = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #taskFailures(List)}, creating the list if needed.
+		 * API name: {@code task_failures}
 		 */
-		public Builder addTaskFailures(TaskFailure value) {
-			if (this.taskFailures == null) {
-				this.taskFailures = new ArrayList<>();
+		@SafeVarargs
+		public final Builder taskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>>... fns) {
+			this.taskFailures = new ArrayList<>(fns.length);
+			for (Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn : fns) {
+				this.taskFailures.add(fn.apply(new TaskFailure.Builder()).build());
 			}
-			this.taskFailures.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #taskFailures(List)} to a singleton list.
-		 */
-		public Builder taskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
-			return this.taskFailures(fn.apply(new TaskFailure.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #taskFailures(List)}, creating the list if needed.
-		 */
-		public Builder addTaskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
-			return this.addTaskFailures(fn.apply(new TaskFailure.Builder()).build());
 		}
 
 		@Override
@@ -149,6 +133,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteJobResponse build() {
+			_checkSingleUse();
 
 			return new DeleteJobResponse(this);
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: dangling_indices.list_dangling_indices.Request
 
-public final class ListDanglingIndicesRequest extends RequestBase {
+public class ListDanglingIndicesRequest extends RequestBase {
 	public ListDanglingIndicesRequest() {
 	}
 

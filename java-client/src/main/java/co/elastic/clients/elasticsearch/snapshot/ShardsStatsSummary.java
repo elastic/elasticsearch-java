@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.ShardsStatsSummary
 @JsonpDeserializable
-public final class ShardsStatsSummary implements JsonpSerializable {
+public class ShardsStatsSummary implements JsonpSerializable {
 	private final ShardsStatsSummaryItem incremental;
 
 	private final ShardsStatsSummaryItem total;
@@ -50,44 +52,44 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsStatsSummary(Builder builder) {
+	private ShardsStatsSummary(Builder builder) {
 
-		this.incremental = Objects.requireNonNull(builder.incremental, "incremental");
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
-		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
+		this.incremental = ModelTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
 
-	public ShardsStatsSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardsStatsSummary of(Function<Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code incremental}
 	 */
-	public ShardsStatsSummaryItem incremental() {
+	public final ShardsStatsSummaryItem incremental() {
 		return this.incremental;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public ShardsStatsSummaryItem total() {
+	public final ShardsStatsSummaryItem total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public long startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_millis}
 	 */
-	public long timeInMillis() {
+	public final long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -121,7 +123,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsStatsSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsStatsSummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsStatsSummary> {
 		private ShardsStatsSummaryItem incremental;
 
 		private ShardsStatsSummaryItem total;
@@ -133,7 +135,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public Builder incremental(ShardsStatsSummaryItem value) {
+		public final Builder incremental(ShardsStatsSummaryItem value) {
 			this.incremental = value;
 			return this;
 		}
@@ -141,14 +143,15 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public Builder incremental(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
+		public final Builder incremental(
+				Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
 			return this.incremental(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(ShardsStatsSummaryItem value) {
+		public final Builder total(ShardsStatsSummaryItem value) {
 			this.total = value;
 			return this;
 		}
@@ -156,14 +159,14 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
+		public final Builder total(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
 			return this.total(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(long value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -171,7 +174,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(long value) {
+		public final Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -183,6 +186,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsStatsSummary build() {
+			_checkSingleUse();
 
 			return new ShardsStatsSummary(this);
 		}

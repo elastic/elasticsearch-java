@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventResult
 @JsonpDeserializable
-public final class TriggerEventResult implements JsonpSerializable {
+public class TriggerEventResult implements JsonpSerializable {
 	private final TriggerEvent manual;
 
 	private final String triggeredTime;
@@ -48,36 +50,36 @@ public final class TriggerEventResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TriggerEventResult(Builder builder) {
+	private TriggerEventResult(Builder builder) {
 
-		this.manual = Objects.requireNonNull(builder.manual, "manual");
-		this.triggeredTime = Objects.requireNonNull(builder.triggeredTime, "triggered_time");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.manual = ModelTypeHelper.requireNonNull(builder.manual, this, "manual");
+		this.triggeredTime = ModelTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public TriggerEventResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TriggerEventResult of(Function<Builder, ObjectBuilder<TriggerEventResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code manual}
 	 */
-	public TriggerEvent manual() {
+	public final TriggerEvent manual() {
 		return this.manual;
 	}
 
 	/**
 	 * Required - API name: {@code triggered_time}
 	 */
-	public String triggeredTime() {
+	public final String triggeredTime() {
 		return this.triggeredTime;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -108,7 +110,7 @@ public final class TriggerEventResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link TriggerEventResult}.
 	 */
-	public static class Builder implements ObjectBuilder<TriggerEventResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEventResult> {
 		private TriggerEvent manual;
 
 		private String triggeredTime;
@@ -118,7 +120,7 @@ public final class TriggerEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code manual}
 		 */
-		public Builder manual(TriggerEvent value) {
+		public final Builder manual(TriggerEvent value) {
 			this.manual = value;
 			return this;
 		}
@@ -126,14 +128,14 @@ public final class TriggerEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code manual}
 		 */
-		public Builder manual(Function<TriggerEvent.Builder, ObjectBuilder<TriggerEvent>> fn) {
+		public final Builder manual(Function<TriggerEvent.Builder, ObjectBuilder<TriggerEvent>> fn) {
 			return this.manual(fn.apply(new TriggerEvent.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code triggered_time}
 		 */
-		public Builder triggeredTime(String value) {
+		public final Builder triggeredTime(String value) {
 			this.triggeredTime = value;
 			return this;
 		}
@@ -141,7 +143,7 @@ public final class TriggerEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -153,6 +155,7 @@ public final class TriggerEventResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TriggerEventResult build() {
+			_checkSingleUse();
 
 			return new TriggerEventResult(this);
 		}

@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
 @JsonpDeserializable
-public final class MappingCharFilter extends CharFilterBase implements CharFilterVariant {
+public class MappingCharFilter extends CharFilterBase implements CharFilterVariant {
 	private final List<String> mappings;
 
 	@Nullable
@@ -50,16 +49,16 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MappingCharFilter(Builder builder) {
+	private MappingCharFilter(Builder builder) {
 		super(builder);
 
-		this.mappings = ModelTypeHelper.unmodifiableNonNull(builder.mappings, "mappings");
+		this.mappings = ModelTypeHelper.unmodifiableRequired(builder.mappings, this, "mappings");
 		this.mappingsPath = builder.mappingsPath;
 
 	}
 
-	public MappingCharFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MappingCharFilter of(Function<Builder, ObjectBuilder<MappingCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +72,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public List<String> mappings() {
+	public final List<String> mappings() {
 		return this.mappings;
 	}
 
@@ -81,7 +80,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	 * API name: {@code mappings_path}
 	 */
 	@Nullable
-	public String mappingsPath() {
+	public final String mappingsPath() {
 		return this.mappingsPath;
 	}
 
@@ -89,17 +88,17 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 
 		generator.write("type", "mapping");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.mappings)) {
+			generator.writeKey("mappings");
+			generator.writeStartArray();
+			for (String item0 : this.mappings) {
+				generator.write(item0);
 
-		generator.writeKey("mappings");
-		generator.writeStartArray();
-		for (String item0 : this.mappings) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.mappingsPath != null) {
-
 			generator.writeKey("mappings_path");
 			generator.write(this.mappingsPath);
 
@@ -123,7 +122,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(List<String> value) {
+		public final Builder mappings(List<String> value) {
 			this.mappings = value;
 			return this;
 		}
@@ -131,26 +130,15 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(String... value) {
+		public final Builder mappings(String... value) {
 			this.mappings = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #mappings(List)}, creating the list if needed.
-		 */
-		public Builder addMappings(String value) {
-			if (this.mappings == null) {
-				this.mappings = new ArrayList<>();
-			}
-			this.mappings.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code mappings_path}
 		 */
-		public Builder mappingsPath(@Nullable String value) {
+		public final Builder mappingsPath(@Nullable String value) {
 			this.mappingsPath = value;
 			return this;
 		}
@@ -167,6 +155,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		 *             if some of the required fields are null.
 		 */
 		public MappingCharFilter build() {
+			_checkSingleUse();
 
 			return new MappingCharFilter(this);
 		}

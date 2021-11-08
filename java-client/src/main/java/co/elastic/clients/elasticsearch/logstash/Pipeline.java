@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: logstash._types.Pipeline
 @JsonpDeserializable
-public final class Pipeline implements JsonpSerializable {
+public class Pipeline implements JsonpSerializable {
 	private final String description;
 
 	private final String lastModified;
@@ -54,60 +56,60 @@ public final class Pipeline implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Pipeline(Builder builder) {
+	private Pipeline(Builder builder) {
 
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.lastModified = Objects.requireNonNull(builder.lastModified, "last_modified");
-		this.pipelineMetadata = Objects.requireNonNull(builder.pipelineMetadata, "pipeline_metadata");
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.pipeline = Objects.requireNonNull(builder.pipeline, "pipeline");
-		this.pipelineSettings = Objects.requireNonNull(builder.pipelineSettings, "pipeline_settings");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
+		this.lastModified = ModelTypeHelper.requireNonNull(builder.lastModified, this, "lastModified");
+		this.pipelineMetadata = ModelTypeHelper.requireNonNull(builder.pipelineMetadata, this, "pipelineMetadata");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.pipeline = ModelTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
+		this.pipelineSettings = ModelTypeHelper.requireNonNull(builder.pipelineSettings, this, "pipelineSettings");
 
 	}
 
-	public Pipeline(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Pipeline of(Function<Builder, ObjectBuilder<Pipeline>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code last_modified}
 	 */
-	public String lastModified() {
+	public final String lastModified() {
 		return this.lastModified;
 	}
 
 	/**
 	 * Required - API name: {@code pipeline_metadata}
 	 */
-	public PipelineMetadata pipelineMetadata() {
+	public final PipelineMetadata pipelineMetadata() {
 		return this.pipelineMetadata;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
 	/**
 	 * Required - API name: {@code pipeline}
 	 */
-	public String pipeline() {
+	public final String pipeline() {
 		return this.pipeline;
 	}
 
 	/**
 	 * Required - API name: {@code pipeline_settings}
 	 */
-	public PipelineSettings pipelineSettings() {
+	public final PipelineSettings pipelineSettings() {
 		return this.pipelineSettings;
 	}
 
@@ -147,7 +149,7 @@ public final class Pipeline implements JsonpSerializable {
 	/**
 	 * Builder for {@link Pipeline}.
 	 */
-	public static class Builder implements ObjectBuilder<Pipeline> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pipeline> {
 		private String description;
 
 		private String lastModified;
@@ -163,7 +165,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -171,7 +173,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code last_modified}
 		 */
-		public Builder lastModified(String value) {
+		public final Builder lastModified(String value) {
 			this.lastModified = value;
 			return this;
 		}
@@ -179,7 +181,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline_metadata}
 		 */
-		public Builder pipelineMetadata(PipelineMetadata value) {
+		public final Builder pipelineMetadata(PipelineMetadata value) {
 			this.pipelineMetadata = value;
 			return this;
 		}
@@ -187,14 +189,14 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline_metadata}
 		 */
-		public Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
+		public final Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
 			return this.pipelineMetadata(fn.apply(new PipelineMetadata.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -202,7 +204,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline}
 		 */
-		public Builder pipeline(String value) {
+		public final Builder pipeline(String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -210,7 +212,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline_settings}
 		 */
-		public Builder pipelineSettings(PipelineSettings value) {
+		public final Builder pipelineSettings(PipelineSettings value) {
 			this.pipelineSettings = value;
 			return this;
 		}
@@ -218,7 +220,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline_settings}
 		 */
-		public Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
+		public final Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
 			return this.pipelineSettings(fn.apply(new PipelineSettings.Builder()).build());
 		}
 
@@ -229,6 +231,7 @@ public final class Pipeline implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Pipeline build() {
+			_checkSingleUse();
 
 			return new Pipeline(this);
 		}

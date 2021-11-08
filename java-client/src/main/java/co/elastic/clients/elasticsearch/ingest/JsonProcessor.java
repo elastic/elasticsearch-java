@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.JsonProcessor
 @JsonpDeserializable
-public final class JsonProcessor extends ProcessorBase implements ProcessorVariant {
+public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	private final boolean addToRoot;
 
 	private final String field;
@@ -48,17 +49,17 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JsonProcessor(Builder builder) {
+	private JsonProcessor(Builder builder) {
 		super(builder);
 
-		this.addToRoot = Objects.requireNonNull(builder.addToRoot, "add_to_root");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.addToRoot = ModelTypeHelper.requireNonNull(builder.addToRoot, this, "addToRoot");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public JsonProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JsonProcessor of(Function<Builder, ObjectBuilder<JsonProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,28 +73,27 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Required - API name: {@code add_to_root}
 	 */
-	public boolean addToRoot() {
+	public final boolean addToRoot() {
 		return this.addToRoot;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("add_to_root");
 		generator.write(this.addToRoot);
 
@@ -120,7 +120,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code add_to_root}
 		 */
-		public Builder addToRoot(boolean value) {
+		public final Builder addToRoot(boolean value) {
 			this.addToRoot = value;
 			return this;
 		}
@@ -128,7 +128,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -136,7 +136,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -153,6 +153,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public JsonProcessor build() {
+			_checkSingleUse();
 
 			return new JsonProcessor(this);
 		}

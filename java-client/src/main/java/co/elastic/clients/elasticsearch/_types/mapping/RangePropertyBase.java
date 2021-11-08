@@ -51,7 +51,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RangePropertyBase(AbstractBuilder<?> builder) {
+	protected RangePropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.boost = builder.boost;
@@ -64,7 +64,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -72,7 +72,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -80,7 +80,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -88,19 +88,16 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
@@ -123,7 +120,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code boost}
 		 */
-		public BuilderT boost(@Nullable Double value) {
+		public final BuilderT boost(@Nullable Double value) {
 			this.boost = value;
 			return self();
 		}
@@ -131,7 +128,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code coerce}
 		 */
-		public BuilderT coerce(@Nullable Boolean value) {
+		public final BuilderT coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return self();
 		}
@@ -139,7 +136,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code index}
 		 */
-		public BuilderT index(@Nullable Boolean value) {
+		public final BuilderT index(@Nullable Boolean value) {
 			this.index = value;
 			return self();
 		}

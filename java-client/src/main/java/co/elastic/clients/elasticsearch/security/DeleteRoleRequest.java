@@ -32,7 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_role.Request
 
-public final class DeleteRoleRequest extends RequestBase {
+public class DeleteRoleRequest extends RequestBase {
 	private final String name;
 
 	@Nullable
@@ -52,15 +54,15 @@ public final class DeleteRoleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRoleRequest(Builder builder) {
+	private DeleteRoleRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 
 	}
 
-	public DeleteRoleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRoleRequest of(Function<Builder, ObjectBuilder<DeleteRoleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +70,7 @@ public final class DeleteRoleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -81,7 +83,7 @@ public final class DeleteRoleRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -90,7 +92,7 @@ public final class DeleteRoleRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRoleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRoleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleRequest> {
 		private String name;
 
 		@Nullable
@@ -101,7 +103,7 @@ public final class DeleteRoleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -114,7 +116,7 @@ public final class DeleteRoleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -126,6 +128,7 @@ public final class DeleteRoleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRoleRequest build() {
+			_checkSingleUse();
 
 			return new DeleteRoleRequest(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.LongRangeProperty
 @JsonpDeserializable
-public final class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public LongRangeProperty(Builder builder) {
+	private LongRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public LongRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LongRangeProperty of(Function<Builder, ObjectBuilder<LongRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class LongRangeProperty extends RangePropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public LongRangeProperty build() {
+			_checkSingleUse();
 
 			return new LongRangeProperty(this);
 		}

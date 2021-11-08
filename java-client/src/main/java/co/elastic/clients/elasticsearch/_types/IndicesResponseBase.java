@@ -43,7 +43,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesResponseBase(AbstractBuilder<?> builder) {
+	protected IndicesResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.shards = builder.shards;
@@ -54,7 +54,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	 * API name: {@code _shards}
 	 */
 	@Nullable
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -62,7 +62,6 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.shards != null) {
-
 			generator.writeKey("_shards");
 			this.shards.serialize(generator, mapper);
 
@@ -79,7 +78,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT shards(@Nullable ShardStatistics value) {
+		public final BuilderT shards(@Nullable ShardStatistics value) {
 			this.shards = value;
 			return self();
 		}
@@ -87,7 +86,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 

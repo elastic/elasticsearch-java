@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateIndexNameProcessor
 @JsonpDeserializable
-public final class DateIndexNameProcessor extends ProcessorBase implements ProcessorVariant {
+public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> dateFormats;
 
 	private final DateRounding dateRounding;
@@ -59,21 +58,21 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateIndexNameProcessor(Builder builder) {
+	private DateIndexNameProcessor(Builder builder) {
 		super(builder);
 
-		this.dateFormats = ModelTypeHelper.unmodifiableNonNull(builder.dateFormats, "date_formats");
-		this.dateRounding = Objects.requireNonNull(builder.dateRounding, "date_rounding");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.indexNameFormat = Objects.requireNonNull(builder.indexNameFormat, "index_name_format");
-		this.indexNamePrefix = Objects.requireNonNull(builder.indexNamePrefix, "index_name_prefix");
-		this.locale = Objects.requireNonNull(builder.locale, "locale");
-		this.timezone = Objects.requireNonNull(builder.timezone, "timezone");
+		this.dateFormats = ModelTypeHelper.unmodifiableRequired(builder.dateFormats, this, "dateFormats");
+		this.dateRounding = ModelTypeHelper.requireNonNull(builder.dateRounding, this, "dateRounding");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.indexNameFormat = ModelTypeHelper.requireNonNull(builder.indexNameFormat, this, "indexNameFormat");
+		this.indexNamePrefix = ModelTypeHelper.requireNonNull(builder.indexNamePrefix, this, "indexNamePrefix");
+		this.locale = ModelTypeHelper.requireNonNull(builder.locale, this, "locale");
+		this.timezone = ModelTypeHelper.requireNonNull(builder.timezone, this, "timezone");
 
 	}
 
-	public DateIndexNameProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateIndexNameProcessor of(Function<Builder, ObjectBuilder<DateIndexNameProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,67 +86,67 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 	/**
 	 * Required - API name: {@code date_formats}
 	 */
-	public List<String> dateFormats() {
+	public final List<String> dateFormats() {
 		return this.dateFormats;
 	}
 
 	/**
 	 * Required - API name: {@code date_rounding}
 	 */
-	public DateRounding dateRounding() {
+	public final DateRounding dateRounding() {
 		return this.dateRounding;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code index_name_format}
 	 */
-	public String indexNameFormat() {
+	public final String indexNameFormat() {
 		return this.indexNameFormat;
 	}
 
 	/**
 	 * Required - API name: {@code index_name_prefix}
 	 */
-	public String indexNamePrefix() {
+	public final String indexNamePrefix() {
 		return this.indexNamePrefix;
 	}
 
 	/**
 	 * Required - API name: {@code locale}
 	 */
-	public String locale() {
+	public final String locale() {
 		return this.locale;
 	}
 
 	/**
 	 * Required - API name: {@code timezone}
 	 */
-	public String timezone() {
+	public final String timezone() {
 		return this.timezone;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.dateFormats)) {
+			generator.writeKey("date_formats");
+			generator.writeStartArray();
+			for (String item0 : this.dateFormats) {
+				generator.write(item0);
 
-		generator.writeKey("date_formats");
-		generator.writeStartArray();
-		for (String item0 : this.dateFormats) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("date_rounding");
 		this.dateRounding.serialize(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -190,7 +189,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code date_formats}
 		 */
-		public Builder dateFormats(List<String> value) {
+		public final Builder dateFormats(List<String> value) {
 			this.dateFormats = value;
 			return this;
 		}
@@ -198,26 +197,15 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code date_formats}
 		 */
-		public Builder dateFormats(String... value) {
+		public final Builder dateFormats(String... value) {
 			this.dateFormats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dateFormats(List)}, creating the list if needed.
-		 */
-		public Builder addDateFormats(String value) {
-			if (this.dateFormats == null) {
-				this.dateFormats = new ArrayList<>();
-			}
-			this.dateFormats.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code date_rounding}
 		 */
-		public Builder dateRounding(DateRounding value) {
+		public final Builder dateRounding(DateRounding value) {
 			this.dateRounding = value;
 			return this;
 		}
@@ -225,7 +213,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -233,7 +221,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code index_name_format}
 		 */
-		public Builder indexNameFormat(String value) {
+		public final Builder indexNameFormat(String value) {
 			this.indexNameFormat = value;
 			return this;
 		}
@@ -241,7 +229,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code index_name_prefix}
 		 */
-		public Builder indexNamePrefix(String value) {
+		public final Builder indexNamePrefix(String value) {
 			this.indexNamePrefix = value;
 			return this;
 		}
@@ -249,7 +237,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code locale}
 		 */
-		public Builder locale(String value) {
+		public final Builder locale(String value) {
 			this.locale = value;
 			return this;
 		}
@@ -257,7 +245,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		/**
 		 * Required - API name: {@code timezone}
 		 */
-		public Builder timezone(String value) {
+		public final Builder timezone(String value) {
 			this.timezone = value;
 			return this;
 		}
@@ -274,6 +262,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		 *             if some of the required fields are null.
 		 */
 		public DateIndexNameProcessor build() {
+			_checkSingleUse();
 
 			return new DateIndexNameProcessor(this);
 		}

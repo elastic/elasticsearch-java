@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResult
 @JsonpDeserializable
-public final class IndexResult implements JsonpSerializable {
+public class IndexResult implements JsonpSerializable {
 	private final IndexResultSummary response;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexResult(Builder builder) {
+	private IndexResult(Builder builder) {
 
-		this.response = Objects.requireNonNull(builder.response, "response");
+		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 
-	public IndexResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexResult of(Function<Builder, ObjectBuilder<IndexResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code response}
 	 */
-	public IndexResultSummary response() {
+	public final IndexResultSummary response() {
 		return this.response;
 	}
 
@@ -81,13 +83,13 @@ public final class IndexResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexResult}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexResult> {
 		private IndexResultSummary response;
 
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public Builder response(IndexResultSummary value) {
+		public final Builder response(IndexResultSummary value) {
 			this.response = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class IndexResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
+		public final Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
 			return this.response(fn.apply(new IndexResultSummary.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class IndexResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexResult build() {
+			_checkSingleUse();
 
 			return new IndexResult(this);
 		}

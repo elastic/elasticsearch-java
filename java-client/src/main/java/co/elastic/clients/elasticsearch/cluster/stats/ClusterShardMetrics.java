@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -38,7 +40,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterShardMetrics
 @JsonpDeserializable
-public final class ClusterShardMetrics implements JsonpSerializable {
+public class ClusterShardMetrics implements JsonpSerializable {
 	private final double avg;
 
 	private final double max;
@@ -47,36 +49,36 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterShardMetrics(Builder builder) {
+	private ClusterShardMetrics(Builder builder) {
 
-		this.avg = Objects.requireNonNull(builder.avg, "avg");
-		this.max = Objects.requireNonNull(builder.max, "max");
-		this.min = Objects.requireNonNull(builder.min, "min");
+		this.avg = ModelTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public ClusterShardMetrics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterShardMetrics of(Function<Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code avg}
 	 */
-	public double avg() {
+	public final double avg() {
 		return this.avg;
 	}
 
 	/**
 	 * Required - API name: {@code max}
 	 */
-	public double max() {
+	public final double max() {
 		return this.max;
 	}
 
 	/**
 	 * Required - API name: {@code min}
 	 */
-	public double min() {
+	public final double min() {
 		return this.min;
 	}
 
@@ -107,7 +109,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterShardMetrics}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterShardMetrics> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterShardMetrics> {
 		private Double avg;
 
 		private Double max;
@@ -117,7 +119,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg}
 		 */
-		public Builder avg(double value) {
+		public final Builder avg(double value) {
 			this.avg = value;
 			return this;
 		}
@@ -125,7 +127,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max}
 		 */
-		public Builder max(double value) {
+		public final Builder max(double value) {
 			this.max = value;
 			return this;
 		}
@@ -133,7 +135,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min}
 		 */
-		public Builder min(double value) {
+		public final Builder min(double value) {
 			this.min = value;
 			return this;
 		}
@@ -145,6 +147,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterShardMetrics build() {
+			_checkSingleUse();
 
 			return new ClusterShardMetrics(this);
 		}

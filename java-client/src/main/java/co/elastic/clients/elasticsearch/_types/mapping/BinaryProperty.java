@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.BinaryProperty
 @JsonpDeserializable
-public final class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public BinaryProperty(Builder builder) {
+	private BinaryProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public BinaryProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BinaryProperty of(Function<Builder, ObjectBuilder<BinaryProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class BinaryProperty extends DocValuesPropertyBase implements Prope
 		 *             if some of the required fields are null.
 		 */
 		public BinaryProperty build() {
+			_checkSingleUse();
 
 			return new BinaryProperty(this);
 		}

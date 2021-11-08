@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
 @JsonpDeserializable
-public final class PendingTask implements JsonpSerializable {
+public class PendingTask implements JsonpSerializable {
 	private final boolean executing;
 
 	private final int insertOrder;
@@ -56,60 +58,60 @@ public final class PendingTask implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PendingTask(Builder builder) {
+	private PendingTask(Builder builder) {
 
-		this.executing = Objects.requireNonNull(builder.executing, "executing");
-		this.insertOrder = Objects.requireNonNull(builder.insertOrder, "insert_order");
-		this.priority = Objects.requireNonNull(builder.priority, "priority");
-		this.source = Objects.requireNonNull(builder.source, "source");
-		this.timeInQueue = Objects.requireNonNull(builder.timeInQueue, "time_in_queue");
-		this.timeInQueueMillis = Objects.requireNonNull(builder.timeInQueueMillis, "time_in_queue_millis");
+		this.executing = ModelTypeHelper.requireNonNull(builder.executing, this, "executing");
+		this.insertOrder = ModelTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
+		this.priority = ModelTypeHelper.requireNonNull(builder.priority, this, "priority");
+		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.timeInQueue = ModelTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
+		this.timeInQueueMillis = ModelTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
 
 	}
 
-	public PendingTask(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PendingTask of(Function<Builder, ObjectBuilder<PendingTask>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code executing}
 	 */
-	public boolean executing() {
+	public final boolean executing() {
 		return this.executing;
 	}
 
 	/**
 	 * Required - API name: {@code insert_order}
 	 */
-	public int insertOrder() {
+	public final int insertOrder() {
 		return this.insertOrder;
 	}
 
 	/**
 	 * Required - API name: {@code priority}
 	 */
-	public String priority() {
+	public final String priority() {
 		return this.priority;
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_queue}
 	 */
-	public String timeInQueue() {
+	public final String timeInQueue() {
 		return this.timeInQueue;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_queue_millis}
 	 */
-	public int timeInQueueMillis() {
+	public final int timeInQueueMillis() {
 		return this.timeInQueueMillis;
 	}
 
@@ -149,7 +151,7 @@ public final class PendingTask implements JsonpSerializable {
 	/**
 	 * Builder for {@link PendingTask}.
 	 */
-	public static class Builder implements ObjectBuilder<PendingTask> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTask> {
 		private Boolean executing;
 
 		private Integer insertOrder;
@@ -165,7 +167,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code executing}
 		 */
-		public Builder executing(boolean value) {
+		public final Builder executing(boolean value) {
 			this.executing = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code insert_order}
 		 */
-		public Builder insertOrder(int value) {
+		public final Builder insertOrder(int value) {
 			this.insertOrder = value;
 			return this;
 		}
@@ -181,7 +183,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code priority}
 		 */
-		public Builder priority(String value) {
+		public final Builder priority(String value) {
 			this.priority = value;
 			return this;
 		}
@@ -189,7 +191,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(String value) {
+		public final Builder source(String value) {
 			this.source = value;
 			return this;
 		}
@@ -197,7 +199,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_queue}
 		 */
-		public Builder timeInQueue(String value) {
+		public final Builder timeInQueue(String value) {
 			this.timeInQueue = value;
 			return this;
 		}
@@ -205,7 +207,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_queue_millis}
 		 */
-		public Builder timeInQueueMillis(int value) {
+		public final Builder timeInQueueMillis(int value) {
 			this.timeInQueueMillis = value;
 			return this;
 		}
@@ -217,6 +219,7 @@ public final class PendingTask implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PendingTask build() {
+			_checkSingleUse();
 
 			return new PendingTask(this);
 		}

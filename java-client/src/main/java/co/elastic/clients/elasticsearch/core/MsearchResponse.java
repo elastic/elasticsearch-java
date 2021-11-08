@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.msearch.Response
 
-public final class MsearchResponse<TDocument> implements JsonpSerializable {
+public class MsearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
 
 	private final List<JsonValue /*
@@ -59,32 +59,33 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MsearchResponse(Builder<TDocument> builder) {
+	private MsearchResponse(Builder<TDocument> builder) {
 
-		this.took = Objects.requireNonNull(builder.took, "took");
-		this.responses = ModelTypeHelper.unmodifiableNonNull(builder.responses, "responses");
+		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.responses = ModelTypeHelper.unmodifiableRequired(builder.responses, this, "responses");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public MsearchResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> MsearchResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MsearchResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code took}
 	 */
-	public long took() {
+	public final long took() {
 		return this.took;
 	}
 
 	/**
 	 * Required - API name: {@code responses}
 	 */
-	public List<JsonValue /*
-							 * Union(_global.msearch.SearchResult<_global.msearch.TDocument> |
-							 * _types.ErrorResponseBase)
-							 */> responses() {
+	public final List<JsonValue /*
+								 * Union(_global.msearch.SearchResult<_global.msearch.TDocument> |
+								 * _types.ErrorResponseBase)
+								 */> responses() {
 		return this.responses;
 	}
 
@@ -102,16 +103,19 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		generator.writeKey("responses");
-		generator.writeStartArray();
-		for (JsonValue /*
-						 * Union(_global.msearch.SearchResult<_global.msearch.TDocument> |
-						 * _types.ErrorResponseBase)
-						 */ item0 : this.responses) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.responses)) {
+			generator.writeKey("responses");
+			generator.writeStartArray();
+			for (JsonValue /*
+							 * Union(_global.msearch.SearchResult<_global.msearch.TDocument> |
+							 * _types.ErrorResponseBase)
+							 */ item0 : this.responses) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -120,7 +124,9 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link MsearchResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<MsearchResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<MsearchResponse<TDocument>> {
 		private Long took;
 
 		private List<JsonValue /*
@@ -134,7 +140,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code took}
 		 */
-		public Builder<TDocument> took(long value) {
+		public final Builder<TDocument> took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -142,10 +148,10 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code responses}
 		 */
-		public Builder<TDocument> responses(List<JsonValue /*
-															 * Union(_global.msearch.SearchResult<_global.msearch.
-															 * TDocument> | _types.ErrorResponseBase)
-															 */> value) {
+		public final Builder<TDocument> responses(List<JsonValue /*
+																	 * Union(_global.msearch.SearchResult<_global.
+																	 * msearch.TDocument> | _types.ErrorResponseBase)
+																	 */> value) {
 			this.responses = value;
 			return this;
 		}
@@ -153,25 +159,11 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code responses}
 		 */
-		public Builder<TDocument> responses(JsonValue /*
-														 * Union(_global.msearch.SearchResult<_global.msearch.TDocument>
-														 * | _types.ErrorResponseBase)
-														 */... value) {
-			this.responses = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addResponses(JsonValue /*
+		public final Builder<TDocument> responses(JsonValue /*
 															 * Union(_global.msearch.SearchResult<_global.msearch.
 															 * TDocument> | _types.ErrorResponseBase)
-															 */ value) {
-			if (this.responses == null) {
-				this.responses = new ArrayList<>();
-			}
-			this.responses.add(value);
+															 */... value) {
+			this.responses = Arrays.asList(value);
 			return this;
 		}
 
@@ -179,7 +171,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -191,6 +183,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MsearchResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new MsearchResponse<TDocument>(this);
 		}

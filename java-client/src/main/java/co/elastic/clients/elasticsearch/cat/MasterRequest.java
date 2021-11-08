@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cat.master.Request
 
-public final class MasterRequest extends CatRequestBase {
+public class MasterRequest extends CatRequestBase {
 	public MasterRequest() {
 	}
 

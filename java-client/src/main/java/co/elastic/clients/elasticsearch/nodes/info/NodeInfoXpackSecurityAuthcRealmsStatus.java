@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealmsStatus
 @JsonpDeserializable
-public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable {
+public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable {
 	@Nullable
 	private final String enabled;
 
@@ -47,29 +49,30 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackSecurityAuthcRealmsStatus(Builder builder) {
+	private NodeInfoXpackSecurityAuthcRealmsStatus(Builder builder) {
 
 		this.enabled = builder.enabled;
-		this.order = Objects.requireNonNull(builder.order, "order");
+		this.order = ModelTypeHelper.requireNonNull(builder.order, this, "order");
 
 	}
 
-	public NodeInfoXpackSecurityAuthcRealmsStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackSecurityAuthcRealmsStatus of(
+			Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public String enabled() {
+	public final String enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * Required - API name: {@code order}
 	 */
-	public String order() {
+	public final String order() {
 		return this.order;
 	}
 
@@ -85,12 +88,10 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
-
 		generator.writeKey("order");
 		generator.write(this.order);
 
@@ -101,7 +102,9 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthcRealmsStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus> {
 		@Nullable
 		private String enabled;
 
@@ -110,7 +113,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable String value) {
+		public final Builder enabled(@Nullable String value) {
 			this.enabled = value;
 			return this;
 		}
@@ -118,7 +121,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 		/**
 		 * Required - API name: {@code order}
 		 */
-		public Builder order(String value) {
+		public final Builder order(String value) {
 			this.order = value;
 			return this;
 		}
@@ -130,6 +133,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackSecurityAuthcRealmsStatus build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackSecurityAuthcRealmsStatus(this);
 		}

@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Request
 @JsonpDeserializable
-public final class FlushJobRequest extends RequestBase implements JsonpSerializable {
+public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String advanceTime;
 
@@ -66,19 +68,19 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FlushJobRequest(Builder builder) {
+	private FlushJobRequest(Builder builder) {
 
 		this.advanceTime = builder.advanceTime;
 		this.calcInterim = builder.calcInterim;
 		this.end = builder.end;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.skipTime = builder.skipTime;
 		this.start = builder.start;
 
 	}
 
-	public FlushJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlushJobRequest of(Function<Builder, ObjectBuilder<FlushJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +90,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code advance_time}
 	 */
 	@Nullable
-	public String advanceTime() {
+	public final String advanceTime() {
 		return this.advanceTime;
 	}
 
@@ -99,7 +101,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code calc_interim}
 	 */
 	@Nullable
-	public Boolean calcInterim() {
+	public final Boolean calcInterim() {
 		return this.calcInterim;
 	}
 
@@ -110,7 +112,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
@@ -119,7 +121,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -130,7 +132,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code skip_time}
 	 */
 	@Nullable
-	public String skipTime() {
+	public final String skipTime() {
 		return this.skipTime;
 	}
 
@@ -141,7 +143,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
 	}
 
@@ -157,25 +159,21 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.advanceTime != null) {
-
 			generator.writeKey("advance_time");
 			generator.write(this.advanceTime);
 
 		}
 		if (this.calcInterim != null) {
-
 			generator.writeKey("calc_interim");
 			generator.write(this.calcInterim);
 
 		}
 		if (this.end != null) {
-
 			generator.writeKey("end");
 			generator.write(this.end);
 
 		}
 		if (this.start != null) {
-
 			generator.writeKey("start");
 			generator.write(this.start);
 
@@ -188,7 +186,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link FlushJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FlushJobRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobRequest> {
 		@Nullable
 		private String advanceTime;
 
@@ -212,7 +210,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code advance_time}
 		 */
-		public Builder advanceTime(@Nullable String value) {
+		public final Builder advanceTime(@Nullable String value) {
 			this.advanceTime = value;
 			return this;
 		}
@@ -223,7 +221,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code calc_interim}
 		 */
-		public Builder calcInterim(@Nullable Boolean value) {
+		public final Builder calcInterim(@Nullable Boolean value) {
 			this.calcInterim = value;
 			return this;
 		}
@@ -234,7 +232,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -244,7 +242,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -255,7 +253,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code skip_time}
 		 */
-		public Builder skipTime(@Nullable String value) {
+		public final Builder skipTime(@Nullable String value) {
 			this.skipTime = value;
 			return this;
 		}
@@ -266,7 +264,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -278,6 +276,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public FlushJobRequest build() {
+			_checkSingleUse();
 
 			return new FlushJobRequest(this);
 		}

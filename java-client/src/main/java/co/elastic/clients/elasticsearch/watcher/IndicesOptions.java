@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,11 +44,10 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndicesOptions
 @JsonpDeserializable
-public final class IndicesOptions implements JsonpSerializable {
+public class IndicesOptions implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -59,7 +58,7 @@ public final class IndicesOptions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesOptions(Builder builder) {
+	private IndicesOptions(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -68,23 +67,22 @@ public final class IndicesOptions implements JsonpSerializable {
 
 	}
 
-	public IndicesOptions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesOptions of(Function<Builder, ObjectBuilder<IndicesOptions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
 	/**
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -92,7 +90,7 @@ public final class IndicesOptions implements JsonpSerializable {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -100,7 +98,7 @@ public final class IndicesOptions implements JsonpSerializable {
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
-	public Boolean ignoreThrottled() {
+	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
 	}
 
@@ -116,13 +114,11 @@ public final class IndicesOptions implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowNoIndices != null) {
-
 			generator.writeKey("allow_no_indices");
 			generator.write(this.allowNoIndices);
 
 		}
-		if (this.expandWildcards != null) {
-
+		if (ModelTypeHelper.isDefined(this.expandWildcards)) {
 			generator.writeKey("expand_wildcards");
 			generator.writeStartArray();
 			for (ExpandWildcardOptions item0 : this.expandWildcards) {
@@ -132,13 +128,11 @@ public final class IndicesOptions implements JsonpSerializable {
 
 		}
 		if (this.ignoreUnavailable != null) {
-
 			generator.writeKey("ignore_unavailable");
 			generator.write(this.ignoreUnavailable);
 
 		}
 		if (this.ignoreThrottled != null) {
-
 			generator.writeKey("ignore_throttled");
 			generator.write(this.ignoreThrottled);
 
@@ -151,7 +145,7 @@ public final class IndicesOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesOptions}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesOptions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesOptions> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -167,7 +161,7 @@ public final class IndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -175,7 +169,7 @@ public final class IndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -183,26 +177,15 @@ public final class IndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -210,7 +193,7 @@ public final class IndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code ignore_throttled}
 		 */
-		public Builder ignoreThrottled(@Nullable Boolean value) {
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
 		}
@@ -222,6 +205,7 @@ public final class IndicesOptions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesOptions build() {
+			_checkSingleUse();
 
 			return new IndicesOptions(this);
 		}

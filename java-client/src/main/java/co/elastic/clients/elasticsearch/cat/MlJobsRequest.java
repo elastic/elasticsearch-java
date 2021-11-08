@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,6 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,9 +45,9 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
 
-public final class MlJobsRequest extends CatRequestBase {
+public class MlJobsRequest extends CatRequestBase {
 	@Nullable
-	private final Boolean allowNoJobs;
+	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Bytes bytes;
@@ -53,49 +55,73 @@ public final class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	private final String jobId;
 
+	@Nullable
+	private final TimeUnit time;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public MlJobsRequest(Builder builder) {
+	private MlJobsRequest(Builder builder) {
 
-		this.allowNoJobs = builder.allowNoJobs;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
 		this.jobId = builder.jobId;
+		this.time = builder.time;
 
 	}
 
-	public MlJobsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlJobsRequest of(Function<Builder, ObjectBuilder<MlJobsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
 	 * <p>
-	 * API name: {@code allow_no_jobs}
+	 * If <code>true</code>, the API returns an empty jobs array when there are no
+	 * matches and the subset of results when there are partial matches. If
+	 * <code>false</code>, the API returns a 404 status code when there are no
+	 * matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
 	}
 
 	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
 	/**
-	 * The ID of the jobs stats to fetch
+	 * Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
+	}
+
+	/**
+	 * The unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -103,9 +129,9 @@ public final class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlJobsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlJobsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlJobsRequest> {
 		@Nullable
-		private Boolean allowNoJobs;
+		private Boolean allowNoMatch;
 
 		@Nullable
 		private Bytes bytes;
@@ -113,34 +139,57 @@ public final class MlJobsRequest extends CatRequestBase {
 		@Nullable
 		private String jobId;
 
+		@Nullable
+		private TimeUnit time;
+
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
 		 * <p>
-		 * API name: {@code allow_no_jobs}
+		 * If <code>true</code>, the API returns an empty jobs array when there are no
+		 * matches and the subset of results when there are partial matches. If
+		 * <code>false</code>, the API returns a 404 status code when there are no
+		 * matches or only partial matches.
+		 * <p>
+		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
 			return this;
 		}
 
 		/**
-		 * The unit in which to display byte values
+		 * The unit used to display byte values.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the jobs stats to fetch
+		 * Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable String value) {
+		public final Builder jobId(@Nullable String value) {
 			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * The unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
 			return this;
 		}
 
@@ -151,6 +200,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlJobsRequest build() {
+			_checkSingleUse();
 
 			return new MlJobsRequest(this);
 		}
@@ -201,11 +251,14 @@ public final class MlJobsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.allowNoJobs != null) {
-					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
-				}
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

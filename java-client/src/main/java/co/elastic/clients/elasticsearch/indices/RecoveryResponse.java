@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: indices.recovery.Response
 @JsonpDeserializable
-public final class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
+public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryResponse(Builder builder) {
+	private RecoveryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RecoveryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class RecoveryResponse extends DictionaryResponse<String, RecoveryS
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

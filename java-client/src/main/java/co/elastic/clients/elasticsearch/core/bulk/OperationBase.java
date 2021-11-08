@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -65,7 +66,7 @@ public abstract class OperationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OperationBase(AbstractBuilder<?> builder) {
+	protected OperationBase(AbstractBuilder<?> builder) {
 
 		this.id = builder.id;
 		this.index = builder.index;
@@ -81,7 +82,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -89,7 +90,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code _index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -97,7 +98,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -105,7 +106,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Long ifPrimaryTerm() {
+	public final Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -113,7 +114,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Long ifSeqNo() {
+	public final Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -121,7 +122,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -129,7 +130,7 @@ public abstract class OperationBase implements JsonpSerializable {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -145,50 +146,45 @@ public abstract class OperationBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("_id");
 			generator.write(this.id);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("_index");
 			generator.write(this.index);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
 		if (this.ifPrimaryTerm != null) {
-
 			generator.writeKey("if_primary_term");
 			generator.write(this.ifPrimaryTerm);
 
 		}
 		if (this.ifSeqNo != null) {
-
 			generator.writeKey("if_seq_no");
 			generator.write(this.ifSeqNo);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
-
 			generator.writeKey("version_type");
 			this.versionType.serialize(generator, mapper);
 		}
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String id;
 
@@ -213,7 +209,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _id}
 		 */
-		public BuilderT id(@Nullable String value) {
+		public final BuilderT id(@Nullable String value) {
 			this.id = value;
 			return self();
 		}
@@ -221,7 +217,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _index}
 		 */
-		public BuilderT index(@Nullable String value) {
+		public final BuilderT index(@Nullable String value) {
 			this.index = value;
 			return self();
 		}
@@ -229,7 +225,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public BuilderT routing(@Nullable String value) {
+		public final BuilderT routing(@Nullable String value) {
 			this.routing = value;
 			return self();
 		}
@@ -237,7 +233,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code if_primary_term}
 		 */
-		public BuilderT ifPrimaryTerm(@Nullable Long value) {
+		public final BuilderT ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return self();
 		}
@@ -245,7 +241,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code if_seq_no}
 		 */
-		public BuilderT ifSeqNo(@Nullable Long value) {
+		public final BuilderT ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return self();
 		}
@@ -253,7 +249,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public BuilderT version(@Nullable Long value) {
+		public final BuilderT version(@Nullable Long value) {
 			this.version = value;
 			return self();
 		}
@@ -261,7 +257,7 @@ public abstract class OperationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public BuilderT versionType(@Nullable VersionType value) {
+		public final BuilderT versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return self();
 		}

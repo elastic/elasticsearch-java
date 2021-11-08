@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateRangeProperty
 @JsonpDeserializable
-public final class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
 	@Nullable
 	private final String format;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateRangeProperty(Builder builder) {
+	private DateRangeProperty(Builder builder) {
 		super(builder);
 
 		this.format = builder.format;
 
 	}
 
-	public DateRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateRangeProperty of(Function<Builder, ObjectBuilder<DateRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -76,7 +76,6 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 		generator.write("type", "date_range");
 		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
@@ -98,7 +97,7 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public DateRangeProperty build() {
+			_checkSingleUse();
 
 			return new DateRangeProperty(this);
 		}

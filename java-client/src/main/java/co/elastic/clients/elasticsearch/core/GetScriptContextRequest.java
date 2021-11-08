@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: _global.get_script_context.Request
 
-public final class GetScriptContextRequest extends RequestBase {
+public class GetScriptContextRequest extends RequestBase {
 	public GetScriptContextRequest() {
 	}
 

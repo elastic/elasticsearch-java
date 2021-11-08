@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.RequestCacheStats
 @JsonpDeserializable
-public final class RequestCacheStats implements JsonpSerializable {
+public class RequestCacheStats implements JsonpSerializable {
 	private final long evictions;
 
 	private final long hitCount;
@@ -54,31 +56,31 @@ public final class RequestCacheStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RequestCacheStats(Builder builder) {
+	private RequestCacheStats(Builder builder) {
 
-		this.evictions = Objects.requireNonNull(builder.evictions, "evictions");
-		this.hitCount = Objects.requireNonNull(builder.hitCount, "hit_count");
+		this.evictions = ModelTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.hitCount = ModelTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
-		this.missCount = Objects.requireNonNull(builder.missCount, "miss_count");
+		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+		this.missCount = ModelTypeHelper.requireNonNull(builder.missCount, this, "missCount");
 
 	}
 
-	public RequestCacheStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RequestCacheStats of(Function<Builder, ObjectBuilder<RequestCacheStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code evictions}
 	 */
-	public long evictions() {
+	public final long evictions() {
 		return this.evictions;
 	}
 
 	/**
 	 * Required - API name: {@code hit_count}
 	 */
-	public long hitCount() {
+	public final long hitCount() {
 		return this.hitCount;
 	}
 
@@ -86,21 +88,21 @@ public final class RequestCacheStats implements JsonpSerializable {
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public String memorySize() {
+	public final String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
 	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public long memorySizeInBytes() {
+	public final long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code miss_count}
 	 */
-	public long missCount() {
+	public final long missCount() {
 		return this.missCount;
 	}
 
@@ -122,12 +124,10 @@ public final class RequestCacheStats implements JsonpSerializable {
 		generator.write(this.hitCount);
 
 		if (this.memorySize != null) {
-
 			generator.writeKey("memory_size");
 			generator.write(this.memorySize);
 
 		}
-
 		generator.writeKey("memory_size_in_bytes");
 		generator.write(this.memorySizeInBytes);
 
@@ -141,7 +141,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RequestCacheStats}.
 	 */
-	public static class Builder implements ObjectBuilder<RequestCacheStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestCacheStats> {
 		private Long evictions;
 
 		private Long hitCount;
@@ -156,7 +156,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code evictions}
 		 */
-		public Builder evictions(long value) {
+		public final Builder evictions(long value) {
 			this.evictions = value;
 			return this;
 		}
@@ -164,7 +164,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit_count}
 		 */
-		public Builder hitCount(long value) {
+		public final Builder hitCount(long value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -172,7 +172,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable String value) {
+		public final Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
@@ -180,7 +180,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(long value) {
+		public final Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -188,7 +188,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code miss_count}
 		 */
-		public Builder missCount(long value) {
+		public final Builder missCount(long value) {
 			this.missCount = value;
 			return this;
 		}
@@ -200,6 +200,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RequestCacheStats build() {
+			_checkSingleUse();
 
 			return new RequestCacheStats(this);
 		}

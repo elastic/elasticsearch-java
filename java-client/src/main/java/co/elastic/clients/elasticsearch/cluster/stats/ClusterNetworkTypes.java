@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNetworkTypes
 @JsonpDeserializable
-public final class ClusterNetworkTypes implements JsonpSerializable {
+public class ClusterNetworkTypes implements JsonpSerializable {
 	private final Map<String, Integer> httpTypes;
 
 	private final Map<String, Integer> transportTypes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterNetworkTypes(Builder builder) {
+	private ClusterNetworkTypes(Builder builder) {
 
-		this.httpTypes = ModelTypeHelper.unmodifiableNonNull(builder.httpTypes, "http_types");
-		this.transportTypes = ModelTypeHelper.unmodifiableNonNull(builder.transportTypes, "transport_types");
+		this.httpTypes = ModelTypeHelper.unmodifiableRequired(builder.httpTypes, this, "httpTypes");
+		this.transportTypes = ModelTypeHelper.unmodifiableRequired(builder.transportTypes, this, "transportTypes");
 
 	}
 
-	public ClusterNetworkTypes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterNetworkTypes of(Function<Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code http_types}
 	 */
-	public Map<String, Integer> httpTypes() {
+	public final Map<String, Integer> httpTypes() {
 		return this.httpTypes;
 	}
 
 	/**
 	 * Required - API name: {@code transport_types}
 	 */
-	public Map<String, Integer> transportTypes() {
+	public final Map<String, Integer> transportTypes() {
 		return this.transportTypes;
 	}
 
@@ -86,23 +86,28 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("http_types");
-		generator.writeStartObject();
-		for (Map.Entry<String, Integer> item0 : this.httpTypes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.httpTypes)) {
+			generator.writeKey("http_types");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.httpTypes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.transportTypes)) {
+			generator.writeKey("transport_types");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.transportTypes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
 
-		generator.writeKey("transport_types");
-		generator.writeStartObject();
-		for (Map.Entry<String, Integer> item0 : this.transportTypes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -111,7 +116,7 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterNetworkTypes}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterNetworkTypes> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNetworkTypes> {
 		private Map<String, Integer> httpTypes;
 
 		private Map<String, Integer> transportTypes;
@@ -119,38 +124,16 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http_types}
 		 */
-		public Builder httpTypes(Map<String, Integer> value) {
+		public final Builder httpTypes(Map<String, Integer> value) {
 			this.httpTypes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #httpTypes(Map)}, creating the map if needed.
-		 */
-		public Builder putHttpTypes(String key, Integer value) {
-			if (this.httpTypes == null) {
-				this.httpTypes = new HashMap<>();
-			}
-			this.httpTypes.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transport_types}
 		 */
-		public Builder transportTypes(Map<String, Integer> value) {
+		public final Builder transportTypes(Map<String, Integer> value) {
 			this.transportTypes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #transportTypes(Map)}, creating the map if needed.
-		 */
-		public Builder putTransportTypes(String key, Integer value) {
-			if (this.transportTypes == null) {
-				this.transportTypes = new HashMap<>();
-			}
-			this.transportTypes.put(key, value);
 			return this;
 		}
 
@@ -161,6 +144,7 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterNetworkTypes build() {
+			_checkSingleUse();
 
 			return new ClusterNetworkTypes(this);
 		}

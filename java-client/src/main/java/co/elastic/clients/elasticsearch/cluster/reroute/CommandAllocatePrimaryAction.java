@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocatePrimaryAction
 @JsonpDeserializable
-public final class CommandAllocatePrimaryAction implements JsonpSerializable {
+public class CommandAllocatePrimaryAction implements JsonpSerializable {
 	private final String index;
 
 	private final int shard;
@@ -52,37 +54,37 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CommandAllocatePrimaryAction(Builder builder) {
+	private CommandAllocatePrimaryAction(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shard = Objects.requireNonNull(builder.shard, "shard");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.acceptDataLoss = ModelTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
 
 	}
 
-	public CommandAllocatePrimaryAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CommandAllocatePrimaryAction of(Function<Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shard}
 	 */
-	public int shard() {
+	public final int shard() {
 		return this.shard;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -94,7 +96,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public boolean acceptDataLoss() {
+	public final boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
@@ -128,7 +130,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link CommandAllocatePrimaryAction}.
 	 */
-	public static class Builder implements ObjectBuilder<CommandAllocatePrimaryAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandAllocatePrimaryAction> {
 		private String index;
 
 		private Integer shard;
@@ -140,7 +142,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -148,7 +150,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(int value) {
+		public final Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -156,7 +158,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -169,7 +171,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public Builder acceptDataLoss(boolean value) {
+		public final Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}
@@ -181,6 +183,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CommandAllocatePrimaryAction build() {
+			_checkSingleUse();
 
 			return new CommandAllocatePrimaryAction(this);
 		}

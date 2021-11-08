@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MutualInformationHeuristic
 @JsonpDeserializable
-public final class MutualInformationHeuristic implements JsonpSerializable {
+public class MutualInformationHeuristic implements JsonpSerializable {
 	@Nullable
 	private final Boolean backgroundIsSuperset;
 
@@ -48,22 +49,22 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MutualInformationHeuristic(Builder builder) {
+	private MutualInformationHeuristic(Builder builder) {
 
 		this.backgroundIsSuperset = builder.backgroundIsSuperset;
 		this.includeNegatives = builder.includeNegatives;
 
 	}
 
-	public MutualInformationHeuristic(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MutualInformationHeuristic of(Function<Builder, ObjectBuilder<MutualInformationHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code background_is_superset}
 	 */
 	@Nullable
-	public Boolean backgroundIsSuperset() {
+	public final Boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
@@ -71,7 +72,7 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 	 * API name: {@code include_negatives}
 	 */
 	@Nullable
-	public Boolean includeNegatives() {
+	public final Boolean includeNegatives() {
 		return this.includeNegatives;
 	}
 
@@ -87,13 +88,11 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.backgroundIsSuperset != null) {
-
 			generator.writeKey("background_is_superset");
 			generator.write(this.backgroundIsSuperset);
 
 		}
 		if (this.includeNegatives != null) {
-
 			generator.writeKey("include_negatives");
 			generator.write(this.includeNegatives);
 
@@ -106,7 +105,7 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link MutualInformationHeuristic}.
 	 */
-	public static class Builder implements ObjectBuilder<MutualInformationHeuristic> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MutualInformationHeuristic> {
 		@Nullable
 		private Boolean backgroundIsSuperset;
 
@@ -116,7 +115,7 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 		/**
 		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(@Nullable Boolean value) {
+		public final Builder backgroundIsSuperset(@Nullable Boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
@@ -124,7 +123,7 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 		/**
 		 * API name: {@code include_negatives}
 		 */
-		public Builder includeNegatives(@Nullable Boolean value) {
+		public final Builder includeNegatives(@Nullable Boolean value) {
 			this.includeNegatives = value;
 			return this;
 		}
@@ -136,6 +135,7 @@ public final class MutualInformationHeuristic implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MutualInformationHeuristic build() {
+			_checkSingleUse();
 
 			return new MutualInformationHeuristic(this);
 		}

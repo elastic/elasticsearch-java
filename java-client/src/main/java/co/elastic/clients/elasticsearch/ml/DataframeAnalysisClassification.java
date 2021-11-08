@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisClassification
 @JsonpDeserializable
-public final class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysisVariant {
+public class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
 	private final String classAssignmentObjective;
 
@@ -48,7 +48,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisClassification(Builder builder) {
+	private DataframeAnalysisClassification(Builder builder) {
 		super(builder);
 
 		this.classAssignmentObjective = builder.classAssignmentObjective;
@@ -56,8 +56,9 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 
 	}
 
-	public DataframeAnalysisClassification(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisClassification of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisClassification>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +73,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 	 * API name: {@code class_assignment_objective}
 	 */
 	@Nullable
-	public String classAssignmentObjective() {
+	public final String classAssignmentObjective() {
 		return this.classAssignmentObjective;
 	}
 
@@ -88,7 +89,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
-	public Integer numTopClasses() {
+	public final Integer numTopClasses() {
 		return this.numTopClasses;
 	}
 
@@ -96,13 +97,11 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 
 		super.serializeInternal(generator, mapper);
 		if (this.classAssignmentObjective != null) {
-
 			generator.writeKey("class_assignment_objective");
 			generator.write(this.classAssignmentObjective);
 
 		}
 		if (this.numTopClasses != null) {
-
 			generator.writeKey("num_top_classes");
 			generator.write(this.numTopClasses);
 
@@ -127,7 +126,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 		/**
 		 * API name: {@code class_assignment_objective}
 		 */
-		public Builder classAssignmentObjective(@Nullable String value) {
+		public final Builder classAssignmentObjective(@Nullable String value) {
 			this.classAssignmentObjective = value;
 			return this;
 		}
@@ -143,7 +142,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
-		public Builder numTopClasses(@Nullable Integer value) {
+		public final Builder numTopClasses(@Nullable Integer value) {
 			this.numTopClasses = value;
 			return this;
 		}
@@ -160,6 +159,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisClassification build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisClassification(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.AdaptiveSelection
 @JsonpDeserializable
-public final class AdaptiveSelection implements JsonpSerializable {
+public class AdaptiveSelection implements JsonpSerializable {
 	private final long avgQueueSize;
 
 	private final long avgResponseTime;
@@ -57,68 +59,68 @@ public final class AdaptiveSelection implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AdaptiveSelection(Builder builder) {
+	private AdaptiveSelection(Builder builder) {
 
-		this.avgQueueSize = Objects.requireNonNull(builder.avgQueueSize, "avg_queue_size");
-		this.avgResponseTime = Objects.requireNonNull(builder.avgResponseTime, "avg_response_time");
-		this.avgResponseTimeNs = Objects.requireNonNull(builder.avgResponseTimeNs, "avg_response_time_ns");
-		this.avgServiceTime = Objects.requireNonNull(builder.avgServiceTime, "avg_service_time");
-		this.avgServiceTimeNs = Objects.requireNonNull(builder.avgServiceTimeNs, "avg_service_time_ns");
-		this.outgoingSearches = Objects.requireNonNull(builder.outgoingSearches, "outgoing_searches");
-		this.rank = Objects.requireNonNull(builder.rank, "rank");
+		this.avgQueueSize = ModelTypeHelper.requireNonNull(builder.avgQueueSize, this, "avgQueueSize");
+		this.avgResponseTime = ModelTypeHelper.requireNonNull(builder.avgResponseTime, this, "avgResponseTime");
+		this.avgResponseTimeNs = ModelTypeHelper.requireNonNull(builder.avgResponseTimeNs, this, "avgResponseTimeNs");
+		this.avgServiceTime = ModelTypeHelper.requireNonNull(builder.avgServiceTime, this, "avgServiceTime");
+		this.avgServiceTimeNs = ModelTypeHelper.requireNonNull(builder.avgServiceTimeNs, this, "avgServiceTimeNs");
+		this.outgoingSearches = ModelTypeHelper.requireNonNull(builder.outgoingSearches, this, "outgoingSearches");
+		this.rank = ModelTypeHelper.requireNonNull(builder.rank, this, "rank");
 
 	}
 
-	public AdaptiveSelection(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AdaptiveSelection of(Function<Builder, ObjectBuilder<AdaptiveSelection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code avg_queue_size}
 	 */
-	public long avgQueueSize() {
+	public final long avgQueueSize() {
 		return this.avgQueueSize;
 	}
 
 	/**
 	 * Required - API name: {@code avg_response_time}
 	 */
-	public long avgResponseTime() {
+	public final long avgResponseTime() {
 		return this.avgResponseTime;
 	}
 
 	/**
 	 * Required - API name: {@code avg_response_time_ns}
 	 */
-	public long avgResponseTimeNs() {
+	public final long avgResponseTimeNs() {
 		return this.avgResponseTimeNs;
 	}
 
 	/**
 	 * Required - API name: {@code avg_service_time}
 	 */
-	public String avgServiceTime() {
+	public final String avgServiceTime() {
 		return this.avgServiceTime;
 	}
 
 	/**
 	 * Required - API name: {@code avg_service_time_ns}
 	 */
-	public long avgServiceTimeNs() {
+	public final long avgServiceTimeNs() {
 		return this.avgServiceTimeNs;
 	}
 
 	/**
 	 * Required - API name: {@code outgoing_searches}
 	 */
-	public long outgoingSearches() {
+	public final long outgoingSearches() {
 		return this.outgoingSearches;
 	}
 
 	/**
 	 * Required - API name: {@code rank}
 	 */
-	public String rank() {
+	public final String rank() {
 		return this.rank;
 	}
 
@@ -161,7 +163,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 	/**
 	 * Builder for {@link AdaptiveSelection}.
 	 */
-	public static class Builder implements ObjectBuilder<AdaptiveSelection> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AdaptiveSelection> {
 		private Long avgQueueSize;
 
 		private Long avgResponseTime;
@@ -179,7 +181,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg_queue_size}
 		 */
-		public Builder avgQueueSize(long value) {
+		public final Builder avgQueueSize(long value) {
 			this.avgQueueSize = value;
 			return this;
 		}
@@ -187,7 +189,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg_response_time}
 		 */
-		public Builder avgResponseTime(long value) {
+		public final Builder avgResponseTime(long value) {
 			this.avgResponseTime = value;
 			return this;
 		}
@@ -195,7 +197,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg_response_time_ns}
 		 */
-		public Builder avgResponseTimeNs(long value) {
+		public final Builder avgResponseTimeNs(long value) {
 			this.avgResponseTimeNs = value;
 			return this;
 		}
@@ -203,7 +205,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg_service_time}
 		 */
-		public Builder avgServiceTime(String value) {
+		public final Builder avgServiceTime(String value) {
 			this.avgServiceTime = value;
 			return this;
 		}
@@ -211,7 +213,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg_service_time_ns}
 		 */
-		public Builder avgServiceTimeNs(long value) {
+		public final Builder avgServiceTimeNs(long value) {
 			this.avgServiceTimeNs = value;
 			return this;
 		}
@@ -219,7 +221,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code outgoing_searches}
 		 */
-		public Builder outgoingSearches(long value) {
+		public final Builder outgoingSearches(long value) {
 			this.outgoingSearches = value;
 			return this;
 		}
@@ -227,7 +229,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rank}
 		 */
-		public Builder rank(String value) {
+		public final Builder rank(String value) {
 			this.rank = value;
 			return this;
 		}
@@ -239,6 +241,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AdaptiveSelection build() {
+			_checkSingleUse();
 
 			return new AdaptiveSelection(this);
 		}

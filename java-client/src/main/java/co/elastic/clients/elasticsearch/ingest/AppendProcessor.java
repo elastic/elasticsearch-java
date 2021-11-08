@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
 @JsonpDeserializable
-public final class AppendProcessor extends ProcessorBase implements ProcessorVariant {
+public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final List<JsonData> value;
@@ -54,17 +53,17 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AppendProcessor(Builder builder) {
+	private AppendProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.value = ModelTypeHelper.unmodifiableNonNull(builder.value, "value");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.value = ModelTypeHelper.unmodifiableRequired(builder.value, this, "value");
 		this.allowDuplicates = builder.allowDuplicates;
 
 	}
 
-	public AppendProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AppendProcessor of(Function<Builder, ObjectBuilder<AppendProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,14 +77,14 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public List<JsonData> value() {
+	public final List<JsonData> value() {
 		return this.value;
 	}
 
@@ -93,27 +92,27 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 	 * API name: {@code allow_duplicates}
 	 */
 	@Nullable
-	public Boolean allowDuplicates() {
+	public final Boolean allowDuplicates() {
 		return this.allowDuplicates;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("value");
-		generator.writeStartArray();
-		for (JsonData item0 : this.value) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.value)) {
+			generator.writeKey("value");
+			generator.writeStartArray();
+			for (JsonData item0 : this.value) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.allowDuplicates != null) {
-
 			generator.writeKey("allow_duplicates");
 			generator.write(this.allowDuplicates);
 
@@ -139,7 +138,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -147,7 +146,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(List<JsonData> value) {
+		public final Builder value(List<JsonData> value) {
 			this.value = value;
 			return this;
 		}
@@ -155,26 +154,15 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(JsonData... value) {
+		public final Builder value(JsonData... value) {
 			this.value = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
-		 */
-		public Builder addValue(JsonData value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
-			}
-			this.value.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code allow_duplicates}
 		 */
-		public Builder allowDuplicates(@Nullable Boolean value) {
+		public final Builder allowDuplicates(@Nullable Boolean value) {
 			this.allowDuplicates = value;
 			return this;
 		}
@@ -191,6 +179,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		 *             if some of the required fields are null.
 		 */
 		public AppendProcessor build() {
+			_checkSingleUse();
 
 			return new AppendProcessor(this);
 		}

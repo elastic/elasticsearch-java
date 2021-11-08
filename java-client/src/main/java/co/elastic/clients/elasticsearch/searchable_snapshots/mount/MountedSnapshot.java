@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.MountedSnapshot
 @JsonpDeserializable
-public final class MountedSnapshot implements JsonpSerializable {
+public class MountedSnapshot implements JsonpSerializable {
 	private final String snapshot;
 
 	private final List<String> indices;
@@ -53,36 +53,36 @@ public final class MountedSnapshot implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MountedSnapshot(Builder builder) {
+	private MountedSnapshot(Builder builder) {
 
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public MountedSnapshot(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MountedSnapshot of(Function<Builder, ObjectBuilder<MountedSnapshot>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -100,14 +100,16 @@ public final class MountedSnapshot implements JsonpSerializable {
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("shards");
 		this.shards.serialize(generator, mapper);
 
@@ -118,7 +120,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 	/**
 	 * Builder for {@link MountedSnapshot}.
 	 */
-	public static class Builder implements ObjectBuilder<MountedSnapshot> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MountedSnapshot> {
 		private String snapshot;
 
 		private List<String> indices;
@@ -128,7 +130,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -144,26 +146,15 @@ public final class MountedSnapshot implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -171,7 +162,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -182,6 +173,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MountedSnapshot build() {
+			_checkSingleUse();
 
 			return new MountedSnapshot(this);
 		}

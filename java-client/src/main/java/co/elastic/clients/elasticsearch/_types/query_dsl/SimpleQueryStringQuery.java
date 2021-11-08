@@ -35,7 +35,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
 @JsonpDeserializable
-public final class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
+public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -57,7 +56,6 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	@Nullable
 	private final Operator defaultOperator;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -85,7 +83,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimpleQueryStringQuery(Builder builder) {
+	private SimpleQueryStringQuery(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
@@ -99,13 +97,13 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
 		this.lenient = builder.lenient;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
 	}
 
-	public SimpleQueryStringQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimpleQueryStringQuery of(Function<Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,7 +118,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -128,7 +126,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
 	}
 
@@ -136,7 +134,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
-	public Boolean autoGenerateSynonymsPhraseQuery() {
+	public final Boolean autoGenerateSynonymsPhraseQuery() {
 		return this.autoGenerateSynonymsPhraseQuery;
 	}
 
@@ -144,15 +142,14 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public Operator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -160,7 +157,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code flags}
 	 */
 	@Nullable
-	public SimpleQueryStringFlags flags() {
+	public final SimpleQueryStringFlags flags() {
 		return this.flags;
 	}
 
@@ -168,7 +165,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code fuzzy_max_expansions}
 	 */
 	@Nullable
-	public Integer fuzzyMaxExpansions() {
+	public final Integer fuzzyMaxExpansions() {
 		return this.fuzzyMaxExpansions;
 	}
 
@@ -176,7 +173,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code fuzzy_prefix_length}
 	 */
 	@Nullable
-	public Integer fuzzyPrefixLength() {
+	public final Integer fuzzyPrefixLength() {
 		return this.fuzzyPrefixLength;
 	}
 
@@ -184,7 +181,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
-	public Boolean fuzzyTranspositions() {
+	public final Boolean fuzzyTranspositions() {
 		return this.fuzzyTranspositions;
 	}
 
@@ -192,7 +189,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -200,14 +197,14 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -215,7 +212,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	 * API name: {@code quote_field_suffix}
 	 */
 	@Nullable
-	public String quoteFieldSuffix() {
+	public final String quoteFieldSuffix() {
 		return this.quoteFieldSuffix;
 	}
 
@@ -223,30 +220,25 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.analyzeWildcard != null) {
-
 			generator.writeKey("analyze_wildcard");
 			generator.write(this.analyzeWildcard);
 
 		}
 		if (this.autoGenerateSynonymsPhraseQuery != null) {
-
 			generator.writeKey("auto_generate_synonyms_phrase_query");
 			generator.write(this.autoGenerateSynonymsPhraseQuery);
 
 		}
 		if (this.defaultOperator != null) {
-
 			generator.writeKey("default_operator");
 			this.defaultOperator.serialize(generator, mapper);
 		}
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -257,46 +249,38 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 
 		}
 		if (this.flags != null) {
-
 			generator.writeKey("flags");
 			this.flags.serialize(generator, mapper);
 		}
 		if (this.fuzzyMaxExpansions != null) {
-
 			generator.writeKey("fuzzy_max_expansions");
 			generator.write(this.fuzzyMaxExpansions);
 
 		}
 		if (this.fuzzyPrefixLength != null) {
-
 			generator.writeKey("fuzzy_prefix_length");
 			generator.write(this.fuzzyPrefixLength);
 
 		}
 		if (this.fuzzyTranspositions != null) {
-
 			generator.writeKey("fuzzy_transpositions");
 			generator.write(this.fuzzyTranspositions);
 
 		}
 		if (this.lenient != null) {
-
 			generator.writeKey("lenient");
 			generator.write(this.lenient);
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.quoteFieldSuffix != null) {
-
 			generator.writeKey("quote_field_suffix");
 			generator.write(this.quoteFieldSuffix);
 
@@ -353,7 +337,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -361,7 +345,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
 			return this;
 		}
@@ -369,7 +353,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
-		public Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
+		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
 			this.autoGenerateSynonymsPhraseQuery = value;
 			return this;
 		}
@@ -377,7 +361,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable Operator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -385,7 +369,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public final Builder fields(@Nullable List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -393,26 +377,15 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code flags}
 		 */
-		public Builder flags(@Nullable SimpleQueryStringFlags value) {
+		public final Builder flags(@Nullable SimpleQueryStringFlags value) {
 			this.flags = value;
 			return this;
 		}
@@ -420,7 +393,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code fuzzy_max_expansions}
 		 */
-		public Builder fuzzyMaxExpansions(@Nullable Integer value) {
+		public final Builder fuzzyMaxExpansions(@Nullable Integer value) {
 			this.fuzzyMaxExpansions = value;
 			return this;
 		}
@@ -428,7 +401,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code fuzzy_prefix_length}
 		 */
-		public Builder fuzzyPrefixLength(@Nullable Integer value) {
+		public final Builder fuzzyPrefixLength(@Nullable Integer value) {
 			this.fuzzyPrefixLength = value;
 			return this;
 		}
@@ -436,7 +409,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code fuzzy_transpositions}
 		 */
-		public Builder fuzzyTranspositions(@Nullable Boolean value) {
+		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
 			this.fuzzyTranspositions = value;
 			return this;
 		}
@@ -444,7 +417,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -452,7 +425,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -460,7 +433,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -468,7 +441,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		/**
 		 * API name: {@code quote_field_suffix}
 		 */
-		public Builder quoteFieldSuffix(@Nullable String value) {
+		public final Builder quoteFieldSuffix(@Nullable String value) {
 			this.quoteFieldSuffix = value;
 			return this;
 		}
@@ -485,6 +458,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		 *             if some of the required fields are null.
 		 */
 		public SimpleQueryStringQuery build() {
+			_checkSingleUse();
 
 			return new SimpleQueryStringQuery(this);
 		}

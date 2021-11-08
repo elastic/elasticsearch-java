@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MinAggregation
 @JsonpDeserializable
-public final class MinAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class MinAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MinAggregation(Builder builder) {
+	private MinAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MinAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MinAggregation of(Function<Builder, ObjectBuilder<MinAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class MinAggregation extends FormatMetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public MinAggregation build() {
+			_checkSingleUse();
 
 			return new MinAggregation(this);
 		}

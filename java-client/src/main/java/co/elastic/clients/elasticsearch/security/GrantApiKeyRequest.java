@@ -36,7 +36,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.Request
 @JsonpDeserializable
-public final class GrantApiKeyRequest extends RequestBase implements JsonpSerializable {
+public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String accessToken;
 
@@ -62,39 +64,39 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GrantApiKeyRequest(Builder builder) {
+	private GrantApiKeyRequest(Builder builder) {
 
 		this.accessToken = builder.accessToken;
-		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
-		this.grantType = Objects.requireNonNull(builder.grantType, "grant_type");
+		this.apiKey = ModelTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.grantType = ModelTypeHelper.requireNonNull(builder.grantType, this, "grantType");
 		this.password = builder.password;
 		this.username = builder.username;
 
 	}
 
-	public GrantApiKeyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GrantApiKeyRequest of(Function<Builder, ObjectBuilder<GrantApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code access_token}
 	 */
 	@Nullable
-	public String accessToken() {
+	public final String accessToken() {
 		return this.accessToken;
 	}
 
 	/**
 	 * Required - API name: {@code api_key}
 	 */
-	public ApiKey apiKey() {
+	public final ApiKey apiKey() {
 		return this.apiKey;
 	}
 
 	/**
 	 * Required - API name: {@code grant_type}
 	 */
-	public ApiKeyGrantType grantType() {
+	public final ApiKeyGrantType grantType() {
 		return this.grantType;
 	}
 
@@ -102,7 +104,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code password}
 	 */
 	@Nullable
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
@@ -110,7 +112,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -126,25 +128,21 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.accessToken != null) {
-
 			generator.writeKey("access_token");
 			generator.write(this.accessToken);
 
 		}
-
 		generator.writeKey("api_key");
 		this.apiKey.serialize(generator, mapper);
 
 		generator.writeKey("grant_type");
 		this.grantType.serialize(generator, mapper);
 		if (this.password != null) {
-
 			generator.writeKey("password");
 			generator.write(this.password);
 
 		}
 		if (this.username != null) {
-
 			generator.writeKey("username");
 			generator.write(this.username);
 
@@ -157,7 +155,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link GrantApiKeyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GrantApiKeyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GrantApiKeyRequest> {
 		@Nullable
 		private String accessToken;
 
@@ -174,7 +172,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code access_token}
 		 */
-		public Builder accessToken(@Nullable String value) {
+		public final Builder accessToken(@Nullable String value) {
 			this.accessToken = value;
 			return this;
 		}
@@ -182,7 +180,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public Builder apiKey(ApiKey value) {
+		public final Builder apiKey(ApiKey value) {
 			this.apiKey = value;
 			return this;
 		}
@@ -190,14 +188,14 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
+		public final Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
 			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code grant_type}
 		 */
-		public Builder grantType(ApiKeyGrantType value) {
+		public final Builder grantType(ApiKeyGrantType value) {
 			this.grantType = value;
 			return this;
 		}
@@ -205,7 +203,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code password}
 		 */
-		public Builder password(@Nullable String value) {
+		public final Builder password(@Nullable String value) {
 			this.password = value;
 			return this;
 		}
@@ -213,7 +211,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -225,6 +223,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public GrantApiKeyRequest build() {
+			_checkSingleUse();
 
 			return new GrantApiKeyRequest(this);
 		}

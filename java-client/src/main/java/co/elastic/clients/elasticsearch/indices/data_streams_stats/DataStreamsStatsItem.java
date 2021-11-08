@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
 @JsonpDeserializable
-public final class DataStreamsStatsItem implements JsonpSerializable {
+public class DataStreamsStatsItem implements JsonpSerializable {
 	private final int backingIndices;
 
 	private final String dataStream;
@@ -54,31 +56,31 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStreamsStatsItem(Builder builder) {
+	private DataStreamsStatsItem(Builder builder) {
 
-		this.backingIndices = Objects.requireNonNull(builder.backingIndices, "backing_indices");
-		this.dataStream = Objects.requireNonNull(builder.dataStream, "data_stream");
+		this.backingIndices = ModelTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
+		this.dataStream = ModelTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
 		this.storeSize = builder.storeSize;
-		this.storeSizeBytes = Objects.requireNonNull(builder.storeSizeBytes, "store_size_bytes");
-		this.maximumTimestamp = Objects.requireNonNull(builder.maximumTimestamp, "maximum_timestamp");
+		this.storeSizeBytes = ModelTypeHelper.requireNonNull(builder.storeSizeBytes, this, "storeSizeBytes");
+		this.maximumTimestamp = ModelTypeHelper.requireNonNull(builder.maximumTimestamp, this, "maximumTimestamp");
 
 	}
 
-	public DataStreamsStatsItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStreamsStatsItem of(Function<Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code backing_indices}
 	 */
-	public int backingIndices() {
+	public final int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
 	 * Required - API name: {@code data_stream}
 	 */
-	public String dataStream() {
+	public final String dataStream() {
 		return this.dataStream;
 	}
 
@@ -86,21 +88,21 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	 * API name: {@code store_size}
 	 */
 	@Nullable
-	public String storeSize() {
+	public final String storeSize() {
 		return this.storeSize;
 	}
 
 	/**
 	 * Required - API name: {@code store_size_bytes}
 	 */
-	public int storeSizeBytes() {
+	public final int storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
 	/**
 	 * Required - API name: {@code maximum_timestamp}
 	 */
-	public int maximumTimestamp() {
+	public final int maximumTimestamp() {
 		return this.maximumTimestamp;
 	}
 
@@ -122,12 +124,10 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		generator.write(this.dataStream);
 
 		if (this.storeSize != null) {
-
 			generator.writeKey("store_size");
 			generator.write(this.storeSize);
 
 		}
-
 		generator.writeKey("store_size_bytes");
 		generator.write(this.storeSizeBytes);
 
@@ -141,7 +141,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStreamsStatsItem}.
 	 */
-	public static class Builder implements ObjectBuilder<DataStreamsStatsItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsItem> {
 		private Integer backingIndices;
 
 		private String dataStream;
@@ -156,7 +156,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code backing_indices}
 		 */
-		public Builder backingIndices(int value) {
+		public final Builder backingIndices(int value) {
 			this.backingIndices = value;
 			return this;
 		}
@@ -164,7 +164,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_stream}
 		 */
-		public Builder dataStream(String value) {
+		public final Builder dataStream(String value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -172,7 +172,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code store_size}
 		 */
-		public Builder storeSize(@Nullable String value) {
+		public final Builder storeSize(@Nullable String value) {
 			this.storeSize = value;
 			return this;
 		}
@@ -180,7 +180,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_size_bytes}
 		 */
-		public Builder storeSizeBytes(int value) {
+		public final Builder storeSizeBytes(int value) {
 			this.storeSizeBytes = value;
 			return this;
 		}
@@ -188,7 +188,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code maximum_timestamp}
 		 */
-		public Builder maximumTimestamp(int value) {
+		public final Builder maximumTimestamp(int value) {
 			this.maximumTimestamp = value;
 			return this;
 		}
@@ -200,6 +200,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataStreamsStatsItem build() {
+			_checkSingleUse();
 
 			return new DataStreamsStatsItem(this);
 		}

@@ -39,16 +39,16 @@ import java.util.function.Function;
 
 // typedef: security.delete_privileges.Response
 @JsonpDeserializable
-public final class DeletePrivilegesResponse extends DictionaryResponse<String, Map<String, FoundStatus>> {
+public class DeletePrivilegesResponse extends DictionaryResponse<String, Map<String, FoundStatus>> {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePrivilegesResponse(Builder builder) {
+	private DeletePrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeletePrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePrivilegesResponse of(Function<Builder, ObjectBuilder<DeletePrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +71,7 @@ public final class DeletePrivilegesResponse extends DictionaryResponse<String, M
 		 *             if some of the required fields are null.
 		 */
 		public DeletePrivilegesResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

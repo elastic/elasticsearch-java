@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: slm.stop.Request
 
-public final class StopSlmRequest extends RequestBase {
+public class StopSlmRequest extends RequestBase {
 	public StopSlmRequest() {
 	}
 

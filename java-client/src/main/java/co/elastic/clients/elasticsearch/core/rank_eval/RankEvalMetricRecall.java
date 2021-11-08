@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricRecall
 @JsonpDeserializable
-public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
+public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricRecall(Builder builder) {
+	private RankEvalMetricRecall(Builder builder) {
 		super(builder);
 
 	}
 
-	public RankEvalMetricRecall(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricRecall of(Function<Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +67,7 @@ public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricRecall build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricRecall(this);
 		}

@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Request
 @JsonpDeserializable
-public final class ForecastRequest extends RequestBase implements JsonpSerializable {
+public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String duration;
 
@@ -58,17 +60,17 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForecastRequest(Builder builder) {
+	private ForecastRequest(Builder builder) {
 
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.maxModelMemory = builder.maxModelMemory;
 
 	}
 
-	public ForecastRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForecastRequest of(Function<Builder, ObjectBuilder<ForecastRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public String duration() {
+	public final String duration() {
 		return this.duration;
 	}
 
@@ -91,7 +93,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code expires_in}
 	 */
 	@Nullable
-	public String expiresIn() {
+	public final String expiresIn() {
 		return this.expiresIn;
 	}
 
@@ -100,7 +102,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -113,7 +115,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code max_model_memory}
 	 */
 	@Nullable
-	public String maxModelMemory() {
+	public final String maxModelMemory() {
 		return this.maxModelMemory;
 	}
 
@@ -129,19 +131,16 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.duration != null) {
-
 			generator.writeKey("duration");
 			generator.write(this.duration);
 
 		}
 		if (this.expiresIn != null) {
-
 			generator.writeKey("expires_in");
 			generator.write(this.expiresIn);
 
 		}
 		if (this.maxModelMemory != null) {
-
 			generator.writeKey("max_model_memory");
 			generator.write(this.maxModelMemory);
 
@@ -154,7 +153,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link ForecastRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ForecastRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForecastRequest> {
 		@Nullable
 		private String duration;
 
@@ -173,7 +172,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable String value) {
 			this.duration = value;
 			return this;
 		}
@@ -185,7 +184,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expires_in}
 		 */
-		public Builder expiresIn(@Nullable String value) {
+		public final Builder expiresIn(@Nullable String value) {
 			this.expiresIn = value;
 			return this;
 		}
@@ -195,7 +194,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -208,7 +207,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code max_model_memory}
 		 */
-		public Builder maxModelMemory(@Nullable String value) {
+		public final Builder maxModelMemory(@Nullable String value) {
 			this.maxModelMemory = value;
 			return this;
 		}
@@ -220,6 +219,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public ForecastRequest build() {
+			_checkSingleUse();
 
 			return new ForecastRequest(this);
 		}

@@ -37,6 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: graph.explore.Request
 @JsonpDeserializable
-public final class ExploreRequest extends RequestBase implements JsonpSerializable {
+public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Hop connections;
 
@@ -69,16 +70,15 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String timeout;
 
-	@Nullable
 	private final List<VertexDefinition> vertices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExploreRequest(Builder builder) {
+	private ExploreRequest(Builder builder) {
 
 		this.connections = builder.connections;
 		this.controls = builder.controls;
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
@@ -86,15 +86,15 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public ExploreRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExploreRequest of(Function<Builder, ObjectBuilder<ExploreRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code connections}
 	 */
 	@Nullable
-	public Hop connections() {
+	public final Hop connections() {
 		return this.connections;
 	}
 
@@ -102,7 +102,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code controls}
 	 */
 	@Nullable
-	public ExploreControls controls() {
+	public final ExploreControls controls() {
 		return this.controls;
 	}
 
@@ -112,7 +112,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -120,7 +120,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -130,7 +130,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -140,15 +140,14 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * API name: {@code vertices}
 	 */
-	@Nullable
-	public List<VertexDefinition> vertices() {
+	public final List<VertexDefinition> vertices() {
 		return this.vertices;
 	}
 
@@ -164,25 +163,21 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.connections != null) {
-
 			generator.writeKey("connections");
 			this.connections.serialize(generator, mapper);
 
 		}
 		if (this.controls != null) {
-
 			generator.writeKey("controls");
 			this.controls.serialize(generator, mapper);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
-		if (this.vertices != null) {
-
+		if (ModelTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (VertexDefinition item0 : this.vertices) {
@@ -200,7 +195,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link ExploreRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExploreRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreRequest> {
 		@Nullable
 		private Hop connections;
 
@@ -224,7 +219,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(@Nullable Hop value) {
+		public final Builder connections(@Nullable Hop value) {
 			this.connections = value;
 			return this;
 		}
@@ -232,14 +227,14 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
 			return this.connections(fn.apply(new Hop.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code controls}
 		 */
-		public Builder controls(@Nullable ExploreControls value) {
+		public final Builder controls(@Nullable ExploreControls value) {
 			this.controls = value;
 			return this;
 		}
@@ -247,7 +242,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code controls}
 		 */
-		public Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
+		public final Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
 			return this.controls(fn.apply(new ExploreControls.Builder()).build());
 		}
 
@@ -257,7 +252,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -268,26 +263,15 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -295,7 +279,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -304,7 +288,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -314,7 +298,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -322,7 +306,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code vertices}
 		 */
-		public Builder vertices(@Nullable List<VertexDefinition> value) {
+		public final Builder vertices(@Nullable List<VertexDefinition> value) {
 			this.vertices = value;
 			return this;
 		}
@@ -330,34 +314,21 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code vertices}
 		 */
-		public Builder vertices(VertexDefinition... value) {
+		public final Builder vertices(VertexDefinition... value) {
 			this.vertices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * API name: {@code vertices}
 		 */
-		public Builder addVertices(VertexDefinition value) {
-			if (this.vertices == null) {
-				this.vertices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>>... fns) {
+			this.vertices = new ArrayList<>(fns.length);
+			for (Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn : fns) {
+				this.vertices.add(fn.apply(new VertexDefinition.Builder()).build());
 			}
-			this.vertices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #vertices(List)} to a singleton list.
-		 */
-		public Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
-			return this.vertices(fn.apply(new VertexDefinition.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
-		 */
-		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
-			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());
 		}
 
 		/**
@@ -367,6 +338,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public ExploreRequest build() {
+			_checkSingleUse();
 
 			return new ExploreRequest(this);
 		}

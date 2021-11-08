@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
 @JsonpDeserializable
-public final class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Double sigma;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExtendedStatsAggregation(Builder builder) {
+	private ExtendedStatsAggregation(Builder builder) {
 		super(builder);
 
 		this.sigma = builder.sigma;
 
 	}
 
-	public ExtendedStatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExtendedStatsAggregation of(Function<Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 	 * API name: {@code sigma}
 	 */
 	@Nullable
-	public Double sigma() {
+	public final Double sigma() {
 		return this.sigma;
 	}
 
@@ -75,7 +75,6 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 
 		super.serializeInternal(generator, mapper);
 		if (this.sigma != null) {
-
 			generator.writeKey("sigma");
 			generator.write(this.sigma);
 
@@ -97,7 +96,7 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 		/**
 		 * API name: {@code sigma}
 		 */
-		public Builder sigma(@Nullable Double value) {
+		public final Builder sigma(@Nullable Double value) {
 			this.sigma = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 		 *             if some of the required fields are null.
 		 */
 		public ExtendedStatsAggregation build() {
+			_checkSingleUse();
 
 			return new ExtendedStatsAggregation(this);
 		}

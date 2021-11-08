@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -44,35 +45,35 @@ import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Response
 @JsonpDeserializable
-public final class GetTransformStatsResponse implements JsonpSerializable {
+public class GetTransformStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<TransformStats> transforms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTransformStatsResponse(Builder builder) {
+	private GetTransformStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.transforms = ModelTypeHelper.unmodifiableNonNull(builder.transforms, "transforms");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.transforms = ModelTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
 
 	}
 
-	public GetTransformStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTransformStatsResponse of(Function<Builder, ObjectBuilder<GetTransformStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code transforms}
 	 */
-	public List<TransformStats> transforms() {
+	public final List<TransformStats> transforms() {
 		return this.transforms;
 	}
 
@@ -90,13 +91,16 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("transforms");
-		generator.writeStartArray();
-		for (TransformStats item0 : this.transforms) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.transforms)) {
+			generator.writeKey("transforms");
+			generator.writeStartArray();
+			for (TransformStats item0 : this.transforms) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -105,7 +109,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTransformStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTransformStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformStatsResponse> {
 		private Long count;
 
 		private List<TransformStats> transforms;
@@ -113,7 +117,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -121,7 +125,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transforms}
 		 */
-		public Builder transforms(List<TransformStats> value) {
+		public final Builder transforms(List<TransformStats> value) {
 			this.transforms = value;
 			return this;
 		}
@@ -129,34 +133,21 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transforms}
 		 */
-		public Builder transforms(TransformStats... value) {
+		public final Builder transforms(TransformStats... value) {
 			this.transforms = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Required - API name: {@code transforms}
 		 */
-		public Builder addTransforms(TransformStats value) {
-			if (this.transforms == null) {
-				this.transforms = new ArrayList<>();
+		@SafeVarargs
+		public final Builder transforms(Function<TransformStats.Builder, ObjectBuilder<TransformStats>>... fns) {
+			this.transforms = new ArrayList<>(fns.length);
+			for (Function<TransformStats.Builder, ObjectBuilder<TransformStats>> fn : fns) {
+				this.transforms.add(fn.apply(new TransformStats.Builder()).build());
 			}
-			this.transforms.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #transforms(List)} to a singleton list.
-		 */
-		public Builder transforms(Function<TransformStats.Builder, ObjectBuilder<TransformStats>> fn) {
-			return this.transforms(fn.apply(new TransformStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
-		 */
-		public Builder addTransforms(Function<TransformStats.Builder, ObjectBuilder<TransformStats>> fn) {
-			return this.addTransforms(fn.apply(new TransformStats.Builder()).build());
 		}
 
 		/**
@@ -166,6 +157,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetTransformStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetTransformStatsResponse(this);
 		}

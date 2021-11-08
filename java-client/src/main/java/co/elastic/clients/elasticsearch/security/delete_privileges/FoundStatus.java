@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: security.delete_privileges.FoundStatus
 @JsonpDeserializable
-public final class FoundStatus implements JsonpSerializable {
+public class FoundStatus implements JsonpSerializable {
 	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FoundStatus(Builder builder) {
+	private FoundStatus(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public FoundStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FoundStatus of(Function<Builder, ObjectBuilder<FoundStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,13 +83,13 @@ public final class FoundStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link FoundStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<FoundStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FoundStatus> {
 		private Boolean found;
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class FoundStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FoundStatus build() {
+			_checkSingleUse();
 
 			return new FoundStatus(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucket
 @JsonpDeserializable
-public final class OverallBucket implements JsonpSerializable {
+public class OverallBucket implements JsonpSerializable {
 	private final long bucketSpan;
 
 	private final boolean isInterim;
@@ -61,19 +62,19 @@ public final class OverallBucket implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OverallBucket(Builder builder) {
+	private OverallBucket(Builder builder) {
 
-		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
-		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
-		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
-		this.overallScore = Objects.requireNonNull(builder.overallScore, "overall_score");
-		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobs = ModelTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
+		this.overallScore = ModelTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
+		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public OverallBucket(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OverallBucket of(Function<Builder, ObjectBuilder<OverallBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,7 +83,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public long bucketSpan() {
+	public final long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -92,7 +93,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_interim}
 	 */
-	public boolean isInterim() {
+	public final boolean isInterim() {
 		return this.isInterim;
 	}
 
@@ -101,7 +102,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code jobs}
 	 */
-	public List<OverallBucketJob> jobs() {
+	public final List<OverallBucketJob> jobs() {
 		return this.jobs;
 	}
 
@@ -110,7 +111,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code overall_score}
 	 */
-	public double overallScore() {
+	public final double overallScore() {
 		return this.overallScore;
 	}
 
@@ -119,7 +120,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code result_type}
 	 */
-	public String resultType() {
+	public final String resultType() {
 		return this.resultType;
 	}
 
@@ -129,7 +130,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -150,14 +151,16 @@ public final class OverallBucket implements JsonpSerializable {
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
 
-		generator.writeKey("jobs");
-		generator.writeStartArray();
-		for (OverallBucketJob item0 : this.jobs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.jobs)) {
+			generator.writeKey("jobs");
+			generator.writeStartArray();
+			for (OverallBucketJob item0 : this.jobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("overall_score");
 		generator.write(this.overallScore);
 
@@ -174,7 +177,7 @@ public final class OverallBucket implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverallBucket}.
 	 */
-	public static class Builder implements ObjectBuilder<OverallBucket> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucket> {
 		private Long bucketSpan;
 
 		private Boolean isInterim;
@@ -193,7 +196,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(long value) {
+		public final Builder bucketSpan(long value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -204,7 +207,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(boolean value) {
+		public final Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -214,7 +217,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jobs}
 		 */
-		public Builder jobs(List<OverallBucketJob> value) {
+		public final Builder jobs(List<OverallBucketJob> value) {
 			this.jobs = value;
 			return this;
 		}
@@ -224,34 +227,23 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jobs}
 		 */
-		public Builder jobs(OverallBucketJob... value) {
+		public final Builder jobs(OverallBucketJob... value) {
 			this.jobs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Required - An array of objects that contain the max_anomaly_score per job_id.
+		 * <p>
+		 * API name: {@code jobs}
 		 */
-		public Builder addJobs(OverallBucketJob value) {
-			if (this.jobs == null) {
-				this.jobs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder jobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>>... fns) {
+			this.jobs = new ArrayList<>(fns.length);
+			for (Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn : fns) {
+				this.jobs.add(fn.apply(new OverallBucketJob.Builder()).build());
 			}
-			this.jobs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #jobs(List)} to a singleton list.
-		 */
-		public Builder jobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn) {
-			return this.jobs(fn.apply(new OverallBucketJob.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
-		 */
-		public Builder addJobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn) {
-			return this.addJobs(fn.apply(new OverallBucketJob.Builder()).build());
 		}
 
 		/**
@@ -259,7 +251,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(double value) {
+		public final Builder overallScore(double value) {
 			this.overallScore = value;
 			return this;
 		}
@@ -269,7 +261,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code result_type}
 		 */
-		public Builder resultType(String value) {
+		public final Builder resultType(String value) {
 			this.resultType = value;
 			return this;
 		}
@@ -280,7 +272,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -292,6 +284,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OverallBucket build() {
+			_checkSingleUse();
 
 			return new OverallBucket(this);
 		}

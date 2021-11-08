@@ -45,13 +45,17 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 	@Nullable
 	private final Boolean ignoreMalformed;
 
+	@Nullable
+	private final TimeSeriesMetricType timeSeriesMetric;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public NumberPropertyBase(AbstractBuilder<?> builder) {
+	protected NumberPropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.index = builder.index;
 		this.ignoreMalformed = builder.ignoreMalformed;
+		this.timeSeriesMetric = builder.timeSeriesMetric;
 
 	}
 
@@ -59,7 +63,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -67,24 +71,34 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
+	}
+
+	/**
+	 * API name: {@code time_series_metric}
+	 */
+	@Nullable
+	public final TimeSeriesMetricType timeSeriesMetric() {
+		return this.timeSeriesMetric;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
+		}
+		if (this.timeSeriesMetric != null) {
+			generator.writeKey("time_series_metric");
+			this.timeSeriesMetric.serialize(generator, mapper);
 		}
 
 	}
@@ -98,10 +112,13 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 		@Nullable
 		private Boolean ignoreMalformed;
 
+		@Nullable
+		private TimeSeriesMetricType timeSeriesMetric;
+
 		/**
 		 * API name: {@code index}
 		 */
-		public BuilderT index(@Nullable Boolean value) {
+		public final BuilderT index(@Nullable Boolean value) {
 			this.index = value;
 			return self();
 		}
@@ -109,8 +126,16 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public BuilderT ignoreMalformed(@Nullable Boolean value) {
+		public final BuilderT ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code time_series_metric}
+		 */
+		public final BuilderT timeSeriesMetric(@Nullable TimeSeriesMetricType value) {
+			this.timeSeriesMetric = value;
 			return self();
 		}
 
@@ -122,6 +147,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(AbstractBuilder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(AbstractBuilder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+		op.add(AbstractBuilder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");
 
 	}
 

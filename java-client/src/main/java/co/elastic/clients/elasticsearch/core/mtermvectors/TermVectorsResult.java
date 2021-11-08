@@ -32,14 +32,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.TermVectorsResult
 @JsonpDeserializable
-public final class TermVectorsResult implements JsonpSerializable {
+public class TermVectorsResult implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
@@ -61,7 +62,6 @@ public final class TermVectorsResult implements JsonpSerializable {
 	@Nullable
 	private final Boolean found;
 
-	@Nullable
 	private final Map<String, TermVector> termVectors;
 
 	@Nullable
@@ -69,10 +69,10 @@ public final class TermVectorsResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermVectorsResult(Builder builder) {
+	private TermVectorsResult(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.version = builder.version;
 		this.took = builder.took;
 		this.found = builder.found;
@@ -81,21 +81,21 @@ public final class TermVectorsResult implements JsonpSerializable {
 
 	}
 
-	public TermVectorsResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermVectorsResult of(Function<Builder, ObjectBuilder<TermVectorsResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -103,7 +103,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -111,7 +111,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public Long took() {
+	public final Long took() {
 		return this.took;
 	}
 
@@ -119,15 +119,14 @@ public final class TermVectorsResult implements JsonpSerializable {
 	 * API name: {@code found}
 	 */
 	@Nullable
-	public Boolean found() {
+	public final Boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * API name: {@code term_vectors}
 	 */
-	@Nullable
-	public Map<String, TermVector> termVectors() {
+	public final Map<String, TermVector> termVectors() {
 		return this.termVectors;
 	}
 
@@ -135,7 +134,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 	 * API name: {@code error}
 	 */
 	@Nullable
-	public ErrorCause error() {
+	public final ErrorCause error() {
 		return this.error;
 	}
 
@@ -157,25 +156,21 @@ public final class TermVectorsResult implements JsonpSerializable {
 		generator.write(this.index);
 
 		if (this.version != null) {
-
 			generator.writeKey("_version");
 			generator.write(this.version);
 
 		}
 		if (this.took != null) {
-
 			generator.writeKey("took");
 			generator.write(this.took);
 
 		}
 		if (this.found != null) {
-
 			generator.writeKey("found");
 			generator.write(this.found);
 
 		}
-		if (this.termVectors != null) {
-
+		if (ModelTypeHelper.isDefined(this.termVectors)) {
 			generator.writeKey("term_vectors");
 			generator.writeStartObject();
 			for (Map.Entry<String, TermVector> item0 : this.termVectors.entrySet()) {
@@ -187,7 +182,6 @@ public final class TermVectorsResult implements JsonpSerializable {
 
 		}
 		if (this.error != null) {
-
 			generator.writeKey("error");
 			this.error.serialize(generator, mapper);
 
@@ -200,7 +194,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermVectorsResult}.
 	 */
-	public static class Builder implements ObjectBuilder<TermVectorsResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermVectorsResult> {
 		private String id;
 
 		private String index;
@@ -223,7 +217,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -231,7 +225,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -239,7 +233,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -247,7 +241,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(@Nullable Long value) {
+		public final Builder took(@Nullable Long value) {
 			this.took = value;
 			return this;
 		}
@@ -255,7 +249,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(@Nullable Boolean value) {
+		public final Builder found(@Nullable Boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -263,19 +257,8 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * API name: {@code term_vectors}
 		 */
-		public Builder termVectors(@Nullable Map<String, TermVector> value) {
+		public final Builder termVectors(@Nullable Map<String, TermVector> value) {
 			this.termVectors = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #termVectors(Map)}, creating the map if needed.
-		 */
-		public Builder putTermVectors(String key, TermVector value) {
-			if (this.termVectors == null) {
-				this.termVectors = new HashMap<>();
-			}
-			this.termVectors.put(key, value);
 			return this;
 		}
 
@@ -286,17 +269,15 @@ public final class TermVectorsResult implements JsonpSerializable {
 			return this.termVectors(Collections.singletonMap(key, fn.apply(new TermVector.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #termVectors(Map)}, creating the map if needed.
-		 */
-		public Builder putTermVectors(String key, Function<TermVector.Builder, ObjectBuilder<TermVector>> fn) {
-			return this.putTermVectors(key, fn.apply(new TermVector.Builder()).build());
+		public final Builder termVectors(
+				Function<MapBuilder<String, TermVector, TermVector.Builder>, ObjectBuilder<Map<String, TermVector>>> fn) {
+			return termVectors(fn.apply(new MapBuilder<>(TermVector.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(@Nullable ErrorCause value) {
+		public final Builder error(@Nullable ErrorCause value) {
 			this.error = value;
 			return this;
 		}
@@ -304,7 +285,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
@@ -315,6 +296,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TermVectorsResult build() {
+			_checkSingleUse();
 
 			return new TermVectorsResult(this);
 		}

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PrefixQuery
 @JsonpDeserializable
-public final class PrefixQuery extends QueryBase implements QueryVariant {
+public class PrefixQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -53,18 +54,18 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PrefixQuery(Builder builder) {
+	private PrefixQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.rewrite = builder.rewrite;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 		this.caseInsensitive = builder.caseInsensitive;
 
 	}
 
-	public PrefixQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PrefixQuery of(Function<Builder, ObjectBuilder<PrefixQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +79,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -86,14 +87,14 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
-	public String rewrite() {
+	public final String rewrite() {
 		return this.rewrite;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -101,7 +102,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
-	public Boolean caseInsensitive() {
+	public final Boolean caseInsensitive() {
 		return this.caseInsensitive;
 	}
 
@@ -110,17 +111,14 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.rewrite != null) {
-
 			generator.writeKey("rewrite");
 			generator.write(this.rewrite);
 
 		}
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
 		if (this.caseInsensitive != null) {
-
 			generator.writeKey("case_insensitive");
 			generator.write(this.caseInsensitive);
 
@@ -141,7 +139,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -157,7 +155,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code rewrite}
 		 */
-		public Builder rewrite(@Nullable String value) {
+		public final Builder rewrite(@Nullable String value) {
 			this.rewrite = value;
 			return this;
 		}
@@ -165,7 +163,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -173,7 +171,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code case_insensitive}
 		 */
-		public Builder caseInsensitive(@Nullable Boolean value) {
+		public final Builder caseInsensitive(@Nullable Boolean value) {
 			this.caseInsensitive = value;
 			return this;
 		}
@@ -190,6 +188,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public PrefixQuery build() {
+			_checkSingleUse();
 
 			return new PrefixQuery(this);
 		}

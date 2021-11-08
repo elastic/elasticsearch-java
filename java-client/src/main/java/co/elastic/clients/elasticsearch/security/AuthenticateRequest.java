@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: security.authenticate.Request
 
-public final class AuthenticateRequest extends RequestBase {
+public class AuthenticateRequest extends RequestBase {
 	public AuthenticateRequest() {
 	}
 

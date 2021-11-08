@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,10 +42,11 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Tokenizer
 @JsonpDeserializable
-public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class Tokenizer implements TaggedUnion<TokenizerVariant>, JsonpSerializable {
 
 	public static final String CHAR_GROUP = "char_group";
 	public static final String EDGE_NGRAM = "edge_ngram";
+	public static final String ICU_TOKENIZER = "icu_tokenizer";
 	public static final String KEYWORD = "keyword";
 	public static final String KUROMOJI_TOKENIZER = "kuromoji_tokenizer";
 	public static final String LETTER = "letter";
@@ -50,6 +54,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	public static final String NGRAM = "ngram";
 	public static final String NORI_TOKENIZER = "nori_tokenizer";
 	public static final String PATH_HIERARCHY = "path_hierarchy";
+	public static final String PATTERN = "pattern";
 	public static final String STANDARD = "standard";
 	public static final String UAX_URL_EMAIL = "uax_url_email";
 	public static final String WHITESPACE = "whitespace";
@@ -57,38 +62,34 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final TokenizerVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final TokenizerVariant _get() {
 		return _value;
 	}
 
 	public Tokenizer(TokenizerVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends TokenizerVariant> Tokenizer(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Tokenizer(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Tokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Tokenizer of(Function<Builder, ObjectBuilder<Tokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,6 +110,16 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	 */
 	public EdgeNGramTokenizer edgeNgram() {
 		return TaggedUnionUtils.get(this, EDGE_NGRAM);
+	}
+
+	/**
+	 * Get the {@code icu_tokenizer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_tokenizer} kind.
+	 */
+	public IcuTokenizer icuTokenizer() {
+		return TaggedUnionUtils.get(this, ICU_TOKENIZER);
 	}
 
 	/**
@@ -183,6 +194,16 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	}
 
 	/**
+	 * Get the {@code pattern} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code pattern} kind.
+	 */
+	public PatternTokenizer pattern() {
+		return TaggedUnionUtils.get(this, PATTERN);
+	}
+
+	/**
 	 * Get the {@code standard} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -215,13 +236,13 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<Tokenizer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Tokenizer> {
 		private String _type;
-		private JsonpSerializable _value;
+		private TokenizerVariant _value;
 
 		public Builder charGroup(CharGroupTokenizer v) {
 			this._type = CHAR_GROUP;
@@ -241,6 +262,16 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 
 		public Builder edgeNgram(Function<EdgeNGramTokenizer.Builder, ObjectBuilder<EdgeNGramTokenizer>> f) {
 			return this.edgeNgram(f.apply(new EdgeNGramTokenizer.Builder()).build());
+		}
+
+		public Builder icuTokenizer(IcuTokenizer v) {
+			this._type = ICU_TOKENIZER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuTokenizer(Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> f) {
+			return this.icuTokenizer(f.apply(new IcuTokenizer.Builder()).build());
 		}
 
 		public Builder keyword(KeywordTokenizer v) {
@@ -314,6 +345,16 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 			return this.pathHierarchy(f.apply(new PathHierarchyTokenizer.Builder()).build());
 		}
 
+		public Builder pattern(PatternTokenizer v) {
+			this._type = PATTERN;
+			this._value = v;
+			return this;
+		}
+
+		public Builder pattern(Function<PatternTokenizer.Builder, ObjectBuilder<PatternTokenizer>> f) {
+			return this.pattern(f.apply(new PatternTokenizer.Builder()).build());
+		}
+
 		public Builder standard(StandardTokenizer v) {
 			this._type = STANDARD;
 			this._value = v;
@@ -345,6 +386,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		}
 
 		public Tokenizer build() {
+			_checkSingleUse();
 			return new Tokenizer(this);
 		}
 
@@ -354,6 +396,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 
 		op.add(Builder::charGroup, CharGroupTokenizer._DESERIALIZER, "char_group");
 		op.add(Builder::edgeNgram, EdgeNGramTokenizer._DESERIALIZER, "edge_ngram");
+		op.add(Builder::icuTokenizer, IcuTokenizer._DESERIALIZER, "icu_tokenizer");
 		op.add(Builder::keyword, KeywordTokenizer._DESERIALIZER, "keyword");
 		op.add(Builder::kuromojiTokenizer, KuromojiTokenizer._DESERIALIZER, "kuromoji_tokenizer");
 		op.add(Builder::letter, LetterTokenizer._DESERIALIZER, "letter");
@@ -361,6 +404,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		op.add(Builder::ngram, NGramTokenizer._DESERIALIZER, "ngram");
 		op.add(Builder::noriTokenizer, NoriTokenizer._DESERIALIZER, "nori_tokenizer");
 		op.add(Builder::pathHierarchy, PathHierarchyTokenizer._DESERIALIZER, "path_hierarchy");
+		op.add(Builder::pattern, PatternTokenizer._DESERIALIZER, "pattern");
 		op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
 		op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
 		op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
@@ -369,6 +413,6 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 
 	}
 
-	public static final JsonpDeserializer<Tokenizer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Tokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Tokenizer::setupTokenizerDeserializer, Builder::build);
 }

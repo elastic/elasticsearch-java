@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Request
 
-public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
+public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -62,7 +63,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDataFrameAnalyticsStatsRequest(Builder builder) {
+	private GetDataFrameAnalyticsStatsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
@@ -72,8 +73,9 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	}
 
-	public GetDataFrameAnalyticsStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDataFrameAnalyticsStatsRequest of(
+			Function<Builder, ObjectBuilder<GetDataFrameAnalyticsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,7 +96,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -104,7 +106,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -116,7 +118,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -126,7 +128,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -136,7 +138,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code verbose}
 	 */
 	@Nullable
-	public Boolean verbose() {
+	public final Boolean verbose() {
 		return this.verbose;
 	}
 
@@ -145,7 +147,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -178,7 +180,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -188,7 +190,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -200,7 +202,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -210,7 +212,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -220,7 +222,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code verbose}
 		 */
-		public Builder verbose(@Nullable Boolean value) {
+		public final Builder verbose(@Nullable Boolean value) {
 			this.verbose = value;
 			return this;
 		}
@@ -232,6 +234,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetDataFrameAnalyticsStatsRequest build() {
+			_checkSingleUse();
 
 			return new GetDataFrameAnalyticsStatsRequest(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,37 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypesMappings
 @JsonpDeserializable
-public final class FieldTypesMappings implements JsonpSerializable {
+public class FieldTypesMappings implements JsonpSerializable {
 	private final List<FieldTypes> fieldTypes;
 
-	@Nullable
 	private final List<RuntimeFieldTypes> runtimeFieldTypes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldTypesMappings(Builder builder) {
+	private FieldTypesMappings(Builder builder) {
 
-		this.fieldTypes = ModelTypeHelper.unmodifiableNonNull(builder.fieldTypes, "field_types");
+		this.fieldTypes = ModelTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
 		this.runtimeFieldTypes = ModelTypeHelper.unmodifiable(builder.runtimeFieldTypes);
 
 	}
 
-	public FieldTypesMappings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldTypesMappings of(Function<Builder, ObjectBuilder<FieldTypesMappings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_types}
 	 */
-	public List<FieldTypes> fieldTypes() {
+	public final List<FieldTypes> fieldTypes() {
 		return this.fieldTypes;
 	}
 
 	/**
 	 * API name: {@code runtime_field_types}
 	 */
-	@Nullable
-	public List<RuntimeFieldTypes> runtimeFieldTypes() {
+	public final List<RuntimeFieldTypes> runtimeFieldTypes() {
 		return this.runtimeFieldTypes;
 	}
 
@@ -87,16 +86,17 @@ public final class FieldTypesMappings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field_types");
-		generator.writeStartArray();
-		for (FieldTypes item0 : this.fieldTypes) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.fieldTypes)) {
+			generator.writeKey("field_types");
+			generator.writeStartArray();
+			for (FieldTypes item0 : this.fieldTypes) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.runtimeFieldTypes != null) {
-
+		if (ModelTypeHelper.isDefined(this.runtimeFieldTypes)) {
 			generator.writeKey("runtime_field_types");
 			generator.writeStartArray();
 			for (RuntimeFieldTypes item0 : this.runtimeFieldTypes) {
@@ -114,7 +114,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldTypesMappings}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldTypesMappings> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldTypesMappings> {
 		private List<FieldTypes> fieldTypes;
 
 		@Nullable
@@ -123,7 +123,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_types}
 		 */
-		public Builder fieldTypes(List<FieldTypes> value) {
+		public final Builder fieldTypes(List<FieldTypes> value) {
 			this.fieldTypes = value;
 			return this;
 		}
@@ -131,40 +131,27 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_types}
 		 */
-		public Builder fieldTypes(FieldTypes... value) {
+		public final Builder fieldTypes(FieldTypes... value) {
 			this.fieldTypes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
+		 * Required - API name: {@code field_types}
 		 */
-		public Builder addFieldTypes(FieldTypes value) {
-			if (this.fieldTypes == null) {
-				this.fieldTypes = new ArrayList<>();
+		@SafeVarargs
+		public final Builder fieldTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
+			this.fieldTypes = new ArrayList<>(fns.length);
+			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
+				this.fieldTypes.add(fn.apply(new FieldTypes.Builder()).build());
 			}
-			this.fieldTypes.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #fieldTypes(List)} to a singleton list.
-		 */
-		public Builder fieldTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
-			return this.fieldTypes(fn.apply(new FieldTypes.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
-		 */
-		public Builder addFieldTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
-			return this.addFieldTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code runtime_field_types}
 		 */
-		public Builder runtimeFieldTypes(@Nullable List<RuntimeFieldTypes> value) {
+		public final Builder runtimeFieldTypes(@Nullable List<RuntimeFieldTypes> value) {
 			this.runtimeFieldTypes = value;
 			return this;
 		}
@@ -172,34 +159,22 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_field_types}
 		 */
-		public Builder runtimeFieldTypes(RuntimeFieldTypes... value) {
+		public final Builder runtimeFieldTypes(RuntimeFieldTypes... value) {
 			this.runtimeFieldTypes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #runtimeFieldTypes(List)}, creating the list if needed.
+		 * API name: {@code runtime_field_types}
 		 */
-		public Builder addRuntimeFieldTypes(RuntimeFieldTypes value) {
-			if (this.runtimeFieldTypes == null) {
-				this.runtimeFieldTypes = new ArrayList<>();
+		@SafeVarargs
+		public final Builder runtimeFieldTypes(
+				Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>>... fns) {
+			this.runtimeFieldTypes = new ArrayList<>(fns.length);
+			for (Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>> fn : fns) {
+				this.runtimeFieldTypes.add(fn.apply(new RuntimeFieldTypes.Builder()).build());
 			}
-			this.runtimeFieldTypes.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #runtimeFieldTypes(List)} to a singleton list.
-		 */
-		public Builder runtimeFieldTypes(Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
-			return this.runtimeFieldTypes(fn.apply(new RuntimeFieldTypes.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #runtimeFieldTypes(List)}, creating the list if needed.
-		 */
-		public Builder addRuntimeFieldTypes(Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
-			return this.addRuntimeFieldTypes(fn.apply(new RuntimeFieldTypes.Builder()).build());
 		}
 
 		/**
@@ -209,6 +184,7 @@ public final class FieldTypesMappings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldTypesMappings build() {
+			_checkSingleUse();
 
 			return new FieldTypesMappings(this);
 		}

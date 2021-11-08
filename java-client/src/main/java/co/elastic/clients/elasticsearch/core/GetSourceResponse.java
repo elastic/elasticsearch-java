@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
 
-public final class GetSourceResponse<TDocument> implements JsonpSerializable {
+public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	private final TDocument valueBody;
 
 	@Nullable
@@ -47,15 +49,16 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSourceResponse(Builder<TDocument> builder) {
+	private GetSourceResponse(Builder<TDocument> builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public GetSourceResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> GetSourceResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetSourceResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -63,7 +66,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public TDocument valueBody() {
+	public final TDocument valueBody() {
 		return this.valueBody;
 	}
 
@@ -80,7 +83,9 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetSourceResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<GetSourceResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<GetSourceResponse<TDocument>> {
 		private TDocument valueBody;
 
 		@Nullable
@@ -91,7 +96,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TDocument> valueBody(TDocument value) {
+		public final Builder<TDocument> valueBody(TDocument value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -100,7 +105,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -112,6 +117,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetSourceResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new GetSourceResponse<TDocument>(this);
 		}

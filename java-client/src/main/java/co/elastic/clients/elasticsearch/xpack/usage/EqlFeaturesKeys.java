@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesKeys
 @JsonpDeserializable
-public final class EqlFeaturesKeys implements JsonpSerializable {
+public class EqlFeaturesKeys implements JsonpSerializable {
 	private final Number joinKeysTwo;
 
 	private final Number joinKeysOne;
@@ -52,52 +54,53 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlFeaturesKeys(Builder builder) {
+	private EqlFeaturesKeys(Builder builder) {
 
-		this.joinKeysTwo = Objects.requireNonNull(builder.joinKeysTwo, "join_keys_two");
-		this.joinKeysOne = Objects.requireNonNull(builder.joinKeysOne, "join_keys_one");
-		this.joinKeysThree = Objects.requireNonNull(builder.joinKeysThree, "join_keys_three");
-		this.joinKeysFiveOrMore = Objects.requireNonNull(builder.joinKeysFiveOrMore, "join_keys_five_or_more");
-		this.joinKeysFour = Objects.requireNonNull(builder.joinKeysFour, "join_keys_four");
+		this.joinKeysTwo = ModelTypeHelper.requireNonNull(builder.joinKeysTwo, this, "joinKeysTwo");
+		this.joinKeysOne = ModelTypeHelper.requireNonNull(builder.joinKeysOne, this, "joinKeysOne");
+		this.joinKeysThree = ModelTypeHelper.requireNonNull(builder.joinKeysThree, this, "joinKeysThree");
+		this.joinKeysFiveOrMore = ModelTypeHelper.requireNonNull(builder.joinKeysFiveOrMore, this,
+				"joinKeysFiveOrMore");
+		this.joinKeysFour = ModelTypeHelper.requireNonNull(builder.joinKeysFour, this, "joinKeysFour");
 
 	}
 
-	public EqlFeaturesKeys(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlFeaturesKeys of(Function<Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code join_keys_two}
 	 */
-	public Number joinKeysTwo() {
+	public final Number joinKeysTwo() {
 		return this.joinKeysTwo;
 	}
 
 	/**
 	 * Required - API name: {@code join_keys_one}
 	 */
-	public Number joinKeysOne() {
+	public final Number joinKeysOne() {
 		return this.joinKeysOne;
 	}
 
 	/**
 	 * Required - API name: {@code join_keys_three}
 	 */
-	public Number joinKeysThree() {
+	public final Number joinKeysThree() {
 		return this.joinKeysThree;
 	}
 
 	/**
 	 * Required - API name: {@code join_keys_five_or_more}
 	 */
-	public Number joinKeysFiveOrMore() {
+	public final Number joinKeysFiveOrMore() {
 		return this.joinKeysFiveOrMore;
 	}
 
 	/**
 	 * Required - API name: {@code join_keys_four}
 	 */
-	public Number joinKeysFour() {
+	public final Number joinKeysFour() {
 		return this.joinKeysFour;
 	}
 
@@ -134,7 +137,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesKeys}.
 	 */
-	public static class Builder implements ObjectBuilder<EqlFeaturesKeys> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesKeys> {
 		private Number joinKeysTwo;
 
 		private Number joinKeysOne;
@@ -148,7 +151,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code join_keys_two}
 		 */
-		public Builder joinKeysTwo(Number value) {
+		public final Builder joinKeysTwo(Number value) {
 			this.joinKeysTwo = value;
 			return this;
 		}
@@ -156,7 +159,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code join_keys_one}
 		 */
-		public Builder joinKeysOne(Number value) {
+		public final Builder joinKeysOne(Number value) {
 			this.joinKeysOne = value;
 			return this;
 		}
@@ -164,7 +167,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code join_keys_three}
 		 */
-		public Builder joinKeysThree(Number value) {
+		public final Builder joinKeysThree(Number value) {
 			this.joinKeysThree = value;
 			return this;
 		}
@@ -172,7 +175,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code join_keys_five_or_more}
 		 */
-		public Builder joinKeysFiveOrMore(Number value) {
+		public final Builder joinKeysFiveOrMore(Number value) {
 			this.joinKeysFiveOrMore = value;
 			return this;
 		}
@@ -180,7 +183,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code join_keys_four}
 		 */
-		public Builder joinKeysFour(Number value) {
+		public final Builder joinKeysFour(Number value) {
 			this.joinKeysFour = value;
 			return this;
 		}
@@ -192,6 +195,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EqlFeaturesKeys build() {
+			_checkSingleUse();
 
 			return new EqlFeaturesKeys(this);
 		}

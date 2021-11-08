@@ -31,12 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,25 +45,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_alias.IndexAliases
 @JsonpDeserializable
-public final class IndexAliases implements JsonpSerializable {
+public class IndexAliases implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexAliases(Builder builder) {
+	private IndexAliases(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
+		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 
 	}
 
-	public IndexAliases(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexAliases of(Function<Builder, ObjectBuilder<IndexAliases>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code aliases}
 	 */
-	public Map<String, AliasDefinition> aliases() {
+	public final Map<String, AliasDefinition> aliases() {
 		return this.aliases;
 	}
 
@@ -77,14 +78,17 @@ public final class IndexAliases implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("aliases");
-		generator.writeStartObject();
-		for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartObject();
+			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -93,25 +97,14 @@ public final class IndexAliases implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexAliases}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexAliases> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
 		private Map<String, AliasDefinition> aliases;
 
 		/**
 		 * Required - API name: {@code aliases}
 		 */
-		public Builder aliases(Map<String, AliasDefinition> value) {
+		public final Builder aliases(Map<String, AliasDefinition> value) {
 			this.aliases = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, AliasDefinition value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
 			return this;
 		}
 
@@ -122,11 +115,9 @@ public final class IndexAliases implements JsonpSerializable {
 			return this.aliases(Collections.singletonMap(key, fn.apply(new AliasDefinition.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
-			return this.putAliases(key, fn.apply(new AliasDefinition.Builder()).build());
+		public final Builder aliases(
+				Function<MapBuilder<String, AliasDefinition, AliasDefinition.Builder>, ObjectBuilder<Map<String, AliasDefinition>>> fn) {
+			return aliases(fn.apply(new MapBuilder<>(AliasDefinition.Builder::new)).build());
 		}
 
 		/**
@@ -136,6 +127,7 @@ public final class IndexAliases implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexAliases build() {
+			_checkSingleUse();
 
 			return new IndexAliases(this);
 		}

@@ -31,13 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,11 +46,9 @@ import javax.annotation.Nullable;
 
 // typedef: transform._types.Pivot
 @JsonpDeserializable
-public final class Pivot implements JsonpSerializable {
-	@Nullable
+public class Pivot implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
 
-	@Nullable
 	private final Map<String, PivotGroupBy> groupBy;
 
 	@Nullable
@@ -57,7 +56,7 @@ public final class Pivot implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Pivot(Builder builder) {
+	private Pivot(Builder builder) {
 
 		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.groupBy = ModelTypeHelper.unmodifiable(builder.groupBy);
@@ -65,23 +64,21 @@ public final class Pivot implements JsonpSerializable {
 
 	}
 
-	public Pivot(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Pivot of(Function<Builder, ObjectBuilder<Pivot>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code aggregations}
 	 */
-	@Nullable
-	public Map<String, Aggregation> aggregations() {
+	public final Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
 	 * API name: {@code group_by}
 	 */
-	@Nullable
-	public Map<String, PivotGroupBy> groupBy() {
+	public final Map<String, PivotGroupBy> groupBy() {
 		return this.groupBy;
 	}
 
@@ -89,7 +86,7 @@ public final class Pivot implements JsonpSerializable {
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public Integer maxPageSearchSize() {
+	public final Integer maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
@@ -104,8 +101,7 @@ public final class Pivot implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aggregations != null) {
-
+		if (ModelTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -116,8 +112,7 @@ public final class Pivot implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.groupBy != null) {
-
+		if (ModelTypeHelper.isDefined(this.groupBy)) {
 			generator.writeKey("group_by");
 			generator.writeStartObject();
 			for (Map.Entry<String, PivotGroupBy> item0 : this.groupBy.entrySet()) {
@@ -129,7 +124,6 @@ public final class Pivot implements JsonpSerializable {
 
 		}
 		if (this.maxPageSearchSize != null) {
-
 			generator.writeKey("max_page_search_size");
 			generator.write(this.maxPageSearchSize);
 
@@ -142,7 +136,7 @@ public final class Pivot implements JsonpSerializable {
 	/**
 	 * Builder for {@link Pivot}.
 	 */
-	public static class Builder implements ObjectBuilder<Pivot> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pivot> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
 
@@ -155,19 +149,8 @@ public final class Pivot implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
+		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
 			this.aggregations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Aggregation value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
 			return this;
 		}
 
@@ -178,29 +161,16 @@ public final class Pivot implements JsonpSerializable {
 			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
+		public final Builder aggregations(
+				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
+			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code group_by}
 		 */
-		public Builder groupBy(@Nullable Map<String, PivotGroupBy> value) {
+		public final Builder groupBy(@Nullable Map<String, PivotGroupBy> value) {
 			this.groupBy = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #groupBy(Map)}, creating the map if needed.
-		 */
-		public Builder putGroupBy(String key, PivotGroupBy value) {
-			if (this.groupBy == null) {
-				this.groupBy = new HashMap<>();
-			}
-			this.groupBy.put(key, value);
 			return this;
 		}
 
@@ -211,17 +181,15 @@ public final class Pivot implements JsonpSerializable {
 			return this.groupBy(Collections.singletonMap(key, fn.apply(new PivotGroupBy.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #groupBy(Map)}, creating the map if needed.
-		 */
-		public Builder putGroupBy(String key, Function<PivotGroupBy.Builder, ObjectBuilder<PivotGroupBy>> fn) {
-			return this.putGroupBy(key, fn.apply(new PivotGroupBy.Builder()).build());
+		public final Builder groupBy(
+				Function<MapBuilder<String, PivotGroupBy, PivotGroupBy.Builder>, ObjectBuilder<Map<String, PivotGroupBy>>> fn) {
+			return groupBy(fn.apply(new MapBuilder<>(PivotGroupBy.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable Integer value) {
+		public final Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -233,6 +201,7 @@ public final class Pivot implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Pivot build() {
+			_checkSingleUse();
 
 			return new Pivot(this);
 		}

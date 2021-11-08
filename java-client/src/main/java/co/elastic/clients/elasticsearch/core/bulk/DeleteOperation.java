@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _global.bulk.DeleteOperation
 @JsonpDeserializable
-public final class DeleteOperation extends OperationBase implements OperationVariant {
+public class DeleteOperation extends OperationBase implements OperationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteOperation(Builder builder) {
+	private DeleteOperation(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteOperation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteOperation of(Function<Builder, ObjectBuilder<DeleteOperation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class DeleteOperation extends OperationBase implements OperationVar
 		 *             if some of the required fields are null.
 		 */
 		public DeleteOperation build() {
+			_checkSingleUse();
 
 			return new DeleteOperation(this);
 		}

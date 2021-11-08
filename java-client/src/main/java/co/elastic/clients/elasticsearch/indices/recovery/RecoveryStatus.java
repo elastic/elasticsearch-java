@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStatus
 @JsonpDeserializable
-public final class RecoveryStatus implements JsonpSerializable {
+public class RecoveryStatus implements JsonpSerializable {
 	private final List<ShardRecovery> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryStatus(Builder builder) {
+	private RecoveryStatus(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public RecoveryStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryStatus of(Function<Builder, ObjectBuilder<RecoveryStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<ShardRecovery> shards() {
+	public final List<ShardRecovery> shards() {
 		return this.shards;
 	}
 
@@ -75,13 +76,16 @@ public final class RecoveryStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (ShardRecovery item0 : this.shards) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (ShardRecovery item0 : this.shards) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class RecoveryStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStatus> {
 		private List<ShardRecovery> shards;
 
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(List<ShardRecovery> value) {
+		public final Builder shards(List<ShardRecovery> value) {
 			this.shards = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class RecoveryStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(ShardRecovery... value) {
+		public final Builder shards(ShardRecovery... value) {
 			this.shards = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Required - API name: {@code shards}
 		 */
-		public Builder addShards(ShardRecovery value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
+		@SafeVarargs
+		public final Builder shards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>>... fns) {
+			this.shards = new ArrayList<>(fns.length);
+			for (Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn : fns) {
+				this.shards.add(fn.apply(new ShardRecovery.Builder()).build());
 			}
-			this.shards.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #shards(List)} to a singleton list.
-		 */
-		public Builder shards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
-			return this.shards(fn.apply(new ShardRecovery.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
-			return this.addShards(fn.apply(new ShardRecovery.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryStatus build() {
+			_checkSingleUse();
 
 			return new RecoveryStatus(this);
 		}

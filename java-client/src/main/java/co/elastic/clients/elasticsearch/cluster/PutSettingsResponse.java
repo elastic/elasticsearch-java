@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Response
 @JsonpDeserializable
-public final class PutSettingsResponse implements JsonpSerializable {
+public class PutSettingsResponse implements JsonpSerializable {
 	private final boolean acknowledged;
 
 	private final Map<String, JsonData> persistent;
@@ -53,36 +53,36 @@ public final class PutSettingsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutSettingsResponse(Builder builder) {
+	private PutSettingsResponse(Builder builder) {
 
-		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
-		this.persistent = ModelTypeHelper.unmodifiableNonNull(builder.persistent, "persistent");
-		this.transient_ = ModelTypeHelper.unmodifiableNonNull(builder.transient_, "transient");
+		this.acknowledged = ModelTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.persistent = ModelTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
+		this.transient_ = ModelTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
 
 	}
 
-	public PutSettingsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutSettingsResponse of(Function<Builder, ObjectBuilder<PutSettingsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code acknowledged}
 	 */
-	public boolean acknowledged() {
+	public final boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
 	 * Required - API name: {@code persistent}
 	 */
-	public Map<String, JsonData> persistent() {
+	public final Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
 	 * Required - API name: {@code transient}
 	 */
-	public Map<String, JsonData> transient_() {
+	public final Map<String, JsonData> transient_() {
 		return this.transient_;
 	}
 
@@ -100,23 +100,28 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		generator.writeKey("acknowledged");
 		generator.write(this.acknowledged);
 
-		generator.writeKey("persistent");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.persistent)) {
+			generator.writeKey("persistent");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.transient_)) {
+			generator.writeKey("transient");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("transient");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -125,7 +130,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutSettingsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutSettingsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutSettingsResponse> {
 		private Boolean acknowledged;
 
 		private Map<String, JsonData> persistent;
@@ -135,7 +140,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code acknowledged}
 		 */
-		public Builder acknowledged(boolean value) {
+		public final Builder acknowledged(boolean value) {
 			this.acknowledged = value;
 			return this;
 		}
@@ -143,38 +148,16 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code persistent}
 		 */
-		public Builder persistent(Map<String, JsonData> value) {
+		public final Builder persistent(Map<String, JsonData> value) {
 			this.persistent = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #persistent(Map)}, creating the map if needed.
-		 */
-		public Builder putPersistent(String key, JsonData value) {
-			if (this.persistent == null) {
-				this.persistent = new HashMap<>();
-			}
-			this.persistent.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transient}
 		 */
-		public Builder transient_(Map<String, JsonData> value) {
+		public final Builder transient_(Map<String, JsonData> value) {
 			this.transient_ = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #transient_(Map)}, creating the map if needed.
-		 */
-		public Builder putTransient(String key, JsonData value) {
-			if (this.transient_ == null) {
-				this.transient_ = new HashMap<>();
-			}
-			this.transient_.put(key, value);
 			return this;
 		}
 
@@ -185,6 +168,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutSettingsResponse build() {
+			_checkSingleUse();
 
 			return new PutSettingsResponse(this);
 		}

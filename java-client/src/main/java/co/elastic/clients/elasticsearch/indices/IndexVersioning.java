@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexVersioning
 @JsonpDeserializable
-public final class IndexVersioning implements JsonpSerializable {
+public class IndexVersioning implements JsonpSerializable {
 	private final String created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexVersioning(Builder builder) {
+	private IndexVersioning(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
+		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
-	public IndexVersioning(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexVersioning of(Function<Builder, ObjectBuilder<IndexVersioning>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public String created() {
+	public final String created() {
 		return this.created;
 	}
 
@@ -82,13 +84,13 @@ public final class IndexVersioning implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexVersioning}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexVersioning> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexVersioning> {
 		private String created;
 
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(String value) {
+		public final Builder created(String value) {
 			this.created = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class IndexVersioning implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexVersioning build() {
+			_checkSingleUse();
 
 			return new IndexVersioning(this);
 		}

@@ -35,7 +35,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,54 +42,57 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Monitoring
 @JsonpDeserializable
-public final class Monitoring extends Base {
+public class Monitoring extends Base {
 	private final boolean collectionEnabled;
 
 	private final Map<String, Long> enabledExporters;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Monitoring(Builder builder) {
+	private Monitoring(Builder builder) {
 		super(builder);
 
-		this.collectionEnabled = Objects.requireNonNull(builder.collectionEnabled, "collection_enabled");
-		this.enabledExporters = ModelTypeHelper.unmodifiableNonNull(builder.enabledExporters, "enabled_exporters");
+		this.collectionEnabled = ModelTypeHelper.requireNonNull(builder.collectionEnabled, this, "collectionEnabled");
+		this.enabledExporters = ModelTypeHelper.unmodifiableRequired(builder.enabledExporters, this,
+				"enabledExporters");
 
 	}
 
-	public Monitoring(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Monitoring of(Function<Builder, ObjectBuilder<Monitoring>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code collection_enabled}
 	 */
-	public boolean collectionEnabled() {
+	public final boolean collectionEnabled() {
 		return this.collectionEnabled;
 	}
 
 	/**
 	 * Required - API name: {@code enabled_exporters}
 	 */
-	public Map<String, Long> enabledExporters() {
+	public final Map<String, Long> enabledExporters() {
 		return this.enabledExporters;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("collection_enabled");
 		generator.write(this.collectionEnabled);
 
-		generator.writeKey("enabled_exporters");
-		generator.writeStartObject();
-		for (Map.Entry<String, Long> item0 : this.enabledExporters.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.enabledExporters)) {
+			generator.writeKey("enabled_exporters");
+			generator.writeStartObject();
+			for (Map.Entry<String, Long> item0 : this.enabledExporters.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -107,7 +109,7 @@ public final class Monitoring extends Base {
 		/**
 		 * Required - API name: {@code collection_enabled}
 		 */
-		public Builder collectionEnabled(boolean value) {
+		public final Builder collectionEnabled(boolean value) {
 			this.collectionEnabled = value;
 			return this;
 		}
@@ -115,20 +117,8 @@ public final class Monitoring extends Base {
 		/**
 		 * Required - API name: {@code enabled_exporters}
 		 */
-		public Builder enabledExporters(Map<String, Long> value) {
+		public final Builder enabledExporters(Map<String, Long> value) {
 			this.enabledExporters = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #enabledExporters(Map)}, creating the map if
-		 * needed.
-		 */
-		public Builder putEnabledExporters(String key, Long value) {
-			if (this.enabledExporters == null) {
-				this.enabledExporters = new HashMap<>();
-			}
-			this.enabledExporters.put(key, value);
 			return this;
 		}
 
@@ -144,6 +134,7 @@ public final class Monitoring extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Monitoring build() {
+			_checkSingleUse();
 
 			return new Monitoring(this);
 		}

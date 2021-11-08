@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,11 +48,10 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Request
 
-public final class GetDatafeedsRequest extends RequestBase {
+public class GetDatafeedsRequest extends RequestBase {
 	@Nullable
-	private final Boolean allowNoDatafeeds;
+	private final Boolean allowNoMatch;
 
-	@Nullable
 	private final List<String> datafeedId;
 
 	@Nullable
@@ -60,46 +59,60 @@ public final class GetDatafeedsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDatafeedsRequest(Builder builder) {
+	private GetDatafeedsRequest(Builder builder) {
 
-		this.allowNoDatafeeds = builder.allowNoDatafeeds;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
 		this.excludeGenerated = builder.excludeGenerated;
 
 	}
 
-	public GetDatafeedsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDatafeedsRequest of(Function<Builder, ObjectBuilder<GetDatafeedsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no datafeeds that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
 	 * <p>
-	 * API name: {@code allow_no_datafeeds}
+	 * The default value is <code>true</code>, which returns an empty
+	 * <code>datafeeds</code> array when there are no matches and the subset of
+	 * results when there are partial matches. If this parameter is
+	 * <code>false</code>, the request returns a <code>404</code> status code when
+	 * there are no matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoDatafeeds() {
-		return this.allowNoDatafeeds;
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
 	}
 
 	/**
-	 * The ID of the datafeeds to fetch
+	 * Identifier for the datafeed. It can be a datafeed identifier or a wildcard
+	 * expression. If you do not specify one of these options, the API returns
+	 * information about all datafeeds.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
-	@Nullable
-	public List<String> datafeedId() {
+	public final List<String> datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
-	 * Omits fields that are illegal to set on datafeed PUT
+	 * Indicates if certain fields should be removed from the configuration on
+	 * retrieval. This allows the configuration to be in an acceptable format to be
+	 * retrieved and then added to another cluster.
 	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
-	public Boolean excludeGenerated() {
+	public final Boolean excludeGenerated() {
 		return this.excludeGenerated;
 	}
 
@@ -108,9 +121,9 @@ public final class GetDatafeedsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDatafeedsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDatafeedsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedsRequest> {
 		@Nullable
-		private Boolean allowNoDatafeeds;
+		private Boolean allowNoMatch;
 
 		@Nullable
 		private List<String> datafeedId;
@@ -119,53 +132,59 @@ public final class GetDatafeedsRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no datafeeds that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
 		 * <p>
-		 * API name: {@code allow_no_datafeeds}
+		 * The default value is <code>true</code>, which returns an empty
+		 * <code>datafeeds</code> array when there are no matches and the subset of
+		 * results when there are partial matches. If this parameter is
+		 * <code>false</code>, the request returns a <code>404</code> status code when
+		 * there are no matches or only partial matches.
+		 * <p>
+		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoDatafeeds(@Nullable Boolean value) {
-			this.allowNoDatafeeds = value;
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the datafeeds to fetch
+		 * Identifier for the datafeed. It can be a datafeed identifier or a wildcard
+		 * expression. If you do not specify one of these options, the API returns
+		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(@Nullable List<String> value) {
+		public final Builder datafeedId(@Nullable List<String> value) {
 			this.datafeedId = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the datafeeds to fetch
+		 * Identifier for the datafeed. It can be a datafeed identifier or a wildcard
+		 * expression. If you do not specify one of these options, the API returns
+		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String... value) {
+		public final Builder datafeedId(String... value) {
 			this.datafeedId = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
-		 */
-		public Builder addDatafeedId(String value) {
-			if (this.datafeedId == null) {
-				this.datafeedId = new ArrayList<>();
-			}
-			this.datafeedId.add(value);
-			return this;
-		}
-
-		/**
-		 * Omits fields that are illegal to set on datafeed PUT
+		 * Indicates if certain fields should be removed from the configuration on
+		 * retrieval. This allows the configuration to be in an acceptable format to be
+		 * retrieved and then added to another cluster.
 		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
+		public final Builder excludeGenerated(@Nullable Boolean value) {
 			this.excludeGenerated = value;
 			return this;
 		}
@@ -177,6 +196,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetDatafeedsRequest build() {
+			_checkSingleUse();
 
 			return new GetDatafeedsRequest(this);
 		}
@@ -200,7 +220,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
+				if (ModelTypeHelper.isDefined(request.datafeedId()))
 					propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
@@ -225,11 +245,11 @@ public final class GetDatafeedsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoDatafeeds != null) {
-					params.put("allow_no_datafeeds", String.valueOf(request.allowNoDatafeeds));
-				}
 				if (request.excludeGenerated != null) {
 					params.put("exclude_generated", String.valueOf(request.excludeGenerated));
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

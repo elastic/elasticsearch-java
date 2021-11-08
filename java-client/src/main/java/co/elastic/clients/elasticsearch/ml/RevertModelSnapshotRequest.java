@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
 @JsonpDeserializable
-public final class RevertModelSnapshotRequest extends RequestBase implements JsonpSerializable {
+public class RevertModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean deleteInterveningResults;
 
@@ -55,41 +57,50 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RevertModelSnapshotRequest(Builder builder) {
+	private RevertModelSnapshotRequest(Builder builder) {
 
 		this.deleteInterveningResults = builder.deleteInterveningResults;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
-	public RevertModelSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RevertModelSnapshotRequest of(Function<Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * If true, deletes the results in the time period between the latest results
+	 * and the time of the reverted snapshot. It also resets the model to accept
+	 * records for this time period. If you choose not to delete intervening results
+	 * when reverting a snapshot, the job will not accept input data that is older
+	 * than the current time. If you want to resend data, then delete the
+	 * intervening results.
+	 * <p>
 	 * API name: {@code delete_intervening_results}
 	 */
 	@Nullable
-	public Boolean deleteInterveningResults() {
+	public final Boolean deleteInterveningResults() {
 		return this.deleteInterveningResults;
 	}
 
 	/**
-	 * Required - The ID of the job to fetch
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * Required - The ID of the snapshot to revert to
+	 * Required - You can specify <code>empty</code> as the &lt;snapshot_id&gt;.
+	 * Reverting to the empty snapshot means the anomaly detection job starts
+	 * learning a new model from scratch when it is started.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
-	public String snapshotId() {
+	public final String snapshotId() {
 		return this.snapshotId;
 	}
 
@@ -105,7 +116,6 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.deleteInterveningResults != null) {
-
 			generator.writeKey("delete_intervening_results");
 			generator.write(this.deleteInterveningResults);
 
@@ -118,7 +128,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Builder for {@link RevertModelSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RevertModelSnapshotRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RevertModelSnapshotRequest> {
 		@Nullable
 		private Boolean deleteInterveningResults;
 
@@ -127,29 +137,38 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 		private String snapshotId;
 
 		/**
+		 * If true, deletes the results in the time period between the latest results
+		 * and the time of the reverted snapshot. It also resets the model to accept
+		 * records for this time period. If you choose not to delete intervening results
+		 * when reverting a snapshot, the job will not accept input data that is older
+		 * than the current time. If you want to resend data, then delete the
+		 * intervening results.
+		 * <p>
 		 * API name: {@code delete_intervening_results}
 		 */
-		public Builder deleteInterveningResults(@Nullable Boolean value) {
+		public final Builder deleteInterveningResults(@Nullable Boolean value) {
 			this.deleteInterveningResults = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ID of the job to fetch
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ID of the snapshot to revert to
+		 * Required - You can specify <code>empty</code> as the &lt;snapshot_id&gt;.
+		 * Reverting to the empty snapshot means the anomaly detection job starts
+		 * learning a new model from scratch when it is started.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public Builder snapshotId(String value) {
+		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
 			return this;
 		}
@@ -161,6 +180,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 		 *             if some of the required fields are null.
 		 */
 		public RevertModelSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new RevertModelSnapshotRequest(this);
 		}

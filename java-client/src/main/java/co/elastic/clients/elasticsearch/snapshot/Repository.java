@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Repository
 @JsonpDeserializable
-public final class Repository implements JsonpSerializable {
+public class Repository implements JsonpSerializable {
 	private final String type;
 
 	@Nullable
@@ -49,22 +51,22 @@ public final class Repository implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Repository(Builder builder) {
+	private Repository(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.uuid = builder.uuid;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public Repository(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Repository of(Function<Builder, ObjectBuilder<Repository>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -72,14 +74,14 @@ public final class Repository implements JsonpSerializable {
 	 * API name: {@code uuid}
 	 */
 	@Nullable
-	public String uuid() {
+	public final String uuid() {
 		return this.uuid;
 	}
 
 	/**
 	 * Required - API name: {@code settings}
 	 */
-	public RepositorySettings settings() {
+	public final RepositorySettings settings() {
 		return this.settings;
 	}
 
@@ -98,12 +100,10 @@ public final class Repository implements JsonpSerializable {
 		generator.write(this.type);
 
 		if (this.uuid != null) {
-
 			generator.writeKey("uuid");
 			generator.write(this.uuid);
 
 		}
-
 		generator.writeKey("settings");
 		this.settings.serialize(generator, mapper);
 
@@ -114,7 +114,7 @@ public final class Repository implements JsonpSerializable {
 	/**
 	 * Builder for {@link Repository}.
 	 */
-	public static class Builder implements ObjectBuilder<Repository> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Repository> {
 		private String type;
 
 		@Nullable
@@ -125,7 +125,7 @@ public final class Repository implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -133,7 +133,7 @@ public final class Repository implements JsonpSerializable {
 		/**
 		 * API name: {@code uuid}
 		 */
-		public Builder uuid(@Nullable String value) {
+		public final Builder uuid(@Nullable String value) {
 			this.uuid = value;
 			return this;
 		}
@@ -141,7 +141,7 @@ public final class Repository implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public Builder settings(RepositorySettings value) {
+		public final Builder settings(RepositorySettings value) {
 			this.settings = value;
 			return this;
 		}
@@ -149,7 +149,7 @@ public final class Repository implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
+		public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
 			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
 		}
 
@@ -160,6 +160,7 @@ public final class Repository implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Repository build() {
+			_checkSingleUse();
 
 			return new Repository(this);
 		}

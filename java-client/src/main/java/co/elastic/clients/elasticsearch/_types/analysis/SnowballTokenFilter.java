@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,20 +38,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SnowballTokenFilter
 @JsonpDeserializable
-public final class SnowballTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final SnowballLanguage language;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnowballTokenFilter(Builder builder) {
+	private SnowballTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = Objects.requireNonNull(builder.language, "language");
+		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public SnowballTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnowballTokenFilter of(Function<Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * Required - API name: {@code language}
 	 */
-	public SnowballLanguage language() {
+	public final SnowballLanguage language() {
 		return this.language;
 	}
 
@@ -72,7 +73,6 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 
 		generator.write("type", "snowball");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("language");
 		this.language.serialize(generator, mapper);
 
@@ -91,7 +91,7 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code language}
 		 */
-		public Builder language(SnowballLanguage value) {
+		public final Builder language(SnowballLanguage value) {
 			this.language = value;
 			return this;
 		}
@@ -108,6 +108,7 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 		 *             if some of the required fields are null.
 		 */
 		public SnowballTokenFilter build() {
+			_checkSingleUse();
 
 			return new SnowballTokenFilter(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.set_upgrade_mode.Response
 @JsonpDeserializable
-public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
+public class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public SetUpgradeModeResponse(Builder builder) {
+	private SetUpgradeModeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public SetUpgradeModeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SetUpgradeModeResponse of(Function<Builder, ObjectBuilder<SetUpgradeModeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public SetUpgradeModeResponse build() {
+			_checkSingleUse();
 
 			return new SetUpgradeModeResponse(this);
 		}

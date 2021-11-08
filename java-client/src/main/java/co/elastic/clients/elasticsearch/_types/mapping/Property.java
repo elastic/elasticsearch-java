@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.Property
 @JsonpDeserializable
-public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable {
 
 	public static final String AGGREGATE_METRIC_DOUBLE = "aggregate_metric_double";
 	public static final String BINARY = "binary";
@@ -89,38 +92,34 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final PropertyVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final PropertyVariant _get() {
 		return _value;
 	}
 
 	public Property(PropertyVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends PropertyVariant> Property(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Property(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Property(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Property of(Function<Builder, ObjectBuilder<Property>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -569,13 +568,13 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<Property> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Property> {
 		private String _type;
-		private JsonpSerializable _value;
+		private PropertyVariant _value;
 
 		public Builder aggregateMetricDouble(AggregateMetricDoubleProperty v) {
 			this._type = AGGREGATE_METRIC_DOUBLE;
@@ -1023,6 +1022,7 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		}
 
 		public Property build() {
+			_checkSingleUse();
 			return new Property(this);
 		}
 
@@ -1079,6 +1079,6 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	}
 
-	public static final JsonpDeserializer<Property> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Property> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Property::setupPropertyDeserializer, Builder::build);
 }

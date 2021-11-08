@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentialsFileToken
 @JsonpDeserializable
-public final class NodesCredentialsFileToken implements JsonpSerializable {
+public class NodesCredentialsFileToken implements JsonpSerializable {
 	private final List<String> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesCredentialsFileToken(Builder builder) {
+	private NodesCredentialsFileToken(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public NodesCredentialsFileToken(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodesCredentialsFileToken of(Function<Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public List<String> nodes() {
+	public final List<String> nodes() {
 		return this.nodes;
 	}
 
@@ -76,13 +76,16 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartArray();
-		for (String item0 : this.nodes) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartArray();
+			for (String item0 : this.nodes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +94,13 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodesCredentialsFileToken}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesCredentialsFileToken> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesCredentialsFileToken> {
 		private List<String> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(List<String> value) {
+		public final Builder nodes(List<String> value) {
 			this.nodes = value;
 			return this;
 		}
@@ -105,19 +108,8 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(String... value) {
+		public final Builder nodes(String... value) {
 			this.nodes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
-		 */
-		public Builder addNodes(String value) {
-			if (this.nodes == null) {
-				this.nodes = new ArrayList<>();
-			}
-			this.nodes.add(value);
 			return this;
 		}
 
@@ -128,6 +120,7 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodesCredentialsFileToken build() {
+			_checkSingleUse();
 
 			return new NodesCredentialsFileToken(this);
 		}

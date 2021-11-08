@@ -37,9 +37,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Request
 
-public final class PostDataRequest<TData> extends RequestBase implements JsonpSerializable {
+public class PostDataRequest<TData> extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -66,46 +66,48 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostDataRequest(Builder<TData> builder) {
+	private PostDataRequest(Builder<TData> builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.resetEnd = builder.resetEnd;
 		this.resetStart = builder.resetStart;
-		this.data = ModelTypeHelper.unmodifiableNonNull(builder.data, "_value_body");
+		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.tDataSerializer = builder.tDataSerializer;
 
 	}
 
-	public PostDataRequest(Function<Builder<TData>, Builder<TData>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TData> PostDataRequest<TData> of(
+			Function<Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
-	 * Required - The name of the job receiving the data
+	 * Required - Identifier for the anomaly detection job. The job must have a
+	 * state of open to receive and process the data.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * Optional parameter to specify the end of the bucket resetting range
+	 * Specifies the end of the bucket resetting range.
 	 * <p>
 	 * API name: {@code reset_end}
 	 */
 	@Nullable
-	public String resetEnd() {
+	public final String resetEnd() {
 		return this.resetEnd;
 	}
 
 	/**
-	 * Optional parameter to specify the start of the bucket resetting range
+	 * Specifies the start of the bucket resetting range.
 	 * <p>
 	 * API name: {@code reset_start}
 	 */
 	@Nullable
-	public String resetStart() {
+	public final String resetStart() {
 		return this.resetStart;
 	}
 
@@ -114,7 +116,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TData> data() {
+	public final List<TData> data() {
 		return this.data;
 	}
 
@@ -136,7 +138,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link PostDataRequest}.
 	 */
-	public static class Builder<TData> implements ObjectBuilder<PostDataRequest<TData>> {
+	public static class Builder<TData> extends ObjectBuilderBase implements ObjectBuilder<PostDataRequest<TData>> {
 		private String jobId;
 
 		@Nullable
@@ -151,31 +153,32 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		private JsonpSerializer<TData> tDataSerializer;
 
 		/**
-		 * Required - The name of the job receiving the data
+		 * Required - Identifier for the anomaly detection job. The job must have a
+		 * state of open to receive and process the data.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder<TData> jobId(String value) {
+		public final Builder<TData> jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * Optional parameter to specify the end of the bucket resetting range
+		 * Specifies the end of the bucket resetting range.
 		 * <p>
 		 * API name: {@code reset_end}
 		 */
-		public Builder<TData> resetEnd(@Nullable String value) {
+		public final Builder<TData> resetEnd(@Nullable String value) {
 			this.resetEnd = value;
 			return this;
 		}
 
 		/**
-		 * Optional parameter to specify the start of the bucket resetting range
+		 * Specifies the start of the bucket resetting range.
 		 * <p>
 		 * API name: {@code reset_start}
 		 */
-		public Builder<TData> resetStart(@Nullable String value) {
+		public final Builder<TData> resetStart(@Nullable String value) {
 			this.resetStart = value;
 			return this;
 		}
@@ -185,7 +188,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TData> data(List<TData> value) {
+		public final Builder<TData> data(List<TData> value) {
 			this.data = value;
 			return this;
 		}
@@ -195,19 +198,8 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TData> data(TData... value) {
+		public final Builder<TData> data(TData... value) {
 			this.data = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
-		 */
-		public Builder<TData> addData(TData value) {
-			if (this.data == null) {
-				this.data = new ArrayList<>();
-			}
-			this.data.add(value);
 			return this;
 		}
 
@@ -215,7 +207,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		 * Serializer for TData. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TData> tDataSerializer(@Nullable JsonpSerializer<TData> value) {
+		public final Builder<TData> tDataSerializer(@Nullable JsonpSerializer<TData> value) {
 			this.tDataSerializer = value;
 			return this;
 		}
@@ -227,6 +219,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public PostDataRequest<TData> build() {
+			_checkSingleUse();
 
 			return new PostDataRequest<TData>(this);
 		}

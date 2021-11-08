@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldAndFormat
 @JsonpDeserializable
-public final class FieldAndFormat implements JsonpSerializable {
+public class FieldAndFormat implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
@@ -51,22 +53,22 @@ public final class FieldAndFormat implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldAndFormat(Builder builder) {
+	private FieldAndFormat(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.format = builder.format;
 		this.includeUnmapped = builder.includeUnmapped;
 
 	}
 
-	public FieldAndFormat(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldAndFormat of(Function<Builder, ObjectBuilder<FieldAndFormat>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -74,7 +76,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -82,7 +84,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 	 * API name: {@code include_unmapped}
 	 */
 	@Nullable
-	public Boolean includeUnmapped() {
+	public final Boolean includeUnmapped() {
 		return this.includeUnmapped;
 	}
 
@@ -101,13 +103,11 @@ public final class FieldAndFormat implements JsonpSerializable {
 		generator.write(this.field);
 
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.includeUnmapped != null) {
-
 			generator.writeKey("include_unmapped");
 			generator.write(this.includeUnmapped);
 
@@ -120,7 +120,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldAndFormat}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldAndFormat> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldAndFormat> {
 		private String field;
 
 		@Nullable
@@ -132,7 +132,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -140,7 +140,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -148,7 +148,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 		/**
 		 * API name: {@code include_unmapped}
 		 */
-		public Builder includeUnmapped(@Nullable Boolean value) {
+		public final Builder includeUnmapped(@Nullable Boolean value) {
 			this.includeUnmapped = value;
 			return this;
 		}
@@ -160,6 +160,7 @@ public final class FieldAndFormat implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldAndFormat build() {
+			_checkSingleUse();
 
 			return new FieldAndFormat(this);
 		}

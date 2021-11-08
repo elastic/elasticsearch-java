@@ -36,10 +36,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -51,11 +51,10 @@ import javax.annotation.Nullable;
 
 // typedef: indices.put_settings.Request
 @JsonpDeserializable
-public final class PutSettingsRequest extends RequestBase implements JsonpSerializable {
+public class PutSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -64,7 +63,6 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
@@ -80,7 +78,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutSettingsRequest(Builder builder) {
+	private PutSettingsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -90,12 +88,12 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		this.masterTimeout = builder.masterTimeout;
 		this.preserveExisting = builder.preserveExisting;
 		this.timeout = builder.timeout;
-		this.settings = Objects.requireNonNull(builder.settings, "_value_body");
+		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public PutSettingsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutSettingsRequest of(Function<Builder, ObjectBuilder<PutSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,7 +104,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -116,8 +114,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -127,7 +124,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -138,7 +135,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -148,8 +145,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -159,7 +155,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -170,7 +166,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code preserve_existing}
 	 */
 	@Nullable
-	public Boolean preserveExisting() {
+	public final Boolean preserveExisting() {
 		return this.preserveExisting;
 	}
 
@@ -180,7 +176,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -189,7 +185,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public IndexSettings settings() {
+	public final IndexSettings settings() {
 		return this.settings;
 	}
 
@@ -206,7 +202,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link PutSettingsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutSettingsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutSettingsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -240,7 +236,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -251,7 +247,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -262,19 +258,8 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -283,7 +268,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -294,7 +279,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -305,7 +290,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -316,19 +301,8 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -337,7 +311,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -348,7 +322,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code preserve_existing}
 		 */
-		public Builder preserveExisting(@Nullable Boolean value) {
+		public final Builder preserveExisting(@Nullable Boolean value) {
 			this.preserveExisting = value;
 			return this;
 		}
@@ -358,7 +332,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -368,7 +342,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder settings(IndexSettings value) {
+		public final Builder settings(IndexSettings value) {
 			this.settings = value;
 			return this;
 		}
@@ -378,7 +352,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
 			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
@@ -389,6 +363,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public PutSettingsRequest build() {
+			_checkSingleUse();
 
 			return new PutSettingsRequest(this);
 		}
@@ -421,7 +396,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -449,9 +424,9 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

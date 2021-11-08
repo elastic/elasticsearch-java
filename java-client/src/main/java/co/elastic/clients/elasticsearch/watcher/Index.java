@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.Index
 @JsonpDeserializable
-public final class Index implements JsonpSerializable {
+public class Index implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -51,22 +53,22 @@ public final class Index implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Index(Builder builder) {
+	private Index(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.docId = builder.docId;
 		this.refresh = builder.refresh;
 
 	}
 
-	public Index(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Index of(Function<Builder, ObjectBuilder<Index>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -74,7 +76,7 @@ public final class Index implements JsonpSerializable {
 	 * API name: {@code doc_id}
 	 */
 	@Nullable
-	public String docId() {
+	public final String docId() {
 		return this.docId;
 	}
 
@@ -82,7 +84,7 @@ public final class Index implements JsonpSerializable {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -101,13 +103,11 @@ public final class Index implements JsonpSerializable {
 		generator.write(this.index);
 
 		if (this.docId != null) {
-
 			generator.writeKey("doc_id");
 			generator.write(this.docId);
 
 		}
 		if (this.refresh != null) {
-
 			generator.writeKey("refresh");
 			generator.write(this.refresh);
 
@@ -120,7 +120,7 @@ public final class Index implements JsonpSerializable {
 	/**
 	 * Builder for {@link Index}.
 	 */
-	public static class Builder implements ObjectBuilder<Index> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Index> {
 		private String index;
 
 		@Nullable
@@ -132,7 +132,7 @@ public final class Index implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -140,7 +140,7 @@ public final class Index implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_id}
 		 */
-		public Builder docId(@Nullable String value) {
+		public final Builder docId(@Nullable String value) {
 			this.docId = value;
 			return this;
 		}
@@ -148,7 +148,7 @@ public final class Index implements JsonpSerializable {
 		/**
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -160,6 +160,7 @@ public final class Index implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Index build() {
+			_checkSingleUse();
 
 			return new Index(this);
 		}

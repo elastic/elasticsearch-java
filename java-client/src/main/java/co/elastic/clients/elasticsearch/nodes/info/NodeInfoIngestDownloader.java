@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestDownloader
 @JsonpDeserializable
-public final class NodeInfoIngestDownloader implements JsonpSerializable {
+public class NodeInfoIngestDownloader implements JsonpSerializable {
 	private final String enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoIngestDownloader(Builder builder) {
+	private NodeInfoIngestDownloader(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public NodeInfoIngestDownloader(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoIngestDownloader of(Function<Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public String enabled() {
+	public final String enabled() {
 		return this.enabled;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngestDownloader}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoIngestDownloader> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestDownloader> {
 		private String enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(String value) {
+		public final Builder enabled(String value) {
 			this.enabled = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoIngestDownloader build() {
+			_checkSingleUse();
 
 			return new NodeInfoIngestDownloader(this);
 		}

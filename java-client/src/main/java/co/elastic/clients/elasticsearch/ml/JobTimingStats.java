@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.JobTimingStats
 @JsonpDeserializable
-public final class JobTimingStats implements JsonpSerializable {
+public class JobTimingStats implements JsonpSerializable {
 	private final double averageBucketProcessingTimeMs;
 
 	private final long bucketCount;
@@ -60,48 +62,48 @@ public final class JobTimingStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JobTimingStats(Builder builder) {
+	private JobTimingStats(Builder builder) {
 
-		this.averageBucketProcessingTimeMs = Objects.requireNonNull(builder.averageBucketProcessingTimeMs,
-				"average_bucket_processing_time_ms");
-		this.bucketCount = Objects.requireNonNull(builder.bucketCount, "bucket_count");
-		this.exponentialAverageBucketProcessingTimeMs = Objects.requireNonNull(
-				builder.exponentialAverageBucketProcessingTimeMs, "exponential_average_bucket_processing_time_ms");
-		this.exponentialAverageBucketProcessingTimePerHourMs = Objects.requireNonNull(
-				builder.exponentialAverageBucketProcessingTimePerHourMs,
-				"exponential_average_bucket_processing_time_per_hour_ms");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.totalBucketProcessingTimeMs = Objects.requireNonNull(builder.totalBucketProcessingTimeMs,
-				"total_bucket_processing_time_ms");
-		this.maximumBucketProcessingTimeMs = Objects.requireNonNull(builder.maximumBucketProcessingTimeMs,
-				"maximum_bucket_processing_time_ms");
-		this.minimumBucketProcessingTimeMs = Objects.requireNonNull(builder.minimumBucketProcessingTimeMs,
-				"minimum_bucket_processing_time_ms");
+		this.averageBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.averageBucketProcessingTimeMs, this,
+				"averageBucketProcessingTimeMs");
+		this.bucketCount = ModelTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
+		this.exponentialAverageBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(
+				builder.exponentialAverageBucketProcessingTimeMs, this, "exponentialAverageBucketProcessingTimeMs");
+		this.exponentialAverageBucketProcessingTimePerHourMs = ModelTypeHelper.requireNonNull(
+				builder.exponentialAverageBucketProcessingTimePerHourMs, this,
+				"exponentialAverageBucketProcessingTimePerHourMs");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.totalBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.totalBucketProcessingTimeMs, this,
+				"totalBucketProcessingTimeMs");
+		this.maximumBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.maximumBucketProcessingTimeMs, this,
+				"maximumBucketProcessingTimeMs");
+		this.minimumBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.minimumBucketProcessingTimeMs, this,
+				"minimumBucketProcessingTimeMs");
 
 	}
 
-	public JobTimingStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JobTimingStats of(Function<Builder, ObjectBuilder<JobTimingStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code average_bucket_processing_time_ms}
 	 */
-	public double averageBucketProcessingTimeMs() {
+	public final double averageBucketProcessingTimeMs() {
 		return this.averageBucketProcessingTimeMs;
 	}
 
 	/**
 	 * Required - API name: {@code bucket_count}
 	 */
-	public long bucketCount() {
+	public final long bucketCount() {
 		return this.bucketCount;
 	}
 
 	/**
 	 * Required - API name: {@code exponential_average_bucket_processing_time_ms}
 	 */
-	public double exponentialAverageBucketProcessingTimeMs() {
+	public final double exponentialAverageBucketProcessingTimeMs() {
 		return this.exponentialAverageBucketProcessingTimeMs;
 	}
 
@@ -109,35 +111,35 @@ public final class JobTimingStats implements JsonpSerializable {
 	 * Required - API name:
 	 * {@code exponential_average_bucket_processing_time_per_hour_ms}
 	 */
-	public double exponentialAverageBucketProcessingTimePerHourMs() {
+	public final double exponentialAverageBucketProcessingTimePerHourMs() {
 		return this.exponentialAverageBucketProcessingTimePerHourMs;
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
 	 * Required - API name: {@code total_bucket_processing_time_ms}
 	 */
-	public double totalBucketProcessingTimeMs() {
+	public final double totalBucketProcessingTimeMs() {
 		return this.totalBucketProcessingTimeMs;
 	}
 
 	/**
 	 * Required - API name: {@code maximum_bucket_processing_time_ms}
 	 */
-	public double maximumBucketProcessingTimeMs() {
+	public final double maximumBucketProcessingTimeMs() {
 		return this.maximumBucketProcessingTimeMs;
 	}
 
 	/**
 	 * Required - API name: {@code minimum_bucket_processing_time_ms}
 	 */
-	public double minimumBucketProcessingTimeMs() {
+	public final double minimumBucketProcessingTimeMs() {
 		return this.minimumBucketProcessingTimeMs;
 	}
 
@@ -183,7 +185,7 @@ public final class JobTimingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobTimingStats}.
 	 */
-	public static class Builder implements ObjectBuilder<JobTimingStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobTimingStats> {
 		private Double averageBucketProcessingTimeMs;
 
 		private Long bucketCount;
@@ -203,7 +205,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code average_bucket_processing_time_ms}
 		 */
-		public Builder averageBucketProcessingTimeMs(double value) {
+		public final Builder averageBucketProcessingTimeMs(double value) {
 			this.averageBucketProcessingTimeMs = value;
 			return this;
 		}
@@ -211,7 +213,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_count}
 		 */
-		public Builder bucketCount(long value) {
+		public final Builder bucketCount(long value) {
 			this.bucketCount = value;
 			return this;
 		}
@@ -219,7 +221,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exponential_average_bucket_processing_time_ms}
 		 */
-		public Builder exponentialAverageBucketProcessingTimeMs(double value) {
+		public final Builder exponentialAverageBucketProcessingTimeMs(double value) {
 			this.exponentialAverageBucketProcessingTimeMs = value;
 			return this;
 		}
@@ -228,7 +230,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		 * Required - API name:
 		 * {@code exponential_average_bucket_processing_time_per_hour_ms}
 		 */
-		public Builder exponentialAverageBucketProcessingTimePerHourMs(double value) {
+		public final Builder exponentialAverageBucketProcessingTimePerHourMs(double value) {
 			this.exponentialAverageBucketProcessingTimePerHourMs = value;
 			return this;
 		}
@@ -236,7 +238,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -244,7 +246,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_bucket_processing_time_ms}
 		 */
-		public Builder totalBucketProcessingTimeMs(double value) {
+		public final Builder totalBucketProcessingTimeMs(double value) {
 			this.totalBucketProcessingTimeMs = value;
 			return this;
 		}
@@ -252,7 +254,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code maximum_bucket_processing_time_ms}
 		 */
-		public Builder maximumBucketProcessingTimeMs(double value) {
+		public final Builder maximumBucketProcessingTimeMs(double value) {
 			this.maximumBucketProcessingTimeMs = value;
 			return this;
 		}
@@ -260,7 +262,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code minimum_bucket_processing_time_ms}
 		 */
-		public Builder minimumBucketProcessingTimeMs(double value) {
+		public final Builder minimumBucketProcessingTimeMs(double value) {
 			this.minimumBucketProcessingTimeMs = value;
 			return this;
 		}
@@ -272,6 +274,7 @@ public final class JobTimingStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JobTimingStats build() {
+			_checkSingleUse();
 
 			return new JobTimingStats(this);
 		}

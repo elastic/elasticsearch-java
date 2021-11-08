@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,59 +42,75 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WordDelimiterGraphTokenFilter
 @JsonpDeserializable
-public final class WordDelimiterGraphTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final boolean adjustOffsets;
+public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+	@Nullable
+	private final Boolean adjustOffsets;
 
-	private final boolean catenateAll;
+	@Nullable
+	private final Boolean catenateAll;
 
-	private final boolean catenateNumbers;
+	@Nullable
+	private final Boolean catenateNumbers;
 
-	private final boolean catenateWords;
+	@Nullable
+	private final Boolean catenateWords;
 
-	private final boolean generateNumberParts;
+	@Nullable
+	private final Boolean generateNumberParts;
 
-	private final boolean generateWordParts;
+	@Nullable
+	private final Boolean generateWordParts;
 
-	private final boolean preserveOriginal;
+	@Nullable
+	private final Boolean ignoreKeywords;
+
+	@Nullable
+	private final Boolean preserveOriginal;
 
 	private final List<String> protectedWords;
 
+	@Nullable
 	private final String protectedWordsPath;
 
-	private final boolean splitOnCaseChange;
+	@Nullable
+	private final Boolean splitOnCaseChange;
 
-	private final boolean splitOnNumerics;
+	@Nullable
+	private final Boolean splitOnNumerics;
 
-	private final boolean stemEnglishPossessive;
+	@Nullable
+	private final Boolean stemEnglishPossessive;
 
 	private final List<String> typeTable;
 
+	@Nullable
 	private final String typeTablePath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WordDelimiterGraphTokenFilter(Builder builder) {
+	private WordDelimiterGraphTokenFilter(Builder builder) {
 		super(builder);
 
-		this.adjustOffsets = Objects.requireNonNull(builder.adjustOffsets, "adjust_offsets");
-		this.catenateAll = Objects.requireNonNull(builder.catenateAll, "catenate_all");
-		this.catenateNumbers = Objects.requireNonNull(builder.catenateNumbers, "catenate_numbers");
-		this.catenateWords = Objects.requireNonNull(builder.catenateWords, "catenate_words");
-		this.generateNumberParts = Objects.requireNonNull(builder.generateNumberParts, "generate_number_parts");
-		this.generateWordParts = Objects.requireNonNull(builder.generateWordParts, "generate_word_parts");
-		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
-		this.protectedWords = ModelTypeHelper.unmodifiableNonNull(builder.protectedWords, "protected_words");
-		this.protectedWordsPath = Objects.requireNonNull(builder.protectedWordsPath, "protected_words_path");
-		this.splitOnCaseChange = Objects.requireNonNull(builder.splitOnCaseChange, "split_on_case_change");
-		this.splitOnNumerics = Objects.requireNonNull(builder.splitOnNumerics, "split_on_numerics");
-		this.stemEnglishPossessive = Objects.requireNonNull(builder.stemEnglishPossessive, "stem_english_possessive");
-		this.typeTable = ModelTypeHelper.unmodifiableNonNull(builder.typeTable, "type_table");
-		this.typeTablePath = Objects.requireNonNull(builder.typeTablePath, "type_table_path");
+		this.adjustOffsets = builder.adjustOffsets;
+		this.catenateAll = builder.catenateAll;
+		this.catenateNumbers = builder.catenateNumbers;
+		this.catenateWords = builder.catenateWords;
+		this.generateNumberParts = builder.generateNumberParts;
+		this.generateWordParts = builder.generateWordParts;
+		this.ignoreKeywords = builder.ignoreKeywords;
+		this.preserveOriginal = builder.preserveOriginal;
+		this.protectedWords = ModelTypeHelper.unmodifiable(builder.protectedWords);
+		this.protectedWordsPath = builder.protectedWordsPath;
+		this.splitOnCaseChange = builder.splitOnCaseChange;
+		this.splitOnNumerics = builder.splitOnNumerics;
+		this.stemEnglishPossessive = builder.stemEnglishPossessive;
+		this.typeTable = ModelTypeHelper.unmodifiable(builder.typeTable);
+		this.typeTablePath = builder.typeTablePath;
 
 	}
 
-	public WordDelimiterGraphTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WordDelimiterGraphTokenFilter of(Function<Builder, ObjectBuilder<WordDelimiterGraphTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,100 +122,120 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 	}
 
 	/**
-	 * Required - API name: {@code adjust_offsets}
+	 * API name: {@code adjust_offsets}
 	 */
-	public boolean adjustOffsets() {
+	@Nullable
+	public final Boolean adjustOffsets() {
 		return this.adjustOffsets;
 	}
 
 	/**
-	 * Required - API name: {@code catenate_all}
+	 * API name: {@code catenate_all}
 	 */
-	public boolean catenateAll() {
+	@Nullable
+	public final Boolean catenateAll() {
 		return this.catenateAll;
 	}
 
 	/**
-	 * Required - API name: {@code catenate_numbers}
+	 * API name: {@code catenate_numbers}
 	 */
-	public boolean catenateNumbers() {
+	@Nullable
+	public final Boolean catenateNumbers() {
 		return this.catenateNumbers;
 	}
 
 	/**
-	 * Required - API name: {@code catenate_words}
+	 * API name: {@code catenate_words}
 	 */
-	public boolean catenateWords() {
+	@Nullable
+	public final Boolean catenateWords() {
 		return this.catenateWords;
 	}
 
 	/**
-	 * Required - API name: {@code generate_number_parts}
+	 * API name: {@code generate_number_parts}
 	 */
-	public boolean generateNumberParts() {
+	@Nullable
+	public final Boolean generateNumberParts() {
 		return this.generateNumberParts;
 	}
 
 	/**
-	 * Required - API name: {@code generate_word_parts}
+	 * API name: {@code generate_word_parts}
 	 */
-	public boolean generateWordParts() {
+	@Nullable
+	public final Boolean generateWordParts() {
 		return this.generateWordParts;
 	}
 
 	/**
-	 * Required - API name: {@code preserve_original}
+	 * API name: {@code ignore_keywords}
 	 */
-	public boolean preserveOriginal() {
+	@Nullable
+	public final Boolean ignoreKeywords() {
+		return this.ignoreKeywords;
+	}
+
+	/**
+	 * API name: {@code preserve_original}
+	 */
+	@Nullable
+	public final Boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
 	/**
-	 * Required - API name: {@code protected_words}
+	 * API name: {@code protected_words}
 	 */
-	public List<String> protectedWords() {
+	public final List<String> protectedWords() {
 		return this.protectedWords;
 	}
 
 	/**
-	 * Required - API name: {@code protected_words_path}
+	 * API name: {@code protected_words_path}
 	 */
-	public String protectedWordsPath() {
+	@Nullable
+	public final String protectedWordsPath() {
 		return this.protectedWordsPath;
 	}
 
 	/**
-	 * Required - API name: {@code split_on_case_change}
+	 * API name: {@code split_on_case_change}
 	 */
-	public boolean splitOnCaseChange() {
+	@Nullable
+	public final Boolean splitOnCaseChange() {
 		return this.splitOnCaseChange;
 	}
 
 	/**
-	 * Required - API name: {@code split_on_numerics}
+	 * API name: {@code split_on_numerics}
 	 */
-	public boolean splitOnNumerics() {
+	@Nullable
+	public final Boolean splitOnNumerics() {
 		return this.splitOnNumerics;
 	}
 
 	/**
-	 * Required - API name: {@code stem_english_possessive}
+	 * API name: {@code stem_english_possessive}
 	 */
-	public boolean stemEnglishPossessive() {
+	@Nullable
+	public final Boolean stemEnglishPossessive() {
 		return this.stemEnglishPossessive;
 	}
 
 	/**
-	 * Required - API name: {@code type_table}
+	 * API name: {@code type_table}
 	 */
-	public List<String> typeTable() {
+	public final List<String> typeTable() {
 		return this.typeTable;
 	}
 
 	/**
-	 * Required - API name: {@code type_table_path}
+	 * API name: {@code type_table_path}
 	 */
-	public String typeTablePath() {
+	@Nullable
+	public final String typeTablePath() {
 		return this.typeTablePath;
 	}
 
@@ -208,58 +243,91 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 
 		generator.write("type", "word_delimiter_graph");
 		super.serializeInternal(generator, mapper);
-
-		generator.writeKey("adjust_offsets");
-		generator.write(this.adjustOffsets);
-
-		generator.writeKey("catenate_all");
-		generator.write(this.catenateAll);
-
-		generator.writeKey("catenate_numbers");
-		generator.write(this.catenateNumbers);
-
-		generator.writeKey("catenate_words");
-		generator.write(this.catenateWords);
-
-		generator.writeKey("generate_number_parts");
-		generator.write(this.generateNumberParts);
-
-		generator.writeKey("generate_word_parts");
-		generator.write(this.generateWordParts);
-
-		generator.writeKey("preserve_original");
-		generator.write(this.preserveOriginal);
-
-		generator.writeKey("protected_words");
-		generator.writeStartArray();
-		for (String item0 : this.protectedWords) {
-			generator.write(item0);
+		if (this.adjustOffsets != null) {
+			generator.writeKey("adjust_offsets");
+			generator.write(this.adjustOffsets);
 
 		}
-		generator.writeEnd();
-
-		generator.writeKey("protected_words_path");
-		generator.write(this.protectedWordsPath);
-
-		generator.writeKey("split_on_case_change");
-		generator.write(this.splitOnCaseChange);
-
-		generator.writeKey("split_on_numerics");
-		generator.write(this.splitOnNumerics);
-
-		generator.writeKey("stem_english_possessive");
-		generator.write(this.stemEnglishPossessive);
-
-		generator.writeKey("type_table");
-		generator.writeStartArray();
-		for (String item0 : this.typeTable) {
-			generator.write(item0);
+		if (this.catenateAll != null) {
+			generator.writeKey("catenate_all");
+			generator.write(this.catenateAll);
 
 		}
-		generator.writeEnd();
+		if (this.catenateNumbers != null) {
+			generator.writeKey("catenate_numbers");
+			generator.write(this.catenateNumbers);
 
-		generator.writeKey("type_table_path");
-		generator.write(this.typeTablePath);
+		}
+		if (this.catenateWords != null) {
+			generator.writeKey("catenate_words");
+			generator.write(this.catenateWords);
+
+		}
+		if (this.generateNumberParts != null) {
+			generator.writeKey("generate_number_parts");
+			generator.write(this.generateNumberParts);
+
+		}
+		if (this.generateWordParts != null) {
+			generator.writeKey("generate_word_parts");
+			generator.write(this.generateWordParts);
+
+		}
+		if (this.ignoreKeywords != null) {
+			generator.writeKey("ignore_keywords");
+			generator.write(this.ignoreKeywords);
+
+		}
+		if (this.preserveOriginal != null) {
+			generator.writeKey("preserve_original");
+			generator.write(this.preserveOriginal);
+
+		}
+		if (ModelTypeHelper.isDefined(this.protectedWords)) {
+			generator.writeKey("protected_words");
+			generator.writeStartArray();
+			for (String item0 : this.protectedWords) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.protectedWordsPath != null) {
+			generator.writeKey("protected_words_path");
+			generator.write(this.protectedWordsPath);
+
+		}
+		if (this.splitOnCaseChange != null) {
+			generator.writeKey("split_on_case_change");
+			generator.write(this.splitOnCaseChange);
+
+		}
+		if (this.splitOnNumerics != null) {
+			generator.writeKey("split_on_numerics");
+			generator.write(this.splitOnNumerics);
+
+		}
+		if (this.stemEnglishPossessive != null) {
+			generator.writeKey("stem_english_possessive");
+			generator.write(this.stemEnglishPossessive);
+
+		}
+		if (ModelTypeHelper.isDefined(this.typeTable)) {
+			generator.writeKey("type_table");
+			generator.writeStartArray();
+			for (String item0 : this.typeTable) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.typeTablePath != null) {
+			generator.writeKey("type_table_path");
+			generator.write(this.typeTablePath);
+
+		}
 
 	}
 
@@ -271,180 +339,183 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WordDelimiterGraphTokenFilter> {
+		@Nullable
 		private Boolean adjustOffsets;
 
+		@Nullable
 		private Boolean catenateAll;
 
+		@Nullable
 		private Boolean catenateNumbers;
 
+		@Nullable
 		private Boolean catenateWords;
 
+		@Nullable
 		private Boolean generateNumberParts;
 
+		@Nullable
 		private Boolean generateWordParts;
 
+		@Nullable
+		private Boolean ignoreKeywords;
+
+		@Nullable
 		private Boolean preserveOriginal;
 
+		@Nullable
 		private List<String> protectedWords;
 
+		@Nullable
 		private String protectedWordsPath;
 
+		@Nullable
 		private Boolean splitOnCaseChange;
 
+		@Nullable
 		private Boolean splitOnNumerics;
 
+		@Nullable
 		private Boolean stemEnglishPossessive;
 
+		@Nullable
 		private List<String> typeTable;
 
+		@Nullable
 		private String typeTablePath;
 
 		/**
-		 * Required - API name: {@code adjust_offsets}
+		 * API name: {@code adjust_offsets}
 		 */
-		public Builder adjustOffsets(boolean value) {
+		public final Builder adjustOffsets(@Nullable Boolean value) {
 			this.adjustOffsets = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code catenate_all}
+		 * API name: {@code catenate_all}
 		 */
-		public Builder catenateAll(boolean value) {
+		public final Builder catenateAll(@Nullable Boolean value) {
 			this.catenateAll = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code catenate_numbers}
+		 * API name: {@code catenate_numbers}
 		 */
-		public Builder catenateNumbers(boolean value) {
+		public final Builder catenateNumbers(@Nullable Boolean value) {
 			this.catenateNumbers = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code catenate_words}
+		 * API name: {@code catenate_words}
 		 */
-		public Builder catenateWords(boolean value) {
+		public final Builder catenateWords(@Nullable Boolean value) {
 			this.catenateWords = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code generate_number_parts}
+		 * API name: {@code generate_number_parts}
 		 */
-		public Builder generateNumberParts(boolean value) {
+		public final Builder generateNumberParts(@Nullable Boolean value) {
 			this.generateNumberParts = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code generate_word_parts}
+		 * API name: {@code generate_word_parts}
 		 */
-		public Builder generateWordParts(boolean value) {
+		public final Builder generateWordParts(@Nullable Boolean value) {
 			this.generateWordParts = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code preserve_original}
+		 * API name: {@code ignore_keywords}
 		 */
-		public Builder preserveOriginal(boolean value) {
+		public final Builder ignoreKeywords(@Nullable Boolean value) {
+			this.ignoreKeywords = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code preserve_original}
+		 */
+		public final Builder preserveOriginal(@Nullable Boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code protected_words}
+		 * API name: {@code protected_words}
 		 */
-		public Builder protectedWords(List<String> value) {
+		public final Builder protectedWords(@Nullable List<String> value) {
 			this.protectedWords = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code protected_words}
+		 * API name: {@code protected_words}
 		 */
-		public Builder protectedWords(String... value) {
+		public final Builder protectedWords(String... value) {
 			this.protectedWords = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #protectedWords(List)}, creating the list if needed.
+		 * API name: {@code protected_words_path}
 		 */
-		public Builder addProtectedWords(String value) {
-			if (this.protectedWords == null) {
-				this.protectedWords = new ArrayList<>();
-			}
-			this.protectedWords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code protected_words_path}
-		 */
-		public Builder protectedWordsPath(String value) {
+		public final Builder protectedWordsPath(@Nullable String value) {
 			this.protectedWordsPath = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code split_on_case_change}
+		 * API name: {@code split_on_case_change}
 		 */
-		public Builder splitOnCaseChange(boolean value) {
+		public final Builder splitOnCaseChange(@Nullable Boolean value) {
 			this.splitOnCaseChange = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code split_on_numerics}
+		 * API name: {@code split_on_numerics}
 		 */
-		public Builder splitOnNumerics(boolean value) {
+		public final Builder splitOnNumerics(@Nullable Boolean value) {
 			this.splitOnNumerics = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stem_english_possessive}
+		 * API name: {@code stem_english_possessive}
 		 */
-		public Builder stemEnglishPossessive(boolean value) {
+		public final Builder stemEnglishPossessive(@Nullable Boolean value) {
 			this.stemEnglishPossessive = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code type_table}
+		 * API name: {@code type_table}
 		 */
-		public Builder typeTable(List<String> value) {
+		public final Builder typeTable(@Nullable List<String> value) {
 			this.typeTable = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code type_table}
+		 * API name: {@code type_table}
 		 */
-		public Builder typeTable(String... value) {
+		public final Builder typeTable(String... value) {
 			this.typeTable = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #typeTable(List)}, creating the list if needed.
+		 * API name: {@code type_table_path}
 		 */
-		public Builder addTypeTable(String value) {
-			if (this.typeTable == null) {
-				this.typeTable = new ArrayList<>();
-			}
-			this.typeTable.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code type_table_path}
-		 */
-		public Builder typeTablePath(String value) {
+		public final Builder typeTablePath(@Nullable String value) {
 			this.typeTablePath = value;
 			return this;
 		}
@@ -461,6 +532,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		 *             if some of the required fields are null.
 		 */
 		public WordDelimiterGraphTokenFilter build() {
+			_checkSingleUse();
 
 			return new WordDelimiterGraphTokenFilter(this);
 		}
@@ -484,6 +556,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		op.add(Builder::catenateWords, JsonpDeserializer.booleanDeserializer(), "catenate_words");
 		op.add(Builder::generateNumberParts, JsonpDeserializer.booleanDeserializer(), "generate_number_parts");
 		op.add(Builder::generateWordParts, JsonpDeserializer.booleanDeserializer(), "generate_word_parts");
+		op.add(Builder::ignoreKeywords, JsonpDeserializer.booleanDeserializer(), "ignore_keywords");
 		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 		op.add(Builder::protectedWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"protected_words");

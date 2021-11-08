@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: autoscaling.delete_autoscaling_policy.Response
 @JsonpDeserializable
-public final class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseBase {
+public class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoscalingPolicyResponse(Builder builder) {
+	private DeleteAutoscalingPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAutoscalingPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoscalingPolicyResponse of(
+			Function<Builder, ObjectBuilder<DeleteAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoscalingPolicyResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAutoscalingPolicyResponse(this);
 		}

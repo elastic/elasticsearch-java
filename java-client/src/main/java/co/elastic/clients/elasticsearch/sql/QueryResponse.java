@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -45,8 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: sql.query.Response
 @JsonpDeserializable
-public final class QueryResponse implements JsonpSerializable {
-	@Nullable
+public class QueryResponse implements JsonpSerializable {
 	private final List<Column> columns;
 
 	@Nullable
@@ -56,23 +56,22 @@ public final class QueryResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryResponse(Builder builder) {
+	private QueryResponse(Builder builder) {
 
 		this.columns = ModelTypeHelper.unmodifiable(builder.columns);
 		this.cursor = builder.cursor;
-		this.rows = ModelTypeHelper.unmodifiableNonNull(builder.rows, "rows");
+		this.rows = ModelTypeHelper.unmodifiableRequired(builder.rows, this, "rows");
 
 	}
 
-	public QueryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryResponse of(Function<Builder, ObjectBuilder<QueryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code columns}
 	 */
-	@Nullable
-	public List<Column> columns() {
+	public final List<Column> columns() {
 		return this.columns;
 	}
 
@@ -80,14 +79,14 @@ public final class QueryResponse implements JsonpSerializable {
 	 * API name: {@code cursor}
 	 */
 	@Nullable
-	public String cursor() {
+	public final String cursor() {
 		return this.cursor;
 	}
 
 	/**
 	 * Required - API name: {@code rows}
 	 */
-	public List<List<JsonData>> rows() {
+	public final List<List<JsonData>> rows() {
 		return this.rows;
 	}
 
@@ -102,8 +101,7 @@ public final class QueryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.columns != null) {
-
+		if (ModelTypeHelper.isDefined(this.columns)) {
 			generator.writeKey("columns");
 			generator.writeStartArray();
 			for (Column item0 : this.columns) {
@@ -114,24 +112,27 @@ public final class QueryResponse implements JsonpSerializable {
 
 		}
 		if (this.cursor != null) {
-
 			generator.writeKey("cursor");
 			generator.write(this.cursor);
 
 		}
-
-		generator.writeKey("rows");
-		generator.writeStartArray();
-		for (List<JsonData> item0 : this.rows) {
+		if (ModelTypeHelper.isDefined(this.rows)) {
+			generator.writeKey("rows");
 			generator.writeStartArray();
-			for (JsonData item1 : item0) {
-				item1.serialize(generator, mapper);
+			for (List<JsonData> item0 : this.rows) {
+				generator.writeStartArray();
+				if (item0 != null) {
+					for (JsonData item1 : item0) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -140,7 +141,7 @@ public final class QueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryResponse> {
 		@Nullable
 		private List<Column> columns;
 
@@ -152,7 +153,7 @@ public final class QueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code columns}
 		 */
-		public Builder columns(@Nullable List<Column> value) {
+		public final Builder columns(@Nullable List<Column> value) {
 			this.columns = value;
 			return this;
 		}
@@ -160,40 +161,27 @@ public final class QueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code columns}
 		 */
-		public Builder columns(Column... value) {
+		public final Builder columns(Column... value) {
 			this.columns = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #columns(List)}, creating the list if needed.
+		 * API name: {@code columns}
 		 */
-		public Builder addColumns(Column value) {
-			if (this.columns == null) {
-				this.columns = new ArrayList<>();
+		@SafeVarargs
+		public final Builder columns(Function<Column.Builder, ObjectBuilder<Column>>... fns) {
+			this.columns = new ArrayList<>(fns.length);
+			for (Function<Column.Builder, ObjectBuilder<Column>> fn : fns) {
+				this.columns.add(fn.apply(new Column.Builder()).build());
 			}
-			this.columns.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #columns(List)} to a singleton list.
-		 */
-		public Builder columns(Function<Column.Builder, ObjectBuilder<Column>> fn) {
-			return this.columns(fn.apply(new Column.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #columns(List)}, creating the list if needed.
-		 */
-		public Builder addColumns(Function<Column.Builder, ObjectBuilder<Column>> fn) {
-			return this.addColumns(fn.apply(new Column.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code cursor}
 		 */
-		public Builder cursor(@Nullable String value) {
+		public final Builder cursor(@Nullable String value) {
 			this.cursor = value;
 			return this;
 		}
@@ -201,7 +189,7 @@ public final class QueryResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rows}
 		 */
-		public Builder rows(List<List<JsonData>> value) {
+		public final Builder rows(List<List<JsonData>> value) {
 			this.rows = value;
 			return this;
 		}
@@ -209,19 +197,8 @@ public final class QueryResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rows}
 		 */
-		public Builder rows(List<JsonData>... value) {
+		public final Builder rows(List<JsonData>... value) {
 			this.rows = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #rows(List)}, creating the list if needed.
-		 */
-		public Builder addRows(List<JsonData> value) {
-			if (this.rows == null) {
-				this.rows = new ArrayList<>();
-			}
-			this.rows.add(value);
 			return this;
 		}
 
@@ -232,6 +209,7 @@ public final class QueryResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public QueryResponse build() {
+			_checkSingleUse();
 
 			return new QueryResponse(this);
 		}

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
@@ -49,7 +50,7 @@ public abstract class QueryBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryBase(AbstractBuilder<?> builder) {
+	protected QueryBase(AbstractBuilder<?> builder) {
 
 		this.boost = builder.boost;
 		this.queryName = builder.queryName;
@@ -60,7 +61,7 @@ public abstract class QueryBase implements JsonpSerializable {
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Float boost() {
+	public final Float boost() {
 		return this.boost;
 	}
 
@@ -68,7 +69,7 @@ public abstract class QueryBase implements JsonpSerializable {
 	 * API name: {@code _name}
 	 */
 	@Nullable
-	public String queryName() {
+	public final String queryName() {
 		return this.queryName;
 	}
 
@@ -84,13 +85,11 @@ public abstract class QueryBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.queryName != null) {
-
 			generator.writeKey("_name");
 			generator.write(this.queryName);
 
@@ -98,7 +97,9 @@ public abstract class QueryBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Float boost;
 
@@ -108,7 +109,7 @@ public abstract class QueryBase implements JsonpSerializable {
 		/**
 		 * API name: {@code boost}
 		 */
-		public BuilderT boost(@Nullable Float value) {
+		public final BuilderT boost(@Nullable Float value) {
 			this.boost = value;
 			return self();
 		}
@@ -116,7 +117,7 @@ public abstract class QueryBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _name}
 		 */
-		public BuilderT queryName(@Nullable String value) {
+		public final BuilderT queryName(@Nullable String value) {
 			this.queryName = value;
 			return self();
 		}

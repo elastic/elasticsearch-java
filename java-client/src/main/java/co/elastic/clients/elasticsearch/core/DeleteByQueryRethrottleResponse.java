@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: _global.delete_by_query_rethrottle.Response
 @JsonpDeserializable
-public final class DeleteByQueryRethrottleResponse extends ListResponse {
+public class DeleteByQueryRethrottleResponse extends ListResponse {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteByQueryRethrottleResponse(Builder builder) {
+	private DeleteByQueryRethrottleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteByQueryRethrottleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteByQueryRethrottleResponse of(
+			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class DeleteByQueryRethrottleResponse extends ListResponse {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteByQueryRethrottleResponse build() {
+			_checkSingleUse();
 
 			return new DeleteByQueryRethrottleResponse(this);
 		}

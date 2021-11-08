@@ -34,23 +34,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UaxEmailUrlTokenizer
 @JsonpDeserializable
-public final class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final int maxTokenLength;
+public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVariant {
+	@Nullable
+	private final Integer maxTokenLength;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UaxEmailUrlTokenizer(Builder builder) {
+	private UaxEmailUrlTokenizer(Builder builder) {
 		super(builder);
 
-		this.maxTokenLength = Objects.requireNonNull(builder.maxTokenLength, "max_token_length");
+		this.maxTokenLength = builder.maxTokenLength;
 
 	}
 
-	public UaxEmailUrlTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UaxEmailUrlTokenizer of(Function<Builder, ObjectBuilder<UaxEmailUrlTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,9 +64,10 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 	}
 
 	/**
-	 * Required - API name: {@code max_token_length}
+	 * API name: {@code max_token_length}
 	 */
-	public int maxTokenLength() {
+	@Nullable
+	public final Integer maxTokenLength() {
 		return this.maxTokenLength;
 	}
 
@@ -72,9 +75,11 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 
 		generator.write("type", "uax_url_email");
 		super.serializeInternal(generator, mapper);
+		if (this.maxTokenLength != null) {
+			generator.writeKey("max_token_length");
+			generator.write(this.maxTokenLength);
 
-		generator.writeKey("max_token_length");
-		generator.write(this.maxTokenLength);
+		}
 
 	}
 
@@ -86,12 +91,13 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UaxEmailUrlTokenizer> {
+		@Nullable
 		private Integer maxTokenLength;
 
 		/**
-		 * Required - API name: {@code max_token_length}
+		 * API name: {@code max_token_length}
 		 */
-		public Builder maxTokenLength(int value) {
+		public final Builder maxTokenLength(@Nullable Integer value) {
 			this.maxTokenLength = value;
 			return this;
 		}
@@ -108,6 +114,7 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 		 *             if some of the required fields are null.
 		 */
 		public UaxEmailUrlTokenizer build() {
+			_checkSingleUse();
 
 			return new UaxEmailUrlTokenizer(this);
 		}

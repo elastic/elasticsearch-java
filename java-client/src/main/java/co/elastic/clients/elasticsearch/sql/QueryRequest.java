@@ -36,6 +36,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
 @JsonpDeserializable
-public final class QueryRequest extends RequestBase implements JsonpSerializable {
+public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean columnar;
 
@@ -81,7 +82,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryRequest(Builder builder) {
+	private QueryRequest(Builder builder) {
 
 		this.columnar = builder.columnar;
 		this.cursor = builder.cursor;
@@ -96,15 +97,15 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public QueryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryRequest of(Function<Builder, ObjectBuilder<QueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code columnar}
 	 */
 	@Nullable
-	public Boolean columnar() {
+	public final Boolean columnar() {
 		return this.columnar;
 	}
 
@@ -112,7 +113,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code cursor}
 	 */
 	@Nullable
-	public String cursor() {
+	public final String cursor() {
 		return this.cursor;
 	}
 
@@ -122,7 +123,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Integer fetchSize() {
+	public final Integer fetchSize() {
 		return this.fetchSize;
 	}
 
@@ -134,7 +135,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code field_multi_value_leniency}
 	 */
 	@Nullable
-	public Boolean fieldMultiValueLeniency() {
+	public final Boolean fieldMultiValueLeniency() {
 		return this.fieldMultiValueLeniency;
 	}
 
@@ -144,7 +145,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
@@ -154,7 +155,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -164,7 +165,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code page_timeout}
 	 */
 	@Nullable
-	public String pageTimeout() {
+	public final String pageTimeout() {
 		return this.pageTimeout;
 	}
 
@@ -174,7 +175,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -184,7 +185,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code request_timeout}
 	 */
 	@Nullable
-	public String requestTimeout() {
+	public final String requestTimeout() {
 		return this.requestTimeout;
 	}
 
@@ -195,7 +196,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -211,55 +212,46 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.columnar != null) {
-
 			generator.writeKey("columnar");
 			generator.write(this.columnar);
 
 		}
 		if (this.cursor != null) {
-
 			generator.writeKey("cursor");
 			generator.write(this.cursor);
 
 		}
 		if (this.fetchSize != null) {
-
 			generator.writeKey("fetch_size");
 			generator.write(this.fetchSize);
 
 		}
 		if (this.fieldMultiValueLeniency != null) {
-
 			generator.writeKey("field_multi_value_leniency");
 			generator.write(this.fieldMultiValueLeniency);
 
 		}
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.pageTimeout != null) {
-
 			generator.writeKey("page_timeout");
 			generator.write(this.pageTimeout);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			generator.write(this.query);
 
 		}
 		if (this.requestTimeout != null) {
-
 			generator.writeKey("request_timeout");
 			generator.write(this.requestTimeout);
 
 		}
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
@@ -272,7 +264,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link QueryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryRequest> {
 		@Nullable
 		private Boolean columnar;
 
@@ -306,7 +298,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code columnar}
 		 */
-		public Builder columnar(@Nullable Boolean value) {
+		public final Builder columnar(@Nullable Boolean value) {
 			this.columnar = value;
 			return this;
 		}
@@ -314,7 +306,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code cursor}
 		 */
-		public Builder cursor(@Nullable String value) {
+		public final Builder cursor(@Nullable String value) {
 			this.cursor = value;
 			return this;
 		}
@@ -324,7 +316,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Integer value) {
+		public final Builder fetchSize(@Nullable Integer value) {
 			this.fetchSize = value;
 			return this;
 		}
@@ -336,7 +328,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code field_multi_value_leniency}
 		 */
-		public Builder fieldMultiValueLeniency(@Nullable Boolean value) {
+		public final Builder fieldMultiValueLeniency(@Nullable Boolean value) {
 			this.fieldMultiValueLeniency = value;
 			return this;
 		}
@@ -346,7 +338,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -356,7 +348,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
@@ -365,7 +357,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -375,7 +367,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code page_timeout}
 		 */
-		public Builder pageTimeout(@Nullable String value) {
+		public final Builder pageTimeout(@Nullable String value) {
 			this.pageTimeout = value;
 			return this;
 		}
@@ -385,7 +377,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public final Builder query(@Nullable String value) {
 			this.query = value;
 			return this;
 		}
@@ -395,7 +387,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code request_timeout}
 		 */
-		public Builder requestTimeout(@Nullable String value) {
+		public final Builder requestTimeout(@Nullable String value) {
 			this.requestTimeout = value;
 			return this;
 		}
@@ -406,7 +398,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -418,6 +410,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public QueryRequest build() {
+			_checkSingleUse();
 
 			return new QueryRequest(this);
 		}

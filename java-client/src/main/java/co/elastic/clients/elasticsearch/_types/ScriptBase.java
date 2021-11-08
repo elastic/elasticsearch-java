@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,12 +47,11 @@ public abstract class ScriptBase implements JsonpSerializable {
 	@Nullable
 	private final ScriptLanguage lang;
 
-	@Nullable
 	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptBase(AbstractBuilder<?> builder) {
+	protected ScriptBase(AbstractBuilder<?> builder) {
 
 		this.lang = builder.lang;
 		this.params = ModelTypeHelper.unmodifiable(builder.params);
@@ -63,15 +62,14 @@ public abstract class ScriptBase implements JsonpSerializable {
 	 * API name: {@code lang}
 	 */
 	@Nullable
-	public ScriptLanguage lang() {
+	public final ScriptLanguage lang() {
 		return this.lang;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -87,12 +85,10 @@ public abstract class ScriptBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.lang != null) {
-
 			generator.writeKey("lang");
 			this.lang.serialize(generator, mapper);
 		}
-		if (this.params != null) {
-
+		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -106,7 +102,9 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private ScriptLanguage lang;
 
@@ -116,7 +114,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 		/**
 		 * API name: {@code lang}
 		 */
-		public BuilderT lang(@Nullable ScriptLanguage value) {
+		public final BuilderT lang(@Nullable ScriptLanguage value) {
 			this.lang = value;
 			return self();
 		}
@@ -124,19 +122,8 @@ public abstract class ScriptBase implements JsonpSerializable {
 		/**
 		 * API name: {@code params}
 		 */
-		public BuilderT params(@Nullable Map<String, JsonData> value) {
+		public final BuilderT params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public BuilderT putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
 			return self();
 		}
 

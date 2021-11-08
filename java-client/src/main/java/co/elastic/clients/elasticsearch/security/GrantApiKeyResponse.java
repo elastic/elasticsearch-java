@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.Response
 @JsonpDeserializable
-public final class GrantApiKeyResponse implements JsonpSerializable {
+public class GrantApiKeyResponse implements JsonpSerializable {
 	private final String apiKey;
 
 	private final String id;
@@ -51,37 +53,37 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GrantApiKeyResponse(Builder builder) {
+	private GrantApiKeyResponse(Builder builder) {
 
-		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.apiKey = ModelTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
 
 	}
 
-	public GrantApiKeyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GrantApiKeyResponse of(Function<Builder, ObjectBuilder<GrantApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code api_key}
 	 */
-	public String apiKey() {
+	public final String apiKey() {
 		return this.apiKey;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -89,7 +91,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public String expiration() {
+	public final String expiration() {
 		return this.expiration;
 	}
 
@@ -114,7 +116,6 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		generator.write(this.name);
 
 		if (this.expiration != null) {
-
 			generator.writeKey("expiration");
 			generator.write(this.expiration);
 
@@ -127,7 +128,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GrantApiKeyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GrantApiKeyResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GrantApiKeyResponse> {
 		private String apiKey;
 
 		private String id;
@@ -140,7 +141,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public Builder apiKey(String value) {
+		public final Builder apiKey(String value) {
 			this.apiKey = value;
 			return this;
 		}
@@ -148,7 +149,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -156,7 +157,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -164,7 +165,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable String value) {
+		public final Builder expiration(@Nullable String value) {
 			this.expiration = value;
 			return this;
 		}
@@ -176,6 +177,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GrantApiKeyResponse build() {
+			_checkSingleUse();
 
 			return new GrantApiKeyResponse(this);
 		}

@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Response
 @JsonpDeserializable
-public final class EvaluateDataFrameResponse implements JsonpSerializable {
+public class EvaluateDataFrameResponse implements JsonpSerializable {
 	@Nullable
 	private final DataframeClassificationSummary classification;
 
@@ -53,7 +54,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EvaluateDataFrameResponse(Builder builder) {
+	private EvaluateDataFrameResponse(Builder builder) {
 
 		this.classification = builder.classification;
 		this.outlierDetection = builder.outlierDetection;
@@ -61,15 +62,15 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 
 	}
 
-	public EvaluateDataFrameResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EvaluateDataFrameResponse of(Function<Builder, ObjectBuilder<EvaluateDataFrameResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code classification}
 	 */
 	@Nullable
-	public DataframeClassificationSummary classification() {
+	public final DataframeClassificationSummary classification() {
 		return this.classification;
 	}
 
@@ -77,7 +78,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 	 * API name: {@code outlier_detection}
 	 */
 	@Nullable
-	public DataframeOutlierDetectionSummary outlierDetection() {
+	public final DataframeOutlierDetectionSummary outlierDetection() {
 		return this.outlierDetection;
 	}
 
@@ -85,7 +86,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 	 * API name: {@code regression}
 	 */
 	@Nullable
-	public DataframeRegressionSummary regression() {
+	public final DataframeRegressionSummary regression() {
 		return this.regression;
 	}
 
@@ -101,19 +102,16 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.classification != null) {
-
 			generator.writeKey("classification");
 			this.classification.serialize(generator, mapper);
 
 		}
 		if (this.outlierDetection != null) {
-
 			generator.writeKey("outlier_detection");
 			this.outlierDetection.serialize(generator, mapper);
 
 		}
 		if (this.regression != null) {
-
 			generator.writeKey("regression");
 			this.regression.serialize(generator, mapper);
 
@@ -126,7 +124,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link EvaluateDataFrameResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<EvaluateDataFrameResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EvaluateDataFrameResponse> {
 		@Nullable
 		private DataframeClassificationSummary classification;
 
@@ -139,7 +137,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code classification}
 		 */
-		public Builder classification(@Nullable DataframeClassificationSummary value) {
+		public final Builder classification(@Nullable DataframeClassificationSummary value) {
 			this.classification = value;
 			return this;
 		}
@@ -147,7 +145,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code classification}
 		 */
-		public Builder classification(
+		public final Builder classification(
 				Function<DataframeClassificationSummary.Builder, ObjectBuilder<DataframeClassificationSummary>> fn) {
 			return this.classification(fn.apply(new DataframeClassificationSummary.Builder()).build());
 		}
@@ -155,7 +153,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code outlier_detection}
 		 */
-		public Builder outlierDetection(@Nullable DataframeOutlierDetectionSummary value) {
+		public final Builder outlierDetection(@Nullable DataframeOutlierDetectionSummary value) {
 			this.outlierDetection = value;
 			return this;
 		}
@@ -163,7 +161,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code outlier_detection}
 		 */
-		public Builder outlierDetection(
+		public final Builder outlierDetection(
 				Function<DataframeOutlierDetectionSummary.Builder, ObjectBuilder<DataframeOutlierDetectionSummary>> fn) {
 			return this.outlierDetection(fn.apply(new DataframeOutlierDetectionSummary.Builder()).build());
 		}
@@ -171,7 +169,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public Builder regression(@Nullable DataframeRegressionSummary value) {
+		public final Builder regression(@Nullable DataframeRegressionSummary value) {
 			this.regression = value;
 			return this;
 		}
@@ -179,7 +177,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public Builder regression(
+		public final Builder regression(
 				Function<DataframeRegressionSummary.Builder, ObjectBuilder<DataframeRegressionSummary>> fn) {
 			return this.regression(fn.apply(new DataframeRegressionSummary.Builder()).build());
 		}
@@ -191,6 +189,7 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EvaluateDataFrameResponse build() {
+			_checkSingleUse();
 
 			return new EvaluateDataFrameResponse(this);
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cat.help.Request
 
-public final class HelpRequest extends CatRequestBase {
+public class HelpRequest extends CatRequestBase {
 	public HelpRequest() {
 	}
 

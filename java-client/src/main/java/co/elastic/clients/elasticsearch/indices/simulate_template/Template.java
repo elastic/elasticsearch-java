@@ -33,14 +33,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Template
 @JsonpDeserializable
-public final class Template implements JsonpSerializable {
+public class Template implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
 
 	private final TypeMapping mappings;
@@ -60,44 +61,44 @@ public final class Template implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Template(Builder builder) {
+	private Template(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
-		this.settings = ModelTypeHelper.unmodifiableNonNull(builder.settings, "settings");
-		this.overlapping = ModelTypeHelper.unmodifiableNonNull(builder.overlapping, "overlapping");
+		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.settings = ModelTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
+		this.overlapping = ModelTypeHelper.unmodifiableRequired(builder.overlapping, this, "overlapping");
 
 	}
 
-	public Template(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Template of(Function<Builder, ObjectBuilder<Template>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code aliases}
 	 */
-	public Map<String, Alias> aliases() {
+	public final Map<String, Alias> aliases() {
 		return this.aliases;
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
 	/**
 	 * Required - API name: {@code settings}
 	 */
-	public Map<String, JsonData> settings() {
+	public final Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
 	 * Required - API name: {@code overlapping}
 	 */
-	public List<Overlapping> overlapping() {
+	public final List<Overlapping> overlapping() {
 		return this.overlapping;
 	}
 
@@ -112,34 +113,41 @@ public final class Template implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("aliases");
-		generator.writeStartObject();
-		for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartObject();
+			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("mappings");
 		this.mappings.serialize(generator, mapper);
 
-		generator.writeKey("settings");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.settings)) {
+			generator.writeKey("settings");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.overlapping)) {
+			generator.writeKey("overlapping");
+			generator.writeStartArray();
+			for (Overlapping item0 : this.overlapping) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("overlapping");
-		generator.writeStartArray();
-		for (Overlapping item0 : this.overlapping) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -148,7 +156,7 @@ public final class Template implements JsonpSerializable {
 	/**
 	 * Builder for {@link Template}.
 	 */
-	public static class Builder implements ObjectBuilder<Template> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Template> {
 		private Map<String, Alias> aliases;
 
 		private TypeMapping mappings;
@@ -160,19 +168,8 @@ public final class Template implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aliases}
 		 */
-		public Builder aliases(Map<String, Alias> value) {
+		public final Builder aliases(Map<String, Alias> value) {
 			this.aliases = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Alias value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
 			return this;
 		}
 
@@ -183,17 +180,15 @@ public final class Template implements JsonpSerializable {
 			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
+		public final Builder aliases(
+				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
+			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(TypeMapping value) {
+		public final Builder mappings(TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -201,33 +196,22 @@ public final class Template implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public Builder settings(Map<String, JsonData> value) {
+		public final Builder settings(Map<String, JsonData> value) {
 			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
-		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code overlapping}
 		 */
-		public Builder overlapping(List<Overlapping> value) {
+		public final Builder overlapping(List<Overlapping> value) {
 			this.overlapping = value;
 			return this;
 		}
@@ -235,34 +219,21 @@ public final class Template implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code overlapping}
 		 */
-		public Builder overlapping(Overlapping... value) {
+		public final Builder overlapping(Overlapping... value) {
 			this.overlapping = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Required - API name: {@code overlapping}
 		 */
-		public Builder addOverlapping(Overlapping value) {
-			if (this.overlapping == null) {
-				this.overlapping = new ArrayList<>();
+		@SafeVarargs
+		public final Builder overlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>>... fns) {
+			this.overlapping = new ArrayList<>(fns.length);
+			for (Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn : fns) {
+				this.overlapping.add(fn.apply(new Overlapping.Builder()).build());
 			}
-			this.overlapping.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #overlapping(List)} to a singleton list.
-		 */
-		public Builder overlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
-			return this.overlapping(fn.apply(new Overlapping.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
-		 */
-		public Builder addOverlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
-			return this.addOverlapping(fn.apply(new Overlapping.Builder()).build());
 		}
 
 		/**
@@ -272,6 +243,7 @@ public final class Template implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Template build() {
+			_checkSingleUse();
 
 			return new Template(this);
 		}

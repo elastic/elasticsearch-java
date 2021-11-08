@@ -29,12 +29,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,54 +42,56 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.stats.Response
 @JsonpDeserializable
-public final class NodesStatsResponse extends NodesResponseBase {
+public class NodesStatsResponse extends NodesResponseBase {
 	private final String clusterName;
 
 	private final Map<String, Stats> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesStatsResponse(Builder builder) {
+	private NodesStatsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public NodesStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodesStatsResponse of(Function<Builder, ObjectBuilder<NodesStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, Stats> nodes() {
+	public final Map<String, Stats> nodes() {
 		return this.nodes;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, Stats> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, Stats> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -108,7 +110,7 @@ public final class NodesStatsResponse extends NodesResponseBase {
 		/**
 		 * Required - API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -116,19 +118,8 @@ public final class NodesStatsResponse extends NodesResponseBase {
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(Map<String, Stats> value) {
+		public final Builder nodes(Map<String, Stats> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Stats value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -139,11 +130,9 @@ public final class NodesStatsResponse extends NodesResponseBase {
 			return this.nodes(Collections.singletonMap(key, fn.apply(new Stats.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Function<Stats.Builder, ObjectBuilder<Stats>> fn) {
-			return this.putNodes(key, fn.apply(new Stats.Builder()).build());
+		public final Builder nodes(
+				Function<MapBuilder<String, Stats, Stats.Builder>, ObjectBuilder<Map<String, Stats>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(Stats.Builder::new)).build());
 		}
 
 		@Override
@@ -158,6 +147,7 @@ public final class NodesStatsResponse extends NodesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public NodesStatsResponse build() {
+			_checkSingleUse();
 
 			return new NodesStatsResponse(this);
 		}

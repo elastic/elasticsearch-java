@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,10 +40,11 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataDescription
 @JsonpDeserializable
-public final class DataDescription implements JsonpSerializable {
+public class DataDescription implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
+	@Nullable
 	private final String timeField;
 
 	@Nullable
@@ -53,17 +55,17 @@ public final class DataDescription implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataDescription(Builder builder) {
+	private DataDescription(Builder builder) {
 
 		this.format = builder.format;
-		this.timeField = Objects.requireNonNull(builder.timeField, "time_field");
+		this.timeField = builder.timeField;
 		this.timeFormat = builder.timeFormat;
 		this.fieldDelimiter = builder.fieldDelimiter;
 
 	}
 
-	public DataDescription(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataDescription of(Function<Builder, ObjectBuilder<DataDescription>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,16 +74,17 @@ public final class DataDescription implements JsonpSerializable {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
 	/**
-	 * Required - The name of the field that contains the timestamp.
+	 * The name of the field that contains the timestamp.
 	 * <p>
 	 * API name: {@code time_field}
 	 */
-	public String timeField() {
+	@Nullable
+	public final String timeField() {
 		return this.timeField;
 	}
 
@@ -94,13 +97,13 @@ public final class DataDescription implements JsonpSerializable {
 	 * integer or real values. Custom patterns must conform to the Java
 	 * DateTimeFormatter class. When you use date-time formatting patterns, it is
 	 * recommended that you provide the full date, time and time zone. For example:
-	 * yyyy-MM-dd'T'HH:mm:ssX. If the pattern that you specify is not sufficient to
-	 * produce a complete timestamp, job creation fails.
+	 * <code>yyyy-MM-dd'T'HH:mm:ssX</code>. If the pattern that you specify is not
+	 * sufficient to produce a complete timestamp, job creation fails.
 	 * <p>
 	 * API name: {@code time_format}
 	 */
 	@Nullable
-	public String timeFormat() {
+	public final String timeFormat() {
 		return this.timeFormat;
 	}
 
@@ -108,7 +111,7 @@ public final class DataDescription implements JsonpSerializable {
 	 * API name: {@code field_delimiter}
 	 */
 	@Nullable
-	public String fieldDelimiter() {
+	public final String fieldDelimiter() {
 		return this.fieldDelimiter;
 	}
 
@@ -124,23 +127,21 @@ public final class DataDescription implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
+		if (this.timeField != null) {
+			generator.writeKey("time_field");
+			generator.write(this.timeField);
 
-		generator.writeKey("time_field");
-		generator.write(this.timeField);
-
+		}
 		if (this.timeFormat != null) {
-
 			generator.writeKey("time_format");
 			generator.write(this.timeFormat);
 
 		}
 		if (this.fieldDelimiter != null) {
-
 			generator.writeKey("field_delimiter");
 			generator.write(this.fieldDelimiter);
 
@@ -153,10 +154,11 @@ public final class DataDescription implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataDescription}.
 	 */
-	public static class Builder implements ObjectBuilder<DataDescription> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataDescription> {
 		@Nullable
 		private String format;
 
+		@Nullable
 		private String timeField;
 
 		@Nullable
@@ -170,17 +172,17 @@ public final class DataDescription implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
 
 		/**
-		 * Required - The name of the field that contains the timestamp.
+		 * The name of the field that contains the timestamp.
 		 * <p>
 		 * API name: {@code time_field}
 		 */
-		public Builder timeField(String value) {
+		public final Builder timeField(@Nullable String value) {
 			this.timeField = value;
 			return this;
 		}
@@ -194,12 +196,12 @@ public final class DataDescription implements JsonpSerializable {
 		 * integer or real values. Custom patterns must conform to the Java
 		 * DateTimeFormatter class. When you use date-time formatting patterns, it is
 		 * recommended that you provide the full date, time and time zone. For example:
-		 * yyyy-MM-dd'T'HH:mm:ssX. If the pattern that you specify is not sufficient to
-		 * produce a complete timestamp, job creation fails.
+		 * <code>yyyy-MM-dd'T'HH:mm:ssX</code>. If the pattern that you specify is not
+		 * sufficient to produce a complete timestamp, job creation fails.
 		 * <p>
 		 * API name: {@code time_format}
 		 */
-		public Builder timeFormat(@Nullable String value) {
+		public final Builder timeFormat(@Nullable String value) {
 			this.timeFormat = value;
 			return this;
 		}
@@ -207,7 +209,7 @@ public final class DataDescription implements JsonpSerializable {
 		/**
 		 * API name: {@code field_delimiter}
 		 */
-		public Builder fieldDelimiter(@Nullable String value) {
+		public final Builder fieldDelimiter(@Nullable String value) {
 			this.fieldDelimiter = value;
 			return this;
 		}
@@ -219,6 +221,7 @@ public final class DataDescription implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataDescription build() {
+			_checkSingleUse();
 
 			return new DataDescription(this);
 		}

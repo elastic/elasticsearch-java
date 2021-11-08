@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.deactivate_watch.Request
 
-public final class DeactivateWatchRequest extends RequestBase {
+public class DeactivateWatchRequest extends RequestBase {
 	private final String watchId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeactivateWatchRequest(Builder builder) {
+	private DeactivateWatchRequest(Builder builder) {
 
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
+		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
-	public DeactivateWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeactivateWatchRequest of(Function<Builder, ObjectBuilder<DeactivateWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeactivateWatchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code watch_id}
 	 */
-	public String watchId() {
+	public final String watchId() {
 		return this.watchId;
 	}
 
@@ -70,7 +72,7 @@ public final class DeactivateWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeactivateWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeactivateWatchRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeactivateWatchRequest> {
 		private String watchId;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeactivateWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code watch_id}
 		 */
-		public Builder watchId(String value) {
+		public final Builder watchId(String value) {
 			this.watchId = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeactivateWatchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeactivateWatchRequest build() {
+			_checkSingleUse();
 
 			return new DeactivateWatchRequest(this);
 		}

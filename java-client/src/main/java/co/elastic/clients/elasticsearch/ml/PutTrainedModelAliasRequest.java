@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model_alias.Request
 
-public final class PutTrainedModelAliasRequest extends RequestBase {
+public class PutTrainedModelAliasRequest extends RequestBase {
 	private final String modelAlias;
 
 	private final String modelId;
@@ -53,16 +55,16 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTrainedModelAliasRequest(Builder builder) {
+	private PutTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = Objects.requireNonNull(builder.modelAlias, "model_alias");
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.modelAlias = ModelTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
+		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.reassign = builder.reassign;
 
 	}
 
-	public PutTrainedModelAliasRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTrainedModelAliasRequest of(Function<Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +72,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_alias}
 	 */
-	public String modelAlias() {
+	public final String modelAlias() {
 		return this.modelAlias;
 	}
 
@@ -79,7 +81,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -91,7 +93,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * API name: {@code reassign}
 	 */
 	@Nullable
-	public Boolean reassign() {
+	public final Boolean reassign() {
 		return this.reassign;
 	}
 
@@ -100,7 +102,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutTrainedModelAliasRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutTrainedModelAliasRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelAliasRequest> {
 		private String modelAlias;
 
 		private String modelId;
@@ -113,7 +115,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_alias}
 		 */
-		public Builder modelAlias(String value) {
+		public final Builder modelAlias(String value) {
 			this.modelAlias = value;
 			return this;
 		}
@@ -123,7 +125,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -135,7 +137,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code reassign}
 		 */
-		public Builder reassign(@Nullable Boolean value) {
+		public final Builder reassign(@Nullable Boolean value) {
 			this.reassign = value;
 			return this;
 		}
@@ -147,6 +149,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutTrainedModelAliasRequest build() {
+			_checkSingleUse();
 
 			return new PutTrainedModelAliasRequest(this);
 		}

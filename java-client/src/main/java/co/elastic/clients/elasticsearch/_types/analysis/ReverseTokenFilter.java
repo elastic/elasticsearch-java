@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.ReverseTokenFilter
 @JsonpDeserializable
-public final class ReverseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public ReverseTokenFilter(Builder builder) {
+	private ReverseTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public ReverseTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReverseTokenFilter of(Function<Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class ReverseTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public ReverseTokenFilter build() {
+			_checkSingleUse();
 
 			return new ReverseTokenFilter(this);
 		}

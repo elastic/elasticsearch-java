@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
 @JsonpDeserializable
-public final class NodeInfoSettingsTransport implements JsonpSerializable {
+public class NodeInfoSettingsTransport implements JsonpSerializable {
 	private final NodeInfoSettingsTransportType type;
 
 	@Nullable
@@ -50,22 +52,22 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsTransport(Builder builder) {
+	private NodeInfoSettingsTransport(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
 		this.features = builder.features;
 
 	}
 
-	public NodeInfoSettingsTransport(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsTransport of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public NodeInfoSettingsTransportType type() {
+	public final NodeInfoSettingsTransportType type() {
 		return this.type;
 	}
 
@@ -73,7 +75,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 	 * API name: {@code type.default}
 	 */
 	@Nullable
-	public String typeDefault() {
+	public final String typeDefault() {
 		return this.typeDefault;
 	}
 
@@ -81,7 +83,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 	 * API name: {@code features}
 	 */
 	@Nullable
-	public NodeInfoSettingsTransportFeatures features() {
+	public final NodeInfoSettingsTransportFeatures features() {
 		return this.features;
 	}
 
@@ -100,13 +102,11 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		this.type.serialize(generator, mapper);
 
 		if (this.typeDefault != null) {
-
 			generator.writeKey("type.default");
 			generator.write(this.typeDefault);
 
 		}
 		if (this.features != null) {
-
 			generator.writeKey("features");
 			this.features.serialize(generator, mapper);
 
@@ -119,7 +119,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsTransport}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsTransport> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransport> {
 		private NodeInfoSettingsTransportType type;
 
 		@Nullable
@@ -131,7 +131,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(NodeInfoSettingsTransportType value) {
+		public final Builder type(NodeInfoSettingsTransportType value) {
 			this.type = value;
 			return this;
 		}
@@ -139,7 +139,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(
+		public final Builder type(
 				Function<NodeInfoSettingsTransportType.Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
 			return this.type(fn.apply(new NodeInfoSettingsTransportType.Builder()).build());
 		}
@@ -147,7 +147,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * API name: {@code type.default}
 		 */
-		public Builder typeDefault(@Nullable String value) {
+		public final Builder typeDefault(@Nullable String value) {
 			this.typeDefault = value;
 			return this;
 		}
@@ -155,7 +155,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * API name: {@code features}
 		 */
-		public Builder features(@Nullable NodeInfoSettingsTransportFeatures value) {
+		public final Builder features(@Nullable NodeInfoSettingsTransportFeatures value) {
 			this.features = value;
 			return this;
 		}
@@ -163,7 +163,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * API name: {@code features}
 		 */
-		public Builder features(
+		public final Builder features(
 				Function<NodeInfoSettingsTransportFeatures.Builder, ObjectBuilder<NodeInfoSettingsTransportFeatures>> fn) {
 			return this.features(fn.apply(new NodeInfoSettingsTransportFeatures.Builder()).build());
 		}
@@ -175,6 +175,7 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsTransport build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsTransport(this);
 		}

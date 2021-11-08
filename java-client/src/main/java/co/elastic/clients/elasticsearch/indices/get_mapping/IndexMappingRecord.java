@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
 @JsonpDeserializable
-public final class IndexMappingRecord implements JsonpSerializable {
+public class IndexMappingRecord implements JsonpSerializable {
 	@Nullable
 	private final TypeMapping item;
 
@@ -47,29 +49,29 @@ public final class IndexMappingRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexMappingRecord(Builder builder) {
+	private IndexMappingRecord(Builder builder) {
 
 		this.item = builder.item;
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
+		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
 	}
 
-	public IndexMappingRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexMappingRecord of(Function<Builder, ObjectBuilder<IndexMappingRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code item}
 	 */
 	@Nullable
-	public TypeMapping item() {
+	public final TypeMapping item() {
 		return this.item;
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
@@ -85,12 +87,10 @@ public final class IndexMappingRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.item != null) {
-
 			generator.writeKey("item");
 			this.item.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("mappings");
 		this.mappings.serialize(generator, mapper);
 
@@ -101,7 +101,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexMappingRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexMappingRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexMappingRecord> {
 		@Nullable
 		private TypeMapping item;
 
@@ -110,7 +110,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * API name: {@code item}
 		 */
-		public Builder item(@Nullable TypeMapping value) {
+		public final Builder item(@Nullable TypeMapping value) {
 			this.item = value;
 			return this;
 		}
@@ -118,14 +118,14 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * API name: {@code item}
 		 */
-		public Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.item(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(TypeMapping value) {
+		public final Builder mappings(TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -133,7 +133,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
@@ -144,6 +144,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexMappingRecord build() {
+			_checkSingleUse();
 
 			return new IndexMappingRecord(this);
 		}

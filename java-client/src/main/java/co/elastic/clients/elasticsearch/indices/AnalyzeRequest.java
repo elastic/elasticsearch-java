@@ -39,6 +39,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -52,14 +53,12 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.Request
 @JsonpDeserializable
-public final class AnalyzeRequest extends RequestBase implements JsonpSerializable {
+public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
-	@Nullable
 	private final List<String> attributes;
 
-	@Nullable
 	private final List<CharFilter> charFilter;
 
 	@Nullable
@@ -68,7 +67,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String field;
 
-	@Nullable
 	private final List<TokenFilter> filter;
 
 	@Nullable
@@ -77,7 +75,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String normalizer;
 
-	@Nullable
 	private final List<String> text;
 
 	@Nullable
@@ -85,7 +82,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalyzeRequest(Builder builder) {
+	private AnalyzeRequest(Builder builder) {
 
 		this.analyzer = builder.analyzer;
 		this.attributes = ModelTypeHelper.unmodifiable(builder.attributes);
@@ -100,31 +97,29 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public AnalyzeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalyzeRequest of(Function<Builder, ObjectBuilder<AnalyzeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * API name: {@code attributes}
 	 */
-	@Nullable
-	public List<String> attributes() {
+	public final List<String> attributes() {
 		return this.attributes;
 	}
 
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public List<CharFilter> charFilter() {
+	public final List<CharFilter> charFilter() {
 		return this.charFilter;
 	}
 
@@ -132,7 +127,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
 	}
 
@@ -140,15 +135,14 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<TokenFilter> filter() {
+	public final List<TokenFilter> filter() {
 		return this.filter;
 	}
 
@@ -158,7 +152,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -166,15 +160,14 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code normalizer}
 	 */
 	@Nullable
-	public String normalizer() {
+	public final String normalizer() {
 		return this.normalizer;
 	}
 
 	/**
 	 * API name: {@code text}
 	 */
-	@Nullable
-	public List<String> text() {
+	public final List<String> text() {
 		return this.text;
 	}
 
@@ -182,7 +175,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
-	public Tokenizer tokenizer() {
+	public final Tokenizer tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -198,13 +191,11 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-		if (this.attributes != null) {
-
+		if (ModelTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartArray();
 			for (String item0 : this.attributes) {
@@ -214,8 +205,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.charFilter != null) {
-
+		if (ModelTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (CharFilter item0 : this.charFilter) {
@@ -226,19 +216,16 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.explain != null) {
-
 			generator.writeKey("explain");
 			generator.write(this.explain);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
-		if (this.filter != null) {
-
+		if (ModelTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (TokenFilter item0 : this.filter) {
@@ -249,13 +236,11 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.normalizer != null) {
-
 			generator.writeKey("normalizer");
 			generator.write(this.normalizer);
 
 		}
-		if (this.text != null) {
-
+		if (ModelTypeHelper.isDefined(this.text)) {
 			generator.writeKey("text");
 			generator.writeStartArray();
 			for (String item0 : this.text) {
@@ -266,7 +251,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.tokenizer != null) {
-
 			generator.writeKey("tokenizer");
 			this.tokenizer.serialize(generator, mapper);
 
@@ -279,7 +263,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link AnalyzeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalyzeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeRequest> {
 		@Nullable
 		private String analyzer;
 
@@ -313,7 +297,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -321,7 +305,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code attributes}
 		 */
-		public Builder attributes(@Nullable List<String> value) {
+		public final Builder attributes(@Nullable List<String> value) {
 			this.attributes = value;
 			return this;
 		}
@@ -329,26 +313,15 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code attributes}
 		 */
-		public Builder attributes(String... value) {
+		public final Builder attributes(String... value) {
 			this.attributes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #attributes(List)}, creating the list if needed.
-		 */
-		public Builder addAttributes(String value) {
-			if (this.attributes == null) {
-				this.attributes = new ArrayList<>();
-			}
-			this.attributes.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(@Nullable List<CharFilter> value) {
+		public final Builder charFilter(@Nullable List<CharFilter> value) {
 			this.charFilter = value;
 			return this;
 		}
@@ -356,40 +329,27 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(CharFilter... value) {
+		public final Builder charFilter(CharFilter... value) {
 			this.charFilter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * API name: {@code char_filter}
 		 */
-		public Builder addCharFilter(CharFilter value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
+		@SafeVarargs
+		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>>... fns) {
+			this.charFilter = new ArrayList<>(fns.length);
+			for (Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn : fns) {
+				this.charFilter.add(fn.apply(new CharFilter.Builder()).build());
 			}
-			this.charFilter.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #charFilter(List)} to a singleton list.
-		 */
-		public Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.charFilter(fn.apply(new CharFilter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -397,7 +357,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -405,7 +365,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<TokenFilter> value) {
+		public final Builder filter(@Nullable List<TokenFilter> value) {
 			this.filter = value;
 			return this;
 		}
@@ -413,34 +373,21 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(TokenFilter... value) {
+		public final Builder filter(TokenFilter... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * API name: {@code filter}
 		 */
-		public Builder addFilter(TokenFilter value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
+		@SafeVarargs
+		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>>... fns) {
+			this.filter = new ArrayList<>(fns.length);
+			for (Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn : fns) {
+				this.filter.add(fn.apply(new TokenFilter.Builder()).build());
 			}
-			this.filter.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #filter(List)} to a singleton list.
-		 */
-		public Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.filter(fn.apply(new TokenFilter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
@@ -448,7 +395,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -456,7 +403,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code normalizer}
 		 */
-		public Builder normalizer(@Nullable String value) {
+		public final Builder normalizer(@Nullable String value) {
 			this.normalizer = value;
 			return this;
 		}
@@ -464,7 +411,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code text}
 		 */
-		public Builder text(@Nullable List<String> value) {
+		public final Builder text(@Nullable List<String> value) {
 			this.text = value;
 			return this;
 		}
@@ -472,26 +419,15 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code text}
 		 */
-		public Builder text(String... value) {
+		public final Builder text(String... value) {
 			this.text = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #text(List)}, creating the list if needed.
-		 */
-		public Builder addText(String value) {
-			if (this.text == null) {
-				this.text = new ArrayList<>();
-			}
-			this.text.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(@Nullable Tokenizer value) {
+		public final Builder tokenizer(@Nullable Tokenizer value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -499,7 +435,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
 			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
 		}
 
@@ -510,6 +446,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public AnalyzeRequest build() {
+			_checkSingleUse();
 
 			return new AnalyzeRequest(this);
 		}

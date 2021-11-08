@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopTokenFilter
 @JsonpDeserializable
-public final class StopTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StopTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	@Nullable
 	private final Boolean ignoreCase;
 
@@ -57,18 +56,18 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopTokenFilter(Builder builder) {
+	private StopTokenFilter(Builder builder) {
 		super(builder);
 
 		this.ignoreCase = builder.ignoreCase;
 		this.removeTrailing = builder.removeTrailing;
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
+		this.stopwords = ModelTypeHelper.unmodifiableRequired(builder.stopwords, this, "stopwords");
 		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
-	public StopTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopTokenFilter of(Function<Builder, ObjectBuilder<StopTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +82,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	 * API name: {@code ignore_case}
 	 */
 	@Nullable
-	public Boolean ignoreCase() {
+	public final Boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
@@ -91,14 +90,14 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	 * API name: {@code remove_trailing}
 	 */
 	@Nullable
-	public Boolean removeTrailing() {
+	public final Boolean removeTrailing() {
 		return this.removeTrailing;
 	}
 
 	/**
 	 * Required - API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
@@ -106,7 +105,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	 * API name: {@code stopwords_path}
 	 */
 	@Nullable
-	public String stopwordsPath() {
+	public final String stopwordsPath() {
 		return this.stopwordsPath;
 	}
 
@@ -115,28 +114,26 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		generator.write("type", "stop");
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreCase != null) {
-
 			generator.writeKey("ignore_case");
 			generator.write(this.ignoreCase);
 
 		}
 		if (this.removeTrailing != null) {
-
 			generator.writeKey("remove_trailing");
 			generator.write(this.removeTrailing);
 
 		}
+		if (ModelTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
 
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.stopwordsPath != null) {
-
 			generator.writeKey("stopwords_path");
 			generator.write(this.stopwordsPath);
 
@@ -166,7 +163,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		/**
 		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(@Nullable Boolean value) {
+		public final Builder ignoreCase(@Nullable Boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}
@@ -174,7 +171,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		/**
 		 * API name: {@code remove_trailing}
 		 */
-		public Builder removeTrailing(@Nullable Boolean value) {
+		public final Builder removeTrailing(@Nullable Boolean value) {
 			this.removeTrailing = value;
 			return this;
 		}
@@ -182,7 +179,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		/**
 		 * Required - API name: {@code stopwords}
 		 */
-		public Builder stopwords(List<String> value) {
+		public final Builder stopwords(List<String> value) {
 			this.stopwords = value;
 			return this;
 		}
@@ -190,26 +187,15 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		/**
 		 * Required - API name: {@code stopwords}
 		 */
-		public Builder stopwords(String... value) {
+		public final Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
-		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stopwords_path}
 		 */
-		public Builder stopwordsPath(@Nullable String value) {
+		public final Builder stopwordsPath(@Nullable String value) {
 			this.stopwordsPath = value;
 			return this;
 		}
@@ -226,6 +212,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		 *             if some of the required fields are null.
 		 */
 		public StopTokenFilter build() {
+			_checkSingleUse();
 
 			return new StopTokenFilter(this);
 		}

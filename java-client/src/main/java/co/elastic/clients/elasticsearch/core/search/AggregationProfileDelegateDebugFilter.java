@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDelegateDebugFilter
 @JsonpDeserializable
-public final class AggregationProfileDelegateDebugFilter implements JsonpSerializable {
+public class AggregationProfileDelegateDebugFilter implements JsonpSerializable {
 	@Nullable
 	private final Integer resultsFromMetadata;
 
@@ -52,7 +53,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregationProfileDelegateDebugFilter(Builder builder) {
+	private AggregationProfileDelegateDebugFilter(Builder builder) {
 
 		this.resultsFromMetadata = builder.resultsFromMetadata;
 		this.query = builder.query;
@@ -60,15 +61,16 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 
 	}
 
-	public AggregationProfileDelegateDebugFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregationProfileDelegateDebugFilter of(
+			Function<Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code results_from_metadata}
 	 */
 	@Nullable
-	public Integer resultsFromMetadata() {
+	public final Integer resultsFromMetadata() {
 		return this.resultsFromMetadata;
 	}
 
@@ -76,7 +78,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -84,7 +86,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 	 * API name: {@code specialized_for}
 	 */
 	@Nullable
-	public String specializedFor() {
+	public final String specializedFor() {
 		return this.specializedFor;
 	}
 
@@ -100,19 +102,16 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.resultsFromMetadata != null) {
-
 			generator.writeKey("results_from_metadata");
 			generator.write(this.resultsFromMetadata);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			generator.write(this.query);
 
 		}
 		if (this.specializedFor != null) {
-
 			generator.writeKey("specialized_for");
 			generator.write(this.specializedFor);
 
@@ -125,7 +124,9 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 	/**
 	 * Builder for {@link AggregationProfileDelegateDebugFilter}.
 	 */
-	public static class Builder implements ObjectBuilder<AggregationProfileDelegateDebugFilter> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<AggregationProfileDelegateDebugFilter> {
 		@Nullable
 		private Integer resultsFromMetadata;
 
@@ -138,7 +139,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 		/**
 		 * API name: {@code results_from_metadata}
 		 */
-		public Builder resultsFromMetadata(@Nullable Integer value) {
+		public final Builder resultsFromMetadata(@Nullable Integer value) {
 			this.resultsFromMetadata = value;
 			return this;
 		}
@@ -146,7 +147,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public final Builder query(@Nullable String value) {
 			this.query = value;
 			return this;
 		}
@@ -154,7 +155,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 		/**
 		 * API name: {@code specialized_for}
 		 */
-		public Builder specializedFor(@Nullable String value) {
+		public final Builder specializedFor(@Nullable String value) {
 			this.specializedFor = value;
 			return this;
 		}
@@ -166,6 +167,7 @@ public final class AggregationProfileDelegateDebugFilter implements JsonpSeriali
 		 *             if some of the required fields are null.
 		 */
 		public AggregationProfileDelegateDebugFilter build() {
+			_checkSingleUse();
 
 			return new AggregationProfileDelegateDebugFilter(this);
 		}

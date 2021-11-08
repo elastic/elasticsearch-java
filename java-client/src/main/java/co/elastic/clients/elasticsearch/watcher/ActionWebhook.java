@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionWebhook
 @JsonpDeserializable
-public final class ActionWebhook implements JsonpSerializable {
+public class ActionWebhook implements JsonpSerializable {
 	private final String host;
 
 	private final int port;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ActionWebhook(Builder builder) {
+	private ActionWebhook(Builder builder) {
 
-		this.host = Objects.requireNonNull(builder.host, "host");
-		this.port = Objects.requireNonNull(builder.port, "port");
+		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
+		this.port = ModelTypeHelper.requireNonNull(builder.port, this, "port");
 
 	}
 
-	public ActionWebhook(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ActionWebhook of(Function<Builder, ObjectBuilder<ActionWebhook>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
 	/**
 	 * Required - API name: {@code port}
 	 */
-	public int port() {
+	public final int port() {
 		return this.port;
 	}
 
@@ -96,7 +98,7 @@ public final class ActionWebhook implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActionWebhook}.
 	 */
-	public static class Builder implements ObjectBuilder<ActionWebhook> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActionWebhook> {
 		private String host;
 
 		private Integer port;
@@ -104,7 +106,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code host}
 		 */
-		public Builder host(String value) {
+		public final Builder host(String value) {
 			this.host = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code port}
 		 */
-		public Builder port(int value) {
+		public final Builder port(int value) {
 			this.port = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ActionWebhook build() {
+			_checkSingleUse();
 
 			return new ActionWebhook(this);
 		}

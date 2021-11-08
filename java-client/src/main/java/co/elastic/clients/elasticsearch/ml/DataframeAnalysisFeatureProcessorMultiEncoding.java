@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorMultiEncoding
 @JsonpDeserializable
-public final class DataframeAnalysisFeatureProcessorMultiEncoding
+public class DataframeAnalysisFeatureProcessorMultiEncoding
 		implements
 			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
@@ -51,14 +51,15 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisFeatureProcessorMultiEncoding(Builder builder) {
+	private DataframeAnalysisFeatureProcessorMultiEncoding(Builder builder) {
 
-		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
 
 	}
 
-	public DataframeAnalysisFeatureProcessorMultiEncoding(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisFeatureProcessorMultiEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +76,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	 * <p>
 	 * API name: {@code processors}
 	 */
-	public List<Integer> processors() {
+	public final List<Integer> processors() {
 		return this.processors;
 	}
 
@@ -90,13 +91,16 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("processors");
-		generator.writeStartArray();
-		for (Integer item0 : this.processors) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.processors)) {
+			generator.writeKey("processors");
+			generator.writeStartArray();
+			for (Integer item0 : this.processors) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -105,7 +109,9 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorMultiEncoding}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding> {
 		private List<Integer> processors;
 
 		/**
@@ -114,7 +120,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		public Builder processors(List<Integer> value) {
+		public final Builder processors(List<Integer> value) {
 			this.processors = value;
 			return this;
 		}
@@ -125,19 +131,8 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		public Builder processors(Integer... value) {
+		public final Builder processors(Integer... value) {
 			this.processors = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
-		 */
-		public Builder addProcessors(Integer value) {
-			if (this.processors == null) {
-				this.processors = new ArrayList<>();
-			}
-			this.processors.add(value);
 			return this;
 		}
 
@@ -148,6 +143,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisFeatureProcessorMultiEncoding build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisFeatureProcessorMultiEncoding(this);
 		}

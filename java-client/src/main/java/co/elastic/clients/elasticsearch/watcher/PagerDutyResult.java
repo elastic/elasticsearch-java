@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyResult
 @JsonpDeserializable
-public final class PagerDutyResult implements JsonpSerializable {
+public class PagerDutyResult implements JsonpSerializable {
 	private final PagerDutyActionEventResult sentEvent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PagerDutyResult(Builder builder) {
+	private PagerDutyResult(Builder builder) {
 
-		this.sentEvent = Objects.requireNonNull(builder.sentEvent, "sent_event");
+		this.sentEvent = ModelTypeHelper.requireNonNull(builder.sentEvent, this, "sentEvent");
 
 	}
 
-	public PagerDutyResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PagerDutyResult of(Function<Builder, ObjectBuilder<PagerDutyResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code sent_event}
 	 */
-	public PagerDutyActionEventResult sentEvent() {
+	public final PagerDutyActionEventResult sentEvent() {
 		return this.sentEvent;
 	}
 
@@ -81,13 +83,13 @@ public final class PagerDutyResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link PagerDutyResult}.
 	 */
-	public static class Builder implements ObjectBuilder<PagerDutyResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyResult> {
 		private PagerDutyActionEventResult sentEvent;
 
 		/**
 		 * Required - API name: {@code sent_event}
 		 */
-		public Builder sentEvent(PagerDutyActionEventResult value) {
+		public final Builder sentEvent(PagerDutyActionEventResult value) {
 			this.sentEvent = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class PagerDutyResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sent_event}
 		 */
-		public Builder sentEvent(
+		public final Builder sentEvent(
 				Function<PagerDutyActionEventResult.Builder, ObjectBuilder<PagerDutyActionEventResult>> fn) {
 			return this.sentEvent(fn.apply(new PagerDutyActionEventResult.Builder()).build());
 		}
@@ -107,6 +109,7 @@ public final class PagerDutyResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PagerDutyResult build() {
+			_checkSingleUse();
 
 			return new PagerDutyResult(this);
 		}

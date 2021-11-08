@@ -35,7 +35,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Request
 @JsonpDeserializable
-public final class TermsEnumRequest extends RequestBase implements JsonpSerializable {
+public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean caseInsensitive;
 
@@ -72,11 +74,11 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermsEnumRequest(Builder builder) {
+	private TermsEnumRequest(Builder builder) {
 
 		this.caseInsensitive = builder.caseInsensitive;
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
 		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;
@@ -85,8 +87,8 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 
 	}
 
-	public TermsEnumRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermsEnumRequest of(Function<Builder, ObjectBuilder<TermsEnumRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,7 +98,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
-	public Boolean caseInsensitive() {
+	public final Boolean caseInsensitive() {
 		return this.caseInsensitive;
 	}
 
@@ -106,7 +108,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -116,7 +118,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -126,7 +128,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code index_filter}
 	 */
 	@Nullable
-	public Query indexFilter() {
+	public final Query indexFilter() {
 		return this.indexFilter;
 	}
 
@@ -134,7 +136,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code search_after}
 	 */
 	@Nullable
-	public String searchAfter() {
+	public final String searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -144,7 +146,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -156,7 +158,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code string}
 	 */
 	@Nullable
-	public String string() {
+	public final String string() {
 		return this.string;
 	}
 
@@ -168,7 +170,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -184,41 +186,34 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.caseInsensitive != null) {
-
 			generator.writeKey("case_insensitive");
 			generator.write(this.caseInsensitive);
 
 		}
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.indexFilter != null) {
-
 			generator.writeKey("index_filter");
 			this.indexFilter.serialize(generator, mapper);
 
 		}
 		if (this.searchAfter != null) {
-
 			generator.writeKey("search_after");
 			generator.write(this.searchAfter);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.string != null) {
-
 			generator.writeKey("string");
 			generator.write(this.string);
 
 		}
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
 			generator.write(this.timeout);
 
@@ -231,7 +226,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link TermsEnumRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<TermsEnumRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsEnumRequest> {
 		@Nullable
 		private Boolean caseInsensitive;
 
@@ -260,7 +255,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
-		public Builder caseInsensitive(@Nullable Boolean value) {
+		public final Builder caseInsensitive(@Nullable Boolean value) {
 			this.caseInsensitive = value;
 			return this;
 		}
@@ -271,7 +266,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -282,7 +277,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -292,7 +287,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code index_filter}
 		 */
-		public Builder indexFilter(@Nullable Query value) {
+		public final Builder indexFilter(@Nullable Query value) {
 			this.indexFilter = value;
 			return this;
 		}
@@ -302,14 +297,14 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code index_filter}
 		 */
-		public Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.indexFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code search_after}
 		 */
-		public Builder searchAfter(@Nullable String value) {
+		public final Builder searchAfter(@Nullable String value) {
 			this.searchAfter = value;
 			return this;
 		}
@@ -319,7 +314,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -331,7 +326,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code string}
 		 */
-		public Builder string(@Nullable String value) {
+		public final Builder string(@Nullable String value) {
 			this.string = value;
 			return this;
 		}
@@ -343,7 +338,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -355,6 +350,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public TermsEnumRequest build() {
+			_checkSingleUse();
 
 			return new TermsEnumRequest(this);
 		}

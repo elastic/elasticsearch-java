@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,20 +38,21 @@ import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricExpectedReciprocalRank
 @JsonpDeserializable
-public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
+public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 	private final int maximumRelevance;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricExpectedReciprocalRank(Builder builder) {
+	private RankEvalMetricExpectedReciprocalRank(Builder builder) {
 		super(builder);
 
-		this.maximumRelevance = Objects.requireNonNull(builder.maximumRelevance, "maximum_relevance");
+		this.maximumRelevance = ModelTypeHelper.requireNonNull(builder.maximumRelevance, this, "maximumRelevance");
 
 	}
 
-	public RankEvalMetricExpectedReciprocalRank(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricExpectedReciprocalRank of(
+			Function<Builder, ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -59,14 +61,13 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	 * <p>
 	 * API name: {@code maximum_relevance}
 	 */
-	public int maximumRelevance() {
+	public final int maximumRelevance() {
 		return this.maximumRelevance;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("maximum_relevance");
 		generator.write(this.maximumRelevance);
 
@@ -88,7 +89,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 		 * <p>
 		 * API name: {@code maximum_relevance}
 		 */
-		public Builder maximumRelevance(int value) {
+		public final Builder maximumRelevance(int value) {
 			this.maximumRelevance = value;
 			return this;
 		}
@@ -105,6 +106,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricExpectedReciprocalRank build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricExpectedReciprocalRank(this);
 		}

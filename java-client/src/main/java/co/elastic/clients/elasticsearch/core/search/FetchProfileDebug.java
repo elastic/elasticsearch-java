@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfileDebug
 @JsonpDeserializable
-public final class FetchProfileDebug implements JsonpSerializable {
-	@Nullable
+public class FetchProfileDebug implements JsonpSerializable {
 	private final List<String> storedFields;
 
 	@Nullable
@@ -53,22 +52,21 @@ public final class FetchProfileDebug implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FetchProfileDebug(Builder builder) {
+	private FetchProfileDebug(Builder builder) {
 
 		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.fastPath = builder.fastPath;
 
 	}
 
-	public FetchProfileDebug(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FetchProfileDebug of(Function<Builder, ObjectBuilder<FetchProfileDebug>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code stored_fields}
 	 */
-	@Nullable
-	public List<String> storedFields() {
+	public final List<String> storedFields() {
 		return this.storedFields;
 	}
 
@@ -76,7 +74,7 @@ public final class FetchProfileDebug implements JsonpSerializable {
 	 * API name: {@code fast_path}
 	 */
 	@Nullable
-	public Integer fastPath() {
+	public final Integer fastPath() {
 		return this.fastPath;
 	}
 
@@ -91,8 +89,7 @@ public final class FetchProfileDebug implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.storedFields != null) {
-
+		if (ModelTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -103,7 +100,6 @@ public final class FetchProfileDebug implements JsonpSerializable {
 
 		}
 		if (this.fastPath != null) {
-
 			generator.writeKey("fast_path");
 			generator.write(this.fastPath);
 
@@ -116,7 +112,7 @@ public final class FetchProfileDebug implements JsonpSerializable {
 	/**
 	 * Builder for {@link FetchProfileDebug}.
 	 */
-	public static class Builder implements ObjectBuilder<FetchProfileDebug> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfileDebug> {
 		@Nullable
 		private List<String> storedFields;
 
@@ -126,7 +122,7 @@ public final class FetchProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields}
 		 */
-		public Builder storedFields(@Nullable List<String> value) {
+		public final Builder storedFields(@Nullable List<String> value) {
 			this.storedFields = value;
 			return this;
 		}
@@ -134,26 +130,15 @@ public final class FetchProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields}
 		 */
-		public Builder storedFields(String... value) {
+		public final Builder storedFields(String... value) {
 			this.storedFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
-		 */
-		public Builder addStoredFields(String value) {
-			if (this.storedFields == null) {
-				this.storedFields = new ArrayList<>();
-			}
-			this.storedFields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fast_path}
 		 */
-		public Builder fastPath(@Nullable Integer value) {
+		public final Builder fastPath(@Nullable Integer value) {
 			this.fastPath = value;
 			return this;
 		}
@@ -165,6 +150,7 @@ public final class FetchProfileDebug implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FetchProfileDebug build() {
+			_checkSingleUse();
 
 			return new FetchProfileDebug(this);
 		}

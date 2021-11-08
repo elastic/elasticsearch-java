@@ -32,11 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardCommit
 @JsonpDeserializable
-public final class ShardCommit implements JsonpSerializable {
+public class ShardCommit implements JsonpSerializable {
 	private final int generation;
 
 	private final String id;
@@ -55,44 +55,44 @@ public final class ShardCommit implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardCommit(Builder builder) {
+	private ShardCommit(Builder builder) {
 
-		this.generation = Objects.requireNonNull(builder.generation, "generation");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.numDocs = Objects.requireNonNull(builder.numDocs, "num_docs");
-		this.userData = ModelTypeHelper.unmodifiableNonNull(builder.userData, "user_data");
+		this.generation = ModelTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.numDocs = ModelTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
+		this.userData = ModelTypeHelper.unmodifiableRequired(builder.userData, this, "userData");
 
 	}
 
-	public ShardCommit(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardCommit of(Function<Builder, ObjectBuilder<ShardCommit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code generation}
 	 */
-	public int generation() {
+	public final int generation() {
 		return this.generation;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code num_docs}
 	 */
-	public long numDocs() {
+	public final long numDocs() {
 		return this.numDocs;
 	}
 
 	/**
 	 * Required - API name: {@code user_data}
 	 */
-	public Map<String, String> userData() {
+	public final Map<String, String> userData() {
 		return this.userData;
 	}
 
@@ -116,14 +116,17 @@ public final class ShardCommit implements JsonpSerializable {
 		generator.writeKey("num_docs");
 		generator.write(this.numDocs);
 
-		generator.writeKey("user_data");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.userData.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.userData)) {
+			generator.writeKey("user_data");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.userData.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -132,7 +135,7 @@ public final class ShardCommit implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardCommit}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardCommit> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardCommit> {
 		private Integer generation;
 
 		private String id;
@@ -144,7 +147,7 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code generation}
 		 */
-		public Builder generation(int value) {
+		public final Builder generation(int value) {
 			this.generation = value;
 			return this;
 		}
@@ -152,7 +155,7 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -160,7 +163,7 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_docs}
 		 */
-		public Builder numDocs(long value) {
+		public final Builder numDocs(long value) {
 			this.numDocs = value;
 			return this;
 		}
@@ -168,19 +171,8 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code user_data}
 		 */
-		public Builder userData(Map<String, String> value) {
+		public final Builder userData(Map<String, String> value) {
 			this.userData = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #userData(Map)}, creating the map if needed.
-		 */
-		public Builder putUserData(String key, String value) {
-			if (this.userData == null) {
-				this.userData = new HashMap<>();
-			}
-			this.userData.put(key, value);
 			return this;
 		}
 
@@ -191,6 +183,7 @@ public final class ShardCommit implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardCommit build() {
+			_checkSingleUse();
 
 			return new ShardCommit(this);
 		}

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,29 +42,32 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
 @JsonpDeserializable
-public final class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> commonWords;
 
+	@Nullable
 	private final String commonWordsPath;
 
-	private final boolean ignoreCase;
+	@Nullable
+	private final Boolean ignoreCase;
 
-	private final boolean queryMode;
+	@Nullable
+	private final Boolean queryMode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CommonGramsTokenFilter(Builder builder) {
+	private CommonGramsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.commonWords = ModelTypeHelper.unmodifiableNonNull(builder.commonWords, "common_words");
-		this.commonWordsPath = Objects.requireNonNull(builder.commonWordsPath, "common_words_path");
-		this.ignoreCase = Objects.requireNonNull(builder.ignoreCase, "ignore_case");
-		this.queryMode = Objects.requireNonNull(builder.queryMode, "query_mode");
+		this.commonWords = ModelTypeHelper.unmodifiable(builder.commonWords);
+		this.commonWordsPath = builder.commonWordsPath;
+		this.ignoreCase = builder.ignoreCase;
+		this.queryMode = builder.queryMode;
 
 	}
 
-	public CommonGramsTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CommonGramsTokenFilter of(Function<Builder, ObjectBuilder<CommonGramsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,30 +79,33 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	}
 
 	/**
-	 * Required - API name: {@code common_words}
+	 * API name: {@code common_words}
 	 */
-	public List<String> commonWords() {
+	public final List<String> commonWords() {
 		return this.commonWords;
 	}
 
 	/**
-	 * Required - API name: {@code common_words_path}
+	 * API name: {@code common_words_path}
 	 */
-	public String commonWordsPath() {
+	@Nullable
+	public final String commonWordsPath() {
 		return this.commonWordsPath;
 	}
 
 	/**
-	 * Required - API name: {@code ignore_case}
+	 * API name: {@code ignore_case}
 	 */
-	public boolean ignoreCase() {
+	@Nullable
+	public final Boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
 	/**
-	 * Required - API name: {@code query_mode}
+	 * API name: {@code query_mode}
 	 */
-	public boolean queryMode() {
+	@Nullable
+	public final Boolean queryMode() {
 		return this.queryMode;
 	}
 
@@ -108,23 +113,31 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 
 		generator.write("type", "common_grams");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.commonWords)) {
+			generator.writeKey("common_words");
+			generator.writeStartArray();
+			for (String item0 : this.commonWords) {
+				generator.write(item0);
 
-		generator.writeKey("common_words");
-		generator.writeStartArray();
-		for (String item0 : this.commonWords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.commonWordsPath != null) {
+			generator.writeKey("common_words_path");
+			generator.write(this.commonWordsPath);
 
-		generator.writeKey("common_words_path");
-		generator.write(this.commonWordsPath);
+		}
+		if (this.ignoreCase != null) {
+			generator.writeKey("ignore_case");
+			generator.write(this.ignoreCase);
 
-		generator.writeKey("ignore_case");
-		generator.write(this.ignoreCase);
+		}
+		if (this.queryMode != null) {
+			generator.writeKey("query_mode");
+			generator.write(this.queryMode);
 
-		generator.writeKey("query_mode");
-		generator.write(this.queryMode);
+		}
 
 	}
 
@@ -136,61 +149,54 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CommonGramsTokenFilter> {
+		@Nullable
 		private List<String> commonWords;
 
+		@Nullable
 		private String commonWordsPath;
 
+		@Nullable
 		private Boolean ignoreCase;
 
+		@Nullable
 		private Boolean queryMode;
 
 		/**
-		 * Required - API name: {@code common_words}
+		 * API name: {@code common_words}
 		 */
-		public Builder commonWords(List<String> value) {
+		public final Builder commonWords(@Nullable List<String> value) {
 			this.commonWords = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code common_words}
+		 * API name: {@code common_words}
 		 */
-		public Builder commonWords(String... value) {
+		public final Builder commonWords(String... value) {
 			this.commonWords = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #commonWords(List)}, creating the list if needed.
+		 * API name: {@code common_words_path}
 		 */
-		public Builder addCommonWords(String value) {
-			if (this.commonWords == null) {
-				this.commonWords = new ArrayList<>();
-			}
-			this.commonWords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code common_words_path}
-		 */
-		public Builder commonWordsPath(String value) {
+		public final Builder commonWordsPath(@Nullable String value) {
 			this.commonWordsPath = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code ignore_case}
+		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(boolean value) {
+		public final Builder ignoreCase(@Nullable Boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code query_mode}
+		 * API name: {@code query_mode}
 		 */
-		public Builder queryMode(boolean value) {
+		public final Builder queryMode(@Nullable Boolean value) {
 			this.queryMode = value;
 			return this;
 		}
@@ -207,6 +213,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		 *             if some of the required fields are null.
 		 */
 		public CommonGramsTokenFilter build() {
+			_checkSingleUse();
 
 			return new CommonGramsTokenFilter(this);
 		}

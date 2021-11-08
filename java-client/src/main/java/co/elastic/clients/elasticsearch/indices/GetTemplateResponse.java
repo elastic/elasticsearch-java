@@ -37,16 +37,16 @@ import java.util.function.Function;
 
 // typedef: indices.get_template.Response
 @JsonpDeserializable
-public final class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
+public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTemplateResponse(Builder builder) {
+	private GetTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTemplateResponse of(Function<Builder, ObjectBuilder<GetTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ public final class GetTemplateResponse extends DictionaryResponse<String, Templa
 		 *             if some of the required fields are null.
 		 */
 		public GetTemplateResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

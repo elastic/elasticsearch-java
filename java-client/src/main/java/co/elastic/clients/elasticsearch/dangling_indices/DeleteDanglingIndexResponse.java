@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: dangling_indices.delete_dangling_index.Response
 @JsonpDeserializable
-public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
+public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDanglingIndexResponse(Builder builder) {
+	private DeleteDanglingIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteDanglingIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDanglingIndexResponse of(Function<Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDanglingIndexResponse build() {
+			_checkSingleUse();
 
 			return new DeleteDanglingIndexResponse(this);
 		}

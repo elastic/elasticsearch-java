@@ -30,12 +30,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,41 +43,43 @@ import javax.annotation.Nullable;
 
 // typedef: tasks._types.TaskExecutingNode
 @JsonpDeserializable
-public final class TaskExecutingNode extends BaseNode {
+public class TaskExecutingNode extends BaseNode {
 	private final Map<String, State> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TaskExecutingNode(Builder builder) {
+	private TaskExecutingNode(Builder builder) {
 		super(builder);
 
-		this.tasks = ModelTypeHelper.unmodifiableNonNull(builder.tasks, "tasks");
+		this.tasks = ModelTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
-	public TaskExecutingNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TaskExecutingNode of(Function<Builder, ObjectBuilder<TaskExecutingNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code tasks}
 	 */
-	public Map<String, State> tasks() {
+	public final Map<String, State> tasks() {
 		return this.tasks;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.tasks)) {
+			generator.writeKey("tasks");
+			generator.writeStartObject();
+			for (Map.Entry<String, State> item0 : this.tasks.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("tasks");
-		generator.writeStartObject();
-		for (Map.Entry<String, State> item0 : this.tasks.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -92,19 +94,8 @@ public final class TaskExecutingNode extends BaseNode {
 		/**
 		 * Required - API name: {@code tasks}
 		 */
-		public Builder tasks(Map<String, State> value) {
+		public final Builder tasks(Map<String, State> value) {
 			this.tasks = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #tasks(Map)}, creating the map if needed.
-		 */
-		public Builder putTasks(String key, State value) {
-			if (this.tasks == null) {
-				this.tasks = new HashMap<>();
-			}
-			this.tasks.put(key, value);
 			return this;
 		}
 
@@ -115,11 +106,9 @@ public final class TaskExecutingNode extends BaseNode {
 			return this.tasks(Collections.singletonMap(key, fn.apply(new State.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #tasks(Map)}, creating the map if needed.
-		 */
-		public Builder putTasks(String key, Function<State.Builder, ObjectBuilder<State>> fn) {
-			return this.putTasks(key, fn.apply(new State.Builder()).build());
+		public final Builder tasks(
+				Function<MapBuilder<String, State, State.Builder>, ObjectBuilder<Map<String, State>>> fn) {
+			return tasks(fn.apply(new MapBuilder<>(State.Builder::new)).build());
 		}
 
 		@Override
@@ -134,6 +123,7 @@ public final class TaskExecutingNode extends BaseNode {
 		 *             if some of the required fields are null.
 		 */
 		public TaskExecutingNode build() {
+			_checkSingleUse();
 
 			return new TaskExecutingNode(this);
 		}

@@ -42,10 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoTileGridAggregation
 @JsonpDeserializable
-public final class GeoTileGridAggregation extends BucketAggregationBase
-		implements
-			AggregationVariant,
-			PivotGroupByVariant {
+public class GeoTileGridAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
 	private final String field;
 
@@ -63,7 +60,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoTileGridAggregation(Builder builder) {
+	private GeoTileGridAggregation(Builder builder) {
 		super(builder);
 
 		this.field = builder.field;
@@ -74,8 +71,8 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 
 	}
 
-	public GeoTileGridAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoTileGridAggregation of(Function<Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +87,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -98,7 +95,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public Number precision() {
+	public final Number precision() {
 		return this.precision;
 	}
 
@@ -106,7 +103,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -114,7 +111,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -122,7 +119,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code bounds}
 	 */
 	@Nullable
-	public GeoBounds bounds() {
+	public final GeoBounds bounds() {
 		return this.bounds;
 	}
 
@@ -130,31 +127,26 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
 			generator.write(this.precision.doubleValue());
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.bounds != null) {
-
 			generator.writeKey("bounds");
 			this.bounds.serialize(generator, mapper);
 
@@ -188,7 +180,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -196,7 +188,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable Number value) {
+		public final Builder precision(@Nullable Number value) {
 			this.precision = value;
 			return this;
 		}
@@ -204,7 +196,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -212,7 +204,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -220,7 +212,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code bounds}
 		 */
-		public Builder bounds(@Nullable GeoBounds value) {
+		public final Builder bounds(@Nullable GeoBounds value) {
 			this.bounds = value;
 			return this;
 		}
@@ -228,7 +220,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code bounds}
 		 */
-		public Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
 			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
 		}
 
@@ -244,6 +236,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		 *             if some of the required fields are null.
 		 */
 		public GeoTileGridAggregation build() {
+			_checkSingleUse();
 
 			return new GeoTileGridAggregation(this);
 		}

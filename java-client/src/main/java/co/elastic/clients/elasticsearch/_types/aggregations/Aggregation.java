@@ -30,16 +30,18 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -125,62 +127,56 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
-	@Nullable
-	private final Map<String, Aggregation> aggs;
+	private final Map<String, Aggregation> aggregations;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	public Aggregation(AggregationVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-		this.aggs = null;
+		this.aggregations = null;
 		this.meta = null;
 
 	}
 
-	public <T extends AggregationVariant> Aggregation(ObjectBuilder<T> builder) {
-		this(builder.build());
-	}
-
 	private Aggregation(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public Aggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Aggregation of(Function<Builder, ObjectBuilder<Aggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code aggs}
+	 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+	 * <p>
+	 * API name: {@code aggregations}
 	 */
-	@Nullable
-	public Map<String, Aggregation> aggs() {
-		return this.aggs;
+	public final Map<String, Aggregation> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
 	 * API name: {@code meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -893,11 +889,10 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
 
-		if (this.aggs != null) {
-
-			generator.writeKey("aggs");
+		if (ModelTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -905,8 +900,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -926,65 +920,43 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder extends ObjectBuilderBase {
 		private String _type;
 		private Object _value;
 
 		@Nullable
-		private Map<String, Aggregation> aggs;
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
 		private Map<String, JsonData> meta;
 
 		/**
-		 * API name: {@code aggs}
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
 		 */
-		public Builder aggs(@Nullable Map<String, Aggregation> value) {
-			this.aggs = value;
+		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
+			this.aggregations = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
+		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder putAggs(String key, Aggregation value) {
-			if (this.aggs == null) {
-				this.aggs = new HashMap<>();
-			}
-			this.aggs.put(key, value);
-			return this;
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
-		/**
-		 * Set {@link #aggs(Map)} to a singleton map.
-		 */
-		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-		 */
-		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
+		public final Builder aggregations(
+				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
+			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
+		public final Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
@@ -1727,60 +1699,40 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		protected Aggregation build() {
+			_checkSingleUse();
 			return new Aggregation(this);
 		}
 
 		public class ContainerBuilder implements ObjectBuilder<Aggregation> {
 
 			/**
-			 * API name: {@code aggs}
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
 			 */
-			public ContainerBuilder aggs(@Nullable Map<String, Aggregation> value) {
-				Builder.this.aggs = value;
+			public final ContainerBuilder aggregations(@Nullable Map<String, Aggregation> value) {
+				Builder.this.aggregations = value;
 				return this;
 			}
 
 			/**
-			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
+			 * Set {@link #aggregations(Map)} to a singleton map.
 			 */
-			public ContainerBuilder putAggs(String key, Aggregation value) {
-				if (Builder.this.aggs == null) {
-					Builder.this.aggs = new HashMap<>();
-				}
-				Builder.this.aggs.put(key, value);
-				return this;
+			public ContainerBuilder aggregations(String key,
+					Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+				return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 			}
 
-			/**
-			 * Set {@link #aggs(Map)} to a singleton map.
-			 */
-			public ContainerBuilder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-				return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-			}
-
-			/**
-			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-			 */
-			public ContainerBuilder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-				return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
+			public final ContainerBuilder aggregations(
+					Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
+				return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
 			}
 
 			/**
 			 * API name: {@code meta}
 			 */
-			public ContainerBuilder meta(@Nullable Map<String, JsonData> value) {
+			public final ContainerBuilder meta(@Nullable Map<String, JsonData> value) {
 				Builder.this.meta = value;
-				return this;
-			}
-
-			/**
-			 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-			 */
-			public ContainerBuilder putMeta(String key, JsonData value) {
-				if (Builder.this.meta == null) {
-					Builder.this.meta = new HashMap<>();
-				}
-				Builder.this.meta.put(key, value);
 				return this;
 			}
 
@@ -1792,7 +1744,8 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
 	protected static void setupAggregationDeserializer(DelegatingDeserializer<Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
+				"aggregations", "aggs");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
 		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation._DESERIALIZER, "adjacency_matrix");
 		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation._DESERIALIZER, "auto_date_histogram");
@@ -1869,6 +1822,6 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Aggregation> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Aggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Aggregation::setupAggregationDeserializer, Builder::build);
 }

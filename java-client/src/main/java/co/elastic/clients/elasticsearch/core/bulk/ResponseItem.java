@@ -34,7 +34,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.ResponseItem
 @JsonpDeserializable
-public final class ResponseItem implements JsonpSerializable {
+public class ResponseItem implements JsonpSerializable {
 	// Single key dictionary
 	private final OperationType operationType;
 
@@ -87,13 +89,13 @@ public final class ResponseItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResponseItem(Builder builder) {
+	private ResponseItem(Builder builder) {
 
-		this.operationType = Objects.requireNonNull(builder.operationType, "operation_type");
+		this.operationType = ModelTypeHelper.requireNonNull(builder.operationType, this, "operationType");
 
 		this.id = builder.id;
-		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 		this.error = builder.error;
 		this.primaryTerm = builder.primaryTerm;
 		this.result = builder.result;
@@ -106,14 +108,14 @@ public final class ResponseItem implements JsonpSerializable {
 
 	}
 
-	public ResponseItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResponseItem of(Function<Builder, ObjectBuilder<ResponseItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required -
 	 */
-	public OperationType operationType() {
+	public final OperationType operationType() {
 		return this.operationType;
 	}
 
@@ -121,21 +123,21 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public int status() {
+	public final int status() {
 		return this.status;
 	}
 
@@ -143,7 +145,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code error}
 	 */
 	@Nullable
-	public ErrorCause error() {
+	public final ErrorCause error() {
 		return this.error;
 	}
 
@@ -151,7 +153,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Long primaryTerm() {
+	public final Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -159,7 +161,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code result}
 	 */
 	@Nullable
-	public String result() {
+	public final String result() {
 		return this.result;
 	}
 
@@ -167,7 +169,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Long seqNo() {
+	public final Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -175,7 +177,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code _shards}
 	 */
 	@Nullable
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -183,7 +185,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -191,7 +193,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -199,7 +201,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code forced_refresh}
 	 */
 	@Nullable
-	public Boolean forcedRefresh() {
+	public final Boolean forcedRefresh() {
 		return this.forcedRefresh;
 	}
 
@@ -207,7 +209,7 @@ public final class ResponseItem implements JsonpSerializable {
 	 * API name: {@code get}
 	 */
 	@Nullable
-	public InlineGet<Map<String, JsonData>> get() {
+	public final InlineGet<Map<String, JsonData>> get() {
 		return this.get;
 	}
 
@@ -224,12 +226,10 @@ public final class ResponseItem implements JsonpSerializable {
 		generator.writeStartObject(this.operationType.jsonValue());
 
 		if (this.id != null) {
-
 			generator.writeKey("_id");
 			generator.write(this.id);
 
 		}
-
 		generator.writeKey("_index");
 		generator.write(this.index);
 
@@ -237,55 +237,46 @@ public final class ResponseItem implements JsonpSerializable {
 		generator.write(this.status);
 
 		if (this.error != null) {
-
 			generator.writeKey("error");
 			this.error.serialize(generator, mapper);
 
 		}
 		if (this.primaryTerm != null) {
-
 			generator.writeKey("_primary_term");
 			generator.write(this.primaryTerm);
 
 		}
 		if (this.result != null) {
-
 			generator.writeKey("result");
 			generator.write(this.result);
 
 		}
 		if (this.seqNo != null) {
-
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
 
 		}
 		if (this.shards != null) {
-
 			generator.writeKey("_shards");
 			this.shards.serialize(generator, mapper);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("_version");
 			generator.write(this.version);
 
 		}
 		if (this.forcedRefresh != null) {
-
 			generator.writeKey("forced_refresh");
 			generator.write(this.forcedRefresh);
 
 		}
 		if (this.get != null) {
-
 			generator.writeKey("get");
 			this.get.serialize(generator, mapper);
 
@@ -300,13 +291,13 @@ public final class ResponseItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResponseItem}.
 	 */
-	public static class Builder implements ObjectBuilder<ResponseItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResponseItem> {
 		private OperationType operationType;
 
 		/**
 		 * Required -
 		 */
-		public Builder operationType(OperationType value) {
+		public final Builder operationType(OperationType value) {
 			this.operationType = value;
 			return this;
 		}
@@ -348,7 +339,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -356,7 +347,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -364,7 +355,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(int value) {
+		public final Builder status(int value) {
 			this.status = value;
 			return this;
 		}
@@ -372,7 +363,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(@Nullable ErrorCause value) {
+		public final Builder error(@Nullable ErrorCause value) {
 			this.error = value;
 			return this;
 		}
@@ -380,14 +371,14 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(@Nullable Long value) {
+		public final Builder primaryTerm(@Nullable Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -395,7 +386,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code result}
 		 */
-		public Builder result(@Nullable String value) {
+		public final Builder result(@Nullable String value) {
 			this.result = value;
 			return this;
 		}
@@ -403,7 +394,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder seqNo(@Nullable Long value) {
+		public final Builder seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -411,7 +402,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder shards(@Nullable ShardStatistics value) {
+		public final Builder shards(@Nullable ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -419,14 +410,14 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -434,7 +425,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -442,7 +433,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code forced_refresh}
 		 */
-		public Builder forcedRefresh(@Nullable Boolean value) {
+		public final Builder forcedRefresh(@Nullable Boolean value) {
 			this.forcedRefresh = value;
 			return this;
 		}
@@ -450,7 +441,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder get(@Nullable InlineGet<Map<String, JsonData>> value) {
+		public final Builder get(@Nullable InlineGet<Map<String, JsonData>> value) {
 			this.get = value;
 			return this;
 		}
@@ -458,7 +449,7 @@ public final class ResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder get(
+		public final Builder get(
 				Function<InlineGet.Builder<Map<String, JsonData>>, ObjectBuilder<InlineGet<Map<String, JsonData>>>> fn) {
 			return this.get(fn.apply(new InlineGet.Builder<Map<String, JsonData>>()).build());
 		}
@@ -470,6 +461,7 @@ public final class ResponseItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResponseItem build() {
+			_checkSingleUse();
 
 			return new ResponseItem(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.DocumentRating
 @JsonpDeserializable
-public final class DocumentRating implements JsonpSerializable {
+public class DocumentRating implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
@@ -49,16 +51,16 @@ public final class DocumentRating implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DocumentRating(Builder builder) {
+	private DocumentRating(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.rating = Objects.requireNonNull(builder.rating, "rating");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.rating = ModelTypeHelper.requireNonNull(builder.rating, this, "rating");
 
 	}
 
-	public DocumentRating(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DocumentRating of(Function<Builder, ObjectBuilder<DocumentRating>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +68,7 @@ public final class DocumentRating implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -76,7 +78,7 @@ public final class DocumentRating implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -85,7 +87,7 @@ public final class DocumentRating implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code rating}
 	 */
-	public int rating() {
+	public final int rating() {
 		return this.rating;
 	}
 
@@ -116,7 +118,7 @@ public final class DocumentRating implements JsonpSerializable {
 	/**
 	 * Builder for {@link DocumentRating}.
 	 */
-	public static class Builder implements ObjectBuilder<DocumentRating> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentRating> {
 		private String id;
 
 		private String index;
@@ -128,7 +130,7 @@ public final class DocumentRating implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -139,7 +141,7 @@ public final class DocumentRating implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -149,7 +151,7 @@ public final class DocumentRating implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code rating}
 		 */
-		public Builder rating(int value) {
+		public final Builder rating(int value) {
 			this.rating = value;
 			return this;
 		}
@@ -161,6 +163,7 @@ public final class DocumentRating implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DocumentRating build() {
+			_checkSingleUse();
 
 			return new DocumentRating(this);
 		}

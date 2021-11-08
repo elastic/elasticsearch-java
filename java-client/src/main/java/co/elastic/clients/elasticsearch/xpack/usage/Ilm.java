@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ilm
 @JsonpDeserializable
-public final class Ilm implements JsonpSerializable {
+public class Ilm implements JsonpSerializable {
 	private final int policyCount;
 
 	private final List<IlmPolicyStatistics> policyStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Ilm(Builder builder) {
+	private Ilm(Builder builder) {
 
-		this.policyCount = Objects.requireNonNull(builder.policyCount, "policy_count");
-		this.policyStats = ModelTypeHelper.unmodifiableNonNull(builder.policyStats, "policy_stats");
+		this.policyCount = ModelTypeHelper.requireNonNull(builder.policyCount, this, "policyCount");
+		this.policyStats = ModelTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}
 
-	public Ilm(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Ilm of(Function<Builder, ObjectBuilder<Ilm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code policy_count}
 	 */
-	public int policyCount() {
+	public final int policyCount() {
 		return this.policyCount;
 	}
 
 	/**
 	 * Required - API name: {@code policy_stats}
 	 */
-	public List<IlmPolicyStatistics> policyStats() {
+	public final List<IlmPolicyStatistics> policyStats() {
 		return this.policyStats;
 	}
 
@@ -89,13 +90,16 @@ public final class Ilm implements JsonpSerializable {
 		generator.writeKey("policy_count");
 		generator.write(this.policyCount);
 
-		generator.writeKey("policy_stats");
-		generator.writeStartArray();
-		for (IlmPolicyStatistics item0 : this.policyStats) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.policyStats)) {
+			generator.writeKey("policy_stats");
+			generator.writeStartArray();
+			for (IlmPolicyStatistics item0 : this.policyStats) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class Ilm implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ilm}.
 	 */
-	public static class Builder implements ObjectBuilder<Ilm> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ilm> {
 		private Integer policyCount;
 
 		private List<IlmPolicyStatistics> policyStats;
@@ -112,7 +116,7 @@ public final class Ilm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_count}
 		 */
-		public Builder policyCount(int value) {
+		public final Builder policyCount(int value) {
 			this.policyCount = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class Ilm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_stats}
 		 */
-		public Builder policyStats(List<IlmPolicyStatistics> value) {
+		public final Builder policyStats(List<IlmPolicyStatistics> value) {
 			this.policyStats = value;
 			return this;
 		}
@@ -128,34 +132,22 @@ public final class Ilm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_stats}
 		 */
-		public Builder policyStats(IlmPolicyStatistics... value) {
+		public final Builder policyStats(IlmPolicyStatistics... value) {
 			this.policyStats = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
+		 * Required - API name: {@code policy_stats}
 		 */
-		public Builder addPolicyStats(IlmPolicyStatistics value) {
-			if (this.policyStats == null) {
-				this.policyStats = new ArrayList<>();
+		@SafeVarargs
+		public final Builder policyStats(
+				Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>>... fns) {
+			this.policyStats = new ArrayList<>(fns.length);
+			for (Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn : fns) {
+				this.policyStats.add(fn.apply(new IlmPolicyStatistics.Builder()).build());
 			}
-			this.policyStats.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #policyStats(List)} to a singleton list.
-		 */
-		public Builder policyStats(Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
-			return this.policyStats(fn.apply(new IlmPolicyStatistics.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
-		 */
-		public Builder addPolicyStats(Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
-			return this.addPolicyStats(fn.apply(new IlmPolicyStatistics.Builder()).build());
 		}
 
 		/**
@@ -165,6 +157,7 @@ public final class Ilm implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Ilm build() {
+			_checkSingleUse();
 
 			return new Ilm(this);
 		}

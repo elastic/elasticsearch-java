@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: graph.explore.Response
 @JsonpDeserializable
-public final class ExploreResponse implements JsonpSerializable {
+public class ExploreResponse implements JsonpSerializable {
 	private final List<Connection> connections;
 
 	private final List<ShardFailure> failures;
@@ -58,52 +59,52 @@ public final class ExploreResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExploreResponse(Builder builder) {
+	private ExploreResponse(Builder builder) {
 
-		this.connections = ModelTypeHelper.unmodifiableNonNull(builder.connections, "connections");
-		this.failures = ModelTypeHelper.unmodifiableNonNull(builder.failures, "failures");
-		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
-		this.took = Objects.requireNonNull(builder.took, "took");
-		this.vertices = ModelTypeHelper.unmodifiableNonNull(builder.vertices, "vertices");
+		this.connections = ModelTypeHelper.unmodifiableRequired(builder.connections, this, "connections");
+		this.failures = ModelTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.vertices = ModelTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
 
-	public ExploreResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExploreResponse of(Function<Builder, ObjectBuilder<ExploreResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code connections}
 	 */
-	public List<Connection> connections() {
+	public final List<Connection> connections() {
 		return this.connections;
 	}
 
 	/**
 	 * Required - API name: {@code failures}
 	 */
-	public List<ShardFailure> failures() {
+	public final List<ShardFailure> failures() {
 		return this.failures;
 	}
 
 	/**
 	 * Required - API name: {@code timed_out}
 	 */
-	public boolean timedOut() {
+	public final boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
 	 * Required - API name: {@code took}
 	 */
-	public long took() {
+	public final long took() {
 		return this.took;
 	}
 
 	/**
 	 * Required - API name: {@code vertices}
 	 */
-	public List<Vertex> vertices() {
+	public final List<Vertex> vertices() {
 		return this.vertices;
 	}
 
@@ -118,35 +119,42 @@ public final class ExploreResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("connections");
-		generator.writeStartArray();
-		for (Connection item0 : this.connections) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.connections)) {
+			generator.writeKey("connections");
+			generator.writeStartArray();
+			for (Connection item0 : this.connections) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.failures)) {
+			generator.writeKey("failures");
+			generator.writeStartArray();
+			for (ShardFailure item0 : this.failures) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("failures");
-		generator.writeStartArray();
-		for (ShardFailure item0 : this.failures) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("timed_out");
 		generator.write(this.timedOut);
 
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		generator.writeKey("vertices");
-		generator.writeStartArray();
-		for (Vertex item0 : this.vertices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.vertices)) {
+			generator.writeKey("vertices");
+			generator.writeStartArray();
+			for (Vertex item0 : this.vertices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -155,7 +163,7 @@ public final class ExploreResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ExploreResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreResponse> {
 		private List<Connection> connections;
 
 		private List<ShardFailure> failures;
@@ -169,7 +177,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code connections}
 		 */
-		public Builder connections(List<Connection> value) {
+		public final Builder connections(List<Connection> value) {
 			this.connections = value;
 			return this;
 		}
@@ -177,40 +185,27 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code connections}
 		 */
-		public Builder connections(Connection... value) {
+		public final Builder connections(Connection... value) {
 			this.connections = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #connections(List)}, creating the list if needed.
+		 * Required - API name: {@code connections}
 		 */
-		public Builder addConnections(Connection value) {
-			if (this.connections == null) {
-				this.connections = new ArrayList<>();
+		@SafeVarargs
+		public final Builder connections(Function<Connection.Builder, ObjectBuilder<Connection>>... fns) {
+			this.connections = new ArrayList<>(fns.length);
+			for (Function<Connection.Builder, ObjectBuilder<Connection>> fn : fns) {
+				this.connections.add(fn.apply(new Connection.Builder()).build());
 			}
-			this.connections.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #connections(List)} to a singleton list.
-		 */
-		public Builder connections(Function<Connection.Builder, ObjectBuilder<Connection>> fn) {
-			return this.connections(fn.apply(new Connection.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #connections(List)}, creating the list if needed.
-		 */
-		public Builder addConnections(Function<Connection.Builder, ObjectBuilder<Connection>> fn) {
-			return this.addConnections(fn.apply(new Connection.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code failures}
 		 */
-		public Builder failures(List<ShardFailure> value) {
+		public final Builder failures(List<ShardFailure> value) {
 			this.failures = value;
 			return this;
 		}
@@ -218,40 +213,27 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failures}
 		 */
-		public Builder failures(ShardFailure... value) {
+		public final Builder failures(ShardFailure... value) {
 			this.failures = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Required - API name: {@code failures}
 		 */
-		public Builder addFailures(ShardFailure value) {
-			if (this.failures == null) {
-				this.failures = new ArrayList<>();
+		@SafeVarargs
+		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>>... fns) {
+			this.failures = new ArrayList<>(fns.length);
+			for (Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn : fns) {
+				this.failures.add(fn.apply(new ShardFailure.Builder()).build());
 			}
-			this.failures.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #failures(List)} to a singleton list.
-		 */
-		public Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-			return this.failures(fn.apply(new ShardFailure.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
-		 */
-		public Builder addFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-			return this.addFailures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code timed_out}
 		 */
-		public Builder timedOut(boolean value) {
+		public final Builder timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -259,7 +241,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code took}
 		 */
-		public Builder took(long value) {
+		public final Builder took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -267,7 +249,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 */
-		public Builder vertices(List<Vertex> value) {
+		public final Builder vertices(List<Vertex> value) {
 			this.vertices = value;
 			return this;
 		}
@@ -275,34 +257,21 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 */
-		public Builder vertices(Vertex... value) {
+		public final Builder vertices(Vertex... value) {
 			this.vertices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Required - API name: {@code vertices}
 		 */
-		public Builder addVertices(Vertex value) {
-			if (this.vertices == null) {
-				this.vertices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder vertices(Function<Vertex.Builder, ObjectBuilder<Vertex>>... fns) {
+			this.vertices = new ArrayList<>(fns.length);
+			for (Function<Vertex.Builder, ObjectBuilder<Vertex>> fn : fns) {
+				this.vertices.add(fn.apply(new Vertex.Builder()).build());
 			}
-			this.vertices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #vertices(List)} to a singleton list.
-		 */
-		public Builder vertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
-			return this.vertices(fn.apply(new Vertex.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
-		 */
-		public Builder addVertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
-			return this.addVertices(fn.apply(new Vertex.Builder()).build());
 		}
 
 		/**
@@ -312,6 +281,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExploreResponse build() {
+			_checkSingleUse();
 
 			return new ExploreResponse(this);
 		}

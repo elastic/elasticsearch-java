@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Vector
 @JsonpDeserializable
-public final class Vector extends Base {
+public class Vector extends Base {
 	private final int denseVectorDimsAvgCount;
 
 	private final int denseVectorFieldsCount;
@@ -48,32 +49,32 @@ public final class Vector extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Vector(Builder builder) {
+	private Vector(Builder builder) {
 		super(builder);
 
-		this.denseVectorDimsAvgCount = Objects.requireNonNull(builder.denseVectorDimsAvgCount,
-				"dense_vector_dims_avg_count");
-		this.denseVectorFieldsCount = Objects.requireNonNull(builder.denseVectorFieldsCount,
-				"dense_vector_fields_count");
+		this.denseVectorDimsAvgCount = ModelTypeHelper.requireNonNull(builder.denseVectorDimsAvgCount, this,
+				"denseVectorDimsAvgCount");
+		this.denseVectorFieldsCount = ModelTypeHelper.requireNonNull(builder.denseVectorFieldsCount, this,
+				"denseVectorFieldsCount");
 		this.sparseVectorFieldsCount = builder.sparseVectorFieldsCount;
 
 	}
 
-	public Vector(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Vector of(Function<Builder, ObjectBuilder<Vector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code dense_vector_dims_avg_count}
 	 */
-	public int denseVectorDimsAvgCount() {
+	public final int denseVectorDimsAvgCount() {
 		return this.denseVectorDimsAvgCount;
 	}
 
 	/**
 	 * Required - API name: {@code dense_vector_fields_count}
 	 */
-	public int denseVectorFieldsCount() {
+	public final int denseVectorFieldsCount() {
 		return this.denseVectorFieldsCount;
 	}
 
@@ -81,14 +82,13 @@ public final class Vector extends Base {
 	 * API name: {@code sparse_vector_fields_count}
 	 */
 	@Nullable
-	public Integer sparseVectorFieldsCount() {
+	public final Integer sparseVectorFieldsCount() {
 		return this.sparseVectorFieldsCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("dense_vector_dims_avg_count");
 		generator.write(this.denseVectorDimsAvgCount);
 
@@ -96,7 +96,6 @@ public final class Vector extends Base {
 		generator.write(this.denseVectorFieldsCount);
 
 		if (this.sparseVectorFieldsCount != null) {
-
 			generator.writeKey("sparse_vector_fields_count");
 			generator.write(this.sparseVectorFieldsCount);
 
@@ -120,7 +119,7 @@ public final class Vector extends Base {
 		/**
 		 * Required - API name: {@code dense_vector_dims_avg_count}
 		 */
-		public Builder denseVectorDimsAvgCount(int value) {
+		public final Builder denseVectorDimsAvgCount(int value) {
 			this.denseVectorDimsAvgCount = value;
 			return this;
 		}
@@ -128,7 +127,7 @@ public final class Vector extends Base {
 		/**
 		 * Required - API name: {@code dense_vector_fields_count}
 		 */
-		public Builder denseVectorFieldsCount(int value) {
+		public final Builder denseVectorFieldsCount(int value) {
 			this.denseVectorFieldsCount = value;
 			return this;
 		}
@@ -136,7 +135,7 @@ public final class Vector extends Base {
 		/**
 		 * API name: {@code sparse_vector_fields_count}
 		 */
-		public Builder sparseVectorFieldsCount(@Nullable Integer value) {
+		public final Builder sparseVectorFieldsCount(@Nullable Integer value) {
 			this.sparseVectorFieldsCount = value;
 			return this;
 		}
@@ -153,6 +152,7 @@ public final class Vector extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Vector build() {
+			_checkSingleUse();
 
 			return new Vector(this);
 		}

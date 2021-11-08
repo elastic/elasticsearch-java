@@ -34,10 +34,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,11 +46,10 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestDefinition
 @JsonpDeserializable
-public final class SearchInputRequestDefinition implements JsonpSerializable {
+public class SearchInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final SearchInputRequestBody body;
 
-	@Nullable
 	private final List<String> indices;
 
 	@Nullable
@@ -67,7 +66,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchInputRequestDefinition(Builder builder) {
+	private SearchInputRequestDefinition(Builder builder) {
 
 		this.body = builder.body;
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
@@ -78,23 +77,22 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 
 	}
 
-	public SearchInputRequestDefinition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchInputRequestDefinition of(Function<Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code body}
 	 */
 	@Nullable
-	public SearchInputRequestBody body() {
+	public final SearchInputRequestBody body() {
 		return this.body;
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -102,7 +100,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
-	public IndicesOptions indicesOptions() {
+	public final IndicesOptions indicesOptions() {
 		return this.indicesOptions;
 	}
 
@@ -110,7 +108,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -118,7 +116,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code template}
 	 */
 	@Nullable
-	public SearchTemplateRequest template() {
+	public final SearchTemplateRequest template() {
 		return this.template;
 	}
 
@@ -126,7 +124,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code rest_total_hits_as_int}
 	 */
 	@Nullable
-	public Boolean restTotalHitsAsInt() {
+	public final Boolean restTotalHitsAsInt() {
 		return this.restTotalHitsAsInt;
 	}
 
@@ -142,13 +140,11 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.body != null) {
-
 			generator.writeKey("body");
 			this.body.serialize(generator, mapper);
 
 		}
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -159,24 +155,20 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 
 		}
 		if (this.indicesOptions != null) {
-
 			generator.writeKey("indices_options");
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
 		if (this.searchType != null) {
-
 			generator.writeKey("search_type");
 			this.searchType.serialize(generator, mapper);
 		}
 		if (this.template != null) {
-
 			generator.writeKey("template");
 			this.template.serialize(generator, mapper);
 
 		}
 		if (this.restTotalHitsAsInt != null) {
-
 			generator.writeKey("rest_total_hits_as_int");
 			generator.write(this.restTotalHitsAsInt);
 
@@ -189,7 +181,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInputRequestDefinition}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchInputRequestDefinition> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInputRequestDefinition> {
 		@Nullable
 		private SearchInputRequestBody body;
 
@@ -211,7 +203,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code body}
 		 */
-		public Builder body(@Nullable SearchInputRequestBody value) {
+		public final Builder body(@Nullable SearchInputRequestBody value) {
 			this.body = value;
 			return this;
 		}
@@ -219,14 +211,14 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code body}
 		 */
-		public Builder body(Function<SearchInputRequestBody.Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
+		public final Builder body(Function<SearchInputRequestBody.Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
 			return this.body(fn.apply(new SearchInputRequestBody.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<String> value) {
+		public final Builder indices(@Nullable List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -234,26 +226,15 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public Builder indicesOptions(@Nullable IndicesOptions value) {
+		public final Builder indicesOptions(@Nullable IndicesOptions value) {
 			this.indicesOptions = value;
 			return this;
 		}
@@ -261,14 +242,14 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
+		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
 			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable SearchType value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -276,7 +257,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public Builder template(@Nullable SearchTemplateRequest value) {
+		public final Builder template(@Nullable SearchTemplateRequest value) {
 			this.template = value;
 			return this;
 		}
@@ -284,14 +265,15 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public Builder template(Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
+		public final Builder template(
+				Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
 			return this.template(fn.apply(new SearchTemplateRequest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code rest_total_hits_as_int}
 		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
+		public final Builder restTotalHitsAsInt(@Nullable Boolean value) {
 			this.restTotalHitsAsInt = value;
 			return this;
 		}
@@ -303,6 +285,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchInputRequestDefinition build() {
+			_checkSingleUse();
 
 			return new SearchInputRequestDefinition(this);
 		}

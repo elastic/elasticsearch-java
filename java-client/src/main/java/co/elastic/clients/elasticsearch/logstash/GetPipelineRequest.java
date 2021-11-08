@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,19 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Request
 
-public final class GetPipelineRequest extends RequestBase {
+public class GetPipelineRequest extends RequestBase {
 	private final List<String> id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineRequest(Builder builder) {
+	private GetPipelineRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.unmodifiableNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.unmodifiableRequired(builder.id, this, "id");
 
 	}
 
-	public GetPipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public List<String> id() {
+	public final List<String> id() {
 		return this.id;
 	}
 
@@ -75,7 +75,7 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPipelineRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
 		private List<String> id;
 
 		/**
@@ -83,7 +83,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(List<String> value) {
+		public final Builder id(List<String> value) {
 			this.id = value;
 			return this;
 		}
@@ -93,19 +93,8 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String... value) {
+		public final Builder id(String... value) {
 			this.id = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #id(List)}, creating the list if needed.
-		 */
-		public Builder addId(String value) {
-			if (this.id == null) {
-				this.id = new ArrayList<>();
-			}
-			this.id.add(value);
 			return this;
 		}
 
@@ -116,6 +105,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineRequest build() {
+			_checkSingleUse();
 
 			return new GetPipelineRequest(this);
 		}

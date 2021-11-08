@@ -33,12 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: slm._types.Configuration
 @JsonpDeserializable
-public final class Configuration implements JsonpSerializable {
+public class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
@@ -56,10 +55,8 @@ public final class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Boolean includeGlobalState;
 
-	@Nullable
 	private final List<String> featureStates;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -67,10 +64,10 @@ public final class Configuration implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Configuration(Builder builder) {
+	private Configuration(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.includeGlobalState = builder.includeGlobalState;
 		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
@@ -78,8 +75,8 @@ public final class Configuration implements JsonpSerializable {
 
 	}
 
-	public Configuration(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Configuration of(Function<Builder, ObjectBuilder<Configuration>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +87,7 @@ public final class Configuration implements JsonpSerializable {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -102,7 +99,7 @@ public final class Configuration implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -112,7 +109,7 @@ public final class Configuration implements JsonpSerializable {
 	 * API name: {@code include_global_state}
 	 */
 	@Nullable
-	public Boolean includeGlobalState() {
+	public final Boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
@@ -128,8 +125,7 @@ public final class Configuration implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code feature_states}
 	 */
-	@Nullable
-	public List<String> featureStates() {
+	public final List<String> featureStates() {
 		return this.featureStates;
 	}
 
@@ -140,8 +136,7 @@ public final class Configuration implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -152,7 +147,7 @@ public final class Configuration implements JsonpSerializable {
 	 * API name: {@code partial}
 	 */
 	@Nullable
-	public Boolean partial() {
+	public final Boolean partial() {
 		return this.partial;
 	}
 
@@ -168,28 +163,26 @@ public final class Configuration implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.ignoreUnavailable != null) {
-
 			generator.writeKey("ignore_unavailable");
 			generator.write(this.ignoreUnavailable);
 
 		}
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.includeGlobalState != null) {
-
 			generator.writeKey("include_global_state");
 			generator.write(this.includeGlobalState);
 
 		}
-		if (this.featureStates != null) {
-
+		if (ModelTypeHelper.isDefined(this.featureStates)) {
 			generator.writeKey("feature_states");
 			generator.writeStartArray();
 			for (String item0 : this.featureStates) {
@@ -199,8 +192,7 @@ public final class Configuration implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -212,7 +204,6 @@ public final class Configuration implements JsonpSerializable {
 
 		}
 		if (this.partial != null) {
-
 			generator.writeKey("partial");
 			generator.write(this.partial);
 
@@ -225,7 +216,7 @@ public final class Configuration implements JsonpSerializable {
 	/**
 	 * Builder for {@link Configuration}.
 	 */
-	public static class Builder implements ObjectBuilder<Configuration> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Configuration> {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
@@ -250,7 +241,7 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -263,7 +254,7 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -276,19 +267,8 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
@@ -297,7 +277,7 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code include_global_state}
 		 */
-		public Builder includeGlobalState(@Nullable Boolean value) {
+		public final Builder includeGlobalState(@Nullable Boolean value) {
 			this.includeGlobalState = value;
 			return this;
 		}
@@ -314,7 +294,7 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_states}
 		 */
-		public Builder featureStates(@Nullable List<String> value) {
+		public final Builder featureStates(@Nullable List<String> value) {
 			this.featureStates = value;
 			return this;
 		}
@@ -331,19 +311,8 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_states}
 		 */
-		public Builder featureStates(String... value) {
+		public final Builder featureStates(String... value) {
 			this.featureStates = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
-		 */
-		public Builder addFeatureStates(String value) {
-			if (this.featureStates == null) {
-				this.featureStates = new ArrayList<>();
-			}
-			this.featureStates.add(value);
 			return this;
 		}
 
@@ -354,19 +323,8 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
@@ -376,7 +334,7 @@ public final class Configuration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code partial}
 		 */
-		public Builder partial(@Nullable Boolean value) {
+		public final Builder partial(@Nullable Boolean value) {
 			this.partial = value;
 			return this;
 		}
@@ -388,6 +346,7 @@ public final class Configuration implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Configuration build() {
+			_checkSingleUse();
 
 			return new Configuration(this);
 		}

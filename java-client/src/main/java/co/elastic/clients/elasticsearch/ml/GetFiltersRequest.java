@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
 
-public final class GetFiltersRequest extends RequestBase {
+public class GetFiltersRequest extends RequestBase {
 	@Nullable
 	private final String filterId;
 
@@ -55,7 +56,7 @@ public final class GetFiltersRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetFiltersRequest(Builder builder) {
+	private GetFiltersRequest(Builder builder) {
 
 		this.filterId = builder.filterId;
 		this.from = builder.from;
@@ -63,37 +64,37 @@ public final class GetFiltersRequest extends RequestBase {
 
 	}
 
-	public GetFiltersRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetFiltersRequest of(Function<Builder, ObjectBuilder<GetFiltersRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The ID of the filter to fetch
+	 * A string that uniquely identifies a filter.
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	@Nullable
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
-	 * skips a number of filters
+	 * Skips the specified number of filters.
 	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
 	/**
-	 * specifies a max number of filters to get
+	 * Specifies the maximum number of filters to obtain.
 	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -102,7 +103,7 @@ public final class GetFiltersRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetFiltersRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetFiltersRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFiltersRequest> {
 		@Nullable
 		private String filterId;
 
@@ -113,31 +114,31 @@ public final class GetFiltersRequest extends RequestBase {
 		private Integer size;
 
 		/**
-		 * The ID of the filter to fetch
+		 * A string that uniquely identifies a filter.
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(@Nullable String value) {
+		public final Builder filterId(@Nullable String value) {
 			this.filterId = value;
 			return this;
 		}
 
 		/**
-		 * skips a number of filters
+		 * Skips the specified number of filters.
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
-		 * specifies a max number of filters to get
+		 * Specifies the maximum number of filters to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -149,6 +150,7 @@ public final class GetFiltersRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetFiltersRequest build() {
+			_checkSingleUse();
 
 			return new GetFiltersRequest(this);
 		}

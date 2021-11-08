@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingNode
 @JsonpDeserializable
-public final class AutoscalingNode implements JsonpSerializable {
+public class AutoscalingNode implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoscalingNode(Builder builder) {
+	private AutoscalingNode(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public AutoscalingNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoscalingNode of(Function<Builder, ObjectBuilder<AutoscalingNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -82,13 +84,13 @@ public final class AutoscalingNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingNode}.
 	 */
-	public static class Builder implements ObjectBuilder<AutoscalingNode> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingNode> {
 		private String name;
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class AutoscalingNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AutoscalingNode build() {
+			_checkSingleUse();
 
 			return new AutoscalingNode(this);
 		}

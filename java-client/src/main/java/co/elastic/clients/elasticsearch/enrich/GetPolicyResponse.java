@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Response
 @JsonpDeserializable
-public final class GetPolicyResponse implements JsonpSerializable {
+public class GetPolicyResponse implements JsonpSerializable {
 	private final List<Summary> policies;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPolicyResponse(Builder builder) {
+	private GetPolicyResponse(Builder builder) {
 
-		this.policies = ModelTypeHelper.unmodifiableNonNull(builder.policies, "policies");
+		this.policies = ModelTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
 
 	}
 
-	public GetPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPolicyResponse of(Function<Builder, ObjectBuilder<GetPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code policies}
 	 */
-	public List<Summary> policies() {
+	public final List<Summary> policies() {
 		return this.policies;
 	}
 
@@ -75,13 +76,16 @@ public final class GetPolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("policies");
-		generator.writeStartArray();
-		for (Summary item0 : this.policies) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.policies)) {
+			generator.writeKey("policies");
+			generator.writeStartArray();
+			for (Summary item0 : this.policies) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class GetPolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetPolicyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPolicyResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyResponse> {
 		private List<Summary> policies;
 
 		/**
 		 * Required - API name: {@code policies}
 		 */
-		public Builder policies(List<Summary> value) {
+		public final Builder policies(List<Summary> value) {
 			this.policies = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policies}
 		 */
-		public Builder policies(Summary... value) {
+		public final Builder policies(Summary... value) {
 			this.policies = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed.
+		 * Required - API name: {@code policies}
 		 */
-		public Builder addPolicies(Summary value) {
-			if (this.policies == null) {
-				this.policies = new ArrayList<>();
+		@SafeVarargs
+		public final Builder policies(Function<Summary.Builder, ObjectBuilder<Summary>>... fns) {
+			this.policies = new ArrayList<>(fns.length);
+			for (Function<Summary.Builder, ObjectBuilder<Summary>> fn : fns) {
+				this.policies.add(fn.apply(new Summary.Builder()).build());
 			}
-			this.policies.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #policies(List)} to a singleton list.
-		 */
-		public Builder policies(Function<Summary.Builder, ObjectBuilder<Summary>> fn) {
-			return this.policies(fn.apply(new Summary.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed.
-		 */
-		public Builder addPolicies(Function<Summary.Builder, ObjectBuilder<Summary>> fn) {
-			return this.addPolicies(fn.apply(new Summary.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetPolicyResponse build() {
+			_checkSingleUse();
 
 			return new GetPolicyResponse(this);
 		}

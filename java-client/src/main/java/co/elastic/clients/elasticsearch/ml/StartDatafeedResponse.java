@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,35 +44,42 @@ import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Response
 @JsonpDeserializable
-public final class StartDatafeedResponse implements JsonpSerializable {
+public class StartDatafeedResponse implements JsonpSerializable {
 	private final List<String> node;
 
 	private final boolean started;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDatafeedResponse(Builder builder) {
+	private StartDatafeedResponse(Builder builder) {
 
-		this.node = ModelTypeHelper.unmodifiableNonNull(builder.node, "node");
-		this.started = Objects.requireNonNull(builder.started, "started");
+		this.node = ModelTypeHelper.unmodifiableRequired(builder.node, this, "node");
+		this.started = ModelTypeHelper.requireNonNull(builder.started, this, "started");
 
 	}
 
-	public StartDatafeedResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDatafeedResponse of(Function<Builder, ObjectBuilder<StartDatafeedResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * Required - The ID of the node that the datafeed was started on. If the
+	 * datafeed is allowed to open lazily and has not yet been assigned to a node,
+	 * this value is an empty string.
+	 * <p>
+	 * API name: {@code node}
 	 */
-	public List<String> node() {
+	public final List<String> node() {
 		return this.node;
 	}
 
 	/**
-	 * Required - API name: {@code started}
+	 * Required - For a successful response, this value is always <code>true</code>.
+	 * On failure, an exception is returned instead.
+	 * <p>
+	 * API name: {@code started}
 	 */
-	public boolean started() {
+	public final boolean started() {
 		return this.started;
 	}
 
@@ -87,14 +94,16 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("node");
-		generator.writeStartArray();
-		for (String item0 : this.node) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.node)) {
+			generator.writeKey("node");
+			generator.writeStartArray();
+			for (String item0 : this.node) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("started");
 		generator.write(this.started);
 
@@ -105,42 +114,42 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StartDatafeedResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StartDatafeedResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedResponse> {
 		private List<String> node;
 
 		private Boolean started;
 
 		/**
-		 * Required - API name: {@code node}
+		 * Required - The ID of the node that the datafeed was started on. If the
+		 * datafeed is allowed to open lazily and has not yet been assigned to a node,
+		 * this value is an empty string.
+		 * <p>
+		 * API name: {@code node}
 		 */
-		public Builder node(List<String> value) {
+		public final Builder node(List<String> value) {
 			this.node = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * Required - The ID of the node that the datafeed was started on. If the
+		 * datafeed is allowed to open lazily and has not yet been assigned to a node,
+		 * this value is an empty string.
+		 * <p>
+		 * API name: {@code node}
 		 */
-		public Builder node(String... value) {
+		public final Builder node(String... value) {
 			this.node = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #node(List)}, creating the list if needed.
+		 * Required - For a successful response, this value is always <code>true</code>.
+		 * On failure, an exception is returned instead.
+		 * <p>
+		 * API name: {@code started}
 		 */
-		public Builder addNode(String value) {
-			if (this.node == null) {
-				this.node = new ArrayList<>();
-			}
-			this.node.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code started}
-		 */
-		public Builder started(boolean value) {
+		public final Builder started(boolean value) {
 			this.started = value;
 			return this;
 		}
@@ -152,6 +161,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StartDatafeedResponse build() {
+			_checkSingleUse();
 
 			return new StartDatafeedResponse(this);
 		}

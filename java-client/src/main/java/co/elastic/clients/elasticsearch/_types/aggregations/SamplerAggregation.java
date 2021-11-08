@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SamplerAggregation
 @JsonpDeserializable
-public final class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
+public class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer shardSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SamplerAggregation(Builder builder) {
+	private SamplerAggregation(Builder builder) {
 		super(builder);
 
 		this.shardSize = builder.shardSize;
 
 	}
 
-	public SamplerAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SamplerAggregation of(Function<Builder, ObjectBuilder<SamplerAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -75,7 +75,6 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
@@ -97,7 +96,7 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 		 *             if some of the required fields are null.
 		 */
 		public SamplerAggregation build() {
+			_checkSingleUse();
 
 			return new SamplerAggregation(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketSummary
 @JsonpDeserializable
-public final class BucketSummary implements JsonpSerializable {
+public class BucketSummary implements JsonpSerializable {
 	private final double anomalyScore;
 
 	private final List<BucketInfluencer> bucketInfluencers;
@@ -61,7 +62,6 @@ public final class BucketSummary implements JsonpSerializable {
 
 	private final String jobId;
 
-	@Nullable
 	private final List<PartitionScore> partitionScores;
 
 	private final double processingTimeMs;
@@ -72,101 +72,102 @@ public final class BucketSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BucketSummary(Builder builder) {
+	private BucketSummary(Builder builder) {
 
-		this.anomalyScore = Objects.requireNonNull(builder.anomalyScore, "anomaly_score");
-		this.bucketInfluencers = ModelTypeHelper.unmodifiableNonNull(builder.bucketInfluencers, "bucket_influencers");
-		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
-		this.eventCount = Objects.requireNonNull(builder.eventCount, "event_count");
-		this.initialAnomalyScore = Objects.requireNonNull(builder.initialAnomalyScore, "initial_anomaly_score");
-		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.anomalyScore = ModelTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
+		this.bucketInfluencers = ModelTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
+				"bucketInfluencers");
+		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.eventCount = ModelTypeHelper.requireNonNull(builder.eventCount, this, "eventCount");
+		this.initialAnomalyScore = ModelTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+				"initialAnomalyScore");
+		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.partitionScores = ModelTypeHelper.unmodifiable(builder.partitionScores);
-		this.processingTimeMs = Objects.requireNonNull(builder.processingTimeMs, "processing_time_ms");
-		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.processingTimeMs = ModelTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
+		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public BucketSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BucketSummary of(Function<Builder, ObjectBuilder<BucketSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code anomaly_score}
 	 */
-	public double anomalyScore() {
+	public final double anomalyScore() {
 		return this.anomalyScore;
 	}
 
 	/**
 	 * Required - API name: {@code bucket_influencers}
 	 */
-	public List<BucketInfluencer> bucketInfluencers() {
+	public final List<BucketInfluencer> bucketInfluencers() {
 		return this.bucketInfluencers;
 	}
 
 	/**
 	 * Required - API name: {@code bucket_span}
 	 */
-	public String bucketSpan() {
+	public final String bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
 	 * Required - API name: {@code event_count}
 	 */
-	public long eventCount() {
+	public final long eventCount() {
 		return this.eventCount;
 	}
 
 	/**
 	 * Required - API name: {@code initial_anomaly_score}
 	 */
-	public double initialAnomalyScore() {
+	public final double initialAnomalyScore() {
 		return this.initialAnomalyScore;
 	}
 
 	/**
 	 * Required - API name: {@code is_interim}
 	 */
-	public boolean isInterim() {
+	public final boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
 	 * API name: {@code partition_scores}
 	 */
-	@Nullable
-	public List<PartitionScore> partitionScores() {
+	public final List<PartitionScore> partitionScores() {
 		return this.partitionScores;
 	}
 
 	/**
 	 * Required - API name: {@code processing_time_ms}
 	 */
-	public double processingTimeMs() {
+	public final double processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
 	/**
 	 * Required - API name: {@code result_type}
 	 */
-	public String resultType() {
+	public final String resultType() {
 		return this.resultType;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -184,14 +185,16 @@ public final class BucketSummary implements JsonpSerializable {
 		generator.writeKey("anomaly_score");
 		generator.write(this.anomalyScore);
 
-		generator.writeKey("bucket_influencers");
-		generator.writeStartArray();
-		for (BucketInfluencer item0 : this.bucketInfluencers) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.bucketInfluencers)) {
+			generator.writeKey("bucket_influencers");
+			generator.writeStartArray();
+			for (BucketInfluencer item0 : this.bucketInfluencers) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("bucket_span");
 		generator.write(this.bucketSpan);
 
@@ -207,8 +210,7 @@ public final class BucketSummary implements JsonpSerializable {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		if (this.partitionScores != null) {
-
+		if (ModelTypeHelper.isDefined(this.partitionScores)) {
 			generator.writeKey("partition_scores");
 			generator.writeStartArray();
 			for (PartitionScore item0 : this.partitionScores) {
@@ -218,7 +220,6 @@ public final class BucketSummary implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("processing_time_ms");
 		generator.write(this.processingTimeMs);
 
@@ -235,7 +236,7 @@ public final class BucketSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link BucketSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<BucketSummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketSummary> {
 		private Double anomalyScore;
 
 		private List<BucketInfluencer> bucketInfluencers;
@@ -262,7 +263,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code anomaly_score}
 		 */
-		public Builder anomalyScore(double value) {
+		public final Builder anomalyScore(double value) {
 			this.anomalyScore = value;
 			return this;
 		}
@@ -270,7 +271,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_influencers}
 		 */
-		public Builder bucketInfluencers(List<BucketInfluencer> value) {
+		public final Builder bucketInfluencers(List<BucketInfluencer> value) {
 			this.bucketInfluencers = value;
 			return this;
 		}
@@ -278,40 +279,28 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_influencers}
 		 */
-		public Builder bucketInfluencers(BucketInfluencer... value) {
+		public final Builder bucketInfluencers(BucketInfluencer... value) {
 			this.bucketInfluencers = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
+		 * Required - API name: {@code bucket_influencers}
 		 */
-		public Builder addBucketInfluencers(BucketInfluencer value) {
-			if (this.bucketInfluencers == null) {
-				this.bucketInfluencers = new ArrayList<>();
+		@SafeVarargs
+		public final Builder bucketInfluencers(
+				Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>>... fns) {
+			this.bucketInfluencers = new ArrayList<>(fns.length);
+			for (Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn : fns) {
+				this.bucketInfluencers.add(fn.apply(new BucketInfluencer.Builder()).build());
 			}
-			this.bucketInfluencers.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #bucketInfluencers(List)} to a singleton list.
-		 */
-		public Builder bucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
-			return this.bucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
-		 */
-		public Builder addBucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
-			return this.addBucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(String value) {
+		public final Builder bucketSpan(String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -319,7 +308,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code event_count}
 		 */
-		public Builder eventCount(long value) {
+		public final Builder eventCount(long value) {
 			this.eventCount = value;
 			return this;
 		}
@@ -327,7 +316,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code initial_anomaly_score}
 		 */
-		public Builder initialAnomalyScore(double value) {
+		public final Builder initialAnomalyScore(double value) {
 			this.initialAnomalyScore = value;
 			return this;
 		}
@@ -335,7 +324,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code is_interim}
 		 */
-		public Builder isInterim(boolean value) {
+		public final Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -343,7 +332,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -351,7 +340,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code partition_scores}
 		 */
-		public Builder partitionScores(@Nullable List<PartitionScore> value) {
+		public final Builder partitionScores(@Nullable List<PartitionScore> value) {
 			this.partitionScores = value;
 			return this;
 		}
@@ -359,40 +348,27 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code partition_scores}
 		 */
-		public Builder partitionScores(PartitionScore... value) {
+		public final Builder partitionScores(PartitionScore... value) {
 			this.partitionScores = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
+		 * API name: {@code partition_scores}
 		 */
-		public Builder addPartitionScores(PartitionScore value) {
-			if (this.partitionScores == null) {
-				this.partitionScores = new ArrayList<>();
+		@SafeVarargs
+		public final Builder partitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>>... fns) {
+			this.partitionScores = new ArrayList<>(fns.length);
+			for (Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn : fns) {
+				this.partitionScores.add(fn.apply(new PartitionScore.Builder()).build());
 			}
-			this.partitionScores.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #partitionScores(List)} to a singleton list.
-		 */
-		public Builder partitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
-			return this.partitionScores(fn.apply(new PartitionScore.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
-		 */
-		public Builder addPartitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
-			return this.addPartitionScores(fn.apply(new PartitionScore.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code processing_time_ms}
 		 */
-		public Builder processingTimeMs(double value) {
+		public final Builder processingTimeMs(double value) {
 			this.processingTimeMs = value;
 			return this;
 		}
@@ -400,7 +376,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code result_type}
 		 */
-		public Builder resultType(String value) {
+		public final Builder resultType(String value) {
 			this.resultType = value;
 			return this;
 		}
@@ -408,7 +384,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -420,6 +396,7 @@ public final class BucketSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BucketSummary build() {
+			_checkSingleUse();
 
 			return new BucketSummary(this);
 		}

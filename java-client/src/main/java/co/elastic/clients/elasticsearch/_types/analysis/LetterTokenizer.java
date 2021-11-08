@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LetterTokenizer
 @JsonpDeserializable
-public final class LetterTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LetterTokenizer extends TokenizerBase implements TokenizerVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public LetterTokenizer(Builder builder) {
+	private LetterTokenizer(Builder builder) {
 		super(builder);
 
 	}
 
-	public LetterTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LetterTokenizer of(Function<Builder, ObjectBuilder<LetterTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class LetterTokenizer extends TokenizerBase implements TokenizerVar
 		 *             if some of the required fields are null.
 		 */
 		public LetterTokenizer build() {
+			_checkSingleUse();
 
 			return new LetterTokenizer(this);
 		}

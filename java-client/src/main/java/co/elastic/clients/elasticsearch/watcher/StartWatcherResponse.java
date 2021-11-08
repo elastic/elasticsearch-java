@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: watcher.start.Response
 @JsonpDeserializable
-public final class StartWatcherResponse extends AcknowledgedResponseBase {
+public class StartWatcherResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StartWatcherResponse(Builder builder) {
+	private StartWatcherResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StartWatcherResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartWatcherResponse of(Function<Builder, ObjectBuilder<StartWatcherResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class StartWatcherResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartWatcherResponse build() {
+			_checkSingleUse();
 
 			return new StartWatcherResponse(this);
 		}

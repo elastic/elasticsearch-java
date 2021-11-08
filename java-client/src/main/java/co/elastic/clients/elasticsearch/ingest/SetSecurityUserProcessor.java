@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,24 +41,23 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
 @JsonpDeserializable
-public final class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
+public class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
-	@Nullable
 	private final List<String> properties;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SetSecurityUserProcessor(Builder builder) {
+	private SetSecurityUserProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 
 	}
 
-	public SetSecurityUserProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SetSecurityUserProcessor of(Function<Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,27 +71,24 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * API name: {@code properties}
 	 */
-	@Nullable
-	public List<String> properties() {
+	public final List<String> properties() {
 		return this.properties;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (this.properties != null) {
-
+		if (ModelTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -122,7 +117,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -130,7 +125,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		/**
 		 * API name: {@code properties}
 		 */
-		public Builder properties(@Nullable List<String> value) {
+		public final Builder properties(@Nullable List<String> value) {
 			this.properties = value;
 			return this;
 		}
@@ -138,19 +133,8 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		/**
 		 * API name: {@code properties}
 		 */
-		public Builder properties(String... value) {
+		public final Builder properties(String... value) {
 			this.properties = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
-		 */
-		public Builder addProperties(String value) {
-			if (this.properties == null) {
-				this.properties = new ArrayList<>();
-			}
-			this.properties.add(value);
 			return this;
 		}
 
@@ -166,6 +150,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public SetSecurityUserProcessor build() {
+			_checkSingleUse();
 
 			return new SetSecurityUserProcessor(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultAction
 @JsonpDeserializable
-public final class ExecutionResultAction implements JsonpSerializable {
+public class ExecutionResultAction implements JsonpSerializable {
 	@Nullable
 	private final EmailResult email;
 
@@ -69,37 +71,37 @@ public final class ExecutionResultAction implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionResultAction(Builder builder) {
+	private ExecutionResultAction(Builder builder) {
 
 		this.email = builder.email;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.logging = builder.logging;
 		this.pagerduty = builder.pagerduty;
 		this.reason = builder.reason;
 		this.slack = builder.slack;
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.webhook = builder.webhook;
 
 	}
 
-	public ExecutionResultAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionResultAction of(Function<Builder, ObjectBuilder<ExecutionResultAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code email}
 	 */
 	@Nullable
-	public EmailResult email() {
+	public final EmailResult email() {
 		return this.email;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -107,7 +109,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public IndexResult index() {
+	public final IndexResult index() {
 		return this.index;
 	}
 
@@ -115,7 +117,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	 * API name: {@code logging}
 	 */
 	@Nullable
-	public LoggingResult logging() {
+	public final LoggingResult logging() {
 		return this.logging;
 	}
 
@@ -123,7 +125,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	 * API name: {@code pagerduty}
 	 */
 	@Nullable
-	public PagerDutyResult pagerduty() {
+	public final PagerDutyResult pagerduty() {
 		return this.pagerduty;
 	}
 
@@ -131,7 +133,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	 * API name: {@code reason}
 	 */
 	@Nullable
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -139,21 +141,21 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	 * API name: {@code slack}
 	 */
 	@Nullable
-	public SlackResult slack() {
+	public final SlackResult slack() {
 		return this.slack;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ActionStatusOptions status() {
+	public final ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public ActionType type() {
+	public final ActionType type() {
 		return this.type;
 	}
 
@@ -161,7 +163,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	 * API name: {@code webhook}
 	 */
 	@Nullable
-	public WebhookResult webhook() {
+	public final WebhookResult webhook() {
 		return this.webhook;
 	}
 
@@ -177,53 +179,43 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
-
 			generator.writeKey("email");
 			this.email.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("id");
 		generator.write(this.id);
 
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			this.index.serialize(generator, mapper);
 
 		}
 		if (this.logging != null) {
-
 			generator.writeKey("logging");
 			this.logging.serialize(generator, mapper);
 
 		}
 		if (this.pagerduty != null) {
-
 			generator.writeKey("pagerduty");
 			this.pagerduty.serialize(generator, mapper);
 
 		}
 		if (this.reason != null) {
-
 			generator.writeKey("reason");
 			generator.write(this.reason);
 
 		}
 		if (this.slack != null) {
-
 			generator.writeKey("slack");
 			this.slack.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 		if (this.webhook != null) {
-
 			generator.writeKey("webhook");
 			this.webhook.serialize(generator, mapper);
 
@@ -236,7 +228,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResultAction}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionResultAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultAction> {
 		@Nullable
 		private EmailResult email;
 
@@ -267,7 +259,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code email}
 		 */
-		public Builder email(@Nullable EmailResult value) {
+		public final Builder email(@Nullable EmailResult value) {
 			this.email = value;
 			return this;
 		}
@@ -275,14 +267,14 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code email}
 		 */
-		public Builder email(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
+		public final Builder email(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
 			return this.email(fn.apply(new EmailResult.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -290,7 +282,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable IndexResult value) {
+		public final Builder index(@Nullable IndexResult value) {
 			this.index = value;
 			return this;
 		}
@@ -298,14 +290,14 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(Function<IndexResult.Builder, ObjectBuilder<IndexResult>> fn) {
+		public final Builder index(Function<IndexResult.Builder, ObjectBuilder<IndexResult>> fn) {
 			return this.index(fn.apply(new IndexResult.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code logging}
 		 */
-		public Builder logging(@Nullable LoggingResult value) {
+		public final Builder logging(@Nullable LoggingResult value) {
 			this.logging = value;
 			return this;
 		}
@@ -313,14 +305,14 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code logging}
 		 */
-		public Builder logging(Function<LoggingResult.Builder, ObjectBuilder<LoggingResult>> fn) {
+		public final Builder logging(Function<LoggingResult.Builder, ObjectBuilder<LoggingResult>> fn) {
 			return this.logging(fn.apply(new LoggingResult.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code pagerduty}
 		 */
-		public Builder pagerduty(@Nullable PagerDutyResult value) {
+		public final Builder pagerduty(@Nullable PagerDutyResult value) {
 			this.pagerduty = value;
 			return this;
 		}
@@ -328,14 +320,14 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code pagerduty}
 		 */
-		public Builder pagerduty(Function<PagerDutyResult.Builder, ObjectBuilder<PagerDutyResult>> fn) {
+		public final Builder pagerduty(Function<PagerDutyResult.Builder, ObjectBuilder<PagerDutyResult>> fn) {
 			return this.pagerduty(fn.apply(new PagerDutyResult.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code reason}
 		 */
-		public Builder reason(@Nullable String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
@@ -343,7 +335,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code slack}
 		 */
-		public Builder slack(@Nullable SlackResult value) {
+		public final Builder slack(@Nullable SlackResult value) {
 			this.slack = value;
 			return this;
 		}
@@ -351,14 +343,14 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code slack}
 		 */
-		public Builder slack(Function<SlackResult.Builder, ObjectBuilder<SlackResult>> fn) {
+		public final Builder slack(Function<SlackResult.Builder, ObjectBuilder<SlackResult>> fn) {
 			return this.slack(fn.apply(new SlackResult.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ActionStatusOptions value) {
+		public final Builder status(ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -366,7 +358,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(ActionType value) {
+		public final Builder type(ActionType value) {
 			this.type = value;
 			return this;
 		}
@@ -374,7 +366,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code webhook}
 		 */
-		public Builder webhook(@Nullable WebhookResult value) {
+		public final Builder webhook(@Nullable WebhookResult value) {
 			this.webhook = value;
 			return this;
 		}
@@ -382,7 +374,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		/**
 		 * API name: {@code webhook}
 		 */
-		public Builder webhook(Function<WebhookResult.Builder, ObjectBuilder<WebhookResult>> fn) {
+		public final Builder webhook(Function<WebhookResult.Builder, ObjectBuilder<WebhookResult>> fn) {
 			return this.webhook(fn.apply(new WebhookResult.Builder()).build());
 		}
 
@@ -393,6 +385,7 @@ public final class ExecutionResultAction implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionResultAction build() {
+			_checkSingleUse();
 
 			return new ExecutionResultAction(this);
 		}

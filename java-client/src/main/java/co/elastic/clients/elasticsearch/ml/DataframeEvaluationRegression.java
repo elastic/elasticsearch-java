@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegression
 @JsonpDeserializable
-public final class DataframeEvaluationRegression implements DataframeEvaluationVariant, JsonpSerializable {
+public class DataframeEvaluationRegression implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	private final String predictedField;
@@ -49,16 +51,16 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationRegression(Builder builder) {
+	private DataframeEvaluationRegression(Builder builder) {
 
-		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
-		this.predictedField = Objects.requireNonNull(builder.predictedField, "predicted_field");
+		this.actualField = ModelTypeHelper.requireNonNull(builder.actualField, this, "actualField");
+		this.predictedField = ModelTypeHelper.requireNonNull(builder.predictedField, this, "predictedField");
 		this.metrics = builder.metrics;
 
 	}
 
-	public DataframeEvaluationRegression(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationRegression of(Function<Builder, ObjectBuilder<DataframeEvaluationRegression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +77,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 	 * <p>
 	 * API name: {@code actual_field}
 	 */
-	public String actualField() {
+	public final String actualField() {
 		return this.actualField;
 	}
 
@@ -85,7 +87,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 	 * <p>
 	 * API name: {@code predicted_field}
 	 */
-	public String predictedField() {
+	public final String predictedField() {
 		return this.predictedField;
 	}
 
@@ -97,7 +99,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 	 * API name: {@code metrics}
 	 */
 	@Nullable
-	public DataframeEvaluationRegressionMetrics metrics() {
+	public final DataframeEvaluationRegressionMetrics metrics() {
 		return this.metrics;
 	}
 
@@ -119,7 +121,6 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		generator.write(this.predictedField);
 
 		if (this.metrics != null) {
-
 			generator.writeKey("metrics");
 			this.metrics.serialize(generator, mapper);
 
@@ -132,7 +133,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 	/**
 	 * Builder for {@link DataframeEvaluationRegression}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationRegression> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluationRegression> {
 		private String actualField;
 
 		private String predictedField;
@@ -146,7 +147,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		 * <p>
 		 * API name: {@code actual_field}
 		 */
-		public Builder actualField(String value) {
+		public final Builder actualField(String value) {
 			this.actualField = value;
 			return this;
 		}
@@ -157,7 +158,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		 * <p>
 		 * API name: {@code predicted_field}
 		 */
-		public Builder predictedField(String value) {
+		public final Builder predictedField(String value) {
 			this.predictedField = value;
 			return this;
 		}
@@ -169,7 +170,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(@Nullable DataframeEvaluationRegressionMetrics value) {
+		public final Builder metrics(@Nullable DataframeEvaluationRegressionMetrics value) {
 			this.metrics = value;
 			return this;
 		}
@@ -181,7 +182,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(
+		public final Builder metrics(
 				Function<DataframeEvaluationRegressionMetrics.Builder, ObjectBuilder<DataframeEvaluationRegressionMetrics>> fn) {
 			return this.metrics(fn.apply(new DataframeEvaluationRegressionMetrics.Builder()).build());
 		}
@@ -193,6 +194,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationRegression build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationRegression(this);
 		}

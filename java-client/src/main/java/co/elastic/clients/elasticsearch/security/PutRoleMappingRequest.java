@@ -38,11 +38,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -53,11 +53,10 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Request
 @JsonpDeserializable
-public final class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
+public class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	private final String name;
@@ -65,22 +64,20 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
-	@Nullable
 	private final List<String> roles;
 
 	@Nullable
 	private final RoleMappingRule rules;
 
-	@Nullable
 	private final List<String> runAs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutRoleMappingRequest(Builder builder) {
+	private PutRoleMappingRequest(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
@@ -88,23 +85,22 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 
 	}
 
-	public PutRoleMappingRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutRoleMappingRequest of(Function<Builder, ObjectBuilder<PutRoleMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -113,7 +109,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -126,15 +122,14 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
 	/**
 	 * API name: {@code roles}
 	 */
-	@Nullable
-	public List<String> roles() {
+	public final List<String> roles() {
 		return this.roles;
 	}
 
@@ -142,15 +137,14 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	 * API name: {@code rules}
 	 */
 	@Nullable
-	public RoleMappingRule rules() {
+	public final RoleMappingRule rules() {
 		return this.rules;
 	}
 
 	/**
 	 * API name: {@code run_as}
 	 */
-	@Nullable
-	public List<String> runAs() {
+	public final List<String> runAs() {
 		return this.runAs;
 	}
 
@@ -166,13 +160,11 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -183,8 +175,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 			generator.writeEnd();
 
 		}
-		if (this.roles != null) {
-
+		if (ModelTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -195,13 +186,11 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 
 		}
 		if (this.rules != null) {
-
 			generator.writeKey("rules");
 			this.rules.serialize(generator, mapper);
 
 		}
-		if (this.runAs != null) {
-
+		if (ModelTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -219,7 +208,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link PutRoleMappingRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutRoleMappingRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingRequest> {
 		@Nullable
 		private Boolean enabled;
 
@@ -243,7 +232,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -251,19 +240,8 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
@@ -272,7 +250,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -285,7 +263,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -293,7 +271,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(@Nullable List<String> value) {
+		public final Builder roles(@Nullable List<String> value) {
 			this.roles = value;
 			return this;
 		}
@@ -301,26 +279,15 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(String... value) {
+		public final Builder roles(String... value) {
 			this.roles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
-		 */
-		public Builder addRoles(String value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code rules}
 		 */
-		public Builder rules(@Nullable RoleMappingRule value) {
+		public final Builder rules(@Nullable RoleMappingRule value) {
 			this.rules = value;
 			return this;
 		}
@@ -328,14 +295,14 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code rules}
 		 */
-		public Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+		public final Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
 			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code run_as}
 		 */
-		public Builder runAs(@Nullable List<String> value) {
+		public final Builder runAs(@Nullable List<String> value) {
 			this.runAs = value;
 			return this;
 		}
@@ -343,19 +310,8 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code run_as}
 		 */
-		public Builder runAs(String... value) {
+		public final Builder runAs(String... value) {
 			this.runAs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
-		 */
-		public Builder addRunAs(String value) {
-			if (this.runAs == null) {
-				this.runAs = new ArrayList<>();
-			}
-			this.runAs.add(value);
 			return this;
 		}
 
@@ -366,6 +322,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public PutRoleMappingRequest build() {
+			_checkSingleUse();
 
 			return new PutRoleMappingRequest(this);
 		}

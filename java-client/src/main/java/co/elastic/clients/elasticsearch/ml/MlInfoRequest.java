@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: ml.info.Request
 
-public final class MlInfoRequest extends RequestBase {
+public class MlInfoRequest extends RequestBase {
 	public MlInfoRequest() {
 	}
 

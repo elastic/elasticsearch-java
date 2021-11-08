@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ReservedSize
 @JsonpDeserializable
-public final class ReservedSize implements JsonpSerializable {
+public class ReservedSize implements JsonpSerializable {
 	private final String nodeId;
 
 	private final String path;
@@ -55,44 +55,44 @@ public final class ReservedSize implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReservedSize(Builder builder) {
+	private ReservedSize(Builder builder) {
 
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.path = Objects.requireNonNull(builder.path, "path");
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public ReservedSize(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReservedSize of(Function<Builder, ObjectBuilder<ReservedSize>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<String> shards() {
+	public final List<String> shards() {
 		return this.shards;
 	}
 
@@ -116,13 +116,16 @@ public final class ReservedSize implements JsonpSerializable {
 		generator.writeKey("total");
 		generator.write(this.total);
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (String item0 : this.shards) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (String item0 : this.shards) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -131,7 +134,7 @@ public final class ReservedSize implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReservedSize}.
 	 */
-	public static class Builder implements ObjectBuilder<ReservedSize> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReservedSize> {
 		private String nodeId;
 
 		private String path;
@@ -143,7 +146,7 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -151,7 +154,7 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(String value) {
+		public final Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -159,7 +162,7 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -167,7 +170,7 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(List<String> value) {
+		public final Builder shards(List<String> value) {
 			this.shards = value;
 			return this;
 		}
@@ -175,19 +178,8 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(String... value) {
+		public final Builder shards(String... value) {
 			this.shards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(String value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
-			}
-			this.shards.add(value);
 			return this;
 		}
 
@@ -198,6 +190,7 @@ public final class ReservedSize implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReservedSize build() {
+			_checkSingleUse();
 
 			return new ReservedSize(this);
 		}

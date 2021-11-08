@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,20 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.resume_auto_follow_pattern.Request
 
-public final class ResumeAutoFollowPatternRequest extends RequestBase {
+public class ResumeAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeAutoFollowPatternRequest(Builder builder) {
+	private ResumeAutoFollowPatternRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public ResumeAutoFollowPatternRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeAutoFollowPatternRequest of(
+			Function<Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +65,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -71,7 +74,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link ResumeAutoFollowPatternRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ResumeAutoFollowPatternRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeAutoFollowPatternRequest> {
 		private String name;
 
 		/**
@@ -80,7 +83,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -92,6 +95,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ResumeAutoFollowPatternRequest build() {
+			_checkSingleUse();
 
 			return new ResumeAutoFollowPatternRequest(this);
 		}

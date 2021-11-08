@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.set_upgrade_mode.Request
 
-public final class SetUpgradeModeRequest extends RequestBase {
+public class SetUpgradeModeRequest extends RequestBase {
 	@Nullable
 	private final Boolean enabled;
 
@@ -52,34 +53,36 @@ public final class SetUpgradeModeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SetUpgradeModeRequest(Builder builder) {
+	private SetUpgradeModeRequest(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.timeout = builder.timeout;
 
 	}
 
-	public SetUpgradeModeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SetUpgradeModeRequest of(Function<Builder, ObjectBuilder<SetUpgradeModeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
+	 * When <code>true</code>, it enables <code>upgrade_mode</code> which
+	 * temporarily halts all job and datafeed tasks and prohibits new job and
+	 * datafeed tasks from starting.
 	 * <p>
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * Controls the time to wait before action times out. Defaults to 30 seconds
+	 * The time to wait for the request to be completed.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -88,7 +91,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	/**
 	 * Builder for {@link SetUpgradeModeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SetUpgradeModeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SetUpgradeModeRequest> {
 		@Nullable
 		private Boolean enabled;
 
@@ -96,21 +99,23 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
+		 * When <code>true</code>, it enables <code>upgrade_mode</code> which
+		 * temporarily halts all job and datafeed tasks and prohibits new job and
+		 * datafeed tasks from starting.
 		 * <p>
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
 
 		/**
-		 * Controls the time to wait before action times out. Defaults to 30 seconds
+		 * The time to wait for the request to be completed.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -122,6 +127,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public SetUpgradeModeRequest build() {
+			_checkSingleUse();
 
 			return new SetUpgradeModeRequest(this);
 		}

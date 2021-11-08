@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -39,7 +41,7 @@ import java.util.function.Function;
 
 // typedef: transform.get_transform_stats.TransformIndexerStats
 @JsonpDeserializable
-public final class TransformIndexerStats implements JsonpSerializable {
+public class TransformIndexerStats implements JsonpSerializable {
 	private final long documentsIndexed;
 
 	private final long documentsProcessed;
@@ -72,135 +74,137 @@ public final class TransformIndexerStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformIndexerStats(Builder builder) {
+	private TransformIndexerStats(Builder builder) {
 
-		this.documentsIndexed = Objects.requireNonNull(builder.documentsIndexed, "documents_indexed");
-		this.documentsProcessed = Objects.requireNonNull(builder.documentsProcessed, "documents_processed");
-		this.exponentialAvgCheckpointDurationMs = Objects.requireNonNull(builder.exponentialAvgCheckpointDurationMs,
-				"exponential_avg_checkpoint_duration_ms");
-		this.exponentialAvgDocumentsIndexed = Objects.requireNonNull(builder.exponentialAvgDocumentsIndexed,
-				"exponential_avg_documents_indexed");
-		this.exponentialAvgDocumentsProcessed = Objects.requireNonNull(builder.exponentialAvgDocumentsProcessed,
-				"exponential_avg_documents_processed");
-		this.indexFailures = Objects.requireNonNull(builder.indexFailures, "index_failures");
-		this.indexTimeInMs = Objects.requireNonNull(builder.indexTimeInMs, "index_time_in_ms");
-		this.indexTotal = Objects.requireNonNull(builder.indexTotal, "index_total");
-		this.pagesProcessed = Objects.requireNonNull(builder.pagesProcessed, "pages_processed");
-		this.processingTimeInMs = Objects.requireNonNull(builder.processingTimeInMs, "processing_time_in_ms");
-		this.processingTotal = Objects.requireNonNull(builder.processingTotal, "processing_total");
-		this.searchFailures = Objects.requireNonNull(builder.searchFailures, "search_failures");
-		this.searchTimeInMs = Objects.requireNonNull(builder.searchTimeInMs, "search_time_in_ms");
-		this.searchTotal = Objects.requireNonNull(builder.searchTotal, "search_total");
-		this.triggerCount = Objects.requireNonNull(builder.triggerCount, "trigger_count");
+		this.documentsIndexed = ModelTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed");
+		this.documentsProcessed = ModelTypeHelper.requireNonNull(builder.documentsProcessed, this,
+				"documentsProcessed");
+		this.exponentialAvgCheckpointDurationMs = ModelTypeHelper
+				.requireNonNull(builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs");
+		this.exponentialAvgDocumentsIndexed = ModelTypeHelper.requireNonNull(builder.exponentialAvgDocumentsIndexed,
+				this, "exponentialAvgDocumentsIndexed");
+		this.exponentialAvgDocumentsProcessed = ModelTypeHelper.requireNonNull(builder.exponentialAvgDocumentsProcessed,
+				this, "exponentialAvgDocumentsProcessed");
+		this.indexFailures = ModelTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures");
+		this.indexTimeInMs = ModelTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs");
+		this.indexTotal = ModelTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
+		this.pagesProcessed = ModelTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed");
+		this.processingTimeInMs = ModelTypeHelper.requireNonNull(builder.processingTimeInMs, this,
+				"processingTimeInMs");
+		this.processingTotal = ModelTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal");
+		this.searchFailures = ModelTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures");
+		this.searchTimeInMs = ModelTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs");
+		this.searchTotal = ModelTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal");
+		this.triggerCount = ModelTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount");
 
 	}
 
-	public TransformIndexerStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransformIndexerStats of(Function<Builder, ObjectBuilder<TransformIndexerStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code documents_indexed}
 	 */
-	public long documentsIndexed() {
+	public final long documentsIndexed() {
 		return this.documentsIndexed;
 	}
 
 	/**
 	 * Required - API name: {@code documents_processed}
 	 */
-	public long documentsProcessed() {
+	public final long documentsProcessed() {
 		return this.documentsProcessed;
 	}
 
 	/**
 	 * Required - API name: {@code exponential_avg_checkpoint_duration_ms}
 	 */
-	public double exponentialAvgCheckpointDurationMs() {
+	public final double exponentialAvgCheckpointDurationMs() {
 		return this.exponentialAvgCheckpointDurationMs;
 	}
 
 	/**
 	 * Required - API name: {@code exponential_avg_documents_indexed}
 	 */
-	public double exponentialAvgDocumentsIndexed() {
+	public final double exponentialAvgDocumentsIndexed() {
 		return this.exponentialAvgDocumentsIndexed;
 	}
 
 	/**
 	 * Required - API name: {@code exponential_avg_documents_processed}
 	 */
-	public double exponentialAvgDocumentsProcessed() {
+	public final double exponentialAvgDocumentsProcessed() {
 		return this.exponentialAvgDocumentsProcessed;
 	}
 
 	/**
 	 * Required - API name: {@code index_failures}
 	 */
-	public long indexFailures() {
+	public final long indexFailures() {
 		return this.indexFailures;
 	}
 
 	/**
 	 * Required - API name: {@code index_time_in_ms}
 	 */
-	public long indexTimeInMs() {
+	public final long indexTimeInMs() {
 		return this.indexTimeInMs;
 	}
 
 	/**
 	 * Required - API name: {@code index_total}
 	 */
-	public long indexTotal() {
+	public final long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
 	 * Required - API name: {@code pages_processed}
 	 */
-	public long pagesProcessed() {
+	public final long pagesProcessed() {
 		return this.pagesProcessed;
 	}
 
 	/**
 	 * Required - API name: {@code processing_time_in_ms}
 	 */
-	public long processingTimeInMs() {
+	public final long processingTimeInMs() {
 		return this.processingTimeInMs;
 	}
 
 	/**
 	 * Required - API name: {@code processing_total}
 	 */
-	public long processingTotal() {
+	public final long processingTotal() {
 		return this.processingTotal;
 	}
 
 	/**
 	 * Required - API name: {@code search_failures}
 	 */
-	public long searchFailures() {
+	public final long searchFailures() {
 		return this.searchFailures;
 	}
 
 	/**
 	 * Required - API name: {@code search_time_in_ms}
 	 */
-	public long searchTimeInMs() {
+	public final long searchTimeInMs() {
 		return this.searchTimeInMs;
 	}
 
 	/**
 	 * Required - API name: {@code search_total}
 	 */
-	public long searchTotal() {
+	public final long searchTotal() {
 		return this.searchTotal;
 	}
 
 	/**
 	 * Required - API name: {@code trigger_count}
 	 */
-	public long triggerCount() {
+	public final long triggerCount() {
 		return this.triggerCount;
 	}
 
@@ -267,7 +271,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformIndexerStats}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformIndexerStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformIndexerStats> {
 		private Long documentsIndexed;
 
 		private Long documentsProcessed;
@@ -301,7 +305,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code documents_indexed}
 		 */
-		public Builder documentsIndexed(long value) {
+		public final Builder documentsIndexed(long value) {
 			this.documentsIndexed = value;
 			return this;
 		}
@@ -309,7 +313,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code documents_processed}
 		 */
-		public Builder documentsProcessed(long value) {
+		public final Builder documentsProcessed(long value) {
 			this.documentsProcessed = value;
 			return this;
 		}
@@ -317,7 +321,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exponential_avg_checkpoint_duration_ms}
 		 */
-		public Builder exponentialAvgCheckpointDurationMs(double value) {
+		public final Builder exponentialAvgCheckpointDurationMs(double value) {
 			this.exponentialAvgCheckpointDurationMs = value;
 			return this;
 		}
@@ -325,7 +329,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exponential_avg_documents_indexed}
 		 */
-		public Builder exponentialAvgDocumentsIndexed(double value) {
+		public final Builder exponentialAvgDocumentsIndexed(double value) {
 			this.exponentialAvgDocumentsIndexed = value;
 			return this;
 		}
@@ -333,7 +337,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exponential_avg_documents_processed}
 		 */
-		public Builder exponentialAvgDocumentsProcessed(double value) {
+		public final Builder exponentialAvgDocumentsProcessed(double value) {
 			this.exponentialAvgDocumentsProcessed = value;
 			return this;
 		}
@@ -341,7 +345,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_failures}
 		 */
-		public Builder indexFailures(long value) {
+		public final Builder indexFailures(long value) {
 			this.indexFailures = value;
 			return this;
 		}
@@ -349,7 +353,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_time_in_ms}
 		 */
-		public Builder indexTimeInMs(long value) {
+		public final Builder indexTimeInMs(long value) {
 			this.indexTimeInMs = value;
 			return this;
 		}
@@ -357,7 +361,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_total}
 		 */
-		public Builder indexTotal(long value) {
+		public final Builder indexTotal(long value) {
 			this.indexTotal = value;
 			return this;
 		}
@@ -365,7 +369,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pages_processed}
 		 */
-		public Builder pagesProcessed(long value) {
+		public final Builder pagesProcessed(long value) {
 			this.pagesProcessed = value;
 			return this;
 		}
@@ -373,7 +377,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processing_time_in_ms}
 		 */
-		public Builder processingTimeInMs(long value) {
+		public final Builder processingTimeInMs(long value) {
 			this.processingTimeInMs = value;
 			return this;
 		}
@@ -381,7 +385,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processing_total}
 		 */
-		public Builder processingTotal(long value) {
+		public final Builder processingTotal(long value) {
 			this.processingTotal = value;
 			return this;
 		}
@@ -389,7 +393,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code search_failures}
 		 */
-		public Builder searchFailures(long value) {
+		public final Builder searchFailures(long value) {
 			this.searchFailures = value;
 			return this;
 		}
@@ -397,7 +401,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code search_time_in_ms}
 		 */
-		public Builder searchTimeInMs(long value) {
+		public final Builder searchTimeInMs(long value) {
 			this.searchTimeInMs = value;
 			return this;
 		}
@@ -405,7 +409,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code search_total}
 		 */
-		public Builder searchTotal(long value) {
+		public final Builder searchTotal(long value) {
 			this.searchTotal = value;
 			return this;
 		}
@@ -413,7 +417,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger_count}
 		 */
-		public Builder triggerCount(long value) {
+		public final Builder triggerCount(long value) {
 			this.triggerCount = value;
 			return this;
 		}
@@ -425,6 +429,7 @@ public final class TransformIndexerStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TransformIndexerStats build() {
+			_checkSingleUse();
 
 			return new TransformIndexerStats(this);
 		}

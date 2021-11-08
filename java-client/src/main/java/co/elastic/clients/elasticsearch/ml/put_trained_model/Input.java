@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
 @JsonpDeserializable
-public final class Input implements JsonpSerializable {
+public class Input implements JsonpSerializable {
 	private final List<String> fieldNames;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Input(Builder builder) {
+	private Input(Builder builder) {
 
-		this.fieldNames = ModelTypeHelper.unmodifiableNonNull(builder.fieldNames, "field_names");
+		this.fieldNames = ModelTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
 
 	}
 
-	public Input(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_names}
 	 */
-	public List<String> fieldNames() {
+	public final List<String> fieldNames() {
 		return this.fieldNames;
 	}
 
@@ -76,13 +76,16 @@ public final class Input implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field_names");
-		generator.writeStartArray();
-		for (String item0 : this.fieldNames) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.fieldNames)) {
+			generator.writeKey("field_names");
+			generator.writeStartArray();
+			for (String item0 : this.fieldNames) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +94,13 @@ public final class Input implements JsonpSerializable {
 	/**
 	 * Builder for {@link Input}.
 	 */
-	public static class Builder implements ObjectBuilder<Input> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {
 		private List<String> fieldNames;
 
 		/**
 		 * Required - API name: {@code field_names}
 		 */
-		public Builder fieldNames(List<String> value) {
+		public final Builder fieldNames(List<String> value) {
 			this.fieldNames = value;
 			return this;
 		}
@@ -105,19 +108,8 @@ public final class Input implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_names}
 		 */
-		public Builder fieldNames(String... value) {
+		public final Builder fieldNames(String... value) {
 			this.fieldNames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
-		 */
-		public Builder addFieldNames(String value) {
-			if (this.fieldNames == null) {
-				this.fieldNames = new ArrayList<>();
-			}
-			this.fieldNames.add(value);
 			return this;
 		}
 
@@ -128,6 +120,7 @@ public final class Input implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Input build() {
+			_checkSingleUse();
 
 			return new Input(this);
 		}

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +43,6 @@ import javax.annotation.Nullable;
 // typedef: _types.mapping.CorePropertyBase
 
 public abstract class CorePropertyBase extends PropertyBase {
-	@Nullable
 	private final List<String> copyTo;
 
 	@Nullable
@@ -55,7 +53,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CorePropertyBase(AbstractBuilder<?> builder) {
+	protected CorePropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.copyTo = ModelTypeHelper.unmodifiable(builder.copyTo);
@@ -67,8 +65,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	/**
 	 * API name: {@code copy_to}
 	 */
-	@Nullable
-	public List<String> copyTo() {
+	public final List<String> copyTo() {
 		return this.copyTo;
 	}
 
@@ -76,7 +73,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	 * API name: {@code similarity}
 	 */
 	@Nullable
-	public String similarity() {
+	public final String similarity() {
 		return this.similarity;
 	}
 
@@ -84,15 +81,14 @@ public abstract class CorePropertyBase extends PropertyBase {
 	 * API name: {@code store}
 	 */
 	@Nullable
-	public Boolean store() {
+	public final Boolean store() {
 		return this.store;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.copyTo != null) {
-
+		if (ModelTypeHelper.isDefined(this.copyTo)) {
 			generator.writeKey("copy_to");
 			generator.writeStartArray();
 			for (String item0 : this.copyTo) {
@@ -103,13 +99,11 @@ public abstract class CorePropertyBase extends PropertyBase {
 
 		}
 		if (this.similarity != null) {
-
 			generator.writeKey("similarity");
 			generator.write(this.similarity);
 
 		}
 		if (this.store != null) {
-
 			generator.writeKey("store");
 			generator.write(this.store);
 
@@ -132,7 +126,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 		/**
 		 * API name: {@code copy_to}
 		 */
-		public BuilderT copyTo(@Nullable List<String> value) {
+		public final BuilderT copyTo(@Nullable List<String> value) {
 			this.copyTo = value;
 			return self();
 		}
@@ -140,26 +134,15 @@ public abstract class CorePropertyBase extends PropertyBase {
 		/**
 		 * API name: {@code copy_to}
 		 */
-		public BuilderT copyTo(String... value) {
+		public final BuilderT copyTo(String... value) {
 			this.copyTo = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #copyTo(List)}, creating the list if needed.
-		 */
-		public BuilderT addCopyTo(String value) {
-			if (this.copyTo == null) {
-				this.copyTo = new ArrayList<>();
-			}
-			this.copyTo.add(value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code similarity}
 		 */
-		public BuilderT similarity(@Nullable String value) {
+		public final BuilderT similarity(@Nullable String value) {
 			this.similarity = value;
 			return self();
 		}
@@ -167,7 +150,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 		/**
 		 * API name: {@code store}
 		 */
-		public BuilderT store(@Nullable Boolean value) {
+		public final BuilderT store(@Nullable Boolean value) {
 			this.store = value;
 			return self();
 		}

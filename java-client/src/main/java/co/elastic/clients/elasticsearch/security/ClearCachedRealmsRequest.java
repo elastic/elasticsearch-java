@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,23 +47,22 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Request
 
-public final class ClearCachedRealmsRequest extends RequestBase {
+public class ClearCachedRealmsRequest extends RequestBase {
 	private final List<String> realms;
 
-	@Nullable
 	private final List<String> usernames;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCachedRealmsRequest(Builder builder) {
+	private ClearCachedRealmsRequest(Builder builder) {
 
-		this.realms = ModelTypeHelper.unmodifiableNonNull(builder.realms, "realms");
+		this.realms = ModelTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
 		this.usernames = ModelTypeHelper.unmodifiable(builder.usernames);
 
 	}
 
-	public ClearCachedRealmsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCachedRealmsRequest of(Function<Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +70,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code realms}
 	 */
-	public List<String> realms() {
+	public final List<String> realms() {
 		return this.realms;
 	}
 
@@ -80,8 +79,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code usernames}
 	 */
-	@Nullable
-	public List<String> usernames() {
+	public final List<String> usernames() {
 		return this.usernames;
 	}
 
@@ -90,7 +88,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRealmsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCachedRealmsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRealmsRequest> {
 		private List<String> realms;
 
 		@Nullable
@@ -101,7 +99,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code realms}
 		 */
-		public Builder realms(List<String> value) {
+		public final Builder realms(List<String> value) {
 			this.realms = value;
 			return this;
 		}
@@ -111,19 +109,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code realms}
 		 */
-		public Builder realms(String... value) {
+		public final Builder realms(String... value) {
 			this.realms = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #realms(List)}, creating the list if needed.
-		 */
-		public Builder addRealms(String value) {
-			if (this.realms == null) {
-				this.realms = new ArrayList<>();
-			}
-			this.realms.add(value);
 			return this;
 		}
 
@@ -132,7 +119,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code usernames}
 		 */
-		public Builder usernames(@Nullable List<String> value) {
+		public final Builder usernames(@Nullable List<String> value) {
 			this.usernames = value;
 			return this;
 		}
@@ -142,19 +129,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code usernames}
 		 */
-		public Builder usernames(String... value) {
+		public final Builder usernames(String... value) {
 			this.usernames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #usernames(List)}, creating the list if needed.
-		 */
-		public Builder addUsernames(String value) {
-			if (this.usernames == null) {
-				this.usernames = new ArrayList<>();
-			}
-			this.usernames.add(value);
 			return this;
 		}
 
@@ -165,6 +141,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCachedRealmsRequest build() {
+			_checkSingleUse();
 
 			return new ClearCachedRealmsRequest(this);
 		}
@@ -207,7 +184,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.usernames != null) {
+				if (ModelTypeHelper.isDefined(request.usernames)) {
 					params.put("usernames", request.usernames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

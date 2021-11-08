@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: slm._types.Policy
 @JsonpDeserializable
-public final class Policy implements JsonpSerializable {
+public class Policy implements JsonpSerializable {
 	private final Configuration config;
 
 	private final String name;
@@ -52,52 +54,52 @@ public final class Policy implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Policy(Builder builder) {
+	private Policy(Builder builder) {
 
-		this.config = Objects.requireNonNull(builder.config, "config");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.retention = Objects.requireNonNull(builder.retention, "retention");
-		this.schedule = Objects.requireNonNull(builder.schedule, "schedule");
+		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.retention = ModelTypeHelper.requireNonNull(builder.retention, this, "retention");
+		this.schedule = ModelTypeHelper.requireNonNull(builder.schedule, this, "schedule");
 
 	}
 
-	public Policy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Policy of(Function<Builder, ObjectBuilder<Policy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code config}
 	 */
-	public Configuration config() {
+	public final Configuration config() {
 		return this.config;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code repository}
 	 */
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
 	/**
 	 * Required - API name: {@code retention}
 	 */
-	public Retention retention() {
+	public final Retention retention() {
 		return this.retention;
 	}
 
 	/**
 	 * Required - API name: {@code schedule}
 	 */
-	public String schedule() {
+	public final String schedule() {
 		return this.schedule;
 	}
 
@@ -134,7 +136,7 @@ public final class Policy implements JsonpSerializable {
 	/**
 	 * Builder for {@link Policy}.
 	 */
-	public static class Builder implements ObjectBuilder<Policy> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Policy> {
 		private Configuration config;
 
 		private String name;
@@ -148,7 +150,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public Builder config(Configuration value) {
+		public final Builder config(Configuration value) {
 			this.config = value;
 			return this;
 		}
@@ -156,14 +158,14 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
+		public final Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
 			return this.config(fn.apply(new Configuration.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -171,7 +173,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -179,7 +181,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention}
 		 */
-		public Builder retention(Retention value) {
+		public final Builder retention(Retention value) {
 			this.retention = value;
 			return this;
 		}
@@ -187,14 +189,14 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention}
 		 */
-		public Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
+		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
 			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code schedule}
 		 */
-		public Builder schedule(String value) {
+		public final Builder schedule(String value) {
 			this.schedule = value;
 			return this;
 		}
@@ -206,6 +208,7 @@ public final class Policy implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Policy build() {
+			_checkSingleUse();
 
 			return new Policy(this);
 		}

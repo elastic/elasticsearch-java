@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,23 +40,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintTokenFilter
 @JsonpDeserializable
-public final class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final int maxOutputSize;
 
 	private final String separator;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FingerprintTokenFilter(Builder builder) {
+	private FingerprintTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxOutputSize = Objects.requireNonNull(builder.maxOutputSize, "max_output_size");
-		this.separator = Objects.requireNonNull(builder.separator, "separator");
+		this.maxOutputSize = ModelTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
+		this.separator = ModelTypeHelper.requireNonNull(builder.separator, this, "separator");
 
 	}
 
-	public FingerprintTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FingerprintTokenFilter of(Function<Builder, ObjectBuilder<FingerprintTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,14 +70,14 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 	/**
 	 * Required - API name: {@code max_output_size}
 	 */
-	public int maxOutputSize() {
+	public final int maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
 	 * Required - API name: {@code separator}
 	 */
-	public String separator() {
+	public final String separator() {
 		return this.separator;
 	}
 
@@ -84,7 +85,6 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 
 		generator.write("type", "fingerprint");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("max_output_size");
 		generator.write(this.maxOutputSize);
 
@@ -108,7 +108,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * Required - API name: {@code max_output_size}
 		 */
-		public Builder maxOutputSize(int value) {
+		public final Builder maxOutputSize(int value) {
 			this.maxOutputSize = value;
 			return this;
 		}
@@ -116,7 +116,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * Required - API name: {@code separator}
 		 */
-		public Builder separator(String value) {
+		public final Builder separator(String value) {
 			this.separator = value;
 			return this;
 		}
@@ -133,6 +133,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		 *             if some of the required fields are null.
 		 */
 		public FingerprintTokenFilter build() {
+			_checkSingleUse();
 
 			return new FingerprintTokenFilter(this);
 		}

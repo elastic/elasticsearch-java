@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -45,13 +46,11 @@ import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexDefinition
 @JsonpDeserializable
-public final class VertexDefinition implements JsonpSerializable {
-	@Nullable
+public class VertexDefinition implements JsonpSerializable {
 	private final List<String> exclude;
 
 	private final String field;
 
-	@Nullable
 	private final List<VertexInclude> include;
 
 	@Nullable
@@ -65,10 +64,10 @@ public final class VertexDefinition implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VertexDefinition(Builder builder) {
+	private VertexDefinition(Builder builder) {
 
 		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.include = ModelTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.shardMinDocCount = builder.shardMinDocCount;
@@ -76,30 +75,28 @@ public final class VertexDefinition implements JsonpSerializable {
 
 	}
 
-	public VertexDefinition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VertexDefinition of(Function<Builder, ObjectBuilder<VertexDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code exclude}
 	 */
-	@Nullable
-	public List<String> exclude() {
+	public final List<String> exclude() {
 		return this.exclude;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * API name: {@code include}
 	 */
-	@Nullable
-	public List<VertexInclude> include() {
+	public final List<VertexInclude> include() {
 		return this.include;
 	}
 
@@ -107,7 +104,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Long minDocCount() {
+	public final Long minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -115,7 +112,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
-	public Long shardMinDocCount() {
+	public final Long shardMinDocCount() {
 		return this.shardMinDocCount;
 	}
 
@@ -123,7 +120,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -138,8 +135,7 @@ public final class VertexDefinition implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.exclude != null) {
-
+		if (ModelTypeHelper.isDefined(this.exclude)) {
 			generator.writeKey("exclude");
 			generator.writeStartArray();
 			for (String item0 : this.exclude) {
@@ -149,12 +145,10 @@ public final class VertexDefinition implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (this.include != null) {
-
+		if (ModelTypeHelper.isDefined(this.include)) {
 			generator.writeKey("include");
 			generator.writeStartArray();
 			for (VertexInclude item0 : this.include) {
@@ -165,19 +159,16 @@ public final class VertexDefinition implements JsonpSerializable {
 
 		}
 		if (this.minDocCount != null) {
-
 			generator.writeKey("min_doc_count");
 			generator.write(this.minDocCount);
 
 		}
 		if (this.shardMinDocCount != null) {
-
 			generator.writeKey("shard_min_doc_count");
 			generator.write(this.shardMinDocCount);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -190,7 +181,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link VertexDefinition}.
 	 */
-	public static class Builder implements ObjectBuilder<VertexDefinition> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VertexDefinition> {
 		@Nullable
 		private List<String> exclude;
 
@@ -211,7 +202,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable List<String> value) {
 			this.exclude = value;
 			return this;
 		}
@@ -219,26 +210,15 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(String... value) {
+		public final Builder exclude(String... value) {
 			this.exclude = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
-		 */
-		public Builder addExclude(String value) {
-			if (this.exclude == null) {
-				this.exclude = new ArrayList<>();
-			}
-			this.exclude.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -246,7 +226,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(@Nullable List<VertexInclude> value) {
+		public final Builder include(@Nullable List<VertexInclude> value) {
 			this.include = value;
 			return this;
 		}
@@ -254,40 +234,27 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(VertexInclude... value) {
+		public final Builder include(VertexInclude... value) {
 			this.include = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
+		 * API name: {@code include}
 		 */
-		public Builder addInclude(VertexInclude value) {
-			if (this.include == null) {
-				this.include = new ArrayList<>();
+		@SafeVarargs
+		public final Builder include(Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>>... fns) {
+			this.include = new ArrayList<>(fns.length);
+			for (Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>> fn : fns) {
+				this.include.add(fn.apply(new VertexInclude.Builder()).build());
 			}
-			this.include.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #include(List)} to a singleton list.
-		 */
-		public Builder include(Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>> fn) {
-			return this.include(fn.apply(new VertexInclude.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
-		 */
-		public Builder addInclude(Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>> fn) {
-			return this.addInclude(fn.apply(new VertexInclude.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Long value) {
+		public final Builder minDocCount(@Nullable Long value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -295,7 +262,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code shard_min_doc_count}
 		 */
-		public Builder shardMinDocCount(@Nullable Long value) {
+		public final Builder shardMinDocCount(@Nullable Long value) {
 			this.shardMinDocCount = value;
 			return this;
 		}
@@ -303,7 +270,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -315,6 +282,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public VertexDefinition build() {
+			_checkSingleUse();
 
 			return new VertexDefinition(this);
 		}

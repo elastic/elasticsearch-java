@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RuntimeField
 @JsonpDeserializable
-public final class RuntimeField implements JsonpSerializable {
+public class RuntimeField implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
@@ -51,23 +53,23 @@ public final class RuntimeField implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RuntimeField(Builder builder) {
+	private RuntimeField(Builder builder) {
 
 		this.format = builder.format;
 		this.script = builder.script;
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public RuntimeField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -75,14 +77,14 @@ public final class RuntimeField implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public RuntimeFieldType type() {
+	public final RuntimeFieldType type() {
 		return this.type;
 	}
 
@@ -98,18 +100,15 @@ public final class RuntimeField implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -120,7 +119,7 @@ public final class RuntimeField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RuntimeField}.
 	 */
-	public static class Builder implements ObjectBuilder<RuntimeField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeField> {
 		@Nullable
 		private String format;
 
@@ -132,7 +131,7 @@ public final class RuntimeField implements JsonpSerializable {
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -140,7 +139,7 @@ public final class RuntimeField implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -148,7 +147,7 @@ public final class RuntimeField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(RuntimeFieldType value) {
+		public final Builder type(RuntimeFieldType value) {
 			this.type = value;
 			return this;
 		}
@@ -160,6 +159,7 @@ public final class RuntimeField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RuntimeField build() {
+			_checkSingleUse();
 
 			return new RuntimeField(this);
 		}

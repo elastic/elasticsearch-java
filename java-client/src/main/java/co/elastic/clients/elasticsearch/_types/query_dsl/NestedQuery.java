@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.NestedQuery
 @JsonpDeserializable
-public final class NestedQuery extends QueryBase implements QueryVariant {
+public class NestedQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -56,19 +57,19 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NestedQuery(Builder builder) {
+	private NestedQuery(Builder builder) {
 		super(builder);
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.path = Objects.requireNonNull(builder.path, "path");
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.scoreMode = builder.scoreMode;
 
 	}
 
-	public NestedQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NestedQuery of(Function<Builder, ObjectBuilder<NestedQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +84,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -91,21 +92,21 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code inner_hits}
 	 */
 	@Nullable
-	public InnerHits innerHits() {
+	public final InnerHits innerHits() {
 		return this.innerHits;
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -113,7 +114,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public NestedScoreMode scoreMode() {
+	public final NestedScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
@@ -121,18 +122,15 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
 		if (this.innerHits != null) {
-
 			generator.writeKey("inner_hits");
 			this.innerHits.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("path");
 		generator.write(this.path);
 
@@ -140,7 +138,6 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		this.query.serialize(generator, mapper);
 
 		if (this.scoreMode != null) {
-
 			generator.writeKey("score_mode");
 			this.scoreMode.serialize(generator, mapper);
 		}
@@ -169,7 +166,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -177,7 +174,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(@Nullable InnerHits value) {
+		public final Builder innerHits(@Nullable InnerHits value) {
 			this.innerHits = value;
 			return this;
 		}
@@ -185,14 +182,14 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
 			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(String value) {
+		public final Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -200,7 +197,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -208,14 +205,14 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public Builder scoreMode(@Nullable NestedScoreMode value) {
+		public final Builder scoreMode(@Nullable NestedScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -232,6 +229,7 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public NestedQuery build() {
+			_checkSingleUse();
 
 			return new NestedQuery(this);
 		}

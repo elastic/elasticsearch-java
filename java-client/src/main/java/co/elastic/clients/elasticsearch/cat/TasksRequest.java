@@ -32,11 +32,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,14 +48,12 @@ import javax.annotation.Nullable;
 
 // typedef: cat.tasks.Request
 
-public final class TasksRequest extends CatRequestBase {
-	@Nullable
+public class TasksRequest extends CatRequestBase {
 	private final List<String> actions;
 
 	@Nullable
 	private final Boolean detailed;
 
-	@Nullable
 	private final List<String> nodeId;
 
 	@Nullable
@@ -63,7 +61,7 @@ public final class TasksRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TasksRequest(Builder builder) {
+	private TasksRequest(Builder builder) {
 
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
@@ -72,8 +70,8 @@ public final class TasksRequest extends CatRequestBase {
 
 	}
 
-	public TasksRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TasksRequest of(Function<Builder, ObjectBuilder<TasksRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,8 +80,7 @@ public final class TasksRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code actions}
 	 */
-	@Nullable
-	public List<String> actions() {
+	public final List<String> actions() {
 		return this.actions;
 	}
 
@@ -93,15 +90,14 @@ public final class TasksRequest extends CatRequestBase {
 	 * API name: {@code detailed}
 	 */
 	@Nullable
-	public Boolean detailed() {
+	public final Boolean detailed() {
 		return this.detailed;
 	}
 
 	/**
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -109,7 +105,7 @@ public final class TasksRequest extends CatRequestBase {
 	 * API name: {@code parent_task}
 	 */
 	@Nullable
-	public Long parentTask() {
+	public final Long parentTask() {
 		return this.parentTask;
 	}
 
@@ -118,7 +114,7 @@ public final class TasksRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TasksRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<TasksRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksRequest> {
 		@Nullable
 		private List<String> actions;
 
@@ -137,7 +133,7 @@ public final class TasksRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<String> value) {
+		public final Builder actions(@Nullable List<String> value) {
 			this.actions = value;
 			return this;
 		}
@@ -148,19 +144,8 @@ public final class TasksRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(String... value) {
+		public final Builder actions(String... value) {
 			this.actions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(String value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
 			return this;
 		}
 
@@ -169,7 +154,7 @@ public final class TasksRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code detailed}
 		 */
-		public Builder detailed(@Nullable Boolean value) {
+		public final Builder detailed(@Nullable Boolean value) {
 			this.detailed = value;
 			return this;
 		}
@@ -177,7 +162,7 @@ public final class TasksRequest extends CatRequestBase {
 		/**
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
+		public final Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -185,26 +170,15 @@ public final class TasksRequest extends CatRequestBase {
 		/**
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String... value) {
+		public final Builder nodeId(String... value) {
 			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code parent_task}
 		 */
-		public Builder parentTask(@Nullable Long value) {
+		public final Builder parentTask(@Nullable Long value) {
 			this.parentTask = value;
 			return this;
 		}
@@ -216,6 +190,7 @@ public final class TasksRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public TasksRequest build() {
+			_checkSingleUse();
 
 			return new TasksRequest(this);
 		}
@@ -249,10 +224,10 @@ public final class TasksRequest extends CatRequestBase {
 				if (request.parentTask != null) {
 					params.put("parent_task", String.valueOf(request.parentTask));
 				}
-				if (request.actions != null) {
+				if (ModelTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.nodeId != null) {
+				if (ModelTypeHelper.isDefined(request.nodeId)) {
 					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

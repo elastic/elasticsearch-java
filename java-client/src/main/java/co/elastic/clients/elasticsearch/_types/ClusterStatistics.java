@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -38,7 +40,7 @@ import java.util.function.Function;
 
 // typedef: _types.ClusterStatistics
 @JsonpDeserializable
-public final class ClusterStatistics implements JsonpSerializable {
+public class ClusterStatistics implements JsonpSerializable {
 	private final int skipped;
 
 	private final int successful;
@@ -47,36 +49,36 @@ public final class ClusterStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterStatistics(Builder builder) {
+	private ClusterStatistics(Builder builder) {
 
-		this.skipped = Objects.requireNonNull(builder.skipped, "skipped");
-		this.successful = Objects.requireNonNull(builder.successful, "successful");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.skipped = ModelTypeHelper.requireNonNull(builder.skipped, this, "skipped");
+		this.successful = ModelTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public ClusterStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterStatistics of(Function<Builder, ObjectBuilder<ClusterStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code skipped}
 	 */
-	public int skipped() {
+	public final int skipped() {
 		return this.skipped;
 	}
 
 	/**
 	 * Required - API name: {@code successful}
 	 */
-	public int successful() {
+	public final int successful() {
 		return this.successful;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public int total() {
+	public final int total() {
 		return this.total;
 	}
 
@@ -107,7 +109,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterStatistics> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterStatistics> {
 		private Integer skipped;
 
 		private Integer successful;
@@ -117,7 +119,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code skipped}
 		 */
-		public Builder skipped(int value) {
+		public final Builder skipped(int value) {
 			this.skipped = value;
 			return this;
 		}
@@ -125,7 +127,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code successful}
 		 */
-		public Builder successful(int value) {
+		public final Builder successful(int value) {
 			this.successful = value;
 			return this;
 		}
@@ -133,7 +135,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(int value) {
+		public final Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -145,6 +147,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterStatistics build() {
+			_checkSingleUse();
 
 			return new ClusterStatistics(this);
 		}

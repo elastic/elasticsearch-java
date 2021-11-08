@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -40,36 +39,41 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ShingleTokenFilter
 @JsonpDeserializable
-public final class ShingleTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+	@Nullable
 	private final String fillerToken;
 
-	private final int maxShingleSize;
+	@Nullable
+	private final String maxShingleSize;
 
-	private final int minShingleSize;
+	@Nullable
+	private final String minShingleSize;
 
-	private final boolean outputUnigrams;
+	@Nullable
+	private final Boolean outputUnigrams;
 
-	private final boolean outputUnigramsIfNoShingles;
+	@Nullable
+	private final Boolean outputUnigramsIfNoShingles;
 
+	@Nullable
 	private final String tokenSeparator;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShingleTokenFilter(Builder builder) {
+	private ShingleTokenFilter(Builder builder) {
 		super(builder);
 
-		this.fillerToken = Objects.requireNonNull(builder.fillerToken, "filler_token");
-		this.maxShingleSize = Objects.requireNonNull(builder.maxShingleSize, "max_shingle_size");
-		this.minShingleSize = Objects.requireNonNull(builder.minShingleSize, "min_shingle_size");
-		this.outputUnigrams = Objects.requireNonNull(builder.outputUnigrams, "output_unigrams");
-		this.outputUnigramsIfNoShingles = Objects.requireNonNull(builder.outputUnigramsIfNoShingles,
-				"output_unigrams_if_no_shingles");
-		this.tokenSeparator = Objects.requireNonNull(builder.tokenSeparator, "token_separator");
+		this.fillerToken = builder.fillerToken;
+		this.maxShingleSize = builder.maxShingleSize;
+		this.minShingleSize = builder.minShingleSize;
+		this.outputUnigrams = builder.outputUnigrams;
+		this.outputUnigramsIfNoShingles = builder.outputUnigramsIfNoShingles;
+		this.tokenSeparator = builder.tokenSeparator;
 
 	}
 
-	public ShingleTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShingleTokenFilter of(Function<Builder, ObjectBuilder<ShingleTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,44 +85,50 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * Required - API name: {@code filler_token}
+	 * API name: {@code filler_token}
 	 */
-	public String fillerToken() {
+	@Nullable
+	public final String fillerToken() {
 		return this.fillerToken;
 	}
 
 	/**
-	 * Required - API name: {@code max_shingle_size}
+	 * API name: {@code max_shingle_size}
 	 */
-	public int maxShingleSize() {
+	@Nullable
+	public final String maxShingleSize() {
 		return this.maxShingleSize;
 	}
 
 	/**
-	 * Required - API name: {@code min_shingle_size}
+	 * API name: {@code min_shingle_size}
 	 */
-	public int minShingleSize() {
+	@Nullable
+	public final String minShingleSize() {
 		return this.minShingleSize;
 	}
 
 	/**
-	 * Required - API name: {@code output_unigrams}
+	 * API name: {@code output_unigrams}
 	 */
-	public boolean outputUnigrams() {
+	@Nullable
+	public final Boolean outputUnigrams() {
 		return this.outputUnigrams;
 	}
 
 	/**
-	 * Required - API name: {@code output_unigrams_if_no_shingles}
+	 * API name: {@code output_unigrams_if_no_shingles}
 	 */
-	public boolean outputUnigramsIfNoShingles() {
+	@Nullable
+	public final Boolean outputUnigramsIfNoShingles() {
 		return this.outputUnigramsIfNoShingles;
 	}
 
 	/**
-	 * Required - API name: {@code token_separator}
+	 * API name: {@code token_separator}
 	 */
-	public String tokenSeparator() {
+	@Nullable
+	public final String tokenSeparator() {
 		return this.tokenSeparator;
 	}
 
@@ -126,24 +136,36 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 
 		generator.write("type", "shingle");
 		super.serializeInternal(generator, mapper);
+		if (this.fillerToken != null) {
+			generator.writeKey("filler_token");
+			generator.write(this.fillerToken);
 
-		generator.writeKey("filler_token");
-		generator.write(this.fillerToken);
+		}
+		if (this.maxShingleSize != null) {
+			generator.writeKey("max_shingle_size");
+			generator.write(this.maxShingleSize);
 
-		generator.writeKey("max_shingle_size");
-		generator.write(this.maxShingleSize);
+		}
+		if (this.minShingleSize != null) {
+			generator.writeKey("min_shingle_size");
+			generator.write(this.minShingleSize);
 
-		generator.writeKey("min_shingle_size");
-		generator.write(this.minShingleSize);
+		}
+		if (this.outputUnigrams != null) {
+			generator.writeKey("output_unigrams");
+			generator.write(this.outputUnigrams);
 
-		generator.writeKey("output_unigrams");
-		generator.write(this.outputUnigrams);
+		}
+		if (this.outputUnigramsIfNoShingles != null) {
+			generator.writeKey("output_unigrams_if_no_shingles");
+			generator.write(this.outputUnigramsIfNoShingles);
 
-		generator.writeKey("output_unigrams_if_no_shingles");
-		generator.write(this.outputUnigramsIfNoShingles);
+		}
+		if (this.tokenSeparator != null) {
+			generator.writeKey("token_separator");
+			generator.write(this.tokenSeparator);
 
-		generator.writeKey("token_separator");
-		generator.write(this.tokenSeparator);
+		}
 
 	}
 
@@ -155,62 +177,68 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShingleTokenFilter> {
+		@Nullable
 		private String fillerToken;
 
-		private Integer maxShingleSize;
+		@Nullable
+		private String maxShingleSize;
 
-		private Integer minShingleSize;
+		@Nullable
+		private String minShingleSize;
 
+		@Nullable
 		private Boolean outputUnigrams;
 
+		@Nullable
 		private Boolean outputUnigramsIfNoShingles;
 
+		@Nullable
 		private String tokenSeparator;
 
 		/**
-		 * Required - API name: {@code filler_token}
+		 * API name: {@code filler_token}
 		 */
-		public Builder fillerToken(String value) {
+		public final Builder fillerToken(@Nullable String value) {
 			this.fillerToken = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_shingle_size}
+		 * API name: {@code max_shingle_size}
 		 */
-		public Builder maxShingleSize(int value) {
+		public final Builder maxShingleSize(@Nullable String value) {
 			this.maxShingleSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min_shingle_size}
+		 * API name: {@code min_shingle_size}
 		 */
-		public Builder minShingleSize(int value) {
+		public final Builder minShingleSize(@Nullable String value) {
 			this.minShingleSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code output_unigrams}
+		 * API name: {@code output_unigrams}
 		 */
-		public Builder outputUnigrams(boolean value) {
+		public final Builder outputUnigrams(@Nullable Boolean value) {
 			this.outputUnigrams = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code output_unigrams_if_no_shingles}
+		 * API name: {@code output_unigrams_if_no_shingles}
 		 */
-		public Builder outputUnigramsIfNoShingles(boolean value) {
+		public final Builder outputUnigramsIfNoShingles(@Nullable Boolean value) {
 			this.outputUnigramsIfNoShingles = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code token_separator}
+		 * API name: {@code token_separator}
 		 */
-		public Builder tokenSeparator(String value) {
+		public final Builder tokenSeparator(@Nullable String value) {
 			this.tokenSeparator = value;
 			return this;
 		}
@@ -227,6 +255,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public ShingleTokenFilter build() {
+			_checkSingleUse();
 
 			return new ShingleTokenFilter(this);
 		}
@@ -243,8 +272,8 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 	protected static void setupShingleTokenFilterDeserializer(DelegatingDeserializer<ShingleTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::fillerToken, JsonpDeserializer.stringDeserializer(), "filler_token");
-		op.add(Builder::maxShingleSize, JsonpDeserializer.integerDeserializer(), "max_shingle_size");
-		op.add(Builder::minShingleSize, JsonpDeserializer.integerDeserializer(), "min_shingle_size");
+		op.add(Builder::maxShingleSize, JsonpDeserializer.stringDeserializer(), "max_shingle_size");
+		op.add(Builder::minShingleSize, JsonpDeserializer.stringDeserializer(), "min_shingle_size");
 		op.add(Builder::outputUnigrams, JsonpDeserializer.booleanDeserializer(), "output_unigrams");
 		op.add(Builder::outputUnigramsIfNoShingles, JsonpDeserializer.booleanDeserializer(),
 				"output_unigrams_if_no_shingles");

@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_filter.Request
 
-public final class DeleteFilterRequest extends RequestBase {
+public class DeleteFilterRequest extends RequestBase {
 	private final String filterId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteFilterRequest(Builder builder) {
+	private DeleteFilterRequest(Builder builder) {
 
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 
 	}
 
-	public DeleteFilterRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteFilterRequest of(Function<Builder, ObjectBuilder<DeleteFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeleteFilterRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
@@ -70,7 +72,7 @@ public final class DeleteFilterRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteFilterRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteFilterRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteFilterRequest> {
 		private String filterId;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeleteFilterRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeleteFilterRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteFilterRequest build() {
+			_checkSingleUse();
 
 			return new DeleteFilterRequest(this);
 		}

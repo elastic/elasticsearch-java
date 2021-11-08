@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSnapshot
 @JsonpDeserializable
-public final class ModelSnapshot implements JsonpSerializable {
+public class ModelSnapshot implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -66,23 +68,25 @@ public final class ModelSnapshot implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ModelSnapshot(Builder builder) {
+	private ModelSnapshot(Builder builder) {
 
 		this.description = builder.description;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.latestRecordTimeStamp = Objects.requireNonNull(builder.latestRecordTimeStamp, "latest_record_time_stamp");
-		this.latestResultTimeStamp = Objects.requireNonNull(builder.latestResultTimeStamp, "latest_result_time_stamp");
-		this.minVersion = Objects.requireNonNull(builder.minVersion, "min_version");
-		this.modelSizeStats = Objects.requireNonNull(builder.modelSizeStats, "model_size_stats");
-		this.retain = Objects.requireNonNull(builder.retain, "retain");
-		this.snapshotDocCount = Objects.requireNonNull(builder.snapshotDocCount, "snapshot_doc_count");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.latestRecordTimeStamp = ModelTypeHelper.requireNonNull(builder.latestRecordTimeStamp, this,
+				"latestRecordTimeStamp");
+		this.latestResultTimeStamp = ModelTypeHelper.requireNonNull(builder.latestResultTimeStamp, this,
+				"latestResultTimeStamp");
+		this.minVersion = ModelTypeHelper.requireNonNull(builder.minVersion, this, "minVersion");
+		this.modelSizeStats = ModelTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
+		this.retain = ModelTypeHelper.requireNonNull(builder.retain, this, "retain");
+		this.snapshotDocCount = ModelTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount");
+		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public ModelSnapshot(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ModelSnapshot of(Function<Builder, ObjectBuilder<ModelSnapshot>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,7 +95,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -101,7 +105,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -110,7 +114,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
-	public int latestRecordTimeStamp() {
+	public final int latestRecordTimeStamp() {
 		return this.latestRecordTimeStamp;
 	}
 
@@ -119,7 +123,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
-	public int latestResultTimeStamp() {
+	public final int latestResultTimeStamp() {
 		return this.latestResultTimeStamp;
 	}
 
@@ -129,7 +133,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code min_version}
 	 */
-	public String minVersion() {
+	public final String minVersion() {
 		return this.minVersion;
 	}
 
@@ -138,7 +142,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code model_size_stats}
 	 */
-	public ModelSizeStats modelSizeStats() {
+	public final ModelSizeStats modelSizeStats() {
 		return this.modelSizeStats;
 	}
 
@@ -149,7 +153,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code retain}
 	 */
-	public boolean retain() {
+	public final boolean retain() {
 		return this.retain;
 	}
 
@@ -158,7 +162,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code snapshot_doc_count}
 	 */
-	public long snapshotDocCount() {
+	public final long snapshotDocCount() {
 		return this.snapshotDocCount;
 	}
 
@@ -168,7 +172,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
-	public String snapshotId() {
+	public final String snapshotId() {
 		return this.snapshotId;
 	}
 
@@ -177,7 +181,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public int timestamp() {
+	public final int timestamp() {
 		return this.timestamp;
 	}
 
@@ -193,12 +197,10 @@ public final class ModelSnapshot implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
@@ -233,7 +235,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	/**
 	 * Builder for {@link ModelSnapshot}.
 	 */
-	public static class Builder implements ObjectBuilder<ModelSnapshot> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelSnapshot> {
 		@Nullable
 		private String description;
 
@@ -260,7 +262,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -271,7 +273,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -281,7 +283,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
-		public Builder latestRecordTimeStamp(int value) {
+		public final Builder latestRecordTimeStamp(int value) {
 			this.latestRecordTimeStamp = value;
 			return this;
 		}
@@ -291,7 +293,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
-		public Builder latestResultTimeStamp(int value) {
+		public final Builder latestResultTimeStamp(int value) {
 			this.latestResultTimeStamp = value;
 			return this;
 		}
@@ -302,7 +304,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code min_version}
 		 */
-		public Builder minVersion(String value) {
+		public final Builder minVersion(String value) {
 			this.minVersion = value;
 			return this;
 		}
@@ -312,7 +314,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
-		public Builder modelSizeStats(ModelSizeStats value) {
+		public final Builder modelSizeStats(ModelSizeStats value) {
 			this.modelSizeStats = value;
 			return this;
 		}
@@ -322,7 +324,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
-		public Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
+		public final Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
 			return this.modelSizeStats(fn.apply(new ModelSizeStats.Builder()).build());
 		}
 
@@ -333,7 +335,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code retain}
 		 */
-		public Builder retain(boolean value) {
+		public final Builder retain(boolean value) {
 			this.retain = value;
 			return this;
 		}
@@ -343,7 +345,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code snapshot_doc_count}
 		 */
-		public Builder snapshotDocCount(long value) {
+		public final Builder snapshotDocCount(long value) {
 			this.snapshotDocCount = value;
 			return this;
 		}
@@ -354,7 +356,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public Builder snapshotId(String value) {
+		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
 			return this;
 		}
@@ -364,7 +366,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(int value) {
+		public final Builder timestamp(int value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -376,6 +378,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ModelSnapshot build() {
+			_checkSingleUse();
 
 			return new ModelSnapshot(this);
 		}

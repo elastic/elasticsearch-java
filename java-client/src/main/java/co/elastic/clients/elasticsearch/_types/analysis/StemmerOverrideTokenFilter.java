@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,23 +41,24 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
 @JsonpDeserializable
-public final class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> rules;
 
+	@Nullable
 	private final String rulesPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StemmerOverrideTokenFilter(Builder builder) {
+	private StemmerOverrideTokenFilter(Builder builder) {
 		super(builder);
 
-		this.rules = ModelTypeHelper.unmodifiableNonNull(builder.rules, "rules");
-		this.rulesPath = Objects.requireNonNull(builder.rulesPath, "rules_path");
+		this.rules = ModelTypeHelper.unmodifiable(builder.rules);
+		this.rulesPath = builder.rulesPath;
 
 	}
 
-	public StemmerOverrideTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StemmerOverrideTokenFilter of(Function<Builder, ObjectBuilder<StemmerOverrideTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,16 +70,17 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 	}
 
 	/**
-	 * Required - API name: {@code rules}
+	 * API name: {@code rules}
 	 */
-	public List<String> rules() {
+	public final List<String> rules() {
 		return this.rules;
 	}
 
 	/**
-	 * Required - API name: {@code rules_path}
+	 * API name: {@code rules_path}
 	 */
-	public String rulesPath() {
+	@Nullable
+	public final String rulesPath() {
 		return this.rulesPath;
 	}
 
@@ -87,17 +88,21 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 
 		generator.write("type", "stemmer_override");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.rules)) {
+			generator.writeKey("rules");
+			generator.writeStartArray();
+			for (String item0 : this.rules) {
+				generator.write(item0);
 
-		generator.writeKey("rules");
-		generator.writeStartArray();
-		for (String item0 : this.rules) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.rulesPath != null) {
+			generator.writeKey("rules_path");
+			generator.write(this.rulesPath);
 
-		generator.writeKey("rules_path");
-		generator.write(this.rulesPath);
+		}
 
 	}
 
@@ -109,41 +114,32 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerOverrideTokenFilter> {
+		@Nullable
 		private List<String> rules;
 
+		@Nullable
 		private String rulesPath;
 
 		/**
-		 * Required - API name: {@code rules}
+		 * API name: {@code rules}
 		 */
-		public Builder rules(List<String> value) {
+		public final Builder rules(@Nullable List<String> value) {
 			this.rules = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code rules}
+		 * API name: {@code rules}
 		 */
-		public Builder rules(String... value) {
+		public final Builder rules(String... value) {
 			this.rules = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rules(List)}, creating the list if needed.
+		 * API name: {@code rules_path}
 		 */
-		public Builder addRules(String value) {
-			if (this.rules == null) {
-				this.rules = new ArrayList<>();
-			}
-			this.rules.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code rules_path}
-		 */
-		public Builder rulesPath(String value) {
+		public final Builder rulesPath(@Nullable String value) {
 			this.rulesPath = value;
 			return this;
 		}
@@ -160,6 +156,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 		 *             if some of the required fields are null.
 		 */
 		public StemmerOverrideTokenFilter build() {
+			_checkSingleUse();
 
 			return new StemmerOverrideTokenFilter(this);
 		}

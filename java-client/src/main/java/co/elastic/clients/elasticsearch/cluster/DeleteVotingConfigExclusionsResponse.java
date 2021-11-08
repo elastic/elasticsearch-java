@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: cluster.delete_voting_config_exclusions.Response
 
-public final class DeleteVotingConfigExclusionsResponse {
+public class DeleteVotingConfigExclusionsResponse {
 	public DeleteVotingConfigExclusionsResponse() {
 	}
 

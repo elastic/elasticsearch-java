@@ -34,11 +34,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,14 +50,13 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Request
 
-public final class HotThreadsRequest extends RequestBase {
+public class HotThreadsRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreIdleThreads;
 
 	@Nullable
 	private final String interval;
 
-	@Nullable
 	private final List<String> nodeId;
 
 	@Nullable
@@ -74,7 +73,7 @@ public final class HotThreadsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HotThreadsRequest(Builder builder) {
+	private HotThreadsRequest(Builder builder) {
 
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
@@ -86,8 +85,8 @@ public final class HotThreadsRequest extends RequestBase {
 
 	}
 
-	public HotThreadsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HotThreadsRequest of(Function<Builder, ObjectBuilder<HotThreadsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +96,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code ignore_idle_threads}
 	 */
 	@Nullable
-	public Boolean ignoreIdleThreads() {
+	public final Boolean ignoreIdleThreads() {
 		return this.ignoreIdleThreads;
 	}
 
@@ -107,7 +106,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public String interval() {
+	public final String interval() {
 		return this.interval;
 	}
 
@@ -118,8 +117,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -129,7 +127,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code snapshots}
 	 */
 	@Nullable
-	public Long snapshots() {
+	public final Long snapshots() {
 		return this.snapshots;
 	}
 
@@ -137,7 +135,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code thread_type}
 	 */
 	@Nullable
-	public ThreadType threadType() {
+	public final ThreadType threadType() {
 		return this.threadType;
 	}
 
@@ -147,7 +145,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code threads}
 	 */
 	@Nullable
-	public Long threads() {
+	public final Long threads() {
 		return this.threads;
 	}
 
@@ -157,7 +155,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -166,7 +164,7 @@ public final class HotThreadsRequest extends RequestBase {
 	/**
 	 * Builder for {@link HotThreadsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<HotThreadsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThreadsRequest> {
 		@Nullable
 		private Boolean ignoreIdleThreads;
 
@@ -194,7 +192,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_idle_threads}
 		 */
-		public Builder ignoreIdleThreads(@Nullable Boolean value) {
+		public final Builder ignoreIdleThreads(@Nullable Boolean value) {
 			this.ignoreIdleThreads = value;
 			return this;
 		}
@@ -204,7 +202,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code interval}
 		 */
-		public Builder interval(@Nullable String value) {
+		public final Builder interval(@Nullable String value) {
 			this.interval = value;
 			return this;
 		}
@@ -216,7 +214,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
+		public final Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -228,19 +226,8 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String... value) {
+		public final Builder nodeId(String... value) {
 			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
 			return this;
 		}
 
@@ -249,7 +236,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshots}
 		 */
-		public Builder snapshots(@Nullable Long value) {
+		public final Builder snapshots(@Nullable Long value) {
 			this.snapshots = value;
 			return this;
 		}
@@ -257,7 +244,7 @@ public final class HotThreadsRequest extends RequestBase {
 		/**
 		 * API name: {@code thread_type}
 		 */
-		public Builder threadType(@Nullable ThreadType value) {
+		public final Builder threadType(@Nullable ThreadType value) {
 			this.threadType = value;
 			return this;
 		}
@@ -267,7 +254,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code threads}
 		 */
-		public Builder threads(@Nullable Long value) {
+		public final Builder threads(@Nullable Long value) {
 			this.threads = value;
 			return this;
 		}
@@ -277,7 +264,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -289,6 +276,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public HotThreadsRequest build() {
+			_checkSingleUse();
 
 			return new HotThreadsRequest(this);
 		}
@@ -312,7 +300,7 @@ public final class HotThreadsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
+				if (ModelTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
@@ -341,7 +329,7 @@ public final class HotThreadsRequest extends RequestBase {
 					params.put("snapshots", String.valueOf(request.snapshots));
 				}
 				if (request.threadType != null) {
-					params.put("thread_type", request.threadType.toString());
+					params.put("thread_type", request.threadType.jsonValue());
 				}
 				if (request.threads != null) {
 					params.put("threads", String.valueOf(request.threads));

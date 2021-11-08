@@ -38,11 +38,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
 @JsonpDeserializable
-public final class PutUserRequest extends RequestBase implements JsonpSerializable {
+public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String email;
 
@@ -63,7 +63,6 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String fullName;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -75,14 +74,13 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
-	@Nullable
 	private final List<String> roles;
 
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutUserRequest(Builder builder) {
+	private PutUserRequest(Builder builder) {
 
 		this.email = builder.email;
 		this.enabled = builder.enabled;
@@ -92,19 +90,19 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		this.passwordHash = builder.passwordHash;
 		this.refresh = builder.refresh;
 		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.username = Objects.requireNonNull(builder.username, "username");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public PutUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutUserRequest of(Function<Builder, ObjectBuilder<PutUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code email}
 	 */
 	@Nullable
-	public String email() {
+	public final String email() {
 		return this.email;
 	}
 
@@ -112,7 +110,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -120,15 +118,14 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code full_name}
 	 */
 	@Nullable
-	public String fullName() {
+	public final String fullName() {
 		return this.fullName;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -136,7 +133,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code password}
 	 */
 	@Nullable
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
@@ -144,7 +141,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code password_hash}
 	 */
 	@Nullable
-	public String passwordHash() {
+	public final String passwordHash() {
 		return this.passwordHash;
 	}
 
@@ -157,15 +154,14 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
 	/**
 	 * API name: {@code roles}
 	 */
-	@Nullable
-	public List<String> roles() {
+	public final List<String> roles() {
 		return this.roles;
 	}
 
@@ -174,7 +170,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -190,25 +186,21 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
-
 			generator.writeKey("email");
 			generator.write(this.email);
 
 		}
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
 		if (this.fullName != null) {
-
 			generator.writeKey("full_name");
 			generator.write(this.fullName);
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -220,19 +212,16 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.password != null) {
-
 			generator.writeKey("password");
 			generator.write(this.password);
 
 		}
 		if (this.passwordHash != null) {
-
 			generator.writeKey("password_hash");
 			generator.write(this.passwordHash);
 
 		}
-		if (this.roles != null) {
-
+		if (ModelTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -250,7 +239,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link PutUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutUserRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutUserRequest> {
 		@Nullable
 		private String email;
 
@@ -280,7 +269,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code email}
 		 */
-		public Builder email(@Nullable String value) {
+		public final Builder email(@Nullable String value) {
 			this.email = value;
 			return this;
 		}
@@ -288,7 +277,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -296,7 +285,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code full_name}
 		 */
-		public Builder fullName(@Nullable String value) {
+		public final Builder fullName(@Nullable String value) {
 			this.fullName = value;
 			return this;
 		}
@@ -304,26 +293,15 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code password}
 		 */
-		public Builder password(@Nullable String value) {
+		public final Builder password(@Nullable String value) {
 			this.password = value;
 			return this;
 		}
@@ -331,7 +309,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code password_hash}
 		 */
-		public Builder passwordHash(@Nullable String value) {
+		public final Builder passwordHash(@Nullable String value) {
 			this.passwordHash = value;
 			return this;
 		}
@@ -344,7 +322,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -352,7 +330,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(@Nullable List<String> value) {
+		public final Builder roles(@Nullable List<String> value) {
 			this.roles = value;
 			return this;
 		}
@@ -360,19 +338,8 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(String... value) {
+		public final Builder roles(String... value) {
 			this.roles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
-		 */
-		public Builder addRoles(String value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
 			return this;
 		}
 
@@ -381,7 +348,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -393,6 +360,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public PutUserRequest build() {
+			_checkSingleUse();
 
 			return new PutUserRequest(this);
 		}

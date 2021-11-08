@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,44 +44,56 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Request
 
-public final class GetJobStatsRequest extends RequestBase {
+public class GetJobStatsRequest extends RequestBase {
 	@Nullable
-	private final Boolean allowNoJobs;
+	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final String jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetJobStatsRequest(Builder builder) {
+	private GetJobStatsRequest(Builder builder) {
 
-		this.allowNoJobs = builder.allowNoJobs;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.jobId = builder.jobId;
 
 	}
 
-	public GetJobStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetJobStatsRequest of(Function<Builder, ObjectBuilder<GetJobStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
 	 * <p>
-	 * API name: {@code allow_no_jobs}
+	 * If <code>true</code>, the API returns an empty <code>jobs</code> array when
+	 * there are no matches and the subset of results when there are partial
+	 * matches. If <code>false</code>, the API returns a <code>404</code> status
+	 * code when there are no matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
 	}
 
 	/**
-	 * The ID of the jobs stats to fetch
+	 * Identifier for the anomaly detection job. It can be a job identifier, a group
+	 * name, a comma-separated list of jobs, or a wildcard expression. If you do not
+	 * specify one of these options, the API returns information for all anomaly
+	 * detection jobs.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -89,30 +102,42 @@ public final class GetJobStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetJobStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobStatsRequest> {
 		@Nullable
-		private Boolean allowNoJobs;
+		private Boolean allowNoMatch;
 
 		@Nullable
 		private String jobId;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
 		 * <p>
-		 * API name: {@code allow_no_jobs}
+		 * If <code>true</code>, the API returns an empty <code>jobs</code> array when
+		 * there are no matches and the subset of results when there are partial
+		 * matches. If <code>false</code>, the API returns a <code>404</code> status
+		 * code when there are no matches or only partial matches.
+		 * <p>
+		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the jobs stats to fetch
+		 * Identifier for the anomaly detection job. It can be a job identifier, a group
+		 * name, a comma-separated list of jobs, or a wildcard expression. If you do not
+		 * specify one of these options, the API returns information for all anomaly
+		 * detection jobs.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable String value) {
+		public final Builder jobId(@Nullable String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -124,6 +149,7 @@ public final class GetJobStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetJobStatsRequest build() {
+			_checkSingleUse();
 
 			return new GetJobStatsRequest(this);
 		}
@@ -173,8 +199,8 @@ public final class GetJobStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoJobs != null) {
-					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

@@ -33,7 +33,9 @@ import co.elastic.clients.transport.BooleanEndpoint;
 import co.elastic.clients.transport.BooleanResponse;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,19 +45,19 @@ import javax.annotation.Nullable;
 
 // typedef: logstash.delete_pipeline.Request
 
-public final class DeletePipelineRequest extends RequestBase {
+public class DeletePipelineRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePipelineRequest(Builder builder) {
+	private DeletePipelineRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public DeletePipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePipelineRequest of(Function<Builder, ObjectBuilder<DeletePipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +65,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -72,7 +74,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeletePipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeletePipelineRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePipelineRequest> {
 		private String id;
 
 		/**
@@ -80,7 +82,7 @@ public final class DeletePipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -92,6 +94,7 @@ public final class DeletePipelineRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePipelineRequest build() {
+			_checkSingleUse();
 
 			return new DeletePipelineRequest(this);
 		}

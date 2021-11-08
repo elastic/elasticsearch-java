@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
 @JsonpDeserializable
-public final class FielddataRecord implements JsonpSerializable {
+public class FielddataRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -60,7 +61,7 @@ public final class FielddataRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FielddataRecord(Builder builder) {
+	private FielddataRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.host = builder.host;
@@ -71,8 +72,8 @@ public final class FielddataRecord implements JsonpSerializable {
 
 	}
 
-	public FielddataRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FielddataRecord of(Function<Builder, ObjectBuilder<FielddataRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +82,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -91,7 +92,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	 * API name: {@code host}
 	 */
 	@Nullable
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -101,7 +102,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -111,7 +112,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -121,7 +122,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -131,7 +132,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
@@ -147,37 +148,31 @@ public final class FielddataRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.host != null) {
-
 			generator.writeKey("host");
 			generator.write(this.host);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.node != null) {
-
 			generator.writeKey("node");
 			generator.write(this.node);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -190,7 +185,7 @@ public final class FielddataRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<FielddataRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRecord> {
 		@Nullable
 		private String id;
 
@@ -214,7 +209,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -224,7 +219,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code host}
 		 */
-		public Builder host(@Nullable String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
@@ -234,7 +229,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -244,7 +239,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable String value) {
+		public final Builder node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -254,7 +249,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -264,7 +259,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -276,6 +271,7 @@ public final class FielddataRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FielddataRecord build() {
+			_checkSingleUse();
 
 			return new FielddataRecord(this);
 		}

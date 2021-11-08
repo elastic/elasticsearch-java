@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.start.Request
 
-public final class StartIlmRequest extends RequestBase {
+public class StartIlmRequest extends RequestBase {
 	@Nullable
 	private final String masterTimeout;
 
@@ -51,22 +52,22 @@ public final class StartIlmRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartIlmRequest(Builder builder) {
+	private StartIlmRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
-	public StartIlmRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartIlmRequest of(Function<Builder, ObjectBuilder<StartIlmRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -74,7 +75,7 @@ public final class StartIlmRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -83,7 +84,7 @@ public final class StartIlmRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartIlmRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartIlmRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartIlmRequest> {
 		@Nullable
 		private String masterTimeout;
 
@@ -93,7 +94,7 @@ public final class StartIlmRequest extends RequestBase {
 		/**
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -101,7 +102,7 @@ public final class StartIlmRequest extends RequestBase {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -113,6 +114,7 @@ public final class StartIlmRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartIlmRequest build() {
+			_checkSingleUse();
 
 			return new StartIlmRequest(this);
 		}

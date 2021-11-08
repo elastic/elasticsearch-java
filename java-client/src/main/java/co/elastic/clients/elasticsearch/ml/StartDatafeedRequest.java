@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
 @JsonpDeserializable
-public final class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
+public class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
@@ -58,49 +60,58 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDatafeedRequest(Builder builder) {
+	private StartDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.end = builder.end;
 		this.start = builder.start;
 		this.timeout = builder.timeout;
 
 	}
 
-	public StartDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDatafeedRequest of(Function<Builder, ObjectBuilder<StartDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the datafeed to start
+	 * Required - A numerical character string that uniquely identifies the
+	 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+	 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+	 * characters.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
+	 * Refer to the description for the <code>end</code> query parameter.
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
 	/**
+	 * Refer to the description for the <code>start</code> query parameter.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
 	}
 
 	/**
+	 * Refer to the description for the <code>timeout</code> query parameter.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -116,19 +127,16 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.end != null) {
-
 			generator.writeKey("end");
 			generator.write(this.end);
 
 		}
 		if (this.start != null) {
-
 			generator.writeKey("start");
 			generator.write(this.start);
 
 		}
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
 			generator.write(this.timeout);
 
@@ -141,7 +149,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link StartDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartDatafeedRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedRequest> {
 		private String datafeedId;
 
 		@Nullable
@@ -154,35 +162,44 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		private String timeout;
 
 		/**
-		 * Required - The ID of the datafeed to start
+		 * Required - A numerical character string that uniquely identifies the
+		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+		 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+		 * characters.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String value) {
+		public final Builder datafeedId(String value) {
 			this.datafeedId = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -194,6 +211,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public StartDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new StartDatafeedRequest(this);
 		}

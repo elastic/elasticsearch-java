@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,11 +47,9 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.usage.Request
 
-public final class UsageRequest extends RequestBase {
-	@Nullable
+public class UsageRequest extends RequestBase {
 	private final List<String> metric;
 
-	@Nullable
 	private final List<String> nodeId;
 
 	@Nullable
@@ -59,7 +57,7 @@ public final class UsageRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UsageRequest(Builder builder) {
+	private UsageRequest(Builder builder) {
 
 		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
@@ -67,8 +65,8 @@ public final class UsageRequest extends RequestBase {
 
 	}
 
-	public UsageRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UsageRequest of(Function<Builder, ObjectBuilder<UsageRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,8 +74,7 @@ public final class UsageRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	@Nullable
-	public List<String> metric() {
+	public final List<String> metric() {
 		return this.metric;
 	}
 
@@ -88,8 +85,7 @@ public final class UsageRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -99,7 +95,7 @@ public final class UsageRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -108,7 +104,7 @@ public final class UsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link UsageRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UsageRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UsageRequest> {
 		@Nullable
 		private List<String> metric;
 
@@ -123,7 +119,7 @@ public final class UsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<String> value) {
+		public final Builder metric(@Nullable List<String> value) {
 			this.metric = value;
 			return this;
 		}
@@ -133,19 +129,8 @@ public final class UsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(String... value) {
+		public final Builder metric(String... value) {
 			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
 			return this;
 		}
 
@@ -156,7 +141,7 @@ public final class UsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
+		public final Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -168,19 +153,8 @@ public final class UsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String... value) {
+		public final Builder nodeId(String... value) {
 			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
 			return this;
 		}
 
@@ -189,7 +163,7 @@ public final class UsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -201,6 +175,7 @@ public final class UsageRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UsageRequest build() {
+			_checkSingleUse();
 
 			return new UsageRequest(this);
 		}
@@ -225,9 +200,9 @@ public final class UsageRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.metric() != null)
+				if (ModelTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (request.nodeId() != null)
+				if (ModelTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

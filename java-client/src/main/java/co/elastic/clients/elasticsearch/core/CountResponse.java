@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: _global.count.Response
 @JsonpDeserializable
-public final class CountResponse implements JsonpSerializable {
+public class CountResponse implements JsonpSerializable {
 	private final long count;
 
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CountResponse(Builder builder) {
+	private CountResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public CountResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CountResponse of(Function<Builder, ObjectBuilder<CountResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -96,7 +98,7 @@ public final class CountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CountResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountResponse> {
 		private Long count;
 
 		private ShardStatistics shards;
@@ -104,7 +106,7 @@ public final class CountResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class CountResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -120,7 +122,7 @@ public final class CountResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -131,6 +133,7 @@ public final class CountResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CountResponse build() {
+			_checkSingleUse();
 
 			return new CountResponse(this);
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: _global.get_script_languages.Request
 
-public final class GetScriptLanguagesRequest extends RequestBase {
+public class GetScriptLanguagesRequest extends RequestBase {
 	public GetScriptLanguagesRequest() {
 	}
 

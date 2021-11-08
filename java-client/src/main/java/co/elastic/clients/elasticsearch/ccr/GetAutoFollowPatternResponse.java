@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Response
 @JsonpDeserializable
-public final class GetAutoFollowPatternResponse implements JsonpSerializable {
+public class GetAutoFollowPatternResponse implements JsonpSerializable {
 	private final List<AutoFollowPattern> patterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAutoFollowPatternResponse(Builder builder) {
+	private GetAutoFollowPatternResponse(Builder builder) {
 
-		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
+		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 
 	}
 
-	public GetAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAutoFollowPatternResponse of(Function<Builder, ObjectBuilder<GetAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code patterns}
 	 */
-	public List<AutoFollowPattern> patterns() {
+	public final List<AutoFollowPattern> patterns() {
 		return this.patterns;
 	}
 
@@ -76,13 +77,16 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("patterns");
-		generator.writeStartArray();
-		for (AutoFollowPattern item0 : this.patterns) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.patterns)) {
+			generator.writeKey("patterns");
+			generator.writeStartArray();
+			for (AutoFollowPattern item0 : this.patterns) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetAutoFollowPatternResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetAutoFollowPatternResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoFollowPatternResponse> {
 		private List<AutoFollowPattern> patterns;
 
 		/**
 		 * Required - API name: {@code patterns}
 		 */
-		public Builder patterns(List<AutoFollowPattern> value) {
+		public final Builder patterns(List<AutoFollowPattern> value) {
 			this.patterns = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code patterns}
 		 */
-		public Builder patterns(AutoFollowPattern... value) {
+		public final Builder patterns(AutoFollowPattern... value) {
 			this.patterns = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
+		 * Required - API name: {@code patterns}
 		 */
-		public Builder addPatterns(AutoFollowPattern value) {
-			if (this.patterns == null) {
-				this.patterns = new ArrayList<>();
+		@SafeVarargs
+		public final Builder patterns(Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>>... fns) {
+			this.patterns = new ArrayList<>(fns.length);
+			for (Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>> fn : fns) {
+				this.patterns.add(fn.apply(new AutoFollowPattern.Builder()).build());
 			}
-			this.patterns.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #patterns(List)} to a singleton list.
-		 */
-		public Builder patterns(Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>> fn) {
-			return this.patterns(fn.apply(new AutoFollowPattern.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
-		 */
-		public Builder addPatterns(Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>> fn) {
-			return this.addPatterns(fn.apply(new AutoFollowPattern.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new GetAutoFollowPatternResponse(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineConfig
 @JsonpDeserializable
-public final class PipelineConfig implements JsonpSerializable {
+public class PipelineConfig implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -55,23 +56,23 @@ public final class PipelineConfig implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineConfig(Builder builder) {
+	private PipelineConfig(Builder builder) {
 
 		this.description = builder.description;
 		this.version = builder.version;
-		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
 
 	}
 
-	public PipelineConfig(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PipelineConfig of(Function<Builder, ObjectBuilder<PipelineConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -79,14 +80,14 @@ public final class PipelineConfig implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code processors}
 	 */
-	public List<Processor> processors() {
+	public final List<Processor> processors() {
 		return this.processors;
 	}
 
@@ -102,25 +103,25 @@ public final class PipelineConfig implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
+		if (ModelTypeHelper.isDefined(this.processors)) {
+			generator.writeKey("processors");
+			generator.writeStartArray();
+			for (Processor item0 : this.processors) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("processors");
-		generator.writeStartArray();
-		for (Processor item0 : this.processors) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -129,7 +130,7 @@ public final class PipelineConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link PipelineConfig}.
 	 */
-	public static class Builder implements ObjectBuilder<PipelineConfig> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineConfig> {
 		@Nullable
 		private String description;
 
@@ -141,7 +142,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -149,7 +150,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -157,7 +158,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processors}
 		 */
-		public Builder processors(List<Processor> value) {
+		public final Builder processors(List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -165,34 +166,21 @@ public final class PipelineConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processors}
 		 */
-		public Builder processors(Processor... value) {
+		public final Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Required - API name: {@code processors}
 		 */
-		public Builder addProcessors(Processor value) {
-			if (this.processors == null) {
-				this.processors = new ArrayList<>();
+		@SafeVarargs
+		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
+			this.processors = new ArrayList<>(fns.length);
+			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
+				this.processors.add(fn.apply(new Processor.Builder()).build());
 			}
-			this.processors.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #processors(List)} to a singleton list.
-		 */
-		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.processors(fn.apply(new Processor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
-		 */
-		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -202,6 +190,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PipelineConfig build() {
+			_checkSingleUse();
 
 			return new PipelineConfig(this);
 		}

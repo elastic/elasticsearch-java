@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.DataPathStats
 @JsonpDeserializable
-public final class DataPathStats implements JsonpSerializable {
+public class DataPathStats implements JsonpSerializable {
 	private final String available;
 
 	private final long availableInBytes;
@@ -75,140 +77,142 @@ public final class DataPathStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataPathStats(Builder builder) {
+	private DataPathStats(Builder builder) {
 
-		this.available = Objects.requireNonNull(builder.available, "available");
-		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
-		this.diskQueue = Objects.requireNonNull(builder.diskQueue, "disk_queue");
-		this.diskReads = Objects.requireNonNull(builder.diskReads, "disk_reads");
-		this.diskReadSize = Objects.requireNonNull(builder.diskReadSize, "disk_read_size");
-		this.diskReadSizeInBytes = Objects.requireNonNull(builder.diskReadSizeInBytes, "disk_read_size_in_bytes");
-		this.diskWrites = Objects.requireNonNull(builder.diskWrites, "disk_writes");
-		this.diskWriteSize = Objects.requireNonNull(builder.diskWriteSize, "disk_write_size");
-		this.diskWriteSizeInBytes = Objects.requireNonNull(builder.diskWriteSizeInBytes, "disk_write_size_in_bytes");
-		this.free = Objects.requireNonNull(builder.free, "free");
-		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
-		this.mount = Objects.requireNonNull(builder.mount, "mount");
-		this.path = Objects.requireNonNull(builder.path, "path");
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.available = ModelTypeHelper.requireNonNull(builder.available, this, "available");
+		this.availableInBytes = ModelTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+		this.diskQueue = ModelTypeHelper.requireNonNull(builder.diskQueue, this, "diskQueue");
+		this.diskReads = ModelTypeHelper.requireNonNull(builder.diskReads, this, "diskReads");
+		this.diskReadSize = ModelTypeHelper.requireNonNull(builder.diskReadSize, this, "diskReadSize");
+		this.diskReadSizeInBytes = ModelTypeHelper.requireNonNull(builder.diskReadSizeInBytes, this,
+				"diskReadSizeInBytes");
+		this.diskWrites = ModelTypeHelper.requireNonNull(builder.diskWrites, this, "diskWrites");
+		this.diskWriteSize = ModelTypeHelper.requireNonNull(builder.diskWriteSize, this, "diskWriteSize");
+		this.diskWriteSizeInBytes = ModelTypeHelper.requireNonNull(builder.diskWriteSizeInBytes, this,
+				"diskWriteSizeInBytes");
+		this.free = ModelTypeHelper.requireNonNull(builder.free, this, "free");
+		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.mount = ModelTypeHelper.requireNonNull(builder.mount, this, "mount");
+		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public DataPathStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataPathStats of(Function<Builder, ObjectBuilder<DataPathStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code available}
 	 */
-	public String available() {
+	public final String available() {
 		return this.available;
 	}
 
 	/**
 	 * Required - API name: {@code available_in_bytes}
 	 */
-	public long availableInBytes() {
+	public final long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code disk_queue}
 	 */
-	public String diskQueue() {
+	public final String diskQueue() {
 		return this.diskQueue;
 	}
 
 	/**
 	 * Required - API name: {@code disk_reads}
 	 */
-	public long diskReads() {
+	public final long diskReads() {
 		return this.diskReads;
 	}
 
 	/**
 	 * Required - API name: {@code disk_read_size}
 	 */
-	public String diskReadSize() {
+	public final String diskReadSize() {
 		return this.diskReadSize;
 	}
 
 	/**
 	 * Required - API name: {@code disk_read_size_in_bytes}
 	 */
-	public long diskReadSizeInBytes() {
+	public final long diskReadSizeInBytes() {
 		return this.diskReadSizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code disk_writes}
 	 */
-	public long diskWrites() {
+	public final long diskWrites() {
 		return this.diskWrites;
 	}
 
 	/**
 	 * Required - API name: {@code disk_write_size}
 	 */
-	public String diskWriteSize() {
+	public final String diskWriteSize() {
 		return this.diskWriteSize;
 	}
 
 	/**
 	 * Required - API name: {@code disk_write_size_in_bytes}
 	 */
-	public long diskWriteSizeInBytes() {
+	public final long diskWriteSizeInBytes() {
 		return this.diskWriteSizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free}
 	 */
-	public String free() {
+	public final String free() {
 		return this.free;
 	}
 
 	/**
 	 * Required - API name: {@code free_in_bytes}
 	 */
-	public long freeInBytes() {
+	public final long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code mount}
 	 */
-	public String mount() {
+	public final String mount() {
 		return this.mount;
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public String total() {
+	public final String total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -278,7 +282,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataPathStats}.
 	 */
-	public static class Builder implements ObjectBuilder<DataPathStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataPathStats> {
 		private String available;
 
 		private Long availableInBytes;
@@ -314,7 +318,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available}
 		 */
-		public Builder available(String value) {
+		public final Builder available(String value) {
 			this.available = value;
 			return this;
 		}
@@ -322,7 +326,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(long value) {
+		public final Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -330,7 +334,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_queue}
 		 */
-		public Builder diskQueue(String value) {
+		public final Builder diskQueue(String value) {
 			this.diskQueue = value;
 			return this;
 		}
@@ -338,7 +342,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_reads}
 		 */
-		public Builder diskReads(long value) {
+		public final Builder diskReads(long value) {
 			this.diskReads = value;
 			return this;
 		}
@@ -346,7 +350,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_read_size}
 		 */
-		public Builder diskReadSize(String value) {
+		public final Builder diskReadSize(String value) {
 			this.diskReadSize = value;
 			return this;
 		}
@@ -354,7 +358,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_read_size_in_bytes}
 		 */
-		public Builder diskReadSizeInBytes(long value) {
+		public final Builder diskReadSizeInBytes(long value) {
 			this.diskReadSizeInBytes = value;
 			return this;
 		}
@@ -362,7 +366,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_writes}
 		 */
-		public Builder diskWrites(long value) {
+		public final Builder diskWrites(long value) {
 			this.diskWrites = value;
 			return this;
 		}
@@ -370,7 +374,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_write_size}
 		 */
-		public Builder diskWriteSize(String value) {
+		public final Builder diskWriteSize(String value) {
 			this.diskWriteSize = value;
 			return this;
 		}
@@ -378,7 +382,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disk_write_size_in_bytes}
 		 */
-		public Builder diskWriteSizeInBytes(long value) {
+		public final Builder diskWriteSizeInBytes(long value) {
 			this.diskWriteSizeInBytes = value;
 			return this;
 		}
@@ -386,7 +390,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free}
 		 */
-		public Builder free(String value) {
+		public final Builder free(String value) {
 			this.free = value;
 			return this;
 		}
@@ -394,7 +398,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(long value) {
+		public final Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -402,7 +406,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mount}
 		 */
-		public Builder mount(String value) {
+		public final Builder mount(String value) {
 			this.mount = value;
 			return this;
 		}
@@ -410,7 +414,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(String value) {
+		public final Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -418,7 +422,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(String value) {
+		public final Builder total(String value) {
 			this.total = value;
 			return this;
 		}
@@ -426,7 +430,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(long value) {
+		public final Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -434,7 +438,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -446,6 +450,7 @@ public final class DataPathStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataPathStats build() {
+			_checkSingleUse();
 
 			return new DataPathStats(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.delete.Response
 @JsonpDeserializable
-public final class DeleteIndexResponse extends IndicesResponseBase {
+public class DeleteIndexResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteIndexResponse(Builder builder) {
+	private DeleteIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteIndexResponse of(Function<Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteIndexResponse extends IndicesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteIndexResponse build() {
+			_checkSingleUse();
 
 			return new DeleteIndexResponse(this);
 		}

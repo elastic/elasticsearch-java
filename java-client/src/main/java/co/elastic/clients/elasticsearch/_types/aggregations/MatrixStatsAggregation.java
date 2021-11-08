@@ -37,21 +37,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
 @JsonpDeserializable
-public final class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
+public class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
 	@Nullable
 	private final MatrixStatsMode mode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatrixStatsAggregation(Builder builder) {
+	private MatrixStatsAggregation(Builder builder) {
 		super(builder);
 
 		this.mode = builder.mode;
 
 	}
 
-	public MatrixStatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatrixStatsAggregation of(Function<Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class MatrixStatsAggregation extends MatrixAggregation implements A
 	 * API name: {@code mode}
 	 */
 	@Nullable
-	public MatrixStatsMode mode() {
+	public final MatrixStatsMode mode() {
 		return this.mode;
 	}
 
@@ -74,7 +74,6 @@ public final class MatrixStatsAggregation extends MatrixAggregation implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.mode != null) {
-
 			generator.writeKey("mode");
 			this.mode.serialize(generator, mapper);
 		}
@@ -95,7 +94,7 @@ public final class MatrixStatsAggregation extends MatrixAggregation implements A
 		/**
 		 * API name: {@code mode}
 		 */
-		public Builder mode(@Nullable MatrixStatsMode value) {
+		public final Builder mode(@Nullable MatrixStatsMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -112,6 +111,7 @@ public final class MatrixStatsAggregation extends MatrixAggregation implements A
 		 *             if some of the required fields are null.
 		 */
 		public MatrixStatsAggregation build() {
+			_checkSingleUse();
 
 			return new MatrixStatsAggregation(this);
 		}

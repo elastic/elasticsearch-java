@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query_rethrottle.Request
 
-public final class DeleteByQueryRethrottleRequest extends RequestBase {
+public class DeleteByQueryRethrottleRequest extends RequestBase {
 	@Nullable
 	private final Long requestsPerSecond;
 
@@ -51,15 +53,16 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteByQueryRethrottleRequest(Builder builder) {
+	private DeleteByQueryRethrottleRequest(Builder builder) {
 
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
+		this.taskId = ModelTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
 	}
 
-	public DeleteByQueryRethrottleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteByQueryRethrottleRequest of(
+			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +72,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Long requestsPerSecond() {
+	public final Long requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -78,7 +81,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code task_id}
 	 */
-	public String taskId() {
+	public final String taskId() {
 		return this.taskId;
 	}
 
@@ -87,7 +90,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteByQueryRethrottleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteByQueryRethrottleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteByQueryRethrottleRequest> {
 		@Nullable
 		private Long requestsPerSecond;
 
@@ -99,7 +102,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -109,7 +112,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(String value) {
+		public final Builder taskId(String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -121,6 +124,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteByQueryRethrottleRequest build() {
+			_checkSingleUse();
 
 			return new DeleteByQueryRethrottleRequest(this);
 		}

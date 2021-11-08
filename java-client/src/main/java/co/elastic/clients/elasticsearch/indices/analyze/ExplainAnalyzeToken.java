@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.ExplainAnalyzeToken
 @JsonpDeserializable
-public final class ExplainAnalyzeToken implements JsonpSerializable {
+public class ExplainAnalyzeToken implements JsonpSerializable {
 	private final String bytes;
 
 	private final long endOffset;
@@ -63,35 +65,35 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExplainAnalyzeToken(Builder builder) {
+	private ExplainAnalyzeToken(Builder builder) {
 
-		this.bytes = Objects.requireNonNull(builder.bytes, "bytes");
-		this.endOffset = Objects.requireNonNull(builder.endOffset, "end_offset");
+		this.bytes = ModelTypeHelper.requireNonNull(builder.bytes, this, "bytes");
+		this.endOffset = ModelTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
 		this.keyword = builder.keyword;
-		this.position = Objects.requireNonNull(builder.position, "position");
-		this.positionlength = Objects.requireNonNull(builder.positionlength, "positionLength");
-		this.startOffset = Objects.requireNonNull(builder.startOffset, "start_offset");
-		this.termfrequency = Objects.requireNonNull(builder.termfrequency, "termFrequency");
-		this.token = Objects.requireNonNull(builder.token, "token");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.position = ModelTypeHelper.requireNonNull(builder.position, this, "position");
+		this.positionlength = ModelTypeHelper.requireNonNull(builder.positionlength, this, "positionlength");
+		this.startOffset = ModelTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
+		this.termfrequency = ModelTypeHelper.requireNonNull(builder.termfrequency, this, "termfrequency");
+		this.token = ModelTypeHelper.requireNonNull(builder.token, this, "token");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public ExplainAnalyzeToken(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExplainAnalyzeToken of(Function<Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code bytes}
 	 */
-	public String bytes() {
+	public final String bytes() {
 		return this.bytes;
 	}
 
 	/**
 	 * Required - API name: {@code end_offset}
 	 */
-	public long endOffset() {
+	public final long endOffset() {
 		return this.endOffset;
 	}
 
@@ -99,49 +101,49 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	 * API name: {@code keyword}
 	 */
 	@Nullable
-	public Boolean keyword() {
+	public final Boolean keyword() {
 		return this.keyword;
 	}
 
 	/**
 	 * Required - API name: {@code position}
 	 */
-	public long position() {
+	public final long position() {
 		return this.position;
 	}
 
 	/**
 	 * Required - API name: {@code positionLength}
 	 */
-	public long positionlength() {
+	public final long positionlength() {
 		return this.positionlength;
 	}
 
 	/**
 	 * Required - API name: {@code start_offset}
 	 */
-	public long startOffset() {
+	public final long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
 	 * Required - API name: {@code termFrequency}
 	 */
-	public long termfrequency() {
+	public final long termfrequency() {
 		return this.termfrequency;
 	}
 
 	/**
 	 * Required - API name: {@code token}
 	 */
-	public String token() {
+	public final String token() {
 		return this.token;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -163,12 +165,10 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		generator.write(this.endOffset);
 
 		if (this.keyword != null) {
-
 			generator.writeKey("keyword");
 			generator.write(this.keyword);
 
 		}
-
 		generator.writeKey("position");
 		generator.write(this.position);
 
@@ -194,7 +194,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainAnalyzeToken}.
 	 */
-	public static class Builder implements ObjectBuilder<ExplainAnalyzeToken> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainAnalyzeToken> {
 		private String bytes;
 
 		private Long endOffset;
@@ -217,7 +217,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bytes}
 		 */
-		public Builder bytes(String value) {
+		public final Builder bytes(String value) {
 			this.bytes = value;
 			return this;
 		}
@@ -225,7 +225,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code end_offset}
 		 */
-		public Builder endOffset(long value) {
+		public final Builder endOffset(long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -233,7 +233,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code keyword}
 		 */
-		public Builder keyword(@Nullable Boolean value) {
+		public final Builder keyword(@Nullable Boolean value) {
 			this.keyword = value;
 			return this;
 		}
@@ -241,7 +241,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code position}
 		 */
-		public Builder position(long value) {
+		public final Builder position(long value) {
 			this.position = value;
 			return this;
 		}
@@ -249,7 +249,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code positionLength}
 		 */
-		public Builder positionlength(long value) {
+		public final Builder positionlength(long value) {
 			this.positionlength = value;
 			return this;
 		}
@@ -257,7 +257,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_offset}
 		 */
-		public Builder startOffset(long value) {
+		public final Builder startOffset(long value) {
 			this.startOffset = value;
 			return this;
 		}
@@ -265,7 +265,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code termFrequency}
 		 */
-		public Builder termfrequency(long value) {
+		public final Builder termfrequency(long value) {
 			this.termfrequency = value;
 			return this;
 		}
@@ -273,7 +273,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public Builder token(String value) {
+		public final Builder token(String value) {
 			this.token = value;
 			return this;
 		}
@@ -281,7 +281,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -293,6 +293,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExplainAnalyzeToken build() {
+			_checkSingleUse();
 
 			return new ExplainAnalyzeToken(this);
 		}

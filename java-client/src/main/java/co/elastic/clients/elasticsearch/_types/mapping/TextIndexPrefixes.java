@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.TextIndexPrefixes
 @JsonpDeserializable
-public final class TextIndexPrefixes implements JsonpSerializable {
+public class TextIndexPrefixes implements JsonpSerializable {
 	private final int maxChars;
 
 	private final int minChars;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TextIndexPrefixes(Builder builder) {
+	private TextIndexPrefixes(Builder builder) {
 
-		this.maxChars = Objects.requireNonNull(builder.maxChars, "max_chars");
-		this.minChars = Objects.requireNonNull(builder.minChars, "min_chars");
+		this.maxChars = ModelTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
+		this.minChars = ModelTypeHelper.requireNonNull(builder.minChars, this, "minChars");
 
 	}
 
-	public TextIndexPrefixes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TextIndexPrefixes of(Function<Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code max_chars}
 	 */
-	public int maxChars() {
+	public final int maxChars() {
 		return this.maxChars;
 	}
 
 	/**
 	 * Required - API name: {@code min_chars}
 	 */
-	public int minChars() {
+	public final int minChars() {
 		return this.minChars;
 	}
 
@@ -94,7 +96,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 	/**
 	 * Builder for {@link TextIndexPrefixes}.
 	 */
-	public static class Builder implements ObjectBuilder<TextIndexPrefixes> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TextIndexPrefixes> {
 		private Integer maxChars;
 
 		private Integer minChars;
@@ -102,7 +104,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_chars}
 		 */
-		public Builder maxChars(int value) {
+		public final Builder maxChars(int value) {
 			this.maxChars = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min_chars}
 		 */
-		public Builder minChars(int value) {
+		public final Builder minChars(int value) {
 			this.minChars = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TextIndexPrefixes build() {
+			_checkSingleUse();
 
 			return new TextIndexPrefixes(this);
 		}

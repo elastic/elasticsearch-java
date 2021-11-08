@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.WatcherActionTotals
 @JsonpDeserializable
-public final class WatcherActionTotals implements JsonpSerializable {
+public class WatcherActionTotals implements JsonpSerializable {
 	private final long total;
 
 	private final long totalTimeInMs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherActionTotals(Builder builder) {
+	private WatcherActionTotals(Builder builder) {
 
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.totalTimeInMs = Objects.requireNonNull(builder.totalTimeInMs, "total_time_in_ms");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalTimeInMs = ModelTypeHelper.requireNonNull(builder.totalTimeInMs, this, "totalTimeInMs");
 
 	}
 
-	public WatcherActionTotals(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherActionTotals of(Function<Builder, ObjectBuilder<WatcherActionTotals>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_ms}
 	 */
-	public long totalTimeInMs() {
+	public final long totalTimeInMs() {
 		return this.totalTimeInMs;
 	}
 
@@ -94,7 +96,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherActionTotals}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherActionTotals> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherActionTotals> {
 		private Long total;
 
 		private Long totalTimeInMs;
@@ -102,7 +104,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_ms}
 		 */
-		public Builder totalTimeInMs(long value) {
+		public final Builder totalTimeInMs(long value) {
 			this.totalTimeInMs = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherActionTotals build() {
+			_checkSingleUse();
 
 			return new WatcherActionTotals(this);
 		}

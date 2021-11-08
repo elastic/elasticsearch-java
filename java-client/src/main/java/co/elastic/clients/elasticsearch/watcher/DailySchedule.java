@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -39,19 +41,19 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.DailySchedule
 @JsonpDeserializable
-public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
+public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	private final JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DailySchedule(Builder builder) {
+	private DailySchedule(Builder builder) {
 
-		this.at = Objects.requireNonNull(builder.at, "at");
+		this.at = ModelTypeHelper.requireNonNull(builder.at, this, "at");
 
 	}
 
-	public DailySchedule(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DailySchedule of(Function<Builder, ObjectBuilder<DailySchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,7 +67,7 @@ public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at() {
+	public final JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at() {
 		return this.at;
 	}
 
@@ -90,13 +92,13 @@ public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link DailySchedule}.
 	 */
-	public static class Builder implements ObjectBuilder<DailySchedule> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DailySchedule> {
 		private JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at;
 
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public Builder at(JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ value) {
+		public final Builder at(JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ value) {
 			this.at = value;
 			return this;
 		}
@@ -108,6 +110,7 @@ public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DailySchedule build() {
+			_checkSingleUse();
 
 			return new DailySchedule(this);
 		}

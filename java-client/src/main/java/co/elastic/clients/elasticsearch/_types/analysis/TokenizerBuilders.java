@@ -47,6 +47,14 @@ public class TokenizerBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IcuTokenizer icu_tokenizer}
+	 * {@code Tokenizer} variant.
+	 */
+	public static IcuTokenizer.Builder icuTokenizer() {
+		return new IcuTokenizer.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link KeywordTokenizer keyword} {@code Tokenizer}
 	 * variant.
 	 */
@@ -100,6 +108,14 @@ public class TokenizerBuilders {
 	 */
 	public static PathHierarchyTokenizer.Builder pathHierarchy() {
 		return new PathHierarchyTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link PatternTokenizer pattern} {@code Tokenizer}
+	 * variant.
+	 */
+	public static PatternTokenizer.Builder pattern() {
+		return new PatternTokenizer.Builder();
 	}
 
 	/**

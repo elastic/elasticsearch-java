@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _global.delete_script.Response
 @JsonpDeserializable
-public final class DeleteScriptResponse extends AcknowledgedResponseBase {
+public class DeleteScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteScriptResponse(Builder builder) {
+	private DeleteScriptResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteScriptResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteScriptResponse of(Function<Builder, ObjectBuilder<DeleteScriptResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteScriptResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteScriptResponse build() {
+			_checkSingleUse();
 
 			return new DeleteScriptResponse(this);
 		}

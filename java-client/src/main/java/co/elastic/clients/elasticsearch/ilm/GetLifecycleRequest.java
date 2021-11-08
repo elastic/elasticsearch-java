@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Request
 
-public final class GetLifecycleRequest extends RequestBase {
+public class GetLifecycleRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetLifecycleRequest(Builder builder) {
+	private GetLifecycleRequest(Builder builder) {
 
 		this.name = builder.name;
 
 	}
 
-	public GetLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +64,7 @@ public final class GetLifecycleRequest extends RequestBase {
 	 * API name: {@code policy}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -72,7 +73,7 @@ public final class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetLifecycleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private String name;
 
@@ -81,7 +82,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -93,6 +94,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new GetLifecycleRequest(this);
 		}

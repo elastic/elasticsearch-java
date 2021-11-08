@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,24 +43,22 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomNormalizer
 @JsonpDeserializable
-public final class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
-	@Nullable
+public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	private final List<String> charFilter;
 
-	@Nullable
 	private final List<String> filter;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CustomNormalizer(Builder builder) {
+	private CustomNormalizer(Builder builder) {
 
 		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
 		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 
 	}
 
-	public CustomNormalizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CustomNormalizer of(Function<Builder, ObjectBuilder<CustomNormalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,16 +72,14 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public List<String> charFilter() {
+	public final List<String> charFilter() {
 		return this.charFilter;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<String> filter() {
+	public final List<String> filter() {
 		return this.filter;
 	}
 
@@ -100,8 +96,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 
 		generator.write("type", "custom");
 
-		if (this.charFilter != null) {
-
+		if (ModelTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (String item0 : this.charFilter) {
@@ -111,8 +106,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ModelTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -130,7 +124,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 	/**
 	 * Builder for {@link CustomNormalizer}.
 	 */
-	public static class Builder implements ObjectBuilder<CustomNormalizer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomNormalizer> {
 		@Nullable
 		private List<String> charFilter;
 
@@ -140,7 +134,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(@Nullable List<String> value) {
+		public final Builder charFilter(@Nullable List<String> value) {
 			this.charFilter = value;
 			return this;
 		}
@@ -148,26 +142,15 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(String... value) {
+		public final Builder charFilter(String... value) {
 			this.charFilter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(String value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
-			}
-			this.charFilter.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<String> value) {
+		public final Builder filter(@Nullable List<String> value) {
 			this.filter = value;
 			return this;
 		}
@@ -175,19 +158,8 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(String... value) {
+		public final Builder filter(String... value) {
 			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(String value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
 			return this;
 		}
 
@@ -198,6 +170,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public CustomNormalizer build() {
+			_checkSingleUse();
 
 			return new CustomNormalizer(this);
 		}

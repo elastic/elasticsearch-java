@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.Filter
 @JsonpDeserializable
-public final class Filter implements JsonpSerializable {
+public class Filter implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -53,37 +53,37 @@ public final class Filter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Filter(Builder builder) {
+	private Filter(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
+		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.items = ModelTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}
 
-	public Filter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
 	 * Required - API name: {@code items}
 	 */
-	public List<String> items() {
+	public final List<String> items() {
 		return this.items;
 	}
 
@@ -99,22 +99,23 @@ public final class Filter implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
 
-		generator.writeKey("items");
-		generator.writeStartArray();
-		for (String item0 : this.items) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.items)) {
+			generator.writeKey("items");
+			generator.writeStartArray();
+			for (String item0 : this.items) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -123,7 +124,7 @@ public final class Filter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Filter}.
 	 */
-	public static class Builder implements ObjectBuilder<Filter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
 		@Nullable
 		private String description;
 
@@ -134,7 +135,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -142,7 +143,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
@@ -150,7 +151,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		public Builder items(List<String> value) {
+		public final Builder items(List<String> value) {
 			this.items = value;
 			return this;
 		}
@@ -158,19 +159,8 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		public Builder items(String... value) {
+		public final Builder items(String... value) {
 			this.items = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
-		 */
-		public Builder addItems(String value) {
-			if (this.items == null) {
-				this.items = new ArrayList<>();
-			}
-			this.items.add(value);
 			return this;
 		}
 
@@ -181,6 +171,7 @@ public final class Filter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Filter build() {
+			_checkSingleUse();
 
 			return new Filter(this);
 		}

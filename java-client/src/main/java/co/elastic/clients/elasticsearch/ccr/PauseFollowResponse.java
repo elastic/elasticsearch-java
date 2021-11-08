@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ccr.pause_follow.Response
 @JsonpDeserializable
-public final class PauseFollowResponse extends AcknowledgedResponseBase {
+public class PauseFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PauseFollowResponse(Builder builder) {
+	private PauseFollowResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PauseFollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PauseFollowResponse of(Function<Builder, ObjectBuilder<PauseFollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PauseFollowResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PauseFollowResponse build() {
+			_checkSingleUse();
 
 			return new PauseFollowResponse(this);
 		}

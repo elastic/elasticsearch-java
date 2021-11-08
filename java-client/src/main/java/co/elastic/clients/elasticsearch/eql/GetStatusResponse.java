@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Response
 @JsonpDeserializable
-public final class GetStatusResponse implements JsonpSerializable {
+public class GetStatusResponse implements JsonpSerializable {
 	private final String id;
 
 	private final boolean isPartial;
@@ -59,19 +61,19 @@ public final class GetStatusResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetStatusResponse(Builder builder) {
+	private GetStatusResponse(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.isPartial = Objects.requireNonNull(builder.isPartial, "is_partial");
-		this.isRunning = Objects.requireNonNull(builder.isRunning, "is_running");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.isPartial = ModelTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
+		this.isRunning = ModelTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
 		this.startTimeInMillis = builder.startTimeInMillis;
 		this.expirationTimeInMillis = builder.expirationTimeInMillis;
 		this.completionStatus = builder.completionStatus;
 
 	}
 
-	public GetStatusResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetStatusResponse of(Function<Builder, ObjectBuilder<GetStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -89,7 +91,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_partial}
 	 */
-	public boolean isPartial() {
+	public final boolean isPartial() {
 		return this.isPartial;
 	}
 
@@ -101,7 +103,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_running}
 	 */
-	public boolean isRunning() {
+	public final boolean isRunning() {
 		return this.isRunning;
 	}
 
@@ -112,7 +114,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * API name: {@code start_time_in_millis}
 	 */
 	@Nullable
-	public String startTimeInMillis() {
+	public final String startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -124,7 +126,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * API name: {@code expiration_time_in_millis}
 	 */
 	@Nullable
-	public String expirationTimeInMillis() {
+	public final String expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
@@ -134,7 +136,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * API name: {@code completion_status}
 	 */
 	@Nullable
-	public Integer completionStatus() {
+	public final Integer completionStatus() {
 		return this.completionStatus;
 	}
 
@@ -159,19 +161,16 @@ public final class GetStatusResponse implements JsonpSerializable {
 		generator.write(this.isRunning);
 
 		if (this.startTimeInMillis != null) {
-
 			generator.writeKey("start_time_in_millis");
 			generator.write(this.startTimeInMillis);
 
 		}
 		if (this.expirationTimeInMillis != null) {
-
 			generator.writeKey("expiration_time_in_millis");
 			generator.write(this.expirationTimeInMillis);
 
 		}
 		if (this.completionStatus != null) {
-
 			generator.writeKey("completion_status");
 			generator.write(this.completionStatus);
 
@@ -184,7 +183,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetStatusResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetStatusResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStatusResponse> {
 		private String id;
 
 		private Boolean isPartial;
@@ -205,7 +204,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -216,7 +215,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_partial}
 		 */
-		public Builder isPartial(boolean value) {
+		public final Builder isPartial(boolean value) {
 			this.isPartial = value;
 			return this;
 		}
@@ -229,7 +228,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_running}
 		 */
-		public Builder isRunning(boolean value) {
+		public final Builder isRunning(boolean value) {
 			this.isRunning = value;
 			return this;
 		}
@@ -240,7 +239,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(@Nullable String value) {
+		public final Builder startTimeInMillis(@Nullable String value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -252,7 +251,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expiration_time_in_millis}
 		 */
-		public Builder expirationTimeInMillis(@Nullable String value) {
+		public final Builder expirationTimeInMillis(@Nullable String value) {
 			this.expirationTimeInMillis = value;
 			return this;
 		}
@@ -262,7 +261,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion_status}
 		 */
-		public Builder completionStatus(@Nullable Integer value) {
+		public final Builder completionStatus(@Nullable Integer value) {
 			this.completionStatus = value;
 			return this;
 		}
@@ -274,6 +273,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetStatusResponse build() {
+			_checkSingleUse();
 
 			return new GetStatusResponse(this);
 		}

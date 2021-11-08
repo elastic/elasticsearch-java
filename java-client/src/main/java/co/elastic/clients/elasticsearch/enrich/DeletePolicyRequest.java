@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.delete_policy.Request
 
-public final class DeletePolicyRequest extends RequestBase {
+public class DeletePolicyRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePolicyRequest(Builder builder) {
+	private DeletePolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeletePolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePolicyRequest of(Function<Builder, ObjectBuilder<DeletePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeletePolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +72,7 @@ public final class DeletePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeletePolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeletePolicyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePolicyRequest> {
 		private String name;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeletePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeletePolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePolicyRequest build() {
+			_checkSingleUse();
 
 			return new DeletePolicyRequest(this);
 		}

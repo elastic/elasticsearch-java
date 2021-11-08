@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.Datafeed
 @JsonpDeserializable
-public final class Datafeed implements JsonpSerializable {
+public class Datafeed implements JsonpSerializable {
 	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Datafeed(Builder builder) {
+	private Datafeed(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public Datafeed(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Datafeed of(Function<Builder, ObjectBuilder<Datafeed>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -81,13 +83,13 @@ public final class Datafeed implements JsonpSerializable {
 	/**
 	 * Builder for {@link Datafeed}.
 	 */
-	public static class Builder implements ObjectBuilder<Datafeed> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Datafeed> {
 		private Long count;
 
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class Datafeed implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Datafeed build() {
+			_checkSingleUse();
 
 			return new Datafeed(this);
 		}

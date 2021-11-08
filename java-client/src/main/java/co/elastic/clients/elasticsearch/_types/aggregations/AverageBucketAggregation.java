@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.AverageBucketAggregation
 @JsonpDeserializable
-public final class AverageBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class AverageBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public AverageBucketAggregation(Builder builder) {
+	private AverageBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public AverageBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AverageBucketAggregation of(Function<Builder, ObjectBuilder<AverageBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class AverageBucketAggregation extends PipelineAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public AverageBucketAggregation build() {
+			_checkSingleUse();
 
 			return new AverageBucketAggregation(this);
 		}

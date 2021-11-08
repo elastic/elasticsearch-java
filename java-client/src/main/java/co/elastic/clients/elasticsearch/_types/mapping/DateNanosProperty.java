@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateNanosProperty
 @JsonpDeserializable
-public final class DateNanosProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class DateNanosProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Double boost;
 
@@ -62,7 +62,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateNanosProperty(Builder builder) {
+	private DateNanosProperty(Builder builder) {
 		super(builder);
 
 		this.boost = builder.boost;
@@ -74,8 +74,8 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 
 	}
 
-	public DateNanosProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateNanosProperty of(Function<Builder, ObjectBuilder<DateNanosProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +90,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -98,7 +98,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -106,7 +106,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -114,7 +114,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -122,7 +122,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
 	}
 
@@ -130,7 +130,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 	 * API name: {@code precision_step}
 	 */
 	@Nullable
-	public Integer precisionStep() {
+	public final Integer precisionStep() {
 		return this.precisionStep;
 	}
 
@@ -139,37 +139,31 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		generator.write("type", "date_nanos");
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
 		}
 		if (this.precisionStep != null) {
-
 			generator.writeKey("precision_step");
 			generator.write(this.precisionStep);
 
@@ -206,7 +200,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -214,7 +208,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -222,7 +216,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -230,7 +224,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -238,7 +232,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -246,7 +240,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		/**
 		 * API name: {@code precision_step}
 		 */
-		public Builder precisionStep(@Nullable Integer value) {
+		public final Builder precisionStep(@Nullable Integer value) {
 			this.precisionStep = value;
 			return this;
 		}
@@ -263,6 +257,7 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		 *             if some of the required fields are null.
 		 */
 		public DateNanosProperty build() {
+			_checkSingleUse();
 
 			return new DateNanosProperty(this);
 		}

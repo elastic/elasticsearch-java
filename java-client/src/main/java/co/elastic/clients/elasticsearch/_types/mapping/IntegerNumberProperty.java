@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IntegerNumberProperty
 @JsonpDeserializable
-public final class IntegerNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class IntegerNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Integer nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IntegerNumberProperty(Builder builder) {
+	private IntegerNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public IntegerNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntegerNumberProperty of(Function<Builder, ObjectBuilder<IntegerNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class IntegerNumberProperty extends StandardNumberProperty implemen
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Integer nullValue() {
+	public final Integer nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class IntegerNumberProperty extends StandardNumberProperty implemen
 		generator.write("type", "integer");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -98,7 +97,7 @@ public final class IntegerNumberProperty extends StandardNumberProperty implemen
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Integer value) {
+		public final Builder nullValue(@Nullable Integer value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class IntegerNumberProperty extends StandardNumberProperty implemen
 		 *             if some of the required fields are null.
 		 */
 		public IntegerNumberProperty build() {
+			_checkSingleUse();
 
 			return new IntegerNumberProperty(this);
 		}

@@ -33,12 +33,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -46,19 +47,17 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplateSummary
 @JsonpDeserializable
-public final class IndexTemplateSummary implements JsonpSerializable {
-	@Nullable
+public class IndexTemplateSummary implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
 
 	@Nullable
 	private final TypeMapping mappings;
 
-	@Nullable
 	private final Map<String, JsonData> settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexTemplateSummary(Builder builder) {
+	private IndexTemplateSummary(Builder builder) {
 
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
@@ -66,15 +65,14 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 
 	}
 
-	public IndexTemplateSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexTemplateSummary of(Function<Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code aliases}
 	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
+	public final Map<String, Alias> aliases() {
 		return this.aliases;
 	}
 
@@ -82,15 +80,14 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 	 * API name: {@code mappings}
 	 */
 	@Nullable
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
 	/**
 	 * API name: {@code settings}
 	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
+	public final Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
@@ -105,8 +102,7 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aliases != null) {
-
+		if (ModelTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -118,13 +114,11 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 
 		}
 		if (this.mappings != null) {
-
 			generator.writeKey("mappings");
 			this.mappings.serialize(generator, mapper);
 
 		}
-		if (this.settings != null) {
-
+		if (ModelTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -143,7 +137,7 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexTemplateSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexTemplateSummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateSummary> {
 		@Nullable
 		private Map<String, Alias> aliases;
 
@@ -156,19 +150,8 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(@Nullable Map<String, Alias> value) {
+		public final Builder aliases(@Nullable Map<String, Alias> value) {
 			this.aliases = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Alias value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
 			return this;
 		}
 
@@ -179,17 +162,15 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
+		public final Builder aliases(
+				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
+			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(@Nullable TypeMapping value) {
+		public final Builder mappings(@Nullable TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -197,26 +178,15 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonData> value) {
+		public final Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
-		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
 			return this;
 		}
 
@@ -227,6 +197,7 @@ public final class IndexTemplateSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexTemplateSummary build() {
+			_checkSingleUse();
 
 			return new IndexTemplateSummary(this);
 		}

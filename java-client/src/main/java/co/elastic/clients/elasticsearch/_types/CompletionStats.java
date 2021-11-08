@@ -30,13 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,33 +45,32 @@ import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
 @JsonpDeserializable
-public final class CompletionStats implements JsonpSerializable {
+public class CompletionStats implements JsonpSerializable {
 	private final long sizeInBytes;
 
 	@Nullable
 	private final String size;
 
-	@Nullable
 	private final Map<String, FieldSizeUsage> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompletionStats(Builder builder) {
+	private CompletionStats(Builder builder) {
 
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
+		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.size = builder.size;
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public CompletionStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompletionStats of(Function<Builder, ObjectBuilder<CompletionStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public long sizeInBytes() {
+	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -78,15 +78,14 @@ public final class CompletionStats implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public Map<String, FieldSizeUsage> fields() {
+	public final Map<String, FieldSizeUsage> fields() {
 		return this.fields;
 	}
 
@@ -105,13 +104,11 @@ public final class CompletionStats implements JsonpSerializable {
 		generator.write(this.sizeInBytes);
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldSizeUsage> item0 : this.fields.entrySet()) {
@@ -130,7 +127,7 @@ public final class CompletionStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionStats}.
 	 */
-	public static class Builder implements ObjectBuilder<CompletionStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompletionStats> {
 		private Long sizeInBytes;
 
 		@Nullable
@@ -142,7 +139,7 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(long value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -150,7 +147,7 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -158,19 +155,8 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable Map<String, FieldSizeUsage> value) {
+		public final Builder fields(@Nullable Map<String, FieldSizeUsage> value) {
 			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, FieldSizeUsage value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
 			return this;
 		}
 
@@ -181,11 +167,9 @@ public final class CompletionStats implements JsonpSerializable {
 			return this.fields(Collections.singletonMap(key, fn.apply(new FieldSizeUsage.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {
-			return this.putFields(key, fn.apply(new FieldSizeUsage.Builder()).build());
+		public final Builder fields(
+				Function<MapBuilder<String, FieldSizeUsage, FieldSizeUsage.Builder>, ObjectBuilder<Map<String, FieldSizeUsage>>> fn) {
+			return fields(fn.apply(new MapBuilder<>(FieldSizeUsage.Builder::new)).build());
 		}
 
 		/**
@@ -195,6 +179,7 @@ public final class CompletionStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CompletionStats build() {
+			_checkSingleUse();
 
 			return new CompletionStats(this);
 		}

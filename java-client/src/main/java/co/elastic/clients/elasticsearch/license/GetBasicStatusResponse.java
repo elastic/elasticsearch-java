@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,26 @@ import java.util.function.Function;
 
 // typedef: license.get_basic_status.Response
 @JsonpDeserializable
-public final class GetBasicStatusResponse implements JsonpSerializable {
+public class GetBasicStatusResponse implements JsonpSerializable {
 	private final boolean eligibleToStartBasic;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetBasicStatusResponse(Builder builder) {
+	private GetBasicStatusResponse(Builder builder) {
 
-		this.eligibleToStartBasic = Objects.requireNonNull(builder.eligibleToStartBasic, "eligible_to_start_basic");
+		this.eligibleToStartBasic = ModelTypeHelper.requireNonNull(builder.eligibleToStartBasic, this,
+				"eligibleToStartBasic");
 
 	}
 
-	public GetBasicStatusResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetBasicStatusResponse of(Function<Builder, ObjectBuilder<GetBasicStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code eligible_to_start_basic}
 	 */
-	public boolean eligibleToStartBasic() {
+	public final boolean eligibleToStartBasic() {
 		return this.eligibleToStartBasic;
 	}
 
@@ -81,13 +84,13 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBasicStatusResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetBasicStatusResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBasicStatusResponse> {
 		private Boolean eligibleToStartBasic;
 
 		/**
 		 * Required - API name: {@code eligible_to_start_basic}
 		 */
-		public Builder eligibleToStartBasic(boolean value) {
+		public final Builder eligibleToStartBasic(boolean value) {
 			this.eligibleToStartBasic = value;
 			return this;
 		}
@@ -99,6 +102,7 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetBasicStatusResponse build() {
+			_checkSingleUse();
 
 			return new GetBasicStatusResponse(this);
 		}

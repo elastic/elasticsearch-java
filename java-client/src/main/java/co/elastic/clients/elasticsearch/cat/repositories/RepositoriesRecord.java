@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.repositories.RepositoriesRecord
 @JsonpDeserializable
-public final class RepositoriesRecord implements JsonpSerializable {
+public class RepositoriesRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -48,15 +49,15 @@ public final class RepositoriesRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RepositoriesRecord(Builder builder) {
+	private RepositoriesRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.type = builder.type;
 
 	}
 
-	public RepositoriesRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RepositoriesRecord of(Function<Builder, ObjectBuilder<RepositoriesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,7 +66,7 @@ public final class RepositoriesRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -75,7 +76,7 @@ public final class RepositoriesRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -91,13 +92,11 @@ public final class RepositoriesRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -110,7 +109,7 @@ public final class RepositoriesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link RepositoriesRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<RepositoriesRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositoriesRecord> {
 		@Nullable
 		private String id;
 
@@ -122,7 +121,7 @@ public final class RepositoriesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -132,7 +131,7 @@ public final class RepositoriesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -144,6 +143,7 @@ public final class RepositoriesRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RepositoriesRecord build() {
+			_checkSingleUse();
 
 			return new RepositoriesRecord(this);
 		}

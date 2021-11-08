@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mget.Response
 
-public final class MgetResponse<TDocument> implements JsonpSerializable {
+public class MgetResponse<TDocument> implements JsonpSerializable {
 	private final List<Hit<TDocument>> docs;
 
 	@Nullable
@@ -53,21 +54,22 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MgetResponse(Builder<TDocument> builder) {
+	private MgetResponse(Builder<TDocument> builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableNonNull(builder.docs, "docs");
+		this.docs = ModelTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public MgetResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> MgetResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MgetResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public List<Hit<TDocument>> docs() {
+	public final List<Hit<TDocument>> docs() {
 		return this.docs;
 	}
 
@@ -82,13 +84,16 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("docs");
-		generator.writeStartArray();
-		for (Hit<TDocument> item0 : this.docs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.docs)) {
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (Hit<TDocument> item0 : this.docs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -97,7 +102,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link MgetResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<MgetResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<MgetResponse<TDocument>> {
 		private List<Hit<TDocument>> docs;
 
 		@Nullable
@@ -106,7 +111,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder<TDocument> docs(List<Hit<TDocument>> value) {
+		public final Builder<TDocument> docs(List<Hit<TDocument>> value) {
 			this.docs = value;
 			return this;
 		}
@@ -114,41 +119,28 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder<TDocument> docs(Hit<TDocument>... value) {
+		public final Builder<TDocument> docs(Hit<TDocument>... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Required - API name: {@code docs}
 		 */
-		public Builder<TDocument> addDocs(Hit<TDocument> value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder<TDocument> docs(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>>... fns) {
+			this.docs = new ArrayList<>(fns.length);
+			for (Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn : fns) {
+				this.docs.add(fn.apply(new Hit.Builder<TDocument>()).build());
 			}
-			this.docs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder<TDocument> docs(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
-			return this.docs(fn.apply(new Hit.Builder<TDocument>()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addDocs(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
-			return this.addDocs(fn.apply(new Hit.Builder<TDocument>()).build());
 		}
 
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -160,6 +152,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MgetResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new MgetResponse<TDocument>(this);
 		}

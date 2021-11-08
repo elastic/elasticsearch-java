@@ -37,6 +37,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Request
 @JsonpDeserializable
-public final class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
+public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String context;
 
@@ -58,7 +59,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptsPainlessExecuteRequest(Builder builder) {
+	private ScriptsPainlessExecuteRequest(Builder builder) {
 
 		this.context = builder.context;
 		this.contextSetup = builder.contextSetup;
@@ -66,15 +67,15 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 
 	}
 
-	public ScriptsPainlessExecuteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptsPainlessExecuteRequest of(Function<Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code context}
 	 */
 	@Nullable
-	public String context() {
+	public final String context() {
 		return this.context;
 	}
 
@@ -82,7 +83,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	 * API name: {@code context_setup}
 	 */
 	@Nullable
-	public PainlessContextSetup contextSetup() {
+	public final PainlessContextSetup contextSetup() {
 		return this.contextSetup;
 	}
 
@@ -90,7 +91,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public InlineScript script() {
+	public final InlineScript script() {
 		return this.script;
 	}
 
@@ -106,19 +107,16 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.context != null) {
-
 			generator.writeKey("context");
 			generator.write(this.context);
 
 		}
 		if (this.contextSetup != null) {
-
 			generator.writeKey("context_setup");
 			this.contextSetup.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
 
@@ -131,7 +129,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Builder for {@link ScriptsPainlessExecuteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ScriptsPainlessExecuteRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptsPainlessExecuteRequest> {
 		@Nullable
 		private String context;
 
@@ -144,7 +142,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code context}
 		 */
-		public Builder context(@Nullable String value) {
+		public final Builder context(@Nullable String value) {
 			this.context = value;
 			return this;
 		}
@@ -152,7 +150,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code context_setup}
 		 */
-		public Builder contextSetup(@Nullable PainlessContextSetup value) {
+		public final Builder contextSetup(@Nullable PainlessContextSetup value) {
 			this.contextSetup = value;
 			return this;
 		}
@@ -160,14 +158,15 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code context_setup}
 		 */
-		public Builder contextSetup(Function<PainlessContextSetup.Builder, ObjectBuilder<PainlessContextSetup>> fn) {
+		public final Builder contextSetup(
+				Function<PainlessContextSetup.Builder, ObjectBuilder<PainlessContextSetup>> fn) {
 			return this.contextSetup(fn.apply(new PainlessContextSetup.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable InlineScript value) {
+		public final Builder script(@Nullable InlineScript value) {
 			this.script = value;
 			return this;
 		}
@@ -175,7 +174,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
+		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
 			return this.script(fn.apply(new InlineScript.Builder()).build());
 		}
 
@@ -186,6 +185,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		 *             if some of the required fields are null.
 		 */
 		public ScriptsPainlessExecuteRequest build() {
+			_checkSingleUse();
 
 			return new ScriptsPainlessExecuteRequest(this);
 		}

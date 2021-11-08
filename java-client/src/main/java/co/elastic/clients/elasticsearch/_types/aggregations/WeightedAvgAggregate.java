@@ -21,101 +21,77 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
-// typedef: indices.freeze.Response
+// typedef: _types.aggregations.WeightedAvgAggregate
 @JsonpDeserializable
-public final class FreezeResponse extends AcknowledgedResponseBase {
-	private final boolean shardsAcknowledged;
-
+public class WeightedAvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public FreezeResponse(Builder builder) {
+	private WeightedAvgAggregate(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
-
 	}
 
-	public FreezeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WeightedAvgAggregate of(Function<Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code shards_acknowledged}
+	 * {@link Aggregate} variant type
 	 */
-	public boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
-
+	@Override
+	public String _variantType() {
+		return "weighted_avg";
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link FreezeResponse}.
+	 * Builder for {@link WeightedAvgAggregate}.
 	 */
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<FreezeResponse> {
-		private Boolean shardsAcknowledged;
-
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
-			return this;
-		}
-
+				ObjectBuilder<WeightedAvgAggregate> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link FreezeResponse}.
+		 * Builds a {@link WeightedAvgAggregate}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public FreezeResponse build() {
+		public WeightedAvgAggregate build() {
+			_checkSingleUse();
 
-			return new FreezeResponse(this);
+			return new WeightedAvgAggregate(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link FreezeResponse}
+	 * Json deserializer for {@link WeightedAvgAggregate}
 	 */
-	public static final JsonpDeserializer<FreezeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FreezeResponse::setupFreezeResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<WeightedAvgAggregate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WeightedAvgAggregate::setupWeightedAvgAggregateDeserializer, Builder::build);
 
-	protected static void setupFreezeResponseDeserializer(DelegatingDeserializer<FreezeResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+	protected static void setupWeightedAvgAggregateDeserializer(
+			DelegatingDeserializer<WeightedAvgAggregate.Builder> op) {
+		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 
 	}
 

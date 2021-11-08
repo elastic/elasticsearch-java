@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ilm.delete_lifecycle.Response
 @JsonpDeserializable
-public final class DeleteLifecycleResponse extends AcknowledgedResponseBase {
+public class DeleteLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteLifecycleResponse(Builder builder) {
+	private DeleteLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteLifecycleResponse of(Function<Builder, ObjectBuilder<DeleteLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteLifecycleResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteLifecycleResponse build() {
+			_checkSingleUse();
 
 			return new DeleteLifecycleResponse(this);
 		}

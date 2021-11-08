@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.PluginsStatus
 @JsonpDeserializable
-public final class PluginsStatus implements JsonpSerializable {
+public class PluginsStatus implements JsonpSerializable {
 	private final ShutdownStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PluginsStatus(Builder builder) {
+	private PluginsStatus(Builder builder) {
 
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public PluginsStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PluginsStatus of(Function<Builder, ObjectBuilder<PluginsStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ShutdownStatus status() {
+	public final ShutdownStatus status() {
 		return this.status;
 	}
 
@@ -81,13 +83,13 @@ public final class PluginsStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginsStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<PluginsStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsStatus> {
 		private ShutdownStatus status;
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ShutdownStatus value) {
+		public final Builder status(ShutdownStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class PluginsStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PluginsStatus build() {
+			_checkSingleUse();
 
 			return new PluginsStatus(this);
 		}

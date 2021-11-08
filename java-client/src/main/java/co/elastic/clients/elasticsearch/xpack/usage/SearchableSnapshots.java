@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SearchableSnapshots
 @JsonpDeserializable
-public final class SearchableSnapshots extends Base {
+public class SearchableSnapshots extends Base {
 	private final int indicesCount;
 
 	@Nullable
@@ -49,23 +50,23 @@ public final class SearchableSnapshots extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchableSnapshots(Builder builder) {
+	private SearchableSnapshots(Builder builder) {
 		super(builder);
 
-		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
+		this.indicesCount = ModelTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
 		this.fullCopyIndicesCount = builder.fullCopyIndicesCount;
 		this.sharedCacheIndicesCount = builder.sharedCacheIndicesCount;
 
 	}
 
-	public SearchableSnapshots(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchableSnapshots of(Function<Builder, ObjectBuilder<SearchableSnapshots>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices_count}
 	 */
-	public int indicesCount() {
+	public final int indicesCount() {
 		return this.indicesCount;
 	}
 
@@ -73,7 +74,7 @@ public final class SearchableSnapshots extends Base {
 	 * API name: {@code full_copy_indices_count}
 	 */
 	@Nullable
-	public Integer fullCopyIndicesCount() {
+	public final Integer fullCopyIndicesCount() {
 		return this.fullCopyIndicesCount;
 	}
 
@@ -81,25 +82,22 @@ public final class SearchableSnapshots extends Base {
 	 * API name: {@code shared_cache_indices_count}
 	 */
 	@Nullable
-	public Integer sharedCacheIndicesCount() {
+	public final Integer sharedCacheIndicesCount() {
 		return this.sharedCacheIndicesCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("indices_count");
 		generator.write(this.indicesCount);
 
 		if (this.fullCopyIndicesCount != null) {
-
 			generator.writeKey("full_copy_indices_count");
 			generator.write(this.fullCopyIndicesCount);
 
 		}
 		if (this.sharedCacheIndicesCount != null) {
-
 			generator.writeKey("shared_cache_indices_count");
 			generator.write(this.sharedCacheIndicesCount);
 
@@ -124,7 +122,7 @@ public final class SearchableSnapshots extends Base {
 		/**
 		 * Required - API name: {@code indices_count}
 		 */
-		public Builder indicesCount(int value) {
+		public final Builder indicesCount(int value) {
 			this.indicesCount = value;
 			return this;
 		}
@@ -132,7 +130,7 @@ public final class SearchableSnapshots extends Base {
 		/**
 		 * API name: {@code full_copy_indices_count}
 		 */
-		public Builder fullCopyIndicesCount(@Nullable Integer value) {
+		public final Builder fullCopyIndicesCount(@Nullable Integer value) {
 			this.fullCopyIndicesCount = value;
 			return this;
 		}
@@ -140,7 +138,7 @@ public final class SearchableSnapshots extends Base {
 		/**
 		 * API name: {@code shared_cache_indices_count}
 		 */
-		public Builder sharedCacheIndicesCount(@Nullable Integer value) {
+		public final Builder sharedCacheIndicesCount(@Nullable Integer value) {
 			this.sharedCacheIndicesCount = value;
 			return this;
 		}
@@ -157,6 +155,7 @@ public final class SearchableSnapshots extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public SearchableSnapshots build() {
+			_checkSingleUse();
 
 			return new SearchableSnapshots(this);
 		}

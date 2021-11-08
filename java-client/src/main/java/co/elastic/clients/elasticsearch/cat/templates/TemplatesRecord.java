@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.templates.TemplatesRecord
 @JsonpDeserializable
-public final class TemplatesRecord implements JsonpSerializable {
+public class TemplatesRecord implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
@@ -57,7 +58,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TemplatesRecord(Builder builder) {
+	private TemplatesRecord(Builder builder) {
 
 		this.name = builder.name;
 		this.indexPatterns = builder.indexPatterns;
@@ -67,8 +68,8 @@ public final class TemplatesRecord implements JsonpSerializable {
 
 	}
 
-	public TemplatesRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TemplatesRecord of(Function<Builder, ObjectBuilder<TemplatesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +78,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -87,7 +88,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 	 * API name: {@code index_patterns}
 	 */
 	@Nullable
-	public String indexPatterns() {
+	public final String indexPatterns() {
 		return this.indexPatterns;
 	}
 
@@ -97,7 +98,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public String order() {
+	public final String order() {
 		return this.order;
 	}
 
@@ -107,7 +108,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -117,7 +118,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 	 * API name: {@code composed_of}
 	 */
 	@Nullable
-	public String composedOf() {
+	public final String composedOf() {
 		return this.composedOf;
 	}
 
@@ -133,31 +134,26 @@ public final class TemplatesRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.indexPatterns != null) {
-
 			generator.writeKey("index_patterns");
 			generator.write(this.indexPatterns);
 
 		}
 		if (this.order != null) {
-
 			generator.writeKey("order");
 			generator.write(this.order);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.composedOf != null) {
-
 			generator.writeKey("composed_of");
 			generator.write(this.composedOf);
 
@@ -170,7 +166,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TemplatesRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<TemplatesRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRecord> {
 		@Nullable
 		private String name;
 
@@ -191,7 +187,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -201,7 +197,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(@Nullable String value) {
+		public final Builder indexPatterns(@Nullable String value) {
 			this.indexPatterns = value;
 			return this;
 		}
@@ -211,7 +207,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable String value) {
+		public final Builder order(@Nullable String value) {
 			this.order = value;
 			return this;
 		}
@@ -221,7 +217,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -231,7 +227,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code composed_of}
 		 */
-		public Builder composedOf(@Nullable String value) {
+		public final Builder composedOf(@Nullable String value) {
 			this.composedOf = value;
 			return this;
 		}
@@ -243,6 +239,7 @@ public final class TemplatesRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TemplatesRecord build() {
+			_checkSingleUse();
 
 			return new TemplatesRecord(this);
 		}

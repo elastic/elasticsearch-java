@@ -36,7 +36,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -52,7 +54,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.update.Request
 
-public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
+public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
@@ -116,16 +118,16 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateRequest(Builder<TDocument, TPartialDocument> builder) {
+	private UpdateRequest(Builder<TDocument, TPartialDocument> builder) {
 
 		this.source = builder.source;
 		this.detectNoop = builder.detectNoop;
 		this.doc = builder.doc;
 		this.docAsUpsert = builder.docAsUpsert;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lang = builder.lang;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
@@ -142,8 +144,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 
 	}
 
-	public UpdateRequest(Function<Builder<TDocument, TPartialDocument>, Builder<TDocument, TPartialDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument, TPartialDocument> UpdateRequest<TDocument, TPartialDocument> of(
+			Function<Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -153,7 +156,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
+	public final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -164,7 +167,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code detect_noop}
 	 */
 	@Nullable
-	public Boolean detectNoop() {
+	public final Boolean detectNoop() {
 		return this.detectNoop;
 	}
 
@@ -174,7 +177,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code doc}
 	 */
 	@Nullable
-	public TPartialDocument doc() {
+	public final TPartialDocument doc() {
 		return this.doc;
 	}
 
@@ -184,7 +187,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code doc_as_upsert}
 	 */
 	@Nullable
-	public Boolean docAsUpsert() {
+	public final Boolean docAsUpsert() {
 		return this.docAsUpsert;
 	}
 
@@ -193,7 +196,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -203,7 +206,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Long ifPrimaryTerm() {
+	public final Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -213,7 +216,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Long ifSeqNo() {
+	public final Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -222,7 +225,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -232,7 +235,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code lang}
 	 */
 	@Nullable
-	public String lang() {
+	public final String lang() {
 		return this.lang;
 	}
 
@@ -244,7 +247,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -254,7 +257,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
-	public Boolean requireAlias() {
+	public final Boolean requireAlias() {
 		return this.requireAlias;
 	}
 
@@ -265,7 +268,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code retry_on_conflict}
 	 */
 	@Nullable
-	public Integer retryOnConflict() {
+	public final Integer retryOnConflict() {
 		return this.retryOnConflict;
 	}
 
@@ -275,7 +278,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -285,7 +288,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -295,7 +298,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code scripted_upsert}
 	 */
 	@Nullable
-	public Boolean scriptedUpsert() {
+	public final Boolean scriptedUpsert() {
 		return this.scriptedUpsert;
 	}
 
@@ -307,7 +310,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -317,7 +320,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -328,7 +331,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code upsert}
 	 */
 	@Nullable
-	public TDocument upsert() {
+	public final TDocument upsert() {
 		return this.upsert;
 	}
 
@@ -341,7 +344,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -357,43 +360,36 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.source != null) {
-
 			generator.writeKey("_source");
 			generator.write(this.source);
 
 		}
 		if (this.detectNoop != null) {
-
 			generator.writeKey("detect_noop");
 			generator.write(this.detectNoop);
 
 		}
 		if (this.doc != null) {
-
 			generator.writeKey("doc");
 			JsonpUtils.serialize(this.doc, generator, tPartialDocumentSerializer, mapper);
 
 		}
 		if (this.docAsUpsert != null) {
-
 			generator.writeKey("doc_as_upsert");
 			generator.write(this.docAsUpsert);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.scriptedUpsert != null) {
-
 			generator.writeKey("scripted_upsert");
 			generator.write(this.scriptedUpsert);
 
 		}
 		if (this.upsert != null) {
-
 			generator.writeKey("upsert");
 			JsonpUtils.serialize(this.upsert, generator, tDocumentSerializer, mapper);
 
@@ -406,7 +402,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	/**
 	 * Builder for {@link UpdateRequest}.
 	 */
-	public static class Builder<TDocument, TPartialDocument>
+	public static class Builder<TDocument, TPartialDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>> {
 		@Nullable
@@ -476,7 +472,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument, TPartialDocument> source(
+		public final Builder<TDocument, TPartialDocument> source(
 				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
 			this.source = value;
 			return this;
@@ -488,7 +484,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code detect_noop}
 		 */
-		public Builder<TDocument, TPartialDocument> detectNoop(@Nullable Boolean value) {
+		public final Builder<TDocument, TPartialDocument> detectNoop(@Nullable Boolean value) {
 			this.detectNoop = value;
 			return this;
 		}
@@ -498,7 +494,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code doc}
 		 */
-		public Builder<TDocument, TPartialDocument> doc(@Nullable TPartialDocument value) {
+		public final Builder<TDocument, TPartialDocument> doc(@Nullable TPartialDocument value) {
 			this.doc = value;
 			return this;
 		}
@@ -508,7 +504,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code doc_as_upsert}
 		 */
-		public Builder<TDocument, TPartialDocument> docAsUpsert(@Nullable Boolean value) {
+		public final Builder<TDocument, TPartialDocument> docAsUpsert(@Nullable Boolean value) {
 			this.docAsUpsert = value;
 			return this;
 		}
@@ -518,7 +514,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder<TDocument, TPartialDocument> id(String value) {
+		public final Builder<TDocument, TPartialDocument> id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -528,7 +524,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder<TDocument, TPartialDocument> ifPrimaryTerm(@Nullable Long value) {
+		public final Builder<TDocument, TPartialDocument> ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -538,7 +534,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Long value) {
+		public final Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return this;
 		}
@@ -548,7 +544,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder<TDocument, TPartialDocument> index(String value) {
+		public final Builder<TDocument, TPartialDocument> index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -558,7 +554,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code lang}
 		 */
-		public Builder<TDocument, TPartialDocument> lang(@Nullable String value) {
+		public final Builder<TDocument, TPartialDocument> lang(@Nullable String value) {
 			this.lang = value;
 			return this;
 		}
@@ -570,7 +566,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder<TDocument, TPartialDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder<TDocument, TPartialDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -580,7 +576,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
-		public Builder<TDocument, TPartialDocument> requireAlias(@Nullable Boolean value) {
+		public final Builder<TDocument, TPartialDocument> requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
 			return this;
 		}
@@ -591,7 +587,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code retry_on_conflict}
 		 */
-		public Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Integer value) {
+		public final Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Integer value) {
 			this.retryOnConflict = value;
 			return this;
 		}
@@ -601,7 +597,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TDocument, TPartialDocument> routing(@Nullable String value) {
+		public final Builder<TDocument, TPartialDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -611,7 +607,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public Builder<TDocument, TPartialDocument> script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder<TDocument, TPartialDocument> script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -621,7 +617,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code scripted_upsert}
 		 */
-		public Builder<TDocument, TPartialDocument> scriptedUpsert(@Nullable Boolean value) {
+		public final Builder<TDocument, TPartialDocument> scriptedUpsert(@Nullable Boolean value) {
 			this.scriptedUpsert = value;
 			return this;
 		}
@@ -633,7 +629,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TDocument, TPartialDocument> timeout(@Nullable String value) {
+		public final Builder<TDocument, TPartialDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -643,7 +639,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder<TDocument, TPartialDocument> type(@Nullable String value) {
+		public final Builder<TDocument, TPartialDocument> type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -654,7 +650,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code upsert}
 		 */
-		public Builder<TDocument, TPartialDocument> upsert(@Nullable TDocument value) {
+		public final Builder<TDocument, TPartialDocument> upsert(@Nullable TDocument value) {
 			this.upsert = value;
 			return this;
 		}
@@ -667,7 +663,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder<TDocument, TPartialDocument> waitForActiveShards(
+		public final Builder<TDocument, TPartialDocument> waitForActiveShards(
 				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
@@ -677,7 +673,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument, TPartialDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument, TPartialDocument> tDocumentSerializer(
+				@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -686,7 +683,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * Serializer for TPartialDocument. If not set, an attempt will be made to find
 		 * a serializer from the JSON context.
 		 */
-		public Builder<TDocument, TPartialDocument> tPartialDocumentSerializer(
+		public final Builder<TDocument, TPartialDocument> tPartialDocumentSerializer(
 				@Nullable JsonpSerializer<TPartialDocument> value) {
 			this.tPartialDocumentSerializer = value;
 			return this;
@@ -699,6 +696,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 *             if some of the required fields are null.
 		 */
 		public UpdateRequest<TDocument, TPartialDocument> build() {
+			_checkSingleUse();
 
 			return new UpdateRequest<TDocument, TPartialDocument>(this);
 		}

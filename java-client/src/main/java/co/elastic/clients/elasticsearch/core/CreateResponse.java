@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _global.create.Response
 @JsonpDeserializable
-public final class CreateResponse extends WriteResponseBase {
+public class CreateResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateResponse(Builder builder) {
+	private CreateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CreateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateResponse of(Function<Builder, ObjectBuilder<CreateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class CreateResponse extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateResponse build() {
+			_checkSingleUse();
 
 			return new CreateResponse(this);
 		}

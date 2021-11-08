@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorOneHotEncoding
 @JsonpDeserializable
-public final class DataframeAnalysisFeatureProcessorOneHotEncoding
+public class DataframeAnalysisFeatureProcessorOneHotEncoding
 		implements
 			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
@@ -49,15 +51,16 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
+	private DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.hotMap = Objects.requireNonNull(builder.hotMap, "hot_map");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.hotMap = ModelTypeHelper.requireNonNull(builder.hotMap, this, "hotMap");
 
 	}
 
-	public DataframeAnalysisFeatureProcessorOneHotEncoding(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisFeatureProcessorOneHotEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +76,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 	 * <p>
 	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,7 +85,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 	 * <p>
 	 * API name: {@code hot_map}
 	 */
-	public String hotMap() {
+	public final String hotMap() {
 		return this.hotMap;
 	}
 
@@ -110,7 +113,9 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorOneHotEncoding}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding> {
 		private String field;
 
 		private String hotMap;
@@ -120,7 +125,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -130,7 +135,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 		 * <p>
 		 * API name: {@code hot_map}
 		 */
-		public Builder hotMap(String value) {
+		public final Builder hotMap(String value) {
 			this.hotMap = value;
 			return this;
 		}
@@ -142,6 +147,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisFeatureProcessorOneHotEncoding build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisFeatureProcessorOneHotEncoding(this);
 		}

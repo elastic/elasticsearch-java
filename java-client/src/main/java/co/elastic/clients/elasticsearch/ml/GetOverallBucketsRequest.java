@@ -25,16 +25,15 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -46,11 +45,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
-@JsonpDeserializable
-public final class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final Boolean allowNoJobs;
 
+public class GetOverallBucketsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -76,40 +72,42 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetOverallBucketsRequest(Builder builder) {
+	private GetOverallBucketsRequest(Builder builder) {
 
-		this.allowNoJobs = builder.allowNoJobs;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bucketSpan = builder.bucketSpan;
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.overallScore = builder.overallScore;
 		this.start = builder.start;
 		this.topN = builder.topN;
 
 	}
 
-	public GetOverallBucketsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetOverallBucketsRequest of(Function<Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code allow_no_jobs}
-	 */
-	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * If <code>true</code>, the request returns an empty <code>jobs</code> array
+	 * when there are no matches and the subset of results when there are partial
+	 * matches. If this parameter is <code>false</code>, the request returns a
+	 * <code>404</code> status code when there are no matches or only partial
+	 * matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -118,10 +116,14 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * bucket span of the specified anomaly detection jobs, which is the default
 	 * value.
 	 * <p>
+	 * By default, an overall bucket has a span equal to the largest bucket span of
+	 * the specified anomaly detection jobs. To override that behavior, use the
+	 * optional <code>bucket_span</code> parameter.
+	 * <p>
 	 * API name: {@code bucket_span}
 	 */
 	@Nullable
-	public String bucketSpan() {
+	public final String bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -131,18 +133,17 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
 	/**
-	 * If true, the output excludes interim results. By default, interim results are
-	 * included.
+	 * If <code>true</code>, the output excludes interim results.
 	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
-	public Boolean excludeInterim() {
+	public final Boolean excludeInterim() {
 		return this.excludeInterim;
 	}
 
@@ -151,9 +152,13 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * identifier, a group name, a comma-separated list of jobs or groups, or a
 	 * wildcard expression.
 	 * <p>
+	 * You can summarize the bucket results for all anomaly detection jobs by using
+	 * <code>_all</code> or by specifying <code>*</code> as the
+	 * <code>&lt;job_id&gt;</code>.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -164,7 +169,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code overall_score}
 	 */
 	@Nullable
-	public String overallScore() {
+	public final String overallScore() {
 		return this.overallScore;
 	}
 
@@ -174,39 +179,19 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
 	}
 
 	/**
 	 * The number of top anomaly detection job bucket scores to be used in the
-	 * overall_score calculation.
+	 * <code>overall_score</code> calculation.
 	 * <p>
 	 * API name: {@code top_n}
 	 */
 	@Nullable
-	public Integer topN() {
+	public final Integer topN() {
 		return this.topN;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.allowNoJobs != null) {
-
-			generator.writeKey("allow_no_jobs");
-			generator.write(this.allowNoJobs);
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -214,10 +199,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link GetOverallBucketsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetOverallBucketsRequest> {
-		@Nullable
-		private Boolean allowNoJobs;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -242,20 +224,23 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		private Integer topN;
 
 		/**
-		 * API name: {@code allow_no_jobs}
-		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * If <code>true</code>, the request returns an empty <code>jobs</code> array
+		 * when there are no matches and the subset of results when there are partial
+		 * matches. If this parameter is <code>false</code>, the request returns a
+		 * <code>404</code> status code when there are no matches or only partial
+		 * matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -265,9 +250,13 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * bucket span of the specified anomaly detection jobs, which is the default
 		 * value.
 		 * <p>
+		 * By default, an overall bucket has a span equal to the largest bucket span of
+		 * the specified anomaly detection jobs. To override that behavior, use the
+		 * optional <code>bucket_span</code> parameter.
+		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(@Nullable String value) {
+		public final Builder bucketSpan(@Nullable String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -277,18 +266,17 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
-		 * If true, the output excludes interim results. By default, interim results are
-		 * included.
+		 * If <code>true</code>, the output excludes interim results.
 		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
-		public Builder excludeInterim(@Nullable Boolean value) {
+		public final Builder excludeInterim(@Nullable Boolean value) {
 			this.excludeInterim = value;
 			return this;
 		}
@@ -298,9 +286,13 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * identifier, a group name, a comma-separated list of jobs or groups, or a
 		 * wildcard expression.
 		 * <p>
+		 * You can summarize the bucket results for all anomaly detection jobs by using
+		 * <code>_all</code> or by specifying <code>*</code> as the
+		 * <code>&lt;job_id&gt;</code>.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -311,7 +303,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(@Nullable String value) {
+		public final Builder overallScore(@Nullable String value) {
 			this.overallScore = value;
 			return this;
 		}
@@ -321,18 +313,18 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
 
 		/**
 		 * The number of top anomaly detection job bucket scores to be used in the
-		 * overall_score calculation.
+		 * <code>overall_score</code> calculation.
 		 * <p>
 		 * API name: {@code top_n}
 		 */
-		public Builder topN(@Nullable Integer value) {
+		public final Builder topN(@Nullable Integer value) {
 			this.topN = value;
 			return this;
 		}
@@ -344,24 +336,10 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public GetOverallBucketsRequest build() {
+			_checkSingleUse();
 
 			return new GetOverallBucketsRequest(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link GetOverallBucketsRequest}
-	 */
-	public static final JsonpDeserializer<GetOverallBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer, Builder::build);
-
-	protected static void setupGetOverallBucketsRequestDeserializer(
-			DelegatingDeserializer<GetOverallBucketsRequest.Builder> op) {
-
-		op.add(Builder::allowNoJobs, JsonpDeserializer.booleanDeserializer(), "allow_no_jobs");
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -416,13 +394,13 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 				if (request.end != null) {
 					params.put("end", request.end);
 				}
-				if (request.overallScore != null) {
-					params.put("overall_score", request.overallScore);
-				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
+				if (request.overallScore != null) {
+					params.put("overall_score", request.overallScore);
+				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetOverallBucketsResponse._DESERIALIZER);
 }

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollectorTotal
 @JsonpDeserializable
-public final class GarbageCollectorTotal implements JsonpSerializable {
+public class GarbageCollectorTotal implements JsonpSerializable {
 	private final long collectionCount;
 
 	private final String collectionTime;
@@ -49,37 +51,37 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GarbageCollectorTotal(Builder builder) {
+	private GarbageCollectorTotal(Builder builder) {
 
-		this.collectionCount = Objects.requireNonNull(builder.collectionCount, "collection_count");
-		this.collectionTime = Objects.requireNonNull(builder.collectionTime, "collection_time");
-		this.collectionTimeInMillis = Objects.requireNonNull(builder.collectionTimeInMillis,
-				"collection_time_in_millis");
+		this.collectionCount = ModelTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
+		this.collectionTime = ModelTypeHelper.requireNonNull(builder.collectionTime, this, "collectionTime");
+		this.collectionTimeInMillis = ModelTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
+				"collectionTimeInMillis");
 
 	}
 
-	public GarbageCollectorTotal(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GarbageCollectorTotal of(Function<Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code collection_count}
 	 */
-	public long collectionCount() {
+	public final long collectionCount() {
 		return this.collectionCount;
 	}
 
 	/**
 	 * Required - API name: {@code collection_time}
 	 */
-	public String collectionTime() {
+	public final String collectionTime() {
 		return this.collectionTime;
 	}
 
 	/**
 	 * Required - API name: {@code collection_time_in_millis}
 	 */
-	public long collectionTimeInMillis() {
+	public final long collectionTimeInMillis() {
 		return this.collectionTimeInMillis;
 	}
 
@@ -110,7 +112,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 	/**
 	 * Builder for {@link GarbageCollectorTotal}.
 	 */
-	public static class Builder implements ObjectBuilder<GarbageCollectorTotal> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
 		private Long collectionCount;
 
 		private String collectionTime;
@@ -120,7 +122,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collection_count}
 		 */
-		public Builder collectionCount(long value) {
+		public final Builder collectionCount(long value) {
 			this.collectionCount = value;
 			return this;
 		}
@@ -128,7 +130,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collection_time}
 		 */
-		public Builder collectionTime(String value) {
+		public final Builder collectionTime(String value) {
 			this.collectionTime = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collection_time_in_millis}
 		 */
-		public Builder collectionTimeInMillis(long value) {
+		public final Builder collectionTimeInMillis(long value) {
 			this.collectionTimeInMillis = value;
 			return this;
 		}
@@ -148,6 +150,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GarbageCollectorTotal build() {
+			_checkSingleUse();
 
 			return new GarbageCollectorTotal(this);
 		}

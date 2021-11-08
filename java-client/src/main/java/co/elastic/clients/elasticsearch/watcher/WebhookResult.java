@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.WebhookResult
 @JsonpDeserializable
-public final class WebhookResult implements JsonpSerializable {
+public class WebhookResult implements JsonpSerializable {
 	private final HttpInputRequestResult request;
 
 	@Nullable
@@ -46,21 +48,21 @@ public final class WebhookResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WebhookResult(Builder builder) {
+	private WebhookResult(Builder builder) {
 
-		this.request = Objects.requireNonNull(builder.request, "request");
+		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
 		this.response = builder.response;
 
 	}
 
-	public WebhookResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WebhookResult of(Function<Builder, ObjectBuilder<WebhookResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code request}
 	 */
-	public HttpInputRequestResult request() {
+	public final HttpInputRequestResult request() {
 		return this.request;
 	}
 
@@ -68,7 +70,7 @@ public final class WebhookResult implements JsonpSerializable {
 	 * API name: {@code response}
 	 */
 	@Nullable
-	public HttpInputResponseResult response() {
+	public final HttpInputResponseResult response() {
 		return this.response;
 	}
 
@@ -87,7 +89,6 @@ public final class WebhookResult implements JsonpSerializable {
 		this.request.serialize(generator, mapper);
 
 		if (this.response != null) {
-
 			generator.writeKey("response");
 			this.response.serialize(generator, mapper);
 
@@ -100,7 +101,7 @@ public final class WebhookResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link WebhookResult}.
 	 */
-	public static class Builder implements ObjectBuilder<WebhookResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WebhookResult> {
 		private HttpInputRequestResult request;
 
 		@Nullable
@@ -109,7 +110,7 @@ public final class WebhookResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public Builder request(HttpInputRequestResult value) {
+		public final Builder request(HttpInputRequestResult value) {
 			this.request = value;
 			return this;
 		}
@@ -117,14 +118,15 @@ public final class WebhookResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public Builder request(Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+		public final Builder request(
+				Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
 			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code response}
 		 */
-		public Builder response(@Nullable HttpInputResponseResult value) {
+		public final Builder response(@Nullable HttpInputResponseResult value) {
 			this.response = value;
 			return this;
 		}
@@ -132,7 +134,8 @@ public final class WebhookResult implements JsonpSerializable {
 		/**
 		 * API name: {@code response}
 		 */
-		public Builder response(Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
+		public final Builder response(
+				Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
 			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
 		}
 
@@ -143,6 +146,7 @@ public final class WebhookResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WebhookResult build() {
+			_checkSingleUse();
 
 			return new WebhookResult(this);
 		}

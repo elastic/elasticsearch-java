@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.PartitionScore
 @JsonpDeserializable
-public final class PartitionScore implements JsonpSerializable {
+public class PartitionScore implements JsonpSerializable {
 	private final double initialRecordScore;
 
 	private final String partitionFieldName;
@@ -53,52 +55,55 @@ public final class PartitionScore implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PartitionScore(Builder builder) {
+	private PartitionScore(Builder builder) {
 
-		this.initialRecordScore = Objects.requireNonNull(builder.initialRecordScore, "initial_record_score");
-		this.partitionFieldName = Objects.requireNonNull(builder.partitionFieldName, "partition_field_name");
-		this.partitionFieldValue = Objects.requireNonNull(builder.partitionFieldValue, "partition_field_value");
-		this.probability = Objects.requireNonNull(builder.probability, "probability");
-		this.recordScore = Objects.requireNonNull(builder.recordScore, "record_score");
+		this.initialRecordScore = ModelTypeHelper.requireNonNull(builder.initialRecordScore, this,
+				"initialRecordScore");
+		this.partitionFieldName = ModelTypeHelper.requireNonNull(builder.partitionFieldName, this,
+				"partitionFieldName");
+		this.partitionFieldValue = ModelTypeHelper.requireNonNull(builder.partitionFieldValue, this,
+				"partitionFieldValue");
+		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.recordScore = ModelTypeHelper.requireNonNull(builder.recordScore, this, "recordScore");
 
 	}
 
-	public PartitionScore(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PartitionScore of(Function<Builder, ObjectBuilder<PartitionScore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code initial_record_score}
 	 */
-	public double initialRecordScore() {
+	public final double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
 	/**
 	 * Required - API name: {@code partition_field_name}
 	 */
-	public String partitionFieldName() {
+	public final String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
 	/**
 	 * Required - API name: {@code partition_field_value}
 	 */
-	public String partitionFieldValue() {
+	public final String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
 
 	/**
 	 * Required - API name: {@code probability}
 	 */
-	public double probability() {
+	public final double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * Required - API name: {@code record_score}
 	 */
-	public double recordScore() {
+	public final double recordScore() {
 		return this.recordScore;
 	}
 
@@ -135,7 +140,7 @@ public final class PartitionScore implements JsonpSerializable {
 	/**
 	 * Builder for {@link PartitionScore}.
 	 */
-	public static class Builder implements ObjectBuilder<PartitionScore> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PartitionScore> {
 		private Double initialRecordScore;
 
 		private String partitionFieldName;
@@ -149,7 +154,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code initial_record_score}
 		 */
-		public Builder initialRecordScore(double value) {
+		public final Builder initialRecordScore(double value) {
 			this.initialRecordScore = value;
 			return this;
 		}
@@ -157,7 +162,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code partition_field_name}
 		 */
-		public Builder partitionFieldName(String value) {
+		public final Builder partitionFieldName(String value) {
 			this.partitionFieldName = value;
 			return this;
 		}
@@ -165,7 +170,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code partition_field_value}
 		 */
-		public Builder partitionFieldValue(String value) {
+		public final Builder partitionFieldValue(String value) {
 			this.partitionFieldValue = value;
 			return this;
 		}
@@ -173,7 +178,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code probability}
 		 */
-		public Builder probability(double value) {
+		public final Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
@@ -181,7 +186,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code record_score}
 		 */
-		public Builder recordScore(double value) {
+		public final Builder recordScore(double value) {
 			this.recordScore = value;
 			return this;
 		}
@@ -193,6 +198,7 @@ public final class PartitionScore implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PartitionScore build() {
+			_checkSingleUse();
 
 			return new PartitionScore(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.StoredScript
 @JsonpDeserializable
-public final class StoredScript implements JsonpSerializable {
+public class StoredScript implements JsonpSerializable {
 	@Nullable
 	private final ScriptLanguage lang;
 
@@ -47,29 +49,29 @@ public final class StoredScript implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StoredScript(Builder builder) {
+	private StoredScript(Builder builder) {
 
 		this.lang = builder.lang;
-		this.source = Objects.requireNonNull(builder.source, "source");
+		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public StoredScript(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StoredScript of(Function<Builder, ObjectBuilder<StoredScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code lang}
 	 */
 	@Nullable
-	public ScriptLanguage lang() {
+	public final ScriptLanguage lang() {
 		return this.lang;
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
@@ -85,11 +87,9 @@ public final class StoredScript implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.lang != null) {
-
 			generator.writeKey("lang");
 			this.lang.serialize(generator, mapper);
 		}
-
 		generator.writeKey("source");
 		generator.write(this.source);
 
@@ -100,7 +100,7 @@ public final class StoredScript implements JsonpSerializable {
 	/**
 	 * Builder for {@link StoredScript}.
 	 */
-	public static class Builder implements ObjectBuilder<StoredScript> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoredScript> {
 		@Nullable
 		private ScriptLanguage lang;
 
@@ -109,7 +109,7 @@ public final class StoredScript implements JsonpSerializable {
 		/**
 		 * API name: {@code lang}
 		 */
-		public Builder lang(@Nullable ScriptLanguage value) {
+		public final Builder lang(@Nullable ScriptLanguage value) {
 			this.lang = value;
 			return this;
 		}
@@ -117,7 +117,7 @@ public final class StoredScript implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(String value) {
+		public final Builder source(String value) {
 			this.source = value;
 			return this;
 		}
@@ -129,6 +129,7 @@ public final class StoredScript implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StoredScript build() {
+			_checkSingleUse();
 
 			return new StoredScript(this);
 		}

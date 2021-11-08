@@ -35,7 +35,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.put_script.Request
 @JsonpDeserializable
-public final class PutScriptRequest extends RequestBase implements JsonpSerializable {
+public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String context;
 
@@ -63,18 +65,18 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutScriptRequest(Builder builder) {
+	private PutScriptRequest(Builder builder) {
 
 		this.context = builder.context;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
 		this.script = builder.script;
 		this.timeout = builder.timeout;
 
 	}
 
-	public PutScriptRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutScriptRequest of(Function<Builder, ObjectBuilder<PutScriptRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +85,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code context}
 	 */
 	@Nullable
-	public String context() {
+	public final String context() {
 		return this.context;
 	}
 
@@ -92,7 +94,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -102,7 +104,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -110,7 +112,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public StoredScript script() {
+	public final StoredScript script() {
 		return this.script;
 	}
 
@@ -120,7 +122,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -136,7 +138,6 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
 
@@ -149,7 +150,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PutScriptRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutScriptRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutScriptRequest> {
 		@Nullable
 		private String context;
 
@@ -169,7 +170,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code context}
 		 */
-		public Builder context(@Nullable String value) {
+		public final Builder context(@Nullable String value) {
 			this.context = value;
 			return this;
 		}
@@ -179,7 +180,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -189,7 +190,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -197,7 +198,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable StoredScript value) {
+		public final Builder script(@Nullable StoredScript value) {
 			this.script = value;
 			return this;
 		}
@@ -205,7 +206,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
+		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
 			return this.script(fn.apply(new StoredScript.Builder()).build());
 		}
 
@@ -214,7 +215,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -226,6 +227,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public PutScriptRequest build() {
+			_checkSingleUse();
 
 			return new PutScriptRequest(this);
 		}

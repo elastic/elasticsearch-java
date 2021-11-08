@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.help.Response
 @JsonpDeserializable
-public final class HelpResponse implements JsonpSerializable {
+public class HelpResponse implements JsonpSerializable {
 	private final List<HelpRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HelpResponse(Builder builder) {
+	private HelpResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public HelpResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HelpResponse of(Function<Builder, ObjectBuilder<HelpResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class HelpResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<HelpRecord> valueBody() {
+	public final List<HelpRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class HelpResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HelpResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<HelpResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HelpResponse> {
 		private List<HelpRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class HelpResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<HelpRecord> value) {
+		public final Builder valueBody(List<HelpRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class HelpResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(HelpRecord... value) {
+		public final Builder valueBody(HelpRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(HelpRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<HelpRecord.Builder, ObjectBuilder<HelpRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<HelpRecord.Builder, ObjectBuilder<HelpRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new HelpRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<HelpRecord.Builder, ObjectBuilder<HelpRecord>> fn) {
-			return this.valueBody(fn.apply(new HelpRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<HelpRecord.Builder, ObjectBuilder<HelpRecord>> fn) {
-			return this.addValueBody(fn.apply(new HelpRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class HelpResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HelpResponse build() {
+			_checkSingleUse();
 
 			return new HelpResponse(this);
 		}

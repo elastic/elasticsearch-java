@@ -36,9 +36,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -48,51 +48,55 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_filter.Request
 @JsonpDeserializable
-public final class PutFilterRequest extends RequestBase implements JsonpSerializable {
+public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	private final String filterId;
 
-	@Nullable
 	private final List<String> items;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutFilterRequest(Builder builder) {
+	private PutFilterRequest(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.items = ModelTypeHelper.unmodifiable(builder.items);
 
 	}
 
-	public PutFilterRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutFilterRequest of(Function<Builder, ObjectBuilder<PutFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * A description of the filter.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
-	 * Required - The ID of the filter to create
+	 * Required - A string that uniquely identifies a filter.
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
+	 * The items of the filter. A wildcard <code>*</code> can be used at the
+	 * beginning or the end of an item. Up to 10000 items are allowed in each
+	 * filter.
+	 * <p>
 	 * API name: {@code items}
 	 */
-	@Nullable
-	public List<String> items() {
+	public final List<String> items() {
 		return this.items;
 	}
 
@@ -108,13 +112,11 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.items != null) {
-
+		if (ModelTypeHelper.isDefined(this.items)) {
 			generator.writeKey("items");
 			generator.writeStartArray();
 			for (String item0 : this.items) {
@@ -132,7 +134,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PutFilterRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutFilterRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutFilterRequest> {
 		@Nullable
 		private String description;
 
@@ -142,47 +144,46 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 		private List<String> items;
 
 		/**
+		 * A description of the filter.
+		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ID of the filter to create
+		 * Required - A string that uniquely identifies a filter.
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
 
 		/**
+		 * The items of the filter. A wildcard <code>*</code> can be used at the
+		 * beginning or the end of an item. Up to 10000 items are allowed in each
+		 * filter.
+		 * <p>
 		 * API name: {@code items}
 		 */
-		public Builder items(@Nullable List<String> value) {
+		public final Builder items(@Nullable List<String> value) {
 			this.items = value;
 			return this;
 		}
 
 		/**
+		 * The items of the filter. A wildcard <code>*</code> can be used at the
+		 * beginning or the end of an item. Up to 10000 items are allowed in each
+		 * filter.
+		 * <p>
 		 * API name: {@code items}
 		 */
-		public Builder items(String... value) {
+		public final Builder items(String... value) {
 			this.items = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
-		 */
-		public Builder addItems(String value) {
-			if (this.items == null) {
-				this.items = new ArrayList<>();
-			}
-			this.items.add(value);
 			return this;
 		}
 
@@ -193,6 +194,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public PutFilterRequest build() {
+			_checkSingleUse();
 
 			return new PutFilterRequest(this);
 		}

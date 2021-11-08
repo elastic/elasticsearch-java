@@ -44,53 +44,56 @@ import javax.annotation.Nullable;
 
 // typedef: indices.add_block.Response
 @JsonpDeserializable
-public final class AddBlockResponse extends AcknowledgedResponseBase {
+public class AddBlockResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
 
 	private final List<IndicesBlockStatus> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AddBlockResponse(Builder builder) {
+	private AddBlockResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
+				"shardsAcknowledged");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public AddBlockResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AddBlockResponse of(Function<Builder, ObjectBuilder<AddBlockResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public boolean shardsAcknowledged() {
+	public final boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<IndicesBlockStatus> indices() {
+	public final List<IndicesBlockStatus> indices() {
 		return this.indices;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (IndicesBlockStatus item0 : this.indices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (IndicesBlockStatus item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -109,7 +112,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(boolean value) {
+		public final Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -117,7 +120,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<IndicesBlockStatus> value) {
+		public final Builder indices(List<IndicesBlockStatus> value) {
 			this.indices = value;
 			return this;
 		}
@@ -125,34 +128,21 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(IndicesBlockStatus... value) {
+		public final Builder indices(IndicesBlockStatus... value) {
 			this.indices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
 		 */
-		public Builder addIndices(IndicesBlockStatus value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>>... fns) {
+			this.indices = new ArrayList<>(fns.length);
+			for (Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn : fns) {
+				this.indices.add(fn.apply(new IndicesBlockStatus.Builder()).build());
 			}
-			this.indices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
-			return this.indices(fn.apply(new IndicesBlockStatus.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
-			return this.addIndices(fn.apply(new IndicesBlockStatus.Builder()).build());
 		}
 
 		@Override
@@ -167,6 +157,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public AddBlockResponse build() {
+			_checkSingleUse();
 
 			return new AddBlockResponse(this);
 		}

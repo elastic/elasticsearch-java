@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: ssl.certificates.Request
 
-public final class CertificatesRequest extends RequestBase {
+public class CertificatesRequest extends RequestBase {
 	public CertificatesRequest() {
 	}
 

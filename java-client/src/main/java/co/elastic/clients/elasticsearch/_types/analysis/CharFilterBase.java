@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -45,7 +46,7 @@ public abstract class CharFilterBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CharFilterBase(AbstractBuilder<?> builder) {
+	protected CharFilterBase(AbstractBuilder<?> builder) {
 
 		this.version = builder.version;
 
@@ -55,7 +56,7 @@ public abstract class CharFilterBase implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -71,7 +72,6 @@ public abstract class CharFilterBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -79,14 +79,16 @@ public abstract class CharFilterBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String version;
 
 		/**
 		 * API name: {@code version}
 		 */
-		public BuilderT version(@Nullable String value) {
+		public final BuilderT version(@Nullable String value) {
 			this.version = value;
 			return self();
 		}

@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: ingest._types.DropProcessor
 @JsonpDeserializable
-public final class DropProcessor extends ProcessorBase implements ProcessorVariant {
+public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DropProcessor(Builder builder) {
+	private DropProcessor(Builder builder) {
 		super(builder);
 
 	}
 
-	public DropProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DropProcessor of(Function<Builder, ObjectBuilder<DropProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,6 +73,7 @@ public final class DropProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public DropProcessor build() {
+			_checkSingleUse();
 
 			return new DropProcessor(this);
 		}

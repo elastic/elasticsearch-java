@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -46,10 +47,10 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
+	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
 
-		this.response = Objects.requireNonNull(builder.response, "response");
+		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -57,14 +58,13 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	/**
 	 * Required - API name: {@code response}
 	 */
-	public AsyncSearch<TDocument> response() {
+	public final AsyncSearch<TDocument> response() {
 		return this.response;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("response");
 		this.response.serialize(generator, mapper);
 
@@ -81,7 +81,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public BuilderT response(AsyncSearch<TDocument> value) {
+		public final BuilderT response(AsyncSearch<TDocument> value) {
 			this.response = value;
 			return self();
 		}
@@ -89,7 +89,8 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public BuilderT response(Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
+		public final BuilderT response(
+				Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
 			return this.response(fn.apply(new AsyncSearch.Builder<TDocument>()).build());
 		}
 
@@ -97,7 +98,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public BuilderT tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final BuilderT tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return self();
 		}

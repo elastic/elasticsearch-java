@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.NestedProperty
 @JsonpDeserializable
-public final class NestedProperty extends CorePropertyBase implements PropertyVariant {
+public class NestedProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean enabled;
 
@@ -50,7 +50,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NestedProperty(Builder builder) {
+	private NestedProperty(Builder builder) {
 		super(builder);
 
 		this.enabled = builder.enabled;
@@ -59,8 +59,8 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 
 	}
 
-	public NestedProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NestedProperty of(Function<Builder, ObjectBuilder<NestedProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -83,7 +83,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 	 * API name: {@code include_in_parent}
 	 */
 	@Nullable
-	public Boolean includeInParent() {
+	public final Boolean includeInParent() {
 		return this.includeInParent;
 	}
 
@@ -91,7 +91,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 	 * API name: {@code include_in_root}
 	 */
 	@Nullable
-	public Boolean includeInRoot() {
+	public final Boolean includeInRoot() {
 		return this.includeInRoot;
 	}
 
@@ -100,19 +100,16 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 		generator.write("type", "nested");
 		super.serializeInternal(generator, mapper);
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
 		if (this.includeInParent != null) {
-
 			generator.writeKey("include_in_parent");
 			generator.write(this.includeInParent);
 
 		}
 		if (this.includeInRoot != null) {
-
 			generator.writeKey("include_in_root");
 			generator.write(this.includeInRoot);
 
@@ -140,7 +137,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -148,7 +145,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 		/**
 		 * API name: {@code include_in_parent}
 		 */
-		public Builder includeInParent(@Nullable Boolean value) {
+		public final Builder includeInParent(@Nullable Boolean value) {
 			this.includeInParent = value;
 			return this;
 		}
@@ -156,7 +153,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 		/**
 		 * API name: {@code include_in_root}
 		 */
-		public Builder includeInRoot(@Nullable Boolean value) {
+		public final Builder includeInRoot(@Nullable Boolean value) {
 			this.includeInRoot = value;
 			return this;
 		}
@@ -173,6 +170,7 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 		 *             if some of the required fields are null.
 		 */
 		public NestedProperty build() {
+			_checkSingleUse();
 
 			return new NestedProperty(this);
 		}

@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShapeProperty
 @JsonpDeserializable
-public final class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean coerce;
 
@@ -53,7 +53,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShapeProperty(Builder builder) {
+	private ShapeProperty(Builder builder) {
 		super(builder);
 
 		this.coerce = builder.coerce;
@@ -63,8 +63,8 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 
 	}
 
-	public ShapeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShapeProperty of(Function<Builder, ObjectBuilder<ShapeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +79,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -87,7 +87,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -95,7 +95,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code ignore_z_value}
 	 */
 	@Nullable
-	public Boolean ignoreZValue() {
+	public final Boolean ignoreZValue() {
 		return this.ignoreZValue;
 	}
 
@@ -103,7 +103,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code orientation}
 	 */
 	@Nullable
-	public GeoOrientation orientation() {
+	public final GeoOrientation orientation() {
 		return this.orientation;
 	}
 
@@ -112,25 +112,21 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		generator.write("type", "shape");
 		super.serializeInternal(generator, mapper);
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
 		}
 		if (this.ignoreZValue != null) {
-
 			generator.writeKey("ignore_z_value");
 			generator.write(this.ignoreZValue);
 
 		}
 		if (this.orientation != null) {
-
 			generator.writeKey("orientation");
 			this.orientation.serialize(generator, mapper);
 		}
@@ -160,7 +156,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code coerce}
 		 */
-		public Builder coerce(@Nullable Boolean value) {
+		public final Builder coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return this;
 		}
@@ -168,7 +164,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -176,7 +172,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code ignore_z_value}
 		 */
-		public Builder ignoreZValue(@Nullable Boolean value) {
+		public final Builder ignoreZValue(@Nullable Boolean value) {
 			this.ignoreZValue = value;
 			return this;
 		}
@@ -184,7 +180,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code orientation}
 		 */
-		public Builder orientation(@Nullable GeoOrientation value) {
+		public final Builder orientation(@Nullable GeoOrientation value) {
 			this.orientation = value;
 			return this;
 		}
@@ -201,6 +197,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public ShapeProperty build() {
+			_checkSingleUse();
 
 			return new ShapeProperty(this);
 		}

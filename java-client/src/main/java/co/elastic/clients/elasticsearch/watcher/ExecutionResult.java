@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResult
 @JsonpDeserializable
-public final class ExecutionResult implements JsonpSerializable {
+public class ExecutionResult implements JsonpSerializable {
 	private final List<ExecutionResultAction> actions;
 
 	private final ExecutionResultCondition condition;
@@ -57,52 +58,52 @@ public final class ExecutionResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionResult(Builder builder) {
+	private ExecutionResult(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
-		this.condition = Objects.requireNonNull(builder.condition, "condition");
-		this.executionDuration = Objects.requireNonNull(builder.executionDuration, "execution_duration");
-		this.executionTime = Objects.requireNonNull(builder.executionTime, "execution_time");
-		this.input = Objects.requireNonNull(builder.input, "input");
+		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.condition = ModelTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.executionDuration = ModelTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration");
+		this.executionTime = ModelTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
+		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
 
 	}
 
-	public ExecutionResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionResult of(Function<Builder, ObjectBuilder<ExecutionResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public List<ExecutionResultAction> actions() {
+	public final List<ExecutionResultAction> actions() {
 		return this.actions;
 	}
 
 	/**
 	 * Required - API name: {@code condition}
 	 */
-	public ExecutionResultCondition condition() {
+	public final ExecutionResultCondition condition() {
 		return this.condition;
 	}
 
 	/**
 	 * Required - API name: {@code execution_duration}
 	 */
-	public int executionDuration() {
+	public final int executionDuration() {
 		return this.executionDuration;
 	}
 
 	/**
 	 * Required - API name: {@code execution_time}
 	 */
-	public String executionTime() {
+	public final String executionTime() {
 		return this.executionTime;
 	}
 
 	/**
 	 * Required - API name: {@code input}
 	 */
-	public ExecutionResultInput input() {
+	public final ExecutionResultInput input() {
 		return this.input;
 	}
 
@@ -117,14 +118,16 @@ public final class ExecutionResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartArray();
-		for (ExecutionResultAction item0 : this.actions) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartArray();
+			for (ExecutionResultAction item0 : this.actions) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("condition");
 		this.condition.serialize(generator, mapper);
 
@@ -144,7 +147,7 @@ public final class ExecutionResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResult}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResult> {
 		private List<ExecutionResultAction> actions;
 
 		private ExecutionResultCondition condition;
@@ -158,7 +161,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 */
-		public Builder actions(List<ExecutionResultAction> value) {
+		public final Builder actions(List<ExecutionResultAction> value) {
 			this.actions = value;
 			return this;
 		}
@@ -166,40 +169,28 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 */
-		public Builder actions(ExecutionResultAction... value) {
+		public final Builder actions(ExecutionResultAction... value) {
 			this.actions = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Required - API name: {@code actions}
 		 */
-		public Builder addActions(ExecutionResultAction value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
+		@SafeVarargs
+		public final Builder actions(
+				Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>>... fns) {
+			this.actions = new ArrayList<>(fns.length);
+			for (Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn : fns) {
+				this.actions.add(fn.apply(new ExecutionResultAction.Builder()).build());
 			}
-			this.actions.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #actions(List)} to a singleton list.
-		 */
-		public Builder actions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
-			return this.actions(fn.apply(new ExecutionResultAction.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
-			return this.addActions(fn.apply(new ExecutionResultAction.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(ExecutionResultCondition value) {
+		public final Builder condition(ExecutionResultCondition value) {
 			this.condition = value;
 			return this;
 		}
@@ -207,7 +198,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(
+		public final Builder condition(
 				Function<ExecutionResultCondition.Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
 			return this.condition(fn.apply(new ExecutionResultCondition.Builder()).build());
 		}
@@ -215,7 +206,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_duration}
 		 */
-		public Builder executionDuration(int value) {
+		public final Builder executionDuration(int value) {
 			this.executionDuration = value;
 			return this;
 		}
@@ -223,7 +214,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_time}
 		 */
-		public Builder executionTime(String value) {
+		public final Builder executionTime(String value) {
 			this.executionTime = value;
 			return this;
 		}
@@ -231,7 +222,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(ExecutionResultInput value) {
+		public final Builder input(ExecutionResultInput value) {
 			this.input = value;
 			return this;
 		}
@@ -239,7 +230,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
+		public final Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
 			return this.input(fn.apply(new ExecutionResultInput.Builder()).build());
 		}
 
@@ -250,6 +241,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionResult build() {
+			_checkSingleUse();
 
 			return new ExecutionResult(this);
 		}

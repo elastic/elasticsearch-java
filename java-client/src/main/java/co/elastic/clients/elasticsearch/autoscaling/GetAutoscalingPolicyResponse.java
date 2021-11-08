@@ -29,7 +29,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -37,19 +39,19 @@ import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Response
 @JsonpDeserializable
-public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
+public class GetAutoscalingPolicyResponse implements JsonpSerializable {
 	private final AutoscalingPolicy valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAutoscalingPolicyResponse(Builder builder) {
+	private GetAutoscalingPolicyResponse(Builder builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public GetAutoscalingPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAutoscalingPolicyResponse of(Function<Builder, ObjectBuilder<GetAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -57,7 +59,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public AutoscalingPolicy valueBody() {
+	public final AutoscalingPolicy valueBody() {
 		return this.valueBody;
 	}
 
@@ -74,7 +76,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetAutoscalingPolicyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetAutoscalingPolicyResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingPolicyResponse> {
 		private AutoscalingPolicy valueBody;
 
 		/**
@@ -82,7 +84,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(AutoscalingPolicy value) {
+		public final Builder valueBody(AutoscalingPolicy value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -92,7 +94,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
+		public final Builder valueBody(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
 			return this.valueBody(fn.apply(new AutoscalingPolicy.Builder()).build());
 		}
 
@@ -103,6 +105,7 @@ public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetAutoscalingPolicyResponse build() {
+			_checkSingleUse();
 
 			return new GetAutoscalingPolicyResponse(this);
 		}

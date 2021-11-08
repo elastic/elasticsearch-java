@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedHeuristic
 @JsonpDeserializable
-public final class ScriptedHeuristic implements JsonpSerializable {
+public class ScriptedHeuristic implements JsonpSerializable {
 	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptedHeuristic(Builder builder) {
+	private ScriptedHeuristic(Builder builder) {
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ScriptedHeuristic(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptedHeuristic of(Function<Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -82,13 +84,13 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link ScriptedHeuristic}.
 	 */
-	public static class Builder implements ObjectBuilder<ScriptedHeuristic> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptedHeuristic> {
 		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ScriptedHeuristic build() {
+			_checkSingleUse();
 
 			return new ScriptedHeuristic(this);
 		}

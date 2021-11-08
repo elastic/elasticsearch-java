@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymTokenFilter
 @JsonpDeserializable
-public final class SynonymTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	@Nullable
 	private final Boolean expand;
 
@@ -66,21 +65,21 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SynonymTokenFilter(Builder builder) {
+	private SynonymTokenFilter(Builder builder) {
 		super(builder);
 
 		this.expand = builder.expand;
 		this.format = builder.format;
 		this.lenient = builder.lenient;
-		this.synonyms = ModelTypeHelper.unmodifiableNonNull(builder.synonyms, "synonyms");
+		this.synonyms = ModelTypeHelper.unmodifiable(builder.synonyms);
 		this.synonymsPath = builder.synonymsPath;
 		this.tokenizer = builder.tokenizer;
 		this.updateable = builder.updateable;
 
 	}
 
-	public SynonymTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SynonymTokenFilter of(Function<Builder, ObjectBuilder<SynonymTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,7 +94,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	 * API name: {@code expand}
 	 */
 	@Nullable
-	public Boolean expand() {
+	public final Boolean expand() {
 		return this.expand;
 	}
 
@@ -103,7 +102,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public SynonymFormat format() {
+	public final SynonymFormat format() {
 		return this.format;
 	}
 
@@ -111,14 +110,14 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
 	/**
-	 * Required - API name: {@code synonyms}
+	 * API name: {@code synonyms}
 	 */
-	public List<String> synonyms() {
+	public final List<String> synonyms() {
 		return this.synonyms;
 	}
 
@@ -126,7 +125,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	 * API name: {@code synonyms_path}
 	 */
 	@Nullable
-	public String synonymsPath() {
+	public final String synonymsPath() {
 		return this.synonymsPath;
 	}
 
@@ -134,7 +133,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
-	public String tokenizer() {
+	public final String tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -142,7 +141,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	 * API name: {@code updateable}
 	 */
 	@Nullable
-	public Boolean updateable() {
+	public final Boolean updateable() {
 		return this.updateable;
 	}
 
@@ -151,45 +150,40 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		generator.write("type", "synonym");
 		super.serializeInternal(generator, mapper);
 		if (this.expand != null) {
-
 			generator.writeKey("expand");
 			generator.write(this.expand);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			this.format.serialize(generator, mapper);
 		}
 		if (this.lenient != null) {
-
 			generator.writeKey("lenient");
 			generator.write(this.lenient);
 
 		}
+		if (ModelTypeHelper.isDefined(this.synonyms)) {
+			generator.writeKey("synonyms");
+			generator.writeStartArray();
+			for (String item0 : this.synonyms) {
+				generator.write(item0);
 
-		generator.writeKey("synonyms");
-		generator.writeStartArray();
-		for (String item0 : this.synonyms) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.synonymsPath != null) {
-
 			generator.writeKey("synonyms_path");
 			generator.write(this.synonymsPath);
 
 		}
 		if (this.tokenizer != null) {
-
 			generator.writeKey("tokenizer");
 			generator.write(this.tokenizer);
 
 		}
 		if (this.updateable != null) {
-
 			generator.writeKey("updateable");
 			generator.write(this.updateable);
 
@@ -214,6 +208,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		@Nullable
 		private Boolean lenient;
 
+		@Nullable
 		private List<String> synonyms;
 
 		@Nullable
@@ -228,7 +223,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code expand}
 		 */
-		public Builder expand(@Nullable Boolean value) {
+		public final Builder expand(@Nullable Boolean value) {
 			this.expand = value;
 			return this;
 		}
@@ -236,7 +231,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable SynonymFormat value) {
+		public final Builder format(@Nullable SynonymFormat value) {
 			this.format = value;
 			return this;
 		}
@@ -244,42 +239,31 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code synonyms}
+		 * API name: {@code synonyms}
 		 */
-		public Builder synonyms(List<String> value) {
+		public final Builder synonyms(@Nullable List<String> value) {
 			this.synonyms = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code synonyms}
+		 * API name: {@code synonyms}
 		 */
-		public Builder synonyms(String... value) {
+		public final Builder synonyms(String... value) {
 			this.synonyms = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #synonyms(List)}, creating the list if needed.
-		 */
-		public Builder addSynonyms(String value) {
-			if (this.synonyms == null) {
-				this.synonyms = new ArrayList<>();
-			}
-			this.synonyms.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code synonyms_path}
 		 */
-		public Builder synonymsPath(@Nullable String value) {
+		public final Builder synonymsPath(@Nullable String value) {
 			this.synonymsPath = value;
 			return this;
 		}
@@ -287,7 +271,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(@Nullable String value) {
+		public final Builder tokenizer(@Nullable String value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -295,7 +279,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code updateable}
 		 */
-		public Builder updateable(@Nullable Boolean value) {
+		public final Builder updateable(@Nullable Boolean value) {
 			this.updateable = value;
 			return this;
 		}
@@ -312,6 +296,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public SynonymTokenFilter build() {
+			_checkSingleUse();
 
 			return new SynonymTokenFilter(this);
 		}

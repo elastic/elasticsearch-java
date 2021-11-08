@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.AnomalyCause
 @JsonpDeserializable
-public final class AnomalyCause implements JsonpSerializable {
+public class AnomalyCause implements JsonpSerializable {
 	private final List<Double> actual;
 
 	private final String byFieldName;
@@ -75,125 +76,128 @@ public final class AnomalyCause implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnomalyCause(Builder builder) {
+	private AnomalyCause(Builder builder) {
 
-		this.actual = ModelTypeHelper.unmodifiableNonNull(builder.actual, "actual");
-		this.byFieldName = Objects.requireNonNull(builder.byFieldName, "by_field_name");
-		this.byFieldValue = Objects.requireNonNull(builder.byFieldValue, "by_field_value");
-		this.correlatedByFieldValue = Objects.requireNonNull(builder.correlatedByFieldValue,
-				"correlated_by_field_value");
-		this.fieldName = Objects.requireNonNull(builder.fieldName, "field_name");
-		this.function = Objects.requireNonNull(builder.function, "function");
-		this.functionDescription = Objects.requireNonNull(builder.functionDescription, "function_description");
-		this.influencers = ModelTypeHelper.unmodifiableNonNull(builder.influencers, "influencers");
-		this.overFieldName = Objects.requireNonNull(builder.overFieldName, "over_field_name");
-		this.overFieldValue = Objects.requireNonNull(builder.overFieldValue, "over_field_value");
-		this.partitionFieldName = Objects.requireNonNull(builder.partitionFieldName, "partition_field_name");
-		this.partitionFieldValue = Objects.requireNonNull(builder.partitionFieldValue, "partition_field_value");
-		this.probability = Objects.requireNonNull(builder.probability, "probability");
-		this.typical = ModelTypeHelper.unmodifiableNonNull(builder.typical, "typical");
+		this.actual = ModelTypeHelper.unmodifiableRequired(builder.actual, this, "actual");
+		this.byFieldName = ModelTypeHelper.requireNonNull(builder.byFieldName, this, "byFieldName");
+		this.byFieldValue = ModelTypeHelper.requireNonNull(builder.byFieldValue, this, "byFieldValue");
+		this.correlatedByFieldValue = ModelTypeHelper.requireNonNull(builder.correlatedByFieldValue, this,
+				"correlatedByFieldValue");
+		this.fieldName = ModelTypeHelper.requireNonNull(builder.fieldName, this, "fieldName");
+		this.function = ModelTypeHelper.requireNonNull(builder.function, this, "function");
+		this.functionDescription = ModelTypeHelper.requireNonNull(builder.functionDescription, this,
+				"functionDescription");
+		this.influencers = ModelTypeHelper.unmodifiableRequired(builder.influencers, this, "influencers");
+		this.overFieldName = ModelTypeHelper.requireNonNull(builder.overFieldName, this, "overFieldName");
+		this.overFieldValue = ModelTypeHelper.requireNonNull(builder.overFieldValue, this, "overFieldValue");
+		this.partitionFieldName = ModelTypeHelper.requireNonNull(builder.partitionFieldName, this,
+				"partitionFieldName");
+		this.partitionFieldValue = ModelTypeHelper.requireNonNull(builder.partitionFieldValue, this,
+				"partitionFieldValue");
+		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.typical = ModelTypeHelper.unmodifiableRequired(builder.typical, this, "typical");
 
 	}
 
-	public AnomalyCause(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnomalyCause of(Function<Builder, ObjectBuilder<AnomalyCause>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actual}
 	 */
-	public List<Double> actual() {
+	public final List<Double> actual() {
 		return this.actual;
 	}
 
 	/**
 	 * Required - API name: {@code by_field_name}
 	 */
-	public String byFieldName() {
+	public final String byFieldName() {
 		return this.byFieldName;
 	}
 
 	/**
 	 * Required - API name: {@code by_field_value}
 	 */
-	public String byFieldValue() {
+	public final String byFieldValue() {
 		return this.byFieldValue;
 	}
 
 	/**
 	 * Required - API name: {@code correlated_by_field_value}
 	 */
-	public String correlatedByFieldValue() {
+	public final String correlatedByFieldValue() {
 		return this.correlatedByFieldValue;
 	}
 
 	/**
 	 * Required - API name: {@code field_name}
 	 */
-	public String fieldName() {
+	public final String fieldName() {
 		return this.fieldName;
 	}
 
 	/**
 	 * Required - API name: {@code function}
 	 */
-	public String function() {
+	public final String function() {
 		return this.function;
 	}
 
 	/**
 	 * Required - API name: {@code function_description}
 	 */
-	public String functionDescription() {
+	public final String functionDescription() {
 		return this.functionDescription;
 	}
 
 	/**
 	 * Required - API name: {@code influencers}
 	 */
-	public List<Influence> influencers() {
+	public final List<Influence> influencers() {
 		return this.influencers;
 	}
 
 	/**
 	 * Required - API name: {@code over_field_name}
 	 */
-	public String overFieldName() {
+	public final String overFieldName() {
 		return this.overFieldName;
 	}
 
 	/**
 	 * Required - API name: {@code over_field_value}
 	 */
-	public String overFieldValue() {
+	public final String overFieldValue() {
 		return this.overFieldValue;
 	}
 
 	/**
 	 * Required - API name: {@code partition_field_name}
 	 */
-	public String partitionFieldName() {
+	public final String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
 	/**
 	 * Required - API name: {@code partition_field_value}
 	 */
-	public String partitionFieldValue() {
+	public final String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
 
 	/**
 	 * Required - API name: {@code probability}
 	 */
-	public double probability() {
+	public final double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * Required - API name: {@code typical}
 	 */
-	public List<Double> typical() {
+	public final List<Double> typical() {
 		return this.typical;
 	}
 
@@ -208,14 +212,16 @@ public final class AnomalyCause implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actual");
-		generator.writeStartArray();
-		for (Double item0 : this.actual) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.actual)) {
+			generator.writeKey("actual");
+			generator.writeStartArray();
+			for (Double item0 : this.actual) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("by_field_name");
 		generator.write(this.byFieldName);
 
@@ -234,14 +240,16 @@ public final class AnomalyCause implements JsonpSerializable {
 		generator.writeKey("function_description");
 		generator.write(this.functionDescription);
 
-		generator.writeKey("influencers");
-		generator.writeStartArray();
-		for (Influence item0 : this.influencers) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.influencers)) {
+			generator.writeKey("influencers");
+			generator.writeStartArray();
+			for (Influence item0 : this.influencers) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("over_field_name");
 		generator.write(this.overFieldName);
 
@@ -257,13 +265,16 @@ public final class AnomalyCause implements JsonpSerializable {
 		generator.writeKey("probability");
 		generator.write(this.probability);
 
-		generator.writeKey("typical");
-		generator.writeStartArray();
-		for (Double item0 : this.typical) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.typical)) {
+			generator.writeKey("typical");
+			generator.writeStartArray();
+			for (Double item0 : this.typical) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -272,7 +283,7 @@ public final class AnomalyCause implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnomalyCause}.
 	 */
-	public static class Builder implements ObjectBuilder<AnomalyCause> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnomalyCause> {
 		private List<Double> actual;
 
 		private String byFieldName;
@@ -304,7 +315,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actual}
 		 */
-		public Builder actual(List<Double> value) {
+		public final Builder actual(List<Double> value) {
 			this.actual = value;
 			return this;
 		}
@@ -312,26 +323,15 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actual}
 		 */
-		public Builder actual(Double... value) {
+		public final Builder actual(Double... value) {
 			this.actual = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actual(List)}, creating the list if needed.
-		 */
-		public Builder addActual(Double value) {
-			if (this.actual == null) {
-				this.actual = new ArrayList<>();
-			}
-			this.actual.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code by_field_name}
 		 */
-		public Builder byFieldName(String value) {
+		public final Builder byFieldName(String value) {
 			this.byFieldName = value;
 			return this;
 		}
@@ -339,7 +339,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code by_field_value}
 		 */
-		public Builder byFieldValue(String value) {
+		public final Builder byFieldValue(String value) {
 			this.byFieldValue = value;
 			return this;
 		}
@@ -347,7 +347,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code correlated_by_field_value}
 		 */
-		public Builder correlatedByFieldValue(String value) {
+		public final Builder correlatedByFieldValue(String value) {
 			this.correlatedByFieldValue = value;
 			return this;
 		}
@@ -355,7 +355,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_name}
 		 */
-		public Builder fieldName(String value) {
+		public final Builder fieldName(String value) {
 			this.fieldName = value;
 			return this;
 		}
@@ -363,7 +363,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code function}
 		 */
-		public Builder function(String value) {
+		public final Builder function(String value) {
 			this.function = value;
 			return this;
 		}
@@ -371,7 +371,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code function_description}
 		 */
-		public Builder functionDescription(String value) {
+		public final Builder functionDescription(String value) {
 			this.functionDescription = value;
 			return this;
 		}
@@ -379,7 +379,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code influencers}
 		 */
-		public Builder influencers(List<Influence> value) {
+		public final Builder influencers(List<Influence> value) {
 			this.influencers = value;
 			return this;
 		}
@@ -387,40 +387,27 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code influencers}
 		 */
-		public Builder influencers(Influence... value) {
+		public final Builder influencers(Influence... value) {
 			this.influencers = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Required - API name: {@code influencers}
 		 */
-		public Builder addInfluencers(Influence value) {
-			if (this.influencers == null) {
-				this.influencers = new ArrayList<>();
+		@SafeVarargs
+		public final Builder influencers(Function<Influence.Builder, ObjectBuilder<Influence>>... fns) {
+			this.influencers = new ArrayList<>(fns.length);
+			for (Function<Influence.Builder, ObjectBuilder<Influence>> fn : fns) {
+				this.influencers.add(fn.apply(new Influence.Builder()).build());
 			}
-			this.influencers.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #influencers(List)} to a singleton list.
-		 */
-		public Builder influencers(Function<Influence.Builder, ObjectBuilder<Influence>> fn) {
-			return this.influencers(fn.apply(new Influence.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
-		 */
-		public Builder addInfluencers(Function<Influence.Builder, ObjectBuilder<Influence>> fn) {
-			return this.addInfluencers(fn.apply(new Influence.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code over_field_name}
 		 */
-		public Builder overFieldName(String value) {
+		public final Builder overFieldName(String value) {
 			this.overFieldName = value;
 			return this;
 		}
@@ -428,7 +415,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code over_field_value}
 		 */
-		public Builder overFieldValue(String value) {
+		public final Builder overFieldValue(String value) {
 			this.overFieldValue = value;
 			return this;
 		}
@@ -436,7 +423,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code partition_field_name}
 		 */
-		public Builder partitionFieldName(String value) {
+		public final Builder partitionFieldName(String value) {
 			this.partitionFieldName = value;
 			return this;
 		}
@@ -444,7 +431,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code partition_field_value}
 		 */
-		public Builder partitionFieldValue(String value) {
+		public final Builder partitionFieldValue(String value) {
 			this.partitionFieldValue = value;
 			return this;
 		}
@@ -452,7 +439,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code probability}
 		 */
-		public Builder probability(double value) {
+		public final Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
@@ -460,7 +447,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code typical}
 		 */
-		public Builder typical(List<Double> value) {
+		public final Builder typical(List<Double> value) {
 			this.typical = value;
 			return this;
 		}
@@ -468,19 +455,8 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code typical}
 		 */
-		public Builder typical(Double... value) {
+		public final Builder typical(Double... value) {
 			this.typical = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #typical(List)}, creating the list if needed.
-		 */
-		public Builder addTypical(Double value) {
-			if (this.typical == null) {
-				this.typical = new ArrayList<>();
-			}
-			this.typical.add(value);
 			return this;
 		}
 
@@ -491,6 +467,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnomalyCause build() {
+			_checkSingleUse();
 
 			return new AnomalyCause(this);
 		}

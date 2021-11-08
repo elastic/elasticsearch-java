@@ -36,9 +36,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Request
 @JsonpDeserializable
-public final class UpdateFilterRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class UpdateFilterRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> addItems;
 
 	@Nullable
@@ -57,54 +56,57 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 
 	private final String filterId;
 
-	@Nullable
 	private final List<String> removeItems;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateFilterRequest(Builder builder) {
+	private UpdateFilterRequest(Builder builder) {
 
 		this.addItems = ModelTypeHelper.unmodifiable(builder.addItems);
 		this.description = builder.description;
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.removeItems = ModelTypeHelper.unmodifiable(builder.removeItems);
 
 	}
 
-	public UpdateFilterRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateFilterRequest of(Function<Builder, ObjectBuilder<UpdateFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * The items to add to the filter.
+	 * <p>
 	 * API name: {@code add_items}
 	 */
-	@Nullable
-	public List<String> addItems() {
+	public final List<String> addItems() {
 		return this.addItems;
 	}
 
 	/**
+	 * A description for the filter.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
-	 * Required - The ID of the filter to update
+	 * Required - A string that uniquely identifies a filter.
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
+	 * The items to remove from the filter.
+	 * <p>
 	 * API name: {@code remove_items}
 	 */
-	@Nullable
-	public List<String> removeItems() {
+	public final List<String> removeItems() {
 		return this.removeItems;
 	}
 
@@ -119,8 +121,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.addItems != null) {
-
+		if (ModelTypeHelper.isDefined(this.addItems)) {
 			generator.writeKey("add_items");
 			generator.writeStartArray();
 			for (String item0 : this.addItems) {
@@ -131,13 +132,11 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.removeItems != null) {
-
+		if (ModelTypeHelper.isDefined(this.removeItems)) {
 			generator.writeKey("remove_items");
 			generator.writeStartArray();
 			for (String item0 : this.removeItems) {
@@ -155,7 +154,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link UpdateFilterRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateFilterRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateFilterRequest> {
 		@Nullable
 		private List<String> addItems;
 
@@ -168,74 +167,62 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		private List<String> removeItems;
 
 		/**
+		 * The items to add to the filter.
+		 * <p>
 		 * API name: {@code add_items}
 		 */
-		public Builder addItems(@Nullable List<String> value) {
+		public final Builder addItems(@Nullable List<String> value) {
 			this.addItems = value;
 			return this;
 		}
 
 		/**
+		 * The items to add to the filter.
+		 * <p>
 		 * API name: {@code add_items}
 		 */
-		public Builder addItems(String... value) {
+		public final Builder addItems(String... value) {
 			this.addItems = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #addItems(List)}, creating the list if needed.
-		 */
-		public Builder addAddItems(String value) {
-			if (this.addItems == null) {
-				this.addItems = new ArrayList<>();
-			}
-			this.addItems.add(value);
-			return this;
-		}
-
-		/**
+		 * A description for the filter.
+		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ID of the filter to update
+		 * Required - A string that uniquely identifies a filter.
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
 
 		/**
+		 * The items to remove from the filter.
+		 * <p>
 		 * API name: {@code remove_items}
 		 */
-		public Builder removeItems(@Nullable List<String> value) {
+		public final Builder removeItems(@Nullable List<String> value) {
 			this.removeItems = value;
 			return this;
 		}
 
 		/**
+		 * The items to remove from the filter.
+		 * <p>
 		 * API name: {@code remove_items}
 		 */
-		public Builder removeItems(String... value) {
+		public final Builder removeItems(String... value) {
 			this.removeItems = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #removeItems(List)}, creating the list if needed.
-		 */
-		public Builder addRemoveItems(String value) {
-			if (this.removeItems == null) {
-				this.removeItems = new ArrayList<>();
-			}
-			this.removeItems.add(value);
 			return this;
 		}
 
@@ -246,6 +233,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public UpdateFilterRequest build() {
+			_checkSingleUse();
 
 			return new UpdateFilterRequest(this);
 		}

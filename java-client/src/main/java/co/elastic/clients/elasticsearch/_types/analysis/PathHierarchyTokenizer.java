@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
 @JsonpDeserializable
-public final class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVariant {
+public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVariant {
 	private final int bufferSize;
 
 	private final String delimiter;
@@ -53,19 +54,19 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PathHierarchyTokenizer(Builder builder) {
+	private PathHierarchyTokenizer(Builder builder) {
 		super(builder);
 
-		this.bufferSize = Objects.requireNonNull(builder.bufferSize, "buffer_size");
-		this.delimiter = Objects.requireNonNull(builder.delimiter, "delimiter");
-		this.replacement = Objects.requireNonNull(builder.replacement, "replacement");
-		this.reverse = Objects.requireNonNull(builder.reverse, "reverse");
-		this.skip = Objects.requireNonNull(builder.skip, "skip");
+		this.bufferSize = ModelTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
+		this.delimiter = ModelTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+		this.replacement = ModelTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+		this.reverse = ModelTypeHelper.requireNonNull(builder.reverse, this, "reverse");
+		this.skip = ModelTypeHelper.requireNonNull(builder.skip, this, "skip");
 
 	}
 
-	public PathHierarchyTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PathHierarchyTokenizer of(Function<Builder, ObjectBuilder<PathHierarchyTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,35 +80,35 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 	/**
 	 * Required - API name: {@code buffer_size}
 	 */
-	public int bufferSize() {
+	public final int bufferSize() {
 		return this.bufferSize;
 	}
 
 	/**
 	 * Required - API name: {@code delimiter}
 	 */
-	public String delimiter() {
+	public final String delimiter() {
 		return this.delimiter;
 	}
 
 	/**
 	 * Required - API name: {@code replacement}
 	 */
-	public String replacement() {
+	public final String replacement() {
 		return this.replacement;
 	}
 
 	/**
 	 * Required - API name: {@code reverse}
 	 */
-	public boolean reverse() {
+	public final boolean reverse() {
 		return this.reverse;
 	}
 
 	/**
 	 * Required - API name: {@code skip}
 	 */
-	public int skip() {
+	public final int skip() {
 		return this.skip;
 	}
 
@@ -115,7 +116,6 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 
 		generator.write("type", "path_hierarchy");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("buffer_size");
 		generator.write(this.bufferSize);
 
@@ -154,7 +154,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code buffer_size}
 		 */
-		public Builder bufferSize(int value) {
+		public final Builder bufferSize(int value) {
 			this.bufferSize = value;
 			return this;
 		}
@@ -162,7 +162,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code delimiter}
 		 */
-		public Builder delimiter(String value) {
+		public final Builder delimiter(String value) {
 			this.delimiter = value;
 			return this;
 		}
@@ -170,7 +170,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code replacement}
 		 */
-		public Builder replacement(String value) {
+		public final Builder replacement(String value) {
 			this.replacement = value;
 			return this;
 		}
@@ -178,7 +178,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code reverse}
 		 */
-		public Builder reverse(boolean value) {
+		public final Builder reverse(boolean value) {
 			this.reverse = value;
 			return this;
 		}
@@ -186,7 +186,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code skip}
 		 */
-		public Builder skip(int value) {
+		public final Builder skip(int value) {
 			this.skip = value;
 			return this;
 		}
@@ -203,6 +203,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public PathHierarchyTokenizer build() {
+			_checkSingleUse();
 
 			return new PathHierarchyTokenizer(this);
 		}

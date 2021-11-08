@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_data_frame_analytics.Request
 
-public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
+public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	private final Boolean force;
 
@@ -54,16 +56,17 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDataFrameAnalyticsRequest(Builder builder) {
+	private DeleteDataFrameAnalyticsRequest(Builder builder) {
 
 		this.force = builder.force;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<DeleteDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +76,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
@@ -82,7 +85,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -92,7 +95,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -101,7 +104,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean force;
 
@@ -116,7 +119,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
@@ -126,7 +129,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -136,7 +139,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -148,6 +151,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new DeleteDataFrameAnalyticsRequest(this);
 		}

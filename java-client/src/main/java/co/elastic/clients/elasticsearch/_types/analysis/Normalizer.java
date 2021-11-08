@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Normalizer
 @JsonpDeserializable
-public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializable {
 
 	public static final String CUSTOM = "custom";
 	public static final String LOWERCASE = "lowercase";
@@ -47,38 +50,34 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final NormalizerVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final NormalizerVariant _get() {
 		return _value;
 	}
 
 	public Normalizer(NormalizerVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends NormalizerVariant> Normalizer(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Normalizer(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Normalizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Normalizer of(Function<Builder, ObjectBuilder<Normalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,13 +103,13 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<Normalizer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Normalizer> {
 		private String _type;
-		private JsonpSerializable _value;
+		private NormalizerVariant _value;
 
 		public Builder custom(CustomNormalizer v) {
 			this._type = CUSTOM;
@@ -133,6 +132,7 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 		}
 
 		public Normalizer build() {
+			_checkSingleUse();
 			return new Normalizer(this);
 		}
 
@@ -147,6 +147,6 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
-	public static final JsonpDeserializer<Normalizer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Normalizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Normalizer::setupNormalizerDeserializer, Builder::build);
 }

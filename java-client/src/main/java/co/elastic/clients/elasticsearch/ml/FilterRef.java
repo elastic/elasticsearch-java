@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.FilterRef
 @JsonpDeserializable
-public final class FilterRef implements JsonpSerializable {
+public class FilterRef implements JsonpSerializable {
 	private final String filterId;
 
 	@Nullable
@@ -47,15 +49,15 @@ public final class FilterRef implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FilterRef(Builder builder) {
+	private FilterRef(Builder builder) {
 
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.filterType = builder.filterType;
 
 	}
 
-	public FilterRef(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FilterRef of(Function<Builder, ObjectBuilder<FilterRef>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +65,7 @@ public final class FilterRef implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
@@ -74,7 +76,7 @@ public final class FilterRef implements JsonpSerializable {
 	 * API name: {@code filter_type}
 	 */
 	@Nullable
-	public FilterType filterType() {
+	public final FilterType filterType() {
 		return this.filterType;
 	}
 
@@ -93,7 +95,6 @@ public final class FilterRef implements JsonpSerializable {
 		generator.write(this.filterId);
 
 		if (this.filterType != null) {
-
 			generator.writeKey("filter_type");
 			this.filterType.serialize(generator, mapper);
 		}
@@ -105,7 +106,7 @@ public final class FilterRef implements JsonpSerializable {
 	/**
 	 * Builder for {@link FilterRef}.
 	 */
-	public static class Builder implements ObjectBuilder<FilterRef> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FilterRef> {
 		private String filterId;
 
 		@Nullable
@@ -116,7 +117,7 @@ public final class FilterRef implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
@@ -127,7 +128,7 @@ public final class FilterRef implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter_type}
 		 */
-		public Builder filterType(@Nullable FilterType value) {
+		public final Builder filterType(@Nullable FilterType value) {
 			this.filterType = value;
 			return this;
 		}
@@ -139,6 +140,7 @@ public final class FilterRef implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FilterRef build() {
+			_checkSingleUse();
 
 			return new FilterRef(this);
 		}

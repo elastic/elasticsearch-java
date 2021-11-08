@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.ShardStoreIndex
 @JsonpDeserializable
-public final class ShardStoreIndex implements JsonpSerializable {
-	@Nullable
+public class ShardStoreIndex implements JsonpSerializable {
 	private final List<String> aliases;
 
 	@Nullable
@@ -53,22 +52,21 @@ public final class ShardStoreIndex implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStoreIndex(Builder builder) {
+	private ShardStoreIndex(Builder builder) {
 
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.filter = builder.filter;
 
 	}
 
-	public ShardStoreIndex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStoreIndex of(Function<Builder, ObjectBuilder<ShardStoreIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code aliases}
 	 */
-	@Nullable
-	public List<String> aliases() {
+	public final List<String> aliases() {
 		return this.aliases;
 	}
 
@@ -76,7 +74,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
@@ -91,8 +89,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aliases != null) {
-
+		if (ModelTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -103,7 +100,6 @@ public final class ShardStoreIndex implements JsonpSerializable {
 
 		}
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
@@ -116,7 +112,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreIndex}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStoreIndex> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreIndex> {
 		@Nullable
 		private List<String> aliases;
 
@@ -126,7 +122,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(@Nullable List<String> value) {
+		public final Builder aliases(@Nullable List<String> value) {
 			this.aliases = value;
 			return this;
 		}
@@ -134,26 +130,15 @@ public final class ShardStoreIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(String... value) {
+		public final Builder aliases(String... value) {
 			this.aliases = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
-		 */
-		public Builder addAliases(String value) {
-			if (this.aliases == null) {
-				this.aliases = new ArrayList<>();
-			}
-			this.aliases.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -161,7 +146,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
@@ -172,6 +157,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStoreIndex build() {
+			_checkSingleUse();
 
 			return new ShardStoreIndex(this);
 		}

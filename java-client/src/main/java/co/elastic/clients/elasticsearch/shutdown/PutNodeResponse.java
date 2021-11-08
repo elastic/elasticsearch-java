@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: shutdown.put_node.Response
 @JsonpDeserializable
-public final class PutNodeResponse extends AcknowledgedResponseBase {
+public class PutNodeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutNodeResponse(Builder builder) {
+	private PutNodeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutNodeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutNodeResponse of(Function<Builder, ObjectBuilder<PutNodeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutNodeResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutNodeResponse build() {
+			_checkSingleUse();
 
 			return new PutNodeResponse(this);
 		}

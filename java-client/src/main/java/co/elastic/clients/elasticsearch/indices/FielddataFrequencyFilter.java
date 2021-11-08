@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -39,7 +41,7 @@ import java.util.function.Function;
 
 // typedef: indices._types.FielddataFrequencyFilter
 @JsonpDeserializable
-public final class FielddataFrequencyFilter implements JsonpSerializable {
+public class FielddataFrequencyFilter implements JsonpSerializable {
 	private final double max;
 
 	private final double min;
@@ -48,36 +50,36 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FielddataFrequencyFilter(Builder builder) {
+	private FielddataFrequencyFilter(Builder builder) {
 
-		this.max = Objects.requireNonNull(builder.max, "max");
-		this.min = Objects.requireNonNull(builder.min, "min");
-		this.minSegmentSize = Objects.requireNonNull(builder.minSegmentSize, "min_segment_size");
+		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.minSegmentSize = ModelTypeHelper.requireNonNull(builder.minSegmentSize, this, "minSegmentSize");
 
 	}
 
-	public FielddataFrequencyFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FielddataFrequencyFilter of(Function<Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code max}
 	 */
-	public double max() {
+	public final double max() {
 		return this.max;
 	}
 
 	/**
 	 * Required - API name: {@code min}
 	 */
-	public double min() {
+	public final double min() {
 		return this.min;
 	}
 
 	/**
 	 * Required - API name: {@code min_segment_size}
 	 */
-	public int minSegmentSize() {
+	public final int minSegmentSize() {
 		return this.minSegmentSize;
 	}
 
@@ -108,7 +110,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataFrequencyFilter}.
 	 */
-	public static class Builder implements ObjectBuilder<FielddataFrequencyFilter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataFrequencyFilter> {
 		private Double max;
 
 		private Double min;
@@ -118,7 +120,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max}
 		 */
-		public Builder max(double value) {
+		public final Builder max(double value) {
 			this.max = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min}
 		 */
-		public Builder min(double value) {
+		public final Builder min(double value) {
 			this.min = value;
 			return this;
 		}
@@ -134,7 +136,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min_segment_size}
 		 */
-		public Builder minSegmentSize(int value) {
+		public final Builder minSegmentSize(int value) {
 			this.minSegmentSize = value;
 			return this;
 		}
@@ -146,6 +148,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FielddataFrequencyFilter build() {
+			_checkSingleUse();
 
 			return new FielddataFrequencyFilter(this);
 		}

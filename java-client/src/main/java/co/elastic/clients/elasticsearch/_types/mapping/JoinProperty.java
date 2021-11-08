@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -42,21 +41,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
 @JsonpDeserializable
-public final class JoinProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
+public class JoinProperty extends PropertyBase implements PropertyVariant {
 	private final Map<String, List<String>> relations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JoinProperty(Builder builder) {
+	private JoinProperty(Builder builder) {
 		super(builder);
 
 		this.relations = ModelTypeHelper.unmodifiable(builder.relations);
 
 	}
 
-	public JoinProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,8 +68,7 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 	/**
 	 * API name: {@code relations}
 	 */
-	@Nullable
-	public Map<String, List<String>> relations() {
+	public final Map<String, List<String>> relations() {
 		return this.relations;
 	}
 
@@ -79,16 +76,17 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 
 		generator.write("type", "join");
 		super.serializeInternal(generator, mapper);
-		if (this.relations != null) {
-
+		if (ModelTypeHelper.isDefined(this.relations)) {
 			generator.writeKey("relations");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.relations.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (String item1 : item0.getValue()) {
-					generator.write(item1);
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -111,19 +109,8 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 		/**
 		 * API name: {@code relations}
 		 */
-		public Builder relations(@Nullable Map<String, List<String>> value) {
+		public final Builder relations(@Nullable Map<String, List<String>> value) {
 			this.relations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #relations(Map)}, creating the map if needed.
-		 */
-		public Builder putRelations(String key, List<String> value) {
-			if (this.relations == null) {
-				this.relations = new HashMap<>();
-			}
-			this.relations.put(key, value);
 			return this;
 		}
 
@@ -139,6 +126,7 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 		 *             if some of the required fields are null.
 		 */
 		public JoinProperty build() {
+			_checkSingleUse();
 
 			return new JoinProperty(this);
 		}

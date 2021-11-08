@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
@@ -59,35 +62,31 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public IntervalsFilter(IntervalsFilterVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends IntervalsFilterVariant> IntervalsFilter(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private IntervalsFilter(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public IntervalsFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsFilter of(Function<Builder, ObjectBuilder<IntervalsFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -202,7 +201,7 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder implements ObjectBuilder<IntervalsFilter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsFilter> {
 		private String _type;
 		private Object _value;
 
@@ -293,6 +292,7 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		public IntervalsFilter build() {
+			_checkSingleUse();
 			return new IntervalsFilter(this);
 		}
 
@@ -312,6 +312,6 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<IntervalsFilter> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<IntervalsFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			IntervalsFilter::setupIntervalsFilterDeserializer, Builder::build);
 }

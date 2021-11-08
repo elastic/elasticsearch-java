@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,33 +39,32 @@ import javax.annotation.Nullable;
 
 // typedef: _types.InlineScript
 @JsonpDeserializable
-public final class InlineScript extends ScriptBase {
+public class InlineScript extends ScriptBase {
 	private final String source;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InlineScript(Builder builder) {
+	private InlineScript(Builder builder) {
 		super(builder);
 
-		this.source = Objects.requireNonNull(builder.source, "source");
+		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public InlineScript(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InlineScript of(Function<Builder, ObjectBuilder<InlineScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("source");
 		generator.write(this.source);
 
@@ -81,7 +81,7 @@ public final class InlineScript extends ScriptBase {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(String value) {
+		public final Builder source(String value) {
 			this.source = value;
 			return this;
 		}
@@ -98,6 +98,7 @@ public final class InlineScript extends ScriptBase {
 		 *             if some of the required fields are null.
 		 */
 		public InlineScript build() {
+			_checkSingleUse();
 
 			return new InlineScript(this);
 		}

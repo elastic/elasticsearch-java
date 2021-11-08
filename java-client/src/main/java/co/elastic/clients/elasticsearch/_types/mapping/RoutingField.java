@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.RoutingField
 @JsonpDeserializable
-public final class RoutingField implements JsonpSerializable {
+public class RoutingField implements JsonpSerializable {
 	private final boolean required;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoutingField(Builder builder) {
+	private RoutingField(Builder builder) {
 
-		this.required = Objects.requireNonNull(builder.required, "required");
+		this.required = ModelTypeHelper.requireNonNull(builder.required, this, "required");
 
 	}
 
-	public RoutingField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoutingField of(Function<Builder, ObjectBuilder<RoutingField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code required}
 	 */
-	public boolean required() {
+	public final boolean required() {
 		return this.required;
 	}
 
@@ -81,13 +83,13 @@ public final class RoutingField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoutingField}.
 	 */
-	public static class Builder implements ObjectBuilder<RoutingField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
 		private Boolean required;
 
 		/**
 		 * Required - API name: {@code required}
 		 */
-		public Builder required(boolean value) {
+		public final Builder required(boolean value) {
 			this.required = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class RoutingField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoutingField build() {
+			_checkSingleUse();
 
 			return new RoutingField(this);
 		}

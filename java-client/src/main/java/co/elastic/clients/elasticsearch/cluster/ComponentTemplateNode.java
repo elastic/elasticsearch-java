@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,33 +44,32 @@ import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
 @JsonpDeserializable
-public final class ComponentTemplateNode implements JsonpSerializable {
+public class ComponentTemplateNode implements JsonpSerializable {
 	private final ComponentTemplateSummary template;
 
 	@Nullable
 	private final Long version;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ComponentTemplateNode(Builder builder) {
+	private ComponentTemplateNode(Builder builder) {
 
-		this.template = Objects.requireNonNull(builder.template, "template");
+		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
 		this.version = builder.version;
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public ComponentTemplateNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ComponentTemplateNode of(Function<Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code template}
 	 */
-	public ComponentTemplateSummary template() {
+	public final ComponentTemplateSummary template() {
 		return this.template;
 	}
 
@@ -78,15 +77,14 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
 	/**
 	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -105,13 +103,11 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		this.template.serialize(generator, mapper);
 
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -130,7 +126,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link ComponentTemplateNode}.
 	 */
-	public static class Builder implements ObjectBuilder<ComponentTemplateNode> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ComponentTemplateNode> {
 		private ComponentTemplateSummary template;
 
 		@Nullable
@@ -142,7 +138,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public Builder template(ComponentTemplateSummary value) {
+		public final Builder template(ComponentTemplateSummary value) {
 			this.template = value;
 			return this;
 		}
@@ -150,7 +146,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public Builder template(
+		public final Builder template(
 				Function<ComponentTemplateSummary.Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {
 			return this.template(fn.apply(new ComponentTemplateSummary.Builder()).build());
 		}
@@ -158,7 +154,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -166,19 +162,8 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
+		public final Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
@@ -189,6 +174,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ComponentTemplateNode build() {
+			_checkSingleUse();
 
 			return new ComponentTemplateNode(this);
 		}

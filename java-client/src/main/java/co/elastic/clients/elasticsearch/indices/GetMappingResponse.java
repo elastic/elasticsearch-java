@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: indices.get_mapping.Response
 @JsonpDeserializable
-public final class GetMappingResponse extends DictionaryResponse<String, IndexMappingRecord> {
+public class GetMappingResponse extends DictionaryResponse<String, IndexMappingRecord> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetMappingResponse(Builder builder) {
+	private GetMappingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetMappingResponse of(Function<Builder, ObjectBuilder<GetMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class GetMappingResponse extends DictionaryResponse<String, IndexMa
 		 *             if some of the required fields are null.
 		 */
 		public GetMappingResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ilm.move_to_step.Response
 @JsonpDeserializable
-public final class MoveToStepResponse extends AcknowledgedResponseBase {
+public class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public MoveToStepResponse(Builder builder) {
+	private MoveToStepResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public MoveToStepResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MoveToStepResponse of(Function<Builder, ObjectBuilder<MoveToStepResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public MoveToStepResponse build() {
+			_checkSingleUse();
 
 			return new MoveToStepResponse(this);
 		}

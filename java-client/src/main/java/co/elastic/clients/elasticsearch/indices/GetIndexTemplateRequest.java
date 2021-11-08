@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
 
-public final class GetIndexTemplateRequest extends RequestBase {
+public class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
@@ -61,7 +62,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetIndexTemplateRequest(Builder builder) {
+	private GetIndexTemplateRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
@@ -71,8 +72,8 @@ public final class GetIndexTemplateRequest extends RequestBase {
 
 	}
 
-	public GetIndexTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetIndexTemplateRequest of(Function<Builder, ObjectBuilder<GetIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +82,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -91,7 +92,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
-	public Boolean includeTypeName() {
+	public final Boolean includeTypeName() {
 		return this.includeTypeName;
 	}
 
@@ -102,7 +103,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -113,7 +114,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -124,7 +125,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -133,7 +134,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetIndexTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetIndexTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -154,7 +155,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -164,7 +165,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_type_name}
 		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
+		public final Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
 			return this;
 		}
@@ -175,7 +176,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -186,7 +187,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -197,7 +198,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -209,6 +210,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetIndexTemplateRequest build() {
+			_checkSingleUse();
 
 			return new GetIndexTemplateRequest(this);
 		}

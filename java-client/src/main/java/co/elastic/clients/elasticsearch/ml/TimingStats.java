@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TimingStats
 @JsonpDeserializable
-public final class TimingStats implements JsonpSerializable {
+public class TimingStats implements JsonpSerializable {
 	private final int elapsedTime;
 
 	@Nullable
@@ -47,15 +49,15 @@ public final class TimingStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TimingStats(Builder builder) {
+	private TimingStats(Builder builder) {
 
-		this.elapsedTime = Objects.requireNonNull(builder.elapsedTime, "elapsed_time");
+		this.elapsedTime = ModelTypeHelper.requireNonNull(builder.elapsedTime, this, "elapsedTime");
 		this.iterationTime = builder.iterationTime;
 
 	}
 
-	public TimingStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TimingStats of(Function<Builder, ObjectBuilder<TimingStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +65,7 @@ public final class TimingStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code elapsed_time}
 	 */
-	public int elapsedTime() {
+	public final int elapsedTime() {
 		return this.elapsedTime;
 	}
 
@@ -73,7 +75,7 @@ public final class TimingStats implements JsonpSerializable {
 	 * API name: {@code iteration_time}
 	 */
 	@Nullable
-	public Integer iterationTime() {
+	public final Integer iterationTime() {
 		return this.iterationTime;
 	}
 
@@ -92,7 +94,6 @@ public final class TimingStats implements JsonpSerializable {
 		generator.write(this.elapsedTime);
 
 		if (this.iterationTime != null) {
-
 			generator.writeKey("iteration_time");
 			generator.write(this.iterationTime);
 
@@ -105,7 +106,7 @@ public final class TimingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimingStats}.
 	 */
-	public static class Builder implements ObjectBuilder<TimingStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimingStats> {
 		private Integer elapsedTime;
 
 		@Nullable
@@ -116,7 +117,7 @@ public final class TimingStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code elapsed_time}
 		 */
-		public Builder elapsedTime(int value) {
+		public final Builder elapsedTime(int value) {
 			this.elapsedTime = value;
 			return this;
 		}
@@ -126,7 +127,7 @@ public final class TimingStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code iteration_time}
 		 */
-		public Builder iterationTime(@Nullable Integer value) {
+		public final Builder iterationTime(@Nullable Integer value) {
 			this.iterationTime = value;
 			return this;
 		}
@@ -138,6 +139,7 @@ public final class TimingStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TimingStats build() {
+			_checkSingleUse();
 
 			return new TimingStats(this);
 		}

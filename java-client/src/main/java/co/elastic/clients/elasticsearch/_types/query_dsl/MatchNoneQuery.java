@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchNoneQuery
 @JsonpDeserializable
-public final class MatchNoneQuery extends QueryBase implements QueryVariant {
+public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchNoneQuery(Builder builder) {
+	private MatchNoneQuery(Builder builder) {
 		super(builder);
 
 	}
 
-	public MatchNoneQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchNoneQuery of(Function<Builder, ObjectBuilder<MatchNoneQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,6 +73,7 @@ public final class MatchNoneQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MatchNoneQuery build() {
+			_checkSingleUse();
 
 			return new MatchNoneQuery(this);
 		}

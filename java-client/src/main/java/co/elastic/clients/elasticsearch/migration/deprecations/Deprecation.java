@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Deprecation
 @JsonpDeserializable
-public final class Deprecation implements JsonpSerializable {
+public class Deprecation implements JsonpSerializable {
 	private final String details;
 
 	private final DeprecationLevel level;
@@ -50,23 +52,23 @@ public final class Deprecation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Deprecation(Builder builder) {
+	private Deprecation(Builder builder) {
 
-		this.details = Objects.requireNonNull(builder.details, "details");
-		this.level = Objects.requireNonNull(builder.level, "level");
-		this.message = Objects.requireNonNull(builder.message, "message");
-		this.url = Objects.requireNonNull(builder.url, "url");
+		this.details = ModelTypeHelper.requireNonNull(builder.details, this, "details");
+		this.level = ModelTypeHelper.requireNonNull(builder.level, this, "level");
+		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.url = ModelTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 
-	public Deprecation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Deprecation of(Function<Builder, ObjectBuilder<Deprecation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code details}
 	 */
-	public String details() {
+	public final String details() {
 		return this.details;
 	}
 
@@ -75,21 +77,21 @@ public final class Deprecation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code level}
 	 */
-	public DeprecationLevel level() {
+	public final DeprecationLevel level() {
 		return this.level;
 	}
 
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public String message() {
+	public final String message() {
 		return this.message;
 	}
 
 	/**
 	 * Required - API name: {@code url}
 	 */
-	public String url() {
+	public final String url() {
 		return this.url;
 	}
 
@@ -109,7 +111,6 @@ public final class Deprecation implements JsonpSerializable {
 
 		generator.writeKey("level");
 		this.level.serialize(generator, mapper);
-
 		generator.writeKey("message");
 		generator.write(this.message);
 
@@ -123,7 +124,7 @@ public final class Deprecation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Deprecation}.
 	 */
-	public static class Builder implements ObjectBuilder<Deprecation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Deprecation> {
 		private String details;
 
 		private DeprecationLevel level;
@@ -135,7 +136,7 @@ public final class Deprecation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code details}
 		 */
-		public Builder details(String value) {
+		public final Builder details(String value) {
 			this.details = value;
 			return this;
 		}
@@ -145,7 +146,7 @@ public final class Deprecation implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(DeprecationLevel value) {
+		public final Builder level(DeprecationLevel value) {
 			this.level = value;
 			return this;
 		}
@@ -153,7 +154,7 @@ public final class Deprecation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(String value) {
+		public final Builder message(String value) {
 			this.message = value;
 			return this;
 		}
@@ -161,7 +162,7 @@ public final class Deprecation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code url}
 		 */
-		public Builder url(String value) {
+		public final Builder url(String value) {
 			this.url = value;
 			return this;
 		}
@@ -173,6 +174,7 @@ public final class Deprecation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Deprecation build() {
+			_checkSingleUse();
 
 			return new Deprecation(this);
 		}

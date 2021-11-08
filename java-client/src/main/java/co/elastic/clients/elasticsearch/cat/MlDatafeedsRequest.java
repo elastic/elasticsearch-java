@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,45 +44,71 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
 
-public final class MlDatafeedsRequest extends CatRequestBase {
+public class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
-	private final Boolean allowNoDatafeeds;
+	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final String datafeedId;
 
+	@Nullable
+	private final TimeUnit time;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDatafeedsRequest(Builder builder) {
+	private MlDatafeedsRequest(Builder builder) {
 
-		this.allowNoDatafeeds = builder.allowNoDatafeeds;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.datafeedId = builder.datafeedId;
+		this.time = builder.time;
 
 	}
 
-	public MlDatafeedsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDatafeedsRequest of(Function<Builder, ObjectBuilder<MlDatafeedsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no datafeeds that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
 	 * <p>
-	 * API name: {@code allow_no_datafeeds}
+	 * If <code>true</code>, the API returns an empty datafeeds array when there are
+	 * no matches and the subset of results when there are partial matches. If
+	 * <code>false</code>, the API returns a 404 status code when there are no
+	 * matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoDatafeeds() {
-		return this.allowNoDatafeeds;
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
 	}
 
 	/**
-	 * The ID of the datafeeds stats to fetch
+	 * A numerical character string that uniquely identifies the datafeed. This
+	 * identifier can contain lowercase alphanumeric characters (a-z and 0-9),
+	 * hyphens, and underscores. It must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
+	}
+
+	/**
+	 * The unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -88,31 +116,56 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDatafeedsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDatafeedsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
-		private Boolean allowNoDatafeeds;
+		private Boolean allowNoMatch;
 
 		@Nullable
 		private String datafeedId;
 
+		@Nullable
+		private TimeUnit time;
+
 		/**
-		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no datafeeds that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
 		 * <p>
-		 * API name: {@code allow_no_datafeeds}
+		 * If <code>true</code>, the API returns an empty datafeeds array when there are
+		 * no matches and the subset of results when there are partial matches. If
+		 * <code>false</code>, the API returns a 404 status code when there are no
+		 * matches or only partial matches.
+		 * <p>
+		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoDatafeeds(@Nullable Boolean value) {
-			this.allowNoDatafeeds = value;
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the datafeeds stats to fetch
+		 * A numerical character string that uniquely identifies the datafeed. This
+		 * identifier can contain lowercase alphanumeric characters (a-z and 0-9),
+		 * hyphens, and underscores. It must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(@Nullable String value) {
+		public final Builder datafeedId(@Nullable String value) {
 			this.datafeedId = value;
+			return this;
+		}
+
+		/**
+		 * The unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
 			return this;
 		}
 
@@ -123,6 +176,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlDatafeedsRequest build() {
+			_checkSingleUse();
 
 			return new MlDatafeedsRequest(this);
 		}
@@ -173,8 +227,11 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.allowNoDatafeeds != null) {
-					params.put("allow_no_datafeeds", String.valueOf(request.allowNoDatafeeds));
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

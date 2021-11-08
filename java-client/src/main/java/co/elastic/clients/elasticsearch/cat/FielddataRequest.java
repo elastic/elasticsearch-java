@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,24 +47,23 @@ import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Request
 
-public final class FielddataRequest extends CatRequestBase {
+public class FielddataRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
-	@Nullable
 	private final List<String> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FielddataRequest(Builder builder) {
+	private FielddataRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public FielddataRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FielddataRequest of(Function<Builder, ObjectBuilder<FielddataRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +72,7 @@ public final class FielddataRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -82,8 +81,7 @@ public final class FielddataRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -92,7 +90,7 @@ public final class FielddataRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link FielddataRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FielddataRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRequest> {
 		@Nullable
 		private Bytes bytes;
 
@@ -104,7 +102,7 @@ public final class FielddataRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -114,7 +112,7 @@ public final class FielddataRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public final Builder fields(@Nullable List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -124,19 +122,8 @@ public final class FielddataRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
@@ -147,6 +134,7 @@ public final class FielddataRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public FielddataRequest build() {
+			_checkSingleUse();
 
 			return new FielddataRequest(this);
 		}
@@ -170,7 +158,7 @@ public final class FielddataRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.fields() != null)
+				if (ModelTypeHelper.isDefined(request.fields()))
 					propsSet |= _fields;
 
 				if (propsSet == 0) {
@@ -197,7 +185,7 @@ public final class FielddataRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

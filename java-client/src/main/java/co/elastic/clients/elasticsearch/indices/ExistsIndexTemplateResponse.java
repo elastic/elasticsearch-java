@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: indices.exists_index_template.Response
 
-public final class ExistsIndexTemplateResponse {
+public class ExistsIndexTemplateResponse {
 	public ExistsIndexTemplateResponse() {
 	}
 

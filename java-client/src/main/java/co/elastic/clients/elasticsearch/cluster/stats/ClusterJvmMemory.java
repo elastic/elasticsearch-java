@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterJvmMemory
 @JsonpDeserializable
-public final class ClusterJvmMemory implements JsonpSerializable {
+public class ClusterJvmMemory implements JsonpSerializable {
 	private final long heapMaxInBytes;
 
 	private final long heapUsedInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterJvmMemory(Builder builder) {
+	private ClusterJvmMemory(Builder builder) {
 
-		this.heapMaxInBytes = Objects.requireNonNull(builder.heapMaxInBytes, "heap_max_in_bytes");
-		this.heapUsedInBytes = Objects.requireNonNull(builder.heapUsedInBytes, "heap_used_in_bytes");
+		this.heapMaxInBytes = ModelTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+		this.heapUsedInBytes = ModelTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes");
 
 	}
 
-	public ClusterJvmMemory(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterJvmMemory of(Function<Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code heap_max_in_bytes}
 	 */
-	public long heapMaxInBytes() {
+	public final long heapMaxInBytes() {
 		return this.heapMaxInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code heap_used_in_bytes}
 	 */
-	public long heapUsedInBytes() {
+	public final long heapUsedInBytes() {
 		return this.heapUsedInBytes;
 	}
 
@@ -94,7 +96,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvmMemory}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterJvmMemory> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmMemory> {
 		private Long heapMaxInBytes;
 
 		private Long heapUsedInBytes;
@@ -102,7 +104,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code heap_max_in_bytes}
 		 */
-		public Builder heapMaxInBytes(long value) {
+		public final Builder heapMaxInBytes(long value) {
 			this.heapMaxInBytes = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code heap_used_in_bytes}
 		 */
-		public Builder heapUsedInBytes(long value) {
+		public final Builder heapUsedInBytes(long value) {
 			this.heapUsedInBytes = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterJvmMemory build() {
+			_checkSingleUse();
 
 			return new ClusterJvmMemory(this);
 		}

@@ -36,7 +36,6 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregation
 @JsonpDeserializable
-public final class AutoDateHistogramAggregation extends BucketAggregationBase implements AggregationVariant {
+public class AutoDateHistogramAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer buckets;
 
@@ -63,7 +62,6 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	@Nullable
 	private final String offset;
 
-	@Nullable
 	private final Map<String, JsonData> params;
 
 	@Nullable
@@ -74,7 +72,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoDateHistogramAggregation(Builder builder) {
+	private AutoDateHistogramAggregation(Builder builder) {
 		super(builder);
 
 		this.buckets = builder.buckets;
@@ -89,8 +87,8 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 
 	}
 
-	public AutoDateHistogramAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoDateHistogramAggregation of(Function<Builder, ObjectBuilder<AutoDateHistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,7 +103,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code buckets}
 	 */
 	@Nullable
-	public Integer buckets() {
+	public final Integer buckets() {
 		return this.buckets;
 	}
 
@@ -113,7 +111,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -121,7 +119,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -129,7 +127,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code minimum_interval}
 	 */
 	@Nullable
-	public MinimumInterval minimumInterval() {
+	public final MinimumInterval minimumInterval() {
 		return this.minimumInterval;
 	}
 
@@ -137,7 +135,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final String missing() {
 		return this.missing;
 	}
 
@@ -145,15 +143,14 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public String offset() {
+	public final String offset() {
 		return this.offset;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -161,7 +158,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -169,7 +166,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -177,42 +174,35 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 
 		super.serializeInternal(generator, mapper);
 		if (this.buckets != null) {
-
 			generator.writeKey("buckets");
 			generator.write(this.buckets);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.minimumInterval != null) {
-
 			generator.writeKey("minimum_interval");
 			this.minimumInterval.serialize(generator, mapper);
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.offset != null) {
-
 			generator.writeKey("offset");
 			generator.write(this.offset);
 
 		}
-		if (this.params != null) {
-
+		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -224,13 +214,11 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
@@ -276,7 +264,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code buckets}
 		 */
-		public Builder buckets(@Nullable Integer value) {
+		public final Builder buckets(@Nullable Integer value) {
 			this.buckets = value;
 			return this;
 		}
@@ -284,7 +272,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -292,7 +280,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -300,7 +288,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code minimum_interval}
 		 */
-		public Builder minimumInterval(@Nullable MinimumInterval value) {
+		public final Builder minimumInterval(@Nullable MinimumInterval value) {
 			this.minimumInterval = value;
 			return this;
 		}
@@ -308,7 +296,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -316,7 +304,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code offset}
 		 */
-		public Builder offset(@Nullable String value) {
+		public final Builder offset(@Nullable String value) {
 			this.offset = value;
 			return this;
 		}
@@ -324,26 +312,15 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonData> value) {
+		public final Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public Builder putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -351,7 +328,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -368,6 +345,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase im
 		 *             if some of the required fields are null.
 		 */
 		public AutoDateHistogramAggregation build() {
+			_checkSingleUse();
 
 			return new AutoDateHistogramAggregation(this);
 		}

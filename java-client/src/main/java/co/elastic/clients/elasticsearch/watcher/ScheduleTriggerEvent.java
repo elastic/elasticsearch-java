@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleTriggerEvent
 @JsonpDeserializable
-public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializable {
+public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializable {
 	private final String scheduledTime;
 
 	@Nullable
@@ -47,15 +49,15 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScheduleTriggerEvent(Builder builder) {
+	private ScheduleTriggerEvent(Builder builder) {
 
-		this.scheduledTime = Objects.requireNonNull(builder.scheduledTime, "scheduled_time");
+		this.scheduledTime = ModelTypeHelper.requireNonNull(builder.scheduledTime, this, "scheduledTime");
 		this.triggeredTime = builder.triggeredTime;
 
 	}
 
-	public ScheduleTriggerEvent(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScheduleTriggerEvent of(Function<Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +71,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 	/**
 	 * Required - API name: {@code scheduled_time}
 	 */
-	public String scheduledTime() {
+	public final String scheduledTime() {
 		return this.scheduledTime;
 	}
 
@@ -77,7 +79,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 	 * API name: {@code triggered_time}
 	 */
 	@Nullable
-	public String triggeredTime() {
+	public final String triggeredTime() {
 		return this.triggeredTime;
 	}
 
@@ -96,7 +98,6 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 		generator.write(this.scheduledTime);
 
 		if (this.triggeredTime != null) {
-
 			generator.writeKey("triggered_time");
 			generator.write(this.triggeredTime);
 
@@ -109,7 +110,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 	/**
 	 * Builder for {@link ScheduleTriggerEvent}.
 	 */
-	public static class Builder implements ObjectBuilder<ScheduleTriggerEvent> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScheduleTriggerEvent> {
 		private String scheduledTime;
 
 		@Nullable
@@ -118,7 +119,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 		/**
 		 * Required - API name: {@code scheduled_time}
 		 */
-		public Builder scheduledTime(String value) {
+		public final Builder scheduledTime(String value) {
 			this.scheduledTime = value;
 			return this;
 		}
@@ -126,7 +127,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 		/**
 		 * API name: {@code triggered_time}
 		 */
-		public Builder triggeredTime(@Nullable String value) {
+		public final Builder triggeredTime(@Nullable String value) {
 			this.triggeredTime = value;
 			return this;
 		}
@@ -138,6 +139,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public ScheduleTriggerEvent build() {
+			_checkSingleUse();
 
 			return new ScheduleTriggerEvent(this);
 		}

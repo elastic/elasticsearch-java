@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -53,7 +53,6 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final String connectionTimeout;
 
-	@Nullable
 	private final Map<String, String> headers;
 
 	@Nullable
@@ -62,7 +61,6 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final HttpInputMethod method;
 
-	@Nullable
 	private final Map<String, String> params;
 
 	@Nullable
@@ -85,7 +83,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputRequestDefinition(AbstractBuilder<?> builder) {
+	protected HttpInputRequestDefinition(AbstractBuilder<?> builder) {
 
 		this.auth = builder.auth;
 		this.body = builder.body;
@@ -107,7 +105,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code auth}
 	 */
 	@Nullable
-	public HttpInputAuthentication auth() {
+	public final HttpInputAuthentication auth() {
 		return this.auth;
 	}
 
@@ -115,7 +113,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code body}
 	 */
 	@Nullable
-	public String body() {
+	public final String body() {
 		return this.body;
 	}
 
@@ -123,15 +121,14 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code connection_timeout}
 	 */
 	@Nullable
-	public String connectionTimeout() {
+	public final String connectionTimeout() {
 		return this.connectionTimeout;
 	}
 
 	/**
 	 * API name: {@code headers}
 	 */
-	@Nullable
-	public Map<String, String> headers() {
+	public final Map<String, String> headers() {
 		return this.headers;
 	}
 
@@ -139,7 +136,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code host}
 	 */
 	@Nullable
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -147,15 +144,14 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code method}
 	 */
 	@Nullable
-	public HttpInputMethod method() {
+	public final HttpInputMethod method() {
 		return this.method;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, String> params() {
+	public final Map<String, String> params() {
 		return this.params;
 	}
 
@@ -163,7 +159,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -171,7 +167,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code port}
 	 */
 	@Nullable
-	public Number port() {
+	public final Number port() {
 		return this.port;
 	}
 
@@ -179,7 +175,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code proxy}
 	 */
 	@Nullable
-	public HttpInputProxy proxy() {
+	public final HttpInputProxy proxy() {
 		return this.proxy;
 	}
 
@@ -187,7 +183,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code read_timeout}
 	 */
 	@Nullable
-	public String readTimeout() {
+	public final String readTimeout() {
 		return this.readTimeout;
 	}
 
@@ -195,7 +191,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code scheme}
 	 */
 	@Nullable
-	public ConnectionScheme scheme() {
+	public final ConnectionScheme scheme() {
 		return this.scheme;
 	}
 
@@ -203,7 +199,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code url}
 	 */
 	@Nullable
-	public String url() {
+	public final String url() {
 		return this.url;
 	}
 
@@ -219,25 +215,21 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.auth != null) {
-
 			generator.writeKey("auth");
 			this.auth.serialize(generator, mapper);
 
 		}
 		if (this.body != null) {
-
 			generator.writeKey("body");
 			generator.write(this.body);
 
 		}
 		if (this.connectionTimeout != null) {
-
 			generator.writeKey("connection_timeout");
 			generator.write(this.connectionTimeout);
 
 		}
-		if (this.headers != null) {
-
+		if (ModelTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.headers.entrySet()) {
@@ -249,18 +241,15 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 
 		}
 		if (this.host != null) {
-
 			generator.writeKey("host");
 			generator.write(this.host);
 
 		}
 		if (this.method != null) {
-
 			generator.writeKey("method");
 			this.method.serialize(generator, mapper);
 		}
-		if (this.params != null) {
-
+		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.params.entrySet()) {
@@ -272,36 +261,30 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 
 		}
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
 		}
 		if (this.port != null) {
-
 			generator.writeKey("port");
 			generator.write(this.port.doubleValue());
 
 		}
 		if (this.proxy != null) {
-
 			generator.writeKey("proxy");
 			this.proxy.serialize(generator, mapper);
 
 		}
 		if (this.readTimeout != null) {
-
 			generator.writeKey("read_timeout");
 			generator.write(this.readTimeout);
 
 		}
 		if (this.scheme != null) {
-
 			generator.writeKey("scheme");
 			this.scheme.serialize(generator, mapper);
 		}
 		if (this.url != null) {
-
 			generator.writeKey("url");
 			generator.write(this.url);
 
@@ -329,12 +312,15 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputRequestDefinition build() {
+			_checkSingleUse();
 
 			return new HttpInputRequestDefinition(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private HttpInputAuthentication auth;
 
@@ -377,7 +363,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code auth}
 		 */
-		public BuilderT auth(@Nullable HttpInputAuthentication value) {
+		public final BuilderT auth(@Nullable HttpInputAuthentication value) {
 			this.auth = value;
 			return self();
 		}
@@ -385,14 +371,15 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code auth}
 		 */
-		public BuilderT auth(Function<HttpInputAuthentication.Builder, ObjectBuilder<HttpInputAuthentication>> fn) {
+		public final BuilderT auth(
+				Function<HttpInputAuthentication.Builder, ObjectBuilder<HttpInputAuthentication>> fn) {
 			return this.auth(fn.apply(new HttpInputAuthentication.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code body}
 		 */
-		public BuilderT body(@Nullable String value) {
+		public final BuilderT body(@Nullable String value) {
 			this.body = value;
 			return self();
 		}
@@ -400,7 +387,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code connection_timeout}
 		 */
-		public BuilderT connectionTimeout(@Nullable String value) {
+		public final BuilderT connectionTimeout(@Nullable String value) {
 			this.connectionTimeout = value;
 			return self();
 		}
@@ -408,26 +395,15 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code headers}
 		 */
-		public BuilderT headers(@Nullable Map<String, String> value) {
+		public final BuilderT headers(@Nullable Map<String, String> value) {
 			this.headers = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #headers(Map)}, creating the map if needed.
-		 */
-		public BuilderT putHeaders(String key, String value) {
-			if (this.headers == null) {
-				this.headers = new HashMap<>();
-			}
-			this.headers.put(key, value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code host}
 		 */
-		public BuilderT host(@Nullable String value) {
+		public final BuilderT host(@Nullable String value) {
 			this.host = value;
 			return self();
 		}
@@ -435,7 +411,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code method}
 		 */
-		public BuilderT method(@Nullable HttpInputMethod value) {
+		public final BuilderT method(@Nullable HttpInputMethod value) {
 			this.method = value;
 			return self();
 		}
@@ -443,26 +419,15 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code params}
 		 */
-		public BuilderT params(@Nullable Map<String, String> value) {
+		public final BuilderT params(@Nullable Map<String, String> value) {
 			this.params = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public BuilderT putParams(String key, String value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code path}
 		 */
-		public BuilderT path(@Nullable String value) {
+		public final BuilderT path(@Nullable String value) {
 			this.path = value;
 			return self();
 		}
@@ -470,7 +435,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code port}
 		 */
-		public BuilderT port(@Nullable Number value) {
+		public final BuilderT port(@Nullable Number value) {
 			this.port = value;
 			return self();
 		}
@@ -478,7 +443,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code proxy}
 		 */
-		public BuilderT proxy(@Nullable HttpInputProxy value) {
+		public final BuilderT proxy(@Nullable HttpInputProxy value) {
 			this.proxy = value;
 			return self();
 		}
@@ -486,14 +451,14 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code proxy}
 		 */
-		public BuilderT proxy(Function<HttpInputProxy.Builder, ObjectBuilder<HttpInputProxy>> fn) {
+		public final BuilderT proxy(Function<HttpInputProxy.Builder, ObjectBuilder<HttpInputProxy>> fn) {
 			return this.proxy(fn.apply(new HttpInputProxy.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code read_timeout}
 		 */
-		public BuilderT readTimeout(@Nullable String value) {
+		public final BuilderT readTimeout(@Nullable String value) {
 			this.readTimeout = value;
 			return self();
 		}
@@ -501,7 +466,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code scheme}
 		 */
-		public BuilderT scheme(@Nullable ConnectionScheme value) {
+		public final BuilderT scheme(@Nullable ConnectionScheme value) {
 			this.scheme = value;
 			return self();
 		}
@@ -509,7 +474,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code url}
 		 */
-		public BuilderT url(@Nullable String value) {
+		public final BuilderT url(@Nullable String value) {
 			this.url = value;
 			return self();
 		}

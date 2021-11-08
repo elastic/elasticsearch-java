@@ -33,12 +33,12 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodes
 @JsonpDeserializable
-public final class ClusterNodes implements JsonpSerializable {
+public class ClusterNodes implements JsonpSerializable {
 	private final ClusterNodeCount count;
 
 	private final Map<String, Integer> discoveryTypes;
@@ -72,24 +72,24 @@ public final class ClusterNodes implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterNodes(Builder builder) {
+	private ClusterNodes(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.discoveryTypes = ModelTypeHelper.unmodifiableNonNull(builder.discoveryTypes, "discovery_types");
-		this.fs = Objects.requireNonNull(builder.fs, "fs");
-		this.ingest = Objects.requireNonNull(builder.ingest, "ingest");
-		this.jvm = Objects.requireNonNull(builder.jvm, "jvm");
-		this.networkTypes = Objects.requireNonNull(builder.networkTypes, "network_types");
-		this.os = Objects.requireNonNull(builder.os, "os");
-		this.packagingTypes = ModelTypeHelper.unmodifiableNonNull(builder.packagingTypes, "packaging_types");
-		this.plugins = ModelTypeHelper.unmodifiableNonNull(builder.plugins, "plugins");
-		this.process = Objects.requireNonNull(builder.process, "process");
-		this.versions = ModelTypeHelper.unmodifiableNonNull(builder.versions, "versions");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.discoveryTypes = ModelTypeHelper.unmodifiableRequired(builder.discoveryTypes, this, "discoveryTypes");
+		this.fs = ModelTypeHelper.requireNonNull(builder.fs, this, "fs");
+		this.ingest = ModelTypeHelper.requireNonNull(builder.ingest, this, "ingest");
+		this.jvm = ModelTypeHelper.requireNonNull(builder.jvm, this, "jvm");
+		this.networkTypes = ModelTypeHelper.requireNonNull(builder.networkTypes, this, "networkTypes");
+		this.os = ModelTypeHelper.requireNonNull(builder.os, this, "os");
+		this.packagingTypes = ModelTypeHelper.unmodifiableRequired(builder.packagingTypes, this, "packagingTypes");
+		this.plugins = ModelTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
+		this.process = ModelTypeHelper.requireNonNull(builder.process, this, "process");
+		this.versions = ModelTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}
 
-	public ClusterNodes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterNodes of(Function<Builder, ObjectBuilder<ClusterNodes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +97,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code count}
 	 */
-	public ClusterNodeCount count() {
+	public final ClusterNodeCount count() {
 		return this.count;
 	}
 
@@ -107,7 +107,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code discovery_types}
 	 */
-	public Map<String, Integer> discoveryTypes() {
+	public final Map<String, Integer> discoveryTypes() {
 		return this.discoveryTypes;
 	}
 
@@ -116,14 +116,14 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fs}
 	 */
-	public ClusterFileSystem fs() {
+	public final ClusterFileSystem fs() {
 		return this.fs;
 	}
 
 	/**
 	 * Required - API name: {@code ingest}
 	 */
-	public ClusterIngest ingest() {
+	public final ClusterIngest ingest() {
 		return this.ingest;
 	}
 
@@ -133,7 +133,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code jvm}
 	 */
-	public ClusterJvm jvm() {
+	public final ClusterJvm jvm() {
 		return this.jvm;
 	}
 
@@ -143,7 +143,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code network_types}
 	 */
-	public ClusterNetworkTypes networkTypes() {
+	public final ClusterNetworkTypes networkTypes() {
 		return this.networkTypes;
 	}
 
@@ -153,7 +153,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code os}
 	 */
-	public ClusterOperatingSystem os() {
+	public final ClusterOperatingSystem os() {
 		return this.os;
 	}
 
@@ -163,7 +163,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code packaging_types}
 	 */
-	public List<NodePackagingType> packagingTypes() {
+	public final List<NodePackagingType> packagingTypes() {
 		return this.packagingTypes;
 	}
 
@@ -173,7 +173,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code plugins}
 	 */
-	public List<PluginStats> plugins() {
+	public final List<PluginStats> plugins() {
 		return this.plugins;
 	}
 
@@ -182,7 +182,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code process}
 	 */
-	public ClusterProcess process() {
+	public final ClusterProcess process() {
 		return this.process;
 	}
 
@@ -191,7 +191,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code versions}
 	 */
-	public List<String> versions() {
+	public final List<String> versions() {
 		return this.versions;
 	}
 
@@ -209,15 +209,17 @@ public final class ClusterNodes implements JsonpSerializable {
 		generator.writeKey("count");
 		this.count.serialize(generator, mapper);
 
-		generator.writeKey("discovery_types");
-		generator.writeStartObject();
-		for (Map.Entry<String, Integer> item0 : this.discoveryTypes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.discoveryTypes)) {
+			generator.writeKey("discovery_types");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.discoveryTypes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("fs");
 		this.fs.serialize(generator, mapper);
 
@@ -233,32 +235,39 @@ public final class ClusterNodes implements JsonpSerializable {
 		generator.writeKey("os");
 		this.os.serialize(generator, mapper);
 
-		generator.writeKey("packaging_types");
-		generator.writeStartArray();
-		for (NodePackagingType item0 : this.packagingTypes) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.packagingTypes)) {
+			generator.writeKey("packaging_types");
+			generator.writeStartArray();
+			for (NodePackagingType item0 : this.packagingTypes) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.plugins)) {
+			generator.writeKey("plugins");
+			generator.writeStartArray();
+			for (PluginStats item0 : this.plugins) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("plugins");
-		generator.writeStartArray();
-		for (PluginStats item0 : this.plugins) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("process");
 		this.process.serialize(generator, mapper);
 
-		generator.writeKey("versions");
-		generator.writeStartArray();
-		for (String item0 : this.versions) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.versions)) {
+			generator.writeKey("versions");
+			generator.writeStartArray();
+			for (String item0 : this.versions) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -267,7 +276,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterNodes}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterNodes> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNodes> {
 		private ClusterNodeCount count;
 
 		private Map<String, Integer> discoveryTypes;
@@ -295,7 +304,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(ClusterNodeCount value) {
+		public final Builder count(ClusterNodeCount value) {
 			this.count = value;
 			return this;
 		}
@@ -305,7 +314,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
+		public final Builder count(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
 			return this.count(fn.apply(new ClusterNodeCount.Builder()).build());
 		}
 
@@ -315,19 +324,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code discovery_types}
 		 */
-		public Builder discoveryTypes(Map<String, Integer> value) {
+		public final Builder discoveryTypes(Map<String, Integer> value) {
 			this.discoveryTypes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #discoveryTypes(Map)}, creating the map if needed.
-		 */
-		public Builder putDiscoveryTypes(String key, Integer value) {
-			if (this.discoveryTypes == null) {
-				this.discoveryTypes = new HashMap<>();
-			}
-			this.discoveryTypes.put(key, value);
 			return this;
 		}
 
@@ -336,7 +334,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fs}
 		 */
-		public Builder fs(ClusterFileSystem value) {
+		public final Builder fs(ClusterFileSystem value) {
 			this.fs = value;
 			return this;
 		}
@@ -346,14 +344,14 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fs}
 		 */
-		public Builder fs(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {
+		public final Builder fs(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {
 			return this.fs(fn.apply(new ClusterFileSystem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code ingest}
 		 */
-		public Builder ingest(ClusterIngest value) {
+		public final Builder ingest(ClusterIngest value) {
 			this.ingest = value;
 			return this;
 		}
@@ -361,7 +359,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ingest}
 		 */
-		public Builder ingest(Function<ClusterIngest.Builder, ObjectBuilder<ClusterIngest>> fn) {
+		public final Builder ingest(Function<ClusterIngest.Builder, ObjectBuilder<ClusterIngest>> fn) {
 			return this.ingest(fn.apply(new ClusterIngest.Builder()).build());
 		}
 
@@ -371,7 +369,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jvm}
 		 */
-		public Builder jvm(ClusterJvm value) {
+		public final Builder jvm(ClusterJvm value) {
 			this.jvm = value;
 			return this;
 		}
@@ -382,7 +380,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jvm}
 		 */
-		public Builder jvm(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
+		public final Builder jvm(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
 			return this.jvm(fn.apply(new ClusterJvm.Builder()).build());
 		}
 
@@ -392,7 +390,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code network_types}
 		 */
-		public Builder networkTypes(ClusterNetworkTypes value) {
+		public final Builder networkTypes(ClusterNetworkTypes value) {
 			this.networkTypes = value;
 			return this;
 		}
@@ -403,7 +401,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code network_types}
 		 */
-		public Builder networkTypes(Function<ClusterNetworkTypes.Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
+		public final Builder networkTypes(
+				Function<ClusterNetworkTypes.Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
 			return this.networkTypes(fn.apply(new ClusterNetworkTypes.Builder()).build());
 		}
 
@@ -413,7 +412,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code os}
 		 */
-		public Builder os(ClusterOperatingSystem value) {
+		public final Builder os(ClusterOperatingSystem value) {
 			this.os = value;
 			return this;
 		}
@@ -424,7 +423,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code os}
 		 */
-		public Builder os(Function<ClusterOperatingSystem.Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
+		public final Builder os(Function<ClusterOperatingSystem.Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
 			return this.os(fn.apply(new ClusterOperatingSystem.Builder()).build());
 		}
 
@@ -434,7 +433,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code packaging_types}
 		 */
-		public Builder packagingTypes(List<NodePackagingType> value) {
+		public final Builder packagingTypes(List<NodePackagingType> value) {
 			this.packagingTypes = value;
 			return this;
 		}
@@ -445,34 +444,25 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code packaging_types}
 		 */
-		public Builder packagingTypes(NodePackagingType... value) {
+		public final Builder packagingTypes(NodePackagingType... value) {
 			this.packagingTypes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed.
+		 * Required - Contains statistics about Elasticsearch distributions installed on
+		 * selected nodes.
+		 * <p>
+		 * API name: {@code packaging_types}
 		 */
-		public Builder addPackagingTypes(NodePackagingType value) {
-			if (this.packagingTypes == null) {
-				this.packagingTypes = new ArrayList<>();
+		@SafeVarargs
+		public final Builder packagingTypes(
+				Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>>... fns) {
+			this.packagingTypes = new ArrayList<>(fns.length);
+			for (Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn : fns) {
+				this.packagingTypes.add(fn.apply(new NodePackagingType.Builder()).build());
 			}
-			this.packagingTypes.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #packagingTypes(List)} to a singleton list.
-		 */
-		public Builder packagingTypes(Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn) {
-			return this.packagingTypes(fn.apply(new NodePackagingType.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed.
-		 */
-		public Builder addPackagingTypes(Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn) {
-			return this.addPackagingTypes(fn.apply(new NodePackagingType.Builder()).build());
 		}
 
 		/**
@@ -481,7 +471,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code plugins}
 		 */
-		public Builder plugins(List<PluginStats> value) {
+		public final Builder plugins(List<PluginStats> value) {
 			this.plugins = value;
 			return this;
 		}
@@ -492,34 +482,24 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code plugins}
 		 */
-		public Builder plugins(PluginStats... value) {
+		public final Builder plugins(PluginStats... value) {
 			this.plugins = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed.
+		 * Required - Contains statistics about installed plugins and modules by
+		 * selected nodes.
+		 * <p>
+		 * API name: {@code plugins}
 		 */
-		public Builder addPlugins(PluginStats value) {
-			if (this.plugins == null) {
-				this.plugins = new ArrayList<>();
+		@SafeVarargs
+		public final Builder plugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>>... fns) {
+			this.plugins = new ArrayList<>(fns.length);
+			for (Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn : fns) {
+				this.plugins.add(fn.apply(new PluginStats.Builder()).build());
 			}
-			this.plugins.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #plugins(List)} to a singleton list.
-		 */
-		public Builder plugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
-			return this.plugins(fn.apply(new PluginStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed.
-		 */
-		public Builder addPlugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
-			return this.addPlugins(fn.apply(new PluginStats.Builder()).build());
 		}
 
 		/**
@@ -527,7 +507,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code process}
 		 */
-		public Builder process(ClusterProcess value) {
+		public final Builder process(ClusterProcess value) {
 			this.process = value;
 			return this;
 		}
@@ -537,7 +517,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code process}
 		 */
-		public Builder process(Function<ClusterProcess.Builder, ObjectBuilder<ClusterProcess>> fn) {
+		public final Builder process(Function<ClusterProcess.Builder, ObjectBuilder<ClusterProcess>> fn) {
 			return this.process(fn.apply(new ClusterProcess.Builder()).build());
 		}
 
@@ -546,7 +526,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code versions}
 		 */
-		public Builder versions(List<String> value) {
+		public final Builder versions(List<String> value) {
 			this.versions = value;
 			return this;
 		}
@@ -556,19 +536,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code versions}
 		 */
-		public Builder versions(String... value) {
+		public final Builder versions(String... value) {
 			this.versions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
-		 */
-		public Builder addVersions(String value) {
-			if (this.versions == null) {
-				this.versions = new ArrayList<>();
-			}
-			this.versions.add(value);
 			return this;
 		}
 
@@ -579,6 +548,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterNodes build() {
+			_checkSingleUse();
 
 			return new ClusterNodes(this);
 		}

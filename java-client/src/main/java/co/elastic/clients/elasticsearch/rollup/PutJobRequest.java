@@ -36,6 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.put_job.Request
 @JsonpDeserializable
-public final class PutJobRequest extends RequestBase implements JsonpSerializable {
+public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String cron;
 
@@ -61,7 +62,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final String indexPattern;
 
-	@Nullable
 	private final List<FieldMetric> metrics;
 
 	@Nullable
@@ -72,11 +72,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutJobRequest(Builder builder) {
+	private PutJobRequest(Builder builder) {
 
 		this.cron = builder.cron;
 		this.groups = builder.groups;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.indexPattern = builder.indexPattern;
 		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
 		this.pageSize = builder.pageSize;
@@ -84,15 +84,15 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public PutJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code cron}
 	 */
 	@Nullable
-	public String cron() {
+	public final String cron() {
 		return this.cron;
 	}
 
@@ -100,7 +100,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code groups}
 	 */
 	@Nullable
-	public Groupings groups() {
+	public final Groupings groups() {
 		return this.groups;
 	}
 
@@ -109,7 +109,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -117,15 +117,14 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code index_pattern}
 	 */
 	@Nullable
-	public String indexPattern() {
+	public final String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
 	 * API name: {@code metrics}
 	 */
-	@Nullable
-	public List<FieldMetric> metrics() {
+	public final List<FieldMetric> metrics() {
 		return this.metrics;
 	}
 
@@ -133,7 +132,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code page_size}
 	 */
 	@Nullable
-	public Long pageSize() {
+	public final Long pageSize() {
 		return this.pageSize;
 	}
 
@@ -141,7 +140,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code rollup_index}
 	 */
 	@Nullable
-	public String rollupIndex() {
+	public final String rollupIndex() {
 		return this.rollupIndex;
 	}
 
@@ -157,25 +156,21 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cron != null) {
-
 			generator.writeKey("cron");
 			generator.write(this.cron);
 
 		}
 		if (this.groups != null) {
-
 			generator.writeKey("groups");
 			this.groups.serialize(generator, mapper);
 
 		}
 		if (this.indexPattern != null) {
-
 			generator.writeKey("index_pattern");
 			generator.write(this.indexPattern);
 
 		}
-		if (this.metrics != null) {
-
+		if (ModelTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (FieldMetric item0 : this.metrics) {
@@ -186,13 +181,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		}
 		if (this.pageSize != null) {
-
 			generator.writeKey("page_size");
 			generator.write(this.pageSize);
 
 		}
 		if (this.rollupIndex != null) {
-
 			generator.writeKey("rollup_index");
 			generator.write(this.rollupIndex);
 
@@ -205,7 +198,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutJobRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private String cron;
 
@@ -229,7 +222,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code cron}
 		 */
-		public Builder cron(@Nullable String value) {
+		public final Builder cron(@Nullable String value) {
 			this.cron = value;
 			return this;
 		}
@@ -237,7 +230,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable Groupings value) {
+		public final Builder groups(@Nullable Groupings value) {
 			this.groups = value;
 			return this;
 		}
@@ -245,7 +238,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code groups}
 		 */
-		public Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
+		public final Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
 			return this.groups(fn.apply(new Groupings.Builder()).build());
 		}
 
@@ -254,7 +247,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -262,7 +255,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code index_pattern}
 		 */
-		public Builder indexPattern(@Nullable String value) {
+		public final Builder indexPattern(@Nullable String value) {
 			this.indexPattern = value;
 			return this;
 		}
@@ -270,7 +263,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(@Nullable List<FieldMetric> value) {
+		public final Builder metrics(@Nullable List<FieldMetric> value) {
 			this.metrics = value;
 			return this;
 		}
@@ -278,40 +271,27 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(FieldMetric... value) {
+		public final Builder metrics(FieldMetric... value) {
 			this.metrics = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * API name: {@code metrics}
 		 */
-		public Builder addMetrics(FieldMetric value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
+		@SafeVarargs
+		public final Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>>... fns) {
+			this.metrics = new ArrayList<>(fns.length);
+			for (Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn : fns) {
+				this.metrics.add(fn.apply(new FieldMetric.Builder()).build());
 			}
-			this.metrics.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #metrics(List)} to a singleton list.
-		 */
-		public Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
-			return this.metrics(fn.apply(new FieldMetric.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
-			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code page_size}
 		 */
-		public Builder pageSize(@Nullable Long value) {
+		public final Builder pageSize(@Nullable Long value) {
 			this.pageSize = value;
 			return this;
 		}
@@ -319,7 +299,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(@Nullable String value) {
+		public final Builder rollupIndex(@Nullable String value) {
 			this.rollupIndex = value;
 			return this;
 		}
@@ -331,6 +311,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public PutJobRequest build() {
+			_checkSingleUse();
 
 			return new PutJobRequest(this);
 		}

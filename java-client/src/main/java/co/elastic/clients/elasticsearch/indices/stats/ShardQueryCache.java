@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,7 +40,7 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardQueryCache
 @JsonpDeserializable
-public final class ShardQueryCache implements JsonpSerializable {
+public class ShardQueryCache implements JsonpSerializable {
 	private final long cacheCount;
 
 	private final long cacheSize;
@@ -55,68 +57,68 @@ public final class ShardQueryCache implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardQueryCache(Builder builder) {
+	private ShardQueryCache(Builder builder) {
 
-		this.cacheCount = Objects.requireNonNull(builder.cacheCount, "cache_count");
-		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
-		this.evictions = Objects.requireNonNull(builder.evictions, "evictions");
-		this.hitCount = Objects.requireNonNull(builder.hitCount, "hit_count");
-		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
-		this.missCount = Objects.requireNonNull(builder.missCount, "miss_count");
-		this.totalCount = Objects.requireNonNull(builder.totalCount, "total_count");
+		this.cacheCount = ModelTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount");
+		this.cacheSize = ModelTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
+		this.evictions = ModelTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.hitCount = ModelTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+		this.missCount = ModelTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+		this.totalCount = ModelTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
 
 	}
 
-	public ShardQueryCache(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardQueryCache of(Function<Builder, ObjectBuilder<ShardQueryCache>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cache_count}
 	 */
-	public long cacheCount() {
+	public final long cacheCount() {
 		return this.cacheCount;
 	}
 
 	/**
 	 * Required - API name: {@code cache_size}
 	 */
-	public long cacheSize() {
+	public final long cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
 	 * Required - API name: {@code evictions}
 	 */
-	public long evictions() {
+	public final long evictions() {
 		return this.evictions;
 	}
 
 	/**
 	 * Required - API name: {@code hit_count}
 	 */
-	public long hitCount() {
+	public final long hitCount() {
 		return this.hitCount;
 	}
 
 	/**
 	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public long memorySizeInBytes() {
+	public final long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code miss_count}
 	 */
-	public long missCount() {
+	public final long missCount() {
 		return this.missCount;
 	}
 
 	/**
 	 * Required - API name: {@code total_count}
 	 */
-	public long totalCount() {
+	public final long totalCount() {
 		return this.totalCount;
 	}
 
@@ -159,7 +161,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardQueryCache}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardQueryCache> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardQueryCache> {
 		private Long cacheCount;
 
 		private Long cacheSize;
@@ -177,7 +179,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_count}
 		 */
-		public Builder cacheCount(long value) {
+		public final Builder cacheCount(long value) {
 			this.cacheCount = value;
 			return this;
 		}
@@ -185,7 +187,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_size}
 		 */
-		public Builder cacheSize(long value) {
+		public final Builder cacheSize(long value) {
 			this.cacheSize = value;
 			return this;
 		}
@@ -193,7 +195,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code evictions}
 		 */
-		public Builder evictions(long value) {
+		public final Builder evictions(long value) {
 			this.evictions = value;
 			return this;
 		}
@@ -201,7 +203,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit_count}
 		 */
-		public Builder hitCount(long value) {
+		public final Builder hitCount(long value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -209,7 +211,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(long value) {
+		public final Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -217,7 +219,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code miss_count}
 		 */
-		public Builder missCount(long value) {
+		public final Builder missCount(long value) {
 			this.missCount = value;
 			return this;
 		}
@@ -225,7 +227,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_count}
 		 */
-		public Builder totalCount(long value) {
+		public final Builder totalCount(long value) {
 			this.totalCount = value;
 			return this;
 		}
@@ -237,6 +239,7 @@ public final class ShardQueryCache implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardQueryCache build() {
+			_checkSingleUse();
 
 			return new ShardQueryCache(this);
 		}

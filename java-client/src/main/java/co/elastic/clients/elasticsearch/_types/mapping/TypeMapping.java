@@ -31,16 +31,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TypeMapping
 @JsonpDeserializable
-public final class TypeMapping implements JsonpSerializable {
+public class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final AllField allField;
 
@@ -59,10 +59,8 @@ public final class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
-	@Nullable
 	private final List<String> dynamicDateFormats;
 
-	@Nullable
 	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
 
 	@Nullable
@@ -71,13 +69,11 @@ public final class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final IndexField indexField;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final Boolean numericDetection;
 
-	@Nullable
 	private final Map<String, Property> properties;
 
 	@Nullable
@@ -89,7 +85,6 @@ public final class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final SourceField source;
 
-	@Nullable
 	private final Map<String, RuntimeField> runtime;
 
 	@Nullable
@@ -97,7 +92,7 @@ public final class TypeMapping implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TypeMapping(Builder builder) {
+	private TypeMapping(Builder builder) {
 
 		this.allField = builder.allField;
 		this.dateDetection = builder.dateDetection;
@@ -117,15 +112,15 @@ public final class TypeMapping implements JsonpSerializable {
 
 	}
 
-	public TypeMapping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TypeMapping of(Function<Builder, ObjectBuilder<TypeMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code all_field}
 	 */
 	@Nullable
-	public AllField allField() {
+	public final AllField allField() {
 		return this.allField;
 	}
 
@@ -133,7 +128,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code date_detection}
 	 */
 	@Nullable
-	public Boolean dateDetection() {
+	public final Boolean dateDetection() {
 		return this.dateDetection;
 	}
 
@@ -141,23 +136,21 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
+	public final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
 		return this.dynamic;
 	}
 
 	/**
 	 * API name: {@code dynamic_date_formats}
 	 */
-	@Nullable
-	public List<String> dynamicDateFormats() {
+	public final List<String> dynamicDateFormats() {
 		return this.dynamicDateFormats;
 	}
 
 	/**
 	 * API name: {@code dynamic_templates}
 	 */
-	@Nullable
-	public List<Map<String, DynamicTemplate>> dynamicTemplates() {
+	public final List<Map<String, DynamicTemplate>> dynamicTemplates() {
 		return this.dynamicTemplates;
 	}
 
@@ -165,7 +158,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code _field_names}
 	 */
 	@Nullable
-	public FieldNamesField fieldNames() {
+	public final FieldNamesField fieldNames() {
 		return this.fieldNames;
 	}
 
@@ -173,15 +166,14 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code index_field}
 	 */
 	@Nullable
-	public IndexField indexField() {
+	public final IndexField indexField() {
 		return this.indexField;
 	}
 
 	/**
 	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -189,15 +181,14 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code numeric_detection}
 	 */
 	@Nullable
-	public Boolean numericDetection() {
+	public final Boolean numericDetection() {
 		return this.numericDetection;
 	}
 
 	/**
 	 * API name: {@code properties}
 	 */
-	@Nullable
-	public Map<String, Property> properties() {
+	public final Map<String, Property> properties() {
 		return this.properties;
 	}
 
@@ -205,7 +196,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public RoutingField routing() {
+	public final RoutingField routing() {
 		return this.routing;
 	}
 
@@ -213,7 +204,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code _size}
 	 */
 	@Nullable
-	public SizeField size() {
+	public final SizeField size() {
 		return this.size;
 	}
 
@@ -221,15 +212,14 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public SourceField source() {
+	public final SourceField source() {
 		return this.source;
 	}
 
 	/**
 	 * API name: {@code runtime}
 	 */
-	@Nullable
-	public Map<String, RuntimeField> runtime() {
+	public final Map<String, RuntimeField> runtime() {
 		return this.runtime;
 	}
 
@@ -237,7 +227,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -253,25 +243,21 @@ public final class TypeMapping implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allField != null) {
-
 			generator.writeKey("all_field");
 			this.allField.serialize(generator, mapper);
 
 		}
 		if (this.dateDetection != null) {
-
 			generator.writeKey("date_detection");
 			generator.write(this.dateDetection);
 
 		}
 		if (this.dynamic != null) {
-
 			generator.writeKey("dynamic");
 			generator.write(this.dynamic);
 
 		}
-		if (this.dynamicDateFormats != null) {
-
+		if (ModelTypeHelper.isDefined(this.dynamicDateFormats)) {
 			generator.writeKey("dynamic_date_formats");
 			generator.writeStartArray();
 			for (String item0 : this.dynamicDateFormats) {
@@ -281,16 +267,17 @@ public final class TypeMapping implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.dynamicTemplates != null) {
-
+		if (ModelTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartArray();
 			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
 				generator.writeStartObject();
-				for (Map.Entry<String, DynamicTemplate> item1 : item0.entrySet()) {
-					generator.writeKey(item1.getKey());
-					item1.getValue().serialize(generator, mapper);
+				if (item0 != null) {
+					for (Map.Entry<String, DynamicTemplate> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -299,19 +286,16 @@ public final class TypeMapping implements JsonpSerializable {
 
 		}
 		if (this.fieldNames != null) {
-
 			generator.writeKey("_field_names");
 			this.fieldNames.serialize(generator, mapper);
 
 		}
 		if (this.indexField != null) {
-
 			generator.writeKey("index_field");
 			this.indexField.serialize(generator, mapper);
 
 		}
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -323,13 +307,11 @@ public final class TypeMapping implements JsonpSerializable {
 
 		}
 		if (this.numericDetection != null) {
-
 			generator.writeKey("numeric_detection");
 			generator.write(this.numericDetection);
 
 		}
-		if (this.properties != null) {
-
+		if (ModelTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
@@ -341,25 +323,21 @@ public final class TypeMapping implements JsonpSerializable {
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("_routing");
 			this.routing.serialize(generator, mapper);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("_size");
 			this.size.serialize(generator, mapper);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("_source");
 			this.source.serialize(generator, mapper);
 
 		}
-		if (this.runtime != null) {
-
+		if (ModelTypeHelper.isDefined(this.runtime)) {
 			generator.writeKey("runtime");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
@@ -371,7 +349,6 @@ public final class TypeMapping implements JsonpSerializable {
 
 		}
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
@@ -384,7 +361,7 @@ public final class TypeMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link TypeMapping}.
 	 */
-	public static class Builder implements ObjectBuilder<TypeMapping> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeMapping> {
 		@Nullable
 		private AllField allField;
 
@@ -433,7 +410,7 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code all_field}
 		 */
-		public Builder allField(@Nullable AllField value) {
+		public final Builder allField(@Nullable AllField value) {
 			this.allField = value;
 			return this;
 		}
@@ -441,14 +418,14 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code all_field}
 		 */
-		public Builder allField(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
+		public final Builder allField(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
 			return this.allField(fn.apply(new AllField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code date_detection}
 		 */
-		public Builder dateDetection(@Nullable Boolean value) {
+		public final Builder dateDetection(@Nullable Boolean value) {
 			this.dateDetection = value;
 			return this;
 		}
@@ -456,7 +433,7 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic}
 		 */
-		public Builder dynamic(
+		public final Builder dynamic(
 				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
 			this.dynamic = value;
 			return this;
@@ -465,7 +442,7 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_date_formats}
 		 */
-		public Builder dynamicDateFormats(@Nullable List<String> value) {
+		public final Builder dynamicDateFormats(@Nullable List<String> value) {
 			this.dynamicDateFormats = value;
 			return this;
 		}
@@ -473,27 +450,15 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_date_formats}
 		 */
-		public Builder dynamicDateFormats(String... value) {
+		public final Builder dynamicDateFormats(String... value) {
 			this.dynamicDateFormats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dynamicDateFormats(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addDynamicDateFormats(String value) {
-			if (this.dynamicDateFormats == null) {
-				this.dynamicDateFormats = new ArrayList<>();
-			}
-			this.dynamicDateFormats.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code dynamic_templates}
 		 */
-		public Builder dynamicTemplates(@Nullable List<Map<String, DynamicTemplate>> value) {
+		public final Builder dynamicTemplates(@Nullable List<Map<String, DynamicTemplate>> value) {
 			this.dynamicTemplates = value;
 			return this;
 		}
@@ -501,26 +466,15 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_templates}
 		 */
-		public Builder dynamicTemplates(Map<String, DynamicTemplate>... value) {
+		public final Builder dynamicTemplates(Map<String, DynamicTemplate>... value) {
 			this.dynamicTemplates = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dynamicTemplates(List)}, creating the list if needed.
-		 */
-		public Builder addDynamicTemplates(Map<String, DynamicTemplate> value) {
-			if (this.dynamicTemplates == null) {
-				this.dynamicTemplates = new ArrayList<>();
-			}
-			this.dynamicTemplates.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _field_names}
 		 */
-		public Builder fieldNames(@Nullable FieldNamesField value) {
+		public final Builder fieldNames(@Nullable FieldNamesField value) {
 			this.fieldNames = value;
 			return this;
 		}
@@ -528,14 +482,14 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _field_names}
 		 */
-		public Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
+		public final Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
 			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code index_field}
 		 */
-		public Builder indexField(@Nullable IndexField value) {
+		public final Builder indexField(@Nullable IndexField value) {
 			this.indexField = value;
 			return this;
 		}
@@ -543,33 +497,22 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code index_field}
 		 */
-		public Builder indexField(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
+		public final Builder indexField(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
 			return this.indexField(fn.apply(new IndexField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
+		public final Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code numeric_detection}
 		 */
-		public Builder numericDetection(@Nullable Boolean value) {
+		public final Builder numericDetection(@Nullable Boolean value) {
 			this.numericDetection = value;
 			return this;
 		}
@@ -577,19 +520,8 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code properties}
 		 */
-		public Builder properties(@Nullable Map<String, Property> value) {
+		public final Builder properties(@Nullable Map<String, Property> value) {
 			this.properties = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
-		 */
-		public Builder putProperties(String key, Property value) {
-			if (this.properties == null) {
-				this.properties = new HashMap<>();
-			}
-			this.properties.put(key, value);
 			return this;
 		}
 
@@ -600,17 +532,15 @@ public final class TypeMapping implements JsonpSerializable {
 			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
-		 */
-		public Builder putProperties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.putProperties(key, fn.apply(new Property.Builder()).build());
+		public final Builder properties(
+				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
+			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder routing(@Nullable RoutingField value) {
+		public final Builder routing(@Nullable RoutingField value) {
 			this.routing = value;
 			return this;
 		}
@@ -618,14 +548,14 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
+		public final Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
 			return this.routing(fn.apply(new RoutingField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _size}
 		 */
-		public Builder size(@Nullable SizeField value) {
+		public final Builder size(@Nullable SizeField value) {
 			this.size = value;
 			return this;
 		}
@@ -633,14 +563,14 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _size}
 		 */
-		public Builder size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
+		public final Builder size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
 			return this.size(fn.apply(new SizeField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable SourceField value) {
+		public final Builder source(@Nullable SourceField value) {
 			this.source = value;
 			return this;
 		}
@@ -648,26 +578,15 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
+		public final Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
 			return this.source(fn.apply(new SourceField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code runtime}
 		 */
-		public Builder runtime(@Nullable Map<String, RuntimeField> value) {
+		public final Builder runtime(@Nullable Map<String, RuntimeField> value) {
 			this.runtime = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #runtime(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntime(String key, RuntimeField value) {
-			if (this.runtime == null) {
-				this.runtime = new HashMap<>();
-			}
-			this.runtime.put(key, value);
 			return this;
 		}
 
@@ -678,17 +597,15 @@ public final class TypeMapping implements JsonpSerializable {
 			return this.runtime(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #runtime(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntime(key, fn.apply(new RuntimeField.Builder()).build());
+		public final Builder runtime(
+				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
+			return runtime(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -700,6 +617,7 @@ public final class TypeMapping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TypeMapping build() {
+			_checkSingleUse();
 
 			return new TypeMapping(this);
 		}

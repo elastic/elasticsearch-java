@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregation
 @JsonpDeserializable
-public final class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final DateInterval unit;
 
@@ -46,7 +46,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RateAggregation(Builder builder) {
+	private RateAggregation(Builder builder) {
 		super(builder);
 
 		this.unit = builder.unit;
@@ -54,8 +54,8 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 
 	}
 
-	public RateAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RateAggregation of(Function<Builder, ObjectBuilder<RateAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +70,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 	 * API name: {@code unit}
 	 */
 	@Nullable
-	public DateInterval unit() {
+	public final DateInterval unit() {
 		return this.unit;
 	}
 
@@ -78,7 +78,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 	 * API name: {@code mode}
 	 */
 	@Nullable
-	public RateMode mode() {
+	public final RateMode mode() {
 		return this.mode;
 	}
 
@@ -86,12 +86,10 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 
 		super.serializeInternal(generator, mapper);
 		if (this.unit != null) {
-
 			generator.writeKey("unit");
 			this.unit.serialize(generator, mapper);
 		}
 		if (this.mode != null) {
-
 			generator.writeKey("mode");
 			this.mode.serialize(generator, mapper);
 		}
@@ -115,7 +113,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 		/**
 		 * API name: {@code unit}
 		 */
-		public Builder unit(@Nullable DateInterval value) {
+		public final Builder unit(@Nullable DateInterval value) {
 			this.unit = value;
 			return this;
 		}
@@ -123,7 +121,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 		/**
 		 * API name: {@code mode}
 		 */
-		public Builder mode(@Nullable RateMode value) {
+		public final Builder mode(@Nullable RateMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -140,6 +138,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 		 *             if some of the required fields are null.
 		 */
 		public RateAggregation build() {
+			_checkSingleUse();
 
 			return new RateAggregation(this);
 		}

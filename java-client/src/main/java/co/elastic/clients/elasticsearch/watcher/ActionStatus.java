@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionStatus
 @JsonpDeserializable
-public final class ActionStatus implements JsonpSerializable {
+public class ActionStatus implements JsonpSerializable {
 	private final AcknowledgeState ack;
 
 	@Nullable
@@ -52,23 +54,23 @@ public final class ActionStatus implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ActionStatus(Builder builder) {
+	private ActionStatus(Builder builder) {
 
-		this.ack = Objects.requireNonNull(builder.ack, "ack");
+		this.ack = ModelTypeHelper.requireNonNull(builder.ack, this, "ack");
 		this.lastExecution = builder.lastExecution;
 		this.lastSuccessfulExecution = builder.lastSuccessfulExecution;
 		this.lastThrottle = builder.lastThrottle;
 
 	}
 
-	public ActionStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ActionStatus of(Function<Builder, ObjectBuilder<ActionStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code ack}
 	 */
-	public AcknowledgeState ack() {
+	public final AcknowledgeState ack() {
 		return this.ack;
 	}
 
@@ -76,7 +78,7 @@ public final class ActionStatus implements JsonpSerializable {
 	 * API name: {@code last_execution}
 	 */
 	@Nullable
-	public ExecutionState lastExecution() {
+	public final ExecutionState lastExecution() {
 		return this.lastExecution;
 	}
 
@@ -84,7 +86,7 @@ public final class ActionStatus implements JsonpSerializable {
 	 * API name: {@code last_successful_execution}
 	 */
 	@Nullable
-	public ExecutionState lastSuccessfulExecution() {
+	public final ExecutionState lastSuccessfulExecution() {
 		return this.lastSuccessfulExecution;
 	}
 
@@ -92,7 +94,7 @@ public final class ActionStatus implements JsonpSerializable {
 	 * API name: {@code last_throttle}
 	 */
 	@Nullable
-	public ThrottleState lastThrottle() {
+	public final ThrottleState lastThrottle() {
 		return this.lastThrottle;
 	}
 
@@ -111,19 +113,16 @@ public final class ActionStatus implements JsonpSerializable {
 		this.ack.serialize(generator, mapper);
 
 		if (this.lastExecution != null) {
-
 			generator.writeKey("last_execution");
 			this.lastExecution.serialize(generator, mapper);
 
 		}
 		if (this.lastSuccessfulExecution != null) {
-
 			generator.writeKey("last_successful_execution");
 			this.lastSuccessfulExecution.serialize(generator, mapper);
 
 		}
 		if (this.lastThrottle != null) {
-
 			generator.writeKey("last_throttle");
 			this.lastThrottle.serialize(generator, mapper);
 
@@ -136,7 +135,7 @@ public final class ActionStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActionStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<ActionStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActionStatus> {
 		private AcknowledgeState ack;
 
 		@Nullable
@@ -151,7 +150,7 @@ public final class ActionStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ack}
 		 */
-		public Builder ack(AcknowledgeState value) {
+		public final Builder ack(AcknowledgeState value) {
 			this.ack = value;
 			return this;
 		}
@@ -159,14 +158,14 @@ public final class ActionStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ack}
 		 */
-		public Builder ack(Function<AcknowledgeState.Builder, ObjectBuilder<AcknowledgeState>> fn) {
+		public final Builder ack(Function<AcknowledgeState.Builder, ObjectBuilder<AcknowledgeState>> fn) {
 			return this.ack(fn.apply(new AcknowledgeState.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code last_execution}
 		 */
-		public Builder lastExecution(@Nullable ExecutionState value) {
+		public final Builder lastExecution(@Nullable ExecutionState value) {
 			this.lastExecution = value;
 			return this;
 		}
@@ -174,14 +173,14 @@ public final class ActionStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_execution}
 		 */
-		public Builder lastExecution(Function<ExecutionState.Builder, ObjectBuilder<ExecutionState>> fn) {
+		public final Builder lastExecution(Function<ExecutionState.Builder, ObjectBuilder<ExecutionState>> fn) {
 			return this.lastExecution(fn.apply(new ExecutionState.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code last_successful_execution}
 		 */
-		public Builder lastSuccessfulExecution(@Nullable ExecutionState value) {
+		public final Builder lastSuccessfulExecution(@Nullable ExecutionState value) {
 			this.lastSuccessfulExecution = value;
 			return this;
 		}
@@ -189,14 +188,15 @@ public final class ActionStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_successful_execution}
 		 */
-		public Builder lastSuccessfulExecution(Function<ExecutionState.Builder, ObjectBuilder<ExecutionState>> fn) {
+		public final Builder lastSuccessfulExecution(
+				Function<ExecutionState.Builder, ObjectBuilder<ExecutionState>> fn) {
 			return this.lastSuccessfulExecution(fn.apply(new ExecutionState.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code last_throttle}
 		 */
-		public Builder lastThrottle(@Nullable ThrottleState value) {
+		public final Builder lastThrottle(@Nullable ThrottleState value) {
 			this.lastThrottle = value;
 			return this;
 		}
@@ -204,7 +204,7 @@ public final class ActionStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_throttle}
 		 */
-		public Builder lastThrottle(Function<ThrottleState.Builder, ObjectBuilder<ThrottleState>> fn) {
+		public final Builder lastThrottle(Function<ThrottleState.Builder, ObjectBuilder<ThrottleState>> fn) {
 			return this.lastThrottle(fn.apply(new ThrottleState.Builder()).build());
 		}
 
@@ -215,6 +215,7 @@ public final class ActionStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ActionStatus build() {
+			_checkSingleUse();
 
 			return new ActionStatus(this);
 		}

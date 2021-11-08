@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ThrottleState
 @JsonpDeserializable
-public final class ThrottleState implements JsonpSerializable {
+public class ThrottleState implements JsonpSerializable {
 	private final String reason;
 
 	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ThrottleState(Builder builder) {
+	private ThrottleState(Builder builder) {
 
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public ThrottleState(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ThrottleState of(Function<Builder, ObjectBuilder<ThrottleState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -95,7 +97,7 @@ public final class ThrottleState implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThrottleState}.
 	 */
-	public static class Builder implements ObjectBuilder<ThrottleState> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThrottleState> {
 		private String reason;
 
 		private String timestamp;
@@ -103,7 +105,7 @@ public final class ThrottleState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(String value) {
+		public final Builder reason(String value) {
 			this.reason = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class ThrottleState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class ThrottleState implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ThrottleState build() {
+			_checkSingleUse();
 
 			return new ThrottleState(this);
 		}

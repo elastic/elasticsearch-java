@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,11 +48,9 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Request
 
-public final class CancelRequest extends RequestBase {
-	@Nullable
+public class CancelRequest extends RequestBase {
 	private final List<String> actions;
 
-	@Nullable
 	private final List<String> nodes;
 
 	@Nullable
@@ -66,7 +64,7 @@ public final class CancelRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CancelRequest(Builder builder) {
+	private CancelRequest(Builder builder) {
 
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
@@ -76,8 +74,8 @@ public final class CancelRequest extends RequestBase {
 
 	}
 
-	public CancelRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CancelRequest of(Function<Builder, ObjectBuilder<CancelRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,8 +84,7 @@ public final class CancelRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code actions}
 	 */
-	@Nullable
-	public List<String> actions() {
+	public final List<String> actions() {
 		return this.actions;
 	}
 
@@ -98,8 +95,7 @@ public final class CancelRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code nodes}
 	 */
-	@Nullable
-	public List<String> nodes() {
+	public final List<String> nodes() {
 		return this.nodes;
 	}
 
@@ -110,7 +106,7 @@ public final class CancelRequest extends RequestBase {
 	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
-	public String parentTaskId() {
+	public final String parentTaskId() {
 		return this.parentTaskId;
 	}
 
@@ -120,7 +116,7 @@ public final class CancelRequest extends RequestBase {
 	 * API name: {@code task_id}
 	 */
 	@Nullable
-	public String taskId() {
+	public final String taskId() {
 		return this.taskId;
 	}
 
@@ -131,7 +127,7 @@ public final class CancelRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -140,7 +136,7 @@ public final class CancelRequest extends RequestBase {
 	/**
 	 * Builder for {@link CancelRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CancelRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelRequest> {
 		@Nullable
 		private List<String> actions;
 
@@ -162,7 +158,7 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<String> value) {
+		public final Builder actions(@Nullable List<String> value) {
 			this.actions = value;
 			return this;
 		}
@@ -173,19 +169,8 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(String... value) {
+		public final Builder actions(String... value) {
 			this.actions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(String value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
 			return this;
 		}
 
@@ -196,7 +181,7 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(@Nullable List<String> value) {
+		public final Builder nodes(@Nullable List<String> value) {
 			this.nodes = value;
 			return this;
 		}
@@ -208,19 +193,8 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(String... value) {
+		public final Builder nodes(String... value) {
 			this.nodes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
-		 */
-		public Builder addNodes(String value) {
-			if (this.nodes == null) {
-				this.nodes = new ArrayList<>();
-			}
-			this.nodes.add(value);
 			return this;
 		}
 
@@ -230,7 +204,7 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
-		public Builder parentTaskId(@Nullable String value) {
+		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
 			return this;
 		}
@@ -240,7 +214,7 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(@Nullable String value) {
+		public final Builder taskId(@Nullable String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -251,7 +225,7 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -263,6 +237,7 @@ public final class CancelRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CancelRequest build() {
+			_checkSingleUse();
 
 			return new CancelRequest(this);
 		}
@@ -310,13 +285,13 @@ public final class CancelRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.nodes != null) {
+				if (ModelTypeHelper.isDefined(request.nodes)) {
 					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
 				}
-				if (request.actions != null) {
+				if (ModelTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {

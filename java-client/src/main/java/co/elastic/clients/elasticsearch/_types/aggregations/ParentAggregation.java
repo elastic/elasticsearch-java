@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
 @JsonpDeserializable
-public final class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
+public class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ParentAggregation(Builder builder) {
+	private ParentAggregation(Builder builder) {
 		super(builder);
 
 		this.type = builder.type;
 
 	}
 
-	public ParentAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ParentAggregation of(Function<Builder, ObjectBuilder<ParentAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -75,7 +75,6 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 
 		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -97,7 +96,7 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 		 *             if some of the required fields are null.
 		 */
 		public ParentAggregation build() {
+			_checkSingleUse();
 
 			return new ParentAggregation(this);
 		}

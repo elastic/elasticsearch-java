@@ -37,16 +37,16 @@ import java.util.function.Function;
 
 // typedef: ingest.get_pipeline.Response
 @JsonpDeserializable
-public final class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
+public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineResponse(Builder builder) {
+	private GetPipelineResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetPipelineResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ public final class GetPipelineResponse extends DictionaryResponse<String, Pipeli
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

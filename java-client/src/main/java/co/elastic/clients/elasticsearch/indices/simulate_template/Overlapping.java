@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Overlapping
 @JsonpDeserializable
-public final class Overlapping implements JsonpSerializable {
+public class Overlapping implements JsonpSerializable {
 	private final String name;
 
 	private final List<String> indexPatterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Overlapping(Builder builder) {
+	private Overlapping(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexPatterns = ModelTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
 
 	}
 
-	public Overlapping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Overlapping of(Function<Builder, ObjectBuilder<Overlapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code index_patterns}
 	 */
-	public List<String> indexPatterns() {
+	public final List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
@@ -89,13 +89,16 @@ public final class Overlapping implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("index_patterns");
-		generator.writeStartArray();
-		for (String item0 : this.indexPatterns) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+			generator.writeKey("index_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.indexPatterns) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +107,7 @@ public final class Overlapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link Overlapping}.
 	 */
-	public static class Builder implements ObjectBuilder<Overlapping> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Overlapping> {
 		private String name;
 
 		private List<String> indexPatterns;
@@ -112,7 +115,7 @@ public final class Overlapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -120,7 +123,7 @@ public final class Overlapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(List<String> value) {
+		public final Builder indexPatterns(List<String> value) {
 			this.indexPatterns = value;
 			return this;
 		}
@@ -128,19 +131,8 @@ public final class Overlapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(String... value) {
+		public final Builder indexPatterns(String... value) {
 			this.indexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
-		 */
-		public Builder addIndexPatterns(String value) {
-			if (this.indexPatterns == null) {
-				this.indexPatterns = new ArrayList<>();
-			}
-			this.indexPatterns.add(value);
 			return this;
 		}
 
@@ -151,6 +143,7 @@ public final class Overlapping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Overlapping build() {
+			_checkSingleUse();
 
 			return new Overlapping(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoMemory
 @JsonpDeserializable
-public final class NodeInfoMemory implements JsonpSerializable {
+public class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
 
 	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoMemory(Builder builder) {
+	private NodeInfoMemory(Builder builder) {
 
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public NodeInfoMemory(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoMemory of(Function<Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public String total() {
+	public final String total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -96,7 +98,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoMemory}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoMemory> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoMemory> {
 		private String total;
 
 		private Long totalInBytes;
@@ -104,7 +106,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(String value) {
+		public final Builder total(String value) {
 			this.total = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(long value) {
+		public final Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoMemory build() {
+			_checkSingleUse();
 
 			return new NodeInfoMemory(this);
 		}

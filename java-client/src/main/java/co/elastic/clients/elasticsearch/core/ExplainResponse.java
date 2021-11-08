@@ -33,7 +33,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
 
-public final class ExplainResponse<TDocument> implements JsonpSerializable {
+public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -65,26 +67,27 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExplainResponse(Builder<TDocument> builder) {
+	private ExplainResponse(Builder<TDocument> builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.matched = Objects.requireNonNull(builder.matched, "matched");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.matched = ModelTypeHelper.requireNonNull(builder.matched, this, "matched");
 		this.explanation = builder.explanation;
 		this.get = builder.get;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public ExplainResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> ExplainResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<ExplainResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -92,21 +95,21 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code matched}
 	 */
-	public boolean matched() {
+	public final boolean matched() {
 		return this.matched;
 	}
 
@@ -114,7 +117,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code explanation}
 	 */
 	@Nullable
-	public ExplanationDetail explanation() {
+	public final ExplanationDetail explanation() {
 		return this.explanation;
 	}
 
@@ -122,7 +125,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code get}
 	 */
 	@Nullable
-	public InlineGet<TDocument> get() {
+	public final InlineGet<TDocument> get() {
 		return this.get;
 	}
 
@@ -141,12 +144,10 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		generator.write(this.index);
 
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
-
 		generator.writeKey("_id");
 		generator.write(this.id);
 
@@ -154,13 +155,11 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		generator.write(this.matched);
 
 		if (this.explanation != null) {
-
 			generator.writeKey("explanation");
 			this.explanation.serialize(generator, mapper);
 
 		}
 		if (this.get != null) {
-
 			generator.writeKey("get");
 			this.get.serialize(generator, mapper);
 
@@ -173,7 +172,9 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<ExplainResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<ExplainResponse<TDocument>> {
 		private String index;
 
 		@Nullable
@@ -195,7 +196,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder<TDocument> index(String value) {
+		public final Builder<TDocument> index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -203,7 +204,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder<TDocument> type(@Nullable String value) {
+		public final Builder<TDocument> type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -211,7 +212,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder<TDocument> id(String value) {
+		public final Builder<TDocument> id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -219,7 +220,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code matched}
 		 */
-		public Builder<TDocument> matched(boolean value) {
+		public final Builder<TDocument> matched(boolean value) {
 			this.matched = value;
 			return this;
 		}
@@ -227,7 +228,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code explanation}
 		 */
-		public Builder<TDocument> explanation(@Nullable ExplanationDetail value) {
+		public final Builder<TDocument> explanation(@Nullable ExplanationDetail value) {
 			this.explanation = value;
 			return this;
 		}
@@ -235,7 +236,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code explanation}
 		 */
-		public Builder<TDocument> explanation(
+		public final Builder<TDocument> explanation(
 				Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
 			return this.explanation(fn.apply(new ExplanationDetail.Builder()).build());
 		}
@@ -243,7 +244,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
+		public final Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
 			this.get = value;
 			return this;
 		}
@@ -251,7 +252,8 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder<TDocument> get(Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+		public final Builder<TDocument> get(
+				Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
 			return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
 		}
 
@@ -259,7 +261,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -271,6 +273,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExplainResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new ExplainResponse<TDocument>(this);
 		}

@@ -39,6 +39,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -53,20 +54,15 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_role.Request
 @JsonpDeserializable
-public final class PutRoleRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
 
-	@Nullable
 	private final List<ClusterPrivilege> cluster;
 
-	@Nullable
 	private final Map<String, JsonData> global;
 
-	@Nullable
 	private final List<IndicesPrivileges> indices;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	private final String name;
@@ -74,7 +70,6 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
-	@Nullable
 	private final List<String> runAs;
 
 	@Nullable
@@ -82,22 +77,22 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutRoleRequest(Builder builder) {
+	private PutRoleRequest(Builder builder) {
 
 		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
 		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
 		this.global = ModelTypeHelper.unmodifiable(builder.global);
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = builder.transientMetadata;
 
 	}
 
-	public PutRoleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutRoleRequest of(Function<Builder, ObjectBuilder<PutRoleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,8 +100,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code applications}
 	 */
-	@Nullable
-	public List<ApplicationPrivileges> applications() {
+	public final List<ApplicationPrivileges> applications() {
 		return this.applications;
 	}
 
@@ -116,8 +110,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code cluster}
 	 */
-	@Nullable
-	public List<ClusterPrivilege> cluster() {
+	public final List<ClusterPrivilege> cluster() {
 		return this.cluster;
 	}
 
@@ -128,8 +121,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code global}
 	 */
-	@Nullable
-	public Map<String, JsonData> global() {
+	public final Map<String, JsonData> global() {
 		return this.global;
 	}
 
@@ -138,8 +130,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<IndicesPrivileges> indices() {
+	public final List<IndicesPrivileges> indices() {
 		return this.indices;
 	}
 
@@ -149,8 +140,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -159,7 +149,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -172,7 +162,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -181,8 +171,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code run_as}
 	 */
-	@Nullable
-	public List<String> runAs() {
+	public final List<String> runAs() {
 		return this.runAs;
 	}
 
@@ -197,7 +186,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code transient_metadata}
 	 */
 	@Nullable
-	public TransientMetadata transientMetadata() {
+	public final TransientMetadata transientMetadata() {
 		return this.transientMetadata;
 	}
 
@@ -212,8 +201,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.applications != null) {
-
+		if (ModelTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -223,8 +211,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.cluster != null) {
-
+		if (ModelTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (ClusterPrivilege item0 : this.cluster) {
@@ -233,8 +220,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.global != null) {
-
+		if (ModelTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.global.entrySet()) {
@@ -245,8 +231,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
@@ -256,8 +241,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -268,8 +252,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.runAs != null) {
-
+		if (ModelTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -280,7 +263,6 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.transientMetadata != null) {
-
 			generator.writeKey("transient_metadata");
 			this.transientMetadata.serialize(generator, mapper);
 
@@ -293,7 +275,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link PutRoleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutRoleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleRequest> {
 		@Nullable
 		private List<ApplicationPrivileges> applications;
 
@@ -325,7 +307,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code applications}
 		 */
-		public Builder applications(@Nullable List<ApplicationPrivileges> value) {
+		public final Builder applications(@Nullable List<ApplicationPrivileges> value) {
 			this.applications = value;
 			return this;
 		}
@@ -335,35 +317,24 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code applications}
 		 */
-		public Builder applications(ApplicationPrivileges... value) {
+		public final Builder applications(ApplicationPrivileges... value) {
 			this.applications = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * A list of application privilege entries.
+		 * <p>
+		 * API name: {@code applications}
 		 */
-		public Builder addApplications(ApplicationPrivileges value) {
-			if (this.applications == null) {
-				this.applications = new ArrayList<>();
+		@SafeVarargs
+		public final Builder applications(
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>>... fns) {
+			this.applications = new ArrayList<>(fns.length);
+			for (Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn : fns) {
+				this.applications.add(fn.apply(new ApplicationPrivileges.Builder()).build());
 			}
-			this.applications.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #applications(List)} to a singleton list.
-		 */
-		public Builder applications(Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.applications(fn.apply(new ApplicationPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
-		 */
-		public Builder addApplications(
-				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.addApplications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
@@ -372,7 +343,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(@Nullable List<ClusterPrivilege> value) {
+		public final Builder cluster(@Nullable List<ClusterPrivilege> value) {
 			this.cluster = value;
 			return this;
 		}
@@ -383,19 +354,8 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(ClusterPrivilege... value) {
+		public final Builder cluster(ClusterPrivilege... value) {
 			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(ClusterPrivilege value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
 			return this;
 		}
 
@@ -406,19 +366,8 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code global}
 		 */
-		public Builder global(@Nullable Map<String, JsonData> value) {
+		public final Builder global(@Nullable Map<String, JsonData> value) {
 			this.global = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #global(Map)}, creating the map if needed.
-		 */
-		public Builder putGlobal(String key, JsonData value) {
-			if (this.global == null) {
-				this.global = new HashMap<>();
-			}
-			this.global.put(key, value);
 			return this;
 		}
 
@@ -427,7 +376,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<IndicesPrivileges> value) {
+		public final Builder indices(@Nullable List<IndicesPrivileges> value) {
 			this.indices = value;
 			return this;
 		}
@@ -437,34 +386,23 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(IndicesPrivileges... value) {
+		public final Builder indices(IndicesPrivileges... value) {
 			this.indices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * A list of indices permissions entries.
+		 * <p>
+		 * API name: {@code indices}
 		 */
-		public Builder addIndices(IndicesPrivileges value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>>... fns) {
+			this.indices = new ArrayList<>(fns.length);
+			for (Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn : fns) {
+				this.indices.add(fn.apply(new IndicesPrivileges.Builder()).build());
 			}
-			this.indices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return this.indices(fn.apply(new IndicesPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
@@ -473,19 +411,8 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
@@ -494,7 +421,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -507,7 +434,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -517,7 +444,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code run_as}
 		 */
-		public Builder runAs(@Nullable List<String> value) {
+		public final Builder runAs(@Nullable List<String> value) {
 			this.runAs = value;
 			return this;
 		}
@@ -527,19 +454,8 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code run_as}
 		 */
-		public Builder runAs(String... value) {
+		public final Builder runAs(String... value) {
 			this.runAs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
-		 */
-		public Builder addRunAs(String value) {
-			if (this.runAs == null) {
-				this.runAs = new ArrayList<>();
-			}
-			this.runAs.add(value);
 			return this;
 		}
 
@@ -553,7 +469,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
-		public Builder transientMetadata(@Nullable TransientMetadata value) {
+		public final Builder transientMetadata(@Nullable TransientMetadata value) {
 			this.transientMetadata = value;
 			return this;
 		}
@@ -568,7 +484,8 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
-		public Builder transientMetadata(Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
+		public final Builder transientMetadata(
+				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
 			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
 		}
 
@@ -579,6 +496,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public PutRoleRequest build() {
+			_checkSingleUse();
 
 			return new PutRoleRequest(this);
 		}

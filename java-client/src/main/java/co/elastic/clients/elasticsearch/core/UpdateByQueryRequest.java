@@ -43,12 +43,12 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -60,14 +60,12 @@ import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query.Request
 @JsonpDeserializable
-public final class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
+public class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
-	@Nullable
 	private final List<String> sourceExcludes;
 
-	@Nullable
 	private final List<String> sourceIncludes;
 
 	@Nullable
@@ -88,7 +86,6 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	private final String df;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -150,10 +147,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	private final Long slices;
 
-	@Nullable
 	private final List<String> sort;
 
-	@Nullable
 	private final List<String> stats;
 
 	@Nullable
@@ -176,7 +171,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateByQueryRequest(Builder builder) {
+	private UpdateByQueryRequest(Builder builder) {
 
 		this.source = builder.source;
 		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
@@ -190,7 +185,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.from = builder.from;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.lenient = builder.lenient;
 		this.maxDocs = builder.maxDocs;
 		this.pipeline = builder.pipeline;
@@ -219,8 +214,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 
 	}
 
-	public UpdateByQueryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateByQueryRequest of(Function<Builder, ObjectBuilder<UpdateByQueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -230,7 +225,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -239,8 +234,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
-	@Nullable
-	public List<String> sourceExcludes() {
+	public final List<String> sourceExcludes() {
 		return this.sourceExcludes;
 	}
 
@@ -249,8 +243,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
-	@Nullable
-	public List<String> sourceIncludes() {
+	public final List<String> sourceIncludes() {
 		return this.sourceIncludes;
 	}
 
@@ -262,7 +255,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -273,7 +266,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
 	}
 
@@ -283,7 +276,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -291,7 +284,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code conflicts}
 	 */
 	@Nullable
-	public Conflicts conflicts() {
+	public final Conflicts conflicts() {
 		return this.conflicts;
 	}
 
@@ -301,7 +294,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public DefaultOperator defaultOperator() {
+	public final DefaultOperator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -312,7 +305,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code df}
 	 */
 	@Nullable
-	public String df() {
+	public final String df() {
 		return this.df;
 	}
 
@@ -322,8 +315,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -333,7 +325,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Long from() {
+	public final Long from() {
 		return this.from;
 	}
 
@@ -344,7 +336,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -354,7 +346,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -365,7 +357,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -373,7 +365,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code max_docs}
 	 */
 	@Nullable
-	public Long maxDocs() {
+	public final Long maxDocs() {
 		return this.maxDocs;
 	}
 
@@ -383,7 +375,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
-	public String pipeline() {
+	public final String pipeline() {
 		return this.pipeline;
 	}
 
@@ -394,7 +386,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -402,7 +394,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -412,7 +404,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public Boolean refresh() {
+	public final Boolean refresh() {
 		return this.refresh;
 	}
 
@@ -423,7 +415,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
-	public Boolean requestCache() {
+	public final Boolean requestCache() {
 		return this.requestCache;
 	}
 
@@ -434,7 +426,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Long requestsPerSecond() {
+	public final Long requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -444,7 +436,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -452,7 +444,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -463,7 +455,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public String scroll() {
+	public final String scroll() {
 		return this.scroll;
 	}
 
@@ -473,7 +465,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Long scrollSize() {
+	public final Long scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -483,7 +475,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code search_timeout}
 	 */
 	@Nullable
-	public String searchTimeout() {
+	public final String searchTimeout() {
 		return this.searchTimeout;
 	}
 
@@ -493,7 +485,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -501,7 +493,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Long size() {
+	public final Long size() {
 		return this.size;
 	}
 
@@ -509,7 +501,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code slice}
 	 */
 	@Nullable
-	public SlicedScroll slice() {
+	public final SlicedScroll slice() {
 		return this.slice;
 	}
 
@@ -520,7 +512,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code slices}
 	 */
 	@Nullable
-	public Long slices() {
+	public final Long slices() {
 		return this.slices;
 	}
 
@@ -529,8 +521,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<String> sort() {
+	public final List<String> sort() {
 		return this.sort;
 	}
 
@@ -539,8 +530,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code stats}
 	 */
-	@Nullable
-	public List<String> stats() {
+	public final List<String> stats() {
 		return this.stats;
 	}
 
@@ -551,7 +541,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
-	public Long terminateAfter() {
+	public final Long terminateAfter() {
 		return this.terminateAfter;
 	}
 
@@ -562,7 +552,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -572,7 +562,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Boolean version() {
+	public final Boolean version() {
 		return this.version;
 	}
 
@@ -583,7 +573,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public Boolean versionType() {
+	public final Boolean versionType() {
 		return this.versionType;
 	}
 
@@ -597,7 +587,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -608,7 +598,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -624,30 +614,25 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.conflicts != null) {
-
 			generator.writeKey("conflicts");
 			this.conflicts.serialize(generator, mapper);
 		}
 		if (this.maxDocs != null) {
-
 			generator.writeKey("max_docs");
 			generator.write(this.maxDocs);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.slice != null) {
-
 			generator.writeKey("slice");
 			this.slice.serialize(generator, mapper);
 
@@ -660,7 +645,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link UpdateByQueryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateByQueryRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRequest> {
 		@Nullable
 		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
@@ -780,7 +765,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -790,7 +775,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder sourceExcludes(@Nullable List<String> value) {
+		public final Builder sourceExcludes(@Nullable List<String> value) {
 			this.sourceExcludes = value;
 			return this;
 		}
@@ -800,19 +785,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder sourceExcludes(String... value) {
+		public final Builder sourceExcludes(String... value) {
 			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
 			return this;
 		}
 
@@ -821,7 +795,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder sourceIncludes(@Nullable List<String> value) {
+		public final Builder sourceIncludes(@Nullable List<String> value) {
 			this.sourceIncludes = value;
 			return this;
 		}
@@ -831,19 +805,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder sourceIncludes(String... value) {
+		public final Builder sourceIncludes(String... value) {
 			this.sourceIncludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
 			return this;
 		}
 
@@ -854,7 +817,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -865,7 +828,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
 			return this;
 		}
@@ -875,7 +838,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -883,7 +846,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code conflicts}
 		 */
-		public Builder conflicts(@Nullable Conflicts value) {
+		public final Builder conflicts(@Nullable Conflicts value) {
 			this.conflicts = value;
 			return this;
 		}
@@ -893,7 +856,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable DefaultOperator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -904,7 +867,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code df}
 		 */
-		public Builder df(@Nullable String value) {
+		public final Builder df(@Nullable String value) {
 			this.df = value;
 			return this;
 		}
@@ -915,7 +878,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -926,19 +889,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -947,7 +899,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Long value) {
+		public final Builder from(@Nullable Long value) {
 			this.from = value;
 			return this;
 		}
@@ -958,7 +910,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -969,7 +921,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -980,19 +932,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -1002,7 +943,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -1010,7 +951,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code max_docs}
 		 */
-		public Builder maxDocs(@Nullable Long value) {
+		public final Builder maxDocs(@Nullable Long value) {
 			this.maxDocs = value;
 			return this;
 		}
@@ -1020,7 +961,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
-		public Builder pipeline(@Nullable String value) {
+		public final Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -1031,7 +972,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
 		}
@@ -1039,7 +980,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -1047,7 +988,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -1056,7 +997,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable Boolean value) {
+		public final Builder refresh(@Nullable Boolean value) {
 			this.refresh = value;
 			return this;
 		}
@@ -1067,7 +1008,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
-		public Builder requestCache(@Nullable Boolean value) {
+		public final Builder requestCache(@Nullable Boolean value) {
 			this.requestCache = value;
 			return this;
 		}
@@ -1078,7 +1019,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -1088,7 +1029,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -1096,7 +1037,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -1107,7 +1048,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public Builder scroll(@Nullable String value) {
+		public final Builder scroll(@Nullable String value) {
 			this.scroll = value;
 			return this;
 		}
@@ -1117,7 +1058,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Long value) {
+		public final Builder scrollSize(@Nullable Long value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -1127,7 +1068,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
-		public Builder searchTimeout(@Nullable String value) {
+		public final Builder searchTimeout(@Nullable String value) {
 			this.searchTimeout = value;
 			return this;
 		}
@@ -1137,7 +1078,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable SearchType value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -1145,7 +1086,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Long value) {
+		public final Builder size(@Nullable Long value) {
 			this.size = value;
 			return this;
 		}
@@ -1153,7 +1094,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code slice}
 		 */
-		public Builder slice(@Nullable SlicedScroll value) {
+		public final Builder slice(@Nullable SlicedScroll value) {
 			this.slice = value;
 			return this;
 		}
@@ -1161,7 +1102,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code slice}
 		 */
-		public Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
 			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
@@ -1171,7 +1112,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code slices}
 		 */
-		public Builder slices(@Nullable Long value) {
+		public final Builder slices(@Nullable Long value) {
 			this.slices = value;
 			return this;
 		}
@@ -1181,7 +1122,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<String> value) {
+		public final Builder sort(@Nullable List<String> value) {
 			this.sort = value;
 			return this;
 		}
@@ -1191,19 +1132,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(String... value) {
+		public final Builder sort(String... value) {
 			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(String value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
 			return this;
 		}
 
@@ -1212,7 +1142,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code stats}
 		 */
-		public Builder stats(@Nullable List<String> value) {
+		public final Builder stats(@Nullable List<String> value) {
 			this.stats = value;
 			return this;
 		}
@@ -1222,19 +1152,8 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code stats}
 		 */
-		public Builder stats(String... value) {
+		public final Builder stats(String... value) {
 			this.stats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
-		 */
-		public Builder addStats(String value) {
-			if (this.stats == null) {
-				this.stats = new ArrayList<>();
-			}
-			this.stats.add(value);
 			return this;
 		}
 
@@ -1244,7 +1163,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
-		public Builder terminateAfter(@Nullable Long value) {
+		public final Builder terminateAfter(@Nullable Long value) {
 			this.terminateAfter = value;
 			return this;
 		}
@@ -1255,7 +1174,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -1265,7 +1184,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Boolean value) {
+		public final Builder version(@Nullable Boolean value) {
 			this.version = value;
 			return this;
 		}
@@ -1276,7 +1195,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable Boolean value) {
+		public final Builder versionType(@Nullable Boolean value) {
 			this.versionType = value;
 			return this;
 		}
@@ -1290,7 +1209,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -1301,7 +1220,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -1313,6 +1232,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public UpdateByQueryRequest build() {
+			_checkSingleUse();
 
 			return new UpdateByQueryRequest(this);
 		}
@@ -1398,7 +1318,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.stats != null) {
+				if (ModelTypeHelper.isDefined(request.stats)) {
 					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.allowNoIndices != null) {
@@ -1410,9 +1330,9 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", String.valueOf(request.versionType));
@@ -1435,11 +1355,11 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
-				if (request.sort != null) {
+				if (ModelTypeHelper.isDefined(request.sort)) {
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.searchType != null) {
-					params.put("search_type", request.searchType.toString());
+					params.put("search_type", request.searchType.jsonValue());
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
@@ -1448,7 +1368,7 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("pipeline", request.pipeline);
 				}
 				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
+					params.put("default_operator", request.defaultOperator.jsonValue());
 				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
@@ -1459,14 +1379,14 @@ public final class UpdateByQueryRequest extends RequestBase implements JsonpSeri
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
 				}
-				if (request.sourceExcludes != null) {
+				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.requestCache != null) {
 					params.put("request_cache", String.valueOf(request.requestCache));
 				}
-				if (request.sourceIncludes != null) {
+				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

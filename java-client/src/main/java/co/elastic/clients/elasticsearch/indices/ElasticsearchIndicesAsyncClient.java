@@ -791,39 +791,6 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 				this.transportOptions);
 	}
 
-	// ----- Endpoint: indices.freeze
-
-	/**
-	 * Freezes an index. A frozen index has almost no overhead on the cluster
-	 * (except for maintaining its metadata in memory) and is read-only.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/freeze-index-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<FreezeResponse> freeze(FreezeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, FreezeRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Freezes an index. A frozen index has almost no overhead on the cluster
-	 * (except for maintaining its metadata in memory) and is read-only.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link FreezeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/freeze-index-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<FreezeResponse> freeze(
-			Function<FreezeRequest.Builder, ObjectBuilder<FreezeRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return freeze(fn.apply(new FreezeRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.get
 
 	/**

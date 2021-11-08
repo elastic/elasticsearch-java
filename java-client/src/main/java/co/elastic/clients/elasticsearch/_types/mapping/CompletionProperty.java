@@ -44,11 +44,10 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CompletionProperty
 @JsonpDeserializable
-public final class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final String analyzer;
 
-	@Nullable
 	private final List<SuggestContext> contexts;
 
 	@Nullable
@@ -65,7 +64,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompletionProperty(Builder builder) {
+	private CompletionProperty(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
@@ -77,8 +76,8 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 
 	}
 
-	public CompletionProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompletionProperty of(Function<Builder, ObjectBuilder<CompletionProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,15 +92,14 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * API name: {@code contexts}
 	 */
-	@Nullable
-	public List<SuggestContext> contexts() {
+	public final List<SuggestContext> contexts() {
 		return this.contexts;
 	}
 
@@ -109,7 +107,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code max_input_length}
 	 */
 	@Nullable
-	public Integer maxInputLength() {
+	public final Integer maxInputLength() {
 		return this.maxInputLength;
 	}
 
@@ -117,7 +115,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code preserve_position_increments}
 	 */
 	@Nullable
-	public Boolean preservePositionIncrements() {
+	public final Boolean preservePositionIncrements() {
 		return this.preservePositionIncrements;
 	}
 
@@ -125,7 +123,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code preserve_separators}
 	 */
 	@Nullable
-	public Boolean preserveSeparators() {
+	public final Boolean preserveSeparators() {
 		return this.preserveSeparators;
 	}
 
@@ -133,7 +131,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code search_analyzer}
 	 */
 	@Nullable
-	public String searchAnalyzer() {
+	public final String searchAnalyzer() {
 		return this.searchAnalyzer;
 	}
 
@@ -142,13 +140,11 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		generator.write("type", "completion");
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-		if (this.contexts != null) {
-
+		if (ModelTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartArray();
 			for (SuggestContext item0 : this.contexts) {
@@ -159,25 +155,21 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 
 		}
 		if (this.maxInputLength != null) {
-
 			generator.writeKey("max_input_length");
 			generator.write(this.maxInputLength);
 
 		}
 		if (this.preservePositionIncrements != null) {
-
 			generator.writeKey("preserve_position_increments");
 			generator.write(this.preservePositionIncrements);
 
 		}
 		if (this.preserveSeparators != null) {
-
 			generator.writeKey("preserve_separators");
 			generator.write(this.preserveSeparators);
 
 		}
 		if (this.searchAnalyzer != null) {
-
 			generator.writeKey("search_analyzer");
 			generator.write(this.searchAnalyzer);
 
@@ -214,7 +206,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -222,7 +214,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code contexts}
 		 */
-		public Builder contexts(@Nullable List<SuggestContext> value) {
+		public final Builder contexts(@Nullable List<SuggestContext> value) {
 			this.contexts = value;
 			return this;
 		}
@@ -230,40 +222,27 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code contexts}
 		 */
-		public Builder contexts(SuggestContext... value) {
+		public final Builder contexts(SuggestContext... value) {
 			this.contexts = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
+		 * API name: {@code contexts}
 		 */
-		public Builder addContexts(SuggestContext value) {
-			if (this.contexts == null) {
-				this.contexts = new ArrayList<>();
+		@SafeVarargs
+		public final Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>>... fns) {
+			this.contexts = new ArrayList<>(fns.length);
+			for (Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn : fns) {
+				this.contexts.add(fn.apply(new SuggestContext.Builder()).build());
 			}
-			this.contexts.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #contexts(List)} to a singleton list.
-		 */
-		public Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
-			return this.contexts(fn.apply(new SuggestContext.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
-		 */
-		public Builder addContexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
-			return this.addContexts(fn.apply(new SuggestContext.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_input_length}
 		 */
-		public Builder maxInputLength(@Nullable Integer value) {
+		public final Builder maxInputLength(@Nullable Integer value) {
 			this.maxInputLength = value;
 			return this;
 		}
@@ -271,7 +250,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code preserve_position_increments}
 		 */
-		public Builder preservePositionIncrements(@Nullable Boolean value) {
+		public final Builder preservePositionIncrements(@Nullable Boolean value) {
 			this.preservePositionIncrements = value;
 			return this;
 		}
@@ -279,7 +258,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code preserve_separators}
 		 */
-		public Builder preserveSeparators(@Nullable Boolean value) {
+		public final Builder preserveSeparators(@Nullable Boolean value) {
 			this.preserveSeparators = value;
 			return this;
 		}
@@ -287,7 +266,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code search_analyzer}
 		 */
-		public Builder searchAnalyzer(@Nullable String value) {
+		public final Builder searchAnalyzer(@Nullable String value) {
 			this.searchAnalyzer = value;
 			return this;
 		}
@@ -304,6 +283,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		 *             if some of the required fields are null.
 		 */
 		public CompletionProperty build() {
+			_checkSingleUse();
 
 			return new CompletionProperty(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,19 +40,19 @@ import javax.annotation.Nullable;
 
 // typedef: indices.disk_usage.Response
 @JsonpDeserializable
-public final class DiskUsageResponse implements JsonpSerializable {
+public class DiskUsageResponse implements JsonpSerializable {
 	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DiskUsageResponse(Builder builder) {
+	private DiskUsageResponse(Builder builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public DiskUsageResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DiskUsageResponse of(Function<Builder, ObjectBuilder<DiskUsageResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -58,7 +60,7 @@ public final class DiskUsageResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public JsonData valueBody() {
+	public final JsonData valueBody() {
 		return this.valueBody;
 	}
 
@@ -75,7 +77,7 @@ public final class DiskUsageResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiskUsageResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DiskUsageResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageResponse> {
 		private JsonData valueBody;
 
 		/**
@@ -83,7 +85,7 @@ public final class DiskUsageResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(JsonData value) {
+		public final Builder valueBody(JsonData value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -95,6 +97,7 @@ public final class DiskUsageResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DiskUsageResponse build() {
+			_checkSingleUse();
 
 			return new DiskUsageResponse(this);
 		}

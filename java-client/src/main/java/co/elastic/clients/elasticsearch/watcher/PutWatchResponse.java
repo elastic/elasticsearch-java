@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Response
 @JsonpDeserializable
-public final class PutWatchResponse implements JsonpSerializable {
+public class PutWatchResponse implements JsonpSerializable {
 	private final boolean created;
 
 	private final String id;
@@ -54,52 +56,52 @@ public final class PutWatchResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutWatchResponse(Builder builder) {
+	private PutWatchResponse(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
-		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
-		this.version = Objects.requireNonNull(builder.version, "_version");
+		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.primaryTerm = ModelTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+		this.seqNo = ModelTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public PutWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutWatchResponse of(Function<Builder, ObjectBuilder<PutWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _primary_term}
 	 */
-	public long primaryTerm() {
+	public final long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * Required - API name: {@code _seq_no}
 	 */
-	public long seqNo() {
+	public final long seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * Required - API name: {@code _version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
@@ -136,7 +138,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutWatchResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutWatchResponse> {
 		private Boolean created;
 
 		private String id;
@@ -150,7 +152,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -166,7 +168,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(long value) {
+		public final Builder primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -174,7 +176,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _seq_no}
 		 */
-		public Builder seqNo(long value) {
+		public final Builder seqNo(long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -182,7 +184,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -194,6 +196,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutWatchResponse build() {
+			_checkSingleUse();
 
 			return new PutWatchResponse(this);
 		}

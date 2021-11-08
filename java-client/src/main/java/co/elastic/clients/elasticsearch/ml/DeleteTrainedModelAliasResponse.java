@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: ml.delete_trained_model_alias.Response
 @JsonpDeserializable
-public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
+public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTrainedModelAliasResponse(Builder builder) {
+	private DeleteTrainedModelAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteTrainedModelAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTrainedModelAliasResponse of(
+			Function<Builder, ObjectBuilder<DeleteTrainedModelAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTrainedModelAliasResponse build() {
+			_checkSingleUse();
 
 			return new DeleteTrainedModelAliasResponse(this);
 		}

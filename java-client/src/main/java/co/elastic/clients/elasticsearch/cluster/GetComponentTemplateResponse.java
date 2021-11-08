@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,26 +43,26 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Response
 @JsonpDeserializable
-public final class GetComponentTemplateResponse implements JsonpSerializable {
+public class GetComponentTemplateResponse implements JsonpSerializable {
 	private final List<ComponentTemplate> componentTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetComponentTemplateResponse(Builder builder) {
+	private GetComponentTemplateResponse(Builder builder) {
 
-		this.componentTemplates = ModelTypeHelper.unmodifiableNonNull(builder.componentTemplates,
-				"component_templates");
+		this.componentTemplates = ModelTypeHelper.unmodifiableRequired(builder.componentTemplates, this,
+				"componentTemplates");
 
 	}
 
-	public GetComponentTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetComponentTemplateResponse of(Function<Builder, ObjectBuilder<GetComponentTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code component_templates}
 	 */
-	public List<ComponentTemplate> componentTemplates() {
+	public final List<ComponentTemplate> componentTemplates() {
 		return this.componentTemplates;
 	}
 
@@ -76,13 +77,16 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("component_templates");
-		generator.writeStartArray();
-		for (ComponentTemplate item0 : this.componentTemplates) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.componentTemplates)) {
+			generator.writeKey("component_templates");
+			generator.writeStartArray();
+			for (ComponentTemplate item0 : this.componentTemplates) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetComponentTemplateResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetComponentTemplateResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateResponse> {
 		private List<ComponentTemplate> componentTemplates;
 
 		/**
 		 * Required - API name: {@code component_templates}
 		 */
-		public Builder componentTemplates(List<ComponentTemplate> value) {
+		public final Builder componentTemplates(List<ComponentTemplate> value) {
 			this.componentTemplates = value;
 			return this;
 		}
@@ -105,36 +109,22 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code component_templates}
 		 */
-		public Builder componentTemplates(ComponentTemplate... value) {
+		public final Builder componentTemplates(ComponentTemplate... value) {
 			this.componentTemplates = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #componentTemplates(List)}, creating the list if
-		 * needed.
+		 * Required - API name: {@code component_templates}
 		 */
-		public Builder addComponentTemplates(ComponentTemplate value) {
-			if (this.componentTemplates == null) {
-				this.componentTemplates = new ArrayList<>();
+		@SafeVarargs
+		public final Builder componentTemplates(
+				Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>>... fns) {
+			this.componentTemplates = new ArrayList<>(fns.length);
+			for (Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn : fns) {
+				this.componentTemplates.add(fn.apply(new ComponentTemplate.Builder()).build());
 			}
-			this.componentTemplates.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #componentTemplates(List)} to a singleton list.
-		 */
-		public Builder componentTemplates(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
-			return this.componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #componentTemplates(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addComponentTemplates(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
-			return this.addComponentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
 		}
 
 		/**
@@ -144,6 +134,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetComponentTemplateResponse build() {
+			_checkSingleUse();
 
 			return new GetComponentTemplateResponse(this);
 		}

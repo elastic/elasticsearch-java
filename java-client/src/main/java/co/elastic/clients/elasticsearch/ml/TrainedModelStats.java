@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
 @JsonpDeserializable
-public final class TrainedModelStats implements JsonpSerializable {
+public class TrainedModelStats implements JsonpSerializable {
 	private final String modelId;
 
 	private final int pipelineCount;
@@ -52,22 +52,21 @@ public final class TrainedModelStats implements JsonpSerializable {
 	@Nullable
 	private final TrainedModelInferenceStats inferenceStats;
 
-	@Nullable
 	private final Map<String, JsonData> ingest;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelStats(Builder builder) {
+	private TrainedModelStats(Builder builder) {
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
-		this.pipelineCount = Objects.requireNonNull(builder.pipelineCount, "pipeline_count");
+		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.pipelineCount = ModelTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
 		this.inferenceStats = builder.inferenceStats;
 		this.ingest = ModelTypeHelper.unmodifiable(builder.ingest);
 
 	}
 
-	public TrainedModelStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelStats of(Function<Builder, ObjectBuilder<TrainedModelStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +74,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -84,7 +83,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code pipeline_count}
 	 */
-	public int pipelineCount() {
+	public final int pipelineCount() {
 		return this.pipelineCount;
 	}
 
@@ -94,7 +93,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	 * API name: {@code inference_stats}
 	 */
 	@Nullable
-	public TrainedModelInferenceStats inferenceStats() {
+	public final TrainedModelInferenceStats inferenceStats() {
 		return this.inferenceStats;
 	}
 
@@ -105,8 +104,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code ingest}
 	 */
-	@Nullable
-	public Map<String, JsonData> ingest() {
+	public final Map<String, JsonData> ingest() {
 		return this.ingest;
 	}
 
@@ -128,13 +126,11 @@ public final class TrainedModelStats implements JsonpSerializable {
 		generator.write(this.pipelineCount);
 
 		if (this.inferenceStats != null) {
-
 			generator.writeKey("inference_stats");
 			this.inferenceStats.serialize(generator, mapper);
 
 		}
-		if (this.ingest != null) {
-
+		if (ModelTypeHelper.isDefined(this.ingest)) {
 			generator.writeKey("ingest");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.ingest.entrySet()) {
@@ -153,7 +149,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelStats}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelStats> {
 		private String modelId;
 
 		private Integer pipelineCount;
@@ -169,7 +165,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -179,7 +175,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pipeline_count}
 		 */
-		public Builder pipelineCount(int value) {
+		public final Builder pipelineCount(int value) {
 			this.pipelineCount = value;
 			return this;
 		}
@@ -189,7 +185,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_stats}
 		 */
-		public Builder inferenceStats(@Nullable TrainedModelInferenceStats value) {
+		public final Builder inferenceStats(@Nullable TrainedModelInferenceStats value) {
 			this.inferenceStats = value;
 			return this;
 		}
@@ -199,7 +195,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_stats}
 		 */
-		public Builder inferenceStats(
+		public final Builder inferenceStats(
 				Function<TrainedModelInferenceStats.Builder, ObjectBuilder<TrainedModelInferenceStats>> fn) {
 			return this.inferenceStats(fn.apply(new TrainedModelInferenceStats.Builder()).build());
 		}
@@ -211,19 +207,8 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest}
 		 */
-		public Builder ingest(@Nullable Map<String, JsonData> value) {
+		public final Builder ingest(@Nullable Map<String, JsonData> value) {
 			this.ingest = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #ingest(Map)}, creating the map if needed.
-		 */
-		public Builder putIngest(String key, JsonData value) {
-			if (this.ingest == null) {
-				this.ingest = new HashMap<>();
-			}
-			this.ingest.put(key, value);
 			return this;
 		}
 
@@ -234,6 +219,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModelStats build() {
+			_checkSingleUse();
 
 			return new TrainedModelStats(this);
 		}

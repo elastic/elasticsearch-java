@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.VariableWidthHistogramAggregation
 @JsonpDeserializable
-public final class VariableWidthHistogramAggregation implements AggregationVariant, JsonpSerializable {
+public class VariableWidthHistogramAggregation implements AggregationVariant, JsonpSerializable {
 	@Nullable
 	private final String field;
 
@@ -55,7 +56,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VariableWidthHistogramAggregation(Builder builder) {
+	private VariableWidthHistogramAggregation(Builder builder) {
 
 		this.field = builder.field;
 		this.buckets = builder.buckets;
@@ -64,8 +65,9 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 
 	}
 
-	public VariableWidthHistogramAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VariableWidthHistogramAggregation of(
+			Function<Builder, ObjectBuilder<VariableWidthHistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,7 +82,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -88,7 +90,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 	 * API name: {@code buckets}
 	 */
 	@Nullable
-	public Integer buckets() {
+	public final Integer buckets() {
 		return this.buckets;
 	}
 
@@ -96,7 +98,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -104,7 +106,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 	 * API name: {@code initial_buffer}
 	 */
 	@Nullable
-	public Integer initialBuffer() {
+	public final Integer initialBuffer() {
 		return this.initialBuffer;
 	}
 
@@ -120,25 +122,21 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.buckets != null) {
-
 			generator.writeKey("buckets");
 			generator.write(this.buckets);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.initialBuffer != null) {
-
 			generator.writeKey("initial_buffer");
 			generator.write(this.initialBuffer);
 
@@ -151,7 +149,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 	/**
 	 * Builder for {@link VariableWidthHistogramAggregation}.
 	 */
-	public static class Builder implements ObjectBuilder<VariableWidthHistogramAggregation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VariableWidthHistogramAggregation> {
 		@Nullable
 		private String field;
 
@@ -167,7 +165,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -175,7 +173,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 		/**
 		 * API name: {@code buckets}
 		 */
-		public Builder buckets(@Nullable Integer value) {
+		public final Builder buckets(@Nullable Integer value) {
 			this.buckets = value;
 			return this;
 		}
@@ -183,7 +181,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -191,7 +189,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 		/**
 		 * API name: {@code initial_buffer}
 		 */
-		public Builder initialBuffer(@Nullable Integer value) {
+		public final Builder initialBuffer(@Nullable Integer value) {
 			this.initialBuffer = value;
 			return this;
 		}
@@ -203,6 +201,7 @@ public final class VariableWidthHistogramAggregation implements AggregationVaria
 		 *             if some of the required fields are null.
 		 */
 		public VariableWidthHistogramAggregation build() {
+			_checkSingleUse();
 
 			return new VariableWidthHistogramAggregation(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocateReplicaAction
 @JsonpDeserializable
-public final class CommandAllocateReplicaAction implements JsonpSerializable {
+public class CommandAllocateReplicaAction implements JsonpSerializable {
 	private final String index;
 
 	private final int shard;
@@ -49,36 +51,36 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CommandAllocateReplicaAction(Builder builder) {
+	private CommandAllocateReplicaAction(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shard = Objects.requireNonNull(builder.shard, "shard");
-		this.node = Objects.requireNonNull(builder.node, "node");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}
 
-	public CommandAllocateReplicaAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CommandAllocateReplicaAction of(Function<Builder, ObjectBuilder<CommandAllocateReplicaAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shard}
 	 */
-	public int shard() {
+	public final int shard() {
 		return this.shard;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -109,7 +111,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link CommandAllocateReplicaAction}.
 	 */
-	public static class Builder implements ObjectBuilder<CommandAllocateReplicaAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandAllocateReplicaAction> {
 		private String index;
 
 		private Integer shard;
@@ -119,7 +121,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(int value) {
+		public final Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -135,7 +137,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -147,6 +149,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CommandAllocateReplicaAction build() {
+			_checkSingleUse();
 
 			return new CommandAllocateReplicaAction(this);
 		}

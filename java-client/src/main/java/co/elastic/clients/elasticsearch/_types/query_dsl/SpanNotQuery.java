@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNotQuery
 @JsonpDeserializable
-public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	@Nullable
 	private final Integer dist;
 
@@ -54,19 +55,19 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanNotQuery(Builder builder) {
+	private SpanNotQuery(Builder builder) {
 		super(builder);
 
 		this.dist = builder.dist;
-		this.exclude = Objects.requireNonNull(builder.exclude, "exclude");
-		this.include = Objects.requireNonNull(builder.include, "include");
+		this.exclude = ModelTypeHelper.requireNonNull(builder.exclude, this, "exclude");
+		this.include = ModelTypeHelper.requireNonNull(builder.include, this, "include");
 		this.post = builder.post;
 		this.pre = builder.pre;
 
 	}
 
-	public SpanNotQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanNotQuery of(Function<Builder, ObjectBuilder<SpanNotQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,21 +82,21 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 	 * API name: {@code dist}
 	 */
 	@Nullable
-	public Integer dist() {
+	public final Integer dist() {
 		return this.dist;
 	}
 
 	/**
 	 * Required - API name: {@code exclude}
 	 */
-	public SpanQuery exclude() {
+	public final SpanQuery exclude() {
 		return this.exclude;
 	}
 
 	/**
 	 * Required - API name: {@code include}
 	 */
-	public SpanQuery include() {
+	public final SpanQuery include() {
 		return this.include;
 	}
 
@@ -103,7 +104,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 	 * API name: {@code post}
 	 */
 	@Nullable
-	public Integer post() {
+	public final Integer post() {
 		return this.post;
 	}
 
@@ -111,7 +112,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 	 * API name: {@code pre}
 	 */
 	@Nullable
-	public Integer pre() {
+	public final Integer pre() {
 		return this.pre;
 	}
 
@@ -119,12 +120,10 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 
 		super.serializeInternal(generator, mapper);
 		if (this.dist != null) {
-
 			generator.writeKey("dist");
 			generator.write(this.dist);
 
 		}
-
 		generator.writeKey("exclude");
 		this.exclude.serialize(generator, mapper);
 
@@ -132,13 +131,11 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		this.include.serialize(generator, mapper);
 
 		if (this.post != null) {
-
 			generator.writeKey("post");
 			generator.write(this.post);
 
 		}
 		if (this.pre != null) {
-
 			generator.writeKey("pre");
 			generator.write(this.pre);
 
@@ -168,7 +165,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		/**
 		 * API name: {@code dist}
 		 */
-		public Builder dist(@Nullable Integer value) {
+		public final Builder dist(@Nullable Integer value) {
 			this.dist = value;
 			return this;
 		}
@@ -176,7 +173,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		/**
 		 * Required - API name: {@code exclude}
 		 */
-		public Builder exclude(SpanQuery value) {
+		public final Builder exclude(SpanQuery value) {
 			this.exclude = value;
 			return this;
 		}
@@ -184,14 +181,14 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		/**
 		 * Required - API name: {@code exclude}
 		 */
-		public Builder exclude(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+		public final Builder exclude(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.exclude(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code include}
 		 */
-		public Builder include(SpanQuery value) {
+		public final Builder include(SpanQuery value) {
 			this.include = value;
 			return this;
 		}
@@ -199,14 +196,14 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		/**
 		 * Required - API name: {@code include}
 		 */
-		public Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+		public final Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.include(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code post}
 		 */
-		public Builder post(@Nullable Integer value) {
+		public final Builder post(@Nullable Integer value) {
 			this.post = value;
 			return this;
 		}
@@ -214,7 +211,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		/**
 		 * API name: {@code pre}
 		 */
-		public Builder pre(@Nullable Integer value) {
+		public final Builder pre(@Nullable Integer value) {
 			this.pre = value;
 			return this;
 		}
@@ -231,6 +228,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		 *             if some of the required fields are null.
 		 */
 		public SpanNotQuery build() {
+			_checkSingleUse();
 
 			return new SpanNotQuery(this);
 		}

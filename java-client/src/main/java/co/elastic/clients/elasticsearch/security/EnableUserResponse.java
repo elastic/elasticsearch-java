@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: security.enable_user.Response
 
-public final class EnableUserResponse {
+public class EnableUserResponse {
 	public EnableUserResponse() {
 	}
 

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermLookup
 @JsonpDeserializable
-public final class MultiTermLookup implements JsonpSerializable {
+public class MultiTermLookup implements JsonpSerializable {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MultiTermLookup(Builder builder) {
+	private MultiTermLookup(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public MultiTermLookup(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MultiTermLookup of(Function<Builder, ObjectBuilder<MultiTermLookup>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,13 +84,13 @@ public final class MultiTermLookup implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiTermLookup}.
 	 */
-	public static class Builder implements ObjectBuilder<MultiTermLookup> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiTermLookup> {
 		private String field;
 
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class MultiTermLookup implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MultiTermLookup build() {
+			_checkSingleUse();
 
 			return new MultiTermLookup(this);
 		}

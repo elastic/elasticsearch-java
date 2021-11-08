@@ -37,21 +37,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NormalizeAggregation
 @JsonpDeserializable
-public final class NormalizeAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class NormalizeAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final NormalizeMethod method;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NormalizeAggregation(Builder builder) {
+	private NormalizeAggregation(Builder builder) {
 		super(builder);
 
 		this.method = builder.method;
 
 	}
 
-	public NormalizeAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NormalizeAggregation of(Function<Builder, ObjectBuilder<NormalizeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class NormalizeAggregation extends PipelineAggregationBase implemen
 	 * API name: {@code method}
 	 */
 	@Nullable
-	public NormalizeMethod method() {
+	public final NormalizeMethod method() {
 		return this.method;
 	}
 
@@ -74,7 +74,6 @@ public final class NormalizeAggregation extends PipelineAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.method != null) {
-
 			generator.writeKey("method");
 			this.method.serialize(generator, mapper);
 		}
@@ -95,7 +94,7 @@ public final class NormalizeAggregation extends PipelineAggregationBase implemen
 		/**
 		 * API name: {@code method}
 		 */
-		public Builder method(@Nullable NormalizeMethod value) {
+		public final Builder method(@Nullable NormalizeMethod value) {
 			this.method = value;
 			return this;
 		}
@@ -112,6 +111,7 @@ public final class NormalizeAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public NormalizeAggregation build() {
+			_checkSingleUse();
 
 			return new NormalizeAggregation(this);
 		}

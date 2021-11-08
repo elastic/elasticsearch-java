@@ -36,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,14 +44,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTermsAggregation
 @JsonpDeserializable
-public final class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
+public class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Query backgroundFilter;
 
 	@Nullable
 	private final ChiSquareHeuristic chiSquare;
 
-	@Nullable
 	private final List<String> exclude;
 
 	@Nullable
@@ -64,7 +62,6 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	@Nullable
 	private final GoogleNormalizedDistanceHeuristic gnd;
 
-	@Nullable
 	private final List<String> include;
 
 	@Nullable
@@ -90,7 +87,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SignificantTermsAggregation(Builder builder) {
+	private SignificantTermsAggregation(Builder builder) {
 		super(builder);
 
 		this.backgroundFilter = builder.backgroundFilter;
@@ -110,8 +107,8 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 
 	}
 
-	public SignificantTermsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SignificantTermsAggregation of(Function<Builder, ObjectBuilder<SignificantTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,7 +123,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code background_filter}
 	 */
 	@Nullable
-	public Query backgroundFilter() {
+	public final Query backgroundFilter() {
 		return this.backgroundFilter;
 	}
 
@@ -134,15 +131,14 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code chi_square}
 	 */
 	@Nullable
-	public ChiSquareHeuristic chiSquare() {
+	public final ChiSquareHeuristic chiSquare() {
 		return this.chiSquare;
 	}
 
 	/**
 	 * API name: {@code exclude}
 	 */
-	@Nullable
-	public List<String> exclude() {
+	public final List<String> exclude() {
 		return this.exclude;
 	}
 
@@ -150,7 +146,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
-	public TermsAggregationExecutionHint executionHint() {
+	public final TermsAggregationExecutionHint executionHint() {
 		return this.executionHint;
 	}
 
@@ -158,7 +154,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -166,15 +162,14 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code gnd}
 	 */
 	@Nullable
-	public GoogleNormalizedDistanceHeuristic gnd() {
+	public final GoogleNormalizedDistanceHeuristic gnd() {
 		return this.gnd;
 	}
 
 	/**
 	 * API name: {@code include}
 	 */
-	@Nullable
-	public List<String> include() {
+	public final List<String> include() {
 		return this.include;
 	}
 
@@ -182,7 +177,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Long minDocCount() {
+	public final Long minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -190,7 +185,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code mutual_information}
 	 */
 	@Nullable
-	public MutualInformationHeuristic mutualInformation() {
+	public final MutualInformationHeuristic mutualInformation() {
 		return this.mutualInformation;
 	}
 
@@ -198,7 +193,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code percentage}
 	 */
 	@Nullable
-	public PercentageScoreHeuristic percentage() {
+	public final PercentageScoreHeuristic percentage() {
 		return this.percentage;
 	}
 
@@ -206,7 +201,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code script_heuristic}
 	 */
 	@Nullable
-	public ScriptedHeuristic scriptHeuristic() {
+	public final ScriptedHeuristic scriptHeuristic() {
 		return this.scriptHeuristic;
 	}
 
@@ -214,7 +209,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
-	public Long shardMinDocCount() {
+	public final Long shardMinDocCount() {
 		return this.shardMinDocCount;
 	}
 
@@ -222,7 +217,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -230,7 +225,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -238,19 +233,16 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 
 		super.serializeInternal(generator, mapper);
 		if (this.backgroundFilter != null) {
-
 			generator.writeKey("background_filter");
 			this.backgroundFilter.serialize(generator, mapper);
 
 		}
 		if (this.chiSquare != null) {
-
 			generator.writeKey("chi_square");
 			this.chiSquare.serialize(generator, mapper);
 
 		}
-		if (this.exclude != null) {
-
+		if (ModelTypeHelper.isDefined(this.exclude)) {
 			generator.writeKey("exclude");
 			generator.writeStartArray();
 			for (String item0 : this.exclude) {
@@ -261,24 +253,20 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 
 		}
 		if (this.executionHint != null) {
-
 			generator.writeKey("execution_hint");
 			this.executionHint.serialize(generator, mapper);
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.gnd != null) {
-
 			generator.writeKey("gnd");
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (this.include != null) {
-
+		if (ModelTypeHelper.isDefined(this.include)) {
 			generator.writeKey("include");
 			generator.writeStartArray();
 			for (String item0 : this.include) {
@@ -289,43 +277,36 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 
 		}
 		if (this.minDocCount != null) {
-
 			generator.writeKey("min_doc_count");
 			generator.write(this.minDocCount);
 
 		}
 		if (this.mutualInformation != null) {
-
 			generator.writeKey("mutual_information");
 			this.mutualInformation.serialize(generator, mapper);
 
 		}
 		if (this.percentage != null) {
-
 			generator.writeKey("percentage");
 			this.percentage.serialize(generator, mapper);
 
 		}
 		if (this.scriptHeuristic != null) {
-
 			generator.writeKey("script_heuristic");
 			this.scriptHeuristic.serialize(generator, mapper);
 
 		}
 		if (this.shardMinDocCount != null) {
-
 			generator.writeKey("shard_min_doc_count");
 			generator.write(this.shardMinDocCount);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -386,7 +367,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code background_filter}
 		 */
-		public Builder backgroundFilter(@Nullable Query value) {
+		public final Builder backgroundFilter(@Nullable Query value) {
 			this.backgroundFilter = value;
 			return this;
 		}
@@ -394,14 +375,14 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code background_filter}
 		 */
-		public Builder backgroundFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder backgroundFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.backgroundFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code chi_square}
 		 */
-		public Builder chiSquare(@Nullable ChiSquareHeuristic value) {
+		public final Builder chiSquare(@Nullable ChiSquareHeuristic value) {
 			this.chiSquare = value;
 			return this;
 		}
@@ -409,14 +390,14 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code chi_square}
 		 */
-		public Builder chiSquare(Function<ChiSquareHeuristic.Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
+		public final Builder chiSquare(Function<ChiSquareHeuristic.Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
 			return this.chiSquare(fn.apply(new ChiSquareHeuristic.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable List<String> value) {
 			this.exclude = value;
 			return this;
 		}
@@ -424,26 +405,15 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(String... value) {
+		public final Builder exclude(String... value) {
 			this.exclude = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
-		 */
-		public Builder addExclude(String value) {
-			if (this.exclude == null) {
-				this.exclude = new ArrayList<>();
-			}
-			this.exclude.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code execution_hint}
 		 */
-		public Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
+		public final Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
 			this.executionHint = value;
 			return this;
 		}
@@ -451,7 +421,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -459,7 +429,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code gnd}
 		 */
-		public Builder gnd(@Nullable GoogleNormalizedDistanceHeuristic value) {
+		public final Builder gnd(@Nullable GoogleNormalizedDistanceHeuristic value) {
 			this.gnd = value;
 			return this;
 		}
@@ -467,7 +437,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code gnd}
 		 */
-		public Builder gnd(
+		public final Builder gnd(
 				Function<GoogleNormalizedDistanceHeuristic.Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
 			return this.gnd(fn.apply(new GoogleNormalizedDistanceHeuristic.Builder()).build());
 		}
@@ -475,7 +445,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(@Nullable List<String> value) {
+		public final Builder include(@Nullable List<String> value) {
 			this.include = value;
 			return this;
 		}
@@ -483,26 +453,15 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(String... value) {
+		public final Builder include(String... value) {
 			this.include = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
-		 */
-		public Builder addInclude(String value) {
-			if (this.include == null) {
-				this.include = new ArrayList<>();
-			}
-			this.include.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Long value) {
+		public final Builder minDocCount(@Nullable Long value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -510,7 +469,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code mutual_information}
 		 */
-		public Builder mutualInformation(@Nullable MutualInformationHeuristic value) {
+		public final Builder mutualInformation(@Nullable MutualInformationHeuristic value) {
 			this.mutualInformation = value;
 			return this;
 		}
@@ -518,7 +477,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code mutual_information}
 		 */
-		public Builder mutualInformation(
+		public final Builder mutualInformation(
 				Function<MutualInformationHeuristic.Builder, ObjectBuilder<MutualInformationHeuristic>> fn) {
 			return this.mutualInformation(fn.apply(new MutualInformationHeuristic.Builder()).build());
 		}
@@ -526,7 +485,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code percentage}
 		 */
-		public Builder percentage(@Nullable PercentageScoreHeuristic value) {
+		public final Builder percentage(@Nullable PercentageScoreHeuristic value) {
 			this.percentage = value;
 			return this;
 		}
@@ -534,7 +493,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code percentage}
 		 */
-		public Builder percentage(
+		public final Builder percentage(
 				Function<PercentageScoreHeuristic.Builder, ObjectBuilder<PercentageScoreHeuristic>> fn) {
 			return this.percentage(fn.apply(new PercentageScoreHeuristic.Builder()).build());
 		}
@@ -542,7 +501,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code script_heuristic}
 		 */
-		public Builder scriptHeuristic(@Nullable ScriptedHeuristic value) {
+		public final Builder scriptHeuristic(@Nullable ScriptedHeuristic value) {
 			this.scriptHeuristic = value;
 			return this;
 		}
@@ -550,14 +509,14 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code script_heuristic}
 		 */
-		public Builder scriptHeuristic(Function<ScriptedHeuristic.Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
+		public final Builder scriptHeuristic(Function<ScriptedHeuristic.Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
 			return this.scriptHeuristic(fn.apply(new ScriptedHeuristic.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code shard_min_doc_count}
 		 */
-		public Builder shardMinDocCount(@Nullable Long value) {
+		public final Builder shardMinDocCount(@Nullable Long value) {
 			this.shardMinDocCount = value;
 			return this;
 		}
@@ -565,7 +524,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -573,7 +532,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -590,6 +549,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		 *             if some of the required fields are null.
 		 */
 		public SignificantTermsAggregation build() {
+			_checkSingleUse();
 
 			return new SignificantTermsAggregation(this);
 		}

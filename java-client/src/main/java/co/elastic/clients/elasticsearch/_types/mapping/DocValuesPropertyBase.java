@@ -44,7 +44,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DocValuesPropertyBase(AbstractBuilder<?> builder) {
+	protected DocValuesPropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.docValues = builder.docValues;
@@ -55,7 +55,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 	 * API name: {@code doc_values}
 	 */
 	@Nullable
-	public Boolean docValues() {
+	public final Boolean docValues() {
 		return this.docValues;
 	}
 
@@ -63,7 +63,6 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.docValues != null) {
-
 			generator.writeKey("doc_values");
 			generator.write(this.docValues);
 
@@ -80,7 +79,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 		/**
 		 * API name: {@code doc_values}
 		 */
-		public BuilderT docValues(@Nullable Boolean value) {
+		public final BuilderT docValues(@Nullable Boolean value) {
 			this.docValues = value;
 			return self();
 		}

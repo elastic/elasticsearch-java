@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.OperatingSystem
 @JsonpDeserializable
-public final class OperatingSystem implements JsonpSerializable {
+public class OperatingSystem implements JsonpSerializable {
 	private final Cpu cpu;
 
 	private final ExtendedMemoryStats mem;
@@ -50,44 +52,44 @@ public final class OperatingSystem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OperatingSystem(Builder builder) {
+	private OperatingSystem(Builder builder) {
 
-		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
-		this.mem = Objects.requireNonNull(builder.mem, "mem");
-		this.swap = Objects.requireNonNull(builder.swap, "swap");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.swap = ModelTypeHelper.requireNonNull(builder.swap, this, "swap");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public OperatingSystem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OperatingSystem of(Function<Builder, ObjectBuilder<OperatingSystem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cpu}
 	 */
-	public Cpu cpu() {
+	public final Cpu cpu() {
 		return this.cpu;
 	}
 
 	/**
 	 * Required - API name: {@code mem}
 	 */
-	public ExtendedMemoryStats mem() {
+	public final ExtendedMemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
 	 * Required - API name: {@code swap}
 	 */
-	public MemoryStats swap() {
+	public final MemoryStats swap() {
 		return this.swap;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public long timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -121,7 +123,7 @@ public final class OperatingSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link OperatingSystem}.
 	 */
-	public static class Builder implements ObjectBuilder<OperatingSystem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystem> {
 		private Cpu cpu;
 
 		private ExtendedMemoryStats mem;
@@ -133,7 +135,7 @@ public final class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(Cpu value) {
+		public final Builder cpu(Cpu value) {
 			this.cpu = value;
 			return this;
 		}
@@ -141,14 +143,14 @@ public final class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
+		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
 			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(ExtendedMemoryStats value) {
+		public final Builder mem(ExtendedMemoryStats value) {
 			this.mem = value;
 			return this;
 		}
@@ -156,14 +158,14 @@ public final class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(Function<ExtendedMemoryStats.Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
+		public final Builder mem(Function<ExtendedMemoryStats.Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
 			return this.mem(fn.apply(new ExtendedMemoryStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code swap}
 		 */
-		public Builder swap(MemoryStats value) {
+		public final Builder swap(MemoryStats value) {
 			this.swap = value;
 			return this;
 		}
@@ -171,14 +173,14 @@ public final class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code swap}
 		 */
-		public Builder swap(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
+		public final Builder swap(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.swap(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(long value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -190,6 +192,7 @@ public final class OperatingSystem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OperatingSystem build() {
+			_checkSingleUse();
 
 			return new OperatingSystem(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: snapshot.create_repository.Response
 @JsonpDeserializable
-public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
+public class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateRepositoryResponse(Builder builder) {
+	private CreateRepositoryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CreateRepositoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateRepositoryResponse of(Function<Builder, ObjectBuilder<CreateRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateRepositoryResponse build() {
+			_checkSingleUse();
 
 			return new CreateRepositoryResponse(this);
 		}

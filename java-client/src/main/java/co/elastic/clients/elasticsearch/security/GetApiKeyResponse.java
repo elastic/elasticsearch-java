@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Response
 @JsonpDeserializable
-public final class GetApiKeyResponse implements JsonpSerializable {
+public class GetApiKeyResponse implements JsonpSerializable {
 	private final List<ApiKey> apiKeys;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetApiKeyResponse(Builder builder) {
+	private GetApiKeyResponse(Builder builder) {
 
-		this.apiKeys = ModelTypeHelper.unmodifiableNonNull(builder.apiKeys, "api_keys");
+		this.apiKeys = ModelTypeHelper.unmodifiableRequired(builder.apiKeys, this, "apiKeys");
 
 	}
 
-	public GetApiKeyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetApiKeyResponse of(Function<Builder, ObjectBuilder<GetApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code api_keys}
 	 */
-	public List<ApiKey> apiKeys() {
+	public final List<ApiKey> apiKeys() {
 		return this.apiKeys;
 	}
 
@@ -76,13 +77,16 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("api_keys");
-		generator.writeStartArray();
-		for (ApiKey item0 : this.apiKeys) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.apiKeys)) {
+			generator.writeKey("api_keys");
+			generator.writeStartArray();
+			for (ApiKey item0 : this.apiKeys) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetApiKeyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetApiKeyResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetApiKeyResponse> {
 		private List<ApiKey> apiKeys;
 
 		/**
 		 * Required - API name: {@code api_keys}
 		 */
-		public Builder apiKeys(List<ApiKey> value) {
+		public final Builder apiKeys(List<ApiKey> value) {
 			this.apiKeys = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code api_keys}
 		 */
-		public Builder apiKeys(ApiKey... value) {
+		public final Builder apiKeys(ApiKey... value) {
 			this.apiKeys = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
+		 * Required - API name: {@code api_keys}
 		 */
-		public Builder addApiKeys(ApiKey value) {
-			if (this.apiKeys == null) {
-				this.apiKeys = new ArrayList<>();
+		@SafeVarargs
+		public final Builder apiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>>... fns) {
+			this.apiKeys = new ArrayList<>(fns.length);
+			for (Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn : fns) {
+				this.apiKeys.add(fn.apply(new ApiKey.Builder()).build());
 			}
-			this.apiKeys.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #apiKeys(List)} to a singleton list.
-		 */
-		public Builder apiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
-			return this.apiKeys(fn.apply(new ApiKey.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
-		 */
-		public Builder addApiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
-			return this.addApiKeys(fn.apply(new ApiKey.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetApiKeyResponse build() {
+			_checkSingleUse();
 
 			return new GetApiKeyResponse(this);
 		}

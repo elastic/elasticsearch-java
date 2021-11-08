@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasChildQuery
 @JsonpDeserializable
-public final class HasChildQuery extends QueryBase implements QueryVariant {
+public class HasChildQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -63,21 +64,21 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HasChildQuery(Builder builder) {
+	private HasChildQuery(Builder builder) {
 		super(builder);
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
 		this.maxChildren = builder.maxChildren;
 		this.minChildren = builder.minChildren;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.scoreMode = builder.scoreMode;
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public HasChildQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HasChildQuery of(Function<Builder, ObjectBuilder<HasChildQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +93,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -100,7 +101,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code inner_hits}
 	 */
 	@Nullable
-	public InnerHits innerHits() {
+	public final InnerHits innerHits() {
 		return this.innerHits;
 	}
 
@@ -108,7 +109,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_children}
 	 */
 	@Nullable
-	public Integer maxChildren() {
+	public final Integer maxChildren() {
 		return this.maxChildren;
 	}
 
@@ -116,14 +117,14 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code min_children}
 	 */
 	@Nullable
-	public Integer minChildren() {
+	public final Integer minChildren() {
 		return this.minChildren;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -131,14 +132,14 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public ChildScoreMode scoreMode() {
+	public final ChildScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -146,39 +147,32 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
 		if (this.innerHits != null) {
-
 			generator.writeKey("inner_hits");
 			this.innerHits.serialize(generator, mapper);
 
 		}
 		if (this.maxChildren != null) {
-
 			generator.writeKey("max_children");
 			generator.write(this.maxChildren);
 
 		}
 		if (this.minChildren != null) {
-
 			generator.writeKey("min_children");
 			generator.write(this.minChildren);
 
 		}
-
 		generator.writeKey("query");
 		this.query.serialize(generator, mapper);
 
 		if (this.scoreMode != null) {
-
 			generator.writeKey("score_mode");
 			this.scoreMode.serialize(generator, mapper);
 		}
-
 		generator.writeKey("type");
 		generator.write(this.type);
 
@@ -212,7 +206,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -220,7 +214,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(@Nullable InnerHits value) {
+		public final Builder innerHits(@Nullable InnerHits value) {
 			this.innerHits = value;
 			return this;
 		}
@@ -228,14 +222,14 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
 			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_children}
 		 */
-		public Builder maxChildren(@Nullable Integer value) {
+		public final Builder maxChildren(@Nullable Integer value) {
 			this.maxChildren = value;
 			return this;
 		}
@@ -243,7 +237,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code min_children}
 		 */
-		public Builder minChildren(@Nullable Integer value) {
+		public final Builder minChildren(@Nullable Integer value) {
 			this.minChildren = value;
 			return this;
 		}
@@ -251,7 +245,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -259,14 +253,14 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public Builder scoreMode(@Nullable ChildScoreMode value) {
+		public final Builder scoreMode(@Nullable ChildScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -274,7 +268,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -291,6 +285,7 @@ public final class HasChildQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public HasChildQuery build() {
+			_checkSingleUse();
 
 			return new HasChildQuery(this);
 		}

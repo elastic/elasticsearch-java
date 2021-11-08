@@ -39,6 +39,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -54,11 +55,10 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.Request
 @JsonpDeserializable
-public final class RankEvalRequest extends RequestBase implements JsonpSerializable {
+public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -76,20 +76,20 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalRequest(Builder builder) {
+	private RankEvalRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.metric = builder.metric;
-		this.requests = ModelTypeHelper.unmodifiableNonNull(builder.requests, "requests");
+		this.requests = ModelTypeHelper.unmodifiableRequired(builder.requests, this, "requests");
 		this.searchType = builder.searchType;
 
 	}
 
-	public RankEvalRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalRequest of(Function<Builder, ObjectBuilder<RankEvalRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +103,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -113,8 +113,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -125,7 +124,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -137,7 +136,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -147,7 +146,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code metric}
 	 */
 	@Nullable
-	public RankEvalMetric metric() {
+	public final RankEvalMetric metric() {
 		return this.metric;
 	}
 
@@ -157,7 +156,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code requests}
 	 */
-	public List<RankEvalRequestItem> requests() {
+	public final List<RankEvalRequestItem> requests() {
 		return this.requests;
 	}
 
@@ -167,7 +166,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public String searchType() {
+	public final String searchType() {
 		return this.searchType;
 	}
 
@@ -183,19 +182,20 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.metric != null) {
-
 			generator.writeKey("metric");
 			this.metric.serialize(generator, mapper);
 
 		}
+		if (ModelTypeHelper.isDefined(this.requests)) {
+			generator.writeKey("requests");
+			generator.writeStartArray();
+			for (RankEvalRequestItem item0 : this.requests) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("requests");
-		generator.writeStartArray();
-		for (RankEvalRequestItem item0 : this.requests) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -204,7 +204,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link RankEvalRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -234,7 +234,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -245,7 +245,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -256,19 +256,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -278,7 +267,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -291,7 +280,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -304,19 +293,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -325,7 +303,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable RankEvalMetric value) {
+		public final Builder metric(@Nullable RankEvalMetric value) {
 			this.metric = value;
 			return this;
 		}
@@ -335,7 +313,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
+		public final Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
 			return this.metric(fn.apply(new RankEvalMetric.Builder()).build());
 		}
 
@@ -345,7 +323,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code requests}
 		 */
-		public Builder requests(List<RankEvalRequestItem> value) {
+		public final Builder requests(List<RankEvalRequestItem> value) {
 			this.requests = value;
 			return this;
 		}
@@ -356,34 +334,25 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code requests}
 		 */
-		public Builder requests(RankEvalRequestItem... value) {
+		public final Builder requests(RankEvalRequestItem... value) {
 			this.requests = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #requests(List)}, creating the list if needed.
+		 * Required - A set of typical search requests, together with their provided
+		 * ratings.
+		 * <p>
+		 * API name: {@code requests}
 		 */
-		public Builder addRequests(RankEvalRequestItem value) {
-			if (this.requests == null) {
-				this.requests = new ArrayList<>();
+		@SafeVarargs
+		public final Builder requests(
+				Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>>... fns) {
+			this.requests = new ArrayList<>(fns.length);
+			for (Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn : fns) {
+				this.requests.add(fn.apply(new RankEvalRequestItem.Builder()).build());
 			}
-			this.requests.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #requests(List)} to a singleton list.
-		 */
-		public Builder requests(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
-			return this.requests(fn.apply(new RankEvalRequestItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #requests(List)}, creating the list if needed.
-		 */
-		public Builder addRequests(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
-			return this.addRequests(fn.apply(new RankEvalRequestItem.Builder()).build());
 		}
 
 		/**
@@ -391,7 +360,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable String value) {
+		public final Builder searchType(@Nullable String value) {
 			this.searchType = value;
 			return this;
 		}
@@ -403,6 +372,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalRequest build() {
+			_checkSingleUse();
 
 			return new RankEvalRequest(this);
 		}
@@ -462,9 +432,9 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

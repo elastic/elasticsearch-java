@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -45,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
 @JsonpDeserializable
-public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
+public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Configuration config;
 
@@ -71,12 +73,12 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutLifecycleRequest(Builder builder) {
+	private PutLifecycleRequest(Builder builder) {
 
 		this.config = builder.config;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
-		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
+		this.policyId = ModelTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 		this.repository = builder.repository;
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;
@@ -84,8 +86,8 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public PutLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,7 +96,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code config}
 	 */
 	@Nullable
-	public Configuration config() {
+	public final Configuration config() {
 		return this.config;
 	}
 
@@ -105,7 +107,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -117,7 +119,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -126,7 +128,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
-	public String policyId() {
+	public final String policyId() {
 		return this.policyId;
 	}
 
@@ -138,7 +140,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code repository}
 	 */
 	@Nullable
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -148,7 +150,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code retention}
 	 */
 	@Nullable
-	public Retention retention() {
+	public final Retention retention() {
 		return this.retention;
 	}
 
@@ -159,7 +161,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code schedule}
 	 */
 	@Nullable
-	public String schedule() {
+	public final String schedule() {
 		return this.schedule;
 	}
 
@@ -170,7 +172,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -186,31 +188,26 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
-
 			generator.writeKey("config");
 			this.config.serialize(generator, mapper);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.repository != null) {
-
 			generator.writeKey("repository");
 			generator.write(this.repository);
 
 		}
 		if (this.retention != null) {
-
 			generator.writeKey("retention");
 			this.retention.serialize(generator, mapper);
 
 		}
 		if (this.schedule != null) {
-
 			generator.writeKey("schedule");
 			generator.write(this.schedule);
 
@@ -223,7 +220,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
 		@Nullable
 		private Configuration config;
 
@@ -252,7 +249,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(@Nullable Configuration value) {
+		public final Builder config(@Nullable Configuration value) {
 			this.config = value;
 			return this;
 		}
@@ -262,7 +259,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
+		public final Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
 			return this.config(fn.apply(new Configuration.Builder()).build());
 		}
 
@@ -272,7 +269,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -284,7 +281,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -294,7 +291,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code policy_id}
 		 */
-		public Builder policyId(String value) {
+		public final Builder policyId(String value) {
 			this.policyId = value;
 			return this;
 		}
@@ -306,7 +303,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable String value) {
+		public final Builder repository(@Nullable String value) {
 			this.repository = value;
 			return this;
 		}
@@ -316,7 +313,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code retention}
 		 */
-		public Builder retention(@Nullable Retention value) {
+		public final Builder retention(@Nullable Retention value) {
 			this.retention = value;
 			return this;
 		}
@@ -326,7 +323,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code retention}
 		 */
-		public Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
+		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
 			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
@@ -336,7 +333,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code schedule}
 		 */
-		public Builder schedule(@Nullable String value) {
+		public final Builder schedule(@Nullable String value) {
 			this.schedule = value;
 			return this;
 		}
@@ -347,7 +344,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -359,6 +356,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public PutLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new PutLifecycleRequest(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 @JsonpDeserializable
-public final class HtmlStripCharFilter extends CharFilterBase implements CharFilterVariant {
+public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public HtmlStripCharFilter(Builder builder) {
+	private HtmlStripCharFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public HtmlStripCharFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class HtmlStripCharFilter extends CharFilterBase implements CharFil
 		 *             if some of the required fields are null.
 		 */
 		public HtmlStripCharFilter build() {
+			_checkSingleUse();
 
 			return new HtmlStripCharFilter(this);
 		}

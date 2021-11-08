@@ -33,11 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggest
 
-public final class Suggestion<T> implements JsonpSerializable {
+public class Suggestion<T> implements JsonpSerializable {
 	private final int length;
 
 	private final int offset;
@@ -61,45 +61,45 @@ public final class Suggestion<T> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Suggestion(Builder<T> builder) {
+	private Suggestion(Builder<T> builder) {
 
-		this.length = Objects.requireNonNull(builder.length, "length");
-		this.offset = Objects.requireNonNull(builder.offset, "offset");
-		this.options = ModelTypeHelper.unmodifiableNonNull(builder.options, "options");
-		this.text = Objects.requireNonNull(builder.text, "text");
+		this.length = ModelTypeHelper.requireNonNull(builder.length, this, "length");
+		this.offset = ModelTypeHelper.requireNonNull(builder.offset, this, "offset");
+		this.options = ModelTypeHelper.unmodifiableRequired(builder.options, this, "options");
+		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
 		this.tSerializer = builder.tSerializer;
 
 	}
 
-	public Suggestion(Function<Builder<T>, Builder<T>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <T> Suggestion<T> of(Function<Builder<T>, ObjectBuilder<Suggestion<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code length}
 	 */
-	public int length() {
+	public final int length() {
 		return this.length;
 	}
 
 	/**
 	 * Required - API name: {@code offset}
 	 */
-	public int offset() {
+	public final int offset() {
 		return this.offset;
 	}
 
 	/**
 	 * Required - API name: {@code options}
 	 */
-	public List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options() {
+	public final List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options() {
 		return this.options;
 	}
 
 	/**
 	 * Required - API name: {@code text}
 	 */
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
@@ -120,14 +120,16 @@ public final class Suggestion<T> implements JsonpSerializable {
 		generator.writeKey("offset");
 		generator.write(this.offset);
 
-		generator.writeKey("options");
-		generator.writeStartArray();
-		for (JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ item0 : this.options) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartArray();
+			for (JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ item0 : this.options) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("text");
 		generator.write(this.text);
 
@@ -138,7 +140,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link Suggestion}.
 	 */
-	public static class Builder<T> implements ObjectBuilder<Suggestion<T>> {
+	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<Suggestion<T>> {
 		private Integer length;
 
 		private Integer offset;
@@ -153,7 +155,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code length}
 		 */
-		public Builder<T> length(int value) {
+		public final Builder<T> length(int value) {
 			this.length = value;
 			return this;
 		}
@@ -161,7 +163,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code offset}
 		 */
-		public Builder<T> offset(int value) {
+		public final Builder<T> offset(int value) {
 			this.offset = value;
 			return this;
 		}
@@ -169,7 +171,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code options}
 		 */
-		public Builder<T> options(
+		public final Builder<T> options(
 				List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> value) {
 			this.options = value;
 			return this;
@@ -178,28 +180,16 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code options}
 		 */
-		public Builder<T> options(
+		public final Builder<T> options(
 				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */... value) {
 			this.options = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #options(List)}, creating the list if needed.
-		 */
-		public Builder<T> addOptions(
-				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ value) {
-			if (this.options == null) {
-				this.options = new ArrayList<>();
-			}
-			this.options.add(value);
-			return this;
-		}
-
-		/**
 		 * Required - API name: {@code text}
 		 */
-		public Builder<T> text(String value) {
+		public final Builder<T> text(String value) {
 			this.text = value;
 			return this;
 		}
@@ -208,7 +198,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		 * Serializer for T. If not set, an attempt will be made to find a serializer
 		 * from the JSON context.
 		 */
-		public Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
+		public final Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
 			this.tSerializer = value;
 			return this;
 		}
@@ -220,6 +210,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Suggestion<T> build() {
+			_checkSingleUse();
 
 			return new Suggestion<T>(this);
 		}

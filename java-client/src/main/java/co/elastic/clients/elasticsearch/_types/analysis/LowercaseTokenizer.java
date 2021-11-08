@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseTokenizer
 @JsonpDeserializable
-public final class LowercaseTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LowercaseTokenizer extends TokenizerBase implements TokenizerVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public LowercaseTokenizer(Builder builder) {
+	private LowercaseTokenizer(Builder builder) {
 		super(builder);
 
 	}
 
-	public LowercaseTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LowercaseTokenizer of(Function<Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class LowercaseTokenizer extends TokenizerBase implements Tokenizer
 		 *             if some of the required fields are null.
 		 */
 		public LowercaseTokenizer build() {
+			_checkSingleUse();
 
 			return new LowercaseTokenizer(this);
 		}

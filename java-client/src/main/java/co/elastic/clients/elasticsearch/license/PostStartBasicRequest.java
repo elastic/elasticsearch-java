@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -42,20 +43,20 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Request
 
-public final class PostStartBasicRequest extends RequestBase {
+public class PostStartBasicRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostStartBasicRequest(Builder builder) {
+	private PostStartBasicRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 
 	}
 
-	public PostStartBasicRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostStartBasicRequest of(Function<Builder, ObjectBuilder<PostStartBasicRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class PostStartBasicRequest extends RequestBase {
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
-	public Boolean acknowledge() {
+	public final Boolean acknowledge() {
 		return this.acknowledge;
 	}
 
@@ -73,7 +74,7 @@ public final class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartBasicRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PostStartBasicRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartBasicRequest> {
 		@Nullable
 		private Boolean acknowledge;
 
@@ -82,7 +83,7 @@ public final class PostStartBasicRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(@Nullable Boolean value) {
+		public final Builder acknowledge(@Nullable Boolean value) {
 			this.acknowledge = value;
 			return this;
 		}
@@ -94,6 +95,7 @@ public final class PostStartBasicRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PostStartBasicRequest build() {
+			_checkSingleUse();
 
 			return new PostStartBasicRequest(this);
 		}

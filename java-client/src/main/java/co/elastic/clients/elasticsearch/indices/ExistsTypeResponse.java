@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: indices.exists_type.Response
 
-public final class ExistsTypeResponse {
+public class ExistsTypeResponse {
 	public ExistsTypeResponse() {
 	}
 

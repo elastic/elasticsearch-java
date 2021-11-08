@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.Request
 
-public final class GetServiceAccountsRequest extends RequestBase {
+public class GetServiceAccountsRequest extends RequestBase {
 	@Nullable
 	private final String namespace;
 
@@ -50,15 +51,15 @@ public final class GetServiceAccountsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetServiceAccountsRequest(Builder builder) {
+	private GetServiceAccountsRequest(Builder builder) {
 
 		this.namespace = builder.namespace;
 		this.service = builder.service;
 
 	}
 
-	public GetServiceAccountsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetServiceAccountsRequest of(Function<Builder, ObjectBuilder<GetServiceAccountsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +68,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	 * API name: {@code namespace}
 	 */
 	@Nullable
-	public String namespace() {
+	public final String namespace() {
 		return this.namespace;
 	}
 
@@ -77,7 +78,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	 * API name: {@code service}
 	 */
 	@Nullable
-	public String service() {
+	public final String service() {
 		return this.service;
 	}
 
@@ -86,7 +87,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetServiceAccountsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetServiceAccountsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceAccountsRequest> {
 		@Nullable
 		private String namespace;
 
@@ -98,7 +99,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code namespace}
 		 */
-		public Builder namespace(@Nullable String value) {
+		public final Builder namespace(@Nullable String value) {
 			this.namespace = value;
 			return this;
 		}
@@ -108,7 +109,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public Builder service(@Nullable String value) {
+		public final Builder service(@Nullable String value) {
 			this.service = value;
 			return this;
 		}
@@ -120,6 +121,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetServiceAccountsRequest build() {
+			_checkSingleUse();
 
 			return new GetServiceAccountsRequest(this);
 		}

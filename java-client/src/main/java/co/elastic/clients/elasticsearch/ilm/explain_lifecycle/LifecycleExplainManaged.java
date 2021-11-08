@@ -33,11 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainManaged
 @JsonpDeserializable
-public final class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSerializable {
+public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSerializable {
 	private final String action;
 
 	private final String actionTimeMillis;
@@ -73,7 +73,6 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 
 	private final String step;
 
-	@Nullable
 	private final Map<String, JsonData> stepInfo;
 
 	private final String stepTimeMillis;
@@ -82,28 +81,29 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LifecycleExplainManaged(Builder builder) {
+	private LifecycleExplainManaged(Builder builder) {
 
-		this.action = Objects.requireNonNull(builder.action, "action");
-		this.actionTimeMillis = Objects.requireNonNull(builder.actionTimeMillis, "action_time_millis");
-		this.age = Objects.requireNonNull(builder.age, "age");
+		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
+		this.actionTimeMillis = ModelTypeHelper.requireNonNull(builder.actionTimeMillis, this, "actionTimeMillis");
+		this.age = ModelTypeHelper.requireNonNull(builder.age, this, "age");
 		this.failedStep = builder.failedStep;
 		this.failedStepRetryCount = builder.failedStepRetryCount;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.isAutoRetryableError = builder.isAutoRetryableError;
-		this.lifecycleDateMillis = Objects.requireNonNull(builder.lifecycleDateMillis, "lifecycle_date_millis");
-		this.phase = Objects.requireNonNull(builder.phase, "phase");
-		this.phaseTimeMillis = Objects.requireNonNull(builder.phaseTimeMillis, "phase_time_millis");
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
-		this.step = Objects.requireNonNull(builder.step, "step");
+		this.lifecycleDateMillis = ModelTypeHelper.requireNonNull(builder.lifecycleDateMillis, this,
+				"lifecycleDateMillis");
+		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.phaseTimeMillis = ModelTypeHelper.requireNonNull(builder.phaseTimeMillis, this, "phaseTimeMillis");
+		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.step = ModelTypeHelper.requireNonNull(builder.step, this, "step");
 		this.stepInfo = ModelTypeHelper.unmodifiable(builder.stepInfo);
-		this.stepTimeMillis = Objects.requireNonNull(builder.stepTimeMillis, "step_time_millis");
-		this.phaseExecution = Objects.requireNonNull(builder.phaseExecution, "phase_execution");
+		this.stepTimeMillis = ModelTypeHelper.requireNonNull(builder.stepTimeMillis, this, "stepTimeMillis");
+		this.phaseExecution = ModelTypeHelper.requireNonNull(builder.phaseExecution, this, "phaseExecution");
 
 	}
 
-	public LifecycleExplainManaged(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LifecycleExplainManaged of(Function<Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,21 +117,21 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	/**
 	 * Required - API name: {@code action}
 	 */
-	public String action() {
+	public final String action() {
 		return this.action;
 	}
 
 	/**
 	 * Required - API name: {@code action_time_millis}
 	 */
-	public String actionTimeMillis() {
+	public final String actionTimeMillis() {
 		return this.actionTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code age}
 	 */
-	public String age() {
+	public final String age() {
 		return this.age;
 	}
 
@@ -139,7 +139,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	 * API name: {@code failed_step}
 	 */
 	@Nullable
-	public String failedStep() {
+	public final String failedStep() {
 		return this.failedStep;
 	}
 
@@ -147,14 +147,14 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	 * API name: {@code failed_step_retry_count}
 	 */
 	@Nullable
-	public Integer failedStepRetryCount() {
+	public final Integer failedStepRetryCount() {
 		return this.failedStepRetryCount;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -162,64 +162,63 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	 * API name: {@code is_auto_retryable_error}
 	 */
 	@Nullable
-	public Boolean isAutoRetryableError() {
+	public final Boolean isAutoRetryableError() {
 		return this.isAutoRetryableError;
 	}
 
 	/**
 	 * Required - API name: {@code lifecycle_date_millis}
 	 */
-	public String lifecycleDateMillis() {
+	public final String lifecycleDateMillis() {
 		return this.lifecycleDateMillis;
 	}
 
 	/**
 	 * Required - API name: {@code phase}
 	 */
-	public String phase() {
+	public final String phase() {
 		return this.phase;
 	}
 
 	/**
 	 * Required - API name: {@code phase_time_millis}
 	 */
-	public String phaseTimeMillis() {
+	public final String phaseTimeMillis() {
 		return this.phaseTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code policy}
 	 */
-	public String policy() {
+	public final String policy() {
 		return this.policy;
 	}
 
 	/**
 	 * Required - API name: {@code step}
 	 */
-	public String step() {
+	public final String step() {
 		return this.step;
 	}
 
 	/**
 	 * API name: {@code step_info}
 	 */
-	@Nullable
-	public Map<String, JsonData> stepInfo() {
+	public final Map<String, JsonData> stepInfo() {
 		return this.stepInfo;
 	}
 
 	/**
 	 * Required - API name: {@code step_time_millis}
 	 */
-	public String stepTimeMillis() {
+	public final String stepTimeMillis() {
 		return this.stepTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code phase_execution}
 	 */
-	public LifecycleExplainPhaseExecution phaseExecution() {
+	public final LifecycleExplainPhaseExecution phaseExecution() {
 		return this.phaseExecution;
 	}
 
@@ -246,28 +245,23 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		generator.write(this.age);
 
 		if (this.failedStep != null) {
-
 			generator.writeKey("failed_step");
 			generator.write(this.failedStep);
 
 		}
 		if (this.failedStepRetryCount != null) {
-
 			generator.writeKey("failed_step_retry_count");
 			generator.write(this.failedStepRetryCount);
 
 		}
-
 		generator.writeKey("index");
 		generator.write(this.index);
 
 		if (this.isAutoRetryableError != null) {
-
 			generator.writeKey("is_auto_retryable_error");
 			generator.write(this.isAutoRetryableError);
 
 		}
-
 		generator.writeKey("lifecycle_date_millis");
 		generator.write(this.lifecycleDateMillis);
 
@@ -283,8 +277,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		generator.writeKey("step");
 		generator.write(this.step);
 
-		if (this.stepInfo != null) {
-
+		if (ModelTypeHelper.isDefined(this.stepInfo)) {
 			generator.writeKey("step_info");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.stepInfo.entrySet()) {
@@ -295,7 +288,6 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("step_time_millis");
 		generator.write(this.stepTimeMillis);
 
@@ -309,7 +301,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 	/**
 	 * Builder for {@link LifecycleExplainManaged}.
 	 */
-	public static class Builder implements ObjectBuilder<LifecycleExplainManaged> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainManaged> {
 		private String action;
 
 		private String actionTimeMillis;
@@ -347,7 +339,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code action}
 		 */
-		public Builder action(String value) {
+		public final Builder action(String value) {
 			this.action = value;
 			return this;
 		}
@@ -355,7 +347,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code action_time_millis}
 		 */
-		public Builder actionTimeMillis(String value) {
+		public final Builder actionTimeMillis(String value) {
 			this.actionTimeMillis = value;
 			return this;
 		}
@@ -363,7 +355,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code age}
 		 */
-		public Builder age(String value) {
+		public final Builder age(String value) {
 			this.age = value;
 			return this;
 		}
@@ -371,7 +363,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * API name: {@code failed_step}
 		 */
-		public Builder failedStep(@Nullable String value) {
+		public final Builder failedStep(@Nullable String value) {
 			this.failedStep = value;
 			return this;
 		}
@@ -379,7 +371,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * API name: {@code failed_step_retry_count}
 		 */
-		public Builder failedStepRetryCount(@Nullable Integer value) {
+		public final Builder failedStepRetryCount(@Nullable Integer value) {
 			this.failedStepRetryCount = value;
 			return this;
 		}
@@ -387,7 +379,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -395,7 +387,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * API name: {@code is_auto_retryable_error}
 		 */
-		public Builder isAutoRetryableError(@Nullable Boolean value) {
+		public final Builder isAutoRetryableError(@Nullable Boolean value) {
 			this.isAutoRetryableError = value;
 			return this;
 		}
@@ -403,7 +395,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code lifecycle_date_millis}
 		 */
-		public Builder lifecycleDateMillis(String value) {
+		public final Builder lifecycleDateMillis(String value) {
 			this.lifecycleDateMillis = value;
 			return this;
 		}
@@ -411,7 +403,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code phase}
 		 */
-		public Builder phase(String value) {
+		public final Builder phase(String value) {
 			this.phase = value;
 			return this;
 		}
@@ -419,7 +411,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code phase_time_millis}
 		 */
-		public Builder phaseTimeMillis(String value) {
+		public final Builder phaseTimeMillis(String value) {
 			this.phaseTimeMillis = value;
 			return this;
 		}
@@ -427,7 +419,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public Builder policy(String value) {
+		public final Builder policy(String value) {
 			this.policy = value;
 			return this;
 		}
@@ -435,7 +427,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code step}
 		 */
-		public Builder step(String value) {
+		public final Builder step(String value) {
 			this.step = value;
 			return this;
 		}
@@ -443,26 +435,15 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * API name: {@code step_info}
 		 */
-		public Builder stepInfo(@Nullable Map<String, JsonData> value) {
+		public final Builder stepInfo(@Nullable Map<String, JsonData> value) {
 			this.stepInfo = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #stepInfo(Map)}, creating the map if needed.
-		 */
-		public Builder putStepInfo(String key, JsonData value) {
-			if (this.stepInfo == null) {
-				this.stepInfo = new HashMap<>();
-			}
-			this.stepInfo.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code step_time_millis}
 		 */
-		public Builder stepTimeMillis(String value) {
+		public final Builder stepTimeMillis(String value) {
 			this.stepTimeMillis = value;
 			return this;
 		}
@@ -470,7 +451,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code phase_execution}
 		 */
-		public Builder phaseExecution(LifecycleExplainPhaseExecution value) {
+		public final Builder phaseExecution(LifecycleExplainPhaseExecution value) {
 			this.phaseExecution = value;
 			return this;
 		}
@@ -478,7 +459,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		/**
 		 * Required - API name: {@code phase_execution}
 		 */
-		public Builder phaseExecution(
+		public final Builder phaseExecution(
 				Function<LifecycleExplainPhaseExecution.Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
 			return this.phaseExecution(fn.apply(new LifecycleExplainPhaseExecution.Builder()).build());
 		}
@@ -490,6 +471,7 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		 *             if some of the required fields are null.
 		 */
 		public LifecycleExplainManaged build() {
+			_checkSingleUse();
 
 			return new LifecycleExplainManaged(this);
 		}

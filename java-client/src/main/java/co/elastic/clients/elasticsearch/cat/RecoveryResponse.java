@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.recovery.Response
 @JsonpDeserializable
-public final class RecoveryResponse implements JsonpSerializable {
+public class RecoveryResponse implements JsonpSerializable {
 	private final List<RecoveryRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryResponse(Builder builder) {
+	private RecoveryResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public RecoveryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class RecoveryResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<RecoveryRecord> valueBody() {
+	public final List<RecoveryRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class RecoveryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryResponse> {
 		private List<RecoveryRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class RecoveryResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<RecoveryRecord> value) {
+		public final Builder valueBody(List<RecoveryRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class RecoveryResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(RecoveryRecord... value) {
+		public final Builder valueBody(RecoveryRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(RecoveryRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new RecoveryRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
-			return this.valueBody(fn.apply(new RecoveryRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
-			return this.addValueBody(fn.apply(new RecoveryRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class RecoveryResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryResponse build() {
+			_checkSingleUse();
 
 			return new RecoveryResponse(this);
 		}

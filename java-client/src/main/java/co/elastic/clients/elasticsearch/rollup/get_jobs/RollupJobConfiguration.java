@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobConfiguration
 @JsonpDeserializable
-public final class RollupJobConfiguration implements JsonpSerializable {
+public class RollupJobConfiguration implements JsonpSerializable {
 	private final String cron;
 
 	private final Groupings groups;
@@ -65,76 +66,76 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupJobConfiguration(Builder builder) {
+	private RollupJobConfiguration(Builder builder) {
 
-		this.cron = Objects.requireNonNull(builder.cron, "cron");
-		this.groups = Objects.requireNonNull(builder.groups, "groups");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.indexPattern = Objects.requireNonNull(builder.indexPattern, "index_pattern");
-		this.metrics = ModelTypeHelper.unmodifiableNonNull(builder.metrics, "metrics");
-		this.pageSize = Objects.requireNonNull(builder.pageSize, "page_size");
-		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
-		this.timeout = Objects.requireNonNull(builder.timeout, "timeout");
+		this.cron = ModelTypeHelper.requireNonNull(builder.cron, this, "cron");
+		this.groups = ModelTypeHelper.requireNonNull(builder.groups, this, "groups");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.indexPattern = ModelTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
+		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.pageSize = ModelTypeHelper.requireNonNull(builder.pageSize, this, "pageSize");
+		this.rollupIndex = ModelTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.timeout = ModelTypeHelper.requireNonNull(builder.timeout, this, "timeout");
 
 	}
 
-	public RollupJobConfiguration(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupJobConfiguration of(Function<Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cron}
 	 */
-	public String cron() {
+	public final String cron() {
 		return this.cron;
 	}
 
 	/**
 	 * Required - API name: {@code groups}
 	 */
-	public Groupings groups() {
+	public final Groupings groups() {
 		return this.groups;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code index_pattern}
 	 */
-	public String indexPattern() {
+	public final String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
 	 * Required - API name: {@code metrics}
 	 */
-	public List<FieldMetric> metrics() {
+	public final List<FieldMetric> metrics() {
 		return this.metrics;
 	}
 
 	/**
 	 * Required - API name: {@code page_size}
 	 */
-	public long pageSize() {
+	public final long pageSize() {
 		return this.pageSize;
 	}
 
 	/**
 	 * Required - API name: {@code rollup_index}
 	 */
-	public String rollupIndex() {
+	public final String rollupIndex() {
 		return this.rollupIndex;
 	}
 
 	/**
 	 * Required - API name: {@code timeout}
 	 */
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -161,14 +162,16 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		generator.writeKey("index_pattern");
 		generator.write(this.indexPattern);
 
-		generator.writeKey("metrics");
-		generator.writeStartArray();
-		for (FieldMetric item0 : this.metrics) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.metrics)) {
+			generator.writeKey("metrics");
+			generator.writeStartArray();
+			for (FieldMetric item0 : this.metrics) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("page_size");
 		generator.write(this.pageSize);
 
@@ -185,7 +188,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobConfiguration}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupJobConfiguration> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobConfiguration> {
 		private String cron;
 
 		private Groupings groups;
@@ -205,7 +208,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cron}
 		 */
-		public Builder cron(String value) {
+		public final Builder cron(String value) {
 			this.cron = value;
 			return this;
 		}
@@ -213,7 +216,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code groups}
 		 */
-		public Builder groups(Groupings value) {
+		public final Builder groups(Groupings value) {
 			this.groups = value;
 			return this;
 		}
@@ -221,14 +224,14 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code groups}
 		 */
-		public Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
+		public final Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
 			return this.groups(fn.apply(new Groupings.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -236,7 +239,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_pattern}
 		 */
-		public Builder indexPattern(String value) {
+		public final Builder indexPattern(String value) {
 			this.indexPattern = value;
 			return this;
 		}
@@ -244,7 +247,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public Builder metrics(List<FieldMetric> value) {
+		public final Builder metrics(List<FieldMetric> value) {
 			this.metrics = value;
 			return this;
 		}
@@ -252,40 +255,27 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public Builder metrics(FieldMetric... value) {
+		public final Builder metrics(FieldMetric... value) {
 			this.metrics = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Required - API name: {@code metrics}
 		 */
-		public Builder addMetrics(FieldMetric value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
+		@SafeVarargs
+		public final Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>>... fns) {
+			this.metrics = new ArrayList<>(fns.length);
+			for (Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn : fns) {
+				this.metrics.add(fn.apply(new FieldMetric.Builder()).build());
 			}
-			this.metrics.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #metrics(List)} to a singleton list.
-		 */
-		public Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
-			return this.metrics(fn.apply(new FieldMetric.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
-			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code page_size}
 		 */
-		public Builder pageSize(long value) {
+		public final Builder pageSize(long value) {
 			this.pageSize = value;
 			return this;
 		}
@@ -293,7 +283,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(String value) {
+		public final Builder rollupIndex(String value) {
 			this.rollupIndex = value;
 			return this;
 		}
@@ -301,7 +291,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timeout}
 		 */
-		public Builder timeout(String value) {
+		public final Builder timeout(String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -313,6 +303,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupJobConfiguration build() {
+			_checkSingleUse();
 
 			return new RollupJobConfiguration(this);
 		}

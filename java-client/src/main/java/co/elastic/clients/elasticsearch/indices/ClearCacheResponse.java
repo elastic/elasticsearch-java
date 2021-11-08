@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.clear_cache.Response
 @JsonpDeserializable
-public final class ClearCacheResponse extends ShardsOperationResponseBase {
+public class ClearCacheResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCacheResponse(Builder builder) {
+	private ClearCacheResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ClearCacheResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCacheResponse of(Function<Builder, ObjectBuilder<ClearCacheResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ClearCacheResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCacheResponse build() {
+			_checkSingleUse();
 
 			return new ClearCacheResponse(this);
 		}

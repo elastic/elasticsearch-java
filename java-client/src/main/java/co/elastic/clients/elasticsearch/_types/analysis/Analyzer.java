@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,9 +42,10 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Analyzer
 @JsonpDeserializable
-public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable {
 
 	public static final String CUSTOM = "custom";
+	public static final String DUTCH = "dutch";
 	public static final String FINGERPRINT = "fingerprint";
 	public static final String ICU_ANALYZER = "icu_analyzer";
 	public static final String KEYWORD = "keyword";
@@ -50,6 +54,7 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	public static final String NORI = "nori";
 	public static final String PATTERN = "pattern";
 	public static final String SIMPLE = "simple";
+	public static final String SNOWBALL = "snowball";
 	public static final String STANDARD = "standard";
 	public static final String STOP = "stop";
 	public static final String WHITESPACE = "whitespace";
@@ -57,38 +62,34 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final AnalyzerVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final AnalyzerVariant _get() {
 		return _value;
 	}
 
 	public Analyzer(AnalyzerVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends AnalyzerVariant> Analyzer(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Analyzer(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Analyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Analyzer of(Function<Builder, ObjectBuilder<Analyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +100,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	 */
 	public CustomAnalyzer custom() {
 		return TaggedUnionUtils.get(this, CUSTOM);
+	}
+
+	/**
+	 * Get the {@code dutch} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dutch} kind.
+	 */
+	public DutchAnalyzer dutch() {
+		return TaggedUnionUtils.get(this, DUTCH);
 	}
 
 	/**
@@ -182,6 +193,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	}
 
 	/**
+	 * Get the {@code snowball} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code snowball} kind.
+	 */
+	public SnowballAnalyzer snowball() {
+		return TaggedUnionUtils.get(this, SNOWBALL);
+	}
+
+	/**
 	 * Get the {@code standard} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -214,13 +235,13 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<Analyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Analyzer> {
 		private String _type;
-		private JsonpSerializable _value;
+		private AnalyzerVariant _value;
 
 		public Builder custom(CustomAnalyzer v) {
 			this._type = CUSTOM;
@@ -230,6 +251,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 		public Builder custom(Function<CustomAnalyzer.Builder, ObjectBuilder<CustomAnalyzer>> f) {
 			return this.custom(f.apply(new CustomAnalyzer.Builder()).build());
+		}
+
+		public Builder dutch(DutchAnalyzer v) {
+			this._type = DUTCH;
+			this._value = v;
+			return this;
+		}
+
+		public Builder dutch(Function<DutchAnalyzer.Builder, ObjectBuilder<DutchAnalyzer>> f) {
+			return this.dutch(f.apply(new DutchAnalyzer.Builder()).build());
 		}
 
 		public Builder fingerprint(FingerprintAnalyzer v) {
@@ -312,6 +343,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 			return this.simple(f.apply(new SimpleAnalyzer.Builder()).build());
 		}
 
+		public Builder snowball(SnowballAnalyzer v) {
+			this._type = SNOWBALL;
+			this._value = v;
+			return this;
+		}
+
+		public Builder snowball(Function<SnowballAnalyzer.Builder, ObjectBuilder<SnowballAnalyzer>> f) {
+			return this.snowball(f.apply(new SnowballAnalyzer.Builder()).build());
+		}
+
 		public Builder standard(StandardAnalyzer v) {
 			this._type = STANDARD;
 			this._value = v;
@@ -343,6 +384,7 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		}
 
 		public Analyzer build() {
+			_checkSingleUse();
 			return new Analyzer(this);
 		}
 
@@ -351,6 +393,7 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	protected static void setupAnalyzerDeserializer(DelegatingDeserializer<Builder> op) {
 
 		op.add(Builder::custom, CustomAnalyzer._DESERIALIZER, "custom");
+		op.add(Builder::dutch, DutchAnalyzer._DESERIALIZER, "dutch");
 		op.add(Builder::fingerprint, FingerprintAnalyzer._DESERIALIZER, "fingerprint");
 		op.add(Builder::icuAnalyzer, IcuAnalyzer._DESERIALIZER, "icu_analyzer");
 		op.add(Builder::keyword, KeywordAnalyzer._DESERIALIZER, "keyword");
@@ -359,6 +402,7 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		op.add(Builder::nori, NoriAnalyzer._DESERIALIZER, "nori");
 		op.add(Builder::pattern, PatternAnalyzer._DESERIALIZER, "pattern");
 		op.add(Builder::simple, SimpleAnalyzer._DESERIALIZER, "simple");
+		op.add(Builder::snowball, SnowballAnalyzer._DESERIALIZER, "snowball");
 		op.add(Builder::standard, StandardAnalyzer._DESERIALIZER, "standard");
 		op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
 		op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
@@ -367,6 +411,6 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	}
 
-	public static final JsonpDeserializer<Analyzer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Analyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Analyzer::setupAnalyzerDeserializer, Builder::build);
 }

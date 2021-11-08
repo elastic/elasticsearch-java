@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.deactivate_watch.Response
 @JsonpDeserializable
-public final class DeactivateWatchResponse implements JsonpSerializable {
+public class DeactivateWatchResponse implements JsonpSerializable {
 	private final ActivationStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeactivateWatchResponse(Builder builder) {
+	private DeactivateWatchResponse(Builder builder) {
 
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public DeactivateWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeactivateWatchResponse of(Function<Builder, ObjectBuilder<DeactivateWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ActivationStatus status() {
+	public final ActivationStatus status() {
 		return this.status;
 	}
 
@@ -81,13 +83,13 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeactivateWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DeactivateWatchResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeactivateWatchResponse> {
 		private ActivationStatus status;
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ActivationStatus value) {
+		public final Builder status(ActivationStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Function<ActivationStatus.Builder, ObjectBuilder<ActivationStatus>> fn) {
+		public final Builder status(Function<ActivationStatus.Builder, ObjectBuilder<ActivationStatus>> fn) {
 			return this.status(fn.apply(new ActivationStatus.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DeactivateWatchResponse build() {
+			_checkSingleUse();
 
 			return new DeactivateWatchResponse(this);
 		}

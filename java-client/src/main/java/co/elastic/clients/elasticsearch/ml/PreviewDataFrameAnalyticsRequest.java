@@ -36,6 +36,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
 @JsonpDeserializable
-public final class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
+public class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final DataframePreviewConfig config;
 
@@ -54,15 +55,16 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewDataFrameAnalyticsRequest(Builder builder) {
+	private PreviewDataFrameAnalyticsRequest(Builder builder) {
 
 		this.config = builder.config;
 		this.id = builder.id;
 
 	}
 
-	public PreviewDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PreviewDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +75,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	 * API name: {@code config}
 	 */
 	@Nullable
-	public DataframePreviewConfig config() {
+	public final DataframePreviewConfig config() {
 		return this.config;
 	}
 
@@ -83,7 +85,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -99,7 +101,6 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
-
 			generator.writeKey("config");
 			this.config.serialize(generator, mapper);
 
@@ -112,7 +113,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
 		@Nullable
 		private DataframePreviewConfig config;
 
@@ -126,7 +127,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(@Nullable DataframePreviewConfig value) {
+		public final Builder config(@Nullable DataframePreviewConfig value) {
 			this.config = value;
 			return this;
 		}
@@ -138,7 +139,8 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
+		public final Builder config(
+				Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
 			return this.config(fn.apply(new DataframePreviewConfig.Builder()).build());
 		}
 
@@ -147,7 +149,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -159,6 +161,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public PreviewDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new PreviewDataFrameAnalyticsRequest(this);
 		}

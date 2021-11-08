@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
 @JsonpDeserializable
-public final class ScriptQuery extends QueryBase implements QueryVariant {
+public class ScriptQuery extends QueryBase implements QueryVariant {
 	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptQuery(Builder builder) {
+	private ScriptQuery(Builder builder) {
 		super(builder);
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ScriptQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptQuery of(Function<Builder, ObjectBuilder<ScriptQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,14 +66,13 @@ public final class ScriptQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("script");
 		generator.write(this.script);
 
@@ -89,7 +89,7 @@ public final class ScriptQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -106,6 +106,7 @@ public final class ScriptQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public ScriptQuery build() {
+			_checkSingleUse();
 
 			return new ScriptQuery(this);
 		}

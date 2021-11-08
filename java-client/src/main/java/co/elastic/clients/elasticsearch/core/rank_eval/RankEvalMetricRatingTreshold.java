@@ -44,7 +44,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricRatingTreshold(AbstractBuilder<?> builder) {
+	protected RankEvalMetricRatingTreshold(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.relevantRatingThreshold = builder.relevantRatingThreshold;
@@ -58,7 +58,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 	 * API name: {@code relevant_rating_threshold}
 	 */
 	@Nullable
-	public Integer relevantRatingThreshold() {
+	public final Integer relevantRatingThreshold() {
 		return this.relevantRatingThreshold;
 	}
 
@@ -66,7 +66,6 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.relevantRatingThreshold != null) {
-
 			generator.writeKey("relevant_rating_threshold");
 			generator.write(this.relevantRatingThreshold);
 
@@ -86,7 +85,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 		 * <p>
 		 * API name: {@code relevant_rating_threshold}
 		 */
-		public BuilderT relevantRatingThreshold(@Nullable Integer value) {
+		public final BuilderT relevantRatingThreshold(@Nullable Integer value) {
 			this.relevantRatingThreshold = value;
 			return self();
 		}

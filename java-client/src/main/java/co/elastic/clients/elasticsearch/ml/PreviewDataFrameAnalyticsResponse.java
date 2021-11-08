@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -44,19 +44,20 @@ import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
 @JsonpDeserializable
-public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
+public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<Map<String, String>> featureValues;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewDataFrameAnalyticsResponse(Builder builder) {
+	private PreviewDataFrameAnalyticsResponse(Builder builder) {
 
-		this.featureValues = ModelTypeHelper.unmodifiableNonNull(builder.featureValues, "feature_values");
+		this.featureValues = ModelTypeHelper.unmodifiableRequired(builder.featureValues, this, "featureValues");
 
 	}
 
-	public PreviewDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PreviewDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +67,7 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code feature_values}
 	 */
-	public List<Map<String, String>> featureValues() {
+	public final List<Map<String, String>> featureValues() {
 		return this.featureValues;
 	}
 
@@ -81,19 +82,24 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("feature_values");
-		generator.writeStartArray();
-		for (Map<String, String> item0 : this.featureValues) {
-			generator.writeStartObject();
-			for (Map.Entry<String, String> item1 : item0.entrySet()) {
-				generator.writeKey(item1.getKey());
-				generator.write(item1.getValue());
+		if (ModelTypeHelper.isDefined(this.featureValues)) {
+			generator.writeKey("feature_values");
+			generator.writeStartArray();
+			for (Map<String, String> item0 : this.featureValues) {
+				generator.writeStartObject();
+				if (item0 != null) {
+					for (Map.Entry<String, String> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -102,7 +108,7 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PreviewDataFrameAnalyticsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsResponse> {
 		private List<Map<String, String>> featureValues;
 
 		/**
@@ -112,7 +118,7 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code feature_values}
 		 */
-		public Builder featureValues(List<Map<String, String>> value) {
+		public final Builder featureValues(List<Map<String, String>> value) {
 			this.featureValues = value;
 			return this;
 		}
@@ -124,19 +130,8 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code feature_values}
 		 */
-		public Builder featureValues(Map<String, String>... value) {
+		public final Builder featureValues(Map<String, String>... value) {
 			this.featureValues = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #featureValues(List)}, creating the list if needed.
-		 */
-		public Builder addFeatureValues(Map<String, String> value) {
-			if (this.featureValues == null) {
-				this.featureValues = new ArrayList<>();
-			}
-			this.featureValues.add(value);
 			return this;
 		}
 
@@ -147,6 +142,7 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public PreviewDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new PreviewDataFrameAnalyticsResponse(this);
 		}

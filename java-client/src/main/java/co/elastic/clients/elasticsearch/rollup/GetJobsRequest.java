@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.Request
 
-public final class GetJobsRequest extends RequestBase {
+public class GetJobsRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetJobsRequest(Builder builder) {
+	private GetJobsRequest(Builder builder) {
 
 		this.id = builder.id;
 
 	}
 
-	public GetJobsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetJobsRequest of(Function<Builder, ObjectBuilder<GetJobsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class GetJobsRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -73,7 +74,7 @@ public final class GetJobsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetJobsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobsRequest> {
 		@Nullable
 		private String id;
 
@@ -83,7 +84,7 @@ public final class GetJobsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -95,6 +96,7 @@ public final class GetJobsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetJobsRequest build() {
+			_checkSingleUse();
 
 			return new GetJobsRequest(this);
 		}

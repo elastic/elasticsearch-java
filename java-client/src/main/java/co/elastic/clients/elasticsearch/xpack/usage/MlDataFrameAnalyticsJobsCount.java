@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobsCount
 @JsonpDeserializable
-public final class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
+public class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDataFrameAnalyticsJobsCount(Builder builder) {
+	private MlDataFrameAnalyticsJobsCount(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public MlDataFrameAnalyticsJobsCount(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDataFrameAnalyticsJobsCount of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -81,13 +83,13 @@ public final class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsJobsCount}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDataFrameAnalyticsJobsCount> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsJobsCount> {
 		private Long count;
 
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlDataFrameAnalyticsJobsCount build() {
+			_checkSingleUse();
 
 			return new MlDataFrameAnalyticsJobsCount(this);
 		}

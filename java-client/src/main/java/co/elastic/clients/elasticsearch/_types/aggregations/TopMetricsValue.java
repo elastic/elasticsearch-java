@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsValue
 @JsonpDeserializable
-public final class TopMetricsValue implements JsonpSerializable {
+public class TopMetricsValue implements JsonpSerializable {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TopMetricsValue(Builder builder) {
+	private TopMetricsValue(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public TopMetricsValue(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TopMetricsValue of(Function<Builder, ObjectBuilder<TopMetricsValue>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,13 +84,13 @@ public final class TopMetricsValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link TopMetricsValue}.
 	 */
-	public static class Builder implements ObjectBuilder<TopMetricsValue> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetricsValue> {
 		private String field;
 
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class TopMetricsValue implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TopMetricsValue build() {
+			_checkSingleUse();
 
 			return new TopMetricsValue(this);
 		}

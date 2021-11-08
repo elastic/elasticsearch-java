@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
 @JsonpDeserializable
-public final class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer window;
 
@@ -51,7 +51,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MovingPercentilesAggregation(Builder builder) {
+	private MovingPercentilesAggregation(Builder builder) {
 		super(builder);
 
 		this.window = builder.window;
@@ -60,8 +60,8 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 	}
 
-	public MovingPercentilesAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MovingPercentilesAggregation of(Function<Builder, ObjectBuilder<MovingPercentilesAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Integer window() {
+	public final Integer window() {
 		return this.window;
 	}
 
@@ -84,7 +84,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	 * API name: {@code shift}
 	 */
 	@Nullable
-	public Integer shift() {
+	public final Integer shift() {
 		return this.shift;
 	}
 
@@ -92,7 +92,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
@@ -100,19 +100,16 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 		super.serializeInternal(generator, mapper);
 		if (this.window != null) {
-
 			generator.writeKey("window");
 			generator.write(this.window);
 
 		}
 		if (this.shift != null) {
-
 			generator.writeKey("shift");
 			generator.write(this.shift);
 
 		}
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
@@ -140,7 +137,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Integer value) {
+		public final Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -148,7 +145,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code shift}
 		 */
-		public Builder shift(@Nullable Integer value) {
+		public final Builder shift(@Nullable Integer value) {
 			this.shift = value;
 			return this;
 		}
@@ -156,7 +153,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -173,6 +170,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		 *             if some of the required fields are null.
 		 */
 		public MovingPercentilesAggregation build() {
+			_checkSingleUse();
 
 			return new MovingPercentilesAggregation(this);
 		}

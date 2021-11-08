@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.count.Response
 @JsonpDeserializable
-public final class CountResponse implements JsonpSerializable {
+public class CountResponse implements JsonpSerializable {
 	private final List<CountRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CountResponse(Builder builder) {
+	private CountResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public CountResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CountResponse of(Function<Builder, ObjectBuilder<CountResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class CountResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<CountRecord> valueBody() {
+	public final List<CountRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class CountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CountResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountResponse> {
 		private List<CountRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class CountResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<CountRecord> value) {
+		public final Builder valueBody(List<CountRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class CountResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(CountRecord... value) {
+		public final Builder valueBody(CountRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(CountRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new CountRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
-			return this.valueBody(fn.apply(new CountRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
-			return this.addValueBody(fn.apply(new CountRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class CountResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CountResponse build() {
+			_checkSingleUse();
 
 			return new CountResponse(this);
 		}

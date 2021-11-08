@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,47 +43,45 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Response
 @JsonpDeserializable
-public final class GetSettingsResponse implements JsonpSerializable {
+public class GetSettingsResponse implements JsonpSerializable {
 	private final Map<String, JsonData> persistent;
 
 	private final Map<String, JsonData> transient_;
 
-	@Nullable
 	private final Map<String, JsonData> defaults;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSettingsResponse(Builder builder) {
+	private GetSettingsResponse(Builder builder) {
 
-		this.persistent = ModelTypeHelper.unmodifiableNonNull(builder.persistent, "persistent");
-		this.transient_ = ModelTypeHelper.unmodifiableNonNull(builder.transient_, "transient");
+		this.persistent = ModelTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
+		this.transient_ = ModelTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
 		this.defaults = ModelTypeHelper.unmodifiable(builder.defaults);
 
 	}
 
-	public GetSettingsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetSettingsResponse of(Function<Builder, ObjectBuilder<GetSettingsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code persistent}
 	 */
-	public Map<String, JsonData> persistent() {
+	public final Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
 	 * Required - API name: {@code transient}
 	 */
-	public Map<String, JsonData> transient_() {
+	public final Map<String, JsonData> transient_() {
 		return this.transient_;
 	}
 
 	/**
 	 * API name: {@code defaults}
 	 */
-	@Nullable
-	public Map<String, JsonData> defaults() {
+	public final Map<String, JsonData> defaults() {
 		return this.defaults;
 	}
 
@@ -98,26 +96,29 @@ public final class GetSettingsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("persistent");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.persistent)) {
+			generator.writeKey("persistent");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.transient_)) {
+			generator.writeKey("transient");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("transient");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.defaults != null) {
-
+		if (ModelTypeHelper.isDefined(this.defaults)) {
 			generator.writeKey("defaults");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.defaults.entrySet()) {
@@ -136,7 +137,7 @@ public final class GetSettingsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetSettingsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetSettingsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSettingsResponse> {
 		private Map<String, JsonData> persistent;
 
 		private Map<String, JsonData> transient_;
@@ -147,57 +148,24 @@ public final class GetSettingsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code persistent}
 		 */
-		public Builder persistent(Map<String, JsonData> value) {
+		public final Builder persistent(Map<String, JsonData> value) {
 			this.persistent = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #persistent(Map)}, creating the map if needed.
-		 */
-		public Builder putPersistent(String key, JsonData value) {
-			if (this.persistent == null) {
-				this.persistent = new HashMap<>();
-			}
-			this.persistent.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transient}
 		 */
-		public Builder transient_(Map<String, JsonData> value) {
+		public final Builder transient_(Map<String, JsonData> value) {
 			this.transient_ = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #transient_(Map)}, creating the map if needed.
-		 */
-		public Builder putTransient(String key, JsonData value) {
-			if (this.transient_ == null) {
-				this.transient_ = new HashMap<>();
-			}
-			this.transient_.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code defaults}
 		 */
-		public Builder defaults(@Nullable Map<String, JsonData> value) {
+		public final Builder defaults(@Nullable Map<String, JsonData> value) {
 			this.defaults = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #defaults(Map)}, creating the map if needed.
-		 */
-		public Builder putDefaults(String key, JsonData value) {
-			if (this.defaults == null) {
-				this.defaults = new HashMap<>();
-			}
-			this.defaults.put(key, value);
 			return this;
 		}
 
@@ -208,6 +176,7 @@ public final class GetSettingsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetSettingsResponse build() {
+			_checkSingleUse();
 
 			return new GetSettingsResponse(this);
 		}

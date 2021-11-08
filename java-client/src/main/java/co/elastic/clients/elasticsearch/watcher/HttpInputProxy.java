@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputProxy
 @JsonpDeserializable
-public final class HttpInputProxy implements JsonpSerializable {
+public class HttpInputProxy implements JsonpSerializable {
 	private final String host;
 
 	private final Number port;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputProxy(Builder builder) {
+	private HttpInputProxy(Builder builder) {
 
-		this.host = Objects.requireNonNull(builder.host, "host");
-		this.port = Objects.requireNonNull(builder.port, "port");
+		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
+		this.port = ModelTypeHelper.requireNonNull(builder.port, this, "port");
 
 	}
 
-	public HttpInputProxy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HttpInputProxy of(Function<Builder, ObjectBuilder<HttpInputProxy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
 	/**
 	 * Required - API name: {@code port}
 	 */
-	public Number port() {
+	public final Number port() {
 		return this.port;
 	}
 
@@ -96,7 +98,7 @@ public final class HttpInputProxy implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputProxy}.
 	 */
-	public static class Builder implements ObjectBuilder<HttpInputProxy> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputProxy> {
 		private String host;
 
 		private Number port;
@@ -104,7 +106,7 @@ public final class HttpInputProxy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code host}
 		 */
-		public Builder host(String value) {
+		public final Builder host(String value) {
 			this.host = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class HttpInputProxy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code port}
 		 */
-		public Builder port(Number value) {
+		public final Builder port(Number value) {
 			this.port = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class HttpInputProxy implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputProxy build() {
+			_checkSingleUse();
 
 			return new HttpInputProxy(this);
 		}

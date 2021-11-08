@@ -31,15 +31,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,21 +50,19 @@ import javax.annotation.Nullable;
 // typedef: tasks.list.Response
 @JsonpDeserializable
 public class ListResponse implements JsonpSerializable {
-	@Nullable
 	private final List<ErrorCause> nodeFailures;
 
-	@Nullable
 	private final Map<String, TaskExecutingNode> nodes;
 
 	@Nullable
 	private final JsonValue /*
 							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-							 * tasks._types.Info> (singleKey = false))
+							 * tasks._types.Info>)
 							 */ tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ListResponse(AbstractBuilder<?> builder) {
+	protected ListResponse(AbstractBuilder<?> builder) {
 
 		this.nodeFailures = ModelTypeHelper.unmodifiable(builder.nodeFailures);
 		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
@@ -74,16 +73,14 @@ public class ListResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code node_failures}
 	 */
-	@Nullable
-	public List<ErrorCause> nodeFailures() {
+	public final List<ErrorCause> nodeFailures() {
 		return this.nodeFailures;
 	}
 
 	/**
 	 * API name: {@code nodes}
 	 */
-	@Nullable
-	public Map<String, TaskExecutingNode> nodes() {
+	public final Map<String, TaskExecutingNode> nodes() {
 		return this.nodes;
 	}
 
@@ -91,10 +88,10 @@ public class ListResponse implements JsonpSerializable {
 	 * API name: {@code tasks}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-						 * tasks._types.Info> (singleKey = false))
-						 */ tasks() {
+	public final JsonValue /*
+							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
+							 * tasks._types.Info>)
+							 */ tasks() {
 		return this.tasks;
 	}
 
@@ -109,8 +106,7 @@ public class ListResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.nodeFailures != null) {
-
+		if (ModelTypeHelper.isDefined(this.nodeFailures)) {
 			generator.writeKey("node_failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.nodeFailures) {
@@ -120,8 +116,7 @@ public class ListResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.nodes != null) {
-
+		if (ModelTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, TaskExecutingNode> item0 : this.nodes.entrySet()) {
@@ -133,7 +128,6 @@ public class ListResponse implements JsonpSerializable {
 
 		}
 		if (this.tasks != null) {
-
 			generator.writeKey("tasks");
 			generator.write(this.tasks);
 
@@ -159,12 +153,15 @@ public class ListResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ListResponse build() {
+			_checkSingleUse();
 
 			return new ListResponse(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private List<ErrorCause> nodeFailures;
 
@@ -174,13 +171,13 @@ public class ListResponse implements JsonpSerializable {
 		@Nullable
 		private JsonValue /*
 							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-							 * tasks._types.Info> (singleKey = false))
+							 * tasks._types.Info>)
 							 */ tasks;
 
 		/**
 		 * API name: {@code node_failures}
 		 */
-		public BuilderT nodeFailures(@Nullable List<ErrorCause> value) {
+		public final BuilderT nodeFailures(@Nullable List<ErrorCause> value) {
 			this.nodeFailures = value;
 			return self();
 		}
@@ -188,52 +185,28 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_failures}
 		 */
-		public BuilderT nodeFailures(ErrorCause... value) {
+		public final BuilderT nodeFailures(ErrorCause... value) {
 			this.nodeFailures = Arrays.asList(value);
 			return self();
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
+		 * API name: {@code node_failures}
 		 */
-		public BuilderT addNodeFailures(ErrorCause value) {
-			if (this.nodeFailures == null) {
-				this.nodeFailures = new ArrayList<>();
+		@SafeVarargs
+		public final BuilderT nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
+			this.nodeFailures = new ArrayList<>(fns.length);
+			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
+				this.nodeFailures.add(fn.apply(new ErrorCause.Builder()).build());
 			}
-			this.nodeFailures.add(value);
 			return self();
-		}
-
-		/**
-		 * Set {@link #nodeFailures(List)} to a singleton list.
-		 */
-		public BuilderT nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.nodeFailures(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
-		 */
-		public BuilderT addNodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addNodeFailures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code nodes}
 		 */
-		public BuilderT nodes(@Nullable Map<String, TaskExecutingNode> value) {
+		public final BuilderT nodes(@Nullable Map<String, TaskExecutingNode> value) {
 			this.nodes = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public BuilderT putNodes(String key, TaskExecutingNode value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return self();
 		}
 
@@ -244,20 +217,18 @@ public class ListResponse implements JsonpSerializable {
 			return this.nodes(Collections.singletonMap(key, fn.apply(new TaskExecutingNode.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public BuilderT putNodes(String key, Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
-			return this.putNodes(key, fn.apply(new TaskExecutingNode.Builder()).build());
+		public final BuilderT nodes(
+				Function<MapBuilder<String, TaskExecutingNode, TaskExecutingNode.Builder>, ObjectBuilder<Map<String, TaskExecutingNode>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(TaskExecutingNode.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code tasks}
 		 */
-		public BuilderT tasks(@Nullable JsonValue /*
-													 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-													 * tasks._types.Info> (singleKey = false))
-													 */ value) {
+		public final BuilderT tasks(@Nullable JsonValue /*
+														 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
+														 * tasks._types.Info>)
+														 */ value) {
 			this.tasks = value;
 			return self();
 		}

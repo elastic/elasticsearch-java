@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.KeywordProperty
 @JsonpDeserializable
-public final class KeywordProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class KeywordProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Double boost;
 
@@ -65,9 +65,12 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	@Nullable
 	private final Boolean splitQueriesOnWhitespace;
 
+	@Nullable
+	private final Boolean timeSeriesDimension;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public KeywordProperty(Builder builder) {
+	private KeywordProperty(Builder builder) {
 		super(builder);
 
 		this.boost = builder.boost;
@@ -78,11 +81,12 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		this.norms = builder.norms;
 		this.nullValue = builder.nullValue;
 		this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
+		this.timeSeriesDimension = builder.timeSeriesDimension;
 
 	}
 
-	public KeywordProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeywordProperty of(Function<Builder, ObjectBuilder<KeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +101,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -105,7 +109,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code eager_global_ordinals}
 	 */
 	@Nullable
-	public Boolean eagerGlobalOrdinals() {
+	public final Boolean eagerGlobalOrdinals() {
 		return this.eagerGlobalOrdinals;
 	}
 
@@ -113,7 +117,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -121,7 +125,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code index_options}
 	 */
 	@Nullable
-	public IndexOptions indexOptions() {
+	public final IndexOptions indexOptions() {
 		return this.indexOptions;
 	}
 
@@ -129,7 +133,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code normalizer}
 	 */
 	@Nullable
-	public String normalizer() {
+	public final String normalizer() {
 		return this.normalizer;
 	}
 
@@ -137,7 +141,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code norms}
 	 */
 	@Nullable
-	public Boolean norms() {
+	public final Boolean norms() {
 		return this.norms;
 	}
 
@@ -145,7 +149,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
 	}
 
@@ -153,8 +157,19 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code split_queries_on_whitespace}
 	 */
 	@Nullable
-	public Boolean splitQueriesOnWhitespace() {
+	public final Boolean splitQueriesOnWhitespace() {
 		return this.splitQueriesOnWhitespace;
+	}
+
+	/**
+	 * [experimental] For internal use by Elastic only. Marks the field as a time
+	 * series dimension. Defaults to false.
+	 * <p>
+	 * API name: {@code time_series_dimension}
+	 */
+	@Nullable
+	public final Boolean timeSeriesDimension() {
+		return this.timeSeriesDimension;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -162,50 +177,47 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		generator.write("type", "keyword");
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.eagerGlobalOrdinals != null) {
-
 			generator.writeKey("eager_global_ordinals");
 			generator.write(this.eagerGlobalOrdinals);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.indexOptions != null) {
-
 			generator.writeKey("index_options");
 			this.indexOptions.serialize(generator, mapper);
 		}
 		if (this.normalizer != null) {
-
 			generator.writeKey("normalizer");
 			generator.write(this.normalizer);
 
 		}
 		if (this.norms != null) {
-
 			generator.writeKey("norms");
 			generator.write(this.norms);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
 		}
 		if (this.splitQueriesOnWhitespace != null) {
-
 			generator.writeKey("split_queries_on_whitespace");
 			generator.write(this.splitQueriesOnWhitespace);
+
+		}
+		if (this.timeSeriesDimension != null) {
+			generator.writeKey("time_series_dimension");
+			generator.write(this.timeSeriesDimension);
 
 		}
 
@@ -243,10 +255,13 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		@Nullable
 		private Boolean splitQueriesOnWhitespace;
 
+		@Nullable
+		private Boolean timeSeriesDimension;
+
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -254,7 +269,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code eager_global_ordinals}
 		 */
-		public Builder eagerGlobalOrdinals(@Nullable Boolean value) {
+		public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
 			this.eagerGlobalOrdinals = value;
 			return this;
 		}
@@ -262,7 +277,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -270,7 +285,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code index_options}
 		 */
-		public Builder indexOptions(@Nullable IndexOptions value) {
+		public final Builder indexOptions(@Nullable IndexOptions value) {
 			this.indexOptions = value;
 			return this;
 		}
@@ -278,7 +293,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code normalizer}
 		 */
-		public Builder normalizer(@Nullable String value) {
+		public final Builder normalizer(@Nullable String value) {
 			this.normalizer = value;
 			return this;
 		}
@@ -286,7 +301,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code norms}
 		 */
-		public Builder norms(@Nullable Boolean value) {
+		public final Builder norms(@Nullable Boolean value) {
 			this.norms = value;
 			return this;
 		}
@@ -294,7 +309,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -302,8 +317,19 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code split_queries_on_whitespace}
 		 */
-		public Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
+		public final Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
 			this.splitQueriesOnWhitespace = value;
+			return this;
+		}
+
+		/**
+		 * [experimental] For internal use by Elastic only. Marks the field as a time
+		 * series dimension. Defaults to false.
+		 * <p>
+		 * API name: {@code time_series_dimension}
+		 */
+		public final Builder timeSeriesDimension(@Nullable Boolean value) {
+			this.timeSeriesDimension = value;
 			return this;
 		}
 
@@ -319,6 +345,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		 *             if some of the required fields are null.
 		 */
 		public KeywordProperty build() {
+			_checkSingleUse();
 
 			return new KeywordProperty(this);
 		}
@@ -343,6 +370,7 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 		op.add(Builder::splitQueriesOnWhitespace, JsonpDeserializer.booleanDeserializer(),
 				"split_queries_on_whitespace");
+		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
 
 		op.ignore("type");
 	}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.delete_index_template.Response
 @JsonpDeserializable
-public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
+public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteIndexTemplateResponse(Builder builder) {
+	private DeleteIndexTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteIndexTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteIndexTemplateResponse of(Function<Builder, ObjectBuilder<DeleteIndexTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteIndexTemplateResponse build() {
+			_checkSingleUse();
 
 			return new DeleteIndexTemplateResponse(this);
 		}

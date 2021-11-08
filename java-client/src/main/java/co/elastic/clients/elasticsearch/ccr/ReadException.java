@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ccr._types.ReadException
 @JsonpDeserializable
-public final class ReadException implements JsonpSerializable {
+public class ReadException implements JsonpSerializable {
 	private final ErrorCause exception;
 
 	private final long fromSeqNo;
@@ -50,36 +52,36 @@ public final class ReadException implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReadException(Builder builder) {
+	private ReadException(Builder builder) {
 
-		this.exception = Objects.requireNonNull(builder.exception, "exception");
-		this.fromSeqNo = Objects.requireNonNull(builder.fromSeqNo, "from_seq_no");
-		this.retries = Objects.requireNonNull(builder.retries, "retries");
+		this.exception = ModelTypeHelper.requireNonNull(builder.exception, this, "exception");
+		this.fromSeqNo = ModelTypeHelper.requireNonNull(builder.fromSeqNo, this, "fromSeqNo");
+		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
 
 	}
 
-	public ReadException(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReadException of(Function<Builder, ObjectBuilder<ReadException>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code exception}
 	 */
-	public ErrorCause exception() {
+	public final ErrorCause exception() {
 		return this.exception;
 	}
 
 	/**
 	 * Required - API name: {@code from_seq_no}
 	 */
-	public long fromSeqNo() {
+	public final long fromSeqNo() {
 		return this.fromSeqNo;
 	}
 
 	/**
 	 * Required - API name: {@code retries}
 	 */
-	public int retries() {
+	public final int retries() {
 		return this.retries;
 	}
 
@@ -110,7 +112,7 @@ public final class ReadException implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReadException}.
 	 */
-	public static class Builder implements ObjectBuilder<ReadException> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReadException> {
 		private ErrorCause exception;
 
 		private Long fromSeqNo;
@@ -120,7 +122,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exception}
 		 */
-		public Builder exception(ErrorCause value) {
+		public final Builder exception(ErrorCause value) {
 			this.exception = value;
 			return this;
 		}
@@ -128,14 +130,14 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exception}
 		 */
-		public Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.exception(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code from_seq_no}
 		 */
-		public Builder fromSeqNo(long value) {
+		public final Builder fromSeqNo(long value) {
 			this.fromSeqNo = value;
 			return this;
 		}
@@ -143,7 +145,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public Builder retries(int value) {
+		public final Builder retries(int value) {
 			this.retries = value;
 			return this;
 		}
@@ -155,6 +157,7 @@ public final class ReadException implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReadException build() {
+			_checkSingleUse();
 
 			return new ReadException(this);
 		}

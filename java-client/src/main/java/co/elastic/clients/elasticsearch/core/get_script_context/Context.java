@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.Context
 @JsonpDeserializable
-public final class Context implements JsonpSerializable {
+public class Context implements JsonpSerializable {
 	private final List<ContextMethod> methods;
 
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Context(Builder builder) {
+	private Context(Builder builder) {
 
-		this.methods = ModelTypeHelper.unmodifiableNonNull(builder.methods, "methods");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.methods = ModelTypeHelper.unmodifiableRequired(builder.methods, this, "methods");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public Context(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code methods}
 	 */
-	public List<ContextMethod> methods() {
+	public final List<ContextMethod> methods() {
 		return this.methods;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -86,14 +87,16 @@ public final class Context implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("methods");
-		generator.writeStartArray();
-		for (ContextMethod item0 : this.methods) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.methods)) {
+			generator.writeKey("methods");
+			generator.writeStartArray();
+			for (ContextMethod item0 : this.methods) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
@@ -104,7 +107,7 @@ public final class Context implements JsonpSerializable {
 	/**
 	 * Builder for {@link Context}.
 	 */
-	public static class Builder implements ObjectBuilder<Context> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Context> {
 		private List<ContextMethod> methods;
 
 		private String name;
@@ -112,7 +115,7 @@ public final class Context implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code methods}
 		 */
-		public Builder methods(List<ContextMethod> value) {
+		public final Builder methods(List<ContextMethod> value) {
 			this.methods = value;
 			return this;
 		}
@@ -120,40 +123,27 @@ public final class Context implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code methods}
 		 */
-		public Builder methods(ContextMethod... value) {
+		public final Builder methods(ContextMethod... value) {
 			this.methods = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #methods(List)}, creating the list if needed.
+		 * Required - API name: {@code methods}
 		 */
-		public Builder addMethods(ContextMethod value) {
-			if (this.methods == null) {
-				this.methods = new ArrayList<>();
+		@SafeVarargs
+		public final Builder methods(Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>>... fns) {
+			this.methods = new ArrayList<>(fns.length);
+			for (Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>> fn : fns) {
+				this.methods.add(fn.apply(new ContextMethod.Builder()).build());
 			}
-			this.methods.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #methods(List)} to a singleton list.
-		 */
-		public Builder methods(Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>> fn) {
-			return this.methods(fn.apply(new ContextMethod.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #methods(List)}, creating the list if needed.
-		 */
-		public Builder addMethods(Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>> fn) {
-			return this.addMethods(fn.apply(new ContextMethod.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -165,6 +155,7 @@ public final class Context implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Context build() {
+			_checkSingleUse();
 
 			return new Context(this);
 		}

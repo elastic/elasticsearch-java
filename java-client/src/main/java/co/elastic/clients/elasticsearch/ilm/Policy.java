@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm._types.Policy
 @JsonpDeserializable
-public final class Policy implements JsonpSerializable {
+public class Policy implements JsonpSerializable {
 	private final Phases phases;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class Policy implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Policy(Builder builder) {
+	private Policy(Builder builder) {
 
-		this.phases = Objects.requireNonNull(builder.phases, "phases");
+		this.phases = ModelTypeHelper.requireNonNull(builder.phases, this, "phases");
 		this.name = builder.name;
 
 	}
 
-	public Policy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Policy of(Function<Builder, ObjectBuilder<Policy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code phases}
 	 */
-	public Phases phases() {
+	public final Phases phases() {
 		return this.phases;
 	}
 
@@ -69,7 +71,7 @@ public final class Policy implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -88,7 +90,6 @@ public final class Policy implements JsonpSerializable {
 		this.phases.serialize(generator, mapper);
 
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
@@ -101,7 +102,7 @@ public final class Policy implements JsonpSerializable {
 	/**
 	 * Builder for {@link Policy}.
 	 */
-	public static class Builder implements ObjectBuilder<Policy> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Policy> {
 		private Phases phases;
 
 		@Nullable
@@ -110,7 +111,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public Builder phases(Phases value) {
+		public final Builder phases(Phases value) {
 			this.phases = value;
 			return this;
 		}
@@ -118,14 +119,14 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
+		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
 			return this.phases(fn.apply(new Phases.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -137,6 +138,7 @@ public final class Policy implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Policy build() {
+			_checkSingleUse();
 
 			return new Policy(this);
 		}

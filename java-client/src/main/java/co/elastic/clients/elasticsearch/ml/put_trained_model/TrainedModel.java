@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModel
 @JsonpDeserializable
-public final class TrainedModel implements JsonpSerializable {
+public class TrainedModel implements JsonpSerializable {
 	@Nullable
 	private final TrainedModelTree tree;
 
@@ -50,7 +51,7 @@ public final class TrainedModel implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModel(Builder builder) {
+	private TrainedModel(Builder builder) {
 
 		this.tree = builder.tree;
 		this.treeNode = builder.treeNode;
@@ -58,8 +59,8 @@ public final class TrainedModel implements JsonpSerializable {
 
 	}
 
-	public TrainedModel(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModel of(Function<Builder, ObjectBuilder<TrainedModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +69,7 @@ public final class TrainedModel implements JsonpSerializable {
 	 * API name: {@code tree}
 	 */
 	@Nullable
-	public TrainedModelTree tree() {
+	public final TrainedModelTree tree() {
 		return this.tree;
 	}
 
@@ -84,7 +85,7 @@ public final class TrainedModel implements JsonpSerializable {
 	 * API name: {@code tree_node}
 	 */
 	@Nullable
-	public TrainedModelTreeNode treeNode() {
+	public final TrainedModelTreeNode treeNode() {
 		return this.treeNode;
 	}
 
@@ -94,7 +95,7 @@ public final class TrainedModel implements JsonpSerializable {
 	 * API name: {@code ensemble}
 	 */
 	@Nullable
-	public Ensemble ensemble() {
+	public final Ensemble ensemble() {
 		return this.ensemble;
 	}
 
@@ -110,19 +111,16 @@ public final class TrainedModel implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.tree != null) {
-
 			generator.writeKey("tree");
 			this.tree.serialize(generator, mapper);
 
 		}
 		if (this.treeNode != null) {
-
 			generator.writeKey("tree_node");
 			this.treeNode.serialize(generator, mapper);
 
 		}
 		if (this.ensemble != null) {
-
 			generator.writeKey("ensemble");
 			this.ensemble.serialize(generator, mapper);
 
@@ -135,7 +133,7 @@ public final class TrainedModel implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModel}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModel> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModel> {
 		@Nullable
 		private TrainedModelTree tree;
 
@@ -150,7 +148,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tree}
 		 */
-		public Builder tree(@Nullable TrainedModelTree value) {
+		public final Builder tree(@Nullable TrainedModelTree value) {
 			this.tree = value;
 			return this;
 		}
@@ -160,7 +158,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tree}
 		 */
-		public Builder tree(Function<TrainedModelTree.Builder, ObjectBuilder<TrainedModelTree>> fn) {
+		public final Builder tree(Function<TrainedModelTree.Builder, ObjectBuilder<TrainedModelTree>> fn) {
 			return this.tree(fn.apply(new TrainedModelTree.Builder()).build());
 		}
 
@@ -175,7 +173,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tree_node}
 		 */
-		public Builder treeNode(@Nullable TrainedModelTreeNode value) {
+		public final Builder treeNode(@Nullable TrainedModelTreeNode value) {
 			this.treeNode = value;
 			return this;
 		}
@@ -191,7 +189,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tree_node}
 		 */
-		public Builder treeNode(Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
+		public final Builder treeNode(Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
 			return this.treeNode(fn.apply(new TrainedModelTreeNode.Builder()).build());
 		}
 
@@ -200,7 +198,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ensemble}
 		 */
-		public Builder ensemble(@Nullable Ensemble value) {
+		public final Builder ensemble(@Nullable Ensemble value) {
 			this.ensemble = value;
 			return this;
 		}
@@ -210,7 +208,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ensemble}
 		 */
-		public Builder ensemble(Function<Ensemble.Builder, ObjectBuilder<Ensemble>> fn) {
+		public final Builder ensemble(Function<Ensemble.Builder, ObjectBuilder<Ensemble>> fn) {
 			return this.ensemble(fn.apply(new Ensemble.Builder()).build());
 		}
 
@@ -221,6 +219,7 @@ public final class TrainedModel implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModel build() {
+			_checkSingleUse();
 
 			return new TrainedModel(this);
 		}

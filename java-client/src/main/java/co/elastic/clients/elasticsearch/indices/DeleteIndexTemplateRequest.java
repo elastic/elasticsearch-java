@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: indices.delete_index_template.Request
 
-public final class DeleteIndexTemplateRequest extends RequestBase {
+public class DeleteIndexTemplateRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteIndexTemplateRequest(Builder builder) {
+	private DeleteIndexTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeleteIndexTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteIndexTemplateRequest of(Function<Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +72,7 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteIndexTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteIndexTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteIndexTemplateRequest> {
 		private String name;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteIndexTemplateRequest build() {
+			_checkSingleUse();
 
 			return new DeleteIndexTemplateRequest(this);
 		}

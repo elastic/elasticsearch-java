@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingFunctionAggregation
 @JsonpDeserializable
-public final class MovingFunctionAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MovingFunctionAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String script;
 
@@ -51,7 +51,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MovingFunctionAggregation(Builder builder) {
+	private MovingFunctionAggregation(Builder builder) {
 		super(builder);
 
 		this.script = builder.script;
@@ -60,8 +60,8 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 
 	}
 
-	public MovingFunctionAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MovingFunctionAggregation of(Function<Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public String script() {
+	public final String script() {
 		return this.script;
 	}
 
@@ -84,7 +84,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 	 * API name: {@code shift}
 	 */
 	@Nullable
-	public Integer shift() {
+	public final Integer shift() {
 		return this.shift;
 	}
 
@@ -92,7 +92,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Integer window() {
+	public final Integer window() {
 		return this.window;
 	}
 
@@ -100,19 +100,16 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 
 		super.serializeInternal(generator, mapper);
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.shift != null) {
-
 			generator.writeKey("shift");
 			generator.write(this.shift);
 
 		}
 		if (this.window != null) {
-
 			generator.writeKey("window");
 			generator.write(this.window);
 
@@ -140,7 +137,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable String value) {
+		public final Builder script(@Nullable String value) {
 			this.script = value;
 			return this;
 		}
@@ -148,7 +145,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 		/**
 		 * API name: {@code shift}
 		 */
-		public Builder shift(@Nullable Integer value) {
+		public final Builder shift(@Nullable Integer value) {
 			this.shift = value;
 			return this;
 		}
@@ -156,7 +153,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Integer value) {
+		public final Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -173,6 +170,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 		 *             if some of the required fields are null.
 		 */
 		public MovingFunctionAggregation build() {
+			_checkSingleUse();
 
 			return new MovingFunctionAggregation(this);
 		}

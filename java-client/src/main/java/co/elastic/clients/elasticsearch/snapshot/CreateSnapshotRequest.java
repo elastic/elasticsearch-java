@@ -37,10 +37,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Request
 @JsonpDeserializable
-public final class CreateSnapshotRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class CreateSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> featureStates;
 
 	@Nullable
@@ -61,13 +60,11 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final Boolean includeGlobalState;
 
-	@Nullable
 	private final List<String> indices;
 
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -82,7 +79,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateSnapshotRequest(Builder builder) {
+	private CreateSnapshotRequest(Builder builder) {
 
 		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -91,14 +88,14 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		this.masterTimeout = builder.masterTimeout;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public CreateSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateSnapshotRequest of(Function<Builder, ObjectBuilder<CreateSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,8 +108,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code feature_states}
 	 */
-	@Nullable
-	public List<String> featureStates() {
+	public final List<String> featureStates() {
 		return this.featureStates;
 	}
 
@@ -125,7 +121,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -139,7 +135,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * API name: {@code include_global_state}
 	 */
 	@Nullable
-	public Boolean includeGlobalState() {
+	public final Boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
@@ -149,8 +145,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -161,7 +156,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -171,8 +166,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -186,7 +180,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * API name: {@code partial}
 	 */
 	@Nullable
-	public Boolean partial() {
+	public final Boolean partial() {
 		return this.partial;
 	}
 
@@ -195,7 +189,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code repository}
 	 */
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -204,7 +198,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
@@ -216,7 +210,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -231,8 +225,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.featureStates != null) {
-
+		if (ModelTypeHelper.isDefined(this.featureStates)) {
 			generator.writeKey("feature_states");
 			generator.writeStartArray();
 			for (String item0 : this.featureStates) {
@@ -243,19 +236,16 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 
 		}
 		if (this.ignoreUnavailable != null) {
-
 			generator.writeKey("ignore_unavailable");
 			generator.write(this.ignoreUnavailable);
 
 		}
 		if (this.includeGlobalState != null) {
-
 			generator.writeKey("include_global_state");
 			generator.write(this.includeGlobalState);
 
 		}
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -265,8 +255,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -278,7 +267,6 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 
 		}
 		if (this.partial != null) {
-
 			generator.writeKey("partial");
 			generator.write(this.partial);
 
@@ -291,7 +279,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link CreateSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateSnapshotRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateSnapshotRequest> {
 		@Nullable
 		private List<String> featureStates;
 
@@ -330,7 +318,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code feature_states}
 		 */
-		public Builder featureStates(@Nullable List<String> value) {
+		public final Builder featureStates(@Nullable List<String> value) {
 			this.featureStates = value;
 			return this;
 		}
@@ -345,19 +333,8 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code feature_states}
 		 */
-		public Builder featureStates(String... value) {
+		public final Builder featureStates(String... value) {
 			this.featureStates = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
-		 */
-		public Builder addFeatureStates(String value) {
-			if (this.featureStates == null) {
-				this.featureStates = new ArrayList<>();
-			}
-			this.featureStates.add(value);
 			return this;
 		}
 
@@ -369,7 +346,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -383,7 +360,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code include_global_state}
 		 */
-		public Builder includeGlobalState(@Nullable Boolean value) {
+		public final Builder includeGlobalState(@Nullable Boolean value) {
 			this.includeGlobalState = value;
 			return this;
 		}
@@ -394,7 +371,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<String> value) {
+		public final Builder indices(@Nullable List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -405,19 +382,8 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
@@ -427,7 +393,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -438,19 +404,8 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
@@ -463,7 +418,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code partial}
 		 */
-		public Builder partial(@Nullable Boolean value) {
+		public final Builder partial(@Nullable Boolean value) {
 			this.partial = value;
 			return this;
 		}
@@ -473,7 +428,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -483,7 +438,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -495,7 +450,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -507,6 +462,7 @@ public final class CreateSnapshotRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public CreateSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new CreateSnapshotRequest(this);
 		}

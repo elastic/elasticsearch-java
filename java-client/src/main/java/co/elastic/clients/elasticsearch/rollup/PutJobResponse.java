@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: rollup.put_job.Response
 @JsonpDeserializable
-public final class PutJobResponse extends AcknowledgedResponseBase {
+public class PutJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutJobResponse(Builder builder) {
+	private PutJobResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutJobResponse of(Function<Builder, ObjectBuilder<PutJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutJobResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutJobResponse build() {
+			_checkSingleUse();
 
 			return new PutJobResponse(this);
 		}

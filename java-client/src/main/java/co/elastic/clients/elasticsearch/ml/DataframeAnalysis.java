@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -52,35 +55,31 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public DataframeAnalysis(DataframeAnalysisVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends DataframeAnalysisVariant> DataframeAnalysis(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private DataframeAnalysis(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public DataframeAnalysis(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysis of(Function<Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -127,7 +126,7 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 		generator.writeEnd();
 	}
 
-	public static class Builder implements ObjectBuilder<DataframeAnalysis> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysis> {
 		private String _type;
 		private Object _value;
 
@@ -165,6 +164,7 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 		}
 
 		public DataframeAnalysis build() {
+			_checkSingleUse();
 			return new DataframeAnalysis(this);
 		}
 
@@ -178,6 +178,6 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 
 	}
 
-	public static final JsonpDeserializer<DataframeAnalysis> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
-			DataframeAnalysis::setupDataframeAnalysisDeserializer, Builder::build);
+	public static final JsonpDeserializer<DataframeAnalysis> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalysis::setupDataframeAnalysisDeserializer, Builder::build);
 }

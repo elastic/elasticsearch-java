@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsWildcard
 @JsonpDeserializable
-public final class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
+public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -50,16 +52,16 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IntervalsWildcard(Builder builder) {
+	private IntervalsWildcard(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
+		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 		this.useField = builder.useField;
 
 	}
 
-	public IntervalsWildcard(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsWildcard of(Function<Builder, ObjectBuilder<IntervalsWildcard>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,14 +76,14 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * Required - API name: {@code pattern}
 	 */
-	public String pattern() {
+	public final String pattern() {
 		return this.pattern;
 	}
 
@@ -89,7 +91,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 	 * API name: {@code use_field}
 	 */
 	@Nullable
-	public String useField() {
+	public final String useField() {
 		return this.useField;
 	}
 
@@ -105,17 +107,14 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-
 		generator.writeKey("pattern");
 		generator.write(this.pattern);
 
 		if (this.useField != null) {
-
 			generator.writeKey("use_field");
 			generator.write(this.useField);
 
@@ -128,7 +127,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 	/**
 	 * Builder for {@link IntervalsWildcard}.
 	 */
-	public static class Builder implements ObjectBuilder<IntervalsWildcard> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsWildcard> {
 		@Nullable
 		private String analyzer;
 
@@ -140,7 +139,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -148,7 +147,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public Builder pattern(String value) {
+		public final Builder pattern(String value) {
 			this.pattern = value;
 			return this;
 		}
@@ -156,7 +155,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 		/**
 		 * API name: {@code use_field}
 		 */
-		public Builder useField(@Nullable String value) {
+		public final Builder useField(@Nullable String value) {
 			this.useField = value;
 			return this;
 		}
@@ -168,6 +167,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 		 *             if some of the required fields are null.
 		 */
 		public IntervalsWildcard build() {
+			_checkSingleUse();
 
 			return new IntervalsWildcard(this);
 		}

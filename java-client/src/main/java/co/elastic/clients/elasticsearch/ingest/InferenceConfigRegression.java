@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfigRegression
 @JsonpDeserializable
-public final class InferenceConfigRegression implements JsonpSerializable {
+public class InferenceConfigRegression implements JsonpSerializable {
 	private final String resultsField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InferenceConfigRegression(Builder builder) {
+	private InferenceConfigRegression(Builder builder) {
 
-		this.resultsField = Objects.requireNonNull(builder.resultsField, "results_field");
+		this.resultsField = ModelTypeHelper.requireNonNull(builder.resultsField, this, "resultsField");
 
 	}
 
-	public InferenceConfigRegression(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InferenceConfigRegression of(Function<Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code results_field}
 	 */
-	public String resultsField() {
+	public final String resultsField() {
 		return this.resultsField;
 	}
 
@@ -82,13 +84,13 @@ public final class InferenceConfigRegression implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceConfigRegression}.
 	 */
-	public static class Builder implements ObjectBuilder<InferenceConfigRegression> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfigRegression> {
 		private String resultsField;
 
 		/**
 		 * Required - API name: {@code results_field}
 		 */
-		public Builder resultsField(String value) {
+		public final Builder resultsField(String value) {
 			this.resultsField = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class InferenceConfigRegression implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InferenceConfigRegression build() {
+			_checkSingleUse();
 
 			return new InferenceConfigRegression(this);
 		}

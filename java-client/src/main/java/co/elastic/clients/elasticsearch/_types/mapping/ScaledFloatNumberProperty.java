@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ScaledFloatNumberProperty
 @JsonpDeserializable
-public final class ScaledFloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
+public class ScaledFloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean coerce;
 
@@ -51,7 +51,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScaledFloatNumberProperty(Builder builder) {
+	private ScaledFloatNumberProperty(Builder builder) {
 		super(builder);
 
 		this.coerce = builder.coerce;
@@ -60,8 +60,8 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 
 	}
 
-	public ScaledFloatNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScaledFloatNumberProperty of(Function<Builder, ObjectBuilder<ScaledFloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -84,7 +84,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Double nullValue() {
+	public final Double nullValue() {
 		return this.nullValue;
 	}
 
@@ -92,7 +92,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 	 * API name: {@code scaling_factor}
 	 */
 	@Nullable
-	public Double scalingFactor() {
+	public final Double scalingFactor() {
 		return this.scalingFactor;
 	}
 
@@ -101,19 +101,16 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 		generator.write("type", "scaled_float");
 		super.serializeInternal(generator, mapper);
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
 		}
 		if (this.scalingFactor != null) {
-
 			generator.writeKey("scaling_factor");
 			generator.write(this.scalingFactor);
 
@@ -141,7 +138,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 		/**
 		 * API name: {@code coerce}
 		 */
-		public Builder coerce(@Nullable Boolean value) {
+		public final Builder coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return this;
 		}
@@ -149,7 +146,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Double value) {
+		public final Builder nullValue(@Nullable Double value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -157,7 +154,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 		/**
 		 * API name: {@code scaling_factor}
 		 */
-		public Builder scalingFactor(@Nullable Double value) {
+		public final Builder scalingFactor(@Nullable Double value) {
 			this.scalingFactor = value;
 			return this;
 		}
@@ -174,6 +171,7 @@ public final class ScaledFloatNumberProperty extends NumberPropertyBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public ScaledFloatNumberProperty build() {
+			_checkSingleUse();
 
 			return new ScaledFloatNumberProperty(this);
 		}

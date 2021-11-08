@@ -34,10 +34,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.list.Request
 
-public final class ListRequest extends RequestBase {
-	@Nullable
+public class ListRequest extends RequestBase {
 	private final List<String> actions;
 
 	@Nullable
@@ -59,7 +58,6 @@ public final class ListRequest extends RequestBase {
 	@Nullable
 	private final GroupBy groupBy;
 
-	@Nullable
 	private final List<String> nodes;
 
 	@Nullable
@@ -73,7 +71,7 @@ public final class ListRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ListRequest(Builder builder) {
+	private ListRequest(Builder builder) {
 
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
@@ -85,8 +83,8 @@ public final class ListRequest extends RequestBase {
 
 	}
 
-	public ListRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ListRequest of(Function<Builder, ObjectBuilder<ListRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,8 +93,7 @@ public final class ListRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code actions}
 	 */
-	@Nullable
-	public List<String> actions() {
+	public final List<String> actions() {
 		return this.actions;
 	}
 
@@ -106,7 +103,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code detailed}
 	 */
 	@Nullable
-	public Boolean detailed() {
+	public final Boolean detailed() {
 		return this.detailed;
 	}
 
@@ -116,7 +113,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code group_by}
 	 */
 	@Nullable
-	public GroupBy groupBy() {
+	public final GroupBy groupBy() {
 		return this.groupBy;
 	}
 
@@ -127,8 +124,7 @@ public final class ListRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code nodes}
 	 */
-	@Nullable
-	public List<String> nodes() {
+	public final List<String> nodes() {
 		return this.nodes;
 	}
 
@@ -139,7 +135,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
-	public String parentTaskId() {
+	public final String parentTaskId() {
 		return this.parentTaskId;
 	}
 
@@ -149,7 +145,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -159,7 +155,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -168,7 +164,7 @@ public final class ListRequest extends RequestBase {
 	/**
 	 * Builder for {@link ListRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ListRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListRequest> {
 		@Nullable
 		private List<String> actions;
 
@@ -196,7 +192,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<String> value) {
+		public final Builder actions(@Nullable List<String> value) {
 			this.actions = value;
 			return this;
 		}
@@ -207,19 +203,8 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(String... value) {
+		public final Builder actions(String... value) {
 			this.actions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(String value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
 			return this;
 		}
 
@@ -228,7 +213,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code detailed}
 		 */
-		public Builder detailed(@Nullable Boolean value) {
+		public final Builder detailed(@Nullable Boolean value) {
 			this.detailed = value;
 			return this;
 		}
@@ -238,7 +223,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code group_by}
 		 */
-		public Builder groupBy(@Nullable GroupBy value) {
+		public final Builder groupBy(@Nullable GroupBy value) {
 			this.groupBy = value;
 			return this;
 		}
@@ -250,7 +235,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(@Nullable List<String> value) {
+		public final Builder nodes(@Nullable List<String> value) {
 			this.nodes = value;
 			return this;
 		}
@@ -262,19 +247,8 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(String... value) {
+		public final Builder nodes(String... value) {
 			this.nodes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
-		 */
-		public Builder addNodes(String value) {
-			if (this.nodes == null) {
-				this.nodes = new ArrayList<>();
-			}
-			this.nodes.add(value);
 			return this;
 		}
 
@@ -284,7 +258,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
-		public Builder parentTaskId(@Nullable String value) {
+		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
 			return this;
 		}
@@ -294,7 +268,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -304,7 +278,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -316,6 +290,7 @@ public final class ListRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ListRequest build() {
+			_checkSingleUse();
 
 			return new ListRequest(this);
 		}
@@ -342,7 +317,7 @@ public final class ListRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.nodes != null) {
+				if (ModelTypeHelper.isDefined(request.nodes)) {
 					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.parentTaskId != null) {
@@ -352,9 +327,9 @@ public final class ListRequest extends RequestBase {
 					params.put("detailed", String.valueOf(request.detailed));
 				}
 				if (request.groupBy != null) {
-					params.put("group_by", request.groupBy.toString());
+					params.put("group_by", request.groupBy.jsonValue());
 				}
-				if (request.actions != null) {
+				if (ModelTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {

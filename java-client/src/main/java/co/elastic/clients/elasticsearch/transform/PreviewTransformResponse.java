@@ -35,8 +35,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Response
 
-public final class PreviewTransformResponse<TTransform> implements JsonpSerializable {
+public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	private final IndexState generatedDestIndex;
 
 	private final List<TTransform> preview;
@@ -56,29 +56,31 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewTransformResponse(Builder<TTransform> builder) {
+	private PreviewTransformResponse(Builder<TTransform> builder) {
 
-		this.generatedDestIndex = Objects.requireNonNull(builder.generatedDestIndex, "generated_dest_index");
-		this.preview = ModelTypeHelper.unmodifiableNonNull(builder.preview, "preview");
+		this.generatedDestIndex = ModelTypeHelper.requireNonNull(builder.generatedDestIndex, this,
+				"generatedDestIndex");
+		this.preview = ModelTypeHelper.unmodifiableRequired(builder.preview, this, "preview");
 		this.tTransformSerializer = builder.tTransformSerializer;
 
 	}
 
-	public PreviewTransformResponse(Function<Builder<TTransform>, Builder<TTransform>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TTransform> PreviewTransformResponse<TTransform> of(
+			Function<Builder<TTransform>, ObjectBuilder<PreviewTransformResponse<TTransform>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code generated_dest_index}
 	 */
-	public IndexState generatedDestIndex() {
+	public final IndexState generatedDestIndex() {
 		return this.generatedDestIndex;
 	}
 
 	/**
 	 * Required - API name: {@code preview}
 	 */
-	public List<TTransform> preview() {
+	public final List<TTransform> preview() {
 		return this.preview;
 	}
 
@@ -96,13 +98,16 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		generator.writeKey("generated_dest_index");
 		this.generatedDestIndex.serialize(generator, mapper);
 
-		generator.writeKey("preview");
-		generator.writeStartArray();
-		for (TTransform item0 : this.preview) {
-			JsonpUtils.serialize(item0, generator, tTransformSerializer, mapper);
+		if (ModelTypeHelper.isDefined(this.preview)) {
+			generator.writeKey("preview");
+			generator.writeStartArray();
+			for (TTransform item0 : this.preview) {
+				JsonpUtils.serialize(item0, generator, tTransformSerializer, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -111,7 +116,9 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 	/**
 	 * Builder for {@link PreviewTransformResponse}.
 	 */
-	public static class Builder<TTransform> implements ObjectBuilder<PreviewTransformResponse<TTransform>> {
+	public static class Builder<TTransform> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<PreviewTransformResponse<TTransform>> {
 		private IndexState generatedDestIndex;
 
 		private List<TTransform> preview;
@@ -122,7 +129,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		/**
 		 * Required - API name: {@code generated_dest_index}
 		 */
-		public Builder<TTransform> generatedDestIndex(IndexState value) {
+		public final Builder<TTransform> generatedDestIndex(IndexState value) {
 			this.generatedDestIndex = value;
 			return this;
 		}
@@ -130,14 +137,15 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		/**
 		 * Required - API name: {@code generated_dest_index}
 		 */
-		public Builder<TTransform> generatedDestIndex(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
+		public final Builder<TTransform> generatedDestIndex(
+				Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
 			return this.generatedDestIndex(fn.apply(new IndexState.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code preview}
 		 */
-		public Builder<TTransform> preview(List<TTransform> value) {
+		public final Builder<TTransform> preview(List<TTransform> value) {
 			this.preview = value;
 			return this;
 		}
@@ -145,19 +153,8 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		/**
 		 * Required - API name: {@code preview}
 		 */
-		public Builder<TTransform> preview(TTransform... value) {
+		public final Builder<TTransform> preview(TTransform... value) {
 			this.preview = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #preview(List)}, creating the list if needed.
-		 */
-		public Builder<TTransform> addPreview(TTransform value) {
-			if (this.preview == null) {
-				this.preview = new ArrayList<>();
-			}
-			this.preview.add(value);
 			return this;
 		}
 
@@ -165,7 +162,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		 * Serializer for TTransform. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TTransform> tTransformSerializer(@Nullable JsonpSerializer<TTransform> value) {
+		public final Builder<TTransform> tTransformSerializer(@Nullable JsonpSerializer<TTransform> value) {
 			this.tTransformSerializer = value;
 			return this;
 		}
@@ -177,6 +174,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public PreviewTransformResponse<TTransform> build() {
+			_checkSingleUse();
 
 			return new PreviewTransformResponse<TTransform>(this);
 		}

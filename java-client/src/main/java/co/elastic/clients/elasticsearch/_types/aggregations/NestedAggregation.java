@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NestedAggregation
 @JsonpDeserializable
-public final class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
+public class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String path;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NestedAggregation(Builder builder) {
+	private NestedAggregation(Builder builder) {
 		super(builder);
 
 		this.path = builder.path;
 
 	}
 
-	public NestedAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NestedAggregation of(Function<Builder, ObjectBuilder<NestedAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -75,7 +75,6 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 
 		super.serializeInternal(generator, mapper);
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
@@ -97,7 +96,7 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 		 *             if some of the required fields are null.
 		 */
 		public NestedAggregation build() {
+			_checkSingleUse();
 
 			return new NestedAggregation(this);
 		}

@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ParentIdQuery
 @JsonpDeserializable
-public final class ParentIdQuery extends QueryBase implements QueryVariant {
+public class ParentIdQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String id;
 
@@ -51,7 +51,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ParentIdQuery(Builder builder) {
+	private ParentIdQuery(Builder builder) {
 		super(builder);
 
 		this.id = builder.id;
@@ -60,8 +60,8 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public ParentIdQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ParentIdQuery of(Function<Builder, ObjectBuilder<ParentIdQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -84,7 +84,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -92,7 +92,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -100,19 +100,16 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -138,7 +135,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -146,7 +143,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -154,7 +151,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -171,6 +168,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public ParentIdQuery build() {
+			_checkSingleUse();
 
 			return new ParentIdQuery(this);
 		}

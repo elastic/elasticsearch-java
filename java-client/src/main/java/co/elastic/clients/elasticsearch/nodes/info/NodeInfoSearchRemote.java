@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearchRemote
 @JsonpDeserializable
-public final class NodeInfoSearchRemote implements JsonpSerializable {
+public class NodeInfoSearchRemote implements JsonpSerializable {
 	private final String connect;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSearchRemote(Builder builder) {
+	private NodeInfoSearchRemote(Builder builder) {
 
-		this.connect = Objects.requireNonNull(builder.connect, "connect");
+		this.connect = ModelTypeHelper.requireNonNull(builder.connect, this, "connect");
 
 	}
 
-	public NodeInfoSearchRemote(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSearchRemote of(Function<Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code connect}
 	 */
-	public String connect() {
+	public final String connect() {
 		return this.connect;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoSearchRemote implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSearchRemote}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSearchRemote> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearchRemote> {
 		private String connect;
 
 		/**
 		 * Required - API name: {@code connect}
 		 */
-		public Builder connect(String value) {
+		public final Builder connect(String value) {
 			this.connect = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoSearchRemote implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSearchRemote build() {
+			_checkSingleUse();
 
 			return new NodeInfoSearchRemote(this);
 		}

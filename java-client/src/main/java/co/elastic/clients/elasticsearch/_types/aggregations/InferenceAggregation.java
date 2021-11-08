@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
 @JsonpDeserializable
-public final class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final String modelId;
 
 	@Nullable
@@ -46,16 +47,16 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InferenceAggregation(Builder builder) {
+	private InferenceAggregation(Builder builder) {
 		super(builder);
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
 
-	public InferenceAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InferenceAggregation of(Function<Builder, ObjectBuilder<InferenceAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +70,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 	/**
 	 * Required - API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -77,19 +78,17 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 	 * API name: {@code inference_config}
 	 */
 	@Nullable
-	public InferenceConfig inferenceConfig() {
+	public final InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
 		if (this.inferenceConfig != null) {
-
 			generator.writeKey("inference_config");
 			this.inferenceConfig.serialize(generator, mapper);
 
@@ -113,7 +112,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 		/**
 		 * Required - API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(@Nullable InferenceConfig value) {
+		public final Builder inferenceConfig(@Nullable InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
 			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
@@ -145,6 +144,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public InferenceAggregation build() {
+			_checkSingleUse();
 
 			return new InferenceAggregation(this);
 		}

@@ -34,23 +34,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
 @JsonpDeserializable
-public final class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final boolean onlyOnSamePosition;
+public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+	@Nullable
+	private final Boolean onlyOnSamePosition;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UniqueTokenFilter(Builder builder) {
+	private UniqueTokenFilter(Builder builder) {
 		super(builder);
 
-		this.onlyOnSamePosition = Objects.requireNonNull(builder.onlyOnSamePosition, "only_on_same_position");
+		this.onlyOnSamePosition = builder.onlyOnSamePosition;
 
 	}
 
-	public UniqueTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UniqueTokenFilter of(Function<Builder, ObjectBuilder<UniqueTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,9 +64,10 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * Required - API name: {@code only_on_same_position}
+	 * API name: {@code only_on_same_position}
 	 */
-	public boolean onlyOnSamePosition() {
+	@Nullable
+	public final Boolean onlyOnSamePosition() {
 		return this.onlyOnSamePosition;
 	}
 
@@ -72,9 +75,11 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 
 		generator.write("type", "unique");
 		super.serializeInternal(generator, mapper);
+		if (this.onlyOnSamePosition != null) {
+			generator.writeKey("only_on_same_position");
+			generator.write(this.onlyOnSamePosition);
 
-		generator.writeKey("only_on_same_position");
-		generator.write(this.onlyOnSamePosition);
+		}
 
 	}
 
@@ -86,12 +91,13 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UniqueTokenFilter> {
+		@Nullable
 		private Boolean onlyOnSamePosition;
 
 		/**
-		 * Required - API name: {@code only_on_same_position}
+		 * API name: {@code only_on_same_position}
 		 */
-		public Builder onlyOnSamePosition(boolean value) {
+		public final Builder onlyOnSamePosition(@Nullable Boolean value) {
 			this.onlyOnSamePosition = value;
 			return this;
 		}
@@ -108,6 +114,7 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 		 *             if some of the required fields are null.
 		 */
 		public UniqueTokenFilter build() {
+			_checkSingleUse();
 
 			return new UniqueTokenFilter(this);
 		}

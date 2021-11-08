@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,35 +40,35 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardsStatus
 @JsonpDeserializable
-public final class SnapshotShardsStatus implements JsonpSerializable {
+public class SnapshotShardsStatus implements JsonpSerializable {
 	private final ShardsStatsStage stage;
 
 	private final ShardsStatsSummary stats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotShardsStatus(Builder builder) {
+	private SnapshotShardsStatus(Builder builder) {
 
-		this.stage = Objects.requireNonNull(builder.stage, "stage");
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
+		this.stage = ModelTypeHelper.requireNonNull(builder.stage, this, "stage");
+		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
-	public SnapshotShardsStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotShardsStatus of(Function<Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stage}
 	 */
-	public ShardsStatsStage stage() {
+	public final ShardsStatsStage stage() {
 		return this.stage;
 	}
 
 	/**
 	 * Required - API name: {@code stats}
 	 */
-	public ShardsStatsSummary stats() {
+	public final ShardsStatsSummary stats() {
 		return this.stats;
 	}
 
@@ -83,7 +85,6 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 
 		generator.writeKey("stage");
 		this.stage.serialize(generator, mapper);
-
 		generator.writeKey("stats");
 		this.stats.serialize(generator, mapper);
 
@@ -94,7 +95,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotShardsStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotShardsStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardsStatus> {
 		private ShardsStatsStage stage;
 
 		private ShardsStatsSummary stats;
@@ -102,7 +103,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stage}
 		 */
-		public Builder stage(ShardsStatsStage value) {
+		public final Builder stage(ShardsStatsStage value) {
 			this.stage = value;
 			return this;
 		}
@@ -110,7 +111,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(ShardsStatsSummary value) {
+		public final Builder stats(ShardsStatsSummary value) {
 			this.stats = value;
 			return this;
 		}
@@ -118,7 +119,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
+		public final Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
 			return this.stats(fn.apply(new ShardsStatsSummary.Builder()).build());
 		}
 
@@ -129,6 +130,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotShardsStatus build() {
+			_checkSingleUse();
 
 			return new SnapshotShardsStatus(this);
 		}

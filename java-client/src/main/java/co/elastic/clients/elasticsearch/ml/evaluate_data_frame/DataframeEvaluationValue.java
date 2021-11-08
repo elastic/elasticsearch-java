@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -43,16 +45,16 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationValue(AbstractBuilder<?> builder) {
+	protected DataframeEvaluationValue(AbstractBuilder<?> builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public double value() {
+	public final double value() {
 		return this.value;
 	}
 
@@ -92,18 +94,21 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationValue build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationValue(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Double value;
 
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public BuilderT value(double value) {
+		public final BuilderT value(double value) {
 			this.value = value;
 			return self();
 		}

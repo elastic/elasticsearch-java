@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreWrapper
 @JsonpDeserializable
-public final class ShardStoreWrapper implements JsonpSerializable {
+public class ShardStoreWrapper implements JsonpSerializable {
 	private final List<ShardStore> stores;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStoreWrapper(Builder builder) {
+	private ShardStoreWrapper(Builder builder) {
 
-		this.stores = ModelTypeHelper.unmodifiableNonNull(builder.stores, "stores");
+		this.stores = ModelTypeHelper.unmodifiableRequired(builder.stores, this, "stores");
 
 	}
 
-	public ShardStoreWrapper(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStoreWrapper of(Function<Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stores}
 	 */
-	public List<ShardStore> stores() {
+	public final List<ShardStore> stores() {
 		return this.stores;
 	}
 
@@ -75,13 +76,16 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stores");
-		generator.writeStartArray();
-		for (ShardStore item0 : this.stores) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.stores)) {
+			generator.writeKey("stores");
+			generator.writeStartArray();
+			for (ShardStore item0 : this.stores) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreWrapper}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStoreWrapper> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreWrapper> {
 		private List<ShardStore> stores;
 
 		/**
 		 * Required - API name: {@code stores}
 		 */
-		public Builder stores(List<ShardStore> value) {
+		public final Builder stores(List<ShardStore> value) {
 			this.stores = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stores}
 		 */
-		public Builder stores(ShardStore... value) {
+		public final Builder stores(ShardStore... value) {
 			this.stores = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
+		 * Required - API name: {@code stores}
 		 */
-		public Builder addStores(ShardStore value) {
-			if (this.stores == null) {
-				this.stores = new ArrayList<>();
+		@SafeVarargs
+		public final Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>>... fns) {
+			this.stores = new ArrayList<>(fns.length);
+			for (Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn : fns) {
+				this.stores.add(fn.apply(new ShardStore.Builder()).build());
 			}
-			this.stores.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #stores(List)} to a singleton list.
-		 */
-		public Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
-			return this.stores(fn.apply(new ShardStore.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
-		 */
-		public Builder addStores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
-			return this.addStores(fn.apply(new ShardStore.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStoreWrapper build() {
+			_checkSingleUse();
 
 			return new ShardStoreWrapper(this);
 		}

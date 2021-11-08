@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,22 +43,23 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model_alias.Request
 
-public final class DeleteTrainedModelAliasRequest extends RequestBase {
+public class DeleteTrainedModelAliasRequest extends RequestBase {
 	private final String modelAlias;
 
 	private final String modelId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTrainedModelAliasRequest(Builder builder) {
+	private DeleteTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = Objects.requireNonNull(builder.modelAlias, "model_alias");
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.modelAlias = ModelTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
+		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
-	public DeleteTrainedModelAliasRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTrainedModelAliasRequest of(
+			Function<Builder, ObjectBuilder<DeleteTrainedModelAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +67,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_alias}
 	 */
-	public String modelAlias() {
+	public final String modelAlias() {
 		return this.modelAlias;
 	}
 
@@ -73,7 +76,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -82,7 +85,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelAliasRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteTrainedModelAliasRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelAliasRequest> {
 		private String modelAlias;
 
 		private String modelId;
@@ -92,7 +95,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_alias}
 		 */
-		public Builder modelAlias(String value) {
+		public final Builder modelAlias(String value) {
 			this.modelAlias = value;
 			return this;
 		}
@@ -102,7 +105,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -114,6 +117,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTrainedModelAliasRequest build() {
+			_checkSingleUse();
 
 			return new DeleteTrainedModelAliasRequest(this);
 		}

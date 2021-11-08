@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.TrainedModelsRecord
 @JsonpDeserializable
-public final class TrainedModelsRecord implements JsonpSerializable {
+public class TrainedModelsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -96,7 +97,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelsRecord(Builder builder) {
+	private TrainedModelsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.createdBy = builder.createdBy;
@@ -119,8 +120,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 
 	}
 
-	public TrainedModelsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelsRecord of(Function<Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,7 +130,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -139,7 +140,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code created_by}
 	 */
 	@Nullable
-	public String createdBy() {
+	public final String createdBy() {
 		return this.createdBy;
 	}
 
@@ -149,7 +150,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code heap_size}
 	 */
 	@Nullable
-	public String heapSize() {
+	public final String heapSize() {
 		return this.heapSize;
 	}
 
@@ -159,7 +160,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code operations}
 	 */
 	@Nullable
-	public String operations() {
+	public final String operations() {
 		return this.operations;
 	}
 
@@ -169,7 +170,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code license}
 	 */
 	@Nullable
-	public String license() {
+	public final String license() {
 		return this.license;
 	}
 
@@ -179,7 +180,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public String createTime() {
+	public final String createTime() {
 		return this.createTime;
 	}
 
@@ -189,7 +190,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -199,7 +200,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -209,7 +210,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.pipelines}
 	 */
 	@Nullable
-	public String ingestPipelines() {
+	public final String ingestPipelines() {
 		return this.ingestPipelines;
 	}
 
@@ -219,7 +220,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.count}
 	 */
 	@Nullable
-	public String ingestCount() {
+	public final String ingestCount() {
 		return this.ingestCount;
 	}
 
@@ -229,7 +230,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.time}
 	 */
 	@Nullable
-	public String ingestTime() {
+	public final String ingestTime() {
 		return this.ingestTime;
 	}
 
@@ -239,7 +240,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.current}
 	 */
 	@Nullable
-	public String ingestCurrent() {
+	public final String ingestCurrent() {
 		return this.ingestCurrent;
 	}
 
@@ -249,7 +250,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.failed}
 	 */
 	@Nullable
-	public String ingestFailed() {
+	public final String ingestFailed() {
 		return this.ingestFailed;
 	}
 
@@ -260,7 +261,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.id}
 	 */
 	@Nullable
-	public String dataFrameId() {
+	public final String dataFrameId() {
 		return this.dataFrameId;
 	}
 
@@ -270,7 +271,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.create_time}
 	 */
 	@Nullable
-	public String dataFrameCreateTime() {
+	public final String dataFrameCreateTime() {
 		return this.dataFrameCreateTime;
 	}
 
@@ -280,7 +281,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.source_index}
 	 */
 	@Nullable
-	public String dataFrameSourceIndex() {
+	public final String dataFrameSourceIndex() {
 		return this.dataFrameSourceIndex;
 	}
 
@@ -290,7 +291,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.analysis}
 	 */
 	@Nullable
-	public String dataFrameAnalysis() {
+	public final String dataFrameAnalysis() {
 		return this.dataFrameAnalysis;
 	}
 
@@ -298,7 +299,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -314,109 +315,91 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.createdBy != null) {
-
 			generator.writeKey("created_by");
 			generator.write(this.createdBy);
 
 		}
 		if (this.heapSize != null) {
-
 			generator.writeKey("heap_size");
 			generator.write(this.heapSize);
 
 		}
 		if (this.operations != null) {
-
 			generator.writeKey("operations");
 			generator.write(this.operations);
 
 		}
 		if (this.license != null) {
-
 			generator.writeKey("license");
 			generator.write(this.license);
 
 		}
 		if (this.createTime != null) {
-
 			generator.writeKey("create_time");
 			generator.write(this.createTime);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.ingestPipelines != null) {
-
 			generator.writeKey("ingest.pipelines");
 			generator.write(this.ingestPipelines);
 
 		}
 		if (this.ingestCount != null) {
-
 			generator.writeKey("ingest.count");
 			generator.write(this.ingestCount);
 
 		}
 		if (this.ingestTime != null) {
-
 			generator.writeKey("ingest.time");
 			generator.write(this.ingestTime);
 
 		}
 		if (this.ingestCurrent != null) {
-
 			generator.writeKey("ingest.current");
 			generator.write(this.ingestCurrent);
 
 		}
 		if (this.ingestFailed != null) {
-
 			generator.writeKey("ingest.failed");
 			generator.write(this.ingestFailed);
 
 		}
 		if (this.dataFrameId != null) {
-
 			generator.writeKey("data_frame.id");
 			generator.write(this.dataFrameId);
 
 		}
 		if (this.dataFrameCreateTime != null) {
-
 			generator.writeKey("data_frame.create_time");
 			generator.write(this.dataFrameCreateTime);
 
 		}
 		if (this.dataFrameSourceIndex != null) {
-
 			generator.writeKey("data_frame.source_index");
 			generator.write(this.dataFrameSourceIndex);
 
 		}
 		if (this.dataFrameAnalysis != null) {
-
 			generator.writeKey("data_frame.analysis");
 			generator.write(this.dataFrameAnalysis);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -429,7 +412,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelsRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelsRecord> {
 		@Nullable
 		private String id;
 
@@ -489,7 +472,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -499,7 +482,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code created_by}
 		 */
-		public Builder createdBy(@Nullable String value) {
+		public final Builder createdBy(@Nullable String value) {
 			this.createdBy = value;
 			return this;
 		}
@@ -509,7 +492,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code heap_size}
 		 */
-		public Builder heapSize(@Nullable String value) {
+		public final Builder heapSize(@Nullable String value) {
 			this.heapSize = value;
 			return this;
 		}
@@ -519,7 +502,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code operations}
 		 */
-		public Builder operations(@Nullable String value) {
+		public final Builder operations(@Nullable String value) {
 			this.operations = value;
 			return this;
 		}
@@ -529,7 +512,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code license}
 		 */
-		public Builder license(@Nullable String value) {
+		public final Builder license(@Nullable String value) {
 			this.license = value;
 			return this;
 		}
@@ -539,7 +522,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable String value) {
+		public final Builder createTime(@Nullable String value) {
 			this.createTime = value;
 			return this;
 		}
@@ -549,7 +532,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -559,7 +542,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -569,7 +552,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.pipelines}
 		 */
-		public Builder ingestPipelines(@Nullable String value) {
+		public final Builder ingestPipelines(@Nullable String value) {
 			this.ingestPipelines = value;
 			return this;
 		}
@@ -579,7 +562,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.count}
 		 */
-		public Builder ingestCount(@Nullable String value) {
+		public final Builder ingestCount(@Nullable String value) {
 			this.ingestCount = value;
 			return this;
 		}
@@ -589,7 +572,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.time}
 		 */
-		public Builder ingestTime(@Nullable String value) {
+		public final Builder ingestTime(@Nullable String value) {
 			this.ingestTime = value;
 			return this;
 		}
@@ -599,7 +582,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.current}
 		 */
-		public Builder ingestCurrent(@Nullable String value) {
+		public final Builder ingestCurrent(@Nullable String value) {
 			this.ingestCurrent = value;
 			return this;
 		}
@@ -609,7 +592,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.failed}
 		 */
-		public Builder ingestFailed(@Nullable String value) {
+		public final Builder ingestFailed(@Nullable String value) {
 			this.ingestFailed = value;
 			return this;
 		}
@@ -620,7 +603,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.id}
 		 */
-		public Builder dataFrameId(@Nullable String value) {
+		public final Builder dataFrameId(@Nullable String value) {
 			this.dataFrameId = value;
 			return this;
 		}
@@ -630,7 +613,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.create_time}
 		 */
-		public Builder dataFrameCreateTime(@Nullable String value) {
+		public final Builder dataFrameCreateTime(@Nullable String value) {
 			this.dataFrameCreateTime = value;
 			return this;
 		}
@@ -640,7 +623,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.source_index}
 		 */
-		public Builder dataFrameSourceIndex(@Nullable String value) {
+		public final Builder dataFrameSourceIndex(@Nullable String value) {
 			this.dataFrameSourceIndex = value;
 			return this;
 		}
@@ -650,7 +633,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.analysis}
 		 */
-		public Builder dataFrameAnalysis(@Nullable String value) {
+		public final Builder dataFrameAnalysis(@Nullable String value) {
 			this.dataFrameAnalysis = value;
 			return this;
 		}
@@ -658,7 +641,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -670,6 +653,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModelsRecord build() {
+			_checkSingleUse();
 
 			return new TrainedModelsRecord(this);
 		}

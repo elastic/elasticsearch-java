@@ -31,12 +31,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,41 +44,43 @@ import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query_rethrottle.UpdateByQueryRethrottleNode
 @JsonpDeserializable
-public final class UpdateByQueryRethrottleNode extends BaseNode {
+public class UpdateByQueryRethrottleNode extends BaseNode {
 	private final Map<String, Info> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateByQueryRethrottleNode(Builder builder) {
+	private UpdateByQueryRethrottleNode(Builder builder) {
 		super(builder);
 
-		this.tasks = ModelTypeHelper.unmodifiableNonNull(builder.tasks, "tasks");
+		this.tasks = ModelTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
-	public UpdateByQueryRethrottleNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateByQueryRethrottleNode of(Function<Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code tasks}
 	 */
-	public Map<String, Info> tasks() {
+	public final Map<String, Info> tasks() {
 		return this.tasks;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.tasks)) {
+			generator.writeKey("tasks");
+			generator.writeStartObject();
+			for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("tasks");
-		generator.writeStartObject();
-		for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -95,19 +97,8 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 		/**
 		 * Required - API name: {@code tasks}
 		 */
-		public Builder tasks(Map<String, Info> value) {
+		public final Builder tasks(Map<String, Info> value) {
 			this.tasks = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #tasks(Map)}, creating the map if needed.
-		 */
-		public Builder putTasks(String key, Info value) {
-			if (this.tasks == null) {
-				this.tasks = new HashMap<>();
-			}
-			this.tasks.put(key, value);
 			return this;
 		}
 
@@ -118,11 +109,9 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 			return this.tasks(Collections.singletonMap(key, fn.apply(new Info.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #tasks(Map)}, creating the map if needed.
-		 */
-		public Builder putTasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.putTasks(key, fn.apply(new Info.Builder()).build());
+		public final Builder tasks(
+				Function<MapBuilder<String, Info, Info.Builder>, ObjectBuilder<Map<String, Info>>> fn) {
+			return tasks(fn.apply(new MapBuilder<>(Info.Builder::new)).build());
 		}
 
 		@Override
@@ -137,6 +126,7 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 		 *             if some of the required fields are null.
 		 */
 		public UpdateByQueryRethrottleNode build() {
+			_checkSingleUse();
 
 			return new UpdateByQueryRethrottleNode(this);
 		}

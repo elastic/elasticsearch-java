@@ -30,9 +30,9 @@ import co.elastic.clients.util.StringEnum;
 @JsonpDeserializable
 public enum RuleAction implements StringEnum {
 	/**
-	 * The result will not be created. This is the default value. Unless you also
-	 * specify <code>skip_model_update</code>, the model will be updated as usual
-	 * with the corresponding series value.
+	 * The result will not be created. Unless you also specify
+	 * <code>skip_model_update</code>, the model will be updated as usual with the
+	 * corresponding series value.
 	 */
 	SkipResult("skip_result"),
 	/**

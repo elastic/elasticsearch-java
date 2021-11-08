@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,26 +41,26 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoAction
 @JsonpDeserializable
-public final class NodeInfoAction implements JsonpSerializable {
+public class NodeInfoAction implements JsonpSerializable {
 	private final String destructiveRequiresName;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoAction(Builder builder) {
+	private NodeInfoAction(Builder builder) {
 
-		this.destructiveRequiresName = Objects.requireNonNull(builder.destructiveRequiresName,
-				"destructive_requires_name");
+		this.destructiveRequiresName = ModelTypeHelper.requireNonNull(builder.destructiveRequiresName, this,
+				"destructiveRequiresName");
 
 	}
 
-	public NodeInfoAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoAction of(Function<Builder, ObjectBuilder<NodeInfoAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code destructive_requires_name}
 	 */
-	public String destructiveRequiresName() {
+	public final String destructiveRequiresName() {
 		return this.destructiveRequiresName;
 	}
 
@@ -83,13 +85,13 @@ public final class NodeInfoAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoAction}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAction> {
 		private String destructiveRequiresName;
 
 		/**
 		 * Required - API name: {@code destructive_requires_name}
 		 */
-		public Builder destructiveRequiresName(String value) {
+		public final Builder destructiveRequiresName(String value) {
 			this.destructiveRequiresName = value;
 			return this;
 		}
@@ -101,6 +103,7 @@ public final class NodeInfoAction implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoAction build() {
+			_checkSingleUse();
 
 			return new NodeInfoAction(this);
 		}

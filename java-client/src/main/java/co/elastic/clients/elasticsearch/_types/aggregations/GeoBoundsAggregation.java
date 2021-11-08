@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregation
 @JsonpDeserializable
-public final class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
+public class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean wrapLongitude;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoBoundsAggregation(Builder builder) {
+	private GeoBoundsAggregation(Builder builder) {
 		super(builder);
 
 		this.wrapLongitude = builder.wrapLongitude;
 
 	}
 
-	public GeoBoundsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoBoundsAggregation of(Function<Builder, ObjectBuilder<GeoBoundsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 	 * API name: {@code wrap_longitude}
 	 */
 	@Nullable
-	public Boolean wrapLongitude() {
+	public final Boolean wrapLongitude() {
 		return this.wrapLongitude;
 	}
 
@@ -75,7 +75,6 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 
 		super.serializeInternal(generator, mapper);
 		if (this.wrapLongitude != null) {
-
 			generator.writeKey("wrap_longitude");
 			generator.write(this.wrapLongitude);
 
@@ -97,7 +96,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 		/**
 		 * API name: {@code wrap_longitude}
 		 */
-		public Builder wrapLongitude(@Nullable Boolean value) {
+		public final Builder wrapLongitude(@Nullable Boolean value) {
 			this.wrapLongitude = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public GeoBoundsAggregation build() {
+			_checkSingleUse();
 
 			return new GeoBoundsAggregation(this);
 		}

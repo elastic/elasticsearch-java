@@ -32,11 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
 @JsonpDeserializable
-public final class DataframeAnalysisFeatureProcessorNGramEncoding
+public class DataframeAnalysisFeatureProcessorNGramEncoding
 		implements
 			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
@@ -67,19 +67,20 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
+	private DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
 
 		this.featurePrefix = builder.featurePrefix;
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.length = builder.length;
-		this.nGrams = ModelTypeHelper.unmodifiableNonNull(builder.nGrams, "n_grams");
+		this.nGrams = ModelTypeHelper.unmodifiableRequired(builder.nGrams, this, "nGrams");
 		this.start = builder.start;
 		this.custom = builder.custom;
 
 	}
 
-	public DataframeAnalysisFeatureProcessorNGramEncoding(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisFeatureProcessorNGramEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,7 +97,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * API name: {@code feature_prefix}
 	 */
 	@Nullable
-	public String featurePrefix() {
+	public final String featurePrefix() {
 		return this.featurePrefix;
 	}
 
@@ -105,7 +106,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * <p>
 	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -116,7 +117,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * API name: {@code length}
 	 */
 	@Nullable
-	public Integer length() {
+	public final Integer length() {
 		return this.length;
 	}
 
@@ -126,7 +127,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * <p>
 	 * API name: {@code n_grams}
 	 */
-	public List<Integer> nGrams() {
+	public final List<Integer> nGrams() {
 		return this.nGrams;
 	}
 
@@ -137,7 +138,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public Integer start() {
+	public final Integer start() {
 		return this.start;
 	}
 
@@ -145,7 +146,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * API name: {@code custom}
 	 */
 	@Nullable
-	public Boolean custom() {
+	public final Boolean custom() {
 		return this.custom;
 	}
 
@@ -161,38 +162,34 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.featurePrefix != null) {
-
 			generator.writeKey("feature_prefix");
 			generator.write(this.featurePrefix);
 
 		}
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.length != null) {
-
 			generator.writeKey("length");
 			generator.write(this.length);
 
 		}
+		if (ModelTypeHelper.isDefined(this.nGrams)) {
+			generator.writeKey("n_grams");
+			generator.writeStartArray();
+			for (Integer item0 : this.nGrams) {
+				generator.write(item0);
 
-		generator.writeKey("n_grams");
-		generator.writeStartArray();
-		for (Integer item0 : this.nGrams) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.start != null) {
-
 			generator.writeKey("start");
 			generator.write(this.start);
 
 		}
 		if (this.custom != null) {
-
 			generator.writeKey("custom");
 			generator.write(this.custom);
 
@@ -205,7 +202,9 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorNGramEncoding}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding> {
 		@Nullable
 		private String featurePrefix;
 
@@ -227,7 +226,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code feature_prefix}
 		 */
-		public Builder featurePrefix(@Nullable String value) {
+		public final Builder featurePrefix(@Nullable String value) {
 			this.featurePrefix = value;
 			return this;
 		}
@@ -237,7 +236,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -248,7 +247,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code length}
 		 */
-		public Builder length(@Nullable Integer value) {
+		public final Builder length(@Nullable Integer value) {
 			this.length = value;
 			return this;
 		}
@@ -259,7 +258,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code n_grams}
 		 */
-		public Builder nGrams(List<Integer> value) {
+		public final Builder nGrams(List<Integer> value) {
 			this.nGrams = value;
 			return this;
 		}
@@ -270,19 +269,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code n_grams}
 		 */
-		public Builder nGrams(Integer... value) {
+		public final Builder nGrams(Integer... value) {
 			this.nGrams = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nGrams(List)}, creating the list if needed.
-		 */
-		public Builder addNGrams(Integer value) {
-			if (this.nGrams == null) {
-				this.nGrams = new ArrayList<>();
-			}
-			this.nGrams.add(value);
 			return this;
 		}
 
@@ -292,7 +280,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable Integer value) {
+		public final Builder start(@Nullable Integer value) {
 			this.start = value;
 			return this;
 		}
@@ -300,7 +288,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		/**
 		 * API name: {@code custom}
 		 */
-		public Builder custom(@Nullable Boolean value) {
+		public final Builder custom(@Nullable Boolean value) {
 			this.custom = value;
 			return this;
 		}
@@ -312,6 +300,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisFeatureProcessorNGramEncoding build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisFeatureProcessorNGramEncoding(this);
 		}

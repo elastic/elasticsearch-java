@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Request
 @JsonpDeserializable
-public final class SimulateTemplateRequest extends RequestBase implements JsonpSerializable {
+public class SimulateTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean create;
 
@@ -60,17 +62,17 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimulateTemplateRequest(Builder builder) {
+	private SimulateTemplateRequest(Builder builder) {
 
 		this.create = builder.create;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
-		this.template = Objects.requireNonNull(builder.template, "_value_body");
+		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 
-	public SimulateTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimulateTemplateRequest of(Function<Builder, ObjectBuilder<SimulateTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,7 +84,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code create}
 	 */
 	@Nullable
-	public Boolean create() {
+	public final Boolean create() {
 		return this.create;
 	}
 
@@ -93,7 +95,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -105,7 +107,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -114,7 +116,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public IndexTemplate template() {
+	public final IndexTemplate template() {
 		return this.template;
 	}
 
@@ -131,7 +133,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link SimulateTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SimulateTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateTemplateRequest> {
 		@Nullable
 		private Boolean create;
 
@@ -151,7 +153,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code create}
 		 */
-		public Builder create(@Nullable Boolean value) {
+		public final Builder create(@Nullable Boolean value) {
 			this.create = value;
 			return this;
 		}
@@ -162,7 +164,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -174,7 +176,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -184,7 +186,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder template(IndexTemplate value) {
+		public final Builder template(IndexTemplate value) {
 			this.template = value;
 			return this;
 		}
@@ -194,7 +196,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder template(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
+		public final Builder template(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
 			return this.template(fn.apply(new IndexTemplate.Builder()).build());
 		}
 
@@ -205,6 +207,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public SimulateTemplateRequest build() {
+			_checkSingleUse();
 
 			return new SimulateTemplateRequest(this);
 		}

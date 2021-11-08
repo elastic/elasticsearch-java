@@ -36,9 +36,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Request
 @JsonpDeserializable
-public final class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> nodeId;
 
 	@Nullable
@@ -62,7 +61,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReloadSecureSettingsRequest(Builder builder) {
+	private ReloadSecureSettingsRequest(Builder builder) {
 
 		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.secureSettingsPassword = builder.secureSettingsPassword;
@@ -70,8 +69,8 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 
 	}
 
-	public ReloadSecureSettingsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReloadSecureSettingsRequest of(Function<Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,8 +79,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -89,7 +87,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	 * API name: {@code secure_settings_password}
 	 */
 	@Nullable
-	public String secureSettingsPassword() {
+	public final String secureSettingsPassword() {
 		return this.secureSettingsPassword;
 	}
 
@@ -99,7 +97,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -115,7 +113,6 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.secureSettingsPassword != null) {
-
 			generator.writeKey("secure_settings_password");
 			generator.write(this.secureSettingsPassword);
 
@@ -128,7 +125,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	/**
 	 * Builder for {@link ReloadSecureSettingsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ReloadSecureSettingsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadSecureSettingsRequest> {
 		@Nullable
 		private List<String> nodeId;
 
@@ -144,7 +141,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
+		public final Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -155,26 +152,15 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String... value) {
+		public final Builder nodeId(String... value) {
 			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code secure_settings_password}
 		 */
-		public Builder secureSettingsPassword(@Nullable String value) {
+		public final Builder secureSettingsPassword(@Nullable String value) {
 			this.secureSettingsPassword = value;
 			return this;
 		}
@@ -184,7 +170,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -196,6 +182,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		 *             if some of the required fields are null.
 		 */
 		public ReloadSecureSettingsRequest build() {
+			_checkSingleUse();
 
 			return new ReloadSecureSettingsRequest(this);
 		}
@@ -234,7 +221,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
+				if (ModelTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

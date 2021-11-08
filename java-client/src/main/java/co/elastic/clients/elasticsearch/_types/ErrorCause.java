@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -46,10 +47,9 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ErrorCause
 @JsonpDeserializable
-public final class ErrorCause implements JsonpSerializable {
+public class ErrorCause implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;
 
-	@Nullable
 	private final String type;
 
 	private final String reason;
@@ -60,20 +60,18 @@ public final class ErrorCause implements JsonpSerializable {
 	@Nullable
 	private final ErrorCause causedBy;
 
-	@Nullable
 	private final List<ErrorCause> rootCause;
 
-	@Nullable
 	private final List<ErrorCause> suppressed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ErrorCause(Builder builder) {
+	private ErrorCause(Builder builder) {
 
-		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 
-		this.type = builder.type;
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.stackTrace = builder.stackTrace;
 		this.causedBy = builder.causedBy;
 		this.rootCause = ModelTypeHelper.unmodifiable(builder.rootCause);
@@ -81,24 +79,23 @@ public final class ErrorCause implements JsonpSerializable {
 
 	}
 
-	public ErrorCause(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ErrorCause of(Function<Builder, ObjectBuilder<ErrorCause>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Additional details about the error
+	 * Additional details about the error
 	 */
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
-	 * The type of error
+	 * Required - The type of error
 	 * <p>
 	 * API name: {@code type}
 	 */
-	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -107,7 +104,7 @@ public final class ErrorCause implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code reason}
 	 */
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -118,7 +115,7 @@ public final class ErrorCause implements JsonpSerializable {
 	 * API name: {@code stack_trace}
 	 */
 	@Nullable
-	public String stackTrace() {
+	public final String stackTrace() {
 		return this.stackTrace;
 	}
 
@@ -126,23 +123,21 @@ public final class ErrorCause implements JsonpSerializable {
 	 * API name: {@code caused_by}
 	 */
 	@Nullable
-	public ErrorCause causedBy() {
+	public final ErrorCause causedBy() {
 		return this.causedBy;
 	}
 
 	/**
 	 * API name: {@code root_cause}
 	 */
-	@Nullable
-	public List<ErrorCause> rootCause() {
+	public final List<ErrorCause> rootCause() {
 		return this.rootCause;
 	}
 
 	/**
 	 * API name: {@code suppressed}
 	 */
-	@Nullable
-	public List<ErrorCause> suppressed() {
+	public final List<ErrorCause> suppressed() {
 		return this.suppressed;
 	}
 
@@ -163,30 +158,23 @@ public final class ErrorCause implements JsonpSerializable {
 
 		}
 
-		if (this.type != null) {
-
-			generator.writeKey("type");
-			generator.write(this.type);
-
-		}
+		generator.writeKey("type");
+		generator.write(this.type);
 
 		generator.writeKey("reason");
 		generator.write(this.reason);
 
 		if (this.stackTrace != null) {
-
 			generator.writeKey("stack_trace");
 			generator.write(this.stackTrace);
 
 		}
 		if (this.causedBy != null) {
-
 			generator.writeKey("caused_by");
 			this.causedBy.serialize(generator, mapper);
 
 		}
-		if (this.rootCause != null) {
-
+		if (ModelTypeHelper.isDefined(this.rootCause)) {
 			generator.writeKey("root_cause");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.rootCause) {
@@ -196,8 +184,7 @@ public final class ErrorCause implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.suppressed != null) {
-
+		if (ModelTypeHelper.isDefined(this.suppressed)) {
 			generator.writeKey("suppressed");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.suppressed) {
@@ -215,29 +202,18 @@ public final class ErrorCause implements JsonpSerializable {
 	/**
 	 * Builder for {@link ErrorCause}.
 	 */
-	public static class Builder implements ObjectBuilder<ErrorCause> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorCause> {
+		@Nullable
 		private Map<String, JsonData> metadata = new HashMap<>();
 
 		/**
-		 * Required - Additional details about the error
+		 * Additional details about the error
 		 */
-		public Builder metadata(Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
 
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
-			return this;
-		}
-
-		@Nullable
 		private String type;
 
 		private String reason;
@@ -255,11 +231,11 @@ public final class ErrorCause implements JsonpSerializable {
 		private List<ErrorCause> suppressed;
 
 		/**
-		 * The type of error
+		 * Required - The type of error
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -269,7 +245,7 @@ public final class ErrorCause implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code reason}
 		 */
-		public Builder reason(String value) {
+		public final Builder reason(String value) {
 			this.reason = value;
 			return this;
 		}
@@ -280,7 +256,7 @@ public final class ErrorCause implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stack_trace}
 		 */
-		public Builder stackTrace(@Nullable String value) {
+		public final Builder stackTrace(@Nullable String value) {
 			this.stackTrace = value;
 			return this;
 		}
@@ -288,7 +264,7 @@ public final class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public Builder causedBy(@Nullable ErrorCause value) {
+		public final Builder causedBy(@Nullable ErrorCause value) {
 			this.causedBy = value;
 			return this;
 		}
@@ -296,14 +272,14 @@ public final class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.causedBy(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code root_cause}
 		 */
-		public Builder rootCause(@Nullable List<ErrorCause> value) {
+		public final Builder rootCause(@Nullable List<ErrorCause> value) {
 			this.rootCause = value;
 			return this;
 		}
@@ -311,40 +287,27 @@ public final class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code root_cause}
 		 */
-		public Builder rootCause(ErrorCause... value) {
+		public final Builder rootCause(ErrorCause... value) {
 			this.rootCause = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
+		 * API name: {@code root_cause}
 		 */
-		public Builder addRootCause(ErrorCause value) {
-			if (this.rootCause == null) {
-				this.rootCause = new ArrayList<>();
+		@SafeVarargs
+		public final Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
+			this.rootCause = new ArrayList<>(fns.length);
+			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
+				this.rootCause.add(fn.apply(new ErrorCause.Builder()).build());
 			}
-			this.rootCause.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #rootCause(List)} to a singleton list.
-		 */
-		public Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.rootCause(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
-		 */
-		public Builder addRootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addRootCause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code suppressed}
 		 */
-		public Builder suppressed(@Nullable List<ErrorCause> value) {
+		public final Builder suppressed(@Nullable List<ErrorCause> value) {
 			this.suppressed = value;
 			return this;
 		}
@@ -352,34 +315,21 @@ public final class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code suppressed}
 		 */
-		public Builder suppressed(ErrorCause... value) {
+		public final Builder suppressed(ErrorCause... value) {
 			this.suppressed = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #suppressed(List)}, creating the list if needed.
+		 * API name: {@code suppressed}
 		 */
-		public Builder addSuppressed(ErrorCause value) {
-			if (this.suppressed == null) {
-				this.suppressed = new ArrayList<>();
+		@SafeVarargs
+		public final Builder suppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
+			this.suppressed = new ArrayList<>(fns.length);
+			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
+				this.suppressed.add(fn.apply(new ErrorCause.Builder()).build());
 			}
-			this.suppressed.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #suppressed(List)} to a singleton list.
-		 */
-		public Builder suppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.suppressed(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #suppressed(List)}, creating the list if needed.
-		 */
-		public Builder addSuppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addSuppressed(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -389,6 +339,7 @@ public final class ErrorCause implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ErrorCause build() {
+			_checkSingleUse();
 
 			return new ErrorCause(this);
 		}
@@ -412,9 +363,11 @@ public final class ErrorCause implements JsonpSerializable {
 		op.add(Builder::suppressed, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "suppressed");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			builder.putMetadata(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+			if (builder.metadata == null) {
+				builder.metadata = new HashMap<>();
+			}
+			builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
 		});
-		op.shortcutProperty("reason");
 
 	}
 

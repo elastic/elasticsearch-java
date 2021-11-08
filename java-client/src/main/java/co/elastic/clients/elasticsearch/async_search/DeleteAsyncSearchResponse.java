@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: async_search.delete.Response
 @JsonpDeserializable
-public final class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
+public class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAsyncSearchResponse(Builder builder) {
+	private DeleteAsyncSearchResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAsyncSearchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAsyncSearchResponse of(Function<Builder, ObjectBuilder<DeleteAsyncSearchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAsyncSearchResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAsyncSearchResponse(this);
 		}

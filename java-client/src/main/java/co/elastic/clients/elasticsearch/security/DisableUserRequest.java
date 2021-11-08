@@ -32,7 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.disable_user.Request
 
-public final class DisableUserRequest extends RequestBase {
+public class DisableUserRequest extends RequestBase {
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
@@ -52,15 +54,15 @@ public final class DisableUserRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DisableUserRequest(Builder builder) {
+	private DisableUserRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.username = Objects.requireNonNull(builder.username, "username");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public DisableUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DisableUserRequest of(Function<Builder, ObjectBuilder<DisableUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +74,7 @@ public final class DisableUserRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -81,7 +83,7 @@ public final class DisableUserRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -90,7 +92,7 @@ public final class DisableUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link DisableUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DisableUserRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DisableUserRequest> {
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
 
@@ -104,7 +106,7 @@ public final class DisableUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -114,7 +116,7 @@ public final class DisableUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -126,6 +128,7 @@ public final class DisableUserRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DisableUserRequest build() {
+			_checkSingleUse();
 
 			return new DisableUserRequest(this);
 		}

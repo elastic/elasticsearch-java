@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -45,13 +46,11 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatcherNodeStats
 @JsonpDeserializable
-public final class WatcherNodeStats implements JsonpSerializable {
-	@Nullable
+public class WatcherNodeStats implements JsonpSerializable {
 	private final List<WatchRecordStats> currentWatches;
 
 	private final ExecutionThreadPool executionThreadPool;
 
-	@Nullable
 	private final List<WatchRecordQueuedStats> queuedWatches;
 
 	private final long watchCount;
@@ -62,62 +61,61 @@ public final class WatcherNodeStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherNodeStats(Builder builder) {
+	private WatcherNodeStats(Builder builder) {
 
 		this.currentWatches = ModelTypeHelper.unmodifiable(builder.currentWatches);
-		this.executionThreadPool = Objects.requireNonNull(builder.executionThreadPool, "execution_thread_pool");
+		this.executionThreadPool = ModelTypeHelper.requireNonNull(builder.executionThreadPool, this,
+				"executionThreadPool");
 		this.queuedWatches = ModelTypeHelper.unmodifiable(builder.queuedWatches);
-		this.watchCount = Objects.requireNonNull(builder.watchCount, "watch_count");
-		this.watcherState = Objects.requireNonNull(builder.watcherState, "watcher_state");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
+		this.watchCount = ModelTypeHelper.requireNonNull(builder.watchCount, this, "watchCount");
+		this.watcherState = ModelTypeHelper.requireNonNull(builder.watcherState, this, "watcherState");
+		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
 	}
 
-	public WatcherNodeStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherNodeStats of(Function<Builder, ObjectBuilder<WatcherNodeStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code current_watches}
 	 */
-	@Nullable
-	public List<WatchRecordStats> currentWatches() {
+	public final List<WatchRecordStats> currentWatches() {
 		return this.currentWatches;
 	}
 
 	/**
 	 * Required - API name: {@code execution_thread_pool}
 	 */
-	public ExecutionThreadPool executionThreadPool() {
+	public final ExecutionThreadPool executionThreadPool() {
 		return this.executionThreadPool;
 	}
 
 	/**
 	 * API name: {@code queued_watches}
 	 */
-	@Nullable
-	public List<WatchRecordQueuedStats> queuedWatches() {
+	public final List<WatchRecordQueuedStats> queuedWatches() {
 		return this.queuedWatches;
 	}
 
 	/**
 	 * Required - API name: {@code watch_count}
 	 */
-	public long watchCount() {
+	public final long watchCount() {
 		return this.watchCount;
 	}
 
 	/**
 	 * Required - API name: {@code watcher_state}
 	 */
-	public WatcherState watcherState() {
+	public final WatcherState watcherState() {
 		return this.watcherState;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -132,8 +130,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.currentWatches != null) {
-
+		if (ModelTypeHelper.isDefined(this.currentWatches)) {
 			generator.writeKey("current_watches");
 			generator.writeStartArray();
 			for (WatchRecordStats item0 : this.currentWatches) {
@@ -143,12 +140,10 @@ public final class WatcherNodeStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("execution_thread_pool");
 		this.executionThreadPool.serialize(generator, mapper);
 
-		if (this.queuedWatches != null) {
-
+		if (ModelTypeHelper.isDefined(this.queuedWatches)) {
 			generator.writeKey("queued_watches");
 			generator.writeStartArray();
 			for (WatchRecordQueuedStats item0 : this.queuedWatches) {
@@ -158,13 +153,11 @@ public final class WatcherNodeStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("watch_count");
 		generator.write(this.watchCount);
 
 		generator.writeKey("watcher_state");
 		this.watcherState.serialize(generator, mapper);
-
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
 
@@ -175,7 +168,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherNodeStats}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherNodeStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherNodeStats> {
 		@Nullable
 		private List<WatchRecordStats> currentWatches;
 
@@ -193,7 +186,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_watches}
 		 */
-		public Builder currentWatches(@Nullable List<WatchRecordStats> value) {
+		public final Builder currentWatches(@Nullable List<WatchRecordStats> value) {
 			this.currentWatches = value;
 			return this;
 		}
@@ -201,40 +194,28 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_watches}
 		 */
-		public Builder currentWatches(WatchRecordStats... value) {
+		public final Builder currentWatches(WatchRecordStats... value) {
 			this.currentWatches = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
+		 * API name: {@code current_watches}
 		 */
-		public Builder addCurrentWatches(WatchRecordStats value) {
-			if (this.currentWatches == null) {
-				this.currentWatches = new ArrayList<>();
+		@SafeVarargs
+		public final Builder currentWatches(
+				Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>>... fns) {
+			this.currentWatches = new ArrayList<>(fns.length);
+			for (Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn : fns) {
+				this.currentWatches.add(fn.apply(new WatchRecordStats.Builder()).build());
 			}
-			this.currentWatches.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #currentWatches(List)} to a singleton list.
-		 */
-		public Builder currentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
-			return this.currentWatches(fn.apply(new WatchRecordStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
-		 */
-		public Builder addCurrentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
-			return this.addCurrentWatches(fn.apply(new WatchRecordStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code execution_thread_pool}
 		 */
-		public Builder executionThreadPool(ExecutionThreadPool value) {
+		public final Builder executionThreadPool(ExecutionThreadPool value) {
 			this.executionThreadPool = value;
 			return this;
 		}
@@ -242,7 +223,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_thread_pool}
 		 */
-		public Builder executionThreadPool(
+		public final Builder executionThreadPool(
 				Function<ExecutionThreadPool.Builder, ObjectBuilder<ExecutionThreadPool>> fn) {
 			return this.executionThreadPool(fn.apply(new ExecutionThreadPool.Builder()).build());
 		}
@@ -250,7 +231,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code queued_watches}
 		 */
-		public Builder queuedWatches(@Nullable List<WatchRecordQueuedStats> value) {
+		public final Builder queuedWatches(@Nullable List<WatchRecordQueuedStats> value) {
 			this.queuedWatches = value;
 			return this;
 		}
@@ -258,42 +239,28 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code queued_watches}
 		 */
-		public Builder queuedWatches(WatchRecordQueuedStats... value) {
+		public final Builder queuedWatches(WatchRecordQueuedStats... value) {
 			this.queuedWatches = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
+		 * API name: {@code queued_watches}
 		 */
-		public Builder addQueuedWatches(WatchRecordQueuedStats value) {
-			if (this.queuedWatches == null) {
-				this.queuedWatches = new ArrayList<>();
+		@SafeVarargs
+		public final Builder queuedWatches(
+				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>>... fns) {
+			this.queuedWatches = new ArrayList<>(fns.length);
+			for (Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn : fns) {
+				this.queuedWatches.add(fn.apply(new WatchRecordQueuedStats.Builder()).build());
 			}
-			this.queuedWatches.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #queuedWatches(List)} to a singleton list.
-		 */
-		public Builder queuedWatches(
-				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
-			return this.queuedWatches(fn.apply(new WatchRecordQueuedStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
-		 */
-		public Builder addQueuedWatches(
-				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
-			return this.addQueuedWatches(fn.apply(new WatchRecordQueuedStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code watch_count}
 		 */
-		public Builder watchCount(long value) {
+		public final Builder watchCount(long value) {
 			this.watchCount = value;
 			return this;
 		}
@@ -301,7 +268,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watcher_state}
 		 */
-		public Builder watcherState(WatcherState value) {
+		public final Builder watcherState(WatcherState value) {
 			this.watcherState = value;
 			return this;
 		}
@@ -309,7 +276,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -321,6 +288,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherNodeStats build() {
+			_checkSingleUse();
 
 			return new WatcherNodeStats(this);
 		}

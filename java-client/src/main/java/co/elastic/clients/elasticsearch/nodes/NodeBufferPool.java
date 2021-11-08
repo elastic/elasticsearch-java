@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodeBufferPool
 @JsonpDeserializable
-public final class NodeBufferPool implements JsonpSerializable {
+public class NodeBufferPool implements JsonpSerializable {
 	private final long count;
 
 	private final String totalCapacity;
@@ -53,52 +55,53 @@ public final class NodeBufferPool implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeBufferPool(Builder builder) {
+	private NodeBufferPool(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.totalCapacity = Objects.requireNonNull(builder.totalCapacity, "total_capacity");
-		this.totalCapacityInBytes = Objects.requireNonNull(builder.totalCapacityInBytes, "total_capacity_in_bytes");
-		this.used = Objects.requireNonNull(builder.used, "used");
-		this.usedInBytes = Objects.requireNonNull(builder.usedInBytes, "used_in_bytes");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.totalCapacity = ModelTypeHelper.requireNonNull(builder.totalCapacity, this, "totalCapacity");
+		this.totalCapacityInBytes = ModelTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
+				"totalCapacityInBytes");
+		this.used = ModelTypeHelper.requireNonNull(builder.used, this, "used");
+		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
 	}
 
-	public NodeBufferPool(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeBufferPool of(Function<Builder, ObjectBuilder<NodeBufferPool>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code total_capacity}
 	 */
-	public String totalCapacity() {
+	public final String totalCapacity() {
 		return this.totalCapacity;
 	}
 
 	/**
 	 * Required - API name: {@code total_capacity_in_bytes}
 	 */
-	public long totalCapacityInBytes() {
+	public final long totalCapacityInBytes() {
 		return this.totalCapacityInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code used}
 	 */
-	public String used() {
+	public final String used() {
 		return this.used;
 	}
 
 	/**
 	 * Required - API name: {@code used_in_bytes}
 	 */
-	public long usedInBytes() {
+	public final long usedInBytes() {
 		return this.usedInBytes;
 	}
 
@@ -135,7 +138,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeBufferPool}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeBufferPool> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeBufferPool> {
 		private Long count;
 
 		private String totalCapacity;
@@ -149,7 +152,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -157,7 +160,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_capacity}
 		 */
-		public Builder totalCapacity(String value) {
+		public final Builder totalCapacity(String value) {
 			this.totalCapacity = value;
 			return this;
 		}
@@ -165,7 +168,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_capacity_in_bytes}
 		 */
-		public Builder totalCapacityInBytes(long value) {
+		public final Builder totalCapacityInBytes(long value) {
 			this.totalCapacityInBytes = value;
 			return this;
 		}
@@ -173,7 +176,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used}
 		 */
-		public Builder used(String value) {
+		public final Builder used(String value) {
 			this.used = value;
 			return this;
 		}
@@ -181,7 +184,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used_in_bytes}
 		 */
-		public Builder usedInBytes(long value) {
+		public final Builder usedInBytes(long value) {
 			this.usedInBytes = value;
 			return this;
 		}
@@ -193,6 +196,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeBufferPool build() {
+			_checkSingleUse();
 
 			return new NodeBufferPool(this);
 		}

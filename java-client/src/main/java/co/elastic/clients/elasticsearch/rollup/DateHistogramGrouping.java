@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup._types.DateHistogramGrouping
 @JsonpDeserializable
-public final class DateHistogramGrouping implements JsonpSerializable {
+public class DateHistogramGrouping implements JsonpSerializable {
 	@Nullable
 	private final String delay;
 
@@ -62,10 +64,10 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateHistogramGrouping(Builder builder) {
+	private DateHistogramGrouping(Builder builder) {
 
 		this.delay = builder.delay;
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.format = builder.format;
 		this.interval = builder.interval;
 		this.calendarInterval = builder.calendarInterval;
@@ -74,22 +76,22 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 
 	}
 
-	public DateHistogramGrouping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateHistogramGrouping of(Function<Builder, ObjectBuilder<DateHistogramGrouping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code delay}
 	 */
 	@Nullable
-	public String delay() {
+	public final String delay() {
 		return this.delay;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -97,7 +99,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -105,7 +107,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public String interval() {
+	public final String interval() {
 		return this.interval;
 	}
 
@@ -113,7 +115,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public String calendarInterval() {
+	public final String calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -121,7 +123,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code fixed_interval}
 	 */
 	@Nullable
-	public String fixedInterval() {
+	public final String fixedInterval() {
 		return this.fixedInterval;
 	}
 
@@ -129,7 +131,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -145,41 +147,34 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.delay != null) {
-
 			generator.writeKey("delay");
 			generator.write(this.delay);
 
 		}
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.interval != null) {
-
 			generator.writeKey("interval");
 			generator.write(this.interval);
 
 		}
 		if (this.calendarInterval != null) {
-
 			generator.writeKey("calendar_interval");
 			generator.write(this.calendarInterval);
 
 		}
 		if (this.fixedInterval != null) {
-
 			generator.writeKey("fixed_interval");
 			generator.write(this.fixedInterval);
 
 		}
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
@@ -192,7 +187,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 	/**
 	 * Builder for {@link DateHistogramGrouping}.
 	 */
-	public static class Builder implements ObjectBuilder<DateHistogramGrouping> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DateHistogramGrouping> {
 		@Nullable
 		private String delay;
 
@@ -216,7 +211,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code delay}
 		 */
-		public Builder delay(@Nullable String value) {
+		public final Builder delay(@Nullable String value) {
 			this.delay = value;
 			return this;
 		}
@@ -224,7 +219,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -232,7 +227,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -240,7 +235,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code interval}
 		 */
-		public Builder interval(@Nullable String value) {
+		public final Builder interval(@Nullable String value) {
 			this.interval = value;
 			return this;
 		}
@@ -248,7 +243,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public Builder calendarInterval(@Nullable String value) {
+		public final Builder calendarInterval(@Nullable String value) {
 			this.calendarInterval = value;
 			return this;
 		}
@@ -256,7 +251,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code fixed_interval}
 		 */
-		public Builder fixedInterval(@Nullable String value) {
+		public final Builder fixedInterval(@Nullable String value) {
 			this.fixedInterval = value;
 			return this;
 		}
@@ -264,7 +259,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -276,6 +271,7 @@ public final class DateHistogramGrouping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DateHistogramGrouping build() {
+			_checkSingleUse();
 
 			return new DateHistogramGrouping(this);
 		}

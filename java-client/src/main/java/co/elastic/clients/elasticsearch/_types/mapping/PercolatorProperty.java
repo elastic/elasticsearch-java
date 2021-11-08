@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.PercolatorProperty
 @JsonpDeserializable
-public final class PercolatorProperty extends PropertyBase implements PropertyVariant {
+public class PercolatorProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public PercolatorProperty(Builder builder) {
+	private PercolatorProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public PercolatorProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PercolatorProperty of(Function<Builder, ObjectBuilder<PercolatorProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class PercolatorProperty extends PropertyBase implements PropertyVa
 		 *             if some of the required fields are null.
 		 */
 		public PercolatorProperty build() {
+			_checkSingleUse();
 
 			return new PercolatorProperty(this);
 		}

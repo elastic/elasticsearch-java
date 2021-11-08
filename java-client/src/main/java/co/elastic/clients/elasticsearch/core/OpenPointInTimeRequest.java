@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Request
 
-public final class OpenPointInTimeRequest extends RequestBase {
+public class OpenPointInTimeRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
@@ -55,15 +55,15 @@ public final class OpenPointInTimeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenPointInTimeRequest(Builder builder) {
+	private OpenPointInTimeRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.keepAlive = builder.keepAlive;
 
 	}
 
-	public OpenPointInTimeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenPointInTimeRequest of(Function<Builder, ObjectBuilder<OpenPointInTimeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -82,7 +82,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -91,7 +91,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	/**
 	 * Builder for {@link OpenPointInTimeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenPointInTimeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeRequest> {
 		private List<String> index;
 
 		@Nullable
@@ -103,7 +103,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -114,19 +114,8 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -135,7 +124,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -147,6 +136,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public OpenPointInTimeRequest build() {
+			_checkSingleUse();
 
 			return new OpenPointInTimeRequest(this);
 		}

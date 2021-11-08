@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cat.nodeattrs.Request
 
-public final class NodeattrsRequest extends CatRequestBase {
+public class NodeattrsRequest extends CatRequestBase {
 	public NodeattrsRequest() {
 	}
 

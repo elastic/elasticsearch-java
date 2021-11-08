@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
 @JsonpDeserializable
-public final class RolloverConditions implements JsonpSerializable {
+public class RolloverConditions implements JsonpSerializable {
 	@Nullable
 	private final String maxAge;
 
@@ -55,7 +56,7 @@ public final class RolloverConditions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RolloverConditions(Builder builder) {
+	private RolloverConditions(Builder builder) {
 
 		this.maxAge = builder.maxAge;
 		this.maxDocs = builder.maxDocs;
@@ -64,15 +65,15 @@ public final class RolloverConditions implements JsonpSerializable {
 
 	}
 
-	public RolloverConditions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RolloverConditions of(Function<Builder, ObjectBuilder<RolloverConditions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code max_age}
 	 */
 	@Nullable
-	public String maxAge() {
+	public final String maxAge() {
 		return this.maxAge;
 	}
 
@@ -80,7 +81,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_docs}
 	 */
 	@Nullable
-	public Long maxDocs() {
+	public final Long maxDocs() {
 		return this.maxDocs;
 	}
 
@@ -88,7 +89,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_size}
 	 */
 	@Nullable
-	public String maxSize() {
+	public final String maxSize() {
 		return this.maxSize;
 	}
 
@@ -96,7 +97,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_primary_shard_size}
 	 */
 	@Nullable
-	public String maxPrimaryShardSize() {
+	public final String maxPrimaryShardSize() {
 		return this.maxPrimaryShardSize;
 	}
 
@@ -112,25 +113,21 @@ public final class RolloverConditions implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.maxAge != null) {
-
 			generator.writeKey("max_age");
 			generator.write(this.maxAge);
 
 		}
 		if (this.maxDocs != null) {
-
 			generator.writeKey("max_docs");
 			generator.write(this.maxDocs);
 
 		}
 		if (this.maxSize != null) {
-
 			generator.writeKey("max_size");
 			generator.write(this.maxSize);
 
 		}
 		if (this.maxPrimaryShardSize != null) {
-
 			generator.writeKey("max_primary_shard_size");
 			generator.write(this.maxPrimaryShardSize);
 
@@ -143,7 +140,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	/**
 	 * Builder for {@link RolloverConditions}.
 	 */
-	public static class Builder implements ObjectBuilder<RolloverConditions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RolloverConditions> {
 		@Nullable
 		private String maxAge;
 
@@ -159,7 +156,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_age}
 		 */
-		public Builder maxAge(@Nullable String value) {
+		public final Builder maxAge(@Nullable String value) {
 			this.maxAge = value;
 			return this;
 		}
@@ -167,7 +164,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_docs}
 		 */
-		public Builder maxDocs(@Nullable Long value) {
+		public final Builder maxDocs(@Nullable Long value) {
 			this.maxDocs = value;
 			return this;
 		}
@@ -175,7 +172,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_size}
 		 */
-		public Builder maxSize(@Nullable String value) {
+		public final Builder maxSize(@Nullable String value) {
 			this.maxSize = value;
 			return this;
 		}
@@ -183,7 +180,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_primary_shard_size}
 		 */
-		public Builder maxPrimaryShardSize(@Nullable String value) {
+		public final Builder maxPrimaryShardSize(@Nullable String value) {
 			this.maxPrimaryShardSize = value;
 			return this;
 		}
@@ -195,6 +192,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RolloverConditions build() {
+			_checkSingleUse();
 
 			return new RolloverConditions(this);
 		}

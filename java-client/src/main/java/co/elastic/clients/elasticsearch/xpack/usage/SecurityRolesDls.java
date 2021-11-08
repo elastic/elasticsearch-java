@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDls
 @JsonpDeserializable
-public final class SecurityRolesDls implements JsonpSerializable {
+public class SecurityRolesDls implements JsonpSerializable {
 	private final SecurityRolesDlsBitSetCache bitSetCache;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SecurityRolesDls(Builder builder) {
+	private SecurityRolesDls(Builder builder) {
 
-		this.bitSetCache = Objects.requireNonNull(builder.bitSetCache, "bit_set_cache");
+		this.bitSetCache = ModelTypeHelper.requireNonNull(builder.bitSetCache, this, "bitSetCache");
 
 	}
 
-	public SecurityRolesDls(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SecurityRolesDls of(Function<Builder, ObjectBuilder<SecurityRolesDls>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code bit_set_cache}
 	 */
-	public SecurityRolesDlsBitSetCache bitSetCache() {
+	public final SecurityRolesDlsBitSetCache bitSetCache() {
 		return this.bitSetCache;
 	}
 
@@ -81,13 +83,13 @@ public final class SecurityRolesDls implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRolesDls}.
 	 */
-	public static class Builder implements ObjectBuilder<SecurityRolesDls> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRolesDls> {
 		private SecurityRolesDlsBitSetCache bitSetCache;
 
 		/**
 		 * Required - API name: {@code bit_set_cache}
 		 */
-		public Builder bitSetCache(SecurityRolesDlsBitSetCache value) {
+		public final Builder bitSetCache(SecurityRolesDlsBitSetCache value) {
 			this.bitSetCache = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class SecurityRolesDls implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bit_set_cache}
 		 */
-		public Builder bitSetCache(
+		public final Builder bitSetCache(
 				Function<SecurityRolesDlsBitSetCache.Builder, ObjectBuilder<SecurityRolesDlsBitSetCache>> fn) {
 			return this.bitSetCache(fn.apply(new SecurityRolesDlsBitSetCache.Builder()).build());
 		}
@@ -107,6 +109,7 @@ public final class SecurityRolesDls implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SecurityRolesDls build() {
+			_checkSingleUse();
 
 			return new SecurityRolesDls(this);
 		}

@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModels
 @JsonpDeserializable
-public final class MlInferenceTrainedModels implements JsonpSerializable {
+public class MlInferenceTrainedModels implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics estimatedOperations;
 
@@ -53,24 +55,24 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlInferenceTrainedModels(Builder builder) {
+	private MlInferenceTrainedModels(Builder builder) {
 
 		this.estimatedOperations = builder.estimatedOperations;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.count = builder.count;
-		this.all = Objects.requireNonNull(builder.all, "_all");
+		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
-	public MlInferenceTrainedModels(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlInferenceTrainedModels of(Function<Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code estimated_operations}
 	 */
 	@Nullable
-	public JobStatistics estimatedOperations() {
+	public final JobStatistics estimatedOperations() {
 		return this.estimatedOperations;
 	}
 
@@ -78,7 +80,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 	 * API name: {@code estimated_heap_memory_usage_bytes}
 	 */
 	@Nullable
-	public JobStatistics estimatedHeapMemoryUsageBytes() {
+	public final JobStatistics estimatedHeapMemoryUsageBytes() {
 		return this.estimatedHeapMemoryUsageBytes;
 	}
 
@@ -86,14 +88,14 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public MlInferenceTrainedModelsCount count() {
+	public final MlInferenceTrainedModelsCount count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code _all}
 	 */
-	public MlCounter all() {
+	public final MlCounter all() {
 		return this.all;
 	}
 
@@ -109,24 +111,20 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.estimatedOperations != null) {
-
 			generator.writeKey("estimated_operations");
 			this.estimatedOperations.serialize(generator, mapper);
 
 		}
 		if (this.estimatedHeapMemoryUsageBytes != null) {
-
 			generator.writeKey("estimated_heap_memory_usage_bytes");
 			this.estimatedHeapMemoryUsageBytes.serialize(generator, mapper);
 
 		}
 		if (this.count != null) {
-
 			generator.writeKey("count");
 			this.count.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("_all");
 		this.all.serialize(generator, mapper);
 
@@ -137,7 +135,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInferenceTrainedModels}.
 	 */
-	public static class Builder implements ObjectBuilder<MlInferenceTrainedModels> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceTrainedModels> {
 		@Nullable
 		private JobStatistics estimatedOperations;
 
@@ -152,7 +150,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code estimated_operations}
 		 */
-		public Builder estimatedOperations(@Nullable JobStatistics value) {
+		public final Builder estimatedOperations(@Nullable JobStatistics value) {
 			this.estimatedOperations = value;
 			return this;
 		}
@@ -160,14 +158,14 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code estimated_operations}
 		 */
-		public Builder estimatedOperations(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+		public final Builder estimatedOperations(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
 			return this.estimatedOperations(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
-		public Builder estimatedHeapMemoryUsageBytes(@Nullable JobStatistics value) {
+		public final Builder estimatedHeapMemoryUsageBytes(@Nullable JobStatistics value) {
 			this.estimatedHeapMemoryUsageBytes = value;
 			return this;
 		}
@@ -175,14 +173,15 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
-		public Builder estimatedHeapMemoryUsageBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+		public final Builder estimatedHeapMemoryUsageBytes(
+				Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
 			return this.estimatedHeapMemoryUsageBytes(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable MlInferenceTrainedModelsCount value) {
+		public final Builder count(@Nullable MlInferenceTrainedModelsCount value) {
 			this.count = value;
 			return this;
 		}
@@ -190,7 +189,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(
+		public final Builder count(
 				Function<MlInferenceTrainedModelsCount.Builder, ObjectBuilder<MlInferenceTrainedModelsCount>> fn) {
 			return this.count(fn.apply(new MlInferenceTrainedModelsCount.Builder()).build());
 		}
@@ -198,7 +197,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(MlCounter value) {
+		public final Builder all(MlCounter value) {
 			this.all = value;
 			return this;
 		}
@@ -206,7 +205,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
+		public final Builder all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
 			return this.all(fn.apply(new MlCounter.Builder()).build());
 		}
 
@@ -217,6 +216,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlInferenceTrainedModels build() {
+			_checkSingleUse();
 
 			return new MlInferenceTrainedModels(this);
 		}

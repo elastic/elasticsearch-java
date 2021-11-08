@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
 @JsonpDeserializable
-public final class DataframeAnalyticsFieldSelection implements JsonpSerializable {
+public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	private final boolean isIncluded;
 
 	private final boolean isRequired;
@@ -61,19 +61,20 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsFieldSelection(Builder builder) {
+	private DataframeAnalyticsFieldSelection(Builder builder) {
 
-		this.isIncluded = Objects.requireNonNull(builder.isIncluded, "is_included");
-		this.isRequired = Objects.requireNonNull(builder.isRequired, "is_required");
+		this.isIncluded = ModelTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded");
+		this.isRequired = ModelTypeHelper.requireNonNull(builder.isRequired, this, "isRequired");
 		this.featureType = builder.featureType;
-		this.mappingTypes = ModelTypeHelper.unmodifiableNonNull(builder.mappingTypes, "mapping_types");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.mappingTypes = ModelTypeHelper.unmodifiableRequired(builder.mappingTypes, this, "mappingTypes");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reason = builder.reason;
 
 	}
 
-	public DataframeAnalyticsFieldSelection(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsFieldSelection of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +82,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * <p>
 	 * API name: {@code is_included}
 	 */
-	public boolean isIncluded() {
+	public final boolean isIncluded() {
 		return this.isIncluded;
 	}
 
@@ -90,7 +91,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * <p>
 	 * API name: {@code is_required}
 	 */
-	public boolean isRequired() {
+	public final boolean isRequired() {
 		return this.isRequired;
 	}
 
@@ -101,7 +102,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * API name: {@code feature_type}
 	 */
 	@Nullable
-	public String featureType() {
+	public final String featureType() {
 		return this.featureType;
 	}
 
@@ -110,7 +111,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * <p>
 	 * API name: {@code mapping_types}
 	 */
-	public List<String> mappingTypes() {
+	public final List<String> mappingTypes() {
 		return this.mappingTypes;
 	}
 
@@ -119,7 +120,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -129,7 +130,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * API name: {@code reason}
 	 */
 	@Nullable
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -151,25 +152,24 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		generator.write(this.isRequired);
 
 		if (this.featureType != null) {
-
 			generator.writeKey("feature_type");
 			generator.write(this.featureType);
 
 		}
+		if (ModelTypeHelper.isDefined(this.mappingTypes)) {
+			generator.writeKey("mapping_types");
+			generator.writeStartArray();
+			for (String item0 : this.mappingTypes) {
+				generator.write(item0);
 
-		generator.writeKey("mapping_types");
-		generator.writeStartArray();
-		for (String item0 : this.mappingTypes) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		if (this.reason != null) {
-
 			generator.writeKey("reason");
 			generator.write(this.reason);
 
@@ -182,7 +182,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	/**
 	 * Builder for {@link DataframeAnalyticsFieldSelection}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsFieldSelection> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsFieldSelection> {
 		private Boolean isIncluded;
 
 		private Boolean isRequired;
@@ -202,7 +202,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code is_included}
 		 */
-		public Builder isIncluded(boolean value) {
+		public final Builder isIncluded(boolean value) {
 			this.isIncluded = value;
 			return this;
 		}
@@ -212,7 +212,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code is_required}
 		 */
-		public Builder isRequired(boolean value) {
+		public final Builder isRequired(boolean value) {
 			this.isRequired = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code feature_type}
 		 */
-		public Builder featureType(@Nullable String value) {
+		public final Builder featureType(@Nullable String value) {
 			this.featureType = value;
 			return this;
 		}
@@ -233,7 +233,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code mapping_types}
 		 */
-		public Builder mappingTypes(List<String> value) {
+		public final Builder mappingTypes(List<String> value) {
 			this.mappingTypes = value;
 			return this;
 		}
@@ -243,19 +243,8 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code mapping_types}
 		 */
-		public Builder mappingTypes(String... value) {
+		public final Builder mappingTypes(String... value) {
 			this.mappingTypes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #mappingTypes(List)}, creating the list if needed.
-		 */
-		public Builder addMappingTypes(String value) {
-			if (this.mappingTypes == null) {
-				this.mappingTypes = new ArrayList<>();
-			}
-			this.mappingTypes.add(value);
 			return this;
 		}
 
@@ -264,7 +253,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -274,7 +263,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code reason}
 		 */
-		public Builder reason(@Nullable String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
@@ -286,6 +275,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsFieldSelection build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsFieldSelection(this);
 		}

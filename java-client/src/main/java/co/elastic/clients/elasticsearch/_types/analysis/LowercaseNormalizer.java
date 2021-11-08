@@ -31,21 +31,22 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseNormalizer
 @JsonpDeserializable
-public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
+public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
-	public LowercaseNormalizer(Builder builder) {
+	private LowercaseNormalizer(Builder builder) {
 
 	}
 
-	public LowercaseNormalizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LowercaseNormalizer of(Function<Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +77,7 @@ public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerial
 	/**
 	 * Builder for {@link LowercaseNormalizer}.
 	 */
-	public static class Builder implements ObjectBuilder<LowercaseNormalizer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
 
 		/**
 		 * Builds a {@link LowercaseNormalizer}.
@@ -85,6 +86,7 @@ public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public LowercaseNormalizer build() {
+			_checkSingleUse();
 
 			return new LowercaseNormalizer(this);
 		}

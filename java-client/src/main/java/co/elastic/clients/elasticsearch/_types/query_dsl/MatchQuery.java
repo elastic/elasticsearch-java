@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchQuery
 @JsonpDeserializable
-public final class MatchQuery extends QueryBase implements QueryVariant {
+public class MatchQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -85,9 +86,9 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchQuery(Builder builder) {
+	private MatchQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
@@ -100,13 +101,13 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}
 
-	public MatchQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchQuery of(Function<Builder, ObjectBuilder<MatchQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,7 +121,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -128,7 +129,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -136,7 +137,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
-	public Boolean autoGenerateSynonymsPhraseQuery() {
+	public final Boolean autoGenerateSynonymsPhraseQuery() {
 		return this.autoGenerateSynonymsPhraseQuery;
 	}
 
@@ -144,7 +145,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code cutoff_frequency}
 	 */
 	@Nullable
-	public Double cutoffFrequency() {
+	public final Double cutoffFrequency() {
 		return this.cutoffFrequency;
 	}
 
@@ -152,7 +153,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -160,7 +161,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
-	public String fuzzyRewrite() {
+	public final String fuzzyRewrite() {
 		return this.fuzzyRewrite;
 	}
 
@@ -168,7 +169,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
-	public Boolean fuzzyTranspositions() {
+	public final Boolean fuzzyTranspositions() {
 		return this.fuzzyTranspositions;
 	}
 
@@ -176,7 +177,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -184,7 +185,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Integer maxExpansions() {
+	public final Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
@@ -192,7 +193,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -200,7 +201,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public Operator operator() {
+	public final Operator operator() {
 		return this.operator;
 	}
 
@@ -208,14 +209,14 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -223,7 +224,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public ZeroTermsQuery zeroTermsQuery() {
+	public final ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
@@ -232,76 +233,63 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.autoGenerateSynonymsPhraseQuery != null) {
-
 			generator.writeKey("auto_generate_synonyms_phrase_query");
 			generator.write(this.autoGenerateSynonymsPhraseQuery);
 
 		}
 		if (this.cutoffFrequency != null) {
-
 			generator.writeKey("cutoff_frequency");
 			generator.write(this.cutoffFrequency);
 
 		}
 		if (this.fuzziness != null) {
-
 			generator.writeKey("fuzziness");
 			generator.write(this.fuzziness);
 
 		}
 		if (this.fuzzyRewrite != null) {
-
 			generator.writeKey("fuzzy_rewrite");
 			generator.write(this.fuzzyRewrite);
 
 		}
 		if (this.fuzzyTranspositions != null) {
-
 			generator.writeKey("fuzzy_transpositions");
 			generator.write(this.fuzzyTranspositions);
 
 		}
 		if (this.lenient != null) {
-
 			generator.writeKey("lenient");
 			generator.write(this.lenient);
 
 		}
 		if (this.maxExpansions != null) {
-
 			generator.writeKey("max_expansions");
 			generator.write(this.maxExpansions);
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
 		if (this.operator != null) {
-
 			generator.writeKey("operator");
 			this.operator.serialize(generator, mapper);
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.zeroTermsQuery != null) {
-
 			generator.writeKey("zero_terms_query");
 			this.zeroTermsQuery.serialize(generator, mapper);
 		}
@@ -321,7 +309,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -367,7 +355,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -375,7 +363,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
-		public Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
+		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
 			this.autoGenerateSynonymsPhraseQuery = value;
 			return this;
 		}
@@ -383,7 +371,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code cutoff_frequency}
 		 */
-		public Builder cutoffFrequency(@Nullable Double value) {
+		public final Builder cutoffFrequency(@Nullable Double value) {
 			this.cutoffFrequency = value;
 			return this;
 		}
@@ -391,7 +379,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -399,7 +387,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_rewrite}
 		 */
-		public Builder fuzzyRewrite(@Nullable String value) {
+		public final Builder fuzzyRewrite(@Nullable String value) {
 			this.fuzzyRewrite = value;
 			return this;
 		}
@@ -407,7 +395,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_transpositions}
 		 */
-		public Builder fuzzyTranspositions(@Nullable Boolean value) {
+		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
 			this.fuzzyTranspositions = value;
 			return this;
 		}
@@ -415,7 +403,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -423,7 +411,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Integer value) {
+		public final Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -431,7 +419,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -439,7 +427,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable Operator value) {
+		public final Builder operator(@Nullable Operator value) {
 			this.operator = value;
 			return this;
 		}
@@ -447,7 +435,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -455,7 +443,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -463,7 +451,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
+		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -480,6 +468,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MatchQuery build() {
+			_checkSingleUse();
 
 			return new MatchQuery(this);
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: security.get_builtin_privileges.Request
 
-public final class GetBuiltinPrivilegesRequest extends RequestBase {
+public class GetBuiltinPrivilegesRequest extends RequestBase {
 	public GetBuiltinPrivilegesRequest() {
 	}
 

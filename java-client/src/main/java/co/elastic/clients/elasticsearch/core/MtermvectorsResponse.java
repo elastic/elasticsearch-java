@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Response
 @JsonpDeserializable
-public final class MtermvectorsResponse implements JsonpSerializable {
+public class MtermvectorsResponse implements JsonpSerializable {
 	private final List<TermVectorsResult> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MtermvectorsResponse(Builder builder) {
+	private MtermvectorsResponse(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableNonNull(builder.docs, "docs");
+		this.docs = ModelTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
-	public MtermvectorsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MtermvectorsResponse of(Function<Builder, ObjectBuilder<MtermvectorsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public List<TermVectorsResult> docs() {
+	public final List<TermVectorsResult> docs() {
 		return this.docs;
 	}
 
@@ -76,13 +77,16 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("docs");
-		generator.writeStartArray();
-		for (TermVectorsResult item0 : this.docs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.docs)) {
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (TermVectorsResult item0 : this.docs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MtermvectorsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MtermvectorsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsResponse> {
 		private List<TermVectorsResult> docs;
 
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder docs(List<TermVectorsResult> value) {
+		public final Builder docs(List<TermVectorsResult> value) {
 			this.docs = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder docs(TermVectorsResult... value) {
+		public final Builder docs(TermVectorsResult... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Required - API name: {@code docs}
 		 */
-		public Builder addDocs(TermVectorsResult value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder docs(Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>>... fns) {
+			this.docs = new ArrayList<>(fns.length);
+			for (Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>> fn : fns) {
+				this.docs.add(fn.apply(new TermVectorsResult.Builder()).build());
 			}
-			this.docs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>> fn) {
-			return this.docs(fn.apply(new TermVectorsResult.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>> fn) {
-			return this.addDocs(fn.apply(new TermVectorsResult.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MtermvectorsResponse build() {
+			_checkSingleUse();
 
 			return new MtermvectorsResponse(this);
 		}

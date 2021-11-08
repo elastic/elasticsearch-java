@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackResult
 @JsonpDeserializable
-public final class SlackResult implements JsonpSerializable {
+public class SlackResult implements JsonpSerializable {
 	@Nullable
 	private final String account;
 
@@ -47,29 +49,29 @@ public final class SlackResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SlackResult(Builder builder) {
+	private SlackResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = Objects.requireNonNull(builder.message, "message");
+		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
-	public SlackResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SlackResult of(Function<Builder, ObjectBuilder<SlackResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code account}
 	 */
 	@Nullable
-	public String account() {
+	public final String account() {
 		return this.account;
 	}
 
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public SlackMessage message() {
+	public final SlackMessage message() {
 		return this.message;
 	}
 
@@ -85,12 +87,10 @@ public final class SlackResult implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.account != null) {
-
 			generator.writeKey("account");
 			generator.write(this.account);
 
 		}
-
 		generator.writeKey("message");
 		this.message.serialize(generator, mapper);
 
@@ -101,7 +101,7 @@ public final class SlackResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackResult}.
 	 */
-	public static class Builder implements ObjectBuilder<SlackResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackResult> {
 		@Nullable
 		private String account;
 
@@ -110,7 +110,7 @@ public final class SlackResult implements JsonpSerializable {
 		/**
 		 * API name: {@code account}
 		 */
-		public Builder account(@Nullable String value) {
+		public final Builder account(@Nullable String value) {
 			this.account = value;
 			return this;
 		}
@@ -118,7 +118,7 @@ public final class SlackResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(SlackMessage value) {
+		public final Builder message(SlackMessage value) {
 			this.message = value;
 			return this;
 		}
@@ -126,7 +126,7 @@ public final class SlackResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(Function<SlackMessage.Builder, ObjectBuilder<SlackMessage>> fn) {
+		public final Builder message(Function<SlackMessage.Builder, ObjectBuilder<SlackMessage>> fn) {
 			return this.message(fn.apply(new SlackMessage.Builder()).build());
 		}
 
@@ -137,6 +137,7 @@ public final class SlackResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SlackResult build() {
+			_checkSingleUse();
 
 			return new SlackResult(this);
 		}

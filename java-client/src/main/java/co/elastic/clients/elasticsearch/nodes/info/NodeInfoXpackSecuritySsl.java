@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,25 +42,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecuritySsl
 @JsonpDeserializable
-public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
+public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	private final Map<String, String> ssl;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackSecuritySsl(Builder builder) {
+	private NodeInfoXpackSecuritySsl(Builder builder) {
 
-		this.ssl = ModelTypeHelper.unmodifiableNonNull(builder.ssl, "ssl");
+		this.ssl = ModelTypeHelper.unmodifiableRequired(builder.ssl, this, "ssl");
 
 	}
 
-	public NodeInfoXpackSecuritySsl(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackSecuritySsl of(Function<Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code ssl}
 	 */
-	public Map<String, String> ssl() {
+	public final Map<String, String> ssl() {
 		return this.ssl;
 	}
 
@@ -75,14 +75,17 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("ssl");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.ssl.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.ssl)) {
+			generator.writeKey("ssl");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.ssl.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,25 +94,14 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackSecuritySsl}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackSecuritySsl> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecuritySsl> {
 		private Map<String, String> ssl;
 
 		/**
 		 * Required - API name: {@code ssl}
 		 */
-		public Builder ssl(Map<String, String> value) {
+		public final Builder ssl(Map<String, String> value) {
 			this.ssl = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #ssl(Map)}, creating the map if needed.
-		 */
-		public Builder putSsl(String key, String value) {
-			if (this.ssl == null) {
-				this.ssl = new HashMap<>();
-			}
-			this.ssl.put(key, value);
 			return this;
 		}
 
@@ -120,6 +112,7 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackSecuritySsl build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackSecuritySsl(this);
 		}

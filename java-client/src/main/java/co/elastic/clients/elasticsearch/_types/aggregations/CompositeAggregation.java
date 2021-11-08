@@ -34,9 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,19 +43,17 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregation
 @JsonpDeserializable
-public final class CompositeAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
+public class CompositeAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final Map<String, String> after;
 
 	@Nullable
 	private final Integer size;
 
-	@Nullable
 	private final List<Map<String, CompositeAggregationSource>> sources;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompositeAggregation(Builder builder) {
+	private CompositeAggregation(Builder builder) {
 		super(builder);
 
 		this.after = ModelTypeHelper.unmodifiable(builder.after);
@@ -66,8 +62,8 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 
 	}
 
-	public CompositeAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompositeAggregation of(Function<Builder, ObjectBuilder<CompositeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,8 +77,7 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 	/**
 	 * API name: {@code after}
 	 */
-	@Nullable
-	public Map<String, String> after() {
+	public final Map<String, String> after() {
 		return this.after;
 	}
 
@@ -90,23 +85,21 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code sources}
 	 */
-	@Nullable
-	public List<Map<String, CompositeAggregationSource>> sources() {
+	public final List<Map<String, CompositeAggregationSource>> sources() {
 		return this.sources;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.after != null) {
-
+		if (ModelTypeHelper.isDefined(this.after)) {
 			generator.writeKey("after");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.after.entrySet()) {
@@ -118,21 +111,21 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-		if (this.sources != null) {
-
+		if (ModelTypeHelper.isDefined(this.sources)) {
 			generator.writeKey("sources");
 			generator.writeStartArray();
 			for (Map<String, CompositeAggregationSource> item0 : this.sources) {
 				generator.writeStartObject();
-				for (Map.Entry<String, CompositeAggregationSource> item1 : item0.entrySet()) {
-					generator.writeKey(item1.getKey());
-					item1.getValue().serialize(generator, mapper);
+				if (item0 != null) {
+					for (Map.Entry<String, CompositeAggregationSource> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -163,26 +156,15 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code after}
 		 */
-		public Builder after(@Nullable Map<String, String> value) {
+		public final Builder after(@Nullable Map<String, String> value) {
 			this.after = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #after(Map)}, creating the map if needed.
-		 */
-		public Builder putAfter(String key, String value) {
-			if (this.after == null) {
-				this.after = new HashMap<>();
-			}
-			this.after.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -190,7 +172,7 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code sources}
 		 */
-		public Builder sources(@Nullable List<Map<String, CompositeAggregationSource>> value) {
+		public final Builder sources(@Nullable List<Map<String, CompositeAggregationSource>> value) {
 			this.sources = value;
 			return this;
 		}
@@ -198,19 +180,8 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code sources}
 		 */
-		public Builder sources(Map<String, CompositeAggregationSource>... value) {
+		public final Builder sources(Map<String, CompositeAggregationSource>... value) {
 			this.sources = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sources(List)}, creating the list if needed.
-		 */
-		public Builder addSources(Map<String, CompositeAggregationSource> value) {
-			if (this.sources == null) {
-				this.sources = new ArrayList<>();
-			}
-			this.sources.add(value);
 			return this;
 		}
 
@@ -226,6 +197,7 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public CompositeAggregation build() {
+			_checkSingleUse();
 
 			return new CompositeAggregation(this);
 		}

@@ -39,10 +39,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -54,14 +54,13 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Request
 @JsonpDeserializable
-public final class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
+public class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -76,10 +75,8 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
 	private final List<String> index;
 
-	@Nullable
 	private final Map<String, JsonData> params;
 
 	@Nullable
@@ -100,12 +97,9 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final String source;
 
-	@Nullable
-	private final Boolean typedKeys;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchTemplateRequest(Builder builder) {
+	private SearchTemplateRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
@@ -122,12 +116,11 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		this.scroll = builder.scroll;
 		this.searchType = builder.searchType;
 		this.source = builder.source;
-		this.typedKeys = builder.typedKeys;
 
 	}
 
-	public SearchTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchTemplateRequest of(Function<Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,7 +131,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -149,7 +142,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
-	public Boolean ccsMinimizeRoundtrips() {
+	public final Boolean ccsMinimizeRoundtrips() {
 		return this.ccsMinimizeRoundtrips;
 	}
 
@@ -159,8 +152,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -168,7 +160,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
 	}
 
@@ -179,7 +171,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -190,7 +182,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
-	public Boolean ignoreThrottled() {
+	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
 	}
 
@@ -201,7 +193,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -211,16 +203,14 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -231,7 +221,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -239,7 +229,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code profile}
 	 */
 	@Nullable
-	public Boolean profile() {
+	public final Boolean profile() {
 		return this.profile;
 	}
 
@@ -249,7 +239,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -260,7 +250,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public String scroll() {
+	public final String scroll() {
 		return this.scroll;
 	}
 
@@ -270,7 +260,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -282,19 +272,8 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public String source() {
+	public final String source() {
 		return this.source;
-	}
-
-	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
 	}
 
 	/**
@@ -309,19 +288,16 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.explain != null) {
-
 			generator.writeKey("explain");
 			generator.write(this.explain);
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
-		if (this.params != null) {
-
+		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -333,13 +309,11 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 
 		}
 		if (this.profile != null) {
-
 			generator.writeKey("profile");
 			generator.write(this.profile);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("source");
 			generator.write(this.source);
 
@@ -352,7 +326,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link SearchTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchTemplateRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -398,9 +372,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private String source;
 
-		@Nullable
-		private Boolean typedKeys;
-
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -408,7 +379,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -419,7 +390,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
-		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
 			this.ccsMinimizeRoundtrips = value;
 			return this;
 		}
@@ -430,7 +401,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -441,26 +412,15 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -471,7 +431,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -482,7 +442,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
-		public Builder ignoreThrottled(@Nullable Boolean value) {
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
 		}
@@ -493,7 +453,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -504,7 +464,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -515,38 +475,16 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonData> value) {
+		public final Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public Builder putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
 			return this;
 		}
 
@@ -556,7 +494,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
 		}
@@ -564,7 +502,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code profile}
 		 */
-		public Builder profile(@Nullable Boolean value) {
+		public final Builder profile(@Nullable Boolean value) {
 			this.profile = value;
 			return this;
 		}
@@ -574,7 +512,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -585,7 +523,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public Builder scroll(@Nullable String value) {
+		public final Builder scroll(@Nullable String value) {
 			this.scroll = value;
 			return this;
 		}
@@ -595,7 +533,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable SearchType value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -607,19 +545,8 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(@Nullable String value) {
+		public final Builder source(@Nullable String value) {
 			this.source = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
-		 * <p>
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
 			return this;
 		}
 
@@ -630,6 +557,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public SearchTemplateRequest build() {
+			_checkSingleUse();
 
 			return new SearchTemplateRequest(this);
 		}
@@ -672,7 +600,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -696,12 +624,10 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
-				}
-				if (request.expandWildcards != null) {
+				params.put("typed_keys", "true");
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -710,7 +636,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 					params.put("scroll", request.scroll);
 				}
 				if (request.searchType != null) {
-					params.put("search_type", request.searchType.toString());
+					params.put("search_type", request.searchType.jsonValue());
 				}
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));

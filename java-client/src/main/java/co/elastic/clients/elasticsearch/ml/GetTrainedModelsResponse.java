@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.ArrayList;
@@ -43,29 +44,29 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Response
 @JsonpDeserializable
-public final class GetTrainedModelsResponse implements JsonpSerializable {
+public class GetTrainedModelsResponse implements JsonpSerializable {
 	private final int count;
 
 	private final List<TrainedModelConfig> trainedModelConfigs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTrainedModelsResponse(Builder builder) {
+	private GetTrainedModelsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.trainedModelConfigs = ModelTypeHelper.unmodifiableNonNull(builder.trainedModelConfigs,
-				"trained_model_configs");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.trainedModelConfigs = ModelTypeHelper.unmodifiableRequired(builder.trainedModelConfigs, this,
+				"trainedModelConfigs");
 
 	}
 
-	public GetTrainedModelsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTrainedModelsResponse of(Function<Builder, ObjectBuilder<GetTrainedModelsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
@@ -75,7 +76,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code trained_model_configs}
 	 */
-	public List<TrainedModelConfig> trainedModelConfigs() {
+	public final List<TrainedModelConfig> trainedModelConfigs() {
 		return this.trainedModelConfigs;
 	}
 
@@ -93,13 +94,16 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("trained_model_configs");
-		generator.writeStartArray();
-		for (TrainedModelConfig item0 : this.trainedModelConfigs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.trainedModelConfigs)) {
+			generator.writeKey("trained_model_configs");
+			generator.writeStartArray();
+			for (TrainedModelConfig item0 : this.trainedModelConfigs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -108,7 +112,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTrainedModelsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTrainedModelsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsResponse> {
 		private Integer count;
 
 		private List<TrainedModelConfig> trainedModelConfigs;
@@ -116,7 +120,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -127,7 +131,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
-		public Builder trainedModelConfigs(List<TrainedModelConfig> value) {
+		public final Builder trainedModelConfigs(List<TrainedModelConfig> value) {
 			this.trainedModelConfigs = value;
 			return this;
 		}
@@ -138,37 +142,25 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
-		public Builder trainedModelConfigs(TrainedModelConfig... value) {
+		public final Builder trainedModelConfigs(TrainedModelConfig... value) {
 			this.trainedModelConfigs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #trainedModelConfigs(List)}, creating the list if
-		 * needed.
+		 * Required - An array of trained model resources, which are sorted by the
+		 * model_id value in ascending order.
+		 * <p>
+		 * API name: {@code trained_model_configs}
 		 */
-		public Builder addTrainedModelConfigs(TrainedModelConfig value) {
-			if (this.trainedModelConfigs == null) {
-				this.trainedModelConfigs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder trainedModelConfigs(
+				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>>... fns) {
+			this.trainedModelConfigs = new ArrayList<>(fns.length);
+			for (Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn : fns) {
+				this.trainedModelConfigs.add(fn.apply(new TrainedModelConfig.Builder()).build());
 			}
-			this.trainedModelConfigs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #trainedModelConfigs(List)} to a singleton list.
-		 */
-		public Builder trainedModelConfigs(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
-			return this.trainedModelConfigs(fn.apply(new TrainedModelConfig.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #trainedModelConfigs(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addTrainedModelConfigs(
-				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
-			return this.addTrainedModelConfigs(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
 		/**
@@ -178,6 +170,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetTrainedModelsResponse build() {
+			_checkSingleUse();
 
 			return new GetTrainedModelsResponse(this);
 		}

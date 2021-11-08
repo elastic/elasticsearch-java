@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MaxBucketAggregation
 @JsonpDeserializable
-public final class MaxBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MaxBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MaxBucketAggregation(Builder builder) {
+	private MaxBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MaxBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MaxBucketAggregation of(Function<Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class MaxBucketAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public MaxBucketAggregation build() {
+			_checkSingleUse();
 
 			return new MaxBucketAggregation(this);
 		}

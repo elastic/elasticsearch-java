@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
 @JsonpDeserializable
-public final class IndexRoutingAllocationDisk implements JsonpSerializable {
+public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	private final boolean thresholdEnabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexRoutingAllocationDisk(Builder builder) {
+	private IndexRoutingAllocationDisk(Builder builder) {
 
-		this.thresholdEnabled = Objects.requireNonNull(builder.thresholdEnabled, "threshold_enabled");
+		this.thresholdEnabled = ModelTypeHelper.requireNonNull(builder.thresholdEnabled, this, "thresholdEnabled");
 
 	}
 
-	public IndexRoutingAllocationDisk(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexRoutingAllocationDisk of(Function<Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code threshold_enabled}
 	 */
-	public boolean thresholdEnabled() {
+	public final boolean thresholdEnabled() {
 		return this.thresholdEnabled;
 	}
 
@@ -81,13 +83,13 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingAllocationDisk}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexRoutingAllocationDisk> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationDisk> {
 		private Boolean thresholdEnabled;
 
 		/**
 		 * Required - API name: {@code threshold_enabled}
 		 */
-		public Builder thresholdEnabled(boolean value) {
+		public final Builder thresholdEnabled(boolean value) {
 			this.thresholdEnabled = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexRoutingAllocationDisk build() {
+			_checkSingleUse();
 
 			return new IndexRoutingAllocationDisk(this);
 		}

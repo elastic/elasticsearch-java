@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndex
 @JsonpDeserializable
-public final class FollowerIndex implements JsonpSerializable {
+public class FollowerIndex implements JsonpSerializable {
 	private final String followerIndex;
 
 	private final String leaderIndex;
@@ -53,31 +55,31 @@ public final class FollowerIndex implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowerIndex(Builder builder) {
+	private FollowerIndex(Builder builder) {
 
-		this.followerIndex = Objects.requireNonNull(builder.followerIndex, "follower_index");
-		this.leaderIndex = Objects.requireNonNull(builder.leaderIndex, "leader_index");
+		this.followerIndex = ModelTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
+		this.leaderIndex = ModelTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
 		this.parameters = builder.parameters;
-		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public FollowerIndex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowerIndex of(Function<Builder, ObjectBuilder<FollowerIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code follower_index}
 	 */
-	public String followerIndex() {
+	public final String followerIndex() {
 		return this.followerIndex;
 	}
 
 	/**
 	 * Required - API name: {@code leader_index}
 	 */
-	public String leaderIndex() {
+	public final String leaderIndex() {
 		return this.leaderIndex;
 	}
 
@@ -85,21 +87,21 @@ public final class FollowerIndex implements JsonpSerializable {
 	 * API name: {@code parameters}
 	 */
 	@Nullable
-	public FollowerIndexParameters parameters() {
+	public final FollowerIndexParameters parameters() {
 		return this.parameters;
 	}
 
 	/**
 	 * Required - API name: {@code remote_cluster}
 	 */
-	public String remoteCluster() {
+	public final String remoteCluster() {
 		return this.remoteCluster;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public FollowerIndexStatus status() {
+	public final FollowerIndexStatus status() {
 		return this.status;
 	}
 
@@ -121,12 +123,10 @@ public final class FollowerIndex implements JsonpSerializable {
 		generator.write(this.leaderIndex);
 
 		if (this.parameters != null) {
-
 			generator.writeKey("parameters");
 			this.parameters.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("remote_cluster");
 		generator.write(this.remoteCluster);
 
@@ -140,7 +140,7 @@ public final class FollowerIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowerIndex}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowerIndex> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowerIndex> {
 		private String followerIndex;
 
 		private String leaderIndex;
@@ -155,7 +155,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code follower_index}
 		 */
-		public Builder followerIndex(String value) {
+		public final Builder followerIndex(String value) {
 			this.followerIndex = value;
 			return this;
 		}
@@ -163,7 +163,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code leader_index}
 		 */
-		public Builder leaderIndex(String value) {
+		public final Builder leaderIndex(String value) {
 			this.leaderIndex = value;
 			return this;
 		}
@@ -171,7 +171,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code parameters}
 		 */
-		public Builder parameters(@Nullable FollowerIndexParameters value) {
+		public final Builder parameters(@Nullable FollowerIndexParameters value) {
 			this.parameters = value;
 			return this;
 		}
@@ -179,7 +179,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code parameters}
 		 */
-		public Builder parameters(
+		public final Builder parameters(
 				Function<FollowerIndexParameters.Builder, ObjectBuilder<FollowerIndexParameters>> fn) {
 			return this.parameters(fn.apply(new FollowerIndexParameters.Builder()).build());
 		}
@@ -187,7 +187,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote_cluster}
 		 */
-		public Builder remoteCluster(String value) {
+		public final Builder remoteCluster(String value) {
 			this.remoteCluster = value;
 			return this;
 		}
@@ -195,7 +195,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(FollowerIndexStatus value) {
+		public final Builder status(FollowerIndexStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -207,6 +207,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FollowerIndex build() {
+			_checkSingleUse();
 
 			return new FollowerIndex(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.PorterStemTokenFilter
 @JsonpDeserializable
-public final class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public PorterStemTokenFilter(Builder builder) {
+	private PorterStemTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public PorterStemTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PorterStemTokenFilter of(Function<Builder, ObjectBuilder<PorterStemTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class PorterStemTokenFilter extends TokenFilterBase implements Toke
 		 *             if some of the required fields are null.
 		 */
 		public PorterStemTokenFilter build() {
+			_checkSingleUse();
 
 			return new PorterStemTokenFilter(this);
 		}

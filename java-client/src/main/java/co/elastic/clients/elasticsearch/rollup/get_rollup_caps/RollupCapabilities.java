@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilities
 @JsonpDeserializable
-public final class RollupCapabilities implements JsonpSerializable {
+public class RollupCapabilities implements JsonpSerializable {
 	private final List<RollupCapabilitySummary> rollupJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupCapabilities(Builder builder) {
+	private RollupCapabilities(Builder builder) {
 
-		this.rollupJobs = ModelTypeHelper.unmodifiableNonNull(builder.rollupJobs, "rollup_jobs");
+		this.rollupJobs = ModelTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
 
 	}
 
-	public RollupCapabilities(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupCapabilities of(Function<Builder, ObjectBuilder<RollupCapabilities>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rollup_jobs}
 	 */
-	public List<RollupCapabilitySummary> rollupJobs() {
+	public final List<RollupCapabilitySummary> rollupJobs() {
 		return this.rollupJobs;
 	}
 
@@ -75,13 +76,16 @@ public final class RollupCapabilities implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("rollup_jobs");
-		generator.writeStartArray();
-		for (RollupCapabilitySummary item0 : this.rollupJobs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.rollupJobs)) {
+			generator.writeKey("rollup_jobs");
+			generator.writeStartArray();
+			for (RollupCapabilitySummary item0 : this.rollupJobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class RollupCapabilities implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupCapabilities}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupCapabilities> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupCapabilities> {
 		private List<RollupCapabilitySummary> rollupJobs;
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
 		 */
-		public Builder rollupJobs(List<RollupCapabilitySummary> value) {
+		public final Builder rollupJobs(List<RollupCapabilitySummary> value) {
 			this.rollupJobs = value;
 			return this;
 		}
@@ -104,36 +108,22 @@ public final class RollupCapabilities implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rollup_jobs}
 		 */
-		public Builder rollupJobs(RollupCapabilitySummary... value) {
+		public final Builder rollupJobs(RollupCapabilitySummary... value) {
 			this.rollupJobs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
+		 * Required - API name: {@code rollup_jobs}
 		 */
-		public Builder addRollupJobs(RollupCapabilitySummary value) {
-			if (this.rollupJobs == null) {
-				this.rollupJobs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder rollupJobs(
+				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>>... fns) {
+			this.rollupJobs = new ArrayList<>(fns.length);
+			for (Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn : fns) {
+				this.rollupJobs.add(fn.apply(new RollupCapabilitySummary.Builder()).build());
 			}
-			this.rollupJobs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #rollupJobs(List)} to a singleton list.
-		 */
-		public Builder rollupJobs(
-				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
-			return this.rollupJobs(fn.apply(new RollupCapabilitySummary.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
-		 */
-		public Builder addRollupJobs(
-				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
-			return this.addRollupJobs(fn.apply(new RollupCapabilitySummary.Builder()).build());
 		}
 
 		/**
@@ -143,6 +133,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupCapabilities build() {
+			_checkSingleUse();
 
 			return new RollupCapabilities(this);
 		}

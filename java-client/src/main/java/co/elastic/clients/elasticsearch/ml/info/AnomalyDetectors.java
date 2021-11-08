@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.info.AnomalyDetectors
 @JsonpDeserializable
-public final class AnomalyDetectors implements JsonpSerializable {
+public class AnomalyDetectors implements JsonpSerializable {
 	private final CategorizationAnalyzer categorizationAnalyzer;
 
 	private final int categorizationExamplesLimit;
@@ -54,55 +56,56 @@ public final class AnomalyDetectors implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnomalyDetectors(Builder builder) {
+	private AnomalyDetectors(Builder builder) {
 
-		this.categorizationAnalyzer = Objects.requireNonNull(builder.categorizationAnalyzer, "categorization_analyzer");
-		this.categorizationExamplesLimit = Objects.requireNonNull(builder.categorizationExamplesLimit,
-				"categorization_examples_limit");
-		this.modelMemoryLimit = Objects.requireNonNull(builder.modelMemoryLimit, "model_memory_limit");
-		this.modelSnapshotRetentionDays = Objects.requireNonNull(builder.modelSnapshotRetentionDays,
-				"model_snapshot_retention_days");
-		this.dailyModelSnapshotRetentionAfterDays = Objects.requireNonNull(builder.dailyModelSnapshotRetentionAfterDays,
-				"daily_model_snapshot_retention_after_days");
+		this.categorizationAnalyzer = ModelTypeHelper.requireNonNull(builder.categorizationAnalyzer, this,
+				"categorizationAnalyzer");
+		this.categorizationExamplesLimit = ModelTypeHelper.requireNonNull(builder.categorizationExamplesLimit, this,
+				"categorizationExamplesLimit");
+		this.modelMemoryLimit = ModelTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
+		this.modelSnapshotRetentionDays = ModelTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+				"modelSnapshotRetentionDays");
+		this.dailyModelSnapshotRetentionAfterDays = ModelTypeHelper.requireNonNull(
+				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays");
 
 	}
 
-	public AnomalyDetectors(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnomalyDetectors of(Function<Builder, ObjectBuilder<AnomalyDetectors>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code categorization_analyzer}
 	 */
-	public CategorizationAnalyzer categorizationAnalyzer() {
+	public final CategorizationAnalyzer categorizationAnalyzer() {
 		return this.categorizationAnalyzer;
 	}
 
 	/**
 	 * Required - API name: {@code categorization_examples_limit}
 	 */
-	public int categorizationExamplesLimit() {
+	public final int categorizationExamplesLimit() {
 		return this.categorizationExamplesLimit;
 	}
 
 	/**
 	 * Required - API name: {@code model_memory_limit}
 	 */
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
 	/**
 	 * Required - API name: {@code model_snapshot_retention_days}
 	 */
-	public int modelSnapshotRetentionDays() {
+	public final int modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
 	/**
 	 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 	 */
-	public int dailyModelSnapshotRetentionAfterDays() {
+	public final int dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -139,7 +142,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnomalyDetectors}.
 	 */
-	public static class Builder implements ObjectBuilder<AnomalyDetectors> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnomalyDetectors> {
 		private CategorizationAnalyzer categorizationAnalyzer;
 
 		private Integer categorizationExamplesLimit;
@@ -153,7 +156,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categorization_analyzer}
 		 */
-		public Builder categorizationAnalyzer(CategorizationAnalyzer value) {
+		public final Builder categorizationAnalyzer(CategorizationAnalyzer value) {
 			this.categorizationAnalyzer = value;
 			return this;
 		}
@@ -161,7 +164,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categorization_analyzer}
 		 */
-		public Builder categorizationAnalyzer(
+		public final Builder categorizationAnalyzer(
 				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
 			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
 		}
@@ -169,7 +172,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categorization_examples_limit}
 		 */
-		public Builder categorizationExamplesLimit(int value) {
+		public final Builder categorizationExamplesLimit(int value) {
 			this.categorizationExamplesLimit = value;
 			return this;
 		}
@@ -177,7 +180,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(String value) {
+		public final Builder modelMemoryLimit(String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -185,7 +188,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(int value) {
+		public final Builder modelSnapshotRetentionDays(int value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -193,7 +196,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(int value) {
+		public final Builder dailyModelSnapshotRetentionAfterDays(int value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -205,6 +208,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnomalyDetectors build() {
+			_checkSingleUse();
 
 			return new AnomalyDetectors(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStats
 @JsonpDeserializable
-public final class JobStats implements JsonpSerializable {
+public class JobStats implements JsonpSerializable {
 	private final String assignmentExplanation;
 
 	private final DataCounts dataCounts;
@@ -65,64 +67,65 @@ public final class JobStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JobStats(Builder builder) {
+	private JobStats(Builder builder) {
 
-		this.assignmentExplanation = Objects.requireNonNull(builder.assignmentExplanation, "assignment_explanation");
-		this.dataCounts = Objects.requireNonNull(builder.dataCounts, "data_counts");
-		this.forecastsStats = Objects.requireNonNull(builder.forecastsStats, "forecasts_stats");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.modelSizeStats = Objects.requireNonNull(builder.modelSizeStats, "model_size_stats");
-		this.node = Objects.requireNonNull(builder.node, "node");
+		this.assignmentExplanation = ModelTypeHelper.requireNonNull(builder.assignmentExplanation, this,
+				"assignmentExplanation");
+		this.dataCounts = ModelTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
+		this.forecastsStats = ModelTypeHelper.requireNonNull(builder.forecastsStats, this, "forecastsStats");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.modelSizeStats = ModelTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
 		this.openTime = builder.openTime;
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 		this.deleting = builder.deleting;
 
 	}
 
-	public JobStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JobStats of(Function<Builder, ObjectBuilder<JobStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code assignment_explanation}
 	 */
-	public String assignmentExplanation() {
+	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
 	/**
 	 * Required - API name: {@code data_counts}
 	 */
-	public DataCounts dataCounts() {
+	public final DataCounts dataCounts() {
 		return this.dataCounts;
 	}
 
 	/**
 	 * Required - API name: {@code forecasts_stats}
 	 */
-	public JobForecastStatistics forecastsStats() {
+	public final JobForecastStatistics forecastsStats() {
 		return this.forecastsStats;
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
 	 * Required - API name: {@code model_size_stats}
 	 */
-	public ModelSizeStats modelSizeStats() {
+	public final ModelSizeStats modelSizeStats() {
 		return this.modelSizeStats;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public DiscoveryNode node() {
+	public final DiscoveryNode node() {
 		return this.node;
 	}
 
@@ -130,21 +133,21 @@ public final class JobStats implements JsonpSerializable {
 	 * API name: {@code open_time}
 	 */
 	@Nullable
-	public String openTime() {
+	public final String openTime() {
 		return this.openTime;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public JobState state() {
+	public final JobState state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code timing_stats}
 	 */
-	public JobTimingStats timingStats() {
+	public final JobTimingStats timingStats() {
 		return this.timingStats;
 	}
 
@@ -152,7 +155,7 @@ public final class JobStats implements JsonpSerializable {
 	 * API name: {@code deleting}
 	 */
 	@Nullable
-	public Boolean deleting() {
+	public final Boolean deleting() {
 		return this.deleting;
 	}
 
@@ -186,20 +189,16 @@ public final class JobStats implements JsonpSerializable {
 		this.node.serialize(generator, mapper);
 
 		if (this.openTime != null) {
-
 			generator.writeKey("open_time");
 			generator.write(this.openTime);
 
 		}
-
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-
 		generator.writeKey("timing_stats");
 		this.timingStats.serialize(generator, mapper);
 
 		if (this.deleting != null) {
-
 			generator.writeKey("deleting");
 			generator.write(this.deleting);
 
@@ -212,7 +211,7 @@ public final class JobStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobStats}.
 	 */
-	public static class Builder implements ObjectBuilder<JobStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobStats> {
 		private String assignmentExplanation;
 
 		private DataCounts dataCounts;
@@ -238,7 +237,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(String value) {
+		public final Builder assignmentExplanation(String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -246,7 +245,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_counts}
 		 */
-		public Builder dataCounts(DataCounts value) {
+		public final Builder dataCounts(DataCounts value) {
 			this.dataCounts = value;
 			return this;
 		}
@@ -254,14 +253,14 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_counts}
 		 */
-		public Builder dataCounts(Function<DataCounts.Builder, ObjectBuilder<DataCounts>> fn) {
+		public final Builder dataCounts(Function<DataCounts.Builder, ObjectBuilder<DataCounts>> fn) {
 			return this.dataCounts(fn.apply(new DataCounts.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code forecasts_stats}
 		 */
-		public Builder forecastsStats(JobForecastStatistics value) {
+		public final Builder forecastsStats(JobForecastStatistics value) {
 			this.forecastsStats = value;
 			return this;
 		}
@@ -269,7 +268,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code forecasts_stats}
 		 */
-		public Builder forecastsStats(
+		public final Builder forecastsStats(
 				Function<JobForecastStatistics.Builder, ObjectBuilder<JobForecastStatistics>> fn) {
 			return this.forecastsStats(fn.apply(new JobForecastStatistics.Builder()).build());
 		}
@@ -277,7 +276,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -285,7 +284,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_size_stats}
 		 */
-		public Builder modelSizeStats(ModelSizeStats value) {
+		public final Builder modelSizeStats(ModelSizeStats value) {
 			this.modelSizeStats = value;
 			return this;
 		}
@@ -293,14 +292,14 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_size_stats}
 		 */
-		public Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
+		public final Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
 			return this.modelSizeStats(fn.apply(new ModelSizeStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(DiscoveryNode value) {
+		public final Builder node(DiscoveryNode value) {
 			this.node = value;
 			return this;
 		}
@@ -308,14 +307,14 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
+		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code open_time}
 		 */
-		public Builder openTime(@Nullable String value) {
+		public final Builder openTime(@Nullable String value) {
 			this.openTime = value;
 			return this;
 		}
@@ -323,7 +322,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(JobState value) {
+		public final Builder state(JobState value) {
 			this.state = value;
 			return this;
 		}
@@ -331,7 +330,7 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public Builder timingStats(JobTimingStats value) {
+		public final Builder timingStats(JobTimingStats value) {
 			this.timingStats = value;
 			return this;
 		}
@@ -339,14 +338,14 @@ public final class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public Builder timingStats(Function<JobTimingStats.Builder, ObjectBuilder<JobTimingStats>> fn) {
+		public final Builder timingStats(Function<JobTimingStats.Builder, ObjectBuilder<JobTimingStats>> fn) {
 			return this.timingStats(fn.apply(new JobTimingStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code deleting}
 		 */
-		public Builder deleting(@Nullable Boolean value) {
+		public final Builder deleting(@Nullable Boolean value) {
 			this.deleting = value;
 			return this;
 		}
@@ -358,6 +357,7 @@ public final class JobStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JobStats build() {
+			_checkSingleUse();
 
 			return new JobStats(this);
 		}

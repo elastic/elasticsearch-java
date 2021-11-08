@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.eql;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -34,25 +33,20 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.annotation.Nullable;
 
 // typedef: eql.get.Response
 
-public final class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
-	@Nullable
-	private final JsonpSerializer<TEvent> tEventSerializer;
-
+public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlGetResponse(Builder<TEvent> builder) {
+	private EqlGetResponse(Builder<TEvent> builder) {
 		super(builder);
-
-		this.tEventSerializer = builder.tEventSerializer;
 
 	}
 
-	public EqlGetResponse(Function<Builder<TEvent>, Builder<TEvent>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TEvent> EqlGetResponse<TEvent> of(
+			Function<Builder<TEvent>, ObjectBuilder<EqlGetResponse<TEvent>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -63,18 +57,6 @@ public final class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> 
 	public static class Builder<TEvent> extends EqlSearchResponseBase.AbstractBuilder<TEvent, Builder<TEvent>>
 			implements
 				ObjectBuilder<EqlGetResponse<TEvent>> {
-		@Nullable
-		private JsonpSerializer<TEvent> tEventSerializer;
-
-		/**
-		 * Serializer for TEvent. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
-			this.tEventSerializer = value;
-			return this;
-		}
-
 		@Override
 		protected Builder<TEvent> self() {
 			return this;
@@ -87,6 +69,7 @@ public final class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> 
 		 *             if some of the required fields are null.
 		 */
 		public EqlGetResponse<TEvent> build() {
+			_checkSingleUse();
 
 			return new EqlGetResponse<TEvent>(this);
 		}

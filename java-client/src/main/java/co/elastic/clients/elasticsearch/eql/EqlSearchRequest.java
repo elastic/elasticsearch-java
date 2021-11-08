@@ -39,6 +39,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -56,7 +57,7 @@ import javax.annotation.Nullable;
 
 // typedef: eql.search.Request
 @JsonpDeserializable
-public final class EqlSearchRequest extends RequestBase implements JsonpSerializable {
+public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -66,16 +67,13 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String eventCategoryField;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Number fetchSize;
 
-	@Nullable
 	private final List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
 
-	@Nullable
 	private final List<Query> filter;
 
 	@Nullable
@@ -108,7 +106,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlSearchRequest(Builder builder) {
+	private EqlSearchRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.caseSensitive = builder.caseSensitive;
@@ -118,10 +116,10 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.resultPosition = builder.resultPosition;
 		this.size = builder.size;
 		this.tiebreakerField = builder.tiebreakerField;
@@ -130,15 +128,15 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 
 	}
 
-	public EqlSearchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlSearchRequest of(Function<Builder, ObjectBuilder<EqlSearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -146,7 +144,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code case_sensitive}
 	 */
 	@Nullable
-	public Boolean caseSensitive() {
+	public final Boolean caseSensitive() {
 		return this.caseSensitive;
 	}
 
@@ -156,15 +154,14 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code event_category_field}
 	 */
 	@Nullable
-	public String eventCategoryField() {
+	public final String eventCategoryField() {
 		return this.eventCategoryField;
 	}
 
 	/**
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -174,7 +171,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Number fetchSize() {
+	public final Number fetchSize() {
 		return this.fetchSize;
 	}
 
@@ -184,8 +181,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields() {
+	public final List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields() {
 		return this.fields;
 	}
 
@@ -195,8 +191,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<Query> filter() {
+	public final List<Query> filter() {
 		return this.filter;
 	}
 
@@ -206,7 +201,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -215,7 +210,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -223,7 +218,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -231,7 +226,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code keep_on_completion}
 	 */
 	@Nullable
-	public Boolean keepOnCompletion() {
+	public final Boolean keepOnCompletion() {
 		return this.keepOnCompletion;
 	}
 
@@ -240,7 +235,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -248,7 +243,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code result_position}
 	 */
 	@Nullable
-	public ResultPosition resultPosition() {
+	public final ResultPosition resultPosition() {
 		return this.resultPosition;
 	}
 
@@ -259,7 +254,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.float | _types.uint) */ size() {
+	public final JsonValue /* Union(_types.float | _types.uint) */ size() {
 		return this.size;
 	}
 
@@ -269,7 +264,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code tiebreaker_field}
 	 */
 	@Nullable
-	public String tiebreakerField() {
+	public final String tiebreakerField() {
 		return this.tiebreakerField;
 	}
 
@@ -279,7 +274,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
-	public String timestampField() {
+	public final String timestampField() {
 		return this.timestampField;
 	}
 
@@ -287,7 +282,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public String waitForCompletionTimeout() {
+	public final String waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -303,25 +298,21 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.caseSensitive != null) {
-
 			generator.writeKey("case_sensitive");
 			generator.write(this.caseSensitive);
 
 		}
 		if (this.eventCategoryField != null) {
-
 			generator.writeKey("event_category_field");
 			generator.write(this.eventCategoryField);
 
 		}
 		if (this.fetchSize != null) {
-
 			generator.writeKey("fetch_size");
 			generator.write(this.fetchSize.doubleValue());
 
 		}
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ item0 : this.fields) {
@@ -331,8 +322,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ModelTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (Query item0 : this.filter) {
@@ -343,46 +333,38 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 
 		}
 		if (this.keepAlive != null) {
-
 			generator.writeKey("keep_alive");
 			generator.write(this.keepAlive);
 
 		}
 		if (this.keepOnCompletion != null) {
-
 			generator.writeKey("keep_on_completion");
 			generator.write(this.keepOnCompletion);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.resultPosition != null) {
-
 			generator.writeKey("result_position");
 			this.resultPosition.serialize(generator, mapper);
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.tiebreakerField != null) {
-
 			generator.writeKey("tiebreaker_field");
 			generator.write(this.tiebreakerField);
 
 		}
 		if (this.timestampField != null) {
-
 			generator.writeKey("timestamp_field");
 			generator.write(this.timestampField);
 
 		}
 		if (this.waitForCompletionTimeout != null) {
-
 			generator.writeKey("wait_for_completion_timeout");
 			generator.write(this.waitForCompletionTimeout);
 
@@ -395,7 +377,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link EqlSearchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<EqlSearchRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlSearchRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -448,7 +430,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -456,7 +438,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code case_sensitive}
 		 */
-		public Builder caseSensitive(@Nullable Boolean value) {
+		public final Builder caseSensitive(@Nullable Boolean value) {
 			this.caseSensitive = value;
 			return this;
 		}
@@ -466,7 +448,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code event_category_field}
 		 */
-		public Builder eventCategoryField(@Nullable String value) {
+		public final Builder eventCategoryField(@Nullable String value) {
 			this.eventCategoryField = value;
 			return this;
 		}
@@ -474,7 +456,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -482,19 +464,8 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -503,7 +474,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Number value) {
+		public final Builder fetchSize(@Nullable Number value) {
 			this.fetchSize = value;
 			return this;
 		}
@@ -514,7 +485,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(
+		public final Builder fields(
 				@Nullable List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> value) {
 			this.fields = value;
 			return this;
@@ -526,19 +497,8 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */... value) {
+		public final Builder fields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
@@ -548,7 +508,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<Query> value) {
+		public final Builder filter(@Nullable List<Query> value) {
 			this.filter = value;
 			return this;
 		}
@@ -559,34 +519,24 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Query... value) {
+		public final Builder filter(Query... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Query, written in Query DSL, used to filter the events on which the EQL query
+		 * runs.
+		 * <p>
+		 * API name: {@code filter}
 		 */
-		public Builder addFilter(Query value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
+		@SafeVarargs
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
+			this.filter = new ArrayList<>(fns.length);
+			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
+				this.filter.add(fn.apply(new Query.Builder()).build());
 			}
-			this.filter.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #filter(List)} to a singleton list.
-		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -594,7 +544,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -604,7 +554,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -612,7 +562,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -620,7 +570,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code keep_on_completion}
 		 */
-		public Builder keepOnCompletion(@Nullable Boolean value) {
+		public final Builder keepOnCompletion(@Nullable Boolean value) {
 			this.keepOnCompletion = value;
 			return this;
 		}
@@ -630,7 +580,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -638,7 +588,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code result_position}
 		 */
-		public Builder resultPosition(@Nullable ResultPosition value) {
+		public final Builder resultPosition(@Nullable ResultPosition value) {
 			this.resultPosition = value;
 			return this;
 		}
@@ -649,7 +599,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue /* Union(_types.float | _types.uint) */ value) {
+		public final Builder size(@Nullable JsonValue /* Union(_types.float | _types.uint) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -659,7 +609,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code tiebreaker_field}
 		 */
-		public Builder tiebreakerField(@Nullable String value) {
+		public final Builder tiebreakerField(@Nullable String value) {
 			this.tiebreakerField = value;
 			return this;
 		}
@@ -669,7 +619,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
-		public Builder timestampField(@Nullable String value) {
+		public final Builder timestampField(@Nullable String value) {
 			this.timestampField = value;
 			return this;
 		}
@@ -677,7 +627,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable String value) {
+		public final Builder waitForCompletionTimeout(@Nullable String value) {
 			this.waitForCompletionTimeout = value;
 			return this;
 		}
@@ -689,6 +639,7 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public EqlSearchRequest build() {
+			_checkSingleUse();
 
 			return new EqlSearchRequest(this);
 		}
@@ -757,9 +708,9 @@ public final class EqlSearchRequest extends RequestBase implements JsonpSerializ
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

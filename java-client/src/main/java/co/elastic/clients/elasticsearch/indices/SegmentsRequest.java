@@ -34,10 +34,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,17 +49,15 @@ import javax.annotation.Nullable;
 
 // typedef: indices.segments.Request
 
-public final class SegmentsRequest extends RequestBase {
+public class SegmentsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
@@ -67,7 +65,7 @@ public final class SegmentsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SegmentsRequest(Builder builder) {
+	private SegmentsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -77,8 +75,8 @@ public final class SegmentsRequest extends RequestBase {
 
 	}
 
-	public SegmentsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SegmentsRequest of(Function<Builder, ObjectBuilder<SegmentsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +87,7 @@ public final class SegmentsRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -99,8 +97,7 @@ public final class SegmentsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -111,7 +108,7 @@ public final class SegmentsRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -121,8 +118,7 @@ public final class SegmentsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -132,7 +128,7 @@ public final class SegmentsRequest extends RequestBase {
 	 * API name: {@code verbose}
 	 */
 	@Nullable
-	public Boolean verbose() {
+	public final Boolean verbose() {
 		return this.verbose;
 	}
 
@@ -141,7 +137,7 @@ public final class SegmentsRequest extends RequestBase {
 	/**
 	 * Builder for {@link SegmentsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SegmentsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -164,7 +160,7 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -175,7 +171,7 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -186,19 +182,8 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -208,7 +193,7 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -219,7 +204,7 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -230,19 +215,8 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -251,7 +225,7 @@ public final class SegmentsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code verbose}
 		 */
-		public Builder verbose(@Nullable Boolean value) {
+		public final Builder verbose(@Nullable Boolean value) {
 			this.verbose = value;
 			return this;
 		}
@@ -263,6 +237,7 @@ public final class SegmentsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public SegmentsRequest build() {
+			_checkSingleUse();
 
 			return new SegmentsRequest(this);
 		}
@@ -286,7 +261,7 @@ public final class SegmentsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -308,9 +283,9 @@ public final class SegmentsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

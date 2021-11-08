@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Response
 @JsonpDeserializable
-public final class MountResponse implements JsonpSerializable {
+public class MountResponse implements JsonpSerializable {
 	private final MountedSnapshot snapshot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MountResponse(Builder builder) {
+	private MountResponse(Builder builder) {
 
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public MountResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MountResponse of(Function<Builder, ObjectBuilder<MountResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public MountedSnapshot snapshot() {
+	public final MountedSnapshot snapshot() {
 		return this.snapshot;
 	}
 
@@ -82,13 +84,13 @@ public final class MountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MountResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MountResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MountResponse> {
 		private MountedSnapshot snapshot;
 
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(MountedSnapshot value) {
+		public final Builder snapshot(MountedSnapshot value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -96,7 +98,7 @@ public final class MountResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(Function<MountedSnapshot.Builder, ObjectBuilder<MountedSnapshot>> fn) {
+		public final Builder snapshot(Function<MountedSnapshot.Builder, ObjectBuilder<MountedSnapshot>> fn) {
 			return this.snapshot(fn.apply(new MountedSnapshot.Builder()).build());
 		}
 
@@ -107,6 +109,7 @@ public final class MountResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MountResponse build() {
+			_checkSingleUse();
 
 			return new MountResponse(this);
 		}

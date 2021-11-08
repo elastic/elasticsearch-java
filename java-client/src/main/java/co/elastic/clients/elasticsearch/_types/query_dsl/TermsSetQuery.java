@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsSetQuery
 @JsonpDeserializable
-public final class TermsSetQuery extends QueryBase implements QueryVariant {
+public class TermsSetQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -57,18 +56,18 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermsSetQuery(Builder builder) {
+	private TermsSetQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.minimumShouldMatchField = builder.minimumShouldMatchField;
 		this.minimumShouldMatchScript = builder.minimumShouldMatchScript;
-		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
+		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
-	public TermsSetQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermsSetQuery of(Function<Builder, ObjectBuilder<TermsSetQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,7 +81,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -90,7 +89,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match_field}
 	 */
 	@Nullable
-	public String minimumShouldMatchField() {
+	public final String minimumShouldMatchField() {
 		return this.minimumShouldMatchField;
 	}
 
@@ -98,14 +97,14 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match_script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ minimumShouldMatchScript() {
+	public final JsonValue /* _types.Script */ minimumShouldMatchScript() {
 		return this.minimumShouldMatchScript;
 	}
 
 	/**
 	 * Required - API name: {@code terms}
 	 */
-	public List<String> terms() {
+	public final List<String> terms() {
 		return this.terms;
 	}
 
@@ -114,25 +113,25 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.minimumShouldMatchField != null) {
-
 			generator.writeKey("minimum_should_match_field");
 			generator.write(this.minimumShouldMatchField);
 
 		}
 		if (this.minimumShouldMatchScript != null) {
-
 			generator.writeKey("minimum_should_match_script");
 			generator.write(this.minimumShouldMatchScript);
 
 		}
+		if (ModelTypeHelper.isDefined(this.terms)) {
+			generator.writeKey("terms");
+			generator.writeStartArray();
+			for (String item0 : this.terms) {
+				generator.write(item0);
 
-		generator.writeKey("terms");
-		generator.writeStartArray();
-		for (String item0 : this.terms) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 		generator.writeEnd();
 
@@ -149,7 +148,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -165,7 +164,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match_field}
 		 */
-		public Builder minimumShouldMatchField(@Nullable String value) {
+		public final Builder minimumShouldMatchField(@Nullable String value) {
 			this.minimumShouldMatchField = value;
 			return this;
 		}
@@ -173,7 +172,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match_script}
 		 */
-		public Builder minimumShouldMatchScript(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder minimumShouldMatchScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.minimumShouldMatchScript = value;
 			return this;
 		}
@@ -181,7 +180,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code terms}
 		 */
-		public Builder terms(List<String> value) {
+		public final Builder terms(List<String> value) {
 			this.terms = value;
 			return this;
 		}
@@ -189,19 +188,8 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code terms}
 		 */
-		public Builder terms(String... value) {
+		public final Builder terms(String... value) {
 			this.terms = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
-		 */
-		public Builder addTerms(String value) {
-			if (this.terms == null) {
-				this.terms = new ArrayList<>();
-			}
-			this.terms.add(value);
 			return this;
 		}
 
@@ -217,6 +205,7 @@ public final class TermsSetQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public TermsSetQuery build() {
+			_checkSingleUse();
 
 			return new TermsSetQuery(this);
 		}

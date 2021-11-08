@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.RuleCondition
 @JsonpDeserializable
-public final class RuleCondition implements JsonpSerializable {
+public class RuleCondition implements JsonpSerializable {
 	private final AppliesTo appliesTo;
 
 	private final ConditionOperator operator;
@@ -48,26 +50,27 @@ public final class RuleCondition implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RuleCondition(Builder builder) {
+	private RuleCondition(Builder builder) {
 
-		this.appliesTo = Objects.requireNonNull(builder.appliesTo, "applies_to");
-		this.operator = Objects.requireNonNull(builder.operator, "operator");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.appliesTo = ModelTypeHelper.requireNonNull(builder.appliesTo, this, "appliesTo");
+		this.operator = ModelTypeHelper.requireNonNull(builder.operator, this, "operator");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public RuleCondition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RuleCondition of(Function<Builder, ObjectBuilder<RuleCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - Specifies the result property to which the condition applies. If
-	 * your detector uses lat_long, metric, rare, or freq_rare functions, you can
-	 * only specify conditions that apply to time.
+	 * your detector uses <code>lat_long</code>, <code>metric</code>,
+	 * <code>rare</code>, or <code>freq_rare</code> functions, you can only specify
+	 * conditions that apply to time.
 	 * <p>
 	 * API name: {@code applies_to}
 	 */
-	public AppliesTo appliesTo() {
+	public final AppliesTo appliesTo() {
 		return this.appliesTo;
 	}
 
@@ -77,7 +80,7 @@ public final class RuleCondition implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code operator}
 	 */
-	public ConditionOperator operator() {
+	public final ConditionOperator operator() {
 		return this.operator;
 	}
 
@@ -87,7 +90,7 @@ public final class RuleCondition implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public double value() {
+	public final double value() {
 		return this.value;
 	}
 
@@ -104,10 +107,8 @@ public final class RuleCondition implements JsonpSerializable {
 
 		generator.writeKey("applies_to");
 		this.appliesTo.serialize(generator, mapper);
-
 		generator.writeKey("operator");
 		this.operator.serialize(generator, mapper);
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
@@ -118,7 +119,7 @@ public final class RuleCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link RuleCondition}.
 	 */
-	public static class Builder implements ObjectBuilder<RuleCondition> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuleCondition> {
 		private AppliesTo appliesTo;
 
 		private ConditionOperator operator;
@@ -127,12 +128,13 @@ public final class RuleCondition implements JsonpSerializable {
 
 		/**
 		 * Required - Specifies the result property to which the condition applies. If
-		 * your detector uses lat_long, metric, rare, or freq_rare functions, you can
-		 * only specify conditions that apply to time.
+		 * your detector uses <code>lat_long</code>, <code>metric</code>,
+		 * <code>rare</code>, or <code>freq_rare</code> functions, you can only specify
+		 * conditions that apply to time.
 		 * <p>
 		 * API name: {@code applies_to}
 		 */
-		public Builder appliesTo(AppliesTo value) {
+		public final Builder appliesTo(AppliesTo value) {
 			this.appliesTo = value;
 			return this;
 		}
@@ -143,7 +145,7 @@ public final class RuleCondition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code operator}
 		 */
-		public Builder operator(ConditionOperator value) {
+		public final Builder operator(ConditionOperator value) {
 			this.operator = value;
 			return this;
 		}
@@ -154,7 +156,7 @@ public final class RuleCondition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(double value) {
+		public final Builder value(double value) {
 			this.value = value;
 			return this;
 		}
@@ -166,6 +168,7 @@ public final class RuleCondition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RuleCondition build() {
+			_checkSingleUse();
 
 			return new RuleCondition(this);
 		}

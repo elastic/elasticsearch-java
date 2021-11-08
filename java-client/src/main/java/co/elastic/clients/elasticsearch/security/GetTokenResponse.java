@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_token.Response
 @JsonpDeserializable
-public final class GetTokenResponse implements JsonpSerializable {
+public class GetTokenResponse implements JsonpSerializable {
 	private final String accessToken;
 
 	private final long expiresIn;
@@ -60,33 +62,33 @@ public final class GetTokenResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTokenResponse(Builder builder) {
+	private GetTokenResponse(Builder builder) {
 
-		this.accessToken = Objects.requireNonNull(builder.accessToken, "access_token");
-		this.expiresIn = Objects.requireNonNull(builder.expiresIn, "expires_in");
+		this.accessToken = ModelTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
+		this.expiresIn = ModelTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
 		this.scope = builder.scope;
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.refreshToken = Objects.requireNonNull(builder.refreshToken, "refresh_token");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.refreshToken = ModelTypeHelper.requireNonNull(builder.refreshToken, this, "refreshToken");
 		this.kerberosAuthenticationResponseToken = builder.kerberosAuthenticationResponseToken;
-		this.authentication = Objects.requireNonNull(builder.authentication, "authentication");
+		this.authentication = ModelTypeHelper.requireNonNull(builder.authentication, this, "authentication");
 
 	}
 
-	public GetTokenResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTokenResponse of(Function<Builder, ObjectBuilder<GetTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code access_token}
 	 */
-	public String accessToken() {
+	public final String accessToken() {
 		return this.accessToken;
 	}
 
 	/**
 	 * Required - API name: {@code expires_in}
 	 */
-	public long expiresIn() {
+	public final long expiresIn() {
 		return this.expiresIn;
 	}
 
@@ -94,21 +96,21 @@ public final class GetTokenResponse implements JsonpSerializable {
 	 * API name: {@code scope}
 	 */
 	@Nullable
-	public String scope() {
+	public final String scope() {
 		return this.scope;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code refresh_token}
 	 */
-	public String refreshToken() {
+	public final String refreshToken() {
 		return this.refreshToken;
 	}
 
@@ -116,14 +118,14 @@ public final class GetTokenResponse implements JsonpSerializable {
 	 * API name: {@code kerberos_authentication_response_token}
 	 */
 	@Nullable
-	public String kerberosAuthenticationResponseToken() {
+	public final String kerberosAuthenticationResponseToken() {
 		return this.kerberosAuthenticationResponseToken;
 	}
 
 	/**
 	 * Required - API name: {@code authentication}
 	 */
-	public AuthenticatedUser authentication() {
+	public final AuthenticatedUser authentication() {
 		return this.authentication;
 	}
 
@@ -145,12 +147,10 @@ public final class GetTokenResponse implements JsonpSerializable {
 		generator.write(this.expiresIn);
 
 		if (this.scope != null) {
-
 			generator.writeKey("scope");
 			generator.write(this.scope);
 
 		}
-
 		generator.writeKey("type");
 		generator.write(this.type);
 
@@ -158,12 +158,10 @@ public final class GetTokenResponse implements JsonpSerializable {
 		generator.write(this.refreshToken);
 
 		if (this.kerberosAuthenticationResponseToken != null) {
-
 			generator.writeKey("kerberos_authentication_response_token");
 			generator.write(this.kerberosAuthenticationResponseToken);
 
 		}
-
 		generator.writeKey("authentication");
 		this.authentication.serialize(generator, mapper);
 
@@ -174,7 +172,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTokenResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTokenResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTokenResponse> {
 		private String accessToken;
 
 		private Long expiresIn;
@@ -194,7 +192,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code access_token}
 		 */
-		public Builder accessToken(String value) {
+		public final Builder accessToken(String value) {
 			this.accessToken = value;
 			return this;
 		}
@@ -202,7 +200,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expires_in}
 		 */
-		public Builder expiresIn(long value) {
+		public final Builder expiresIn(long value) {
 			this.expiresIn = value;
 			return this;
 		}
@@ -210,7 +208,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code scope}
 		 */
-		public Builder scope(@Nullable String value) {
+		public final Builder scope(@Nullable String value) {
 			this.scope = value;
 			return this;
 		}
@@ -218,7 +216,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -226,7 +224,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code refresh_token}
 		 */
-		public Builder refreshToken(String value) {
+		public final Builder refreshToken(String value) {
 			this.refreshToken = value;
 			return this;
 		}
@@ -234,7 +232,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code kerberos_authentication_response_token}
 		 */
-		public Builder kerberosAuthenticationResponseToken(@Nullable String value) {
+		public final Builder kerberosAuthenticationResponseToken(@Nullable String value) {
 			this.kerberosAuthenticationResponseToken = value;
 			return this;
 		}
@@ -242,7 +240,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code authentication}
 		 */
-		public Builder authentication(AuthenticatedUser value) {
+		public final Builder authentication(AuthenticatedUser value) {
 			this.authentication = value;
 			return this;
 		}
@@ -250,7 +248,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code authentication}
 		 */
-		public Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
+		public final Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
 			return this.authentication(fn.apply(new AuthenticatedUser.Builder()).build());
 		}
 
@@ -261,6 +259,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetTokenResponse build() {
+			_checkSingleUse();
 
 			return new GetTokenResponse(this);
 		}

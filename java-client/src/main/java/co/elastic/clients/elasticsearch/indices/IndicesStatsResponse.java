@@ -32,12 +32,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,8 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.Response
 @JsonpDeserializable
-public final class IndicesStatsResponse implements JsonpSerializable {
-	@Nullable
+public class IndicesStatsResponse implements JsonpSerializable {
 	private final Map<String, IndicesStats> indices;
 
 	private final ShardStatistics shards;
@@ -55,37 +55,36 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesStatsResponse(Builder builder) {
+	private IndicesStatsResponse(Builder builder) {
 
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.all = Objects.requireNonNull(builder.all, "_all");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
-	public IndicesStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesStatsResponse of(Function<Builder, ObjectBuilder<IndicesStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public Map<String, IndicesStats> indices() {
+	public final Map<String, IndicesStats> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code _all}
 	 */
-	public IndicesStats all() {
+	public final IndicesStats all() {
 		return this.all;
 	}
 
@@ -100,8 +99,7 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndicesStats> item0 : this.indices.entrySet()) {
@@ -112,7 +110,6 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
@@ -126,7 +123,7 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsResponse> {
 		@Nullable
 		private Map<String, IndicesStats> indices;
 
@@ -137,19 +134,8 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable Map<String, IndicesStats> value) {
+		public final Builder indices(@Nullable Map<String, IndicesStats> value) {
 			this.indices = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, IndicesStats value) {
-			if (this.indices == null) {
-				this.indices = new HashMap<>();
-			}
-			this.indices.put(key, value);
 			return this;
 		}
 
@@ -160,17 +146,15 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 			return this.indices(Collections.singletonMap(key, fn.apply(new IndicesStats.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return this.putIndices(key, fn.apply(new IndicesStats.Builder()).build());
+		public final Builder indices(
+				Function<MapBuilder<String, IndicesStats, IndicesStats.Builder>, ObjectBuilder<Map<String, IndicesStats>>> fn) {
+			return indices(fn.apply(new MapBuilder<>(IndicesStats.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -178,14 +162,14 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(IndicesStats value) {
+		public final Builder all(IndicesStats value) {
 			this.all = value;
 			return this;
 		}
@@ -193,7 +177,7 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+		public final Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
 			return this.all(fn.apply(new IndicesStats.Builder()).build());
 		}
 
@@ -204,6 +188,7 @@ public final class IndicesStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesStatsResponse build() {
+			_checkSingleUse();
 
 			return new IndicesStatsResponse(this);
 		}

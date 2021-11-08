@@ -33,11 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,35 +45,35 @@ import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Response
 @JsonpDeserializable
-public final class FieldCapsResponse implements JsonpSerializable {
+public class FieldCapsResponse implements JsonpSerializable {
 	private final List<String> indices;
 
 	private final Map<String, Map<String, FieldCapability>> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldCapsResponse(Builder builder) {
+	private FieldCapsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}
 
-	public FieldCapsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldCapsResponse of(Function<Builder, ObjectBuilder<FieldCapsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public Map<String, Map<String, FieldCapability>> fields() {
+	public final Map<String, Map<String, FieldCapability>> fields() {
 		return this.fields;
 	}
 
@@ -89,28 +88,35 @@ public final class FieldCapsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("fields");
-		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, FieldCapability>> item0 : this.fields.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.writeStartObject();
-			for (Map.Entry<String, FieldCapability> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
-				item1.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, FieldCapability>> item0 : this.fields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, FieldCapability> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -119,7 +125,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldCapsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapsResponse> {
 		private List<String> indices;
 
 		private Map<String, Map<String, FieldCapability>> fields;
@@ -127,7 +133,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -135,38 +141,16 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(Map<String, Map<String, FieldCapability>> value) {
+		public final Builder fields(Map<String, Map<String, FieldCapability>> value) {
 			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, Map<String, FieldCapability> value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
 			return this;
 		}
 
@@ -177,6 +161,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldCapsResponse build() {
+			_checkSingleUse();
 
 			return new FieldCapsResponse(this);
 		}

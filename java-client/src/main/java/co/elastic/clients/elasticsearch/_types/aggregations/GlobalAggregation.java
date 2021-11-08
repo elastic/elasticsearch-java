@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.GlobalAggregation
 @JsonpDeserializable
-public final class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
+public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public GlobalAggregation(Builder builder) {
+	private GlobalAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public GlobalAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GlobalAggregation of(Function<Builder, ObjectBuilder<GlobalAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class GlobalAggregation extends BucketAggregationBase implements Ag
 		 *             if some of the required fields are null.
 		 */
 		public GlobalAggregation build() {
+			_checkSingleUse();
 
 			return new GlobalAggregation(this);
 		}

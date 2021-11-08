@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.IntegerRangeProperty
 @JsonpDeserializable
-public final class IntegerRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class IntegerRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public IntegerRangeProperty(Builder builder) {
+	private IntegerRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public IntegerRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntegerRangeProperty of(Function<Builder, ObjectBuilder<IntegerRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class IntegerRangeProperty extends RangePropertyBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public IntegerRangeProperty build() {
+			_checkSingleUse();
 
 			return new IntegerRangeProperty(this);
 		}

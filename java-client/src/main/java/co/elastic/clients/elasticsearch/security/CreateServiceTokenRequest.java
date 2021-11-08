@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Request
 
-public final class CreateServiceTokenRequest extends RequestBase {
+public class CreateServiceTokenRequest extends RequestBase {
 	private final String name;
 
 	private final String namespace;
@@ -50,16 +52,16 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateServiceTokenRequest(Builder builder) {
+	private CreateServiceTokenRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
-		this.service = Objects.requireNonNull(builder.service, "service");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public CreateServiceTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateServiceTokenRequest of(Function<Builder, ObjectBuilder<CreateServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +69,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -76,7 +78,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code namespace}
 	 */
-	public String namespace() {
+	public final String namespace() {
 		return this.namespace;
 	}
 
@@ -85,7 +87,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public String service() {
+	public final String service() {
 		return this.service;
 	}
 
@@ -94,7 +96,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link CreateServiceTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateServiceTokenRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenRequest> {
 		private String name;
 
 		private String namespace;
@@ -106,7 +108,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -116,7 +118,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code namespace}
 		 */
-		public Builder namespace(String value) {
+		public final Builder namespace(String value) {
 			this.namespace = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public Builder service(String value) {
+		public final Builder service(String value) {
 			this.service = value;
 			return this;
 		}
@@ -138,6 +140,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateServiceTokenRequest build() {
+			_checkSingleUse();
 
 			return new CreateServiceTokenRequest(this);
 		}

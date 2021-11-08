@@ -35,7 +35,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,205 +44,226 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.CompoundWordTokenFilterBase
 
 public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
+	@Nullable
 	private final String hyphenationPatternsPath;
 
-	private final int maxSubwordSize;
+	@Nullable
+	private final Integer maxSubwordSize;
 
-	private final int minSubwordSize;
+	@Nullable
+	private final Integer minSubwordSize;
 
-	private final int minWordSize;
+	@Nullable
+	private final Integer minWordSize;
 
-	private final boolean onlyLongestMatch;
+	@Nullable
+	private final Boolean onlyLongestMatch;
 
 	private final List<String> wordList;
 
+	@Nullable
 	private final String wordListPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompoundWordTokenFilterBase(AbstractBuilder<?> builder) {
+	protected CompoundWordTokenFilterBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.hyphenationPatternsPath = Objects.requireNonNull(builder.hyphenationPatternsPath,
-				"hyphenation_patterns_path");
-		this.maxSubwordSize = Objects.requireNonNull(builder.maxSubwordSize, "max_subword_size");
-		this.minSubwordSize = Objects.requireNonNull(builder.minSubwordSize, "min_subword_size");
-		this.minWordSize = Objects.requireNonNull(builder.minWordSize, "min_word_size");
-		this.onlyLongestMatch = Objects.requireNonNull(builder.onlyLongestMatch, "only_longest_match");
-		this.wordList = ModelTypeHelper.unmodifiableNonNull(builder.wordList, "word_list");
-		this.wordListPath = Objects.requireNonNull(builder.wordListPath, "word_list_path");
+		this.hyphenationPatternsPath = builder.hyphenationPatternsPath;
+		this.maxSubwordSize = builder.maxSubwordSize;
+		this.minSubwordSize = builder.minSubwordSize;
+		this.minWordSize = builder.minWordSize;
+		this.onlyLongestMatch = builder.onlyLongestMatch;
+		this.wordList = ModelTypeHelper.unmodifiable(builder.wordList);
+		this.wordListPath = builder.wordListPath;
 
 	}
 
 	/**
-	 * Required - API name: {@code hyphenation_patterns_path}
+	 * API name: {@code hyphenation_patterns_path}
 	 */
-	public String hyphenationPatternsPath() {
+	@Nullable
+	public final String hyphenationPatternsPath() {
 		return this.hyphenationPatternsPath;
 	}
 
 	/**
-	 * Required - API name: {@code max_subword_size}
+	 * API name: {@code max_subword_size}
 	 */
-	public int maxSubwordSize() {
+	@Nullable
+	public final Integer maxSubwordSize() {
 		return this.maxSubwordSize;
 	}
 
 	/**
-	 * Required - API name: {@code min_subword_size}
+	 * API name: {@code min_subword_size}
 	 */
-	public int minSubwordSize() {
+	@Nullable
+	public final Integer minSubwordSize() {
 		return this.minSubwordSize;
 	}
 
 	/**
-	 * Required - API name: {@code min_word_size}
+	 * API name: {@code min_word_size}
 	 */
-	public int minWordSize() {
+	@Nullable
+	public final Integer minWordSize() {
 		return this.minWordSize;
 	}
 
 	/**
-	 * Required - API name: {@code only_longest_match}
+	 * API name: {@code only_longest_match}
 	 */
-	public boolean onlyLongestMatch() {
+	@Nullable
+	public final Boolean onlyLongestMatch() {
 		return this.onlyLongestMatch;
 	}
 
 	/**
-	 * Required - API name: {@code word_list}
+	 * API name: {@code word_list}
 	 */
-	public List<String> wordList() {
+	public final List<String> wordList() {
 		return this.wordList;
 	}
 
 	/**
-	 * Required - API name: {@code word_list_path}
+	 * API name: {@code word_list_path}
 	 */
-	public String wordListPath() {
+	@Nullable
+	public final String wordListPath() {
 		return this.wordListPath;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
-		generator.writeKey("hyphenation_patterns_path");
-		generator.write(this.hyphenationPatternsPath);
-
-		generator.writeKey("max_subword_size");
-		generator.write(this.maxSubwordSize);
-
-		generator.writeKey("min_subword_size");
-		generator.write(this.minSubwordSize);
-
-		generator.writeKey("min_word_size");
-		generator.write(this.minWordSize);
-
-		generator.writeKey("only_longest_match");
-		generator.write(this.onlyLongestMatch);
-
-		generator.writeKey("word_list");
-		generator.writeStartArray();
-		for (String item0 : this.wordList) {
-			generator.write(item0);
+		if (this.hyphenationPatternsPath != null) {
+			generator.writeKey("hyphenation_patterns_path");
+			generator.write(this.hyphenationPatternsPath);
 
 		}
-		generator.writeEnd();
+		if (this.maxSubwordSize != null) {
+			generator.writeKey("max_subword_size");
+			generator.write(this.maxSubwordSize);
 
-		generator.writeKey("word_list_path");
-		generator.write(this.wordListPath);
+		}
+		if (this.minSubwordSize != null) {
+			generator.writeKey("min_subword_size");
+			generator.write(this.minSubwordSize);
+
+		}
+		if (this.minWordSize != null) {
+			generator.writeKey("min_word_size");
+			generator.write(this.minWordSize);
+
+		}
+		if (this.onlyLongestMatch != null) {
+			generator.writeKey("only_longest_match");
+			generator.write(this.onlyLongestMatch);
+
+		}
+		if (ModelTypeHelper.isDefined(this.wordList)) {
+			generator.writeKey("word_list");
+			generator.writeStartArray();
+			for (String item0 : this.wordList) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.wordListPath != null) {
+			generator.writeKey("word_list_path");
+			generator.write(this.wordListPath);
+
+		}
 
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				TokenFilterBase.AbstractBuilder<BuilderT> {
+		@Nullable
 		private String hyphenationPatternsPath;
 
+		@Nullable
 		private Integer maxSubwordSize;
 
+		@Nullable
 		private Integer minSubwordSize;
 
+		@Nullable
 		private Integer minWordSize;
 
+		@Nullable
 		private Boolean onlyLongestMatch;
 
+		@Nullable
 		private List<String> wordList;
 
+		@Nullable
 		private String wordListPath;
 
 		/**
-		 * Required - API name: {@code hyphenation_patterns_path}
+		 * API name: {@code hyphenation_patterns_path}
 		 */
-		public BuilderT hyphenationPatternsPath(String value) {
+		public final BuilderT hyphenationPatternsPath(@Nullable String value) {
 			this.hyphenationPatternsPath = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code max_subword_size}
+		 * API name: {@code max_subword_size}
 		 */
-		public BuilderT maxSubwordSize(int value) {
+		public final BuilderT maxSubwordSize(@Nullable Integer value) {
 			this.maxSubwordSize = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code min_subword_size}
+		 * API name: {@code min_subword_size}
 		 */
-		public BuilderT minSubwordSize(int value) {
+		public final BuilderT minSubwordSize(@Nullable Integer value) {
 			this.minSubwordSize = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code min_word_size}
+		 * API name: {@code min_word_size}
 		 */
-		public BuilderT minWordSize(int value) {
+		public final BuilderT minWordSize(@Nullable Integer value) {
 			this.minWordSize = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code only_longest_match}
+		 * API name: {@code only_longest_match}
 		 */
-		public BuilderT onlyLongestMatch(boolean value) {
+		public final BuilderT onlyLongestMatch(@Nullable Boolean value) {
 			this.onlyLongestMatch = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code word_list}
+		 * API name: {@code word_list}
 		 */
-		public BuilderT wordList(List<String> value) {
+		public final BuilderT wordList(@Nullable List<String> value) {
 			this.wordList = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code word_list}
+		 * API name: {@code word_list}
 		 */
-		public BuilderT wordList(String... value) {
+		public final BuilderT wordList(String... value) {
 			this.wordList = Arrays.asList(value);
 			return self();
 		}
 
 		/**
-		 * Add a value to {@link #wordList(List)}, creating the list if needed.
+		 * API name: {@code word_list_path}
 		 */
-		public BuilderT addWordList(String value) {
-			if (this.wordList == null) {
-				this.wordList = new ArrayList<>();
-			}
-			this.wordList.add(value);
-			return self();
-		}
-
-		/**
-		 * Required - API name: {@code word_list_path}
-		 */
-		public BuilderT wordListPath(String value) {
+		public final BuilderT wordListPath(@Nullable String value) {
 			this.wordListPath = value;
 			return self();
 		}

@@ -28,7 +28,9 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -64,12 +66,12 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
@@ -78,21 +80,21 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 
 	private IntervalsQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public IntervalsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsQuery of(Function<Builder, ObjectBuilder<IntervalsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -183,7 +185,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -253,6 +255,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		}
 
 		public IntervalsQuery build() {
+			_checkSingleUse();
 			return new IntervalsQuery(this);
 		}
 
@@ -271,6 +274,6 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 
 	}
 
-	public static final JsonpDeserializer<IntervalsQuery> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<IntervalsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			IntervalsQuery::setupIntervalsQueryDeserializer, Builder::build);
 }

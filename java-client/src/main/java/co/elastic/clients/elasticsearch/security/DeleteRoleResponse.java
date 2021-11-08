@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: security.delete_role.Response
 @JsonpDeserializable
-public final class DeleteRoleResponse implements JsonpSerializable {
+public class DeleteRoleResponse implements JsonpSerializable {
 	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRoleResponse(Builder builder) {
+	private DeleteRoleResponse(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public DeleteRoleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRoleResponse of(Function<Builder, ObjectBuilder<DeleteRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,13 +83,13 @@ public final class DeleteRoleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteRoleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRoleResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleResponse> {
 		private Boolean found;
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class DeleteRoleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRoleResponse build() {
+			_checkSingleUse();
 
 			return new DeleteRoleResponse(this);
 		}

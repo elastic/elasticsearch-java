@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineAggregation
 @JsonpDeserializable
-public final class GeoLineAggregation implements AggregationVariant, JsonpSerializable {
+public class GeoLineAggregation implements AggregationVariant, JsonpSerializable {
 	private final GeoLinePoint point;
 
 	private final GeoLineSort sort;
@@ -57,18 +59,18 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoLineAggregation(Builder builder) {
+	private GeoLineAggregation(Builder builder) {
 
-		this.point = Objects.requireNonNull(builder.point, "point");
-		this.sort = Objects.requireNonNull(builder.sort, "sort");
+		this.point = ModelTypeHelper.requireNonNull(builder.point, this, "point");
+		this.sort = ModelTypeHelper.requireNonNull(builder.sort, this, "sort");
 		this.includeSort = builder.includeSort;
 		this.sortOrder = builder.sortOrder;
 		this.size = builder.size;
 
 	}
 
-	public GeoLineAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoLineAggregation of(Function<Builder, ObjectBuilder<GeoLineAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,14 +84,14 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 	/**
 	 * Required - API name: {@code point}
 	 */
-	public GeoLinePoint point() {
+	public final GeoLinePoint point() {
 		return this.point;
 	}
 
 	/**
 	 * Required - API name: {@code sort}
 	 */
-	public GeoLineSort sort() {
+	public final GeoLineSort sort() {
 		return this.sort;
 	}
 
@@ -97,7 +99,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 	 * API name: {@code include_sort}
 	 */
 	@Nullable
-	public Boolean includeSort() {
+	public final Boolean includeSort() {
 		return this.includeSort;
 	}
 
@@ -105,7 +107,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 	 * API name: {@code sort_order}
 	 */
 	@Nullable
-	public SortOrder sortOrder() {
+	public final SortOrder sortOrder() {
 		return this.sortOrder;
 	}
 
@@ -113,7 +115,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -135,18 +137,15 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		this.sort.serialize(generator, mapper);
 
 		if (this.includeSort != null) {
-
 			generator.writeKey("include_sort");
 			generator.write(this.includeSort);
 
 		}
 		if (this.sortOrder != null) {
-
 			generator.writeKey("sort_order");
 			this.sortOrder.serialize(generator, mapper);
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -159,7 +158,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 	/**
 	 * Builder for {@link GeoLineAggregation}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoLineAggregation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLineAggregation> {
 		private GeoLinePoint point;
 
 		private GeoLineSort sort;
@@ -176,7 +175,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		/**
 		 * Required - API name: {@code point}
 		 */
-		public Builder point(GeoLinePoint value) {
+		public final Builder point(GeoLinePoint value) {
 			this.point = value;
 			return this;
 		}
@@ -184,14 +183,14 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		/**
 		 * Required - API name: {@code point}
 		 */
-		public Builder point(Function<GeoLinePoint.Builder, ObjectBuilder<GeoLinePoint>> fn) {
+		public final Builder point(Function<GeoLinePoint.Builder, ObjectBuilder<GeoLinePoint>> fn) {
 			return this.point(fn.apply(new GeoLinePoint.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public Builder sort(GeoLineSort value) {
+		public final Builder sort(GeoLineSort value) {
 			this.sort = value;
 			return this;
 		}
@@ -199,14 +198,14 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public Builder sort(Function<GeoLineSort.Builder, ObjectBuilder<GeoLineSort>> fn) {
+		public final Builder sort(Function<GeoLineSort.Builder, ObjectBuilder<GeoLineSort>> fn) {
 			return this.sort(fn.apply(new GeoLineSort.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code include_sort}
 		 */
-		public Builder includeSort(@Nullable Boolean value) {
+		public final Builder includeSort(@Nullable Boolean value) {
 			this.includeSort = value;
 			return this;
 		}
@@ -214,7 +213,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		/**
 		 * API name: {@code sort_order}
 		 */
-		public Builder sortOrder(@Nullable SortOrder value) {
+		public final Builder sortOrder(@Nullable SortOrder value) {
 			this.sortOrder = value;
 			return this;
 		}
@@ -222,7 +221,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -234,6 +233,7 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public GeoLineAggregation build() {
+			_checkSingleUse();
 
 			return new GeoLineAggregation(this);
 		}

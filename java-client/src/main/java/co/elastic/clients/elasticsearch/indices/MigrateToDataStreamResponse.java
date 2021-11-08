@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.migrate_to_data_stream.Response
 @JsonpDeserializable
-public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
+public class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public MigrateToDataStreamResponse(Builder builder) {
+	private MigrateToDataStreamResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public MigrateToDataStreamResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MigrateToDataStreamResponse of(Function<Builder, ObjectBuilder<MigrateToDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public MigrateToDataStreamResponse build() {
+			_checkSingleUse();
 
 			return new MigrateToDataStreamResponse(this);
 		}

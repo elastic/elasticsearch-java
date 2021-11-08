@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -39,20 +40,21 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsHuber
 @JsonpDeserializable
-public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializable {
+public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializable {
 	@Nullable
 	private final Double delta;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationRegressionMetricsHuber(Builder builder) {
+	private DataframeEvaluationRegressionMetricsHuber(Builder builder) {
 
 		this.delta = builder.delta;
 
 	}
 
-	public DataframeEvaluationRegressionMetricsHuber(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationRegressionMetricsHuber of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsHuber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +65,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 	 * API name: {@code delta}
 	 */
 	@Nullable
-	public Double delta() {
+	public final Double delta() {
 		return this.delta;
 	}
 
@@ -79,7 +81,6 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.delta != null) {
-
 			generator.writeKey("delta");
 			generator.write(this.delta);
 
@@ -92,7 +93,9 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetricsHuber}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetricsHuber> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeEvaluationRegressionMetricsHuber> {
 		@Nullable
 		private Double delta;
 
@@ -103,7 +106,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 		 * <p>
 		 * API name: {@code delta}
 		 */
-		public Builder delta(@Nullable Double value) {
+		public final Builder delta(@Nullable Double value) {
 			this.delta = value;
 			return this;
 		}
@@ -115,6 +118,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationRegressionMetricsHuber build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationRegressionMetricsHuber(this);
 		}

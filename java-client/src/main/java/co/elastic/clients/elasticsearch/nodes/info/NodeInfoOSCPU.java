@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoOSCPU
 @JsonpDeserializable
-public final class NodeInfoOSCPU implements JsonpSerializable {
+public class NodeInfoOSCPU implements JsonpSerializable {
 	private final String cacheSize;
 
 	private final int cacheSizeInBytes;
@@ -59,76 +61,76 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoOSCPU(Builder builder) {
+	private NodeInfoOSCPU(Builder builder) {
 
-		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
-		this.cacheSizeInBytes = Objects.requireNonNull(builder.cacheSizeInBytes, "cache_size_in_bytes");
-		this.coresPerSocket = Objects.requireNonNull(builder.coresPerSocket, "cores_per_socket");
-		this.mhz = Objects.requireNonNull(builder.mhz, "mhz");
-		this.model = Objects.requireNonNull(builder.model, "model");
-		this.totalCores = Objects.requireNonNull(builder.totalCores, "total_cores");
-		this.totalSockets = Objects.requireNonNull(builder.totalSockets, "total_sockets");
-		this.vendor = Objects.requireNonNull(builder.vendor, "vendor");
+		this.cacheSize = ModelTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
+		this.cacheSizeInBytes = ModelTypeHelper.requireNonNull(builder.cacheSizeInBytes, this, "cacheSizeInBytes");
+		this.coresPerSocket = ModelTypeHelper.requireNonNull(builder.coresPerSocket, this, "coresPerSocket");
+		this.mhz = ModelTypeHelper.requireNonNull(builder.mhz, this, "mhz");
+		this.model = ModelTypeHelper.requireNonNull(builder.model, this, "model");
+		this.totalCores = ModelTypeHelper.requireNonNull(builder.totalCores, this, "totalCores");
+		this.totalSockets = ModelTypeHelper.requireNonNull(builder.totalSockets, this, "totalSockets");
+		this.vendor = ModelTypeHelper.requireNonNull(builder.vendor, this, "vendor");
 
 	}
 
-	public NodeInfoOSCPU(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoOSCPU of(Function<Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cache_size}
 	 */
-	public String cacheSize() {
+	public final String cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
 	 * Required - API name: {@code cache_size_in_bytes}
 	 */
-	public int cacheSizeInBytes() {
+	public final int cacheSizeInBytes() {
 		return this.cacheSizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code cores_per_socket}
 	 */
-	public int coresPerSocket() {
+	public final int coresPerSocket() {
 		return this.coresPerSocket;
 	}
 
 	/**
 	 * Required - API name: {@code mhz}
 	 */
-	public int mhz() {
+	public final int mhz() {
 		return this.mhz;
 	}
 
 	/**
 	 * Required - API name: {@code model}
 	 */
-	public String model() {
+	public final String model() {
 		return this.model;
 	}
 
 	/**
 	 * Required - API name: {@code total_cores}
 	 */
-	public int totalCores() {
+	public final int totalCores() {
 		return this.totalCores;
 	}
 
 	/**
 	 * Required - API name: {@code total_sockets}
 	 */
-	public int totalSockets() {
+	public final int totalSockets() {
 		return this.totalSockets;
 	}
 
 	/**
 	 * Required - API name: {@code vendor}
 	 */
-	public String vendor() {
+	public final String vendor() {
 		return this.vendor;
 	}
 
@@ -174,7 +176,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoOSCPU}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoOSCPU> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoOSCPU> {
 		private String cacheSize;
 
 		private Integer cacheSizeInBytes;
@@ -194,7 +196,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_size}
 		 */
-		public Builder cacheSize(String value) {
+		public final Builder cacheSize(String value) {
 			this.cacheSize = value;
 			return this;
 		}
@@ -202,7 +204,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_size_in_bytes}
 		 */
-		public Builder cacheSizeInBytes(int value) {
+		public final Builder cacheSizeInBytes(int value) {
 			this.cacheSizeInBytes = value;
 			return this;
 		}
@@ -210,7 +212,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cores_per_socket}
 		 */
-		public Builder coresPerSocket(int value) {
+		public final Builder coresPerSocket(int value) {
 			this.coresPerSocket = value;
 			return this;
 		}
@@ -218,7 +220,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mhz}
 		 */
-		public Builder mhz(int value) {
+		public final Builder mhz(int value) {
 			this.mhz = value;
 			return this;
 		}
@@ -226,7 +228,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public Builder model(String value) {
+		public final Builder model(String value) {
 			this.model = value;
 			return this;
 		}
@@ -234,7 +236,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_cores}
 		 */
-		public Builder totalCores(int value) {
+		public final Builder totalCores(int value) {
 			this.totalCores = value;
 			return this;
 		}
@@ -242,7 +244,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_sockets}
 		 */
-		public Builder totalSockets(int value) {
+		public final Builder totalSockets(int value) {
 			this.totalSockets = value;
 			return this;
 		}
@@ -250,7 +252,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vendor}
 		 */
-		public Builder vendor(String value) {
+		public final Builder vendor(String value) {
 			this.vendor = value;
 			return this;
 		}
@@ -262,6 +264,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoOSCPU build() {
+			_checkSingleUse();
 
 			return new NodeInfoOSCPU(this);
 		}

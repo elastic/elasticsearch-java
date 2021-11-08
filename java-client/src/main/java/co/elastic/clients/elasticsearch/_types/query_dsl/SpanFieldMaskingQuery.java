@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,23 +39,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
 @JsonpDeserializable
-public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final String field;
 
 	private final SpanQuery query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanFieldMaskingQuery(Builder builder) {
+	private SpanFieldMaskingQuery(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public SpanFieldMaskingQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanFieldMaskingQuery of(Function<Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,21 +69,20 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public SpanQuery query() {
+	public final SpanQuery query() {
 		return this.query;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -106,7 +106,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -114,7 +114,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(SpanQuery value) {
+		public final Builder query(SpanQuery value) {
 			this.query = value;
 			return this;
 		}
@@ -122,7 +122,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+		public final Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.query(fn.apply(new SpanQuery.Builder()).build());
 		}
 
@@ -138,6 +138,7 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 		 *             if some of the required fields are null.
 		 */
 		public SpanFieldMaskingQuery build() {
+			_checkSingleUse();
 
 			return new SpanFieldMaskingQuery(this);
 		}

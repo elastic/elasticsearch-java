@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasParentQuery
 @JsonpDeserializable
-public final class HasParentQuery extends QueryBase implements QueryVariant {
+public class HasParentQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -56,19 +57,19 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HasParentQuery(Builder builder) {
+	private HasParentQuery(Builder builder) {
 		super(builder);
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.parentType = Objects.requireNonNull(builder.parentType, "parent_type");
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.parentType = ModelTypeHelper.requireNonNull(builder.parentType, this, "parentType");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.score = builder.score;
 
 	}
 
-	public HasParentQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HasParentQuery of(Function<Builder, ObjectBuilder<HasParentQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +84,7 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -91,21 +92,21 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code inner_hits}
 	 */
 	@Nullable
-	public InnerHits innerHits() {
+	public final InnerHits innerHits() {
 		return this.innerHits;
 	}
 
 	/**
 	 * Required - API name: {@code parent_type}
 	 */
-	public String parentType() {
+	public final String parentType() {
 		return this.parentType;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -113,7 +114,7 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code score}
 	 */
 	@Nullable
-	public Boolean score() {
+	public final Boolean score() {
 		return this.score;
 	}
 
@@ -121,18 +122,15 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
 		if (this.innerHits != null) {
-
 			generator.writeKey("inner_hits");
 			this.innerHits.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("parent_type");
 		generator.write(this.parentType);
 
@@ -140,7 +138,6 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		this.query.serialize(generator, mapper);
 
 		if (this.score != null) {
-
 			generator.writeKey("score");
 			generator.write(this.score);
 
@@ -170,7 +167,7 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -178,7 +175,7 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(@Nullable InnerHits value) {
+		public final Builder innerHits(@Nullable InnerHits value) {
 			this.innerHits = value;
 			return this;
 		}
@@ -186,14 +183,14 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
 			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code parent_type}
 		 */
-		public Builder parentType(String value) {
+		public final Builder parentType(String value) {
 			this.parentType = value;
 			return this;
 		}
@@ -201,7 +198,7 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -209,14 +206,14 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code score}
 		 */
-		public Builder score(@Nullable Boolean value) {
+		public final Builder score(@Nullable Boolean value) {
 			this.score = value;
 			return this;
 		}
@@ -233,6 +230,7 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public HasParentQuery build() {
+			_checkSingleUse();
 
 			return new HasParentQuery(this);
 		}

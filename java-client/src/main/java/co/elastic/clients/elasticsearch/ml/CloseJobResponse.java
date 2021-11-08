@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: ml.close_job.Response
 @JsonpDeserializable
-public final class CloseJobResponse implements JsonpSerializable {
+public class CloseJobResponse implements JsonpSerializable {
 	private final boolean closed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CloseJobResponse(Builder builder) {
+	private CloseJobResponse(Builder builder) {
 
-		this.closed = Objects.requireNonNull(builder.closed, "closed");
+		this.closed = ModelTypeHelper.requireNonNull(builder.closed, this, "closed");
 
 	}
 
-	public CloseJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CloseJobResponse of(Function<Builder, ObjectBuilder<CloseJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code closed}
 	 */
-	public boolean closed() {
+	public final boolean closed() {
 		return this.closed;
 	}
 
@@ -81,13 +83,13 @@ public final class CloseJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CloseJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CloseJobResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseJobResponse> {
 		private Boolean closed;
 
 		/**
 		 * Required - API name: {@code closed}
 		 */
-		public Builder closed(boolean value) {
+		public final Builder closed(boolean value) {
 			this.closed = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class CloseJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CloseJobResponse build() {
+			_checkSingleUse();
 
 			return new CloseJobResponse(this);
 		}

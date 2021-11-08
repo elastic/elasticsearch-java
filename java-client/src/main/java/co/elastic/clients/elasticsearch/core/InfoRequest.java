@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: _global.info.Request
 
-public final class InfoRequest extends RequestBase {
+public class InfoRequest extends RequestBase {
 	public InfoRequest() {
 	}
 

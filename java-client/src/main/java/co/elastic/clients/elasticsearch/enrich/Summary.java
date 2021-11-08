@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: enrich._types.Summary
 @JsonpDeserializable
-public final class Summary implements JsonpSerializable {
+public class Summary implements JsonpSerializable {
 	private final Configuration config;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Summary(Builder builder) {
+	private Summary(Builder builder) {
 
-		this.config = Objects.requireNonNull(builder.config, "config");
+		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 
-	public Summary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Summary of(Function<Builder, ObjectBuilder<Summary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code config}
 	 */
-	public Configuration config() {
+	public final Configuration config() {
 		return this.config;
 	}
 
@@ -81,13 +83,13 @@ public final class Summary implements JsonpSerializable {
 	/**
 	 * Builder for {@link Summary}.
 	 */
-	public static class Builder implements ObjectBuilder<Summary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Summary> {
 		private Configuration config;
 
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public Builder config(Configuration value) {
+		public final Builder config(Configuration value) {
 			this.config = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class Summary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
+		public final Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
 			return this.config(fn.apply(new Configuration.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class Summary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Summary build() {
+			_checkSingleUse();
 
 			return new Summary(this);
 		}

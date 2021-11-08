@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 @JsonpDeserializable
-public final class CleanupRepositoryResults implements JsonpSerializable {
+public class CleanupRepositoryResults implements JsonpSerializable {
 	private final long deletedBlobs;
 
 	private final long deletedBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CleanupRepositoryResults(Builder builder) {
+	private CleanupRepositoryResults(Builder builder) {
 
-		this.deletedBlobs = Objects.requireNonNull(builder.deletedBlobs, "deleted_blobs");
-		this.deletedBytes = Objects.requireNonNull(builder.deletedBytes, "deleted_bytes");
+		this.deletedBlobs = ModelTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
+		this.deletedBytes = ModelTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
 
 	}
 
-	public CleanupRepositoryResults(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CleanupRepositoryResults of(Function<Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code deleted_blobs}
 	 */
-	public long deletedBlobs() {
+	public final long deletedBlobs() {
 		return this.deletedBlobs;
 	}
 
 	/**
 	 * Required - API name: {@code deleted_bytes}
 	 */
-	public long deletedBytes() {
+	public final long deletedBytes() {
 		return this.deletedBytes;
 	}
 
@@ -94,7 +96,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	/**
 	 * Builder for {@link CleanupRepositoryResults}.
 	 */
-	public static class Builder implements ObjectBuilder<CleanupRepositoryResults> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
 		private Long deletedBlobs;
 
 		private Long deletedBytes;
@@ -102,7 +104,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deleted_blobs}
 		 */
-		public Builder deletedBlobs(long value) {
+		public final Builder deletedBlobs(long value) {
 			this.deletedBlobs = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deleted_bytes}
 		 */
-		public Builder deletedBytes(long value) {
+		public final Builder deletedBytes(long value) {
 			this.deletedBytes = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CleanupRepositoryResults build() {
+			_checkSingleUse();
 
 			return new CleanupRepositoryResults(this);
 		}

@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Request
 
-public final class SearchableSnapshotsStatsRequest extends RequestBase {
-	@Nullable
+public class SearchableSnapshotsStatsRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
@@ -56,15 +55,16 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchableSnapshotsStatsRequest(Builder builder) {
+	private SearchableSnapshotsStatsRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 
 	}
 
-	public SearchableSnapshotsStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchableSnapshotsStatsRequest of(
+			Function<Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,8 +72,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -83,7 +82,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public StatsLevel level() {
+	public final StatsLevel level() {
 		return this.level;
 	}
 
@@ -92,7 +91,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link SearchableSnapshotsStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchableSnapshotsStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchableSnapshotsStatsRequest> {
 		@Nullable
 		private List<String> index;
 
@@ -104,7 +103,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -114,19 +113,8 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -135,7 +123,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable StatsLevel value) {
+		public final Builder level(@Nullable StatsLevel value) {
 			this.level = value;
 			return this;
 		}
@@ -147,6 +135,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public SearchableSnapshotsStatsRequest build() {
+			_checkSingleUse();
 
 			return new SearchableSnapshotsStatsRequest(this);
 		}
@@ -170,7 +159,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -195,7 +184,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.level != null) {
-					params.put("level", request.level.toString());
+					params.put("level", request.level.jsonValue());
 				}
 				return params;
 

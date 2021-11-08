@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ByteNumberProperty
 @JsonpDeserializable
-public final class ByteNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class ByteNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Number nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ByteNumberProperty(Builder builder) {
+	private ByteNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public ByteNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ByteNumberProperty of(Function<Builder, ObjectBuilder<ByteNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ByteNumberProperty extends StandardNumberProperty implements 
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Number nullValue() {
+	public final Number nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class ByteNumberProperty extends StandardNumberProperty implements 
 		generator.write("type", "byte");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue.doubleValue());
 
@@ -98,7 +97,7 @@ public final class ByteNumberProperty extends StandardNumberProperty implements 
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Number value) {
+		public final Builder nullValue(@Nullable Number value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class ByteNumberProperty extends StandardNumberProperty implements 
 		 *             if some of the required fields are null.
 		 */
 		public ByteNumberProperty build() {
+			_checkSingleUse();
 
 			return new ByteNumberProperty(this);
 		}

@@ -32,11 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDebug
 @JsonpDeserializable
-public final class AggregationProfileDebug implements JsonpSerializable {
+public class AggregationProfileDebug implements JsonpSerializable {
 	@Nullable
 	private final Integer segmentsWithMultiValuedOrds;
 
@@ -109,12 +109,11 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	@Nullable
 	private final Integer emptyCollectorsUsed;
 
-	@Nullable
 	private final List<String> deferredAggregators;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregationProfileDebug(Builder builder) {
+	private AggregationProfileDebug(Builder builder) {
 
 		this.segmentsWithMultiValuedOrds = builder.segmentsWithMultiValuedOrds;
 		this.collectionStrategy = builder.collectionStrategy;
@@ -141,15 +140,15 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 
 	}
 
-	public AggregationProfileDebug(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregationProfileDebug of(Function<Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code segments_with_multi_valued_ords}
 	 */
 	@Nullable
-	public Integer segmentsWithMultiValuedOrds() {
+	public final Integer segmentsWithMultiValuedOrds() {
 		return this.segmentsWithMultiValuedOrds;
 	}
 
@@ -157,7 +156,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code collection_strategy}
 	 */
 	@Nullable
-	public String collectionStrategy() {
+	public final String collectionStrategy() {
 		return this.collectionStrategy;
 	}
 
@@ -165,7 +164,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code segments_with_single_valued_ords}
 	 */
 	@Nullable
-	public Integer segmentsWithSingleValuedOrds() {
+	public final Integer segmentsWithSingleValuedOrds() {
 		return this.segmentsWithSingleValuedOrds;
 	}
 
@@ -173,7 +172,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code total_buckets}
 	 */
 	@Nullable
-	public Integer totalBuckets() {
+	public final Integer totalBuckets() {
 		return this.totalBuckets;
 	}
 
@@ -181,7 +180,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code built_buckets}
 	 */
 	@Nullable
-	public Integer builtBuckets() {
+	public final Integer builtBuckets() {
 		return this.builtBuckets;
 	}
 
@@ -189,7 +188,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code result_strategy}
 	 */
 	@Nullable
-	public String resultStrategy() {
+	public final String resultStrategy() {
 		return this.resultStrategy;
 	}
 
@@ -197,7 +196,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code has_filter}
 	 */
 	@Nullable
-	public Boolean hasFilter() {
+	public final Boolean hasFilter() {
 		return this.hasFilter;
 	}
 
@@ -205,7 +204,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code delegate}
 	 */
 	@Nullable
-	public String delegate() {
+	public final String delegate() {
 		return this.delegate;
 	}
 
@@ -213,7 +212,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code delegate_debug}
 	 */
 	@Nullable
-	public AggregationProfileDelegateDebug delegateDebug() {
+	public final AggregationProfileDelegateDebug delegateDebug() {
 		return this.delegateDebug;
 	}
 
@@ -221,7 +220,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code chars_fetched}
 	 */
 	@Nullable
-	public Integer charsFetched() {
+	public final Integer charsFetched() {
 		return this.charsFetched;
 	}
 
@@ -229,7 +228,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code extract_count}
 	 */
 	@Nullable
-	public Integer extractCount() {
+	public final Integer extractCount() {
 		return this.extractCount;
 	}
 
@@ -237,7 +236,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code extract_ns}
 	 */
 	@Nullable
-	public Integer extractNs() {
+	public final Integer extractNs() {
 		return this.extractNs;
 	}
 
@@ -245,7 +244,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code values_fetched}
 	 */
 	@Nullable
-	public Integer valuesFetched() {
+	public final Integer valuesFetched() {
 		return this.valuesFetched;
 	}
 
@@ -253,7 +252,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code collect_analyzed_ns}
 	 */
 	@Nullable
-	public Integer collectAnalyzedNs() {
+	public final Integer collectAnalyzedNs() {
 		return this.collectAnalyzedNs;
 	}
 
@@ -261,7 +260,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code collect_analyzed_count}
 	 */
 	@Nullable
-	public Integer collectAnalyzedCount() {
+	public final Integer collectAnalyzedCount() {
 		return this.collectAnalyzedCount;
 	}
 
@@ -269,7 +268,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code surviving_buckets}
 	 */
 	@Nullable
-	public Integer survivingBuckets() {
+	public final Integer survivingBuckets() {
 		return this.survivingBuckets;
 	}
 
@@ -277,7 +276,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code ordinals_collectors_used}
 	 */
 	@Nullable
-	public Integer ordinalsCollectorsUsed() {
+	public final Integer ordinalsCollectorsUsed() {
 		return this.ordinalsCollectorsUsed;
 	}
 
@@ -285,7 +284,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code ordinals_collectors_overhead_too_high}
 	 */
 	@Nullable
-	public Integer ordinalsCollectorsOverheadTooHigh() {
+	public final Integer ordinalsCollectorsOverheadTooHigh() {
 		return this.ordinalsCollectorsOverheadTooHigh;
 	}
 
@@ -293,7 +292,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code string_hashing_collectors_used}
 	 */
 	@Nullable
-	public Integer stringHashingCollectorsUsed() {
+	public final Integer stringHashingCollectorsUsed() {
 		return this.stringHashingCollectorsUsed;
 	}
 
@@ -301,7 +300,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code numeric_collectors_used}
 	 */
 	@Nullable
-	public Integer numericCollectorsUsed() {
+	public final Integer numericCollectorsUsed() {
 		return this.numericCollectorsUsed;
 	}
 
@@ -309,15 +308,14 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code empty_collectors_used}
 	 */
 	@Nullable
-	public Integer emptyCollectorsUsed() {
+	public final Integer emptyCollectorsUsed() {
 		return this.emptyCollectorsUsed;
 	}
 
 	/**
 	 * API name: {@code deferred_aggregators}
 	 */
-	@Nullable
-	public List<String> deferredAggregators() {
+	public final List<String> deferredAggregators() {
 		return this.deferredAggregators;
 	}
 
@@ -333,133 +331,111 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.segmentsWithMultiValuedOrds != null) {
-
 			generator.writeKey("segments_with_multi_valued_ords");
 			generator.write(this.segmentsWithMultiValuedOrds);
 
 		}
 		if (this.collectionStrategy != null) {
-
 			generator.writeKey("collection_strategy");
 			generator.write(this.collectionStrategy);
 
 		}
 		if (this.segmentsWithSingleValuedOrds != null) {
-
 			generator.writeKey("segments_with_single_valued_ords");
 			generator.write(this.segmentsWithSingleValuedOrds);
 
 		}
 		if (this.totalBuckets != null) {
-
 			generator.writeKey("total_buckets");
 			generator.write(this.totalBuckets);
 
 		}
 		if (this.builtBuckets != null) {
-
 			generator.writeKey("built_buckets");
 			generator.write(this.builtBuckets);
 
 		}
 		if (this.resultStrategy != null) {
-
 			generator.writeKey("result_strategy");
 			generator.write(this.resultStrategy);
 
 		}
 		if (this.hasFilter != null) {
-
 			generator.writeKey("has_filter");
 			generator.write(this.hasFilter);
 
 		}
 		if (this.delegate != null) {
-
 			generator.writeKey("delegate");
 			generator.write(this.delegate);
 
 		}
 		if (this.delegateDebug != null) {
-
 			generator.writeKey("delegate_debug");
 			this.delegateDebug.serialize(generator, mapper);
 
 		}
 		if (this.charsFetched != null) {
-
 			generator.writeKey("chars_fetched");
 			generator.write(this.charsFetched);
 
 		}
 		if (this.extractCount != null) {
-
 			generator.writeKey("extract_count");
 			generator.write(this.extractCount);
 
 		}
 		if (this.extractNs != null) {
-
 			generator.writeKey("extract_ns");
 			generator.write(this.extractNs);
 
 		}
 		if (this.valuesFetched != null) {
-
 			generator.writeKey("values_fetched");
 			generator.write(this.valuesFetched);
 
 		}
 		if (this.collectAnalyzedNs != null) {
-
 			generator.writeKey("collect_analyzed_ns");
 			generator.write(this.collectAnalyzedNs);
 
 		}
 		if (this.collectAnalyzedCount != null) {
-
 			generator.writeKey("collect_analyzed_count");
 			generator.write(this.collectAnalyzedCount);
 
 		}
 		if (this.survivingBuckets != null) {
-
 			generator.writeKey("surviving_buckets");
 			generator.write(this.survivingBuckets);
 
 		}
 		if (this.ordinalsCollectorsUsed != null) {
-
 			generator.writeKey("ordinals_collectors_used");
 			generator.write(this.ordinalsCollectorsUsed);
 
 		}
 		if (this.ordinalsCollectorsOverheadTooHigh != null) {
-
 			generator.writeKey("ordinals_collectors_overhead_too_high");
 			generator.write(this.ordinalsCollectorsOverheadTooHigh);
 
 		}
 		if (this.stringHashingCollectorsUsed != null) {
-
 			generator.writeKey("string_hashing_collectors_used");
 			generator.write(this.stringHashingCollectorsUsed);
 
 		}
 		if (this.numericCollectorsUsed != null) {
-
 			generator.writeKey("numeric_collectors_used");
 			generator.write(this.numericCollectorsUsed);
 
 		}
 		if (this.emptyCollectorsUsed != null) {
-
 			generator.writeKey("empty_collectors_used");
 			generator.write(this.emptyCollectorsUsed);
 
 		}
-		if (this.deferredAggregators != null) {
-
+		if (ModelTypeHelper.isDefined(this.deferredAggregators)) {
 			generator.writeKey("deferred_aggregators");
 			generator.writeStartArray();
 			for (String item0 : this.deferredAggregators) {
@@ -477,7 +453,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationProfileDebug}.
 	 */
-	public static class Builder implements ObjectBuilder<AggregationProfileDebug> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationProfileDebug> {
 		@Nullable
 		private Integer segmentsWithMultiValuedOrds;
 
@@ -547,7 +523,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code segments_with_multi_valued_ords}
 		 */
-		public Builder segmentsWithMultiValuedOrds(@Nullable Integer value) {
+		public final Builder segmentsWithMultiValuedOrds(@Nullable Integer value) {
 			this.segmentsWithMultiValuedOrds = value;
 			return this;
 		}
@@ -555,7 +531,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code collection_strategy}
 		 */
-		public Builder collectionStrategy(@Nullable String value) {
+		public final Builder collectionStrategy(@Nullable String value) {
 			this.collectionStrategy = value;
 			return this;
 		}
@@ -563,7 +539,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code segments_with_single_valued_ords}
 		 */
-		public Builder segmentsWithSingleValuedOrds(@Nullable Integer value) {
+		public final Builder segmentsWithSingleValuedOrds(@Nullable Integer value) {
 			this.segmentsWithSingleValuedOrds = value;
 			return this;
 		}
@@ -571,7 +547,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code total_buckets}
 		 */
-		public Builder totalBuckets(@Nullable Integer value) {
+		public final Builder totalBuckets(@Nullable Integer value) {
 			this.totalBuckets = value;
 			return this;
 		}
@@ -579,7 +555,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code built_buckets}
 		 */
-		public Builder builtBuckets(@Nullable Integer value) {
+		public final Builder builtBuckets(@Nullable Integer value) {
 			this.builtBuckets = value;
 			return this;
 		}
@@ -587,7 +563,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code result_strategy}
 		 */
-		public Builder resultStrategy(@Nullable String value) {
+		public final Builder resultStrategy(@Nullable String value) {
 			this.resultStrategy = value;
 			return this;
 		}
@@ -595,7 +571,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code has_filter}
 		 */
-		public Builder hasFilter(@Nullable Boolean value) {
+		public final Builder hasFilter(@Nullable Boolean value) {
 			this.hasFilter = value;
 			return this;
 		}
@@ -603,7 +579,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate}
 		 */
-		public Builder delegate(@Nullable String value) {
+		public final Builder delegate(@Nullable String value) {
 			this.delegate = value;
 			return this;
 		}
@@ -611,7 +587,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate_debug}
 		 */
-		public Builder delegateDebug(@Nullable AggregationProfileDelegateDebug value) {
+		public final Builder delegateDebug(@Nullable AggregationProfileDelegateDebug value) {
 			this.delegateDebug = value;
 			return this;
 		}
@@ -619,7 +595,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate_debug}
 		 */
-		public Builder delegateDebug(
+		public final Builder delegateDebug(
 				Function<AggregationProfileDelegateDebug.Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
 			return this.delegateDebug(fn.apply(new AggregationProfileDelegateDebug.Builder()).build());
 		}
@@ -627,7 +603,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code chars_fetched}
 		 */
-		public Builder charsFetched(@Nullable Integer value) {
+		public final Builder charsFetched(@Nullable Integer value) {
 			this.charsFetched = value;
 			return this;
 		}
@@ -635,7 +611,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code extract_count}
 		 */
-		public Builder extractCount(@Nullable Integer value) {
+		public final Builder extractCount(@Nullable Integer value) {
 			this.extractCount = value;
 			return this;
 		}
@@ -643,7 +619,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code extract_ns}
 		 */
-		public Builder extractNs(@Nullable Integer value) {
+		public final Builder extractNs(@Nullable Integer value) {
 			this.extractNs = value;
 			return this;
 		}
@@ -651,7 +627,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code values_fetched}
 		 */
-		public Builder valuesFetched(@Nullable Integer value) {
+		public final Builder valuesFetched(@Nullable Integer value) {
 			this.valuesFetched = value;
 			return this;
 		}
@@ -659,7 +635,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code collect_analyzed_ns}
 		 */
-		public Builder collectAnalyzedNs(@Nullable Integer value) {
+		public final Builder collectAnalyzedNs(@Nullable Integer value) {
 			this.collectAnalyzedNs = value;
 			return this;
 		}
@@ -667,7 +643,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code collect_analyzed_count}
 		 */
-		public Builder collectAnalyzedCount(@Nullable Integer value) {
+		public final Builder collectAnalyzedCount(@Nullable Integer value) {
 			this.collectAnalyzedCount = value;
 			return this;
 		}
@@ -675,7 +651,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code surviving_buckets}
 		 */
-		public Builder survivingBuckets(@Nullable Integer value) {
+		public final Builder survivingBuckets(@Nullable Integer value) {
 			this.survivingBuckets = value;
 			return this;
 		}
@@ -683,7 +659,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code ordinals_collectors_used}
 		 */
-		public Builder ordinalsCollectorsUsed(@Nullable Integer value) {
+		public final Builder ordinalsCollectorsUsed(@Nullable Integer value) {
 			this.ordinalsCollectorsUsed = value;
 			return this;
 		}
@@ -691,7 +667,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code ordinals_collectors_overhead_too_high}
 		 */
-		public Builder ordinalsCollectorsOverheadTooHigh(@Nullable Integer value) {
+		public final Builder ordinalsCollectorsOverheadTooHigh(@Nullable Integer value) {
 			this.ordinalsCollectorsOverheadTooHigh = value;
 			return this;
 		}
@@ -699,7 +675,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code string_hashing_collectors_used}
 		 */
-		public Builder stringHashingCollectorsUsed(@Nullable Integer value) {
+		public final Builder stringHashingCollectorsUsed(@Nullable Integer value) {
 			this.stringHashingCollectorsUsed = value;
 			return this;
 		}
@@ -707,7 +683,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code numeric_collectors_used}
 		 */
-		public Builder numericCollectorsUsed(@Nullable Integer value) {
+		public final Builder numericCollectorsUsed(@Nullable Integer value) {
 			this.numericCollectorsUsed = value;
 			return this;
 		}
@@ -715,7 +691,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code empty_collectors_used}
 		 */
-		public Builder emptyCollectorsUsed(@Nullable Integer value) {
+		public final Builder emptyCollectorsUsed(@Nullable Integer value) {
 			this.emptyCollectorsUsed = value;
 			return this;
 		}
@@ -723,7 +699,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code deferred_aggregators}
 		 */
-		public Builder deferredAggregators(@Nullable List<String> value) {
+		public final Builder deferredAggregators(@Nullable List<String> value) {
 			this.deferredAggregators = value;
 			return this;
 		}
@@ -731,20 +707,8 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code deferred_aggregators}
 		 */
-		public Builder deferredAggregators(String... value) {
+		public final Builder deferredAggregators(String... value) {
 			this.deferredAggregators = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #deferredAggregators(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addDeferredAggregators(String value) {
-			if (this.deferredAggregators == null) {
-				this.deferredAggregators = new ArrayList<>();
-			}
-			this.deferredAggregators.add(value);
 			return this;
 		}
 
@@ -755,6 +719,7 @@ public final class AggregationProfileDebug implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AggregationProfileDebug build() {
+			_checkSingleUse();
 
 			return new AggregationProfileDebug(this);
 		}

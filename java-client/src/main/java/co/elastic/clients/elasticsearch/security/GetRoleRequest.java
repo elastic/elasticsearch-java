@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_role.Request
 
-public final class GetRoleRequest extends RequestBase {
+public class GetRoleRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRoleRequest(Builder builder) {
+	private GetRoleRequest(Builder builder) {
 
 		this.name = builder.name;
 
 	}
 
-	public GetRoleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRoleRequest of(Function<Builder, ObjectBuilder<GetRoleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +64,7 @@ public final class GetRoleRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -72,7 +73,7 @@ public final class GetRoleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRoleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRoleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRoleRequest> {
 		@Nullable
 		private String name;
 
@@ -81,7 +82,7 @@ public final class GetRoleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -93,6 +94,7 @@ public final class GetRoleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetRoleRequest build() {
+			_checkSingleUse();
 
 			return new GetRoleRequest(this);
 		}

@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,20 +41,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiPartOfSpeechTokenFilter
 @JsonpDeserializable
-public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> stoptags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KuromojiPartOfSpeechTokenFilter(Builder builder) {
+	private KuromojiPartOfSpeechTokenFilter(Builder builder) {
 		super(builder);
 
-		this.stoptags = ModelTypeHelper.unmodifiableNonNull(builder.stoptags, "stoptags");
+		this.stoptags = ModelTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
 
 	}
 
-	public KuromojiPartOfSpeechTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KuromojiPartOfSpeechTokenFilter of(
+			Function<Builder, ObjectBuilder<KuromojiPartOfSpeechTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 	/**
 	 * Required - API name: {@code stoptags}
 	 */
-	public List<String> stoptags() {
+	public final List<String> stoptags() {
 		return this.stoptags;
 	}
 
@@ -77,14 +77,16 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 
 		generator.write("type", "kuromoji_part_of_speech");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.stoptags)) {
+			generator.writeKey("stoptags");
+			generator.writeStartArray();
+			for (String item0 : this.stoptags) {
+				generator.write(item0);
 
-		generator.writeKey("stoptags");
-		generator.writeStartArray();
-		for (String item0 : this.stoptags) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -101,7 +103,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 		/**
 		 * Required - API name: {@code stoptags}
 		 */
-		public Builder stoptags(List<String> value) {
+		public final Builder stoptags(List<String> value) {
 			this.stoptags = value;
 			return this;
 		}
@@ -109,19 +111,8 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 		/**
 		 * Required - API name: {@code stoptags}
 		 */
-		public Builder stoptags(String... value) {
+		public final Builder stoptags(String... value) {
 			this.stoptags = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stoptags(List)}, creating the list if needed.
-		 */
-		public Builder addStoptags(String value) {
-			if (this.stoptags == null) {
-				this.stoptags = new ArrayList<>();
-			}
-			this.stoptags.add(value);
 			return this;
 		}
 
@@ -137,6 +128,7 @@ public final class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase imple
 		 *             if some of the required fields are null.
 		 */
 		public KuromojiPartOfSpeechTokenFilter build() {
+			_checkSingleUse();
 
 			return new KuromojiPartOfSpeechTokenFilter(this);
 		}

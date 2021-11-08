@@ -39,6 +39,22 @@ public class CharFilterBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IcuNormalizationCharFilter icu_normalizer}
+	 * {@code CharFilter} variant.
+	 */
+	public static IcuNormalizationCharFilter.Builder icuNormalizer() {
+		return new IcuNormalizationCharFilter.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link KuromojiIterationMarkCharFilter
+	 * kuromoji_iteration_mark} {@code CharFilter} variant.
+	 */
+	public static KuromojiIterationMarkCharFilter.Builder kuromojiIterationMark() {
+		return new KuromojiIterationMarkCharFilter.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link MappingCharFilter mapping}
 	 * {@code CharFilter} variant.
 	 */
@@ -47,11 +63,11 @@ public class CharFilterBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link PatternReplaceTokenFilter pattern_replace}
+	 * Creates a builder for the {@link PatternReplaceCharFilter pattern_replace}
 	 * {@code CharFilter} variant.
 	 */
-	public static PatternReplaceTokenFilter.Builder patternReplace() {
-		return new PatternReplaceTokenFilter.Builder();
+	public static PatternReplaceCharFilter.Builder patternReplace() {
+		return new PatternReplaceCharFilter.Builder();
 	}
 
 }

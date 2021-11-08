@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,8 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LanguageAnalyzer
 @JsonpDeserializable
-public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
 	private final Language language;
@@ -52,22 +53,23 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 
 	private final List<String> stopwords;
 
+	@Nullable
 	private final String stopwordsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LanguageAnalyzer(Builder builder) {
+	private LanguageAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.language = Objects.requireNonNull(builder.language, "language");
-		this.stemExclusion = ModelTypeHelper.unmodifiableNonNull(builder.stemExclusion, "stem_exclusion");
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
-		this.stopwordsPath = Objects.requireNonNull(builder.stopwordsPath, "stopwords_path");
+		this.version = builder.version;
+		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
+		this.stemExclusion = ModelTypeHelper.unmodifiableRequired(builder.stemExclusion, this, "stemExclusion");
+		this.stopwords = ModelTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
-	public LanguageAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LanguageAnalyzer of(Function<Builder, ObjectBuilder<LanguageAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,37 +81,39 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code language}
 	 */
-	public Language language() {
+	public final Language language() {
 		return this.language;
 	}
 
 	/**
 	 * Required - API name: {@code stem_exclusion}
 	 */
-	public List<String> stemExclusion() {
+	public final List<String> stemExclusion() {
 		return this.stemExclusion;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords}
+	 * API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords_path}
+	 * API name: {@code stopwords_path}
 	 */
-	public String stopwordsPath() {
+	@Nullable
+	public final String stopwordsPath() {
 		return this.stopwordsPath;
 	}
 
@@ -126,30 +130,38 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 
 		generator.write("type", "language");
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
+		}
 		generator.writeKey("language");
 		this.language.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.stemExclusion)) {
+			generator.writeKey("stem_exclusion");
+			generator.writeStartArray();
+			for (String item0 : this.stemExclusion) {
+				generator.write(item0);
 
-		generator.writeKey("stem_exclusion");
-		generator.writeStartArray();
-		for (String item0 : this.stemExclusion) {
-			generator.write(item0);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
 
-		generator.writeKey("stopwords_path");
-		generator.write(this.stopwordsPath);
+			}
+			generator.writeEnd();
+
+		}
+		if (this.stopwordsPath != null) {
+			generator.writeKey("stopwords_path");
+			generator.write(this.stopwordsPath);
+
+		}
 
 	}
 
@@ -158,21 +170,24 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	/**
 	 * Builder for {@link LanguageAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<LanguageAnalyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LanguageAnalyzer> {
+		@Nullable
 		private String version;
 
 		private Language language;
 
 		private List<String> stemExclusion;
 
+		@Nullable
 		private List<String> stopwords;
 
+		@Nullable
 		private String stopwordsPath;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -180,7 +195,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		/**
 		 * Required - API name: {@code language}
 		 */
-		public Builder language(Language value) {
+		public final Builder language(Language value) {
 			this.language = value;
 			return this;
 		}
@@ -188,7 +203,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		/**
 		 * Required - API name: {@code stem_exclusion}
 		 */
-		public Builder stemExclusion(List<String> value) {
+		public final Builder stemExclusion(List<String> value) {
 			this.stemExclusion = value;
 			return this;
 		}
@@ -196,53 +211,31 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		/**
 		 * Required - API name: {@code stem_exclusion}
 		 */
-		public Builder stemExclusion(String... value) {
+		public final Builder stemExclusion(String... value) {
 			this.stemExclusion = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stemExclusion(List)}, creating the list if needed.
+		 * API name: {@code stopwords}
 		 */
-		public Builder addStemExclusion(String value) {
-			if (this.stemExclusion == null) {
-				this.stemExclusion = new ArrayList<>();
-			}
-			this.stemExclusion.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code stopwords}
-		 */
-		public Builder stopwords(List<String> value) {
+		public final Builder stopwords(@Nullable List<String> value) {
 			this.stopwords = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
 		 */
-		public Builder stopwords(String... value) {
+		public final Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
+		 * API name: {@code stopwords_path}
 		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code stopwords_path}
-		 */
-		public Builder stopwordsPath(String value) {
+		public final Builder stopwordsPath(@Nullable String value) {
 			this.stopwordsPath = value;
 			return this;
 		}
@@ -254,6 +247,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public LanguageAnalyzer build() {
+			_checkSingleUse();
 
 			return new LanguageAnalyzer(this);
 		}

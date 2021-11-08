@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Request
 @JsonpDeserializable
-public final class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
+public class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String categoryId;
 
@@ -66,19 +68,19 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetCategoriesRequest(Builder builder) {
+	private GetCategoriesRequest(Builder builder) {
 
 		this.categoryId = builder.categoryId;
 		this.from = builder.from;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.partitionFieldValue = builder.partitionFieldValue;
 		this.size = builder.size;
 
 	}
 
-	public GetCategoriesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetCategoriesRequest of(Function<Builder, ObjectBuilder<GetCategoriesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,17 +93,17 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code category_id}
 	 */
 	@Nullable
-	public String categoryId() {
+	public final String categoryId() {
 		return this.categoryId;
 	}
 
 	/**
-	 * skips a number of categories
+	 * Skips the specified number of categories.
 	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -110,7 +112,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -118,7 +120,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code page}
 	 */
 	@Nullable
-	public Page page() {
+	public final Page page() {
 		return this.page;
 	}
 
@@ -128,17 +130,17 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
-	public String partitionFieldValue() {
+	public final String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
 
 	/**
-	 * specifies a max number of categories to get
+	 * Specifies the maximum number of categories to obtain.
 	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -154,7 +156,6 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.page != null) {
-
 			generator.writeKey("page");
 			this.page.serialize(generator, mapper);
 
@@ -167,7 +168,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link GetCategoriesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetCategoriesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCategoriesRequest> {
 		@Nullable
 		private String categoryId;
 
@@ -194,17 +195,17 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code category_id}
 		 */
-		public Builder categoryId(@Nullable String value) {
+		public final Builder categoryId(@Nullable String value) {
 			this.categoryId = value;
 			return this;
 		}
 
 		/**
-		 * skips a number of categories
+		 * Skips the specified number of categories.
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -214,7 +215,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -222,7 +223,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(@Nullable Page value) {
+		public final Builder page(@Nullable Page value) {
 			this.page = value;
 			return this;
 		}
@@ -230,7 +231,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
@@ -239,17 +240,17 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
-		public Builder partitionFieldValue(@Nullable String value) {
+		public final Builder partitionFieldValue(@Nullable String value) {
 			this.partitionFieldValue = value;
 			return this;
 		}
 
 		/**
-		 * specifies a max number of categories to get
+		 * Specifies the maximum number of categories to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -261,6 +262,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public GetCategoriesRequest build() {
+			_checkSingleUse();
 
 			return new GetCategoriesRequest(this);
 		}

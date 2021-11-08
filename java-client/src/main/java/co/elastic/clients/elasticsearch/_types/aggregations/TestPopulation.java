@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TestPopulation
 @JsonpDeserializable
-public final class TestPopulation implements JsonpSerializable {
+public class TestPopulation implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
@@ -52,22 +54,22 @@ public final class TestPopulation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TestPopulation(Builder builder) {
+	private TestPopulation(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.script = builder.script;
 		this.filter = builder.filter;
 
 	}
 
-	public TestPopulation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TestPopulation of(Function<Builder, ObjectBuilder<TestPopulation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -75,7 +77,7 @@ public final class TestPopulation implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -83,7 +85,7 @@ public final class TestPopulation implements JsonpSerializable {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
@@ -102,13 +104,11 @@ public final class TestPopulation implements JsonpSerializable {
 		generator.write(this.field);
 
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
@@ -121,7 +121,7 @@ public final class TestPopulation implements JsonpSerializable {
 	/**
 	 * Builder for {@link TestPopulation}.
 	 */
-	public static class Builder implements ObjectBuilder<TestPopulation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TestPopulation> {
 		private String field;
 
 		@Nullable
@@ -133,7 +133,7 @@ public final class TestPopulation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -141,7 +141,7 @@ public final class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -149,7 +149,7 @@ public final class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -157,7 +157,7 @@ public final class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
@@ -168,6 +168,7 @@ public final class TestPopulation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TestPopulation build() {
+			_checkSingleUse();
 
 			return new TestPopulation(this);
 		}

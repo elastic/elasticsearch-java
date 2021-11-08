@@ -32,10 +32,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,24 +47,23 @@ import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.Request
 
-public final class SnapshotsRequest extends CatRequestBase {
+public class SnapshotsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
 	private final List<String> repository;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotsRequest(Builder builder) {
+	private SnapshotsRequest(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 
 	}
 
-	public SnapshotsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotsRequest of(Function<Builder, ObjectBuilder<SnapshotsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +72,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -82,8 +81,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code repository}
 	 */
-	@Nullable
-	public List<String> repository() {
+	public final List<String> repository() {
 		return this.repository;
 	}
 
@@ -92,7 +90,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link SnapshotsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRequest> {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
@@ -104,7 +102,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -114,7 +112,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable List<String> value) {
+		public final Builder repository(@Nullable List<String> value) {
 			this.repository = value;
 			return this;
 		}
@@ -124,19 +122,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(String... value) {
+		public final Builder repository(String... value) {
 			this.repository = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
-		 */
-		public Builder addRepository(String value) {
-			if (this.repository == null) {
-				this.repository = new ArrayList<>();
-			}
-			this.repository.add(value);
 			return this;
 		}
 
@@ -147,6 +134,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotsRequest build() {
+			_checkSingleUse();
 
 			return new SnapshotsRequest(this);
 		}
@@ -170,7 +158,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
+				if (ModelTypeHelper.isDefined(request.repository()))
 					propsSet |= _repository;
 
 				if (propsSet == 0) {

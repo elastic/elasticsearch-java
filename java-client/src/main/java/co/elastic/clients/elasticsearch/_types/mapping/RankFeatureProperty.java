@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RankFeatureProperty
 @JsonpDeserializable
-public final class RankFeatureProperty extends PropertyBase implements PropertyVariant {
+public class RankFeatureProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean positiveScoreImpact;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureProperty(Builder builder) {
+	private RankFeatureProperty(Builder builder) {
 		super(builder);
 
 		this.positiveScoreImpact = builder.positiveScoreImpact;
 
 	}
 
-	public RankFeatureProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureProperty of(Function<Builder, ObjectBuilder<RankFeatureProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 	 * API name: {@code positive_score_impact}
 	 */
 	@Nullable
-	public Boolean positiveScoreImpact() {
+	public final Boolean positiveScoreImpact() {
 		return this.positiveScoreImpact;
 	}
 
@@ -76,7 +76,6 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 		generator.write("type", "rank_feature");
 		super.serializeInternal(generator, mapper);
 		if (this.positiveScoreImpact != null) {
-
 			generator.writeKey("positive_score_impact");
 			generator.write(this.positiveScoreImpact);
 
@@ -98,7 +97,7 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 		/**
 		 * API name: {@code positive_score_impact}
 		 */
-		public Builder positiveScoreImpact(@Nullable Boolean value) {
+		public final Builder positiveScoreImpact(@Nullable Boolean value) {
 			this.positiveScoreImpact = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureProperty build() {
+			_checkSingleUse();
 
 			return new RankFeatureProperty(this);
 		}

@@ -38,6 +38,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -52,7 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Response
 @JsonpDeserializable
-public final class AllocationExplainResponse implements JsonpSerializable {
+public class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final String allocateExplanation;
 
@@ -71,13 +72,11 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final Decision canRebalanceCluster;
 
-	@Nullable
 	private final List<AllocationDecision> canRebalanceClusterDecisions;
 
 	@Nullable
 	private final Decision canRebalanceToOtherNode;
 
-	@Nullable
 	private final List<AllocationDecision> canRemainDecisions;
 
 	@Nullable
@@ -102,7 +101,6 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final String moveExplanation;
 
-	@Nullable
 	private final List<NodeAllocationExplanation> nodeAllocationDecisions;
 
 	private final boolean primary;
@@ -126,7 +124,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationExplainResponse(Builder builder) {
+	private AllocationExplainResponse(Builder builder) {
 
 		this.allocateExplanation = builder.allocateExplanation;
 		this.allocationDelay = builder.allocationDelay;
@@ -142,29 +140,29 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		this.configuredDelay = builder.configuredDelay;
 		this.configuredDelayInMillis = builder.configuredDelayInMillis;
 		this.currentNode = builder.currentNode;
-		this.currentState = Objects.requireNonNull(builder.currentState, "current_state");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.currentState = ModelTypeHelper.requireNonNull(builder.currentState, this, "currentState");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.moveExplanation = builder.moveExplanation;
 		this.nodeAllocationDecisions = ModelTypeHelper.unmodifiable(builder.nodeAllocationDecisions);
-		this.primary = Objects.requireNonNull(builder.primary, "primary");
+		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
 		this.rebalanceExplanation = builder.rebalanceExplanation;
 		this.remainingDelay = builder.remainingDelay;
 		this.remainingDelayInMillis = builder.remainingDelayInMillis;
-		this.shard = Objects.requireNonNull(builder.shard, "shard");
+		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
 		this.unassignedInfo = builder.unassignedInfo;
 		this.note = builder.note;
 
 	}
 
-	public AllocationExplainResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllocationExplainResponse of(Function<Builder, ObjectBuilder<AllocationExplainResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code allocate_explanation}
 	 */
 	@Nullable
-	public String allocateExplanation() {
+	public final String allocateExplanation() {
 		return this.allocateExplanation;
 	}
 
@@ -172,7 +170,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code allocation_delay}
 	 */
 	@Nullable
-	public String allocationDelay() {
+	public final String allocationDelay() {
 		return this.allocationDelay;
 	}
 
@@ -180,7 +178,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code allocation_delay_in_millis}
 	 */
 	@Nullable
-	public Long allocationDelayInMillis() {
+	public final Long allocationDelayInMillis() {
 		return this.allocationDelayInMillis;
 	}
 
@@ -188,7 +186,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code can_allocate}
 	 */
 	@Nullable
-	public Decision canAllocate() {
+	public final Decision canAllocate() {
 		return this.canAllocate;
 	}
 
@@ -196,7 +194,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code can_move_to_other_node}
 	 */
 	@Nullable
-	public Decision canMoveToOtherNode() {
+	public final Decision canMoveToOtherNode() {
 		return this.canMoveToOtherNode;
 	}
 
@@ -204,15 +202,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code can_rebalance_cluster}
 	 */
 	@Nullable
-	public Decision canRebalanceCluster() {
+	public final Decision canRebalanceCluster() {
 		return this.canRebalanceCluster;
 	}
 
 	/**
 	 * API name: {@code can_rebalance_cluster_decisions}
 	 */
-	@Nullable
-	public List<AllocationDecision> canRebalanceClusterDecisions() {
+	public final List<AllocationDecision> canRebalanceClusterDecisions() {
 		return this.canRebalanceClusterDecisions;
 	}
 
@@ -220,15 +217,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code can_rebalance_to_other_node}
 	 */
 	@Nullable
-	public Decision canRebalanceToOtherNode() {
+	public final Decision canRebalanceToOtherNode() {
 		return this.canRebalanceToOtherNode;
 	}
 
 	/**
 	 * API name: {@code can_remain_decisions}
 	 */
-	@Nullable
-	public List<AllocationDecision> canRemainDecisions() {
+	public final List<AllocationDecision> canRemainDecisions() {
 		return this.canRemainDecisions;
 	}
 
@@ -236,7 +232,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code can_remain_on_current_node}
 	 */
 	@Nullable
-	public Decision canRemainOnCurrentNode() {
+	public final Decision canRemainOnCurrentNode() {
 		return this.canRemainOnCurrentNode;
 	}
 
@@ -244,7 +240,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code cluster_info}
 	 */
 	@Nullable
-	public ClusterInfo clusterInfo() {
+	public final ClusterInfo clusterInfo() {
 		return this.clusterInfo;
 	}
 
@@ -252,7 +248,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code configured_delay}
 	 */
 	@Nullable
-	public String configuredDelay() {
+	public final String configuredDelay() {
 		return this.configuredDelay;
 	}
 
@@ -260,7 +256,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code configured_delay_in_millis}
 	 */
 	@Nullable
-	public Long configuredDelayInMillis() {
+	public final Long configuredDelayInMillis() {
 		return this.configuredDelayInMillis;
 	}
 
@@ -268,21 +264,21 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code current_node}
 	 */
 	@Nullable
-	public CurrentNode currentNode() {
+	public final CurrentNode currentNode() {
 		return this.currentNode;
 	}
 
 	/**
 	 * Required - API name: {@code current_state}
 	 */
-	public String currentState() {
+	public final String currentState() {
 		return this.currentState;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -290,22 +286,21 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code move_explanation}
 	 */
 	@Nullable
-	public String moveExplanation() {
+	public final String moveExplanation() {
 		return this.moveExplanation;
 	}
 
 	/**
 	 * API name: {@code node_allocation_decisions}
 	 */
-	@Nullable
-	public List<NodeAllocationExplanation> nodeAllocationDecisions() {
+	public final List<NodeAllocationExplanation> nodeAllocationDecisions() {
 		return this.nodeAllocationDecisions;
 	}
 
 	/**
 	 * Required - API name: {@code primary}
 	 */
-	public boolean primary() {
+	public final boolean primary() {
 		return this.primary;
 	}
 
@@ -313,7 +308,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code rebalance_explanation}
 	 */
 	@Nullable
-	public String rebalanceExplanation() {
+	public final String rebalanceExplanation() {
 		return this.rebalanceExplanation;
 	}
 
@@ -321,7 +316,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code remaining_delay}
 	 */
 	@Nullable
-	public String remainingDelay() {
+	public final String remainingDelay() {
 		return this.remainingDelay;
 	}
 
@@ -329,14 +324,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code remaining_delay_in_millis}
 	 */
 	@Nullable
-	public Long remainingDelayInMillis() {
+	public final Long remainingDelayInMillis() {
 		return this.remainingDelayInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code shard}
 	 */
-	public int shard() {
+	public final int shard() {
 		return this.shard;
 	}
 
@@ -344,7 +339,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code unassigned_info}
 	 */
 	@Nullable
-	public UnassignedInformation unassignedInfo() {
+	public final UnassignedInformation unassignedInfo() {
 		return this.unassignedInfo;
 	}
 
@@ -352,7 +347,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code note}
 	 */
 	@Nullable
-	public String note() {
+	public final String note() {
 		return this.note;
 	}
 
@@ -368,40 +363,33 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allocateExplanation != null) {
-
 			generator.writeKey("allocate_explanation");
 			generator.write(this.allocateExplanation);
 
 		}
 		if (this.allocationDelay != null) {
-
 			generator.writeKey("allocation_delay");
 			generator.write(this.allocationDelay);
 
 		}
 		if (this.allocationDelayInMillis != null) {
-
 			generator.writeKey("allocation_delay_in_millis");
 			generator.write(this.allocationDelayInMillis);
 
 		}
 		if (this.canAllocate != null) {
-
 			generator.writeKey("can_allocate");
 			this.canAllocate.serialize(generator, mapper);
 		}
 		if (this.canMoveToOtherNode != null) {
-
 			generator.writeKey("can_move_to_other_node");
 			this.canMoveToOtherNode.serialize(generator, mapper);
 		}
 		if (this.canRebalanceCluster != null) {
-
 			generator.writeKey("can_rebalance_cluster");
 			this.canRebalanceCluster.serialize(generator, mapper);
 		}
-		if (this.canRebalanceClusterDecisions != null) {
-
+		if (ModelTypeHelper.isDefined(this.canRebalanceClusterDecisions)) {
 			generator.writeKey("can_rebalance_cluster_decisions");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.canRebalanceClusterDecisions) {
@@ -412,12 +400,10 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		}
 		if (this.canRebalanceToOtherNode != null) {
-
 			generator.writeKey("can_rebalance_to_other_node");
 			this.canRebalanceToOtherNode.serialize(generator, mapper);
 		}
-		if (this.canRemainDecisions != null) {
-
+		if (ModelTypeHelper.isDefined(this.canRemainDecisions)) {
 			generator.writeKey("can_remain_decisions");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.canRemainDecisions) {
@@ -428,35 +414,29 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		}
 		if (this.canRemainOnCurrentNode != null) {
-
 			generator.writeKey("can_remain_on_current_node");
 			this.canRemainOnCurrentNode.serialize(generator, mapper);
 		}
 		if (this.clusterInfo != null) {
-
 			generator.writeKey("cluster_info");
 			this.clusterInfo.serialize(generator, mapper);
 
 		}
 		if (this.configuredDelay != null) {
-
 			generator.writeKey("configured_delay");
 			generator.write(this.configuredDelay);
 
 		}
 		if (this.configuredDelayInMillis != null) {
-
 			generator.writeKey("configured_delay_in_millis");
 			generator.write(this.configuredDelayInMillis);
 
 		}
 		if (this.currentNode != null) {
-
 			generator.writeKey("current_node");
 			this.currentNode.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("current_state");
 		generator.write(this.currentState);
 
@@ -464,13 +444,11 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		generator.write(this.index);
 
 		if (this.moveExplanation != null) {
-
 			generator.writeKey("move_explanation");
 			generator.write(this.moveExplanation);
 
 		}
-		if (this.nodeAllocationDecisions != null) {
-
+		if (ModelTypeHelper.isDefined(this.nodeAllocationDecisions)) {
 			generator.writeKey("node_allocation_decisions");
 			generator.writeStartArray();
 			for (NodeAllocationExplanation item0 : this.nodeAllocationDecisions) {
@@ -480,40 +458,33 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("primary");
 		generator.write(this.primary);
 
 		if (this.rebalanceExplanation != null) {
-
 			generator.writeKey("rebalance_explanation");
 			generator.write(this.rebalanceExplanation);
 
 		}
 		if (this.remainingDelay != null) {
-
 			generator.writeKey("remaining_delay");
 			generator.write(this.remainingDelay);
 
 		}
 		if (this.remainingDelayInMillis != null) {
-
 			generator.writeKey("remaining_delay_in_millis");
 			generator.write(this.remainingDelayInMillis);
 
 		}
-
 		generator.writeKey("shard");
 		generator.write(this.shard);
 
 		if (this.unassignedInfo != null) {
-
 			generator.writeKey("unassigned_info");
 			this.unassignedInfo.serialize(generator, mapper);
 
 		}
 		if (this.note != null) {
-
 			generator.writeKey("note");
 			generator.write(this.note);
 
@@ -526,7 +497,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationExplainResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationExplainResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationExplainResponse> {
 		@Nullable
 		private String allocateExplanation;
 
@@ -601,7 +572,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allocate_explanation}
 		 */
-		public Builder allocateExplanation(@Nullable String value) {
+		public final Builder allocateExplanation(@Nullable String value) {
 			this.allocateExplanation = value;
 			return this;
 		}
@@ -609,7 +580,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation_delay}
 		 */
-		public Builder allocationDelay(@Nullable String value) {
+		public final Builder allocationDelay(@Nullable String value) {
 			this.allocationDelay = value;
 			return this;
 		}
@@ -617,7 +588,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation_delay_in_millis}
 		 */
-		public Builder allocationDelayInMillis(@Nullable Long value) {
+		public final Builder allocationDelayInMillis(@Nullable Long value) {
 			this.allocationDelayInMillis = value;
 			return this;
 		}
@@ -625,7 +596,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_allocate}
 		 */
-		public Builder canAllocate(@Nullable Decision value) {
+		public final Builder canAllocate(@Nullable Decision value) {
 			this.canAllocate = value;
 			return this;
 		}
@@ -633,7 +604,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_move_to_other_node}
 		 */
-		public Builder canMoveToOtherNode(@Nullable Decision value) {
+		public final Builder canMoveToOtherNode(@Nullable Decision value) {
 			this.canMoveToOtherNode = value;
 			return this;
 		}
@@ -641,7 +612,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_rebalance_cluster}
 		 */
-		public Builder canRebalanceCluster(@Nullable Decision value) {
+		public final Builder canRebalanceCluster(@Nullable Decision value) {
 			this.canRebalanceCluster = value;
 			return this;
 		}
@@ -649,7 +620,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_rebalance_cluster_decisions}
 		 */
-		public Builder canRebalanceClusterDecisions(@Nullable List<AllocationDecision> value) {
+		public final Builder canRebalanceClusterDecisions(@Nullable List<AllocationDecision> value) {
 			this.canRebalanceClusterDecisions = value;
 			return this;
 		}
@@ -657,44 +628,28 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_rebalance_cluster_decisions}
 		 */
-		public Builder canRebalanceClusterDecisions(AllocationDecision... value) {
+		public final Builder canRebalanceClusterDecisions(AllocationDecision... value) {
 			this.canRebalanceClusterDecisions = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #canRebalanceClusterDecisions(List)}, creating the list
-		 * if needed.
+		 * API name: {@code can_rebalance_cluster_decisions}
 		 */
-		public Builder addCanRebalanceClusterDecisions(AllocationDecision value) {
-			if (this.canRebalanceClusterDecisions == null) {
-				this.canRebalanceClusterDecisions = new ArrayList<>();
+		@SafeVarargs
+		public final Builder canRebalanceClusterDecisions(
+				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>>... fns) {
+			this.canRebalanceClusterDecisions = new ArrayList<>(fns.length);
+			for (Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn : fns) {
+				this.canRebalanceClusterDecisions.add(fn.apply(new AllocationDecision.Builder()).build());
 			}
-			this.canRebalanceClusterDecisions.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #canRebalanceClusterDecisions(List)} to a singleton list.
-		 */
-		public Builder canRebalanceClusterDecisions(
-				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
-			return this.canRebalanceClusterDecisions(fn.apply(new AllocationDecision.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #canRebalanceClusterDecisions(List)}, creating the list
-		 * if needed.
-		 */
-		public Builder addCanRebalanceClusterDecisions(
-				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
-			return this.addCanRebalanceClusterDecisions(fn.apply(new AllocationDecision.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code can_rebalance_to_other_node}
 		 */
-		public Builder canRebalanceToOtherNode(@Nullable Decision value) {
+		public final Builder canRebalanceToOtherNode(@Nullable Decision value) {
 			this.canRebalanceToOtherNode = value;
 			return this;
 		}
@@ -702,7 +657,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_remain_decisions}
 		 */
-		public Builder canRemainDecisions(@Nullable List<AllocationDecision> value) {
+		public final Builder canRemainDecisions(@Nullable List<AllocationDecision> value) {
 			this.canRemainDecisions = value;
 			return this;
 		}
@@ -710,43 +665,28 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code can_remain_decisions}
 		 */
-		public Builder canRemainDecisions(AllocationDecision... value) {
+		public final Builder canRemainDecisions(AllocationDecision... value) {
 			this.canRemainDecisions = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #canRemainDecisions(List)}, creating the list if
-		 * needed.
+		 * API name: {@code can_remain_decisions}
 		 */
-		public Builder addCanRemainDecisions(AllocationDecision value) {
-			if (this.canRemainDecisions == null) {
-				this.canRemainDecisions = new ArrayList<>();
+		@SafeVarargs
+		public final Builder canRemainDecisions(
+				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>>... fns) {
+			this.canRemainDecisions = new ArrayList<>(fns.length);
+			for (Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn : fns) {
+				this.canRemainDecisions.add(fn.apply(new AllocationDecision.Builder()).build());
 			}
-			this.canRemainDecisions.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #canRemainDecisions(List)} to a singleton list.
-		 */
-		public Builder canRemainDecisions(Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
-			return this.canRemainDecisions(fn.apply(new AllocationDecision.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #canRemainDecisions(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addCanRemainDecisions(
-				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
-			return this.addCanRemainDecisions(fn.apply(new AllocationDecision.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code can_remain_on_current_node}
 		 */
-		public Builder canRemainOnCurrentNode(@Nullable Decision value) {
+		public final Builder canRemainOnCurrentNode(@Nullable Decision value) {
 			this.canRemainOnCurrentNode = value;
 			return this;
 		}
@@ -754,7 +694,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code cluster_info}
 		 */
-		public Builder clusterInfo(@Nullable ClusterInfo value) {
+		public final Builder clusterInfo(@Nullable ClusterInfo value) {
 			this.clusterInfo = value;
 			return this;
 		}
@@ -762,14 +702,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code cluster_info}
 		 */
-		public Builder clusterInfo(Function<ClusterInfo.Builder, ObjectBuilder<ClusterInfo>> fn) {
+		public final Builder clusterInfo(Function<ClusterInfo.Builder, ObjectBuilder<ClusterInfo>> fn) {
 			return this.clusterInfo(fn.apply(new ClusterInfo.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code configured_delay}
 		 */
-		public Builder configuredDelay(@Nullable String value) {
+		public final Builder configuredDelay(@Nullable String value) {
 			this.configuredDelay = value;
 			return this;
 		}
@@ -777,7 +717,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code configured_delay_in_millis}
 		 */
-		public Builder configuredDelayInMillis(@Nullable Long value) {
+		public final Builder configuredDelayInMillis(@Nullable Long value) {
 			this.configuredDelayInMillis = value;
 			return this;
 		}
@@ -785,7 +725,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code current_node}
 		 */
-		public Builder currentNode(@Nullable CurrentNode value) {
+		public final Builder currentNode(@Nullable CurrentNode value) {
 			this.currentNode = value;
 			return this;
 		}
@@ -793,14 +733,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code current_node}
 		 */
-		public Builder currentNode(Function<CurrentNode.Builder, ObjectBuilder<CurrentNode>> fn) {
+		public final Builder currentNode(Function<CurrentNode.Builder, ObjectBuilder<CurrentNode>> fn) {
 			return this.currentNode(fn.apply(new CurrentNode.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code current_state}
 		 */
-		public Builder currentState(String value) {
+		public final Builder currentState(String value) {
 			this.currentState = value;
 			return this;
 		}
@@ -808,7 +748,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -816,7 +756,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code move_explanation}
 		 */
-		public Builder moveExplanation(@Nullable String value) {
+		public final Builder moveExplanation(@Nullable String value) {
 			this.moveExplanation = value;
 			return this;
 		}
@@ -824,7 +764,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_allocation_decisions}
 		 */
-		public Builder nodeAllocationDecisions(@Nullable List<NodeAllocationExplanation> value) {
+		public final Builder nodeAllocationDecisions(@Nullable List<NodeAllocationExplanation> value) {
 			this.nodeAllocationDecisions = value;
 			return this;
 		}
@@ -832,44 +772,28 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_allocation_decisions}
 		 */
-		public Builder nodeAllocationDecisions(NodeAllocationExplanation... value) {
+		public final Builder nodeAllocationDecisions(NodeAllocationExplanation... value) {
 			this.nodeAllocationDecisions = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nodeAllocationDecisions(List)}, creating the list if
-		 * needed.
+		 * API name: {@code node_allocation_decisions}
 		 */
-		public Builder addNodeAllocationDecisions(NodeAllocationExplanation value) {
-			if (this.nodeAllocationDecisions == null) {
-				this.nodeAllocationDecisions = new ArrayList<>();
+		@SafeVarargs
+		public final Builder nodeAllocationDecisions(
+				Function<NodeAllocationExplanation.Builder, ObjectBuilder<NodeAllocationExplanation>>... fns) {
+			this.nodeAllocationDecisions = new ArrayList<>(fns.length);
+			for (Function<NodeAllocationExplanation.Builder, ObjectBuilder<NodeAllocationExplanation>> fn : fns) {
+				this.nodeAllocationDecisions.add(fn.apply(new NodeAllocationExplanation.Builder()).build());
 			}
-			this.nodeAllocationDecisions.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #nodeAllocationDecisions(List)} to a singleton list.
-		 */
-		public Builder nodeAllocationDecisions(
-				Function<NodeAllocationExplanation.Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {
-			return this.nodeAllocationDecisions(fn.apply(new NodeAllocationExplanation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #nodeAllocationDecisions(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addNodeAllocationDecisions(
-				Function<NodeAllocationExplanation.Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {
-			return this.addNodeAllocationDecisions(fn.apply(new NodeAllocationExplanation.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code primary}
 		 */
-		public Builder primary(boolean value) {
+		public final Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -877,7 +801,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code rebalance_explanation}
 		 */
-		public Builder rebalanceExplanation(@Nullable String value) {
+		public final Builder rebalanceExplanation(@Nullable String value) {
 			this.rebalanceExplanation = value;
 			return this;
 		}
@@ -885,7 +809,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code remaining_delay}
 		 */
-		public Builder remainingDelay(@Nullable String value) {
+		public final Builder remainingDelay(@Nullable String value) {
 			this.remainingDelay = value;
 			return this;
 		}
@@ -893,7 +817,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code remaining_delay_in_millis}
 		 */
-		public Builder remainingDelayInMillis(@Nullable Long value) {
+		public final Builder remainingDelayInMillis(@Nullable Long value) {
 			this.remainingDelayInMillis = value;
 			return this;
 		}
@@ -901,7 +825,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(int value) {
+		public final Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -909,7 +833,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code unassigned_info}
 		 */
-		public Builder unassignedInfo(@Nullable UnassignedInformation value) {
+		public final Builder unassignedInfo(@Nullable UnassignedInformation value) {
 			this.unassignedInfo = value;
 			return this;
 		}
@@ -917,7 +841,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code unassigned_info}
 		 */
-		public Builder unassignedInfo(
+		public final Builder unassignedInfo(
 				Function<UnassignedInformation.Builder, ObjectBuilder<UnassignedInformation>> fn) {
 			return this.unassignedInfo(fn.apply(new UnassignedInformation.Builder()).build());
 		}
@@ -925,7 +849,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code note}
 		 */
-		public Builder note(@Nullable String value) {
+		public final Builder note(@Nullable String value) {
 			this.note = value;
 			return this;
 		}
@@ -937,6 +861,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AllocationExplainResponse build() {
+			_checkSingleUse();
 
 			return new AllocationExplainResponse(this);
 		}

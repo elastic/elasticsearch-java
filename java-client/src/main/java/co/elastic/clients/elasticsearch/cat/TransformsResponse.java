@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Response
 @JsonpDeserializable
-public final class TransformsResponse implements JsonpSerializable {
+public class TransformsResponse implements JsonpSerializable {
 	private final List<TransformsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformsResponse(Builder builder) {
+	private TransformsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public TransformsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransformsResponse of(Function<Builder, ObjectBuilder<TransformsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class TransformsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TransformsRecord> valueBody() {
+	public final List<TransformsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class TransformsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsResponse> {
 		private List<TransformsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class TransformsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<TransformsRecord> value) {
+		public final Builder valueBody(List<TransformsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class TransformsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(TransformsRecord... value) {
+		public final Builder valueBody(TransformsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(TransformsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new TransformsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return this.valueBody(fn.apply(new TransformsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return this.addValueBody(fn.apply(new TransformsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class TransformsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TransformsResponse build() {
+			_checkSingleUse();
 
 			return new TransformsResponse(this);
 		}

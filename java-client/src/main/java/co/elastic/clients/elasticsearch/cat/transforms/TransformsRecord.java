@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.transforms.TransformsRecord
 @JsonpDeserializable
-public final class TransformsRecord implements JsonpSerializable {
+public class TransformsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -141,7 +142,7 @@ public final class TransformsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformsRecord(Builder builder) {
+	private TransformsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.state = builder.state;
@@ -179,8 +180,8 @@ public final class TransformsRecord implements JsonpSerializable {
 
 	}
 
-	public TransformsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransformsRecord of(Function<Builder, ObjectBuilder<TransformsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -189,7 +190,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -199,7 +200,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
@@ -209,7 +210,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code checkpoint}
 	 */
 	@Nullable
-	public String checkpoint() {
+	public final String checkpoint() {
 		return this.checkpoint;
 	}
 
@@ -219,7 +220,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code documents_processed}
 	 */
 	@Nullable
-	public String documentsProcessed() {
+	public final String documentsProcessed() {
 		return this.documentsProcessed;
 	}
 
@@ -229,7 +230,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code checkpoint_progress}
 	 */
 	@Nullable
-	public String checkpointProgress() {
+	public final String checkpointProgress() {
 		return this.checkpointProgress;
 	}
 
@@ -239,7 +240,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code last_search_time}
 	 */
 	@Nullable
-	public String lastSearchTime() {
+	public final String lastSearchTime() {
 		return this.lastSearchTime;
 	}
 
@@ -249,7 +250,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code changes_last_detection_time}
 	 */
 	@Nullable
-	public String changesLastDetectionTime() {
+	public final String changesLastDetectionTime() {
 		return this.changesLastDetectionTime;
 	}
 
@@ -259,7 +260,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public String createTime() {
+	public final String createTime() {
 		return this.createTime;
 	}
 
@@ -269,7 +270,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -279,7 +280,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code source_index}
 	 */
 	@Nullable
-	public String sourceIndex() {
+	public final String sourceIndex() {
 		return this.sourceIndex;
 	}
 
@@ -289,7 +290,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code dest_index}
 	 */
 	@Nullable
-	public String destIndex() {
+	public final String destIndex() {
 		return this.destIndex;
 	}
 
@@ -299,7 +300,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
-	public String pipeline() {
+	public final String pipeline() {
 		return this.pipeline;
 	}
 
@@ -309,7 +310,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -319,7 +320,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code transform_type}
 	 */
 	@Nullable
-	public String transformType() {
+	public final String transformType() {
 		return this.transformType;
 	}
 
@@ -329,7 +330,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public String frequency() {
+	public final String frequency() {
 		return this.frequency;
 	}
 
@@ -339,7 +340,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public String maxPageSearchSize() {
+	public final String maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
@@ -349,7 +350,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code docs_per_second}
 	 */
 	@Nullable
-	public String docsPerSecond() {
+	public final String docsPerSecond() {
 		return this.docsPerSecond;
 	}
 
@@ -359,7 +360,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code reason}
 	 */
 	@Nullable
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -369,7 +370,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code search_total}
 	 */
 	@Nullable
-	public String searchTotal() {
+	public final String searchTotal() {
 		return this.searchTotal;
 	}
 
@@ -379,7 +380,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code search_failure}
 	 */
 	@Nullable
-	public String searchFailure() {
+	public final String searchFailure() {
 		return this.searchFailure;
 	}
 
@@ -389,7 +390,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code search_time}
 	 */
 	@Nullable
-	public String searchTime() {
+	public final String searchTime() {
 		return this.searchTime;
 	}
 
@@ -399,7 +400,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code index_total}
 	 */
 	@Nullable
-	public String indexTotal() {
+	public final String indexTotal() {
 		return this.indexTotal;
 	}
 
@@ -409,7 +410,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code index_failure}
 	 */
 	@Nullable
-	public String indexFailure() {
+	public final String indexFailure() {
 		return this.indexFailure;
 	}
 
@@ -419,7 +420,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code index_time}
 	 */
 	@Nullable
-	public String indexTime() {
+	public final String indexTime() {
 		return this.indexTime;
 	}
 
@@ -429,7 +430,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code documents_indexed}
 	 */
 	@Nullable
-	public String documentsIndexed() {
+	public final String documentsIndexed() {
 		return this.documentsIndexed;
 	}
 
@@ -439,7 +440,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code delete_time}
 	 */
 	@Nullable
-	public String deleteTime() {
+	public final String deleteTime() {
 		return this.deleteTime;
 	}
 
@@ -449,7 +450,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code documents_deleted}
 	 */
 	@Nullable
-	public String documentsDeleted() {
+	public final String documentsDeleted() {
 		return this.documentsDeleted;
 	}
 
@@ -459,7 +460,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code trigger_count}
 	 */
 	@Nullable
-	public String triggerCount() {
+	public final String triggerCount() {
 		return this.triggerCount;
 	}
 
@@ -469,7 +470,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code pages_processed}
 	 */
 	@Nullable
-	public String pagesProcessed() {
+	public final String pagesProcessed() {
 		return this.pagesProcessed;
 	}
 
@@ -479,7 +480,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code processing_time}
 	 */
 	@Nullable
-	public String processingTime() {
+	public final String processingTime() {
 		return this.processingTime;
 	}
 
@@ -489,7 +490,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code checkpoint_duration_time_exp_avg}
 	 */
 	@Nullable
-	public String checkpointDurationTimeExpAvg() {
+	public final String checkpointDurationTimeExpAvg() {
 		return this.checkpointDurationTimeExpAvg;
 	}
 
@@ -499,7 +500,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code indexed_documents_exp_avg}
 	 */
 	@Nullable
-	public String indexedDocumentsExpAvg() {
+	public final String indexedDocumentsExpAvg() {
 		return this.indexedDocumentsExpAvg;
 	}
 
@@ -509,7 +510,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	 * API name: {@code processed_documents_exp_avg}
 	 */
 	@Nullable
-	public String processedDocumentsExpAvg() {
+	public final String processedDocumentsExpAvg() {
 		return this.processedDocumentsExpAvg;
 	}
 
@@ -525,199 +526,166 @@ public final class TransformsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.state != null) {
-
 			generator.writeKey("state");
 			generator.write(this.state);
 
 		}
 		if (this.checkpoint != null) {
-
 			generator.writeKey("checkpoint");
 			generator.write(this.checkpoint);
 
 		}
 		if (this.documentsProcessed != null) {
-
 			generator.writeKey("documents_processed");
 			generator.write(this.documentsProcessed);
 
 		}
 		if (this.checkpointProgress != null) {
-
 			generator.writeKey("checkpoint_progress");
 			generator.write(this.checkpointProgress);
 
 		}
 		if (this.lastSearchTime != null) {
-
 			generator.writeKey("last_search_time");
 			generator.write(this.lastSearchTime);
 
 		}
 		if (this.changesLastDetectionTime != null) {
-
 			generator.writeKey("changes_last_detection_time");
 			generator.write(this.changesLastDetectionTime);
 
 		}
 		if (this.createTime != null) {
-
 			generator.writeKey("create_time");
 			generator.write(this.createTime);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.sourceIndex != null) {
-
 			generator.writeKey("source_index");
 			generator.write(this.sourceIndex);
 
 		}
 		if (this.destIndex != null) {
-
 			generator.writeKey("dest_index");
 			generator.write(this.destIndex);
 
 		}
 		if (this.pipeline != null) {
-
 			generator.writeKey("pipeline");
 			generator.write(this.pipeline);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.transformType != null) {
-
 			generator.writeKey("transform_type");
 			generator.write(this.transformType);
 
 		}
 		if (this.frequency != null) {
-
 			generator.writeKey("frequency");
 			generator.write(this.frequency);
 
 		}
 		if (this.maxPageSearchSize != null) {
-
 			generator.writeKey("max_page_search_size");
 			generator.write(this.maxPageSearchSize);
 
 		}
 		if (this.docsPerSecond != null) {
-
 			generator.writeKey("docs_per_second");
 			generator.write(this.docsPerSecond);
 
 		}
 		if (this.reason != null) {
-
 			generator.writeKey("reason");
 			generator.write(this.reason);
 
 		}
 		if (this.searchTotal != null) {
-
 			generator.writeKey("search_total");
 			generator.write(this.searchTotal);
 
 		}
 		if (this.searchFailure != null) {
-
 			generator.writeKey("search_failure");
 			generator.write(this.searchFailure);
 
 		}
 		if (this.searchTime != null) {
-
 			generator.writeKey("search_time");
 			generator.write(this.searchTime);
 
 		}
 		if (this.indexTotal != null) {
-
 			generator.writeKey("index_total");
 			generator.write(this.indexTotal);
 
 		}
 		if (this.indexFailure != null) {
-
 			generator.writeKey("index_failure");
 			generator.write(this.indexFailure);
 
 		}
 		if (this.indexTime != null) {
-
 			generator.writeKey("index_time");
 			generator.write(this.indexTime);
 
 		}
 		if (this.documentsIndexed != null) {
-
 			generator.writeKey("documents_indexed");
 			generator.write(this.documentsIndexed);
 
 		}
 		if (this.deleteTime != null) {
-
 			generator.writeKey("delete_time");
 			generator.write(this.deleteTime);
 
 		}
 		if (this.documentsDeleted != null) {
-
 			generator.writeKey("documents_deleted");
 			generator.write(this.documentsDeleted);
 
 		}
 		if (this.triggerCount != null) {
-
 			generator.writeKey("trigger_count");
 			generator.write(this.triggerCount);
 
 		}
 		if (this.pagesProcessed != null) {
-
 			generator.writeKey("pages_processed");
 			generator.write(this.pagesProcessed);
 
 		}
 		if (this.processingTime != null) {
-
 			generator.writeKey("processing_time");
 			generator.write(this.processingTime);
 
 		}
 		if (this.checkpointDurationTimeExpAvg != null) {
-
 			generator.writeKey("checkpoint_duration_time_exp_avg");
 			generator.write(this.checkpointDurationTimeExpAvg);
 
 		}
 		if (this.indexedDocumentsExpAvg != null) {
-
 			generator.writeKey("indexed_documents_exp_avg");
 			generator.write(this.indexedDocumentsExpAvg);
 
 		}
 		if (this.processedDocumentsExpAvg != null) {
-
 			generator.writeKey("processed_documents_exp_avg");
 			generator.write(this.processedDocumentsExpAvg);
 
@@ -730,7 +698,7 @@ public final class TransformsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformsRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRecord> {
 		@Nullable
 		private String id;
 
@@ -835,7 +803,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -845,7 +813,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable String value) {
+		public final Builder state(@Nullable String value) {
 			this.state = value;
 			return this;
 		}
@@ -855,7 +823,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code checkpoint}
 		 */
-		public Builder checkpoint(@Nullable String value) {
+		public final Builder checkpoint(@Nullable String value) {
 			this.checkpoint = value;
 			return this;
 		}
@@ -865,7 +833,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code documents_processed}
 		 */
-		public Builder documentsProcessed(@Nullable String value) {
+		public final Builder documentsProcessed(@Nullable String value) {
 			this.documentsProcessed = value;
 			return this;
 		}
@@ -875,7 +843,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code checkpoint_progress}
 		 */
-		public Builder checkpointProgress(@Nullable String value) {
+		public final Builder checkpointProgress(@Nullable String value) {
 			this.checkpointProgress = value;
 			return this;
 		}
@@ -885,7 +853,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code last_search_time}
 		 */
-		public Builder lastSearchTime(@Nullable String value) {
+		public final Builder lastSearchTime(@Nullable String value) {
 			this.lastSearchTime = value;
 			return this;
 		}
@@ -895,7 +863,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code changes_last_detection_time}
 		 */
-		public Builder changesLastDetectionTime(@Nullable String value) {
+		public final Builder changesLastDetectionTime(@Nullable String value) {
 			this.changesLastDetectionTime = value;
 			return this;
 		}
@@ -905,7 +873,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable String value) {
+		public final Builder createTime(@Nullable String value) {
 			this.createTime = value;
 			return this;
 		}
@@ -915,7 +883,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -925,7 +893,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source_index}
 		 */
-		public Builder sourceIndex(@Nullable String value) {
+		public final Builder sourceIndex(@Nullable String value) {
 			this.sourceIndex = value;
 			return this;
 		}
@@ -935,7 +903,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code dest_index}
 		 */
-		public Builder destIndex(@Nullable String value) {
+		public final Builder destIndex(@Nullable String value) {
 			this.destIndex = value;
 			return this;
 		}
@@ -945,7 +913,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
-		public Builder pipeline(@Nullable String value) {
+		public final Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -955,7 +923,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -965,7 +933,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code transform_type}
 		 */
-		public Builder transformType(@Nullable String value) {
+		public final Builder transformType(@Nullable String value) {
 			this.transformType = value;
 			return this;
 		}
@@ -975,7 +943,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -985,7 +953,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable String value) {
+		public final Builder maxPageSearchSize(@Nullable String value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -995,7 +963,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs_per_second}
 		 */
-		public Builder docsPerSecond(@Nullable String value) {
+		public final Builder docsPerSecond(@Nullable String value) {
 			this.docsPerSecond = value;
 			return this;
 		}
@@ -1005,7 +973,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code reason}
 		 */
-		public Builder reason(@Nullable String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
@@ -1015,7 +983,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_total}
 		 */
-		public Builder searchTotal(@Nullable String value) {
+		public final Builder searchTotal(@Nullable String value) {
 			this.searchTotal = value;
 			return this;
 		}
@@ -1025,7 +993,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_failure}
 		 */
-		public Builder searchFailure(@Nullable String value) {
+		public final Builder searchFailure(@Nullable String value) {
 			this.searchFailure = value;
 			return this;
 		}
@@ -1035,7 +1003,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_time}
 		 */
-		public Builder searchTime(@Nullable String value) {
+		public final Builder searchTime(@Nullable String value) {
 			this.searchTime = value;
 			return this;
 		}
@@ -1045,7 +1013,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index_total}
 		 */
-		public Builder indexTotal(@Nullable String value) {
+		public final Builder indexTotal(@Nullable String value) {
 			this.indexTotal = value;
 			return this;
 		}
@@ -1055,7 +1023,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index_failure}
 		 */
-		public Builder indexFailure(@Nullable String value) {
+		public final Builder indexFailure(@Nullable String value) {
 			this.indexFailure = value;
 			return this;
 		}
@@ -1065,7 +1033,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index_time}
 		 */
-		public Builder indexTime(@Nullable String value) {
+		public final Builder indexTime(@Nullable String value) {
 			this.indexTime = value;
 			return this;
 		}
@@ -1075,7 +1043,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code documents_indexed}
 		 */
-		public Builder documentsIndexed(@Nullable String value) {
+		public final Builder documentsIndexed(@Nullable String value) {
 			this.documentsIndexed = value;
 			return this;
 		}
@@ -1085,7 +1053,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code delete_time}
 		 */
-		public Builder deleteTime(@Nullable String value) {
+		public final Builder deleteTime(@Nullable String value) {
 			this.deleteTime = value;
 			return this;
 		}
@@ -1095,7 +1063,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code documents_deleted}
 		 */
-		public Builder documentsDeleted(@Nullable String value) {
+		public final Builder documentsDeleted(@Nullable String value) {
 			this.documentsDeleted = value;
 			return this;
 		}
@@ -1105,7 +1073,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trigger_count}
 		 */
-		public Builder triggerCount(@Nullable String value) {
+		public final Builder triggerCount(@Nullable String value) {
 			this.triggerCount = value;
 			return this;
 		}
@@ -1115,7 +1083,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pages_processed}
 		 */
-		public Builder pagesProcessed(@Nullable String value) {
+		public final Builder pagesProcessed(@Nullable String value) {
 			this.pagesProcessed = value;
 			return this;
 		}
@@ -1125,7 +1093,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code processing_time}
 		 */
-		public Builder processingTime(@Nullable String value) {
+		public final Builder processingTime(@Nullable String value) {
 			this.processingTime = value;
 			return this;
 		}
@@ -1135,7 +1103,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code checkpoint_duration_time_exp_avg}
 		 */
-		public Builder checkpointDurationTimeExpAvg(@Nullable String value) {
+		public final Builder checkpointDurationTimeExpAvg(@Nullable String value) {
 			this.checkpointDurationTimeExpAvg = value;
 			return this;
 		}
@@ -1145,7 +1113,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexed_documents_exp_avg}
 		 */
-		public Builder indexedDocumentsExpAvg(@Nullable String value) {
+		public final Builder indexedDocumentsExpAvg(@Nullable String value) {
 			this.indexedDocumentsExpAvg = value;
 			return this;
 		}
@@ -1155,7 +1123,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code processed_documents_exp_avg}
 		 */
-		public Builder processedDocumentsExpAvg(@Nullable String value) {
+		public final Builder processedDocumentsExpAvg(@Nullable String value) {
 			this.processedDocumentsExpAvg = value;
 			return this;
 		}
@@ -1167,6 +1135,7 @@ public final class TransformsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TransformsRecord build() {
+			_checkSingleUse();
 
 			return new TransformsRecord(this);
 		}

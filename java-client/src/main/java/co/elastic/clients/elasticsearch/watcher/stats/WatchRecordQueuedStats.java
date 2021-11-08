@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -44,16 +46,16 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatchRecordQueuedStats(AbstractBuilder<?> builder) {
+	protected WatchRecordQueuedStats(AbstractBuilder<?> builder) {
 
-		this.executionTime = Objects.requireNonNull(builder.executionTime, "execution_time");
+		this.executionTime = ModelTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
 
 	}
 
 	/**
 	 * Required - API name: {@code execution_time}
 	 */
-	public String executionTime() {
+	public final String executionTime() {
 		return this.executionTime;
 	}
 
@@ -93,18 +95,21 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatchRecordQueuedStats build() {
+			_checkSingleUse();
 
 			return new WatchRecordQueuedStats(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private String executionTime;
 
 		/**
 		 * Required - API name: {@code execution_time}
 		 */
-		public BuilderT executionTime(String value) {
+		public final BuilderT executionTime(String value) {
 			this.executionTime = value;
 			return self();
 		}

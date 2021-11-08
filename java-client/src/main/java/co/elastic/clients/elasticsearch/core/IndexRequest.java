@@ -37,7 +37,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -51,7 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.index.Request
 
-public final class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {
+public class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -97,12 +99,12 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexRequest(Builder<TDocument> builder) {
+	private IndexRequest(Builder<TDocument> builder) {
 
 		this.id = builder.id;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
@@ -112,13 +114,14 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.document = Objects.requireNonNull(builder.document, "_value_body");
+		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public IndexRequest(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> IndexRequest<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -127,7 +130,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -138,7 +141,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Long ifPrimaryTerm() {
+	public final Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -149,7 +152,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Long ifSeqNo() {
+	public final Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -158,7 +161,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -170,7 +173,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code op_type}
 	 */
 	@Nullable
-	public OpType opType() {
+	public final OpType opType() {
 		return this.opType;
 	}
 
@@ -180,7 +183,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
-	public String pipeline() {
+	public final String pipeline() {
 		return this.pipeline;
 	}
 
@@ -193,7 +196,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -203,7 +206,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
-	public Boolean requireAlias() {
+	public final Boolean requireAlias() {
 		return this.requireAlias;
 	}
 
@@ -213,7 +216,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -223,7 +226,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -233,7 +236,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -243,7 +246,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -257,7 +260,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -266,7 +269,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public TDocument document() {
+	public final TDocument document() {
 		return this.document;
 	}
 
@@ -283,7 +286,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link IndexRequest}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<IndexRequest<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<IndexRequest<TDocument>> {
 		@Nullable
 		private String id;
 
@@ -332,7 +335,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder<TDocument> id(@Nullable String value) {
+		public final Builder<TDocument> id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -343,7 +346,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder<TDocument> ifPrimaryTerm(@Nullable Long value) {
+		public final Builder<TDocument> ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -354,7 +357,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder<TDocument> ifSeqNo(@Nullable Long value) {
+		public final Builder<TDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return this;
 		}
@@ -364,7 +367,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder<TDocument> index(String value) {
+		public final Builder<TDocument> index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -376,7 +379,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code op_type}
 		 */
-		public Builder<TDocument> opType(@Nullable OpType value) {
+		public final Builder<TDocument> opType(@Nullable OpType value) {
 			this.opType = value;
 			return this;
 		}
@@ -386,7 +389,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
-		public Builder<TDocument> pipeline(@Nullable String value) {
+		public final Builder<TDocument> pipeline(@Nullable String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -399,7 +402,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder<TDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder<TDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -409,7 +412,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
-		public Builder<TDocument> requireAlias(@Nullable Boolean value) {
+		public final Builder<TDocument> requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
 			return this;
 		}
@@ -419,7 +422,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TDocument> routing(@Nullable String value) {
+		public final Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -429,7 +432,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TDocument> timeout(@Nullable String value) {
+		public final Builder<TDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -439,7 +442,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder<TDocument> version(@Nullable Long value) {
+		public final Builder<TDocument> version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -449,7 +452,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder<TDocument> versionType(@Nullable VersionType value) {
+		public final Builder<TDocument> versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -463,7 +466,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder<TDocument> waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder<TDocument> waitForActiveShards(
+				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -473,7 +477,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TDocument> document(TDocument value) {
+		public final Builder<TDocument> document(TDocument value) {
 			this.document = value;
 			return this;
 		}
@@ -482,7 +486,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -494,6 +498,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public IndexRequest<TDocument> build() {
+			_checkSingleUse();
 
 			return new IndexRequest<TDocument>(this);
 		}
@@ -578,7 +583,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
+					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
@@ -593,7 +598,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.opType != null) {
-					params.put("op_type", request.opType.toString());
+					params.put("op_type", request.opType.jsonValue());
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetrics
 @JsonpDeserializable
-public final class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
-	@Nullable
+public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	private final Map<String, JsonData> mse;
 
 	@Nullable
@@ -53,12 +52,11 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	@Nullable
 	private final DataframeEvaluationRegressionMetricsHuber huber;
 
-	@Nullable
 	private final Map<String, JsonData> rSquared;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationRegressionMetrics(Builder builder) {
+	private DataframeEvaluationRegressionMetrics(Builder builder) {
 
 		this.mse = ModelTypeHelper.unmodifiable(builder.mse);
 		this.msle = builder.msle;
@@ -67,8 +65,9 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 
 	}
 
-	public DataframeEvaluationRegressionMetrics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationRegressionMetrics of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,8 +76,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	 * <p>
 	 * API name: {@code mse}
 	 */
-	@Nullable
-	public Map<String, JsonData> mse() {
+	public final Map<String, JsonData> mse() {
 		return this.mse;
 	}
 
@@ -89,7 +87,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	 * API name: {@code msle}
 	 */
 	@Nullable
-	public DataframeEvaluationRegressionMetricsMsle msle() {
+	public final DataframeEvaluationRegressionMetricsMsle msle() {
 		return this.msle;
 	}
 
@@ -99,7 +97,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	 * API name: {@code huber}
 	 */
 	@Nullable
-	public DataframeEvaluationRegressionMetricsHuber huber() {
+	public final DataframeEvaluationRegressionMetricsHuber huber() {
 		return this.huber;
 	}
 
@@ -109,8 +107,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	 * <p>
 	 * API name: {@code r_squared}
 	 */
-	@Nullable
-	public Map<String, JsonData> rSquared() {
+	public final Map<String, JsonData> rSquared() {
 		return this.rSquared;
 	}
 
@@ -125,8 +122,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.mse != null) {
-
+		if (ModelTypeHelper.isDefined(this.mse)) {
 			generator.writeKey("mse");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.mse.entrySet()) {
@@ -138,19 +134,16 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 
 		}
 		if (this.msle != null) {
-
 			generator.writeKey("msle");
 			this.msle.serialize(generator, mapper);
 
 		}
 		if (this.huber != null) {
-
 			generator.writeKey("huber");
 			this.huber.serialize(generator, mapper);
 
 		}
-		if (this.rSquared != null) {
-
+		if (ModelTypeHelper.isDefined(this.rSquared)) {
 			generator.writeKey("r_squared");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.rSquared.entrySet()) {
@@ -169,7 +162,9 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetrics}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetrics> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeEvaluationRegressionMetrics> {
 		@Nullable
 		private Map<String, JsonData> mse;
 
@@ -188,19 +183,8 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 * <p>
 		 * API name: {@code mse}
 		 */
-		public Builder mse(@Nullable Map<String, JsonData> value) {
+		public final Builder mse(@Nullable Map<String, JsonData> value) {
 			this.mse = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #mse(Map)}, creating the map if needed.
-		 */
-		public Builder putMse(String key, JsonData value) {
-			if (this.mse == null) {
-				this.mse = new HashMap<>();
-			}
-			this.mse.put(key, value);
 			return this;
 		}
 
@@ -210,7 +194,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 * <p>
 		 * API name: {@code msle}
 		 */
-		public Builder msle(@Nullable DataframeEvaluationRegressionMetricsMsle value) {
+		public final Builder msle(@Nullable DataframeEvaluationRegressionMetricsMsle value) {
 			this.msle = value;
 			return this;
 		}
@@ -221,7 +205,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 * <p>
 		 * API name: {@code msle}
 		 */
-		public Builder msle(
+		public final Builder msle(
 				Function<DataframeEvaluationRegressionMetricsMsle.Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsMsle>> fn) {
 			return this.msle(fn.apply(new DataframeEvaluationRegressionMetricsMsle.Builder()).build());
 		}
@@ -231,7 +215,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 * <p>
 		 * API name: {@code huber}
 		 */
-		public Builder huber(@Nullable DataframeEvaluationRegressionMetricsHuber value) {
+		public final Builder huber(@Nullable DataframeEvaluationRegressionMetricsHuber value) {
 			this.huber = value;
 			return this;
 		}
@@ -241,7 +225,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 * <p>
 		 * API name: {@code huber}
 		 */
-		public Builder huber(
+		public final Builder huber(
 				Function<DataframeEvaluationRegressionMetricsHuber.Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsHuber>> fn) {
 			return this.huber(fn.apply(new DataframeEvaluationRegressionMetricsHuber.Builder()).build());
 		}
@@ -252,19 +236,8 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 * <p>
 		 * API name: {@code r_squared}
 		 */
-		public Builder rSquared(@Nullable Map<String, JsonData> value) {
+		public final Builder rSquared(@Nullable Map<String, JsonData> value) {
 			this.rSquared = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #rSquared(Map)}, creating the map if needed.
-		 */
-		public Builder putRSquared(String key, JsonData value) {
-			if (this.rSquared == null) {
-				this.rSquared = new HashMap<>();
-			}
-			this.rSquared.put(key, value);
 			return this;
 		}
 
@@ -275,6 +248,7 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationRegressionMetrics build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationRegressionMetrics(this);
 		}

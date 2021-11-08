@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
 @JsonpDeserializable
-public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
+public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	private final BoundingBox boundingBox;
@@ -55,10 +56,10 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoBoundingBoxQuery(Builder builder) {
+	private GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.boundingBox = Objects.requireNonNull(builder.boundingBox, "bounding_box");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.boundingBox = ModelTypeHelper.requireNonNull(builder.boundingBox, this, "boundingBox");
 
 		this.type = builder.type;
 		this.validationMethod = builder.validationMethod;
@@ -66,8 +67,8 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 
 	}
 
-	public GeoBoundingBoxQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoBoundingBoxQuery of(Function<Builder, ObjectBuilder<GeoBoundingBoxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,14 +82,14 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	/**
 	 * Required -
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required -
 	 */
-	public BoundingBox boundingBox() {
+	public final BoundingBox boundingBox() {
 		return this.boundingBox;
 	}
 
@@ -96,7 +97,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public GeoExecution type() {
+	public final GeoExecution type() {
 		return this.type;
 	}
 
@@ -104,7 +105,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	 * API name: {@code validation_method}
 	 */
 	@Nullable
-	public GeoValidationMethod validationMethod() {
+	public final GeoValidationMethod validationMethod() {
 		return this.validationMethod;
 	}
 
@@ -112,7 +113,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -122,17 +123,14 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 
 		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
 		}
 		if (this.validationMethod != null) {
-
 			generator.writeKey("validation_method");
 			this.validationMethod.serialize(generator, mapper);
 		}
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
@@ -155,7 +153,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		/**
 		 * Required -
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -163,7 +161,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		/**
 		 * Required -
 		 */
-		public Builder boundingBox(BoundingBox value) {
+		public final Builder boundingBox(BoundingBox value) {
 			this.boundingBox = value;
 			return this;
 		}
@@ -171,7 +169,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		/**
 		 * Required -
 		 */
-		public Builder boundingBox(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
+		public final Builder boundingBox(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
 			return this.boundingBox(fn.apply(new BoundingBox.Builder()).build());
 		}
 
@@ -187,7 +185,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable GeoExecution value) {
+		public final Builder type(@Nullable GeoExecution value) {
 			this.type = value;
 			return this;
 		}
@@ -195,7 +193,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code validation_method}
 		 */
-		public Builder validationMethod(@Nullable GeoValidationMethod value) {
+		public final Builder validationMethod(@Nullable GeoValidationMethod value) {
 			this.validationMethod = value;
 			return this;
 		}
@@ -203,7 +201,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -220,6 +218,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		 *             if some of the required fields are null.
 		 */
 		public GeoBoundingBoxQuery build() {
+			_checkSingleUse();
 
 			return new GeoBoundingBoxQuery(this);
 		}

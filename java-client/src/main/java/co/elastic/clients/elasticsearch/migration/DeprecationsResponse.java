@@ -33,11 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Response
 @JsonpDeserializable
-public final class DeprecationsResponse implements JsonpSerializable {
+public class DeprecationsResponse implements JsonpSerializable {
 	private final List<Deprecation> clusterSettings;
 
 	private final Map<String, List<Deprecation>> indexSettings;
@@ -57,44 +57,44 @@ public final class DeprecationsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeprecationsResponse(Builder builder) {
+	private DeprecationsResponse(Builder builder) {
 
-		this.clusterSettings = ModelTypeHelper.unmodifiableNonNull(builder.clusterSettings, "cluster_settings");
-		this.indexSettings = ModelTypeHelper.unmodifiableNonNull(builder.indexSettings, "index_settings");
-		this.nodeSettings = ModelTypeHelper.unmodifiableNonNull(builder.nodeSettings, "node_settings");
-		this.mlSettings = ModelTypeHelper.unmodifiableNonNull(builder.mlSettings, "ml_settings");
+		this.clusterSettings = ModelTypeHelper.unmodifiableRequired(builder.clusterSettings, this, "clusterSettings");
+		this.indexSettings = ModelTypeHelper.unmodifiableRequired(builder.indexSettings, this, "indexSettings");
+		this.nodeSettings = ModelTypeHelper.unmodifiableRequired(builder.nodeSettings, this, "nodeSettings");
+		this.mlSettings = ModelTypeHelper.unmodifiableRequired(builder.mlSettings, this, "mlSettings");
 
 	}
 
-	public DeprecationsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeprecationsResponse of(Function<Builder, ObjectBuilder<DeprecationsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster_settings}
 	 */
-	public List<Deprecation> clusterSettings() {
+	public final List<Deprecation> clusterSettings() {
 		return this.clusterSettings;
 	}
 
 	/**
 	 * Required - API name: {@code index_settings}
 	 */
-	public Map<String, List<Deprecation>> indexSettings() {
+	public final Map<String, List<Deprecation>> indexSettings() {
 		return this.indexSettings;
 	}
 
 	/**
 	 * Required - API name: {@code node_settings}
 	 */
-	public List<Deprecation> nodeSettings() {
+	public final List<Deprecation> nodeSettings() {
 		return this.nodeSettings;
 	}
 
 	/**
 	 * Required - API name: {@code ml_settings}
 	 */
-	public List<Deprecation> mlSettings() {
+	public final List<Deprecation> mlSettings() {
 		return this.mlSettings;
 	}
 
@@ -109,43 +109,54 @@ public final class DeprecationsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cluster_settings");
-		generator.writeStartArray();
-		for (Deprecation item0 : this.clusterSettings) {
-			item0.serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("index_settings");
-		generator.writeStartObject();
-		for (Map.Entry<String, List<Deprecation>> item0 : this.indexSettings.entrySet()) {
-			generator.writeKey(item0.getKey());
+		if (ModelTypeHelper.isDefined(this.clusterSettings)) {
+			generator.writeKey("cluster_settings");
 			generator.writeStartArray();
-			for (Deprecation item1 : item0.getValue()) {
-				item1.serialize(generator, mapper);
+			for (Deprecation item0 : this.clusterSettings) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.indexSettings)) {
+			generator.writeKey("index_settings");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<Deprecation>> item0 : this.indexSettings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (Deprecation item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
 
-		generator.writeKey("node_settings");
-		generator.writeStartArray();
-		for (Deprecation item0 : this.nodeSettings) {
-			item0.serialize(generator, mapper);
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.nodeSettings)) {
+			generator.writeKey("node_settings");
+			generator.writeStartArray();
+			for (Deprecation item0 : this.nodeSettings) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("ml_settings");
-		generator.writeStartArray();
-		for (Deprecation item0 : this.mlSettings) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.mlSettings)) {
+			generator.writeKey("ml_settings");
+			generator.writeStartArray();
+			for (Deprecation item0 : this.mlSettings) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -154,7 +165,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeprecationsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DeprecationsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeprecationsResponse> {
 		private List<Deprecation> clusterSettings;
 
 		private Map<String, List<Deprecation>> indexSettings;
@@ -166,7 +177,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster_settings}
 		 */
-		public Builder clusterSettings(List<Deprecation> value) {
+		public final Builder clusterSettings(List<Deprecation> value) {
 			this.clusterSettings = value;
 			return this;
 		}
@@ -174,59 +185,35 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster_settings}
 		 */
-		public Builder clusterSettings(Deprecation... value) {
+		public final Builder clusterSettings(Deprecation... value) {
 			this.clusterSettings = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed.
+		 * Required - API name: {@code cluster_settings}
 		 */
-		public Builder addClusterSettings(Deprecation value) {
-			if (this.clusterSettings == null) {
-				this.clusterSettings = new ArrayList<>();
+		@SafeVarargs
+		public final Builder clusterSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>>... fns) {
+			this.clusterSettings = new ArrayList<>(fns.length);
+			for (Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn : fns) {
+				this.clusterSettings.add(fn.apply(new Deprecation.Builder()).build());
 			}
-			this.clusterSettings.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #clusterSettings(List)} to a singleton list.
-		 */
-		public Builder clusterSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
-			return this.clusterSettings(fn.apply(new Deprecation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed.
-		 */
-		public Builder addClusterSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
-			return this.addClusterSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code index_settings}
 		 */
-		public Builder indexSettings(Map<String, List<Deprecation>> value) {
+		public final Builder indexSettings(Map<String, List<Deprecation>> value) {
 			this.indexSettings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #indexSettings(Map)}, creating the map if needed.
-		 */
-		public Builder putIndexSettings(String key, List<Deprecation> value) {
-			if (this.indexSettings == null) {
-				this.indexSettings = new HashMap<>();
-			}
-			this.indexSettings.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_settings}
 		 */
-		public Builder nodeSettings(List<Deprecation> value) {
+		public final Builder nodeSettings(List<Deprecation> value) {
 			this.nodeSettings = value;
 			return this;
 		}
@@ -234,40 +221,27 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_settings}
 		 */
-		public Builder nodeSettings(Deprecation... value) {
+		public final Builder nodeSettings(Deprecation... value) {
 			this.nodeSettings = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed.
+		 * Required - API name: {@code node_settings}
 		 */
-		public Builder addNodeSettings(Deprecation value) {
-			if (this.nodeSettings == null) {
-				this.nodeSettings = new ArrayList<>();
+		@SafeVarargs
+		public final Builder nodeSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>>... fns) {
+			this.nodeSettings = new ArrayList<>(fns.length);
+			for (Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn : fns) {
+				this.nodeSettings.add(fn.apply(new Deprecation.Builder()).build());
 			}
-			this.nodeSettings.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #nodeSettings(List)} to a singleton list.
-		 */
-		public Builder nodeSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
-			return this.nodeSettings(fn.apply(new Deprecation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed.
-		 */
-		public Builder addNodeSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
-			return this.addNodeSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code ml_settings}
 		 */
-		public Builder mlSettings(List<Deprecation> value) {
+		public final Builder mlSettings(List<Deprecation> value) {
 			this.mlSettings = value;
 			return this;
 		}
@@ -275,34 +249,21 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ml_settings}
 		 */
-		public Builder mlSettings(Deprecation... value) {
+		public final Builder mlSettings(Deprecation... value) {
 			this.mlSettings = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #mlSettings(List)}, creating the list if needed.
+		 * Required - API name: {@code ml_settings}
 		 */
-		public Builder addMlSettings(Deprecation value) {
-			if (this.mlSettings == null) {
-				this.mlSettings = new ArrayList<>();
+		@SafeVarargs
+		public final Builder mlSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>>... fns) {
+			this.mlSettings = new ArrayList<>(fns.length);
+			for (Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn : fns) {
+				this.mlSettings.add(fn.apply(new Deprecation.Builder()).build());
 			}
-			this.mlSettings.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #mlSettings(List)} to a singleton list.
-		 */
-		public Builder mlSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
-			return this.mlSettings(fn.apply(new Deprecation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #mlSettings(List)}, creating the list if needed.
-		 */
-		public Builder addMlSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
-			return this.addMlSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
@@ -312,6 +273,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DeprecationsResponse build() {
+			_checkSingleUse();
 
 			return new DeprecationsResponse(this);
 		}

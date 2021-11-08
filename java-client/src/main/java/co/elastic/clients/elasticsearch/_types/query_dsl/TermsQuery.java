@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQuery
 @JsonpDeserializable
-public final class TermsQuery extends QueryBase implements QueryVariant {
+public class TermsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	private final JsonValue /*
@@ -49,15 +50,15 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermsQuery(Builder builder) {
+	private TermsQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public TermsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermsQuery of(Function<Builder, ObjectBuilder<TermsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,17 +72,17 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required -
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required -
 	 */
-	public JsonValue /*
-						 * Union(Array<_types.long> | Array<internal.string> |
-						 * _types.query_dsl.TermsLookup)
-						 */ value() {
+	public final JsonValue /*
+							 * Union(Array<_types.long> | Array<internal.string> |
+							 * _types.query_dsl.TermsLookup)
+							 */ value() {
 		return this.value;
 	}
 
@@ -109,7 +110,7 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -117,10 +118,10 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public Builder value(JsonValue /*
-										 * Union(Array<_types.long> | Array<internal.string> |
-										 * _types.query_dsl.TermsLookup)
-										 */ value) {
+		public final Builder value(JsonValue /*
+												 * Union(Array<_types.long> | Array<internal.string> |
+												 * _types.query_dsl.TermsLookup)
+												 */ value) {
 			this.value = value;
 			return this;
 		}
@@ -137,6 +138,7 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public TermsQuery build() {
+			_checkSingleUse();
 
 			return new TermsQuery(this);
 		}

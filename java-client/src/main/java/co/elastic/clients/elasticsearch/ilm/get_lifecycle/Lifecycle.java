@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Lifecycle
 @JsonpDeserializable
-public final class Lifecycle implements JsonpSerializable {
+public class Lifecycle implements JsonpSerializable {
 	private final String modifiedDate;
 
 	private final Policy policy;
@@ -50,36 +52,36 @@ public final class Lifecycle implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Lifecycle(Builder builder) {
+	private Lifecycle(Builder builder) {
 
-		this.modifiedDate = Objects.requireNonNull(builder.modifiedDate, "modified_date");
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.modifiedDate = ModelTypeHelper.requireNonNull(builder.modifiedDate, this, "modifiedDate");
+		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public Lifecycle(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Lifecycle of(Function<Builder, ObjectBuilder<Lifecycle>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code modified_date}
 	 */
-	public String modifiedDate() {
+	public final String modifiedDate() {
 		return this.modifiedDate;
 	}
 
 	/**
 	 * Required - API name: {@code policy}
 	 */
-	public Policy policy() {
+	public final Policy policy() {
 		return this.policy;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
@@ -110,7 +112,7 @@ public final class Lifecycle implements JsonpSerializable {
 	/**
 	 * Builder for {@link Lifecycle}.
 	 */
-	public static class Builder implements ObjectBuilder<Lifecycle> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Lifecycle> {
 		private String modifiedDate;
 
 		private Policy policy;
@@ -120,7 +122,7 @@ public final class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code modified_date}
 		 */
-		public Builder modifiedDate(String value) {
+		public final Builder modifiedDate(String value) {
 			this.modifiedDate = value;
 			return this;
 		}
@@ -128,7 +130,7 @@ public final class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public Builder policy(Policy value) {
+		public final Builder policy(Policy value) {
 			this.policy = value;
 			return this;
 		}
@@ -136,14 +138,14 @@ public final class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+		public final Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.policy(fn.apply(new Policy.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -155,6 +157,7 @@ public final class Lifecycle implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Lifecycle build() {
+			_checkSingleUse();
 
 			return new Lifecycle(this);
 		}

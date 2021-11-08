@@ -33,16 +33,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Source
 @JsonpDeserializable
-public final class Source implements JsonpSerializable {
+public class Source implements JsonpSerializable {
 	private final List<String> index;
 
 	@Nullable
@@ -66,20 +66,17 @@ public final class Source implements JsonpSerializable {
 	@Nullable
 	private final SlicedScroll slice;
 
-	@Nullable
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
-	@Nullable
 	private final List<String> sourceFields;
 
-	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Source(Builder builder) {
+	private Source(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.remote = builder.remote;
 		this.size = builder.size;
@@ -90,14 +87,14 @@ public final class Source implements JsonpSerializable {
 
 	}
 
-	public Source(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Source of(Function<Builder, ObjectBuilder<Source>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -105,7 +102,7 @@ public final class Source implements JsonpSerializable {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -113,7 +110,7 @@ public final class Source implements JsonpSerializable {
 	 * API name: {@code remote}
 	 */
 	@Nullable
-	public RemoteSource remote() {
+	public final RemoteSource remote() {
 		return this.remote;
 	}
 
@@ -121,7 +118,7 @@ public final class Source implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -129,31 +126,28 @@ public final class Source implements JsonpSerializable {
 	 * API name: {@code slice}
 	 */
 	@Nullable
-	public SlicedScroll slice() {
+	public final SlicedScroll slice() {
 		return this.slice;
 	}
 
 	/**
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
-	@Nullable
-	public List<String> sourceFields() {
+	public final List<String> sourceFields() {
 		return this.sourceFields;
 	}
 
 	/**
 	 * API name: {@code runtime_mappings}
 	 */
-	@Nullable
-	public Map<String, RuntimeField> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -168,40 +162,37 @@ public final class Source implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.writeStartArray();
-		for (String item0 : this.index) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.index)) {
+			generator.writeKey("index");
+			generator.writeStartArray();
+			for (String item0 : this.index) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.remote != null) {
-
 			generator.writeKey("remote");
 			this.remote.serialize(generator, mapper);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.slice != null) {
-
 			generator.writeKey("slice");
 			this.slice.serialize(generator, mapper);
 
 		}
-		if (this.sort != null) {
-
+		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
@@ -211,8 +202,7 @@ public final class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.sourceFields != null) {
-
+		if (ModelTypeHelper.isDefined(this.sourceFields)) {
 			generator.writeKey("_source");
 			generator.writeStartArray();
 			for (String item0 : this.sourceFields) {
@@ -222,8 +212,7 @@ public final class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.runtimeMappings != null) {
-
+		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -242,7 +231,7 @@ public final class Source implements JsonpSerializable {
 	/**
 	 * Builder for {@link Source}.
 	 */
-	public static class Builder implements ObjectBuilder<Source> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Source> {
 		private List<String> index;
 
 		@Nullable
@@ -269,7 +258,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -277,26 +266,15 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -304,14 +282,14 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code remote}
 		 */
-		public Builder remote(@Nullable RemoteSource value) {
+		public final Builder remote(@Nullable RemoteSource value) {
 			this.remote = value;
 			return this;
 		}
@@ -319,14 +297,14 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code remote}
 		 */
-		public Builder remote(Function<RemoteSource.Builder, ObjectBuilder<RemoteSource>> fn) {
+		public final Builder remote(Function<RemoteSource.Builder, ObjectBuilder<RemoteSource>> fn) {
 			return this.remote(fn.apply(new RemoteSource.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -334,7 +312,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code slice}
 		 */
-		public Builder slice(@Nullable SlicedScroll value) {
+		public final Builder slice(@Nullable SlicedScroll value) {
 			this.slice = value;
 			return this;
 		}
@@ -342,14 +320,14 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code slice}
 		 */
-		public Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
 			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -357,26 +335,15 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder sourceFields(@Nullable List<String> value) {
+		public final Builder sourceFields(@Nullable List<String> value) {
 			this.sourceFields = value;
 			return this;
 		}
@@ -384,38 +351,16 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder sourceFields(String... value) {
+		public final Builder sourceFields(String... value) {
 			this.sourceFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceFields(List)}, creating the list if needed.
-		 */
-		public Builder addSourceFields(String value) {
-			if (this.sourceFields == null) {
-				this.sourceFields = new ArrayList<>();
-			}
-			this.sourceFields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code runtime_mappings}
 		 */
-		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
+		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, RuntimeField value) {
-			if (this.runtimeMappings == null) {
-				this.runtimeMappings = new HashMap<>();
-			}
-			this.runtimeMappings.put(key, value);
 			return this;
 		}
 
@@ -426,11 +371,9 @@ public final class Source implements JsonpSerializable {
 			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		public final Builder runtimeMappings(
+				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
+			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
 		}
 
 		/**
@@ -440,6 +383,7 @@ public final class Source implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Source build() {
+			_checkSingleUse();
 
 			return new Source(this);
 		}

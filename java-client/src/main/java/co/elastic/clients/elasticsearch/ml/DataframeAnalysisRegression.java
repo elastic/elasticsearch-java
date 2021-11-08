@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
 @JsonpDeserializable
-public final class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
+public class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
 	private final String lossFunction;
 
@@ -48,7 +48,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisRegression(Builder builder) {
+	private DataframeAnalysisRegression(Builder builder) {
 		super(builder);
 
 		this.lossFunction = builder.lossFunction;
@@ -56,8 +56,8 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 
 	}
 
-	public DataframeAnalysisRegression(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisRegression of(Function<Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 	 * API name: {@code loss_function}
 	 */
 	@Nullable
-	public String lossFunction() {
+	public final String lossFunction() {
 		return this.lossFunction;
 	}
 
@@ -87,7 +87,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 	 * API name: {@code loss_function_parameter}
 	 */
 	@Nullable
-	public Double lossFunctionParameter() {
+	public final Double lossFunctionParameter() {
 		return this.lossFunctionParameter;
 	}
 
@@ -95,13 +95,11 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 
 		super.serializeInternal(generator, mapper);
 		if (this.lossFunction != null) {
-
 			generator.writeKey("loss_function");
 			generator.write(this.lossFunction);
 
 		}
 		if (this.lossFunctionParameter != null) {
-
 			generator.writeKey("loss_function_parameter");
 			generator.write(this.lossFunctionParameter);
 
@@ -130,7 +128,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		 * <p>
 		 * API name: {@code loss_function}
 		 */
-		public Builder lossFunction(@Nullable String value) {
+		public final Builder lossFunction(@Nullable String value) {
 			this.lossFunction = value;
 			return this;
 		}
@@ -141,7 +139,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		 * <p>
 		 * API name: {@code loss_function_parameter}
 		 */
-		public Builder lossFunctionParameter(@Nullable Double value) {
+		public final Builder lossFunctionParameter(@Nullable Double value) {
 			this.lossFunctionParameter = value;
 			return this;
 		}
@@ -158,6 +156,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisRegression build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisRegression(this);
 		}

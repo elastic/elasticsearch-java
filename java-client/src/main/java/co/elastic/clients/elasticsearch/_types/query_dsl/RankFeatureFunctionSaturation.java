@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -39,27 +40,27 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
 @JsonpDeserializable
-public final class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
+public class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
 	@Nullable
 	private final Float pivot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureFunctionSaturation(Builder builder) {
+	private RankFeatureFunctionSaturation(Builder builder) {
 
 		this.pivot = builder.pivot;
 
 	}
 
-	public RankFeatureFunctionSaturation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureFunctionSaturation of(Function<Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code pivot}
 	 */
 	@Nullable
-	public Float pivot() {
+	public final Float pivot() {
 		return this.pivot;
 	}
 
@@ -75,7 +76,6 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.pivot != null) {
-
 			generator.writeKey("pivot");
 			generator.write(this.pivot);
 
@@ -88,14 +88,14 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	/**
 	 * Builder for {@link RankFeatureFunctionSaturation}.
 	 */
-	public static class Builder implements ObjectBuilder<RankFeatureFunctionSaturation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSaturation> {
 		@Nullable
 		private Float pivot;
 
 		/**
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(@Nullable Float value) {
+		public final Builder pivot(@Nullable Float value) {
 			this.pivot = value;
 			return this;
 		}
@@ -107,6 +107,7 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureFunctionSaturation build() {
+			_checkSingleUse();
 
 			return new RankFeatureFunctionSaturation(this);
 		}

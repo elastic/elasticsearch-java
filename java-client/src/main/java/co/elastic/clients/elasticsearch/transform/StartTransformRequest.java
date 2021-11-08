@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.start_transform.Request
 
-public final class StartTransformRequest extends RequestBase {
+public class StartTransformRequest extends RequestBase {
 	@Nullable
 	private final String timeout;
 
@@ -50,15 +52,15 @@ public final class StartTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartTransformRequest(Builder builder) {
+	private StartTransformRequest(Builder builder) {
 
 		this.timeout = builder.timeout;
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
+		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public StartTransformRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartTransformRequest of(Function<Builder, ObjectBuilder<StartTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +69,7 @@ public final class StartTransformRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -76,7 +78,7 @@ public final class StartTransformRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
-	public String transformId() {
+	public final String transformId() {
 		return this.transformId;
 	}
 
@@ -85,7 +87,7 @@ public final class StartTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartTransformRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartTransformRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTransformRequest> {
 		@Nullable
 		private String timeout;
 
@@ -96,7 +98,7 @@ public final class StartTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -106,7 +108,7 @@ public final class StartTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
-		public Builder transformId(String value) {
+		public final Builder transformId(String value) {
 			this.transformId = value;
 			return this;
 		}
@@ -118,6 +120,7 @@ public final class StartTransformRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartTransformRequest build() {
+			_checkSingleUse();
 
 			return new StartTransformRequest(this);
 		}

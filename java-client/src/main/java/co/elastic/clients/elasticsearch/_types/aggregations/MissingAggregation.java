@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
 @JsonpDeserializable
-public final class MissingAggregation extends BucketAggregationBase implements AggregationVariant {
+public class MissingAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -47,7 +47,7 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MissingAggregation(Builder builder) {
+	private MissingAggregation(Builder builder) {
 		super(builder);
 
 		this.field = builder.field;
@@ -55,8 +55,8 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public MissingAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MissingAggregation of(Function<Builder, ObjectBuilder<MissingAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +71,7 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -79,7 +79,7 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final String missing() {
 		return this.missing;
 	}
 
@@ -87,13 +87,11 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
@@ -118,7 +116,7 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -126,7 +124,7 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -143,6 +141,7 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 		 *             if some of the required fields are null.
 		 */
 		public MissingAggregation build() {
+			_checkSingleUse();
 
 			return new MissingAggregation(this);
 		}

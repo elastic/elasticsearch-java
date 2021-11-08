@@ -30,13 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.FielddataStats
 @JsonpDeserializable
-public final class FielddataStats implements JsonpSerializable {
+public class FielddataStats implements JsonpSerializable {
 	@Nullable
 	private final Long evictions;
 
@@ -53,29 +54,28 @@ public final class FielddataStats implements JsonpSerializable {
 
 	private final long memorySizeInBytes;
 
-	@Nullable
 	private final Map<String, FieldMemoryUsage> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FielddataStats(Builder builder) {
+	private FielddataStats(Builder builder) {
 
 		this.evictions = builder.evictions;
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
+		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public FielddataStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FielddataStats of(Function<Builder, ObjectBuilder<FielddataStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code evictions}
 	 */
 	@Nullable
-	public Long evictions() {
+	public final Long evictions() {
 		return this.evictions;
 	}
 
@@ -83,22 +83,21 @@ public final class FielddataStats implements JsonpSerializable {
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public String memorySize() {
+	public final String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
 	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public long memorySizeInBytes() {
+	public final long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public Map<String, FieldMemoryUsage> fields() {
+	public final Map<String, FieldMemoryUsage> fields() {
 		return this.fields;
 	}
 
@@ -114,23 +113,19 @@ public final class FielddataStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.evictions != null) {
-
 			generator.writeKey("evictions");
 			generator.write(this.evictions);
 
 		}
 		if (this.memorySize != null) {
-
 			generator.writeKey("memory_size");
 			generator.write(this.memorySize);
 
 		}
-
 		generator.writeKey("memory_size_in_bytes");
 		generator.write(this.memorySizeInBytes);
 
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldMemoryUsage> item0 : this.fields.entrySet()) {
@@ -149,7 +144,7 @@ public final class FielddataStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataStats}.
 	 */
-	public static class Builder implements ObjectBuilder<FielddataStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataStats> {
 		@Nullable
 		private Long evictions;
 
@@ -164,7 +159,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code evictions}
 		 */
-		public Builder evictions(@Nullable Long value) {
+		public final Builder evictions(@Nullable Long value) {
 			this.evictions = value;
 			return this;
 		}
@@ -172,7 +167,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable String value) {
+		public final Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
@@ -180,7 +175,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(long value) {
+		public final Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -188,19 +183,8 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable Map<String, FieldMemoryUsage> value) {
+		public final Builder fields(@Nullable Map<String, FieldMemoryUsage> value) {
 			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, FieldMemoryUsage value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
 			return this;
 		}
 
@@ -211,11 +195,9 @@ public final class FielddataStats implements JsonpSerializable {
 			return this.fields(Collections.singletonMap(key, fn.apply(new FieldMemoryUsage.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, Function<FieldMemoryUsage.Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
-			return this.putFields(key, fn.apply(new FieldMemoryUsage.Builder()).build());
+		public final Builder fields(
+				Function<MapBuilder<String, FieldMemoryUsage, FieldMemoryUsage.Builder>, ObjectBuilder<Map<String, FieldMemoryUsage>>> fn) {
+			return fields(fn.apply(new MapBuilder<>(FieldMemoryUsage.Builder::new)).build());
 		}
 
 		/**
@@ -225,6 +207,7 @@ public final class FielddataStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FielddataStats build() {
+			_checkSingleUse();
 
 			return new FielddataStats(this);
 		}

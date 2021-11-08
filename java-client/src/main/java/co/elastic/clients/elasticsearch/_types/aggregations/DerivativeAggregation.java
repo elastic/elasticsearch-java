@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.DerivativeAggregation
 @JsonpDeserializable
-public final class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DerivativeAggregation(Builder builder) {
+	private DerivativeAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public DerivativeAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DerivativeAggregation of(Function<Builder, ObjectBuilder<DerivativeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class DerivativeAggregation extends PipelineAggregationBase impleme
 		 *             if some of the required fields are null.
 		 */
 		public DerivativeAggregation build() {
+			_checkSingleUse();
 
 			return new DerivativeAggregation(this);
 		}

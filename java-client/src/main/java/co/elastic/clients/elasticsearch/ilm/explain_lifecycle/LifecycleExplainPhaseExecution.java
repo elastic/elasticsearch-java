@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainPhaseExecution
 @JsonpDeserializable
-public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
+public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	private final String policy;
 
 	private final long version;
@@ -49,36 +51,38 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LifecycleExplainPhaseExecution(Builder builder) {
+	private LifecycleExplainPhaseExecution(Builder builder) {
 
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.modifiedDateInMillis = Objects.requireNonNull(builder.modifiedDateInMillis, "modified_date_in_millis");
+		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.modifiedDateInMillis = ModelTypeHelper.requireNonNull(builder.modifiedDateInMillis, this,
+				"modifiedDateInMillis");
 
 	}
 
-	public LifecycleExplainPhaseExecution(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LifecycleExplainPhaseExecution of(
+			Function<Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code policy}
 	 */
-	public String policy() {
+	public final String policy() {
 		return this.policy;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code modified_date_in_millis}
 	 */
-	public String modifiedDateInMillis() {
+	public final String modifiedDateInMillis() {
 		return this.modifiedDateInMillis;
 	}
 
@@ -109,7 +113,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	/**
 	 * Builder for {@link LifecycleExplainPhaseExecution}.
 	 */
-	public static class Builder implements ObjectBuilder<LifecycleExplainPhaseExecution> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainPhaseExecution> {
 		private String policy;
 
 		private Long version;
@@ -119,7 +123,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public Builder policy(String value) {
+		public final Builder policy(String value) {
 			this.policy = value;
 			return this;
 		}
@@ -127,7 +131,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -135,7 +139,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code modified_date_in_millis}
 		 */
-		public Builder modifiedDateInMillis(String value) {
+		public final Builder modifiedDateInMillis(String value) {
 			this.modifiedDateInMillis = value;
 			return this;
 		}
@@ -147,6 +151,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public LifecycleExplainPhaseExecution build() {
+			_checkSingleUse();
 
 			return new LifecycleExplainPhaseExecution(this);
 		}

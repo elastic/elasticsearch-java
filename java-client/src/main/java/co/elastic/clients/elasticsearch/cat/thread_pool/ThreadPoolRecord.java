@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.ThreadPoolRecord
 @JsonpDeserializable
-public final class ThreadPoolRecord implements JsonpSerializable {
+public class ThreadPoolRecord implements JsonpSerializable {
 	@Nullable
 	private final String nodeName;
 
@@ -102,7 +103,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ThreadPoolRecord(Builder builder) {
+	private ThreadPoolRecord(Builder builder) {
 
 		this.nodeName = builder.nodeName;
 		this.nodeId = builder.nodeId;
@@ -127,8 +128,8 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 
 	}
 
-	public ThreadPoolRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ThreadPoolRecord of(Function<Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,7 +138,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code node_name}
 	 */
 	@Nullable
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
@@ -147,7 +148,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -157,7 +158,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code ephemeral_node_id}
 	 */
 	@Nullable
-	public String ephemeralNodeId() {
+	public final String ephemeralNodeId() {
 		return this.ephemeralNodeId;
 	}
 
@@ -167,7 +168,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code pid}
 	 */
 	@Nullable
-	public String pid() {
+	public final String pid() {
 		return this.pid;
 	}
 
@@ -177,7 +178,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code host}
 	 */
 	@Nullable
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -187,7 +188,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -197,7 +198,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code port}
 	 */
 	@Nullable
-	public String port() {
+	public final String port() {
 		return this.port;
 	}
 
@@ -207,7 +208,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -217,7 +218,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -227,7 +228,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code active}
 	 */
 	@Nullable
-	public String active() {
+	public final String active() {
 		return this.active;
 	}
 
@@ -237,7 +238,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code pool_size}
 	 */
 	@Nullable
-	public String poolSize() {
+	public final String poolSize() {
 		return this.poolSize;
 	}
 
@@ -247,7 +248,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code queue}
 	 */
 	@Nullable
-	public String queue() {
+	public final String queue() {
 		return this.queue;
 	}
 
@@ -257,7 +258,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code queue_size}
 	 */
 	@Nullable
-	public String queueSize() {
+	public final String queueSize() {
 		return this.queueSize;
 	}
 
@@ -267,7 +268,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code rejected}
 	 */
 	@Nullable
-	public String rejected() {
+	public final String rejected() {
 		return this.rejected;
 	}
 
@@ -277,7 +278,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code largest}
 	 */
 	@Nullable
-	public String largest() {
+	public final String largest() {
 		return this.largest;
 	}
 
@@ -287,7 +288,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code completed}
 	 */
 	@Nullable
-	public String completed() {
+	public final String completed() {
 		return this.completed;
 	}
 
@@ -297,7 +298,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code core}
 	 */
 	@Nullable
-	public String core() {
+	public final String core() {
 		return this.core;
 	}
 
@@ -307,7 +308,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code max}
 	 */
 	@Nullable
-	public String max() {
+	public final String max() {
 		return this.max;
 	}
 
@@ -317,7 +318,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
@@ -327,7 +328,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -343,121 +344,101 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.nodeName != null) {
-
 			generator.writeKey("node_name");
 			generator.write(this.nodeName);
 
 		}
 		if (this.nodeId != null) {
-
 			generator.writeKey("node_id");
 			generator.write(this.nodeId);
 
 		}
 		if (this.ephemeralNodeId != null) {
-
 			generator.writeKey("ephemeral_node_id");
 			generator.write(this.ephemeralNodeId);
 
 		}
 		if (this.pid != null) {
-
 			generator.writeKey("pid");
 			generator.write(this.pid);
 
 		}
 		if (this.host != null) {
-
 			generator.writeKey("host");
 			generator.write(this.host);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.port != null) {
-
 			generator.writeKey("port");
 			generator.write(this.port);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
 		}
 		if (this.active != null) {
-
 			generator.writeKey("active");
 			generator.write(this.active);
 
 		}
 		if (this.poolSize != null) {
-
 			generator.writeKey("pool_size");
 			generator.write(this.poolSize);
 
 		}
 		if (this.queue != null) {
-
 			generator.writeKey("queue");
 			generator.write(this.queue);
 
 		}
 		if (this.queueSize != null) {
-
 			generator.writeKey("queue_size");
 			generator.write(this.queueSize);
 
 		}
 		if (this.rejected != null) {
-
 			generator.writeKey("rejected");
 			generator.write(this.rejected);
 
 		}
 		if (this.largest != null) {
-
 			generator.writeKey("largest");
 			generator.write(this.largest);
 
 		}
 		if (this.completed != null) {
-
 			generator.writeKey("completed");
 			generator.write(this.completed);
 
 		}
 		if (this.core != null) {
-
 			generator.writeKey("core");
 			generator.write(this.core);
 
 		}
 		if (this.max != null) {
-
 			generator.writeKey("max");
 			generator.write(this.max);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.keepAlive != null) {
-
 			generator.writeKey("keep_alive");
 			generator.write(this.keepAlive);
 
@@ -470,7 +451,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThreadPoolRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<ThreadPoolRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRecord> {
 		@Nullable
 		private String nodeName;
 
@@ -536,7 +517,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node_name}
 		 */
-		public Builder nodeName(@Nullable String value) {
+		public final Builder nodeName(@Nullable String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -546,7 +527,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public final Builder nodeId(@Nullable String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -556,7 +537,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ephemeral_node_id}
 		 */
-		public Builder ephemeralNodeId(@Nullable String value) {
+		public final Builder ephemeralNodeId(@Nullable String value) {
 			this.ephemeralNodeId = value;
 			return this;
 		}
@@ -566,7 +547,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pid}
 		 */
-		public Builder pid(@Nullable String value) {
+		public final Builder pid(@Nullable String value) {
 			this.pid = value;
 			return this;
 		}
@@ -576,7 +557,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code host}
 		 */
-		public Builder host(@Nullable String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
@@ -586,7 +567,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -596,7 +577,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code port}
 		 */
-		public Builder port(@Nullable String value) {
+		public final Builder port(@Nullable String value) {
 			this.port = value;
 			return this;
 		}
@@ -606,7 +587,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -616,7 +597,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -626,7 +607,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active}
 		 */
-		public Builder active(@Nullable String value) {
+		public final Builder active(@Nullable String value) {
 			this.active = value;
 			return this;
 		}
@@ -636,7 +617,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pool_size}
 		 */
-		public Builder poolSize(@Nullable String value) {
+		public final Builder poolSize(@Nullable String value) {
 			this.poolSize = value;
 			return this;
 		}
@@ -646,7 +627,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code queue}
 		 */
-		public Builder queue(@Nullable String value) {
+		public final Builder queue(@Nullable String value) {
 			this.queue = value;
 			return this;
 		}
@@ -656,7 +637,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code queue_size}
 		 */
-		public Builder queueSize(@Nullable String value) {
+		public final Builder queueSize(@Nullable String value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -666,7 +647,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code rejected}
 		 */
-		public Builder rejected(@Nullable String value) {
+		public final Builder rejected(@Nullable String value) {
 			this.rejected = value;
 			return this;
 		}
@@ -676,7 +657,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code largest}
 		 */
-		public Builder largest(@Nullable String value) {
+		public final Builder largest(@Nullable String value) {
 			this.largest = value;
 			return this;
 		}
@@ -686,7 +667,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completed}
 		 */
-		public Builder completed(@Nullable String value) {
+		public final Builder completed(@Nullable String value) {
 			this.completed = value;
 			return this;
 		}
@@ -696,7 +677,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code core}
 		 */
-		public Builder core(@Nullable String value) {
+		public final Builder core(@Nullable String value) {
 			this.core = value;
 			return this;
 		}
@@ -706,7 +687,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max}
 		 */
-		public Builder max(@Nullable String value) {
+		public final Builder max(@Nullable String value) {
 			this.max = value;
 			return this;
 		}
@@ -716,7 +697,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -726,7 +707,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -738,6 +719,7 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ThreadPoolRecord build() {
+			_checkSingleUse();
 
 			return new ThreadPoolRecord(this);
 		}

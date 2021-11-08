@@ -34,9 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
 @JsonpDeserializable
-public final class GrokProcessor extends ProcessorBase implements ProcessorVariant {
+public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -60,20 +58,20 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GrokProcessor(Builder builder) {
+	private GrokProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.patternDefinitions = ModelTypeHelper.unmodifiableNonNull(builder.patternDefinitions,
-				"pattern_definitions");
-		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
+		this.patternDefinitions = ModelTypeHelper.unmodifiableRequired(builder.patternDefinitions, this,
+				"patternDefinitions");
+		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 		this.traceMatch = builder.traceMatch;
 
 	}
 
-	public GrokProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GrokProcessor of(Function<Builder, ObjectBuilder<GrokProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +85,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -95,21 +93,21 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code pattern_definitions}
 	 */
-	public Map<String, String> patternDefinitions() {
+	public final Map<String, String> patternDefinitions() {
 		return this.patternDefinitions;
 	}
 
 	/**
 	 * Required - API name: {@code patterns}
 	 */
-	public List<String> patterns() {
+	public final List<String> patterns() {
 		return this.patterns;
 	}
 
@@ -117,43 +115,43 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 	 * API name: {@code trace_match}
 	 */
 	@Nullable
-	public Boolean traceMatch() {
+	public final Boolean traceMatch() {
 		return this.traceMatch;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
+		if (ModelTypeHelper.isDefined(this.patternDefinitions)) {
+			generator.writeKey("pattern_definitions");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.patternDefinitions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
 
-		generator.writeKey("pattern_definitions");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.patternDefinitions.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("patterns");
-		generator.writeStartArray();
-		for (String item0 : this.patterns) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.patterns)) {
+			generator.writeKey("patterns");
+			generator.writeStartArray();
+			for (String item0 : this.patterns) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
 		if (this.traceMatch != null) {
-
 			generator.writeKey("trace_match");
 			generator.write(this.traceMatch);
 
@@ -182,7 +180,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -190,7 +188,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -198,27 +196,15 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code pattern_definitions}
 		 */
-		public Builder patternDefinitions(Map<String, String> value) {
+		public final Builder patternDefinitions(Map<String, String> value) {
 			this.patternDefinitions = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #patternDefinitions(Map)}, creating the map if
-		 * needed.
-		 */
-		public Builder putPatternDefinitions(String key, String value) {
-			if (this.patternDefinitions == null) {
-				this.patternDefinitions = new HashMap<>();
-			}
-			this.patternDefinitions.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
 		 */
-		public Builder patterns(List<String> value) {
+		public final Builder patterns(List<String> value) {
 			this.patterns = value;
 			return this;
 		}
@@ -226,26 +212,15 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code patterns}
 		 */
-		public Builder patterns(String... value) {
+		public final Builder patterns(String... value) {
 			this.patterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
-		 */
-		public Builder addPatterns(String value) {
-			if (this.patterns == null) {
-				this.patterns = new ArrayList<>();
-			}
-			this.patterns.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code trace_match}
 		 */
-		public Builder traceMatch(@Nullable Boolean value) {
+		public final Builder traceMatch(@Nullable Boolean value) {
 			this.traceMatch = value;
 			return this;
 		}
@@ -262,6 +237,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public GrokProcessor build() {
+			_checkSingleUse();
 
 			return new GrokProcessor(this);
 		}

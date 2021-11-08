@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
 @JsonpDeserializable
-public final class CardinalityAggregation extends MetricAggregationBase implements AggregationVariant {
+public class CardinalityAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer precisionThreshold;
 
@@ -48,7 +48,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CardinalityAggregation(Builder builder) {
+	private CardinalityAggregation(Builder builder) {
 		super(builder);
 
 		this.precisionThreshold = builder.precisionThreshold;
@@ -56,8 +56,8 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 
 	}
 
-	public CardinalityAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CardinalityAggregation of(Function<Builder, ObjectBuilder<CardinalityAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 	 * API name: {@code precision_threshold}
 	 */
 	@Nullable
-	public Integer precisionThreshold() {
+	public final Integer precisionThreshold() {
 		return this.precisionThreshold;
 	}
 
@@ -80,7 +80,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 	 * API name: {@code rehash}
 	 */
 	@Nullable
-	public Boolean rehash() {
+	public final Boolean rehash() {
 		return this.rehash;
 	}
 
@@ -88,13 +88,11 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.precisionThreshold != null) {
-
 			generator.writeKey("precision_threshold");
 			generator.write(this.precisionThreshold);
 
 		}
 		if (this.rehash != null) {
-
 			generator.writeKey("rehash");
 			generator.write(this.rehash);
 
@@ -119,7 +117,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code precision_threshold}
 		 */
-		public Builder precisionThreshold(@Nullable Integer value) {
+		public final Builder precisionThreshold(@Nullable Integer value) {
 			this.precisionThreshold = value;
 			return this;
 		}
@@ -127,7 +125,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code rehash}
 		 */
-		public Builder rehash(@Nullable Boolean value) {
+		public final Builder rehash(@Nullable Boolean value) {
 			this.rehash = value;
 			return this;
 		}
@@ -144,6 +142,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public CardinalityAggregation build() {
+			_checkSingleUse();
 
 			return new CardinalityAggregation(this);
 		}

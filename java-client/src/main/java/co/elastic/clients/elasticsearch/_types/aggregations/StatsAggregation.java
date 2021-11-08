@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsAggregation
 @JsonpDeserializable
-public final class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public StatsAggregation(Builder builder) {
+	private StatsAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public StatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StatsAggregation of(Function<Builder, ObjectBuilder<StatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class StatsAggregation extends FormatMetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public StatsAggregation build() {
+			_checkSingleUse();
 
 			return new StatsAggregation(this);
 		}

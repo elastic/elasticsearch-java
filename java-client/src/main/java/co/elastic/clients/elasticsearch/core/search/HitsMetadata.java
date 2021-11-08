@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HitsMetadata
 
-public final class HitsMetadata<T> implements JsonpSerializable {
+public class HitsMetadata<T> implements JsonpSerializable {
 	private final TotalHits total;
 
 	private final List<Hit<T>> hits;
@@ -58,30 +59,30 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HitsMetadata(Builder<T> builder) {
+	private HitsMetadata(Builder<T> builder) {
 
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.hits = ModelTypeHelper.unmodifiableNonNull(builder.hits, "hits");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.tSerializer = builder.tSerializer;
 
 	}
 
-	public HitsMetadata(Function<Builder<T>, Builder<T>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <T> HitsMetadata<T> of(Function<Builder<T>, ObjectBuilder<HitsMetadata<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public TotalHits total() {
+	public final TotalHits total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public List<Hit<T>> hits() {
+	public final List<Hit<T>> hits() {
 		return this.hits;
 	}
 
@@ -89,7 +90,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	 * API name: {@code max_score}
 	 */
 	@Nullable
-	public Double maxScore() {
+	public final Double maxScore() {
 		return this.maxScore;
 	}
 
@@ -107,16 +108,17 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		generator.writeKey("total");
 		this.total.serialize(generator, mapper);
 
-		generator.writeKey("hits");
-		generator.writeStartArray();
-		for (Hit<T> item0 : this.hits) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.hits)) {
+			generator.writeKey("hits");
+			generator.writeStartArray();
+			for (Hit<T> item0 : this.hits) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.maxScore != null) {
-
 			generator.writeKey("max_score");
 			generator.write(this.maxScore);
 
@@ -129,7 +131,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link HitsMetadata}.
 	 */
-	public static class Builder<T> implements ObjectBuilder<HitsMetadata<T>> {
+	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<HitsMetadata<T>> {
 		private TotalHits total;
 
 		private List<Hit<T>> hits;
@@ -143,7 +145,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder<T> total(TotalHits value) {
+		public final Builder<T> total(TotalHits value) {
 			this.total = value;
 			return this;
 		}
@@ -151,14 +153,14 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
+		public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
 			return this.total(fn.apply(new TotalHits.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder<T> hits(List<Hit<T>> value) {
+		public final Builder<T> hits(List<Hit<T>> value) {
 			this.hits = value;
 			return this;
 		}
@@ -166,40 +168,27 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder<T> hits(Hit<T>... value) {
+		public final Builder<T> hits(Hit<T>... value) {
 			this.hits = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Required - API name: {@code hits}
 		 */
-		public Builder<T> addHits(Hit<T> value) {
-			if (this.hits == null) {
-				this.hits = new ArrayList<>();
+		@SafeVarargs
+		public final Builder<T> hits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>>... fns) {
+			this.hits = new ArrayList<>(fns.length);
+			for (Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn : fns) {
+				this.hits.add(fn.apply(new Hit.Builder<T>()).build());
 			}
-			this.hits.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #hits(List)} to a singleton list.
-		 */
-		public Builder<T> hits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
-			return this.hits(fn.apply(new Hit.Builder<T>()).build());
-		}
-
-		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
-		 */
-		public Builder<T> addHits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
-			return this.addHits(fn.apply(new Hit.Builder<T>()).build());
 		}
 
 		/**
 		 * API name: {@code max_score}
 		 */
-		public Builder<T> maxScore(@Nullable Double value) {
+		public final Builder<T> maxScore(@Nullable Double value) {
 			this.maxScore = value;
 			return this;
 		}
@@ -208,7 +197,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		 * Serializer for T. If not set, an attempt will be made to find a serializer
 		 * from the JSON context.
 		 */
-		public Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
+		public final Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
 			this.tSerializer = value;
 			return this;
 		}
@@ -220,6 +209,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HitsMetadata<T> build() {
+			_checkSingleUse();
 
 			return new HitsMetadata<T>(this);
 		}

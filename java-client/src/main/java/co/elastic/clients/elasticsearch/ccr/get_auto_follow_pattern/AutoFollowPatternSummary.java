@@ -32,11 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
 @JsonpDeserializable
-public final class AutoFollowPatternSummary implements JsonpSerializable {
+public class AutoFollowPatternSummary implements JsonpSerializable {
 	private final boolean active;
 
 	private final String remoteCluster;
@@ -61,28 +61,28 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoFollowPatternSummary(Builder builder) {
+	private AutoFollowPatternSummary(Builder builder) {
 
-		this.active = Objects.requireNonNull(builder.active, "active");
-		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
+		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
+		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.leaderIndexPatterns,
-				"leader_index_patterns");
-		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiableNonNull(builder.leaderIndexExclusionPatterns,
-				"leader_index_exclusion_patterns");
-		this.maxOutstandingReadRequests = Objects.requireNonNull(builder.maxOutstandingReadRequests,
-				"max_outstanding_read_requests");
+		this.leaderIndexPatterns = ModelTypeHelper.unmodifiableRequired(builder.leaderIndexPatterns, this,
+				"leaderIndexPatterns");
+		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiableRequired(builder.leaderIndexExclusionPatterns,
+				this, "leaderIndexExclusionPatterns");
+		this.maxOutstandingReadRequests = ModelTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
+				"maxOutstandingReadRequests");
 
 	}
 
-	public AutoFollowPatternSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoFollowPatternSummary of(Function<Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code active}
 	 */
-	public boolean active() {
+	public final boolean active() {
 		return this.active;
 	}
 
@@ -91,7 +91,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
-	public String remoteCluster() {
+	public final String remoteCluster() {
 		return this.remoteCluster;
 	}
 
@@ -101,7 +101,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * API name: {@code follow_index_pattern}
 	 */
 	@Nullable
-	public String followIndexPattern() {
+	public final String followIndexPattern() {
 		return this.followIndexPattern;
 	}
 
@@ -111,7 +111,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code leader_index_patterns}
 	 */
-	public List<String> leaderIndexPatterns() {
+	public final List<String> leaderIndexPatterns() {
 		return this.leaderIndexPatterns;
 	}
 
@@ -121,7 +121,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code leader_index_exclusion_patterns}
 	 */
-	public List<String> leaderIndexExclusionPatterns() {
+	public final List<String> leaderIndexExclusionPatterns() {
 		return this.leaderIndexExclusionPatterns;
 	}
 
@@ -131,7 +131,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
-	public int maxOutstandingReadRequests() {
+	public final int maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
@@ -153,28 +153,30 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		generator.write(this.remoteCluster);
 
 		if (this.followIndexPattern != null) {
-
 			generator.writeKey("follow_index_pattern");
 			generator.write(this.followIndexPattern);
 
 		}
+		if (ModelTypeHelper.isDefined(this.leaderIndexPatterns)) {
+			generator.writeKey("leader_index_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.leaderIndexPatterns) {
+				generator.write(item0);
 
-		generator.writeKey("leader_index_patterns");
-		generator.writeStartArray();
-		for (String item0 : this.leaderIndexPatterns) {
-			generator.write(item0);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("leader_index_exclusion_patterns");
-		generator.writeStartArray();
-		for (String item0 : this.leaderIndexExclusionPatterns) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
+			generator.writeKey("leader_index_exclusion_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.leaderIndexExclusionPatterns) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("max_outstanding_read_requests");
 		generator.write(this.maxOutstandingReadRequests);
 
@@ -185,7 +187,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoFollowPatternSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<AutoFollowPatternSummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPatternSummary> {
 		private Boolean active;
 
 		private String remoteCluster;
@@ -202,7 +204,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code active}
 		 */
-		public Builder active(boolean value) {
+		public final Builder active(boolean value) {
 			this.active = value;
 			return this;
 		}
@@ -212,7 +214,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
-		public Builder remoteCluster(String value) {
+		public final Builder remoteCluster(String value) {
 			this.remoteCluster = value;
 			return this;
 		}
@@ -222,7 +224,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code follow_index_pattern}
 		 */
-		public Builder followIndexPattern(@Nullable String value) {
+		public final Builder followIndexPattern(@Nullable String value) {
 			this.followIndexPattern = value;
 			return this;
 		}
@@ -233,7 +235,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
-		public Builder leaderIndexPatterns(List<String> value) {
+		public final Builder leaderIndexPatterns(List<String> value) {
 			this.leaderIndexPatterns = value;
 			return this;
 		}
@@ -244,20 +246,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
-		public Builder leaderIndexPatterns(String... value) {
+		public final Builder leaderIndexPatterns(String... value) {
 			this.leaderIndexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addLeaderIndexPatterns(String value) {
-			if (this.leaderIndexPatterns == null) {
-				this.leaderIndexPatterns = new ArrayList<>();
-			}
-			this.leaderIndexPatterns.add(value);
 			return this;
 		}
 
@@ -267,7 +257,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
 		 */
-		public Builder leaderIndexExclusionPatterns(List<String> value) {
+		public final Builder leaderIndexExclusionPatterns(List<String> value) {
 			this.leaderIndexExclusionPatterns = value;
 			return this;
 		}
@@ -278,20 +268,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
 		 */
-		public Builder leaderIndexExclusionPatterns(String... value) {
+		public final Builder leaderIndexExclusionPatterns(String... value) {
 			this.leaderIndexExclusionPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
-		 * if needed.
-		 */
-		public Builder addLeaderIndexExclusionPatterns(String value) {
-			if (this.leaderIndexExclusionPatterns == null) {
-				this.leaderIndexExclusionPatterns = new ArrayList<>();
-			}
-			this.leaderIndexExclusionPatterns.add(value);
 			return this;
 		}
 
@@ -301,7 +279,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(int value) {
+		public final Builder maxOutstandingReadRequests(int value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
@@ -313,6 +291,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AutoFollowPatternSummary build() {
+			_checkSingleUse();
 
 			return new AutoFollowPatternSummary(this);
 		}

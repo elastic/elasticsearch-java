@@ -34,9 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,15 +44,13 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.MatrixAggregation
 
 public abstract class MatrixAggregation extends AggregationBase {
-	@Nullable
 	private final List<String> fields;
 
-	@Nullable
 	private final Map<String, Double> missing;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatrixAggregation(AbstractBuilder<?> builder) {
+	protected MatrixAggregation(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
@@ -65,24 +61,21 @@ public abstract class MatrixAggregation extends AggregationBase {
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * API name: {@code missing}
 	 */
-	@Nullable
-	public Map<String, Double> missing() {
+	public final Map<String, Double> missing() {
 		return this.missing;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -92,8 +85,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 			generator.writeEnd();
 
 		}
-		if (this.missing != null) {
-
+		if (ModelTypeHelper.isDefined(this.missing)) {
 			generator.writeKey("missing");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.missing.entrySet()) {
@@ -119,7 +111,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		/**
 		 * API name: {@code fields}
 		 */
-		public BuilderT fields(@Nullable List<String> value) {
+		public final BuilderT fields(@Nullable List<String> value) {
 			this.fields = value;
 			return self();
 		}
@@ -127,38 +119,16 @@ public abstract class MatrixAggregation extends AggregationBase {
 		/**
 		 * API name: {@code fields}
 		 */
-		public BuilderT fields(String... value) {
+		public final BuilderT fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public BuilderT addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code missing}
 		 */
-		public BuilderT missing(@Nullable Map<String, Double> value) {
+		public final BuilderT missing(@Nullable Map<String, Double> value) {
 			this.missing = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #missing(Map)}, creating the map if needed.
-		 */
-		public BuilderT putMissing(String key, Double value) {
-			if (this.missing == null) {
-				this.missing = new HashMap<>();
-			}
-			this.missing.put(key, value);
 			return self();
 		}
 

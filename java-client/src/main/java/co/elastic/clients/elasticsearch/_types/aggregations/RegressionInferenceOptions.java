@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RegressionInferenceOptions
 @JsonpDeserializable
-public final class RegressionInferenceOptions implements JsonpSerializable {
+public class RegressionInferenceOptions implements JsonpSerializable {
 	@Nullable
 	private final String resultsField;
 
@@ -49,15 +50,15 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RegressionInferenceOptions(Builder builder) {
+	private RegressionInferenceOptions(Builder builder) {
 
 		this.resultsField = builder.resultsField;
 		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
 	}
 
-	public RegressionInferenceOptions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RegressionInferenceOptions of(Function<Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +68,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 	 * API name: {@code results_field}
 	 */
 	@Nullable
-	public String resultsField() {
+	public final String resultsField() {
 		return this.resultsField;
 	}
 
@@ -78,7 +79,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Integer numTopFeatureImportanceValues() {
+	public final Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
@@ -94,13 +95,11 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.resultsField != null) {
-
 			generator.writeKey("results_field");
 			generator.write(this.resultsField);
 
 		}
 		if (this.numTopFeatureImportanceValues != null) {
-
 			generator.writeKey("num_top_feature_importance_values");
 			generator.write(this.numTopFeatureImportanceValues);
 
@@ -113,7 +112,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link RegressionInferenceOptions}.
 	 */
-	public static class Builder implements ObjectBuilder<RegressionInferenceOptions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegressionInferenceOptions> {
 		@Nullable
 		private String resultsField;
 
@@ -126,7 +125,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code results_field}
 		 */
-		public Builder resultsField(@Nullable String value) {
+		public final Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
 			return this;
 		}
@@ -137,7 +136,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public Builder numTopFeatureImportanceValues(@Nullable Integer value) {
+		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
@@ -149,6 +148,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RegressionInferenceOptions build() {
+			_checkSingleUse();
 
 			return new RegressionInferenceOptions(this);
 		}

@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: cluster.remote_info.Response
 @JsonpDeserializable
-public final class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
+public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoteInfoResponse(Builder builder) {
+	private RemoteInfoResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RemoteInfoResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoteInfoResponse of(Function<Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class RemoteInfoResponse extends DictionaryResponse<String, Cluster
 		 *             if some of the required fields are null.
 		 */
 		public RemoteInfoResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

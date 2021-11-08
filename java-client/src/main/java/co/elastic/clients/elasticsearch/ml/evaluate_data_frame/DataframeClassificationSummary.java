@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummary
 @JsonpDeserializable
-public final class DataframeClassificationSummary implements JsonpSerializable {
+public class DataframeClassificationSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -56,7 +57,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeClassificationSummary(Builder builder) {
+	private DataframeClassificationSummary(Builder builder) {
 
 		this.aucRoc = builder.aucRoc;
 		this.accuracy = builder.accuracy;
@@ -66,15 +67,16 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 
 	}
 
-	public DataframeClassificationSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeClassificationSummary of(
+			Function<Builder, ObjectBuilder<DataframeClassificationSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
-	public DataframeEvaluationSummaryAucRoc aucRoc() {
+	public final DataframeEvaluationSummaryAucRoc aucRoc() {
 		return this.aucRoc;
 	}
 
@@ -82,7 +84,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	 * API name: {@code accuracy}
 	 */
 	@Nullable
-	public DataframeClassificationSummaryAccuracy accuracy() {
+	public final DataframeClassificationSummaryAccuracy accuracy() {
 		return this.accuracy;
 	}
 
@@ -90,7 +92,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	 * API name: {@code multiclass_confusion_matrix}
 	 */
 	@Nullable
-	public DataframeClassificationSummaryMulticlassConfusionMatrix multiclassConfusionMatrix() {
+	public final DataframeClassificationSummaryMulticlassConfusionMatrix multiclassConfusionMatrix() {
 		return this.multiclassConfusionMatrix;
 	}
 
@@ -98,7 +100,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public DataframeClassificationSummaryPrecision precision() {
+	public final DataframeClassificationSummaryPrecision precision() {
 		return this.precision;
 	}
 
@@ -106,7 +108,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	 * API name: {@code recall}
 	 */
 	@Nullable
-	public DataframeClassificationSummaryRecall recall() {
+	public final DataframeClassificationSummaryRecall recall() {
 		return this.recall;
 	}
 
@@ -122,31 +124,26 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aucRoc != null) {
-
 			generator.writeKey("auc_roc");
 			this.aucRoc.serialize(generator, mapper);
 
 		}
 		if (this.accuracy != null) {
-
 			generator.writeKey("accuracy");
 			this.accuracy.serialize(generator, mapper);
 
 		}
 		if (this.multiclassConfusionMatrix != null) {
-
 			generator.writeKey("multiclass_confusion_matrix");
 			this.multiclassConfusionMatrix.serialize(generator, mapper);
 
 		}
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
 			this.precision.serialize(generator, mapper);
 
 		}
 		if (this.recall != null) {
-
 			generator.writeKey("recall");
 			this.recall.serialize(generator, mapper);
 
@@ -159,7 +156,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeClassificationSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeClassificationSummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeClassificationSummary> {
 		@Nullable
 		private DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -178,7 +175,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code auc_roc}
 		 */
-		public Builder aucRoc(@Nullable DataframeEvaluationSummaryAucRoc value) {
+		public final Builder aucRoc(@Nullable DataframeEvaluationSummaryAucRoc value) {
 			this.aucRoc = value;
 			return this;
 		}
@@ -186,7 +183,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code auc_roc}
 		 */
-		public Builder aucRoc(
+		public final Builder aucRoc(
 				Function<DataframeEvaluationSummaryAucRoc.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
 			return this.aucRoc(fn.apply(new DataframeEvaluationSummaryAucRoc.Builder()).build());
 		}
@@ -194,7 +191,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code accuracy}
 		 */
-		public Builder accuracy(@Nullable DataframeClassificationSummaryAccuracy value) {
+		public final Builder accuracy(@Nullable DataframeClassificationSummaryAccuracy value) {
 			this.accuracy = value;
 			return this;
 		}
@@ -202,7 +199,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code accuracy}
 		 */
-		public Builder accuracy(
+		public final Builder accuracy(
 				Function<DataframeClassificationSummaryAccuracy.Builder, ObjectBuilder<DataframeClassificationSummaryAccuracy>> fn) {
 			return this.accuracy(fn.apply(new DataframeClassificationSummaryAccuracy.Builder()).build());
 		}
@@ -210,7 +207,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code multiclass_confusion_matrix}
 		 */
-		public Builder multiclassConfusionMatrix(
+		public final Builder multiclassConfusionMatrix(
 				@Nullable DataframeClassificationSummaryMulticlassConfusionMatrix value) {
 			this.multiclassConfusionMatrix = value;
 			return this;
@@ -219,7 +216,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code multiclass_confusion_matrix}
 		 */
-		public Builder multiclassConfusionMatrix(
+		public final Builder multiclassConfusionMatrix(
 				Function<DataframeClassificationSummaryMulticlassConfusionMatrix.Builder, ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix>> fn) {
 			return this.multiclassConfusionMatrix(
 					fn.apply(new DataframeClassificationSummaryMulticlassConfusionMatrix.Builder()).build());
@@ -228,7 +225,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable DataframeClassificationSummaryPrecision value) {
+		public final Builder precision(@Nullable DataframeClassificationSummaryPrecision value) {
 			this.precision = value;
 			return this;
 		}
@@ -236,7 +233,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(
+		public final Builder precision(
 				Function<DataframeClassificationSummaryPrecision.Builder, ObjectBuilder<DataframeClassificationSummaryPrecision>> fn) {
 			return this.precision(fn.apply(new DataframeClassificationSummaryPrecision.Builder()).build());
 		}
@@ -244,7 +241,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code recall}
 		 */
-		public Builder recall(@Nullable DataframeClassificationSummaryRecall value) {
+		public final Builder recall(@Nullable DataframeClassificationSummaryRecall value) {
 			this.recall = value;
 			return this;
 		}
@@ -252,7 +249,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code recall}
 		 */
-		public Builder recall(
+		public final Builder recall(
 				Function<DataframeClassificationSummaryRecall.Builder, ObjectBuilder<DataframeClassificationSummaryRecall>> fn) {
 			return this.recall(fn.apply(new DataframeClassificationSummaryRecall.Builder()).build());
 		}
@@ -264,6 +261,7 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeClassificationSummary build() {
+			_checkSingleUse();
 
 			return new DataframeClassificationSummary(this);
 		}

@@ -37,10 +37,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Request
 @JsonpDeserializable
-public final class RestoreRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> ignoreIndexSettings;
 
 	@Nullable
@@ -67,7 +66,6 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final PutSettingsRequest indexSettings;
 
-	@Nullable
 	private final List<String> indices;
 
 	@Nullable
@@ -91,7 +89,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RestoreRequest(Builder builder) {
+	private RestoreRequest(Builder builder) {
 
 		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -103,21 +101,20 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public RestoreRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RestoreRequest of(Function<Builder, ObjectBuilder<RestoreRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code ignore_index_settings}
 	 */
-	@Nullable
-	public List<String> ignoreIndexSettings() {
+	public final List<String> ignoreIndexSettings() {
 		return this.ignoreIndexSettings;
 	}
 
@@ -125,7 +122,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -133,7 +130,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code include_aliases}
 	 */
 	@Nullable
-	public Boolean includeAliases() {
+	public final Boolean includeAliases() {
 		return this.includeAliases;
 	}
 
@@ -141,7 +138,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code include_global_state}
 	 */
 	@Nullable
-	public Boolean includeGlobalState() {
+	public final Boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
@@ -149,15 +146,14 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code index_settings}
 	 */
 	@Nullable
-	public PutSettingsRequest indexSettings() {
+	public final PutSettingsRequest indexSettings() {
 		return this.indexSettings;
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -167,7 +163,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -175,7 +171,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code partial}
 	 */
 	@Nullable
-	public Boolean partial() {
+	public final Boolean partial() {
 		return this.partial;
 	}
 
@@ -183,7 +179,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code rename_pattern}
 	 */
 	@Nullable
-	public String renamePattern() {
+	public final String renamePattern() {
 		return this.renamePattern;
 	}
 
@@ -191,7 +187,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code rename_replacement}
 	 */
 	@Nullable
-	public String renameReplacement() {
+	public final String renameReplacement() {
 		return this.renameReplacement;
 	}
 
@@ -200,7 +196,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code repository}
 	 */
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -209,7 +205,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
@@ -219,7 +215,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -234,8 +230,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.ignoreIndexSettings != null) {
-
+		if (ModelTypeHelper.isDefined(this.ignoreIndexSettings)) {
 			generator.writeKey("ignore_index_settings");
 			generator.writeStartArray();
 			for (String item0 : this.ignoreIndexSettings) {
@@ -246,31 +241,26 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.ignoreUnavailable != null) {
-
 			generator.writeKey("ignore_unavailable");
 			generator.write(this.ignoreUnavailable);
 
 		}
 		if (this.includeAliases != null) {
-
 			generator.writeKey("include_aliases");
 			generator.write(this.includeAliases);
 
 		}
 		if (this.includeGlobalState != null) {
-
 			generator.writeKey("include_global_state");
 			generator.write(this.includeGlobalState);
 
 		}
 		if (this.indexSettings != null) {
-
 			generator.writeKey("index_settings");
 			this.indexSettings.serialize(generator, mapper);
 
 		}
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -281,19 +271,16 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.partial != null) {
-
 			generator.writeKey("partial");
 			generator.write(this.partial);
 
 		}
 		if (this.renamePattern != null) {
-
 			generator.writeKey("rename_pattern");
 			generator.write(this.renamePattern);
 
 		}
 		if (this.renameReplacement != null) {
-
 			generator.writeKey("rename_replacement");
 			generator.write(this.renameReplacement);
 
@@ -306,7 +293,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link RestoreRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RestoreRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreRequest> {
 		@Nullable
 		private List<String> ignoreIndexSettings;
 
@@ -347,7 +334,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code ignore_index_settings}
 		 */
-		public Builder ignoreIndexSettings(@Nullable List<String> value) {
+		public final Builder ignoreIndexSettings(@Nullable List<String> value) {
 			this.ignoreIndexSettings = value;
 			return this;
 		}
@@ -355,27 +342,15 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code ignore_index_settings}
 		 */
-		public Builder ignoreIndexSettings(String... value) {
+		public final Builder ignoreIndexSettings(String... value) {
 			this.ignoreIndexSettings = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ignoreIndexSettings(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addIgnoreIndexSettings(String value) {
-			if (this.ignoreIndexSettings == null) {
-				this.ignoreIndexSettings = new ArrayList<>();
-			}
-			this.ignoreIndexSettings.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -383,7 +358,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code include_aliases}
 		 */
-		public Builder includeAliases(@Nullable Boolean value) {
+		public final Builder includeAliases(@Nullable Boolean value) {
 			this.includeAliases = value;
 			return this;
 		}
@@ -391,7 +366,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code include_global_state}
 		 */
-		public Builder includeGlobalState(@Nullable Boolean value) {
+		public final Builder includeGlobalState(@Nullable Boolean value) {
 			this.includeGlobalState = value;
 			return this;
 		}
@@ -399,7 +374,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public Builder indexSettings(@Nullable PutSettingsRequest value) {
+		public final Builder indexSettings(@Nullable PutSettingsRequest value) {
 			this.indexSettings = value;
 			return this;
 		}
@@ -407,14 +382,14 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public Builder indexSettings(Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn) {
+		public final Builder indexSettings(Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn) {
 			return this.indexSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<String> value) {
+		public final Builder indices(@Nullable List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -422,19 +397,8 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
@@ -443,7 +407,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -451,7 +415,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code partial}
 		 */
-		public Builder partial(@Nullable Boolean value) {
+		public final Builder partial(@Nullable Boolean value) {
 			this.partial = value;
 			return this;
 		}
@@ -459,7 +423,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code rename_pattern}
 		 */
-		public Builder renamePattern(@Nullable String value) {
+		public final Builder renamePattern(@Nullable String value) {
 			this.renamePattern = value;
 			return this;
 		}
@@ -467,7 +431,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code rename_replacement}
 		 */
-		public Builder renameReplacement(@Nullable String value) {
+		public final Builder renameReplacement(@Nullable String value) {
 			this.renameReplacement = value;
 			return this;
 		}
@@ -477,7 +441,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -487,7 +451,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -497,7 +461,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -509,6 +473,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public RestoreRequest build() {
+			_checkSingleUse();
 
 			return new RestoreRequest(this);
 		}

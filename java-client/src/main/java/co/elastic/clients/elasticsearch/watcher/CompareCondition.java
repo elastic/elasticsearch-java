@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareCondition
 @JsonpDeserializable
-public final class CompareCondition implements ConditionVariant, JsonpSerializable {
+public class CompareCondition implements ConditionVariant, JsonpSerializable {
 	@Nullable
 	private final String comparison;
 
@@ -58,7 +59,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompareCondition(Builder builder) {
+	private CompareCondition(Builder builder) {
 
 		this.comparison = builder.comparison;
 		this.path = builder.path;
@@ -68,8 +69,8 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 
 	}
 
-	public CompareCondition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompareCondition of(Function<Builder, ObjectBuilder<CompareCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,7 +85,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	 * API name: {@code comparison}
 	 */
 	@Nullable
-	public String comparison() {
+	public final String comparison() {
 		return this.comparison;
 	}
 
@@ -92,7 +93,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -100,7 +101,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public JsonData value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
@@ -108,7 +109,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	 * API name: {@code ctx.payload.match}
 	 */
 	@Nullable
-	public CompareContextPayloadCondition ctxPayloadMatch() {
+	public final CompareContextPayloadCondition ctxPayloadMatch() {
 		return this.ctxPayloadMatch;
 	}
 
@@ -116,7 +117,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	 * API name: {@code ctx.payload.value}
 	 */
 	@Nullable
-	public CompareContextPayloadCondition ctxPayloadValue() {
+	public final CompareContextPayloadCondition ctxPayloadValue() {
 		return this.ctxPayloadValue;
 	}
 
@@ -132,31 +133,26 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.comparison != null) {
-
 			generator.writeKey("comparison");
 			generator.write(this.comparison);
 
 		}
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
 		}
 		if (this.value != null) {
-
 			generator.writeKey("value");
 			this.value.serialize(generator, mapper);
 
 		}
 		if (this.ctxPayloadMatch != null) {
-
 			generator.writeKey("ctx.payload.match");
 			this.ctxPayloadMatch.serialize(generator, mapper);
 
 		}
 		if (this.ctxPayloadValue != null) {
-
 			generator.writeKey("ctx.payload.value");
 			this.ctxPayloadValue.serialize(generator, mapper);
 
@@ -169,7 +165,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 	/**
 	 * Builder for {@link CompareCondition}.
 	 */
-	public static class Builder implements ObjectBuilder<CompareCondition> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompareCondition> {
 		@Nullable
 		private String comparison;
 
@@ -188,7 +184,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code comparison}
 		 */
-		public Builder comparison(@Nullable String value) {
+		public final Builder comparison(@Nullable String value) {
 			this.comparison = value;
 			return this;
 		}
@@ -196,7 +192,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -204,7 +200,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(@Nullable JsonData value) {
+		public final Builder value(@Nullable JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -212,7 +208,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code ctx.payload.match}
 		 */
-		public Builder ctxPayloadMatch(@Nullable CompareContextPayloadCondition value) {
+		public final Builder ctxPayloadMatch(@Nullable CompareContextPayloadCondition value) {
 			this.ctxPayloadMatch = value;
 			return this;
 		}
@@ -220,7 +216,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code ctx.payload.match}
 		 */
-		public Builder ctxPayloadMatch(
+		public final Builder ctxPayloadMatch(
 				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
 			return this.ctxPayloadMatch(fn.apply(new CompareContextPayloadCondition.Builder()).build());
 		}
@@ -228,7 +224,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code ctx.payload.value}
 		 */
-		public Builder ctxPayloadValue(@Nullable CompareContextPayloadCondition value) {
+		public final Builder ctxPayloadValue(@Nullable CompareContextPayloadCondition value) {
 			this.ctxPayloadValue = value;
 			return this;
 		}
@@ -236,7 +232,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		/**
 		 * API name: {@code ctx.payload.value}
 		 */
-		public Builder ctxPayloadValue(
+		public final Builder ctxPayloadValue(
 				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
 			return this.ctxPayloadValue(fn.apply(new CompareContextPayloadCondition.Builder()).build());
 		}
@@ -248,6 +244,7 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public CompareCondition build() {
+			_checkSingleUse();
 
 			return new CompareCondition(this);
 		}

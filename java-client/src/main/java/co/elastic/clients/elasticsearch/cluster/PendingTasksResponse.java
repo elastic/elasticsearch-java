@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Response
 @JsonpDeserializable
-public final class PendingTasksResponse implements JsonpSerializable {
+public class PendingTasksResponse implements JsonpSerializable {
 	private final List<PendingTask> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PendingTasksResponse(Builder builder) {
+	private PendingTasksResponse(Builder builder) {
 
-		this.tasks = ModelTypeHelper.unmodifiableNonNull(builder.tasks, "tasks");
+		this.tasks = ModelTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
-	public PendingTasksResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PendingTasksResponse of(Function<Builder, ObjectBuilder<PendingTasksResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code tasks}
 	 */
-	public List<PendingTask> tasks() {
+	public final List<PendingTask> tasks() {
 		return this.tasks;
 	}
 
@@ -76,13 +77,16 @@ public final class PendingTasksResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("tasks");
-		generator.writeStartArray();
-		for (PendingTask item0 : this.tasks) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.tasks)) {
+			generator.writeKey("tasks");
+			generator.writeStartArray();
+			for (PendingTask item0 : this.tasks) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class PendingTasksResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PendingTasksResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PendingTasksResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
 		private List<PendingTask> tasks;
 
 		/**
 		 * Required - API name: {@code tasks}
 		 */
-		public Builder tasks(List<PendingTask> value) {
+		public final Builder tasks(List<PendingTask> value) {
 			this.tasks = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tasks}
 		 */
-		public Builder tasks(PendingTask... value) {
+		public final Builder tasks(PendingTask... value) {
 			this.tasks = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tasks(List)}, creating the list if needed.
+		 * Required - API name: {@code tasks}
 		 */
-		public Builder addTasks(PendingTask value) {
-			if (this.tasks == null) {
-				this.tasks = new ArrayList<>();
+		@SafeVarargs
+		public final Builder tasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>>... fns) {
+			this.tasks = new ArrayList<>(fns.length);
+			for (Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn : fns) {
+				this.tasks.add(fn.apply(new PendingTask.Builder()).build());
 			}
-			this.tasks.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #tasks(List)} to a singleton list.
-		 */
-		public Builder tasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
-			return this.tasks(fn.apply(new PendingTask.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #tasks(List)}, creating the list if needed.
-		 */
-		public Builder addTasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
-			return this.addTasks(fn.apply(new PendingTask.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PendingTasksResponse build() {
+			_checkSingleUse();
 
 			return new PendingTasksResponse(this);
 		}

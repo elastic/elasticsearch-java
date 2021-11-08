@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.info.BuildInformation
 @JsonpDeserializable
-public final class BuildInformation implements JsonpSerializable {
+public class BuildInformation implements JsonpSerializable {
 	private final String date;
 
 	private final String hash;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BuildInformation(Builder builder) {
+	private BuildInformation(Builder builder) {
 
-		this.date = Objects.requireNonNull(builder.date, "date");
-		this.hash = Objects.requireNonNull(builder.hash, "hash");
+		this.date = ModelTypeHelper.requireNonNull(builder.date, this, "date");
+		this.hash = ModelTypeHelper.requireNonNull(builder.hash, this, "hash");
 
 	}
 
-	public BuildInformation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BuildInformation of(Function<Builder, ObjectBuilder<BuildInformation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code date}
 	 */
-	public String date() {
+	public final String date() {
 		return this.date;
 	}
 
 	/**
 	 * Required - API name: {@code hash}
 	 */
-	public String hash() {
+	public final String hash() {
 		return this.hash;
 	}
 
@@ -95,7 +97,7 @@ public final class BuildInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link BuildInformation}.
 	 */
-	public static class Builder implements ObjectBuilder<BuildInformation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BuildInformation> {
 		private String date;
 
 		private String hash;
@@ -103,7 +105,7 @@ public final class BuildInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code date}
 		 */
-		public Builder date(String value) {
+		public final Builder date(String value) {
 			this.date = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class BuildInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hash}
 		 */
-		public Builder hash(String value) {
+		public final Builder hash(String value) {
 			this.hash = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class BuildInformation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BuildInformation build() {
+			_checkSingleUse();
 
 			return new BuildInformation(this);
 		}

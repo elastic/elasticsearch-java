@@ -36,14 +36,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,8 +56,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.put_template.Request
 @JsonpDeserializable
-public final class PutTemplateRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class PutTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
 
 	@Nullable
@@ -68,7 +68,6 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	private final Boolean includeTypeName;
 
-	@Nullable
 	private final List<String> indexPatterns;
 
 	@Nullable
@@ -82,7 +81,6 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	private final Integer order;
 
-	@Nullable
 	private final Map<String, JsonData> settings;
 
 	@Nullable
@@ -93,7 +91,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTemplateRequest(Builder builder) {
+	private PutTemplateRequest(Builder builder) {
 
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.create = builder.create;
@@ -102,7 +100,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.order = builder.order;
 		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.timeout = builder.timeout;
@@ -110,8 +108,8 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 
 	}
 
-	public PutTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTemplateRequest of(Function<Builder, ObjectBuilder<PutTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,8 +117,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code aliases}
 	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
+	public final Map<String, Alias> aliases() {
 		return this.aliases;
 	}
 
@@ -130,7 +127,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code create}
 	 */
 	@Nullable
-	public Boolean create() {
+	public final Boolean create() {
 		return this.create;
 	}
 
@@ -138,7 +135,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -146,7 +143,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
-	public Boolean includeTypeName() {
+	public final Boolean includeTypeName() {
 		return this.includeTypeName;
 	}
 
@@ -156,8 +153,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
-	@Nullable
-	public List<String> indexPatterns() {
+	public final List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
@@ -167,7 +163,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code mappings}
 	 */
 	@Nullable
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
@@ -178,7 +174,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -187,7 +183,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -201,7 +197,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public Integer order() {
+	public final Integer order() {
 		return this.order;
 	}
 
@@ -210,8 +206,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code settings}
 	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
+	public final Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
@@ -219,7 +214,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -230,7 +225,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -245,8 +240,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aliases != null) {
-
+		if (ModelTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -257,8 +251,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 			generator.writeEnd();
 
 		}
-		if (this.indexPatterns != null) {
-
+		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -269,19 +262,16 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.mappings != null) {
-
 			generator.writeKey("mappings");
 			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.order != null) {
-
 			generator.writeKey("order");
 			generator.write(this.order);
 
 		}
-		if (this.settings != null) {
-
+		if (ModelTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -293,7 +283,6 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -306,7 +295,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link PutTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTemplateRequest> {
 		@Nullable
 		private Map<String, Alias> aliases;
 
@@ -347,19 +336,8 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(@Nullable Map<String, Alias> value) {
+		public final Builder aliases(@Nullable Map<String, Alias> value) {
 			this.aliases = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Alias value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
 			return this;
 		}
 
@@ -370,11 +348,9 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
+		public final Builder aliases(
+				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
+			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
 		}
 
 		/**
@@ -382,7 +358,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code create}
 		 */
-		public Builder create(@Nullable Boolean value) {
+		public final Builder create(@Nullable Boolean value) {
 			this.create = value;
 			return this;
 		}
@@ -390,7 +366,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -398,7 +374,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code include_type_name}
 		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
+		public final Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
 			return this;
 		}
@@ -409,7 +385,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(@Nullable List<String> value) {
+		public final Builder indexPatterns(@Nullable List<String> value) {
 			this.indexPatterns = value;
 			return this;
 		}
@@ -420,19 +396,8 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(String... value) {
+		public final Builder indexPatterns(String... value) {
 			this.indexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
-		 */
-		public Builder addIndexPatterns(String value) {
-			if (this.indexPatterns == null) {
-				this.indexPatterns = new ArrayList<>();
-			}
-			this.indexPatterns.add(value);
 			return this;
 		}
 
@@ -441,7 +406,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(@Nullable TypeMapping value) {
+		public final Builder mappings(@Nullable TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -451,7 +416,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
@@ -461,7 +426,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -471,7 +436,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -485,7 +450,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable Integer value) {
+		public final Builder order(@Nullable Integer value) {
 			this.order = value;
 			return this;
 		}
@@ -495,26 +460,15 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonData> value) {
+		public final Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
-		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -525,7 +479,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -537,6 +491,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public PutTemplateRequest build() {
+			_checkSingleUse();
 
 			return new PutTemplateRequest(this);
 		}

@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoHashGridAggregation
 @JsonpDeserializable
-public final class GeoHashGridAggregation extends BucketAggregationBase implements AggregationVariant {
+public class GeoHashGridAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final BoundingBox bounds;
 
@@ -59,7 +59,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoHashGridAggregation(Builder builder) {
+	private GeoHashGridAggregation(Builder builder) {
 		super(builder);
 
 		this.bounds = builder.bounds;
@@ -70,8 +70,8 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 	}
 
-	public GeoHashGridAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoHashGridAggregation of(Function<Builder, ObjectBuilder<GeoHashGridAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,7 +86,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code bounds}
 	 */
 	@Nullable
-	public BoundingBox bounds() {
+	public final BoundingBox bounds() {
 		return this.bounds;
 	}
 
@@ -94,7 +94,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -102,7 +102,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public Number precision() {
+	public final Number precision() {
 		return this.precision;
 	}
 
@@ -110,7 +110,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -118,7 +118,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -126,31 +126,26 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.bounds != null) {
-
 			generator.writeKey("bounds");
 			this.bounds.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
 			generator.write(this.precision.doubleValue());
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -184,7 +179,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code bounds}
 		 */
-		public Builder bounds(@Nullable BoundingBox value) {
+		public final Builder bounds(@Nullable BoundingBox value) {
 			this.bounds = value;
 			return this;
 		}
@@ -192,14 +187,14 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code bounds}
 		 */
-		public Builder bounds(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
+		public final Builder bounds(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
 			return this.bounds(fn.apply(new BoundingBox.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -207,7 +202,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable Number value) {
+		public final Builder precision(@Nullable Number value) {
 			this.precision = value;
 			return this;
 		}
@@ -215,7 +210,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -223,7 +218,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -240,6 +235,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public GeoHashGridAggregation build() {
+			_checkSingleUse();
 
 			return new GeoHashGridAggregation(this);
 		}

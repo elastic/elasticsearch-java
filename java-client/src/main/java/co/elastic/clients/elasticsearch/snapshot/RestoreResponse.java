@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Response
 @JsonpDeserializable
-public final class RestoreResponse implements JsonpSerializable {
+public class RestoreResponse implements JsonpSerializable {
 	private final SnapshotRestore snapshot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RestoreResponse(Builder builder) {
+	private RestoreResponse(Builder builder) {
 
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public RestoreResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RestoreResponse of(Function<Builder, ObjectBuilder<RestoreResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public SnapshotRestore snapshot() {
+	public final SnapshotRestore snapshot() {
 		return this.snapshot;
 	}
 
@@ -82,13 +84,13 @@ public final class RestoreResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RestoreResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<RestoreResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreResponse> {
 		private SnapshotRestore snapshot;
 
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(SnapshotRestore value) {
+		public final Builder snapshot(SnapshotRestore value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -96,7 +98,7 @@ public final class RestoreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
+		public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
 			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
 		}
 
@@ -107,6 +109,7 @@ public final class RestoreResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RestoreResponse build() {
+			_checkSingleUse();
 
 			return new RestoreResponse(this);
 		}

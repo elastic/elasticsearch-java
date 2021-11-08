@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Response
 @JsonpDeserializable
-public final class SimulateResponse implements JsonpSerializable {
+public class SimulateResponse implements JsonpSerializable {
 	private final List<PipelineSimulation> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimulateResponse(Builder builder) {
+	private SimulateResponse(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableNonNull(builder.docs, "docs");
+		this.docs = ModelTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
-	public SimulateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimulateResponse of(Function<Builder, ObjectBuilder<SimulateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public List<PipelineSimulation> docs() {
+	public final List<PipelineSimulation> docs() {
 		return this.docs;
 	}
 
@@ -76,13 +77,16 @@ public final class SimulateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("docs");
-		generator.writeStartArray();
-		for (PipelineSimulation item0 : this.docs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.docs)) {
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (PipelineSimulation item0 : this.docs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class SimulateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SimulateResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<SimulateResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateResponse> {
 		private List<PipelineSimulation> docs;
 
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder docs(List<PipelineSimulation> value) {
+		public final Builder docs(List<PipelineSimulation> value) {
 			this.docs = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class SimulateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder docs(PipelineSimulation... value) {
+		public final Builder docs(PipelineSimulation... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Required - API name: {@code docs}
 		 */
-		public Builder addDocs(PipelineSimulation value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder docs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>>... fns) {
+			this.docs = new ArrayList<>(fns.length);
+			for (Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn : fns) {
+				this.docs.add(fn.apply(new PipelineSimulation.Builder()).build());
 			}
-			this.docs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
-			return this.docs(fn.apply(new PipelineSimulation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
-			return this.addDocs(fn.apply(new PipelineSimulation.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SimulateResponse build() {
+			_checkSingleUse();
 
 			return new SimulateResponse(this);
 		}

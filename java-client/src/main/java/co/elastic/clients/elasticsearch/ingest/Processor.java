@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
@@ -84,35 +87,31 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Processor(ProcessorVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends ProcessorVariant> Processor(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Processor(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Processor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Processor of(Function<Builder, ObjectBuilder<Processor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -477,7 +476,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder implements ObjectBuilder<Processor> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Processor> {
 		private String _type;
 		private Object _value;
 
@@ -820,6 +819,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		public Processor build() {
+			_checkSingleUse();
 			return new Processor(this);
 		}
 
@@ -864,6 +864,6 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Processor> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Processor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Processor::setupProcessorDeserializer, Builder::build);
 }

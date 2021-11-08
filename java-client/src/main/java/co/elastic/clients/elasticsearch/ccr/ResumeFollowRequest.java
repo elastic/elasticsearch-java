@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -45,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.resume_follow.Request
 @JsonpDeserializable
-public final class ResumeFollowRequest extends RequestBase implements JsonpSerializable {
+public class ResumeFollowRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -80,9 +82,9 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeFollowRequest(Builder builder) {
+	private ResumeFollowRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -96,8 +98,8 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public ResumeFollowRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeFollowRequest of(Function<Builder, ObjectBuilder<ResumeFollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,7 +107,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -113,7 +115,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	@Nullable
-	public Long maxOutstandingReadRequests() {
+	public final Long maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
@@ -121,7 +123,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_outstanding_write_requests}
 	 */
 	@Nullable
-	public Long maxOutstandingWriteRequests() {
+	public final Long maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
@@ -129,7 +131,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_read_request_operation_count}
 	 */
 	@Nullable
-	public Long maxReadRequestOperationCount() {
+	public final Long maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
@@ -137,7 +139,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_read_request_size}
 	 */
 	@Nullable
-	public String maxReadRequestSize() {
+	public final String maxReadRequestSize() {
 		return this.maxReadRequestSize;
 	}
 
@@ -145,7 +147,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public String maxRetryDelay() {
+	public final String maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -153,7 +155,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_write_buffer_count}
 	 */
 	@Nullable
-	public Long maxWriteBufferCount() {
+	public final Long maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
@@ -161,7 +163,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_write_buffer_size}
 	 */
 	@Nullable
-	public String maxWriteBufferSize() {
+	public final String maxWriteBufferSize() {
 		return this.maxWriteBufferSize;
 	}
 
@@ -169,7 +171,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_write_request_operation_count}
 	 */
 	@Nullable
-	public Long maxWriteRequestOperationCount() {
+	public final Long maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
@@ -177,7 +179,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code max_write_request_size}
 	 */
 	@Nullable
-	public String maxWriteRequestSize() {
+	public final String maxWriteRequestSize() {
 		return this.maxWriteRequestSize;
 	}
 
@@ -185,7 +187,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public String readPollTimeout() {
+	public final String readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -201,61 +203,51 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.maxOutstandingReadRequests != null) {
-
 			generator.writeKey("max_outstanding_read_requests");
 			generator.write(this.maxOutstandingReadRequests);
 
 		}
 		if (this.maxOutstandingWriteRequests != null) {
-
 			generator.writeKey("max_outstanding_write_requests");
 			generator.write(this.maxOutstandingWriteRequests);
 
 		}
 		if (this.maxReadRequestOperationCount != null) {
-
 			generator.writeKey("max_read_request_operation_count");
 			generator.write(this.maxReadRequestOperationCount);
 
 		}
 		if (this.maxReadRequestSize != null) {
-
 			generator.writeKey("max_read_request_size");
 			generator.write(this.maxReadRequestSize);
 
 		}
 		if (this.maxRetryDelay != null) {
-
 			generator.writeKey("max_retry_delay");
 			generator.write(this.maxRetryDelay);
 
 		}
 		if (this.maxWriteBufferCount != null) {
-
 			generator.writeKey("max_write_buffer_count");
 			generator.write(this.maxWriteBufferCount);
 
 		}
 		if (this.maxWriteBufferSize != null) {
-
 			generator.writeKey("max_write_buffer_size");
 			generator.write(this.maxWriteBufferSize);
 
 		}
 		if (this.maxWriteRequestOperationCount != null) {
-
 			generator.writeKey("max_write_request_operation_count");
 			generator.write(this.maxWriteRequestOperationCount);
 
 		}
 		if (this.maxWriteRequestSize != null) {
-
 			generator.writeKey("max_write_request_size");
 			generator.write(this.maxWriteRequestSize);
 
 		}
 		if (this.readPollTimeout != null) {
-
 			generator.writeKey("read_poll_timeout");
 			generator.write(this.readPollTimeout);
 
@@ -268,7 +260,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link ResumeFollowRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ResumeFollowRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeFollowRequest> {
 		private String index;
 
 		@Nullable
@@ -306,7 +298,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -314,7 +306,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(@Nullable Long value) {
+		public final Builder maxOutstandingReadRequests(@Nullable Long value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
@@ -322,7 +314,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public Builder maxOutstandingWriteRequests(@Nullable Long value) {
+		public final Builder maxOutstandingWriteRequests(@Nullable Long value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
@@ -330,7 +322,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_read_request_operation_count}
 		 */
-		public Builder maxReadRequestOperationCount(@Nullable Long value) {
+		public final Builder maxReadRequestOperationCount(@Nullable Long value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
@@ -338,7 +330,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_read_request_size}
 		 */
-		public Builder maxReadRequestSize(@Nullable String value) {
+		public final Builder maxReadRequestSize(@Nullable String value) {
 			this.maxReadRequestSize = value;
 			return this;
 		}
@@ -346,7 +338,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_retry_delay}
 		 */
-		public Builder maxRetryDelay(@Nullable String value) {
+		public final Builder maxRetryDelay(@Nullable String value) {
 			this.maxRetryDelay = value;
 			return this;
 		}
@@ -354,7 +346,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_write_buffer_count}
 		 */
-		public Builder maxWriteBufferCount(@Nullable Long value) {
+		public final Builder maxWriteBufferCount(@Nullable Long value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
@@ -362,7 +354,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_write_buffer_size}
 		 */
-		public Builder maxWriteBufferSize(@Nullable String value) {
+		public final Builder maxWriteBufferSize(@Nullable String value) {
 			this.maxWriteBufferSize = value;
 			return this;
 		}
@@ -370,7 +362,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_write_request_operation_count}
 		 */
-		public Builder maxWriteRequestOperationCount(@Nullable Long value) {
+		public final Builder maxWriteRequestOperationCount(@Nullable Long value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}
@@ -378,7 +370,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code max_write_request_size}
 		 */
-		public Builder maxWriteRequestSize(@Nullable String value) {
+		public final Builder maxWriteRequestSize(@Nullable String value) {
 			this.maxWriteRequestSize = value;
 			return this;
 		}
@@ -386,7 +378,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code read_poll_timeout}
 		 */
-		public Builder readPollTimeout(@Nullable String value) {
+		public final Builder readPollTimeout(@Nullable String value) {
 			this.readPollTimeout = value;
 			return this;
 		}
@@ -398,6 +390,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public ResumeFollowRequest build() {
+			_checkSingleUse();
 
 			return new ResumeFollowRequest(this);
 		}

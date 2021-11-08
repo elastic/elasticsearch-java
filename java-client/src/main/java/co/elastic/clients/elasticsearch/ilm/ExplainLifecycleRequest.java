@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Request
 
-public final class ExplainLifecycleRequest extends RequestBase {
+public class ExplainLifecycleRequest extends RequestBase {
 	private final String index;
 
 	@Nullable
@@ -54,16 +56,16 @@ public final class ExplainLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExplainLifecycleRequest(Builder builder) {
+	private ExplainLifecycleRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.onlyErrors = builder.onlyErrors;
 		this.onlyManaged = builder.onlyManaged;
 
 	}
 
-	public ExplainLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExplainLifecycleRequest of(Function<Builder, ObjectBuilder<ExplainLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +73,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -82,7 +84,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	 * API name: {@code only_errors}
 	 */
 	@Nullable
-	public Boolean onlyErrors() {
+	public final Boolean onlyErrors() {
 		return this.onlyErrors;
 	}
 
@@ -92,7 +94,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	 * API name: {@code only_managed}
 	 */
 	@Nullable
-	public Boolean onlyManaged() {
+	public final Boolean onlyManaged() {
 		return this.onlyManaged;
 	}
 
@@ -101,7 +103,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExplainLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExplainLifecycleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainLifecycleRequest> {
 		private String index;
 
 		@Nullable
@@ -115,7 +117,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code only_errors}
 		 */
-		public Builder onlyErrors(@Nullable Boolean value) {
+		public final Builder onlyErrors(@Nullable Boolean value) {
 			this.onlyErrors = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code only_managed}
 		 */
-		public Builder onlyManaged(@Nullable Boolean value) {
+		public final Builder onlyManaged(@Nullable Boolean value) {
 			this.onlyManaged = value;
 			return this;
 		}
@@ -148,6 +150,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExplainLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new ExplainLifecycleRequest(this);
 		}

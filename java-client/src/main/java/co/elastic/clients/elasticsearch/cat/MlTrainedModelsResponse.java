@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Response
 @JsonpDeserializable
-public final class MlTrainedModelsResponse implements JsonpSerializable {
+public class MlTrainedModelsResponse implements JsonpSerializable {
 	private final List<TrainedModelsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlTrainedModelsResponse(Builder builder) {
+	private MlTrainedModelsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public MlTrainedModelsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlTrainedModelsResponse of(Function<Builder, ObjectBuilder<MlTrainedModelsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TrainedModelsRecord> valueBody() {
+	public final List<TrainedModelsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlTrainedModelsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MlTrainedModelsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlTrainedModelsResponse> {
 		private List<TrainedModelsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<TrainedModelsRecord> value) {
+		public final Builder valueBody(List<TrainedModelsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,24 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(TrainedModelsRecord... value) {
+		public final Builder valueBody(TrainedModelsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(TrainedModelsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(
+				Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new TrainedModelsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
-			return this.valueBody(fn.apply(new TrainedModelsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
-			return this.addValueBody(fn.apply(new TrainedModelsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +130,7 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlTrainedModelsResponse build() {
+			_checkSingleUse();
 
 			return new MlTrainedModelsResponse(this);
 		}

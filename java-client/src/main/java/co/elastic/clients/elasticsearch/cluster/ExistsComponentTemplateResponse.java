@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: cluster.exists_component_template.Response
 
-public final class ExistsComponentTemplateResponse {
+public class ExistsComponentTemplateResponse {
 	public ExistsComponentTemplateResponse() {
 	}
 

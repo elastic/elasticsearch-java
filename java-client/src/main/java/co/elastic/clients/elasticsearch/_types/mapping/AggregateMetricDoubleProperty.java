@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,23 +41,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
 @JsonpDeserializable
-public final class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
+public class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
 	private final String defaultMetric;
 
 	private final List<String> metrics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregateMetricDoubleProperty(Builder builder) {
+	private AggregateMetricDoubleProperty(Builder builder) {
 		super(builder);
 
-		this.defaultMetric = Objects.requireNonNull(builder.defaultMetric, "default_metric");
-		this.metrics = ModelTypeHelper.unmodifiableNonNull(builder.metrics, "metrics");
+		this.defaultMetric = ModelTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
+		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
-	public AggregateMetricDoubleProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregateMetricDoubleProperty of(Function<Builder, ObjectBuilder<AggregateMetricDoubleProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,14 +71,14 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 	/**
 	 * Required - API name: {@code default_metric}
 	 */
-	public String defaultMetric() {
+	public final String defaultMetric() {
 		return this.defaultMetric;
 	}
 
 	/**
 	 * Required - API name: {@code metrics}
 	 */
-	public List<String> metrics() {
+	public final List<String> metrics() {
 		return this.metrics;
 	}
 
@@ -87,17 +86,19 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 
 		generator.write("type", "aggregate_metric_double");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("default_metric");
 		generator.write(this.defaultMetric);
 
-		generator.writeKey("metrics");
-		generator.writeStartArray();
-		for (String item0 : this.metrics) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.metrics)) {
+			generator.writeKey("metrics");
+			generator.writeStartArray();
+			for (String item0 : this.metrics) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -116,7 +117,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		/**
 		 * Required - API name: {@code default_metric}
 		 */
-		public Builder defaultMetric(String value) {
+		public final Builder defaultMetric(String value) {
 			this.defaultMetric = value;
 			return this;
 		}
@@ -124,7 +125,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public Builder metrics(List<String> value) {
+		public final Builder metrics(List<String> value) {
 			this.metrics = value;
 			return this;
 		}
@@ -132,19 +133,8 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public Builder metrics(String... value) {
+		public final Builder metrics(String... value) {
 			this.metrics = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(String value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
-			}
-			this.metrics.add(value);
 			return this;
 		}
 
@@ -160,6 +150,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		 *             if some of the required fields are null.
 		 */
 		public AggregateMetricDoubleProperty build() {
+			_checkSingleUse();
 
 			return new AggregateMetricDoubleProperty(this);
 		}

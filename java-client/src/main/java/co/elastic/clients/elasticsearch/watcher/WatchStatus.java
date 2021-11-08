@@ -30,13 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.WatchStatus
 @JsonpDeserializable
-public final class WatchStatus implements JsonpSerializable {
+public class WatchStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
 
 	@Nullable
@@ -62,25 +63,25 @@ public final class WatchStatus implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatchStatus(Builder builder) {
+	private WatchStatus(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.lastChecked = builder.lastChecked;
 		this.lastMetCondition = builder.lastMetCondition;
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
 		this.executionState = builder.executionState;
 
 	}
 
-	public WatchStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatchStatus of(Function<Builder, ObjectBuilder<WatchStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public Map<String, ActionStatus> actions() {
+	public final Map<String, ActionStatus> actions() {
 		return this.actions;
 	}
 
@@ -88,7 +89,7 @@ public final class WatchStatus implements JsonpSerializable {
 	 * API name: {@code last_checked}
 	 */
 	@Nullable
-	public String lastChecked() {
+	public final String lastChecked() {
 		return this.lastChecked;
 	}
 
@@ -96,21 +97,21 @@ public final class WatchStatus implements JsonpSerializable {
 	 * API name: {@code last_met_condition}
 	 */
 	@Nullable
-	public String lastMetCondition() {
+	public final String lastMetCondition() {
 		return this.lastMetCondition;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public ActivationState state() {
+	public final ActivationState state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
@@ -118,7 +119,7 @@ public final class WatchStatus implements JsonpSerializable {
 	 * API name: {@code execution_state}
 	 */
 	@Nullable
-	public String executionState() {
+	public final String executionState() {
 		return this.executionState;
 	}
 
@@ -133,28 +134,27 @@ public final class WatchStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartObject();
-		for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartObject();
+			for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.lastChecked != null) {
-
 			generator.writeKey("last_checked");
 			generator.write(this.lastChecked);
 
 		}
 		if (this.lastMetCondition != null) {
-
 			generator.writeKey("last_met_condition");
 			generator.write(this.lastMetCondition);
 
 		}
-
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
 
@@ -162,7 +162,6 @@ public final class WatchStatus implements JsonpSerializable {
 		generator.write(this.version);
 
 		if (this.executionState != null) {
-
 			generator.writeKey("execution_state");
 			generator.write(this.executionState);
 
@@ -175,7 +174,7 @@ public final class WatchStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatchStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<WatchStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchStatus> {
 		private Map<String, ActionStatus> actions;
 
 		@Nullable
@@ -194,19 +193,8 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 */
-		public Builder actions(Map<String, ActionStatus> value) {
+		public final Builder actions(Map<String, ActionStatus> value) {
 			this.actions = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
-		 */
-		public Builder putActions(String key, ActionStatus value) {
-			if (this.actions == null) {
-				this.actions = new HashMap<>();
-			}
-			this.actions.put(key, value);
 			return this;
 		}
 
@@ -217,17 +205,15 @@ public final class WatchStatus implements JsonpSerializable {
 			return this.actions(Collections.singletonMap(key, fn.apply(new ActionStatus.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
-		 */
-		public Builder putActions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
-			return this.putActions(key, fn.apply(new ActionStatus.Builder()).build());
+		public final Builder actions(
+				Function<MapBuilder<String, ActionStatus, ActionStatus.Builder>, ObjectBuilder<Map<String, ActionStatus>>> fn) {
+			return actions(fn.apply(new MapBuilder<>(ActionStatus.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code last_checked}
 		 */
-		public Builder lastChecked(@Nullable String value) {
+		public final Builder lastChecked(@Nullable String value) {
 			this.lastChecked = value;
 			return this;
 		}
@@ -235,7 +221,7 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_met_condition}
 		 */
-		public Builder lastMetCondition(@Nullable String value) {
+		public final Builder lastMetCondition(@Nullable String value) {
 			this.lastMetCondition = value;
 			return this;
 		}
@@ -243,7 +229,7 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(ActivationState value) {
+		public final Builder state(ActivationState value) {
 			this.state = value;
 			return this;
 		}
@@ -251,14 +237,14 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
+		public final Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
 			return this.state(fn.apply(new ActivationState.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -266,7 +252,7 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code execution_state}
 		 */
-		public Builder executionState(@Nullable String value) {
+		public final Builder executionState(@Nullable String value) {
 			this.executionState = value;
 			return this;
 		}
@@ -278,6 +264,7 @@ public final class WatchStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatchStatus build() {
+			_checkSingleUse();
 
 			return new WatchStatus(this);
 		}

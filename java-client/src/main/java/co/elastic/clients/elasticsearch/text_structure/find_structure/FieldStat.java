@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.FieldStat
 @JsonpDeserializable
-public final class FieldStat implements JsonpSerializable {
+public class FieldStat implements JsonpSerializable {
 	private final int count;
 
 	private final int cardinality;
@@ -71,11 +72,11 @@ public final class FieldStat implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldStat(Builder builder) {
+	private FieldStat(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.cardinality = Objects.requireNonNull(builder.cardinality, "cardinality");
-		this.topHits = ModelTypeHelper.unmodifiableNonNull(builder.topHits, "top_hits");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.cardinality = ModelTypeHelper.requireNonNull(builder.cardinality, this, "cardinality");
+		this.topHits = ModelTypeHelper.unmodifiableRequired(builder.topHits, this, "topHits");
 		this.meanValue = builder.meanValue;
 		this.medianValue = builder.medianValue;
 		this.maxValue = builder.maxValue;
@@ -85,28 +86,28 @@ public final class FieldStat implements JsonpSerializable {
 
 	}
 
-	public FieldStat(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldStat of(Function<Builder, ObjectBuilder<FieldStat>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code cardinality}
 	 */
-	public int cardinality() {
+	public final int cardinality() {
 		return this.cardinality;
 	}
 
 	/**
 	 * Required - API name: {@code top_hits}
 	 */
-	public List<TopHit> topHits() {
+	public final List<TopHit> topHits() {
 		return this.topHits;
 	}
 
@@ -114,7 +115,7 @@ public final class FieldStat implements JsonpSerializable {
 	 * API name: {@code mean_value}
 	 */
 	@Nullable
-	public Integer meanValue() {
+	public final Integer meanValue() {
 		return this.meanValue;
 	}
 
@@ -122,7 +123,7 @@ public final class FieldStat implements JsonpSerializable {
 	 * API name: {@code median_value}
 	 */
 	@Nullable
-	public Integer medianValue() {
+	public final Integer medianValue() {
 		return this.medianValue;
 	}
 
@@ -130,7 +131,7 @@ public final class FieldStat implements JsonpSerializable {
 	 * API name: {@code max_value}
 	 */
 	@Nullable
-	public Integer maxValue() {
+	public final Integer maxValue() {
 		return this.maxValue;
 	}
 
@@ -138,7 +139,7 @@ public final class FieldStat implements JsonpSerializable {
 	 * API name: {@code min_value}
 	 */
 	@Nullable
-	public Integer minValue() {
+	public final Integer minValue() {
 		return this.minValue;
 	}
 
@@ -146,7 +147,7 @@ public final class FieldStat implements JsonpSerializable {
 	 * API name: {@code earliest}
 	 */
 	@Nullable
-	public String earliest() {
+	public final String earliest() {
 		return this.earliest;
 	}
 
@@ -154,7 +155,7 @@ public final class FieldStat implements JsonpSerializable {
 	 * API name: {@code latest}
 	 */
 	@Nullable
-	public String latest() {
+	public final String latest() {
 		return this.latest;
 	}
 
@@ -175,46 +176,42 @@ public final class FieldStat implements JsonpSerializable {
 		generator.writeKey("cardinality");
 		generator.write(this.cardinality);
 
-		generator.writeKey("top_hits");
-		generator.writeStartArray();
-		for (TopHit item0 : this.topHits) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.topHits)) {
+			generator.writeKey("top_hits");
+			generator.writeStartArray();
+			for (TopHit item0 : this.topHits) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.meanValue != null) {
-
 			generator.writeKey("mean_value");
 			generator.write(this.meanValue);
 
 		}
 		if (this.medianValue != null) {
-
 			generator.writeKey("median_value");
 			generator.write(this.medianValue);
 
 		}
 		if (this.maxValue != null) {
-
 			generator.writeKey("max_value");
 			generator.write(this.maxValue);
 
 		}
 		if (this.minValue != null) {
-
 			generator.writeKey("min_value");
 			generator.write(this.minValue);
 
 		}
 		if (this.earliest != null) {
-
 			generator.writeKey("earliest");
 			generator.write(this.earliest);
 
 		}
 		if (this.latest != null) {
-
 			generator.writeKey("latest");
 			generator.write(this.latest);
 
@@ -227,7 +224,7 @@ public final class FieldStat implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldStat}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldStat> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldStat> {
 		private Integer count;
 
 		private Integer cardinality;
@@ -255,7 +252,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -263,7 +260,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cardinality}
 		 */
-		public Builder cardinality(int value) {
+		public final Builder cardinality(int value) {
 			this.cardinality = value;
 			return this;
 		}
@@ -271,7 +268,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code top_hits}
 		 */
-		public Builder topHits(List<TopHit> value) {
+		public final Builder topHits(List<TopHit> value) {
 			this.topHits = value;
 			return this;
 		}
@@ -279,40 +276,27 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code top_hits}
 		 */
-		public Builder topHits(TopHit... value) {
+		public final Builder topHits(TopHit... value) {
 			this.topHits = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #topHits(List)}, creating the list if needed.
+		 * Required - API name: {@code top_hits}
 		 */
-		public Builder addTopHits(TopHit value) {
-			if (this.topHits == null) {
-				this.topHits = new ArrayList<>();
+		@SafeVarargs
+		public final Builder topHits(Function<TopHit.Builder, ObjectBuilder<TopHit>>... fns) {
+			this.topHits = new ArrayList<>(fns.length);
+			for (Function<TopHit.Builder, ObjectBuilder<TopHit>> fn : fns) {
+				this.topHits.add(fn.apply(new TopHit.Builder()).build());
 			}
-			this.topHits.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #topHits(List)} to a singleton list.
-		 */
-		public Builder topHits(Function<TopHit.Builder, ObjectBuilder<TopHit>> fn) {
-			return this.topHits(fn.apply(new TopHit.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #topHits(List)}, creating the list if needed.
-		 */
-		public Builder addTopHits(Function<TopHit.Builder, ObjectBuilder<TopHit>> fn) {
-			return this.addTopHits(fn.apply(new TopHit.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code mean_value}
 		 */
-		public Builder meanValue(@Nullable Integer value) {
+		public final Builder meanValue(@Nullable Integer value) {
 			this.meanValue = value;
 			return this;
 		}
@@ -320,7 +304,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code median_value}
 		 */
-		public Builder medianValue(@Nullable Integer value) {
+		public final Builder medianValue(@Nullable Integer value) {
 			this.medianValue = value;
 			return this;
 		}
@@ -328,7 +312,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code max_value}
 		 */
-		public Builder maxValue(@Nullable Integer value) {
+		public final Builder maxValue(@Nullable Integer value) {
 			this.maxValue = value;
 			return this;
 		}
@@ -336,7 +320,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code min_value}
 		 */
-		public Builder minValue(@Nullable Integer value) {
+		public final Builder minValue(@Nullable Integer value) {
 			this.minValue = value;
 			return this;
 		}
@@ -344,7 +328,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code earliest}
 		 */
-		public Builder earliest(@Nullable String value) {
+		public final Builder earliest(@Nullable String value) {
 			this.earliest = value;
 			return this;
 		}
@@ -352,7 +336,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code latest}
 		 */
-		public Builder latest(@Nullable String value) {
+		public final Builder latest(@Nullable String value) {
 			this.latest = value;
 			return this;
 		}
@@ -364,6 +348,7 @@ public final class FieldStat implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldStat build() {
+			_checkSingleUse();
 
 			return new FieldStat(this);
 		}

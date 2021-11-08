@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,22 +42,23 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsProgress
 @JsonpDeserializable
-public final class DataframeAnalyticsStatsProgress implements JsonpSerializable {
+public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	private final String phase;
 
 	private final int progressPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsStatsProgress(Builder builder) {
+	private DataframeAnalyticsStatsProgress(Builder builder) {
 
-		this.phase = Objects.requireNonNull(builder.phase, "phase");
-		this.progressPercent = Objects.requireNonNull(builder.progressPercent, "progress_percent");
+		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.progressPercent = ModelTypeHelper.requireNonNull(builder.progressPercent, this, "progressPercent");
 
 	}
 
-	public DataframeAnalyticsStatsProgress(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsStatsProgress of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsProgress>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +66,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code phase}
 	 */
-	public String phase() {
+	public final String phase() {
 		return this.phase;
 	}
 
@@ -73,7 +76,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code progress_percent}
 	 */
-	public int progressPercent() {
+	public final int progressPercent() {
 		return this.progressPercent;
 	}
 
@@ -101,7 +104,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsProgress}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsProgress> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsProgress> {
 		private String phase;
 
 		private Integer progressPercent;
@@ -111,7 +114,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code phase}
 		 */
-		public Builder phase(String value) {
+		public final Builder phase(String value) {
 			this.phase = value;
 			return this;
 		}
@@ -122,7 +125,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code progress_percent}
 		 */
-		public Builder progressPercent(int value) {
+		public final Builder progressPercent(int value) {
 			this.progressPercent = value;
 			return this;
 		}
@@ -134,6 +137,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsStatsProgress build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsStatsProgress(this);
 		}

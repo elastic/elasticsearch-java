@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
 @JsonpDeserializable
-public final class RollupJobStatus implements JsonpSerializable {
-	@Nullable
+public class RollupJobStatus implements JsonpSerializable {
 	private final Map<String, JsonData> currentPosition;
 
 	private final IndexingJobState jobState;
@@ -55,30 +54,29 @@ public final class RollupJobStatus implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupJobStatus(Builder builder) {
+	private RollupJobStatus(Builder builder) {
 
 		this.currentPosition = ModelTypeHelper.unmodifiable(builder.currentPosition);
-		this.jobState = Objects.requireNonNull(builder.jobState, "job_state");
+		this.jobState = ModelTypeHelper.requireNonNull(builder.jobState, this, "jobState");
 		this.upgradedDocId = builder.upgradedDocId;
 
 	}
 
-	public RollupJobStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupJobStatus of(Function<Builder, ObjectBuilder<RollupJobStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code current_position}
 	 */
-	@Nullable
-	public Map<String, JsonData> currentPosition() {
+	public final Map<String, JsonData> currentPosition() {
 		return this.currentPosition;
 	}
 
 	/**
 	 * Required - API name: {@code job_state}
 	 */
-	public IndexingJobState jobState() {
+	public final IndexingJobState jobState() {
 		return this.jobState;
 	}
 
@@ -86,7 +84,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 	 * API name: {@code upgraded_doc_id}
 	 */
 	@Nullable
-	public Boolean upgradedDocId() {
+	public final Boolean upgradedDocId() {
 		return this.upgradedDocId;
 	}
 
@@ -101,8 +99,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.currentPosition != null) {
-
+		if (ModelTypeHelper.isDefined(this.currentPosition)) {
 			generator.writeKey("current_position");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.currentPosition.entrySet()) {
@@ -113,11 +110,9 @@ public final class RollupJobStatus implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("job_state");
 		this.jobState.serialize(generator, mapper);
 		if (this.upgradedDocId != null) {
-
 			generator.writeKey("upgraded_doc_id");
 			generator.write(this.upgradedDocId);
 
@@ -130,7 +125,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupJobStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobStatus> {
 		@Nullable
 		private Map<String, JsonData> currentPosition;
 
@@ -142,26 +137,15 @@ public final class RollupJobStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code current_position}
 		 */
-		public Builder currentPosition(@Nullable Map<String, JsonData> value) {
+		public final Builder currentPosition(@Nullable Map<String, JsonData> value) {
 			this.currentPosition = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #currentPosition(Map)}, creating the map if needed.
-		 */
-		public Builder putCurrentPosition(String key, JsonData value) {
-			if (this.currentPosition == null) {
-				this.currentPosition = new HashMap<>();
-			}
-			this.currentPosition.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code job_state}
 		 */
-		public Builder jobState(IndexingJobState value) {
+		public final Builder jobState(IndexingJobState value) {
 			this.jobState = value;
 			return this;
 		}
@@ -169,7 +153,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code upgraded_doc_id}
 		 */
-		public Builder upgradedDocId(@Nullable Boolean value) {
+		public final Builder upgradedDocId(@Nullable Boolean value) {
 			this.upgradedDocId = value;
 			return this;
 		}
@@ -181,6 +165,7 @@ public final class RollupJobStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupJobStatus build() {
+			_checkSingleUse();
 
 			return new RollupJobStatus(this);
 		}

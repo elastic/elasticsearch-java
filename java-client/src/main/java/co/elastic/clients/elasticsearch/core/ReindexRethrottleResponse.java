@@ -31,12 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,25 +45,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.Response
 @JsonpDeserializable
-public final class ReindexRethrottleResponse implements JsonpSerializable {
+public class ReindexRethrottleResponse implements JsonpSerializable {
 	private final Map<String, ReindexNode> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReindexRethrottleResponse(Builder builder) {
+	private ReindexRethrottleResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public ReindexRethrottleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReindexRethrottleResponse of(Function<Builder, ObjectBuilder<ReindexRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, ReindexNode> nodes() {
+	public final Map<String, ReindexNode> nodes() {
 		return this.nodes;
 	}
 
@@ -77,14 +78,17 @@ public final class ReindexRethrottleResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, ReindexNode> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, ReindexNode> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -93,25 +97,14 @@ public final class ReindexRethrottleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexRethrottleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ReindexRethrottleResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleResponse> {
 		private Map<String, ReindexNode> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(Map<String, ReindexNode> value) {
+		public final Builder nodes(Map<String, ReindexNode> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, ReindexNode value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -122,11 +115,9 @@ public final class ReindexRethrottleResponse implements JsonpSerializable {
 			return this.nodes(Collections.singletonMap(key, fn.apply(new ReindexNode.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Function<ReindexNode.Builder, ObjectBuilder<ReindexNode>> fn) {
-			return this.putNodes(key, fn.apply(new ReindexNode.Builder()).build());
+		public final Builder nodes(
+				Function<MapBuilder<String, ReindexNode, ReindexNode.Builder>, ObjectBuilder<Map<String, ReindexNode>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(ReindexNode.Builder::new)).build());
 		}
 
 		/**
@@ -136,6 +127,7 @@ public final class ReindexRethrottleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReindexRethrottleResponse build() {
+			_checkSingleUse();
 
 			return new ReindexRethrottleResponse(this);
 		}

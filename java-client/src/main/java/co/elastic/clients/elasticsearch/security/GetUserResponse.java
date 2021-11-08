@@ -37,16 +37,16 @@ import java.util.function.Function;
 
 // typedef: security.get_user.Response
 @JsonpDeserializable
-public final class GetUserResponse extends DictionaryResponse<String, User> {
+public class GetUserResponse extends DictionaryResponse<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUserResponse(Builder builder) {
+	private GetUserResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetUserResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUserResponse of(Function<Builder, ObjectBuilder<GetUserResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ public final class GetUserResponse extends DictionaryResponse<String, User> {
 		 *             if some of the required fields are null.
 		 */
 		public GetUserResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

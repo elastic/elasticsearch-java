@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 @JsonpDeserializable
-public final class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
+public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
 	private final float scalingFactor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureFunctionLogarithm(Builder builder) {
+	private RankFeatureFunctionLogarithm(Builder builder) {
 
-		this.scalingFactor = Objects.requireNonNull(builder.scalingFactor, "scaling_factor");
+		this.scalingFactor = ModelTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
 
 	}
 
-	public RankFeatureFunctionLogarithm(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureFunctionLogarithm of(Function<Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code scaling_factor}
 	 */
-	public float scalingFactor() {
+	public final float scalingFactor() {
 		return this.scalingFactor;
 	}
 
@@ -81,13 +83,13 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	/**
 	 * Builder for {@link RankFeatureFunctionLogarithm}.
 	 */
-	public static class Builder implements ObjectBuilder<RankFeatureFunctionLogarithm> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionLogarithm> {
 		private Float scalingFactor;
 
 		/**
 		 * Required - API name: {@code scaling_factor}
 		 */
-		public Builder scalingFactor(float value) {
+		public final Builder scalingFactor(float value) {
 			this.scalingFactor = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureFunctionLogarithm build() {
+			_checkSingleUse();
 
 			return new RankFeatureFunctionLogarithm(this);
 		}

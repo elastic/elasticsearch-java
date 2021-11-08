@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SuggestContext
 @JsonpDeserializable
-public final class SuggestContext implements JsonpSerializable {
+public class SuggestContext implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -52,23 +54,23 @@ public final class SuggestContext implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SuggestContext(Builder builder) {
+	private SuggestContext(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.path = builder.path;
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.precision = builder.precision;
 
 	}
 
-	public SuggestContext(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SuggestContext of(Function<Builder, ObjectBuilder<SuggestContext>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -76,14 +78,14 @@ public final class SuggestContext implements JsonpSerializable {
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -91,7 +93,7 @@ public final class SuggestContext implements JsonpSerializable {
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public String precision() {
+	public final String precision() {
 		return this.precision;
 	}
 
@@ -110,17 +112,14 @@ public final class SuggestContext implements JsonpSerializable {
 		generator.write(this.name);
 
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
 		}
-
 		generator.writeKey("type");
 		generator.write(this.type);
 
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
 			generator.write(this.precision);
 
@@ -133,7 +132,7 @@ public final class SuggestContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link SuggestContext}.
 	 */
-	public static class Builder implements ObjectBuilder<SuggestContext> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SuggestContext> {
 		private String name;
 
 		@Nullable
@@ -147,7 +146,7 @@ public final class SuggestContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -155,7 +154,7 @@ public final class SuggestContext implements JsonpSerializable {
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -163,7 +162,7 @@ public final class SuggestContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -171,7 +170,7 @@ public final class SuggestContext implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable String value) {
+		public final Builder precision(@Nullable String value) {
 			this.precision = value;
 			return this;
 		}
@@ -183,6 +182,7 @@ public final class SuggestContext implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SuggestContext build() {
+			_checkSingleUse();
 
 			return new SuggestContext(this);
 		}

@@ -32,12 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,19 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapability
 @JsonpDeserializable
-public final class FieldCapability implements JsonpSerializable {
+public class FieldCapability implements JsonpSerializable {
 	private final boolean aggregatable;
 
-	@Nullable
 	private final List<String> indices;
 
-	@Nullable
 	private final Map<String, List<String>> meta;
 
-	@Nullable
 	private final List<String> nonAggregatableIndices;
 
-	@Nullable
 	private final List<String> nonSearchableIndices;
 
 	private final boolean searchable;
@@ -70,73 +65,69 @@ public final class FieldCapability implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldCapability(Builder builder) {
+	private FieldCapability(Builder builder) {
 
-		this.aggregatable = Objects.requireNonNull(builder.aggregatable, "aggregatable");
+		this.aggregatable = ModelTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable");
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.nonAggregatableIndices = ModelTypeHelper.unmodifiable(builder.nonAggregatableIndices);
 		this.nonSearchableIndices = ModelTypeHelper.unmodifiable(builder.nonSearchableIndices);
-		this.searchable = Objects.requireNonNull(builder.searchable, "searchable");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.searchable = ModelTypeHelper.requireNonNull(builder.searchable, this, "searchable");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.metadataField = builder.metadataField;
 
 	}
 
-	public FieldCapability(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldCapability of(Function<Builder, ObjectBuilder<FieldCapability>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code aggregatable}
 	 */
-	public boolean aggregatable() {
+	public final boolean aggregatable() {
 		return this.aggregatable;
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * API name: {@code meta}
 	 */
-	@Nullable
-	public Map<String, List<String>> meta() {
+	public final Map<String, List<String>> meta() {
 		return this.meta;
 	}
 
 	/**
 	 * API name: {@code non_aggregatable_indices}
 	 */
-	@Nullable
-	public List<String> nonAggregatableIndices() {
+	public final List<String> nonAggregatableIndices() {
 		return this.nonAggregatableIndices;
 	}
 
 	/**
 	 * API name: {@code non_searchable_indices}
 	 */
-	@Nullable
-	public List<String> nonSearchableIndices() {
+	public final List<String> nonSearchableIndices() {
 		return this.nonSearchableIndices;
 	}
 
 	/**
 	 * Required - API name: {@code searchable}
 	 */
-	public boolean searchable() {
+	public final boolean searchable() {
 		return this.searchable;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -144,7 +135,7 @@ public final class FieldCapability implements JsonpSerializable {
 	 * API name: {@code metadata_field}
 	 */
 	@Nullable
-	public Boolean metadataField() {
+	public final Boolean metadataField() {
 		return this.metadataField;
 	}
 
@@ -162,8 +153,7 @@ public final class FieldCapability implements JsonpSerializable {
 		generator.writeKey("aggregatable");
 		generator.write(this.aggregatable);
 
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -173,16 +163,17 @@ public final class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (String item1 : item0.getValue()) {
-					generator.write(item1);
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -190,8 +181,7 @@ public final class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.nonAggregatableIndices != null) {
-
+		if (ModelTypeHelper.isDefined(this.nonAggregatableIndices)) {
 			generator.writeKey("non_aggregatable_indices");
 			generator.writeStartArray();
 			for (String item0 : this.nonAggregatableIndices) {
@@ -201,8 +191,7 @@ public final class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.nonSearchableIndices != null) {
-
+		if (ModelTypeHelper.isDefined(this.nonSearchableIndices)) {
 			generator.writeKey("non_searchable_indices");
 			generator.writeStartArray();
 			for (String item0 : this.nonSearchableIndices) {
@@ -212,7 +201,6 @@ public final class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("searchable");
 		generator.write(this.searchable);
 
@@ -220,7 +208,6 @@ public final class FieldCapability implements JsonpSerializable {
 		generator.write(this.type);
 
 		if (this.metadataField != null) {
-
 			generator.writeKey("metadata_field");
 			generator.write(this.metadataField);
 
@@ -233,7 +220,7 @@ public final class FieldCapability implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapability}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldCapability> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapability> {
 		private Boolean aggregatable;
 
 		@Nullable
@@ -258,7 +245,7 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregatable}
 		 */
-		public Builder aggregatable(boolean value) {
+		public final Builder aggregatable(boolean value) {
 			this.aggregatable = value;
 			return this;
 		}
@@ -266,7 +253,7 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<String> value) {
+		public final Builder indices(@Nullable List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -274,45 +261,23 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code meta}
 		 */
-		public Builder meta(@Nullable Map<String, List<String>> value) {
+		public final Builder meta(@Nullable Map<String, List<String>> value) {
 			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, List<String> value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_aggregatable_indices}
 		 */
-		public Builder nonAggregatableIndices(@Nullable List<String> value) {
+		public final Builder nonAggregatableIndices(@Nullable List<String> value) {
 			this.nonAggregatableIndices = value;
 			return this;
 		}
@@ -320,27 +285,15 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code non_aggregatable_indices}
 		 */
-		public Builder nonAggregatableIndices(String... value) {
+		public final Builder nonAggregatableIndices(String... value) {
 			this.nonAggregatableIndices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nonAggregatableIndices(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addNonAggregatableIndices(String value) {
-			if (this.nonAggregatableIndices == null) {
-				this.nonAggregatableIndices = new ArrayList<>();
-			}
-			this.nonAggregatableIndices.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_searchable_indices}
 		 */
-		public Builder nonSearchableIndices(@Nullable List<String> value) {
+		public final Builder nonSearchableIndices(@Nullable List<String> value) {
 			this.nonSearchableIndices = value;
 			return this;
 		}
@@ -348,27 +301,15 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code non_searchable_indices}
 		 */
-		public Builder nonSearchableIndices(String... value) {
+		public final Builder nonSearchableIndices(String... value) {
 			this.nonSearchableIndices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nonSearchableIndices(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addNonSearchableIndices(String value) {
-			if (this.nonSearchableIndices == null) {
-				this.nonSearchableIndices = new ArrayList<>();
-			}
-			this.nonSearchableIndices.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code searchable}
 		 */
-		public Builder searchable(boolean value) {
+		public final Builder searchable(boolean value) {
 			this.searchable = value;
 			return this;
 		}
@@ -376,7 +317,7 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -384,7 +325,7 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata_field}
 		 */
-		public Builder metadataField(@Nullable Boolean value) {
+		public final Builder metadataField(@Nullable Boolean value) {
 			this.metadataField = value;
 			return this;
 		}
@@ -396,6 +337,7 @@ public final class FieldCapability implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldCapability build() {
+			_checkSingleUse();
 
 			return new FieldCapability(this);
 		}

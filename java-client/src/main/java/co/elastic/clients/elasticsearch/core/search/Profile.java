@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Profile
 @JsonpDeserializable
-public final class Profile implements JsonpSerializable {
+public class Profile implements JsonpSerializable {
 	private final List<ShardProfile> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Profile(Builder builder) {
+	private Profile(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public Profile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Profile of(Function<Builder, ObjectBuilder<Profile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<ShardProfile> shards() {
+	public final List<ShardProfile> shards() {
 		return this.shards;
 	}
 
@@ -75,13 +76,16 @@ public final class Profile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (ShardProfile item0 : this.shards) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (ShardProfile item0 : this.shards) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class Profile implements JsonpSerializable {
 	/**
 	 * Builder for {@link Profile}.
 	 */
-	public static class Builder implements ObjectBuilder<Profile> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Profile> {
 		private List<ShardProfile> shards;
 
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(List<ShardProfile> value) {
+		public final Builder shards(List<ShardProfile> value) {
 			this.shards = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class Profile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(ShardProfile... value) {
+		public final Builder shards(ShardProfile... value) {
 			this.shards = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Required - API name: {@code shards}
 		 */
-		public Builder addShards(ShardProfile value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
+		@SafeVarargs
+		public final Builder shards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>>... fns) {
+			this.shards = new ArrayList<>(fns.length);
+			for (Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn : fns) {
+				this.shards.add(fn.apply(new ShardProfile.Builder()).build());
 			}
-			this.shards.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #shards(List)} to a singleton list.
-		 */
-		public Builder shards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
-			return this.shards(fn.apply(new ShardProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
-			return this.addShards(fn.apply(new ShardProfile.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class Profile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Profile build() {
+			_checkSingleUse();
 
 			return new Profile(this);
 		}

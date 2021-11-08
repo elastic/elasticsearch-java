@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Response
 @JsonpDeserializable
-public final class GetJobStatsResponse implements JsonpSerializable {
+public class GetJobStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<JobStats> jobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetJobStatsResponse(Builder builder) {
+	private GetJobStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.jobs = ModelTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 
 	}
 
-	public GetJobStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetJobStatsResponse of(Function<Builder, ObjectBuilder<GetJobStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code jobs}
 	 */
-	public List<JobStats> jobs() {
+	public final List<JobStats> jobs() {
 		return this.jobs;
 	}
 
@@ -89,13 +90,16 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("jobs");
-		generator.writeStartArray();
-		for (JobStats item0 : this.jobs) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.jobs)) {
+			generator.writeKey("jobs");
+			generator.writeStartArray();
+			for (JobStats item0 : this.jobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetJobStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetJobStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobStatsResponse> {
 		private Long count;
 
 		private List<JobStats> jobs;
@@ -112,7 +116,7 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code jobs}
 		 */
-		public Builder jobs(List<JobStats> value) {
+		public final Builder jobs(List<JobStats> value) {
 			this.jobs = value;
 			return this;
 		}
@@ -128,34 +132,21 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code jobs}
 		 */
-		public Builder jobs(JobStats... value) {
+		public final Builder jobs(JobStats... value) {
 			this.jobs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Required - API name: {@code jobs}
 		 */
-		public Builder addJobs(JobStats value) {
-			if (this.jobs == null) {
-				this.jobs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder jobs(Function<JobStats.Builder, ObjectBuilder<JobStats>>... fns) {
+			this.jobs = new ArrayList<>(fns.length);
+			for (Function<JobStats.Builder, ObjectBuilder<JobStats>> fn : fns) {
+				this.jobs.add(fn.apply(new JobStats.Builder()).build());
 			}
-			this.jobs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #jobs(List)} to a singleton list.
-		 */
-		public Builder jobs(Function<JobStats.Builder, ObjectBuilder<JobStats>> fn) {
-			return this.jobs(fn.apply(new JobStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
-		 */
-		public Builder addJobs(Function<JobStats.Builder, ObjectBuilder<JobStats>> fn) {
-			return this.addJobs(fn.apply(new JobStats.Builder()).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetJobStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetJobStatsResponse(this);
 		}

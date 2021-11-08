@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: ccr.pause_auto_follow_pattern.Response
 @JsonpDeserializable
-public final class PauseAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class PauseAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PauseAutoFollowPatternResponse(Builder builder) {
+	private PauseAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PauseAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PauseAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<PauseAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class PauseAutoFollowPatternResponse extends AcknowledgedResponseBa
 		 *             if some of the required fields are null.
 		 */
 		public PauseAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new PauseAutoFollowPatternResponse(this);
 		}

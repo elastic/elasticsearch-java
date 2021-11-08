@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.async_search;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -34,25 +33,20 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.annotation.Nullable;
 
 // typedef: async_search.submit.Response
 
-public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
-	@Nullable
-	private final JsonpSerializer<TDocument> tDocumentSerializer;
-
+public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
-	public SubmitResponse(Builder<TDocument> builder) {
+	private SubmitResponse(Builder<TDocument> builder) {
 		super(builder);
-
-		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public SubmitResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> SubmitResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<SubmitResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -65,18 +59,6 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 				AsyncSearchDocumentResponseBase.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<SubmitResponse<TDocument>> {
-		@Nullable
-		private JsonpSerializer<TDocument> tDocumentSerializer;
-
-		/**
-		 * Serializer for TDocument. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-			this.tDocumentSerializer = value;
-			return this;
-		}
-
 		@Override
 		protected Builder<TDocument> self() {
 			return this;
@@ -89,6 +71,7 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 		 *             if some of the required fields are null.
 		 */
 		public SubmitResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new SubmitResponse<TDocument>(this);
 		}

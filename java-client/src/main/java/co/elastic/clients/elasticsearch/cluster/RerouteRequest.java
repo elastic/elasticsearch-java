@@ -37,6 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -52,8 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Request
 @JsonpDeserializable
-public final class RerouteRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	private final List<Command> commands;
 
 	@Nullable
@@ -65,7 +65,6 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final List<String> metric;
 
 	@Nullable
@@ -76,7 +75,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RerouteRequest(Builder builder) {
+	private RerouteRequest(Builder builder) {
 
 		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
 		this.dryRun = builder.dryRun;
@@ -88,8 +87,8 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public RerouteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RerouteRequest of(Function<Builder, ObjectBuilder<RerouteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,8 +96,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code commands}
 	 */
-	@Nullable
-	public List<Command> commands() {
+	public final List<Command> commands() {
 		return this.commands;
 	}
 
@@ -109,7 +107,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code dry_run}
 	 */
 	@Nullable
-	public Boolean dryRun() {
+	public final Boolean dryRun() {
 		return this.dryRun;
 	}
 
@@ -120,7 +118,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
 	}
 
@@ -131,7 +129,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -140,8 +138,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	@Nullable
-	public List<String> metric() {
+	public final List<String> metric() {
 		return this.metric;
 	}
 
@@ -152,7 +149,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code retry_failed}
 	 */
 	@Nullable
-	public Boolean retryFailed() {
+	public final Boolean retryFailed() {
 		return this.retryFailed;
 	}
 
@@ -163,7 +160,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -178,8 +175,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.commands != null) {
-
+		if (ModelTypeHelper.isDefined(this.commands)) {
 			generator.writeKey("commands");
 			generator.writeStartArray();
 			for (Command item0 : this.commands) {
@@ -197,7 +193,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link RerouteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RerouteRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteRequest> {
 		@Nullable
 		private List<Command> commands;
 
@@ -224,7 +220,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code commands}
 		 */
-		public Builder commands(@Nullable List<Command> value) {
+		public final Builder commands(@Nullable List<Command> value) {
 			this.commands = value;
 			return this;
 		}
@@ -234,34 +230,23 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code commands}
 		 */
-		public Builder commands(Command... value) {
+		public final Builder commands(Command... value) {
 			this.commands = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
+		 * Defines the commands to perform.
+		 * <p>
+		 * API name: {@code commands}
 		 */
-		public Builder addCommands(Command value) {
-			if (this.commands == null) {
-				this.commands = new ArrayList<>();
+		@SafeVarargs
+		public final Builder commands(Function<Command.Builder, ObjectBuilder<Command>>... fns) {
+			this.commands = new ArrayList<>(fns.length);
+			for (Function<Command.Builder, ObjectBuilder<Command>> fn : fns) {
+				this.commands.add(fn.apply(new Command.Builder()).build());
 			}
-			this.commands.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #commands(List)} to a singleton list.
-		 */
-		public Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
-			return this.commands(fn.apply(new Command.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
-		 */
-		public Builder addCommands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
-			return this.addCommands(fn.apply(new Command.Builder()).build());
 		}
 
 		/**
@@ -270,7 +255,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code dry_run}
 		 */
-		public Builder dryRun(@Nullable Boolean value) {
+		public final Builder dryRun(@Nullable Boolean value) {
 			this.dryRun = value;
 			return this;
 		}
@@ -281,7 +266,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -292,7 +277,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -302,7 +287,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<String> value) {
+		public final Builder metric(@Nullable List<String> value) {
 			this.metric = value;
 			return this;
 		}
@@ -312,19 +297,8 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(String... value) {
+		public final Builder metric(String... value) {
 			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
 			return this;
 		}
 
@@ -334,7 +308,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code retry_failed}
 		 */
-		public Builder retryFailed(@Nullable Boolean value) {
+		public final Builder retryFailed(@Nullable Boolean value) {
 			this.retryFailed = value;
 			return this;
 		}
@@ -345,7 +319,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -357,6 +331,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public RerouteRequest build() {
+			_checkSingleUse();
 
 			return new RerouteRequest(this);
 		}
@@ -403,7 +378,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
-				if (request.metric != null) {
+				if (ModelTypeHelper.isDefined(request.metric)) {
 					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.dryRun != null) {

@@ -29,12 +29,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,54 +42,56 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Eql
 @JsonpDeserializable
-public final class Eql extends Base {
+public class Eql extends Base {
 	private final EqlFeatures features;
 
 	private final Map<String, Query> queries;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Eql(Builder builder) {
+	private Eql(Builder builder) {
 		super(builder);
 
-		this.features = Objects.requireNonNull(builder.features, "features");
-		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
+		this.features = ModelTypeHelper.requireNonNull(builder.features, this, "features");
+		this.queries = ModelTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 
 	}
 
-	public Eql(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Eql of(Function<Builder, ObjectBuilder<Eql>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code features}
 	 */
-	public EqlFeatures features() {
+	public final EqlFeatures features() {
 		return this.features;
 	}
 
 	/**
 	 * Required - API name: {@code queries}
 	 */
-	public Map<String, Query> queries() {
+	public final Map<String, Query> queries() {
 		return this.queries;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("features");
 		this.features.serialize(generator, mapper);
 
-		generator.writeKey("queries");
-		generator.writeStartObject();
-		for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.queries)) {
+			generator.writeKey("queries");
+			generator.writeStartObject();
+			for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -106,7 +108,7 @@ public final class Eql extends Base {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(EqlFeatures value) {
+		public final Builder features(EqlFeatures value) {
 			this.features = value;
 			return this;
 		}
@@ -114,26 +116,15 @@ public final class Eql extends Base {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(Function<EqlFeatures.Builder, ObjectBuilder<EqlFeatures>> fn) {
+		public final Builder features(Function<EqlFeatures.Builder, ObjectBuilder<EqlFeatures>> fn) {
 			return this.features(fn.apply(new EqlFeatures.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code queries}
 		 */
-		public Builder queries(Map<String, Query> value) {
+		public final Builder queries(Map<String, Query> value) {
 			this.queries = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #queries(Map)}, creating the map if needed.
-		 */
-		public Builder putQueries(String key, Query value) {
-			if (this.queries == null) {
-				this.queries = new HashMap<>();
-			}
-			this.queries.put(key, value);
 			return this;
 		}
 
@@ -144,11 +135,9 @@ public final class Eql extends Base {
 			return this.queries(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #queries(Map)}, creating the map if needed.
-		 */
-		public Builder putQueries(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.putQueries(key, fn.apply(new Query.Builder()).build());
+		public final Builder queries(
+				Function<MapBuilder<String, Query, Query.Builder>, ObjectBuilder<Map<String, Query>>> fn) {
+			return queries(fn.apply(new MapBuilder<>(Query.Builder::new)).build());
 		}
 
 		@Override
@@ -163,6 +152,7 @@ public final class Eql extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Eql build() {
+			_checkSingleUse();
 
 			return new Eql(this);
 		}

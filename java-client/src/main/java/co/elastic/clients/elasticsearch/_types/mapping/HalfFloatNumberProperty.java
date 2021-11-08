@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HalfFloatNumberProperty
 @JsonpDeserializable
-public final class HalfFloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class HalfFloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Float nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HalfFloatNumberProperty(Builder builder) {
+	private HalfFloatNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public HalfFloatNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HalfFloatNumberProperty of(Function<Builder, ObjectBuilder<HalfFloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class HalfFloatNumberProperty extends StandardNumberProperty implem
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Float nullValue() {
+	public final Float nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class HalfFloatNumberProperty extends StandardNumberProperty implem
 		generator.write("type", "half_float");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -98,7 +97,7 @@ public final class HalfFloatNumberProperty extends StandardNumberProperty implem
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Float value) {
+		public final Builder nullValue(@Nullable Float value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class HalfFloatNumberProperty extends StandardNumberProperty implem
 		 *             if some of the required fields are null.
 		 */
 		public HalfFloatNumberProperty build() {
+			_checkSingleUse();
 
 			return new HalfFloatNumberProperty(this);
 		}

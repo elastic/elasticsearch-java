@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.shards.Response
 @JsonpDeserializable
-public final class ShardsResponse implements JsonpSerializable {
+public class ShardsResponse implements JsonpSerializable {
 	private final List<ShardsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsResponse(Builder builder) {
+	private ShardsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public ShardsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardsResponse of(Function<Builder, ObjectBuilder<ShardsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class ShardsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<ShardsRecord> valueBody() {
+	public final List<ShardsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class ShardsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsResponse> {
 		private List<ShardsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class ShardsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<ShardsRecord> value) {
+		public final Builder valueBody(List<ShardsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class ShardsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(ShardsRecord... value) {
+		public final Builder valueBody(ShardsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(ShardsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new ShardsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>> fn) {
-			return this.valueBody(fn.apply(new ShardsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>> fn) {
-			return this.addValueBody(fn.apply(new ShardsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class ShardsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsResponse build() {
+			_checkSingleUse();
 
 			return new ShardsResponse(this);
 		}

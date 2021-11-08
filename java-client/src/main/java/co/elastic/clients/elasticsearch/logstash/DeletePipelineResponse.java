@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: logstash.delete_pipeline.Response
 
-public final class DeletePipelineResponse {
+public class DeletePipelineResponse {
 	public DeletePipelineResponse() {
 	}
 

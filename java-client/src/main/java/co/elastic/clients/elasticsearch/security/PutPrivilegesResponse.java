@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: security.put_privileges.Response
 @JsonpDeserializable
-public final class PutPrivilegesResponse extends DictionaryResponse<String, Map<String, CreatedStatus>> {
+public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String, CreatedStatus>> {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPrivilegesResponse(Builder builder) {
+	private PutPrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutPrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPrivilegesResponse of(Function<Builder, ObjectBuilder<PutPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class PutPrivilegesResponse extends DictionaryResponse<String, Map<
 		 *             if some of the required fields are null.
 		 */
 		public PutPrivilegesResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

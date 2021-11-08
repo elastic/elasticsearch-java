@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
 @JsonpDeserializable
-public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, JsonpSerializable {
 
 	public static final String TRUE = "true";
 	public static final String FALSE = "false";
@@ -47,38 +50,34 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final LifecycleExplainVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final LifecycleExplainVariant _get() {
 		return _value;
 	}
 
 	public LifecycleExplain(LifecycleExplainVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends LifecycleExplainVariant> LifecycleExplain(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private LifecycleExplain(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public LifecycleExplain(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LifecycleExplain of(Function<Builder, ObjectBuilder<LifecycleExplain>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,13 +103,13 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<LifecycleExplain> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplain> {
 		private String _type;
-		private JsonpSerializable _value;
+		private LifecycleExplainVariant _value;
 
 		public Builder true_(LifecycleExplainManaged v) {
 			this._type = TRUE;
@@ -133,6 +132,7 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 		}
 
 		public LifecycleExplain build() {
+			_checkSingleUse();
 			return new LifecycleExplain(this);
 		}
 
@@ -147,6 +147,6 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 
 	}
 
-	public static final JsonpDeserializer<LifecycleExplain> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<LifecycleExplain> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			LifecycleExplain::setupLifecycleExplainDeserializer, Builder::build);
 }
